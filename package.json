@@ -1,0 +1,23 @@
+{
+  "name": "ux-tweak-sc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "testcafe": "testcafe chrome test/testcafe.js",
+    "phantomjs": "cd test && node phantomjs.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "phantomjs-prebuilt": "^2.1.14",
+    "webpack": "^3.2.0"
+  },
+  "devDependencies": {
+    "gulp-header": "^1.8.8",
+    "gulp-util": "^3.0.8",
+    "webpack-stream": "^3.2.0"
+  }
+}
