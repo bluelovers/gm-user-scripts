@@ -5,9 +5,10 @@
 module.exports = {
 
 	photo: {
-		'filter': 'contrast(115%)',
+		filter: 'contrast(115%)',
 		padding: 0,
 		margin: 'auto',
+		border: '0px none #fff',
 	},
 
 	body: {
@@ -16,7 +17,7 @@ module.exports = {
 	},
 
 	bg_dark: {
-		'background': '#34353b',
+		background: '#34353b',
 	},
 
 };
