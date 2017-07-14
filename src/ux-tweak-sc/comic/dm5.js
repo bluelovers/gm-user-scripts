@@ -34,21 +34,30 @@ module.exports = {
 				$('#checkAdult')[0].click();
 			}
 
-			const _uf_dom_filter_link = require('../lib/dom/filter/link');
+			if (_url_obj.path.match(/-end\//))
+			{
+				let _a = $('.end_mian .end_top .new_h4 a, .finalPage .topBar .right > a:eq(-1)');
 
-			_uf_dom_filter_link(
-				'.red_lj a, #cbc_1 a, #cbc_2 a, #cbc_3 a, #abc_1 a, #abc_2 a, #index_mian .diline a, .innr22 a, .innr72 a, #tempc a.tg, .end_kk a, #search_nr .ssnr_bt a, #search_nr .matoa a, #index_left .inkk.ma5 div.sy_tb a, #todaycomic a, #index_right .inkk .innr8 li a, #search_nrl .ssnr_yt dl a, #index_mian .innr3 a')
+				if (_a.length)
+				{
+					_a[0].click();
+				}
+			}
+
+			const _uf_dom_filter_link = require('../../lib/dom/filter/link');
+
+			_uf_dom_filter_link('.red_lj a, #cbc_1 a, #cbc_2 a, #cbc_3 a, #abc_1 a, #abc_2 a, #index_mian .diline a, .innr22 a, .innr72 a, #tempc a.tg, .end_kk a, #search_nr .ssnr_bt a, #search_nr .matoa a, #index_left .inkk.ma5 div.sy_tb a, #todaycomic a, #index_right .inkk .innr8 li a, #search_nrl .ssnr_yt dl a, #index_mian .innr3 a, .midBar .item a')
 				.not('.li_end a')
 				.attr('target', '_blank')
 			;
 
 			const keycodes = require('keycodes');
-			const _uf_done = require('../lib/event.done');
-			const comic_style = require('../lib/comic/style');
+			const _uf_done = require('../../lib/event.done');
+			const comic_style = require('../../lib/comic/style');
 
 			let _img_selector = '#cp_image2:visible, #cp_image:visible';
 
-			const waitUntil = require('../lib/promise/wait').jquery;
+			const waitUntil = require('../../lib/promise/wait').jquery;
 
 			if ($('body.vPage').length)
 			{
@@ -195,6 +204,12 @@ module.exports = {
 
 				_dm5();
 			}
+			else
+			{
+				$(window)
+					.scrollTo($('#index_mian, #index_left').eq(-1))
+				;
+			}
 
 			$(window)
 				.on('keydown', function (event)
@@ -227,7 +242,7 @@ module.exports = {
 				})
 				.on('load.nocontextmenu', () =>
 				{
-					const _uf_disable_nocontextmenu = require('../lib/dom/disable_nocontextmenu')._uf_disable_nocontextmenu2;
+					const _uf_disable_nocontextmenu = require('../../lib/dom/disable_nocontextmenu')._uf_disable_nocontextmenu2;
 
 					try
 					{
