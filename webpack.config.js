@@ -5,6 +5,8 @@
 var webpack = require('webpack');
 const path = require('path');
 
+const ClosureCompilerPlugin = require('webpack-closure-compiler');
+
 module.exports = {
 	entry: {
 		"ux-tweak-sc.user": './src/ux-tweak-sc.user.js',
@@ -23,5 +25,16 @@ module.exports = {
 	},
 
 	//devtool: "inline-source-map",
-	devtool: "source-map",
+	devtool: "eval",
+
+	plugins: [
+//		new ClosureCompilerPlugin({
+//			compiler: {
+//				language_in: 'ECMASCRIPT6',
+//				language_out: 'ECMASCRIPT6',
+//				compilation_level: 'ADVANCED'
+//			},
+//			concurrency: 3,
+//		})
+	],
 };

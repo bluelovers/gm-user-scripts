@@ -1,0 +1,1 @@
+require('./dm5.js').main();
