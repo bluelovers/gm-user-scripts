@@ -16,7 +16,7 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
 	{
 		jq = unsafeWindow.jQuery;
 		arr = unsafeWindow.jQuery(elem).add('body, html')
-			//.add(unsafeWindow.document)
+			.add(unsafeWindow.document)
 		;
 
 		//console.log(jq, arr);
@@ -25,7 +25,7 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
 	{
 		jq = window.jQuery;
 		arr = window.jQuery(elem).add('body, html')
-			//.add(window.document)
+			.add(window.document)
 		;
 	}
 
