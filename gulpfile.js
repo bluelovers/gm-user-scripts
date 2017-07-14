@@ -96,6 +96,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @include		http*://exhentai.org/*
 // @include		http*://g.e-hentai.org/*
 // @include		http*://*.pixiv.net/*
+// @include		http*://*.dmzj.com/*
 //
 // @version		<%= pkg.version %>
 //
