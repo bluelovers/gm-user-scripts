@@ -1,3 +1,5 @@
+
+//let jQuery = require('jquery')
 global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
 //global.Promise = require('bluebird');
 
