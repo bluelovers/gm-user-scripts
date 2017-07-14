@@ -42,7 +42,7 @@ gulp.task("webpack:before", async function (callback)
 
 	for (let name in data)
 	{
-		let ls = await globby(['**.js', '!index.js'], {
+		let ls = await globby(['**/*.js', '!index.js', '!lib/*'], {
 			cwd: path.join(cwd_src, name),
 		});
 
@@ -60,16 +60,29 @@ gulp.task("webpack:before", async function (callback)
 	{
 		let ls = Object.keys(data[name]).reduce((a, b) =>
 		{
+			a.push(`console.log('${b}');`);
 			a.push(`require('./${b}').main();`);
 
 			return a;
 		}, []).join("\n");
 
-		await fs.writeFileAsync(path.join(cwd_src, name, 'index.js'), ls);
+		let text = `
+try
+{
+	${ls}
+}
+catch (e)
+{
+	console.error(e.message, e.stack);
+}
+`;
+
+		text = ls;
+
+		await fs.writeFileAsync(path.join(cwd_src, name, 'index.js'), text);
 	}
 
 	console.log(data);
-
 });
 
 gulp.task("webpack", ["webpack:before"], function (callback)
@@ -80,6 +93,9 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @namespace	bluelovers
 //
 // @include		http*://www.dm5.com/*
+// @include		http*://exhentai.org/*
+// @include		http*://g.e-hentai.org/*
+// @include		http*://*.pixiv.net/*
 //
 // @version		<%= pkg.version %>
 //
@@ -88,7 +104,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // grant		GM_addStyle
 // grant		none
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?<%= token %>
+// @require		https://code.jquery.com/jquery-3.2.1.js?<%= token %>
 // require		https://code.jquery.com/jquery-migrate-3.0.0.js?<%= token %>
 //
 // ==/UserScript==
