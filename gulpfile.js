@@ -82,9 +82,11 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @include		http*://www.dm5.com/*
 //
 // @version		<%= pkg.version %>
+//
 // @grant		GM_registerMenuCommand
 // @grant		unsafeWindow
-// @grant		GM_addStyle
+// grant		GM_addStyle
+// grant		none
 //
 // require		https://code.jquery.com/jquery-3.2.1.js?<%= token %>
 // require		https://code.jquery.com/jquery-migrate-3.0.0.js?<%= token %>
