@@ -2,6 +2,80 @@
  * Created by user on 2017/7/14/014.
  */
 
+const greasemonkey = require('../greasemonkey');
+
+module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
+{
+	let _fn_event = ['dragstart', 'contextmenu', 'selectstart', 'mousedown', 'mouseup', 'source'];
+	let _fn_off = ['unbind', 'die', 'off'];
+
+	let jq;
+	let arr;
+
+	if (unsafeWindow && unsafeWindow.jQuery)
+	{
+		jq = unsafeWindow.jQuery;
+		arr = unsafeWindow.jQuery(elem).add('body, html')
+			//.add(unsafeWindow.document)
+		;
+
+		//console.log(jq, arr);
+	}
+	else
+	{
+		jq = window.jQuery;
+		arr = window.jQuery(elem).add('body, html')
+			//.add(window.document)
+		;
+	}
+
+	if (mode > 1)
+	{
+		let _style = jq('style#_uf_disable_nocontextmenu');
+
+		if (1 && !_style.length)
+		{
+			_style = greasemonkey.GM_addStyle('* { -moz-user-select: auto !important; -webkit-user-select: auto !important; -ms-user-select: auto !important; user-select: auto !important; }');
+
+			jq(_style).attr('id', '_uf_disable_nocontextmenu');
+		}
+	}
+
+	// 保留此語法 防止發生BUG
+	let arr2 = jQuery(elem);
+
+	arr2
+		.css({
+//			'-moz-user-select': 'auto',
+//			'-webkit-user-select': 'auto',
+//			'-ms-user-select': 'auto',
+			'user-select': 'auto',
+		})
+	;
+
+	_fn_event.forEach((event)=>
+	{
+		arr2
+			.removeAttr(`on${event}`)
+		;
+
+		if (mode)
+		{
+			arr2
+				.prop(`on${event}`, null)
+			;
+
+			_fn_off.forEach((fn)=>
+			{
+				if (jq.fn[fn])
+				{
+					arr[fn](event);
+				}
+			});
+		}
+	});
+};
+
 module.exports._uf_disable_nocontextmenu = function _uf_disable_nocontextmenu(mode, elem)
 {
 	var _jquery_array = [$];
@@ -27,10 +101,12 @@ module.exports._uf_disable_nocontextmenu = function _uf_disable_nocontextmenu(mo
 		}
 	}
 
-	var _fn_jq_call = function(_jquery, arr, fn, event){
+	var _fn_jq_call = function (_jquery, arr, fn, event)
+	{
 		if (_jquery.fn[fn])
 		{
-			$.each(event, function(i, v){
+			$.each(event, function (i, v)
+			{
 				arr[fn](v);
 
 				//_uf_log(arr, fn, v);
@@ -42,9 +118,11 @@ module.exports._uf_disable_nocontextmenu = function _uf_disable_nocontextmenu(mo
 
 	var _fn_event = ['dragstart', 'contextmenu', 'selectstart', 'mousedown', 'mouseup', 'source'];
 
-	$.each(_jquery_array, function(key, _jquery){
+	$.each(_jquery_array, function (key, _jquery)
+	{
 
-		var arr = _jquery(unsafeWindow.document).add('body, html');
+		//var arr = _jquery(unsafeWindow.document).add('body, html');
+		var arr = _jquery('body, html');
 
 		if (elem)
 		{
@@ -72,8 +150,10 @@ module.exports._uf_disable_nocontextmenu = function _uf_disable_nocontextmenu(mo
 		if (mode)
 		{
 			arr
-				.each(function(){
-					this.oncontextmenu = this.ondragstart = this.onselectstart = this.onmousedown = this.onmouseup = this.onsource = null;
+				.each(function ()
+				{
+					this.oncontextmenu = this.ondragstart = this.onselectstart = this.onmousedown = this.onmouseup
+						= this.onsource = null;
 				})
 			;
 
