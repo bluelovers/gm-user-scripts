@@ -36,6 +36,7 @@ module.exports = {
 			const _uf_dom_filter_link = require('../../lib/dom/filter/link');
 			const _uf_done = require('../../lib/event.done');
 			const comic_style = require('../../lib/comic/style');
+			const greasemonkey = require('../../lib/greasemonkey');
 
 			_uf_dom_filter_link('.itg a, #gdt a')
 				.attr('target', '_blank')
@@ -137,7 +138,28 @@ module.exports = {
 			}
 			else
 			{
+				greasemonkey.GM_addStyle(`.id1._zh { border-color: rgb(54, 176, 197); } .id1._other { opacity: 0.25; } .id1:hover { opacity: 1; }`);
+
 				$.scrollTo('#toppane, #gd2');
+
+				$('.itg .id2')
+					.each(function ()
+					{
+						let _this = $(this);
+
+						let text = _this.text();
+
+						if (/Chinese|中国|漢化/i.test(text))
+						{
+							_this.parents('.id1:eq(0)').addClass('_zh');
+							;
+						}
+						else if (/\[(English|Korean|Spanish|Thai ภาษาไทย|Italian|Russian)\]/i.test(text))
+						{
+							_this.parents('.id1:eq(0)').addClass('_other');
+						}
+					})
+				;
 			}
 
 			$(window)
