@@ -1,5 +1,7 @@
 console.log('acg/gamer.com.tw.js');
 require('./acg/gamer.com.tw.js').main();
+console.log('acg/getchu.js');
+require('./acg/getchu.js').main();
 console.log('art/pixiv.js');
 require('./art/pixiv.js').main();
 console.log('comic/dm5.js');
@@ -16,3 +18,7 @@ console.log('social/facebook.js');
 require('./social/facebook.js').main();
 console.log('torrent/dmhy.js');
 require('./torrent/dmhy.js').main();
+console.log('torrent/jandown.js');
+require('./torrent/jandown.js').main();
+console.log('torrent/nyaa.js');
+require('./torrent/nyaa.js').main();
