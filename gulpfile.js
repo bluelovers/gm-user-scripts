@@ -107,6 +107,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @include		http*://home.gamer.com.tw/*
 // @include		http*://acg.gamer.com.tw/*
 // @include		http*://m.gamer.com.tw/*
+// @include		http*://share.dmhy.org/*
+// @include		http*://*.wnacg.com/*
 //
 // @version		<%= pkg.version %>
 //
@@ -117,6 +119,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 //
 // @require		https://code.jquery.com/jquery-3.2.1.js?<%= token %>
 // require		https://code.jquery.com/jquery-migrate-3.0.0.js?<%= token %>
+//
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?<%= token %>
 //
 // ==/UserScript==
 `;
