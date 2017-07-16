@@ -109,6 +109,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @include		http*://m.gamer.com.tw/*
 // @include		http*://share.dmhy.org/*
 // @include		http*://*.wnacg.com/*
+// @include		http*://www.facebook.com/*
 //
 // @version		<%= pkg.version %>
 //
