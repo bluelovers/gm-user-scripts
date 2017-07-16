@@ -143,7 +143,7 @@ module.exports = {
 			$(window)
 				.on('keydown', function (event)
 				{
-					let _a = $('body > .ido .ptt td > a[onclick]');
+					let _a = $('.ptt td > a[onclick]');
 
 					//console.log(event.which, keycodes(event.which), _a.length);
 

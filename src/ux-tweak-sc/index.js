@@ -10,3 +10,7 @@ console.log('comic/exhentai.js');
 require('./comic/exhentai.js').main();
 console.log('comic/nhentai.js');
 require('./comic/nhentai.js').main();
+console.log('comic/wnacg.js');
+require('./comic/wnacg.js').main();
+console.log('torrent/dmhy.js');
+require('./torrent/dmhy.js').main();
