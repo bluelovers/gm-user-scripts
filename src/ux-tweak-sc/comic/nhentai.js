@@ -8,7 +8,7 @@ module.exports = {
 
 	metadata: {
 		match: [
-			'http*://nhentai\.net/*',
+			'http*://nhentai.net/*',
 		],
 		exclude: [],
 	},
