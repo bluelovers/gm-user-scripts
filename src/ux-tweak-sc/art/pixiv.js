@@ -69,7 +69,7 @@ module.exports = {
 				.prop('target', '_blank')
 				.on('submit', function ()
 				{
-					if (_url_obj.path.match(/member(_illust)?\.php\?id=/))
+					if (_url_obj.path.match(/member(_illust)?\.php/))
 					{
 					}
 					else
@@ -247,22 +247,6 @@ module.exports = {
 					_dummy();
 				})
 			;
-
-			$(document).on('mouseover._profile-popup', function (event)
-			{
-				var _this = $(event.target);
-
-				if (_this.is('._profile-popup'))
-				{
-					$('a.user-name, .user-profile > a', _this).prop('href', function (i, v)
-					{
-
-						v = v.replace('member.php', 'member_illust.php');
-
-						return v;
-					})
-				}
-			});
 
 			$('a[href*="jump.php"]', '.profile-web, .caption, .body')
 				.each(function ()

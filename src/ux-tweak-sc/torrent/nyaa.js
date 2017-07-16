@@ -1,5 +1,5 @@
 /**
- * Created by user on 2017/7/14/014.
+ * Created by user on 2017/7/16/016.
  */
 
 'use strict';
@@ -8,14 +8,14 @@ module.exports = {
 
 	metadata: {
 		match: [
-			'http*://nhentai.net/*',
+			'http*://sukebei.nyaa.si/*',
 		],
 		exclude: [],
 	},
 
 	test(_url_obj)
 	{
-		if (_url_obj.host.match(/nhentai\.net/))
+		if (_url_obj.host.match(/sukebei\.nyaa\.si/))
 		{
 			return true;
 		}
@@ -32,11 +32,9 @@ module.exports = {
 		if (RETURN)
 		{
 			const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-			_uf_dom_filter_link('#content .gallery a')
+			_uf_dom_filter_link('.torrent-list tr > td[colspan="2"] a, #torrent-description a')
 				.attr('target', '_blank')
 			;
-
-			module.exports.adblock();
 
 			return RETURN
 		}
@@ -44,6 +42,6 @@ module.exports = {
 
 	adblock()
 	{
-		unsafeWindow.N.options.ads.show_popunders = false;
+
 	},
 };

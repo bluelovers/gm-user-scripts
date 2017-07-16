@@ -121,6 +121,98 @@ module.exports = {
 					})
 				;
 			}
+			else if ($('#img_list').length)
+			{
+				const _img_area = $('#img_list');
+
+				$('body')
+					.css(comic_style.body)
+					.css(comic_style.bg_dark)
+				;
+
+				const _img_selector = '#img_list img';
+				let _img = $(_img_selector);
+
+				let _img_resize = function (_this)
+				{
+					const _uf_fixsize2 = require('../../lib/dom/img/size')._uf_fixsize2;
+
+					return _uf_fixsize2($(_this), window, 1, {
+						width: 'auto',
+					})
+						.css(comic_style.photo)
+					;
+				};
+
+				_img_area
+					.on('DOMNodeInserted', function (event)
+					{
+						_img = $(_img_selector);
+
+						_img
+							.imagesLoaded()
+							.always(function (data)
+							{
+								$(window).triggerHandler('load.once');
+							})
+							.done(function (data)
+							{
+								_img_resize(data.images[data.progressedCount - 1].img);
+							})
+						;
+					})
+				;
+
+				$(window)
+					.on('load', function ()
+					{
+						_img_area.triggerHandler('DOMNodeInserted');
+					})
+					.on('load.once', function ()
+					{
+						$(window).scrollTo(_img[0]);
+					})
+					.on('resize', function ()
+					{
+						_img = $(_img_selector);
+
+						_img.each(function ()
+						{
+							_img_resize(this);
+						});
+					})
+					.on('keydown', function (event)
+					{
+						switch (event.which)
+						{
+							case keycodes('pageup'):
+							case keycodes('left'):
+								var _a = $('.newpage a.btntuzao:eq(0)');
+
+								if (_a.length)
+								{
+									_uf_done(event);
+									_a[0].click();
+								}
+
+								break;
+							case keycodes('pagedown'):
+							case keycodes('right'):
+								var _a = $('.newpage a.btntuzao:eq(-1)');
+
+								if (_a.length)
+								{
+									_uf_done(event);
+									_a[0].click();
+								}
+
+								break;
+						}
+					})
+				;
+
+				$(window).scrollTo(_img_area);
+			}
 			else
 			{
 				$(window)

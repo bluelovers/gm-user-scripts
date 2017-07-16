@@ -97,7 +97,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @include		http*://g.e-hentai.org/*
 // @include		http*://*.pixiv.net/*
 // @include		http*://*.dmzj.com/*
-// @include		http*://nhentai\.net/*
+// @include		http*://nhentai.net/*
 // @include		http*://www.gamer.com.tw/
 // @include		http*://www.gamer.com.tw/index*.php*
 // @include		http*://acg.gamer.com.tw/acgDetail.php?s=*
@@ -110,6 +110,9 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @include		http*://share.dmhy.org/*
 // @include		http*://*.wnacg.com/*
 // @include		http*://www.facebook.com/*
+// @include		http*://sukebei.nyaa.si/*
+// @include		http*://*.getchu.com/*
+// @include		http*://www.jandown.com/*
 //
 // @version		<%= pkg.version %>
 //
