@@ -154,7 +154,7 @@ module.exports = {
 							_this.parents('.id1:eq(0)').addClass('_zh');
 							;
 						}
-						else if (/\[(English|Korean|Spanish|Thai ภาษาไทย|Italian|Russian)\]/i.test(text))
+						else if (/\[(Eng(?:lish)|Korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish)\]/i.test(text))
 						{
 							_this.parents('.id1:eq(0)').addClass('_other');
 						}
