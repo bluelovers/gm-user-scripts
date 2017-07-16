@@ -35,7 +35,10 @@ module.exports = {
 			require('../../lib/func/debounce');
 
 			const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-			_uf_dom_filter_link('.works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a')
+			_uf_dom_filter_link([
+				'.works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a',
+				'.post a',
+			].join(','))
 				.prop('target', '_blank')
 			;
 
@@ -74,7 +77,7 @@ module.exports = {
 						let _form = $(this);
 						let uid = $(':input[name="user_id"]', _form).val();
 
-						window.open('http://www.pixiv.net/member_illust.php?id=' + uid, '_blank');
+						window.open(pixiv_link_uid(uid), '_blank');
 					}
 				})
 			;
@@ -108,13 +111,13 @@ module.exports = {
 
 					//_uf_log(event, this);
 
-					if (_this.is('._profile-popup .follow-button'))
+					if (_this.is(':not(.following2) .follow-button'))
 					{
 						//_uf_log(777, event, _this);
 
 						var _a = _this.parents('.user-info:first').find('a.user-name:first');
 
-						var _href = 'http://www.pixiv.net/' + _a.prop('href')
+						var _href = _a.prop('href')
 								.replace('member.php', 'member_illust.php');
 
 						//_uf_log(event, _this, _a, _href);
@@ -140,7 +143,8 @@ module.exports = {
 				$(window)
 					.on('load', (function ()
 					{
-						if (!$('.user-recommendation-items .user-recommendation-item').length && $('#wrapper .user-recommendation-unit ._no-item:visible').length)
+						if (!$('.user-recommendation-items .user-recommendation-item').length && $(
+								'#wrapper .user-recommendation-unit ._no-item:visible').length)
 						{
 							window.close();
 						}
@@ -154,85 +158,54 @@ module.exports = {
 
 			let _dummy = function ()
 			{
-//			_uf_log($('#wrapper .user-recommendation-items'));
-
-				if ($('#wrapper .user-recommendation-items').length)
+				if ($('.follow-button').length)
 				{
-//				$('#wrapper .user-recommendation-items').on('click.follow', 'li.user-recommendation-item .follow-button', function(){
-//					var _this = $(this);
-//
-//					_uf_log(_this);
-//
-//					var _li = _this.parent('li.user-recommendation-item');
-//
-//					_uf_log(_this, _li);
-//
-//					if (_li.length)
-//					{
-//						_li.eq(0).find('h1 a').eq(0).trigger('click');
-//					}
-//				});
-
-					$('#wrapper .user-recommendation-items li.user-recommendation-item:not([data-uf])')
-						.each(function ()
+					$(':not(.following2) .follow-button')
+						.not('[data-uf]')
+						.attr('data-uf', true)
+						.one('click', function (event)
 						{
-							var _this = $(this);
+							let _this = $(this);
 
-							_this.attr('data-uf', true);
-
-//					_uf_log(_this);
-
-							_this.find('.follow-button').on('click.follow', function (event)
-							{
-//						_uf_log(event, this, _this, _this.attr('data-id'));
-
-								setTimeout(function ()
-								{
-									window.open('http://www.pixiv.net/member_illust.php?id=' + _this.attr(
-											'data-id'), '_blank');
-								}, 200);
-							});
-
-							_this.find('div.follow')
-								.attr('data-id', _this.attr('data-id'))
-								.find('.sprites-checked')
-								.attr('data-uf', true)
+							let uid = _this.parents('[data-id]:eq(0)').eq(0)
+								.attr('data-id')
 							;
 
-							$('a.title', _this).prop('href', function (i, v)
+							window.open(pixiv_link_uid(uid), '_blank');
+
+							setTimeout(() =>
 							{
-
-								v = v.replace('member.php', 'member_illust.php');
-
-								return v;
-							})
-						});
-
-					$('body').on('click', '.follow-setting-modal .action-follow :submit', (function (event)
-					{
-						//_uf_log(event);
-
-						$('#wrapper .user-recommendation-items li.user-recommendation-item div.follow ._icon:not([data-uf])')
-							.each(function ()
-							{
-
-								var _this = $(this);
-
-								if (_this.is('.sprites-checked'))
-								{
-									_this.attr('data-uf', true);
-
-									window.open('http://www.pixiv.net/member_illust.php?id=' + _this.parent(
-											'div.follow').attr('data-id'), '_blank');
-								}
-							})
-						;
-
-					}).debounce(500));
+								_follow_area
+									.triggerHandler('DOMNodeInserted')
+								;
+							}, 500);
+						})
+						.each(function ()
+						{
+							let _this = $(this);
+						})
+					;
 				}
 			};
 
-			_dummy();
+			setTimeout(_dummy, 500);
+
+			let _follow_area = $('.user-recommendation-items._loading');
+
+			setTimeout(() =>
+			{
+				_follow_area
+					.on('DOMNodeInserted', function (event)
+					{
+						_dummy();
+					})
+				;
+			}, 500);
+
+//			$('body').on('hover', '._profile-popup', function ()
+//			{
+//				_dummy();
+//			});
 
 			$(window)
 				.on('keydown', function (event)
@@ -291,10 +264,6 @@ module.exports = {
 				}
 			});
 
-			setTimeout(_dummy, 500);
-			setTimeout(_dummy, 1000);
-			setTimeout(_dummy, 3000);
-
 			$('a[href*="jump.php"]', '.profile-web, .caption, .body')
 				.each(function ()
 				{
@@ -345,4 +314,9 @@ function _pixiv_source(_src)
 	}
 
 	return _ret;
+}
+
+function pixiv_link_uid(uid, type = 'member_illust')
+{
+	return `http://www.pixiv.net/${type}.php?id=${uid}`;
 }
