@@ -86,7 +86,8 @@ gulp.task("webpack:before", async function (callback)
 
 		let main = function ()
 		{
-			console.group(name);
+			console.time(module.exports.name);
+			console.group(module.exports.name);
 			module.exports.list.every((name) =>
 			{
 				let ret = true;
@@ -96,19 +97,37 @@ gulp.task("webpack:before", async function (callback)
 
 				let lib = require('./' + name);
 
-				let test = lib.test(global._url_obj);
+				let name_id = name;
 
-				console.info(lib.name || name, test);
-
-				if (test)
+				if (lib.name && lib.name != name_id)
 				{
-					let ret_main = lib.main(global._url_obj);
+					name_id = `${lib.name} - ${name_id}`;
+				}
 
-					if (ret_main == true || ret_main === undefined)
+				name_id = `[${name_id}]`;
+
+				if (lib.disable)
+				{
+					console.warn(name_id, 'disable, skip this');
+
+					ret = false;
+				}
+				else
+				{
+					let test = lib.test(global._url_obj);
+
+					console.info(name_id, test);
+
+					if (test)
 					{
-						ret = false;
+						let ret_main = lib.main(global._url_obj);
 
-						console.info((lib.name || name), 'matched', ret_main);
+						if (ret_main == true || ret_main === undefined)
+						{
+							ret = false;
+
+							console.info(name_id, 'matched', ret_main);
+						}
 					}
 				}
 
@@ -116,11 +135,14 @@ gulp.task("webpack:before", async function (callback)
 				console.timeEnd(name);
 
 				return ret;
-			})
-			console.groupEnd();
+			});
+			console.groupEnd(module.exports.name);
+			console.timeEnd(module.exports.name);
 		};
 
 		let text = `
+module.exports.name = '${name}';
+
 module.exports.list = ${JSON.stringify(ls.list, null, "\t")};
 
 // for webpack, don't use this method
@@ -151,6 +173,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @namespace	bluelovers
 //
 // @include		<%= index.include %>
+//
+// @exclude		<%= index.exclude %>
 //
 // @version		<%= pkg.version %>
 //
@@ -187,7 +211,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 			pkg: pkg,
 
 			index: {
-				include: index.metadata.include.join("\n// @include		")
+				include: index.metadata.include.join("\n// @include		"),
+				exclude: index.metadata.exclude.join("\n// @exclude		"),
 			},
 
 			token: Date.now()

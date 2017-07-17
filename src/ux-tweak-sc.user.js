@@ -28,7 +28,7 @@ global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
 
 function _init()
 {
-	const parse_url = require('./lib/parse_url');
+	const parse_url = require('./lib/func/parse_url');
 
 	global._url = window.location.href;
 	global._url_obj = global._url_obj_ = parse_url(global._url);

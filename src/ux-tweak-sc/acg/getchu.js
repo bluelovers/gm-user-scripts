@@ -32,7 +32,7 @@ module.exports = {
 		if (RETURN)
 		{
 			const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-			_uf_dom_filter_link('.product a')
+			_uf_dom_filter_link('.product a, #detail_block a, .package a')
 				.attr('target', '_blank')
 			;
 
@@ -51,7 +51,8 @@ module.exports = {
 				})
 			;
 
-			$('.product a[href*="soft.phtml"]')
+			$('.product, .package, #detail_block')
+				.find('a[href*="soft.phtml"]')
 				.prop('href', function (i, v)
 				{
 					return v + '&gc=gc';

@@ -1,5 +1,9 @@
 
+module.exports.name = 'ux-tweak-sc';
+
 module.exports.list = [
+	"acg/3dmgame.js",
+	"acg/blog.reimu.net.js",
 	"acg/gamer.com.tw.js",
 	"acg/getchu.js",
 	"art/pixiv.js",
@@ -8,6 +12,7 @@ module.exports.list = [
 	"comic/exhentai.js",
 	"comic/nhentai.js",
 	"comic/wnacg.js",
+	"google/search.js",
 	"social/facebook.js",
 	"torrent/dmhy.js",
 	"torrent/jandown.js",
@@ -17,6 +22,8 @@ module.exports.list = [
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
+	require('./acg/3dmgame.js');
+	require('./acg/blog.reimu.net.js');
 	require('./acg/gamer.com.tw.js');
 	require('./acg/getchu.js');
 	require('./art/pixiv.js');
@@ -25,6 +32,7 @@ module.exports._lib = () =>
 	require('./comic/exhentai.js');
 	require('./comic/nhentai.js');
 	require('./comic/wnacg.js');
+	require('./google/search.js');
 	require('./social/facebook.js');
 	require('./torrent/dmhy.js');
 	require('./torrent/jandown.js');
@@ -33,6 +41,9 @@ module.exports._lib = () =>
 
 module.exports.metadata = {};
 module.exports.metadata.include = [
+	"http*://www.3dmgame.com/*",
+	"http*://bbs.3dmgame.com/*",
+	"http*://blog.reimu.net/*",
 	"http*://www.gamer.com.tw/*",
 	"http*://www.gamer.com.tw/index*.php*",
 	"http*://acg.gamer.com.tw/acgDetail.php?s=*",
@@ -51,16 +62,22 @@ module.exports.metadata.include = [
 	"http*://nhentai.net/*",
 	"http*://*.wnacg.com/*",
 	"http*://*.wnacg.org/*",
+	"http*://*.google.*/*",
+	"http*://encrypted.google.com/*",
+	"http*://www.google.co.jp/*",
 	"http*://www.facebook.com/*",
 	"http*://share.dmhy.org/*",
 	"http*://www.jandown.com/*",
 	"http*://sukebei.nyaa.si/*"
 ];
-module.exports.metadata.exclude = [];
+module.exports.metadata.exclude = [
+	"http*://notifications.google.com/*"
+];
 
 module.exports.main = function ()
 		{
-			console.group(name);
+			console.time(module.exports.name);
+			console.group(module.exports.name);
 			module.exports.list.every((name) =>
 			{
 				let ret = true;
@@ -70,19 +87,37 @@ module.exports.main = function ()
 
 				let lib = require('./' + name);
 
-				let test = lib.test(global._url_obj);
+				let name_id = name;
 
-				console.info(lib.name || name, test);
-
-				if (test)
+				if (lib.name && lib.name != name_id)
 				{
-					let ret_main = lib.main();
+					name_id = `${lib.name} - ${name_id}`;
+				}
 
-					if (ret_main == true || ret_main === undefined)
+				name_id = `[${name_id}]`;
+
+				if (lib.disable)
+				{
+					console.warn(name_id, 'disable, skip this');
+
+					ret = false;
+				}
+				else
+				{
+					let test = lib.test(global._url_obj);
+
+					console.info(name_id, test);
+
+					if (test)
 					{
-						ret = false;
+						let ret_main = lib.main(global._url_obj);
 
-						console.info((lib.name || name), 'matched', ret_main);
+						if (ret_main == true || ret_main === undefined)
+						{
+							ret = false;
+
+							console.info(name_id, 'matched', ret_main);
+						}
 					}
 				}
 
@@ -90,7 +125,8 @@ module.exports.main = function ()
 				console.timeEnd(name);
 
 				return ret;
-			})
-			console.groupEnd();
+			});
+			console.groupEnd(module.exports.name);
+			console.timeEnd(module.exports.name);
 		};
 
