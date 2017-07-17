@@ -36,7 +36,7 @@ module.exports = {
 
 			if (_url_obj.path.match(/-end\//))
 			{
-				let _a = $('.end_mian .end_top .new_h4 a, .finalPage .topBar .right > a:eq(-1)');
+				let _a = $('.end_mian .end_top .new_h4 a, .finalPage .topBar .right > a:has(img[src*="finalPage_4_w.png"])');
 
 				if (_a.length)
 				{
