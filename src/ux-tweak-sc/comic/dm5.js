@@ -63,6 +63,17 @@ module.exports = {
 			{
 				let _img = $(_img_selector);
 
+				let _div_page = $('<div/>')
+					.css(comic_style.page)
+					.css(comic_style.bg_dark)
+					.css(comic_style.bg_dark_border)
+					.css(comic_style.bg_dark_text)
+					.css({
+						position: 'absolute',
+					})
+					.appendTo('body')
+				;
+
 				$(window)
 					.on('resize.imagesLoaded', () =>
 					{
@@ -86,6 +97,20 @@ module.exports = {
 							.css(comic_style.body)
 							.css(comic_style.bg_dark)
 						;
+
+						_div_page
+							.text(unsafeWindow.DM5_PAGE + '/' + $('.pageBar a[data-pgt]:eq(-1)').attr('data-pgt'))
+						;
+
+						if (_img.length)
+						{
+							_div_page
+								.offset({
+									top: _img.offset().top + 50,
+									left: _img.offset().left - _div_page.outerWidth(),
+								})
+							;
+						}
 
 						$(window)
 							.scrollTo(_img.add('#showimage'))
