@@ -48,6 +48,37 @@ module.exports = {
 
 				//console.log(_img);
 
+				greasemonkey.GM_addStyle([
+					`a { color: ${comic_style.bg_dark_text.color}; }`,
+				].join(''));
+
+				$('body')
+					.css(comic_style.bg_dark)
+					.css(comic_style.bg_dark_text)
+				;
+				$('div.sni')
+					.css(comic_style.bg_dark2)
+					.css(comic_style.bg_dark_border)
+				;
+
+				let _div_page = $('<div/>')
+					.css(comic_style.page)
+					.css(comic_style.bg_dark)
+					.css(comic_style.bg_dark_border)
+					.css({
+						'border-left-width': 0,
+					})
+					.offset({
+						top: $('#img').offset().top,
+						left: $('#i1').offset().left,
+					})
+					.appendTo($('body'))
+				;
+
+				$('#i3')
+					.on('DOMNodeInserted', _fn_img)
+				;
+
 				$(window)
 					.on('resize', function ()
 					{
@@ -69,6 +100,13 @@ module.exports = {
 								*/
 							})
 
+						;
+
+						_div_page
+							.text($('.sn div').eq(0).text())
+							.offset({
+								left: $('#i1').offset().left,
+							})
 						;
 
 						//console.log(_img, _this);
@@ -94,7 +132,6 @@ module.exports = {
 								_uf_done(event);
 								$('#next').trigger('click');
 
-
 								break;
 						}
 
@@ -112,6 +149,7 @@ module.exports = {
 						$(window).triggerHandler('resize');
 					}, 100);
 
+					/*
 					setTimeout(() =>
 					{
 						$(window).triggerHandler('resize');
@@ -121,6 +159,7 @@ module.exports = {
 					{
 						$(window).triggerHandler('resize');
 					}, 1000);
+					*/
 
 					_img
 						.imagesLoaded()
@@ -135,6 +174,46 @@ module.exports = {
 					;
 				};
 
+			}
+			else if (_url_obj.path.match(/\/g\//))
+			{
+				if ($('#gn').length)
+				{
+					$('#gdt')
+						.css({
+							width: 'auto',
+							'min-width': 'auto',
+						})
+					;
+
+					let _d = $('<div/>').addClass('gt').css({
+						'font-size': '8pt',
+						'margin': '0px 2px',
+					});
+
+					let _a = $('<a target="_blank"/>')
+						.text('g.e-hentai.org')
+						.attr('href', 'http://g.e-hentai.org' + _url_obj.path)
+						.css({
+							'font-size': '8pt',
+							'text-decoration': 'none',
+						});
+
+					if (_url_obj.host.match(/e-hentai\.org/))
+					{
+						_a.text('exhentai.org').attr('href', 'http://exhentai.org' + _url_obj.path);
+					}
+
+					$('<div/>')
+						.css({
+							'display': 'inline-block',
+							'vertical-align': 'middle',
+							'margin': '0px 10px',
+						})
+						.append(_d.append(_a))
+						.appendTo($('#gn'))
+					;
+				}
 			}
 			else
 			{
@@ -154,7 +233,8 @@ module.exports = {
 							_this.parents('.id1:eq(0)').addClass('_zh');
 							;
 						}
-						else if (/\[(Eng(?:lish)|Korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish)\]/i.test(text))
+						else if (/\[(Eng(?:lish)|Korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish)\]/i.test(
+								text))
 						{
 							_this.parents('.id1:eq(0)').addClass('_other');
 						}
