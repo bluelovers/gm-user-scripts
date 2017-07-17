@@ -13,7 +13,7 @@ global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
 		{
 			_init();
 
-			require('./ux-tweak-sc');
+			require('./ux-tweak-sc').main();
 		}
 		catch (e)
 		{
