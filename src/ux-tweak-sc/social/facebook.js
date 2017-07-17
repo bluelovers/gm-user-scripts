@@ -11,8 +11,7 @@ module.exports = {
 			'http*://www.facebook.com/*',
 		],
 		exclude: [
-			'http*://www.facebook.com/*plugins/*',
-			'http*://staticxx.facebook.com/*',
+
 		],
 	},
 

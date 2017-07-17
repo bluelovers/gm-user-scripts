@@ -2,6 +2,7 @@
 module.exports.name = 'ux-tweak-sc';
 
 module.exports.list = [
+	"_fake.js",
 	"acg/3dmgame.js",
 	"acg/blog.reimu.net.js",
 	"acg/gamer.com.tw.js",
@@ -22,6 +23,7 @@ module.exports.list = [
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
+	require('./_fake.js');
 	require('./acg/3dmgame.js');
 	require('./acg/blog.reimu.net.js');
 	require('./acg/gamer.com.tw.js');
@@ -63,18 +65,22 @@ module.exports.metadata.include = [
 	"http*://nhentai.net/*",
 	"http*://*.wnacg.com/*",
 	"http*://*.wnacg.org/*",
-	"http*://*.google.*/*",
 	"http*://encrypted.google.com/*",
 	"http*://www.google.co.jp/*",
+	"http*://*.google.*/blank.html",
+	"http*://*.google.*/search*",
+	"http*://*.google.*/imgres*",
 	"http*://www.facebook.com/*",
 	"http*://share.dmhy.org/*",
 	"http*://www.jandown.com/*",
 	"http*://sukebei.nyaa.si/*"
 ];
 module.exports.metadata.exclude = [
-	"http*://notifications.google.com/*",
+	"http*://platform.twitter.com/widgets*",
 	"http*://www.facebook.com/*plugins/*",
-	"http*://staticxx.facebook.com/*"
+	"http*://staticxx.facebook.com/*",
+	"http*://apis.google.com/*",
+	"http*://notifications.google.com/*"
 ];
 
 module.exports.main = function ()
@@ -122,6 +128,16 @@ module.exports.main = function ()
 							console.info(name_id, 'matched', ret_main);
 						}
 					}
+				}
+
+				if (!ret)
+				{
+					module.exports.current = {
+						name: name,
+						name_id: name_id,
+
+						lib: lib,
+					};
 				}
 
 				//console.groupEnd();

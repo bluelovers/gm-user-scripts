@@ -131,6 +131,16 @@ gulp.task("webpack:before", async function (callback)
 					}
 				}
 
+				if (!ret)
+				{
+					module.exports.current = {
+						name: name,
+						name_id: name_id,
+
+						lib: lib,
+					};
+				}
+
 				//console.groupEnd();
 				console.timeEnd(name);
 
