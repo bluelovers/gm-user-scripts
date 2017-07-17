@@ -44,9 +44,6 @@ module.exports = {
 			$('.tablebody img.soft, .highslide > img, .product img')
 				.attr('src', function (i, val)
 				{
-
-					console.log(val);
-
 					return val
 						.replace(/_s\.(jpe?g|bmp|png|gif)$/, '.$1')
 						.replace(/(brandnew\/(?:[^\/]+))\/rc/, '$1/c')

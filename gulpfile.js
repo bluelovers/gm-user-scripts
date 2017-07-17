@@ -60,24 +60,95 @@ gulp.task("webpack:before", async function (callback)
 	{
 		let ls = Object.keys(data[name]).reduce((a, b) =>
 		{
-			a.push(`console.log('${b}');`);
-			a.push(`require('./${b}').main();`);
+			a.list.push(b);
+			//a.push(`require('./${b}').main();`);
+
+			a._lib.push(`require('./${b}');`);
+
+			let lib = require(path.join(cwd_src, name, b));
+
+			a.metadata.include = a.metadata.include.concat(lib.metadata.match);
+			a.metadata.exclude = a.metadata.exclude.concat(lib.metadata.exclude);
 
 			return a;
-		}, []).join("\n");
+		}, {
+
+			list: [],
+			_lib: [],
+
+			metadata: {
+				include: [],
+				exclude: [],
+			},
+		});
+
+		console.log(ls);
 
 		let text = `
-try
+module.exports.list = ${JSON.stringify(ls.list, null, "\t")};
+
+// don't use this method
+module.exports._lib = () =>
 {
-	${ls}
-}
-catch (e)
+	${ls._lib.join("\n\t")}
+};
+
+module.exports.metadata = {};
+module.exports.metadata.include = ${JSON.stringify(ls.metadata.include, null, "\t")};
+module.exports.metadata.exclude = ${JSON.stringify(ls.metadata.exclude, null, "\t")};
+
+module.exports.main = () =>
 {
-	console.error(e.message, e.stack);
-}
+			console.time('${name}');
+			console.group('${name}');
+			module.exports.list.forEach((name) =>
+			{
+				console.time(name);
+				//console.group(name);
+
+				let lib = require('./' + name);
+
+				let test = lib.test(global._url_obj);
+
+				console.log(lib.name || name, test);
+
+				if (test)
+				{
+					lib.main();
+				}
+
+				//console.groupEnd();
+				console.timeEnd(name);
+			})
+			console.groupEnd('${name}');
+			console.timeEnd('${name}');
+};
 `;
 
-		text = ls;
+		let main = function ()
+		{
+			console.group(name);
+			module.exports.list.forEach((name) =>
+			{
+				console.time(name);
+				//console.group(name);
+
+				let lib = require('./' + name);
+
+				let test = lib.test(global._url_obj);
+
+				console.log(lib.name || name, test);
+
+				if (test)
+				{
+					lib.main();
+				}
+
+				//console.groupEnd();
+				console.timeEnd(name);
+			})
+			console.groupEnd();
+		};
 
 		await fs.writeFileAsync(path.join(cwd_src, name, 'index.js'), text);
 	}
@@ -92,27 +163,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @name		ux-tweak-sc
 // @namespace	bluelovers
 //
-// @include		http*://www.dm5.com/*
-// @include		http*://exhentai.org/*
-// @include		http*://g.e-hentai.org/*
-// @include		http*://*.pixiv.net/*
-// @include		http*://*.dmzj.com/*
-// @include		http*://nhentai.net/*
-// @include		http*://www.gamer.com.tw/
-// @include		http*://www.gamer.com.tw/index*.php*
-// @include		http*://acg.gamer.com.tw/acgDetail.php?s=*
-// @include		http*://gnn.gamer.com.tw/*.html
-// @include		http*://gnn.gamer.com.tw/*k=*
-// @include		http*://forum.gamer.com.tw/*bsn=*
-// @include		http*://home.gamer.com.tw/*
-// @include		http*://acg.gamer.com.tw/*
-// @include		http*://m.gamer.com.tw/*
-// @include		http*://share.dmhy.org/*
-// @include		http*://*.wnacg.com/*
-// @include		http*://www.facebook.com/*
-// @include		http*://sukebei.nyaa.si/*
-// @include		http*://*.getchu.com/*
-// @include		http*://www.jandown.com/*
+// @include		<%= index.include %>
 //
 // @version		<%= pkg.version %>
 //
@@ -129,25 +180,32 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // ==/UserScript==
 `;
 
+	const index = require(path.join(cwd_src, 'ux-tweak-sc', 'index'));
+
 	return gulp.src('src/ux-tweak-sc.user.js')
-//		.pipe(sourcemaps.init())
+	//		.pipe(sourcemaps.init())
 		.pipe(gulpWebpack(require('./webpack.config.js'), webpack, function (err, stats)
 		{
 			/* Use stats to do more things if needed */
 		}))
-//		.pipe(closureCompiler({
-//			compilation_level: 'SIMPLE',
-//			warning_level: 'VERBOSE',
-//			language_in: 'ECMASCRIPT6_STRICT',
-//			language_out: 'ECMASCRIPT5_STRICT',
-////			output_wrapper: '(function(){\n%output%\n}).call(this)',
-//			js_output_file: 'name.min.js'
-//		}))
+		//		.pipe(closureCompiler({
+		//			compilation_level: 'SIMPLE',
+		//			warning_level: 'VERBOSE',
+		//			language_in: 'ECMASCRIPT6_STRICT',
+		//			language_out: 'ECMASCRIPT5_STRICT',
+		////			output_wrapper: '(function(){\n%output%\n}).call(this)',
+		//			js_output_file: 'name.min.js'
+		//		}))
 		.pipe(header(banner, {
-			pkg: pkg ,
+			pkg: pkg,
+
+			index: {
+				include: index.metadata.include.join("\n// @include		")
+			},
+
 			token: Date.now()
 		}))
-//		.pipe(sourcemaps.write('/'))
+		//		.pipe(sourcemaps.write('/'))
 		.pipe(gulp.dest('dist/'));
 });
 
