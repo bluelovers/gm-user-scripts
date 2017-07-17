@@ -51,6 +51,13 @@ module.exports = {
 				})
 			;
 
+			$('.product a[href*="soft.phtml"]')
+				.prop('href', function (i, v)
+				{
+					return v + '&gc=gc';
+				})
+			;
+
 			return RETURN;
 		}
 	},
