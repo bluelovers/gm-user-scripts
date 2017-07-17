@@ -10,9 +10,12 @@ module.exports = {
 
 	metadata: {
 		match: [
-			'http*://*.google.*/*',
+			//'http*://*.google.*/*',
 			'http*://encrypted.google.com/*',
 			'http*://www.google.co.jp/*',
+			'http*://*.google.*/blank.html',
+			'http*://*.google.*/search*',
+			'http*://*.google.*/imgres*',
 		],
 		exclude: [
 			'http*://notifications.google.com/*'
