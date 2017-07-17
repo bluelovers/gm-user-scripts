@@ -10,7 +10,10 @@ module.exports = {
 		match: [
 			'http*://www.facebook.com/*',
 		],
-		exclude: [],
+		exclude: [
+			'http*://www.facebook.com/*plugins/*',
+			'http*://staticxx.facebook.com/*',
+		],
 	},
 
 	test(_url_obj)
