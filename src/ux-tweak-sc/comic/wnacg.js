@@ -9,13 +9,14 @@ module.exports = {
 	metadata: {
 		match: [
 			'http*://*.wnacg.com/*',
+			'http*://*.wnacg.org/*',
 		],
 		exclude: [],
 	},
 
 	test(_url_obj)
 	{
-		if (_url_obj.host.match(/wnacg\.com/))
+		if (_url_obj.host.match(/wnacg\.(com|org)/))
 		{
 			return true;
 		}
@@ -148,6 +149,8 @@ module.exports = {
 					.on('DOMNodeInserted', function (event)
 					{
 						_img = $(_img_selector);
+
+						//console.log(_img);
 
 						_img
 							.imagesLoaded()
