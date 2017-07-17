@@ -233,7 +233,7 @@ module.exports = {
 							_this.parents('.id1:eq(0)').addClass('_zh');
 							;
 						}
-						else if (/\[(Eng(?:lish)|Korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish)\]/i.test(
+						else if (/\[(Eng(?:lish)|Korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish|Vietnamese Tiếng Việt|French)\]/i.test(
 								text))
 						{
 							_this.parents('.id1:eq(0)').addClass('_other');
