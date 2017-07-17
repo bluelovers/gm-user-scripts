@@ -102,7 +102,7 @@ gulp.task("webpack:before", async function (callback)
 
 				if (test)
 				{
-					let ret_main = lib.main();
+					let ret_main = lib.main(global._url_obj);
 
 					if (ret_main == true || ret_main === undefined)
 					{
