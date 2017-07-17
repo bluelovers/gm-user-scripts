@@ -14,7 +14,7 @@ module.exports.list = [
 	"torrent/nyaa.js"
 ];
 
-// don't use this method
+// for webpack, don't use this method
 module.exports._lib = () =>
 {
 	require('./acg/gamer.com.tw.js');
@@ -58,12 +58,13 @@ module.exports.metadata.include = [
 ];
 module.exports.metadata.exclude = [];
 
-module.exports.main = () =>
-{
-			console.time('ux-tweak-sc');
-			console.group('ux-tweak-sc');
-			module.exports.list.forEach((name) =>
+module.exports.main = function ()
+		{
+			console.group(name);
+			module.exports.list.every((name) =>
 			{
+				let ret = true;
+
 				console.time(name);
 				//console.group(name);
 
@@ -71,16 +72,25 @@ module.exports.main = () =>
 
 				let test = lib.test(global._url_obj);
 
-				console.log(lib.name || name, test);
+				console.info(lib.name || name, test);
 
 				if (test)
 				{
-					lib.main();
+					let ret_main = lib.main();
+
+					if (ret_main == true || ret_main === undefined)
+					{
+						ret = false;
+
+						console.info((lib.name || name), 'matched', ret_main);
+					}
 				}
 
 				//console.groupEnd();
 				console.timeEnd(name);
+
+				return ret;
 			})
-			console.groupEnd('ux-tweak-sc');
-			console.timeEnd('ux-tweak-sc');
-};
+			console.groupEnd();
+		};
+

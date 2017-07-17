@@ -84,10 +84,46 @@ gulp.task("webpack:before", async function (callback)
 
 		console.log(ls);
 
+		let main = function ()
+		{
+			console.group(name);
+			module.exports.list.every((name) =>
+			{
+				let ret = true;
+
+				console.time(name);
+				//console.group(name);
+
+				let lib = require('./' + name);
+
+				let test = lib.test(global._url_obj);
+
+				console.info(lib.name || name, test);
+
+				if (test)
+				{
+					let ret_main = lib.main();
+
+					if (ret_main == true || ret_main === undefined)
+					{
+						ret = false;
+
+						console.info((lib.name || name), 'matched', ret_main);
+					}
+				}
+
+				//console.groupEnd();
+				console.timeEnd(name);
+
+				return ret;
+			})
+			console.groupEnd();
+		};
+
 		let text = `
 module.exports.list = ${JSON.stringify(ls.list, null, "\t")};
 
-// don't use this method
+// for webpack, don't use this method
 module.exports._lib = () =>
 {
 	${ls._lib.join("\n\t")}
@@ -97,58 +133,9 @@ module.exports.metadata = {};
 module.exports.metadata.include = ${JSON.stringify(ls.metadata.include, null, "\t")};
 module.exports.metadata.exclude = ${JSON.stringify(ls.metadata.exclude, null, "\t")};
 
-module.exports.main = () =>
-{
-			console.time('${name}');
-			console.group('${name}');
-			module.exports.list.forEach((name) =>
-			{
-				console.time(name);
-				//console.group(name);
+module.exports.main = ${main.toString()};
 
-				let lib = require('./' + name);
-
-				let test = lib.test(global._url_obj);
-
-				console.log(lib.name || name, test);
-
-				if (test)
-				{
-					lib.main();
-				}
-
-				//console.groupEnd();
-				console.timeEnd(name);
-			})
-			console.groupEnd('${name}');
-			console.timeEnd('${name}');
-};
 `;
-
-		let main = function ()
-		{
-			console.group(name);
-			module.exports.list.forEach((name) =>
-			{
-				console.time(name);
-				//console.group(name);
-
-				let lib = require('./' + name);
-
-				let test = lib.test(global._url_obj);
-
-				console.log(lib.name || name, test);
-
-				if (test)
-				{
-					lib.main();
-				}
-
-				//console.groupEnd();
-				console.timeEnd(name);
-			})
-			console.groupEnd();
-		};
 
 		await fs.writeFileAsync(path.join(cwd_src, name, 'index.js'), text);
 	}
