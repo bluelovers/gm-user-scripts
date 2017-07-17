@@ -53,6 +53,7 @@ module.exports.metadata.include = [
 	"http*://home.gamer.com.tw/*",
 	"http*://acg.gamer.com.tw/*",
 	"http*://m.gamer.com.tw/*",
+	"http*://ani.gamer.com.tw/*",
 	"http*://*.getchu.com/*",
 	"http*://*.pixiv.net/*",
 	"http*://www.dm5.com/*",
@@ -71,7 +72,9 @@ module.exports.metadata.include = [
 	"http*://sukebei.nyaa.si/*"
 ];
 module.exports.metadata.exclude = [
-	"http*://notifications.google.com/*"
+	"http*://notifications.google.com/*",
+	"http*://www.facebook.com/*plugins/*",
+	"http*://staticxx.facebook.com/*"
 ];
 
 module.exports.main = function ()
