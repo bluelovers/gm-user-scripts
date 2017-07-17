@@ -42,6 +42,8 @@ module.exports = {
 				.prop('target', '_blank')
 			;
 
+			const greasemonkey = require('../../lib/greasemonkey');
+
 			$(window).scrollTo('#search-result');
 
 			let _pixiv_user_id = (unsafeWindow.pixiv && unsafeWindow.pixiv.user && unsafeWindow.pixiv.user.id)
@@ -69,7 +71,10 @@ module.exports = {
 				.prop('target', '_blank')
 				.on('submit', function ()
 				{
-					if (_url_obj.path.match(/member(_illust)?\.php/))
+					if (_url_obj.path.match(/member\.php/))
+					{
+					}
+					else if (_url_obj.path.match(/member_illust\.php/) && !_url_obj.query.match(/mode=/))
 					{
 					}
 					else
@@ -83,78 +88,6 @@ module.exports = {
 			;
 
 			$('#favorite-button').prop('href', 'javasctipt:void(0);');
-
-			if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=medium/))
-			{
-				if ($('body').css('background-color') == '#E4E7EE' || $('body')
-						.css('background-color') == 'rgb(228, 231, 238)')
-				{
-					$('body').css('background-color', 'rgba(0, 3, 11, 0.9)');
-				}
-			}
-			else if (_url_obj.path.match(/search\.php/))
-			{
-				if ($('.column-header .tabs li:eq(0) a.current').length && $('.column-search-result ._no-item:visible').length)
-				{
-					location.href = $('.column-header .tabs a[href*="search_user"]').prop('href');
-				}
-
-				$.scrollTo($('#wrapper'));
-
-				module.exports.adblock(_url_obj);
-
-				$('.column-search-result .image-item[style]').height('inherit');
-
-				$(document).on('click mousedown', function (event)
-				{
-					var _this = $(event.target);
-
-					//_uf_log(event, this);
-
-					if (_this.is(':not(.following2) .follow-button'))
-					{
-						//_uf_log(777, event, _this);
-
-						var _a = _this.parents('.user-info:first').find('a.user-name:first');
-
-						var _href = _a.prop('href')
-								.replace('member.php', 'member_illust.php');
-
-						//_uf_log(event, _this, _a, _href);
-
-						setTimeout(function ()
-						{
-							window.open(_href, '_blank');
-						}, 200);
-					}
-				});
-			}
-			else if (_url_obj.path.match(/search_user\.php/))
-			{
-				if ($('.user-search-result-container .user-recommendation-item').length == 1)
-				{
-					location.href = $('.user-search-result-container .user-recommendation-item a.title')
-						.prop('href')
-						.replace('member.php', 'member_illust.php');
-				}
-			}
-			else if (_url_obj.path.match(/bookmark_add\.php/))
-			{
-				$(window)
-					.on('load', (function ()
-					{
-						if (!$('.user-recommendation-items .user-recommendation-item').length && $(
-								'#wrapper .user-recommendation-unit ._no-item:visible').length)
-						{
-							window.close();
-						}
-					}).debounce(3000))
-				;
-			}
-			else if (_url_obj.path.match(/jump\.php/))
-			{
-				window.location.href = $('b > a:first').attr('href');
-			}
 
 			let _dummy = function ()
 			{
@@ -190,17 +123,153 @@ module.exports = {
 
 			setTimeout(_dummy, 500);
 
-			let _follow_area = $('.user-recommendation-items._loading');
-
-			setTimeout(() =>
+			if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=medium/))
 			{
-				_follow_area
+				if ($('body').css('background-color') == '#E4E7EE' || $('body')
+						.css('background-color') == 'rgb(228, 231, 238)')
+				{
+					$('body').css('background-color', 'rgba(0, 3, 11, 0.9)');
+				}
+			}
+			else if (_url_obj.path.match(/search\.php/))
+			{
+				if ($('.column-header .tabs li:eq(0) a.current').length && $('.column-search-result ._no-item:visible').length)
+				{
+					location.href = $('.column-header .tabs a[href*="search_user"]').prop('href');
+				}
+
+				$.scrollTo($('#wrapper'));
+
+				module.exports.adblock(_url_obj);
+
+				$('.column-search-result .image-item[style]').height('inherit');
+
+				$(document).on('click mousedown', function (event)
+				{
+					var _this = $(event.target);
+
+					//_uf_log(event, this);
+
+					if (_this.is(':not(.following2) .follow-button'))
+					{
+						//_uf_log(777, event, _this);
+
+						var _a = _this.parents('.user-info:first').find('a.user-name:first');
+
+						var _href = _a.prop('href')
+							.replace('member.php', 'member_illust.php');
+
+						//_uf_log(event, _this, _a, _href);
+
+						setTimeout(function ()
+						{
+							window.open(_href, '_blank');
+						}, 200);
+					}
+				});
+			}
+			else if (_url_obj.path.match(/search_user\.php/))
+			{
+				if ($('.user-search-result-container .user-recommendation-item').length == 1)
+				{
+					location.href = $('.user-search-result-container .user-recommendation-item a.title')
+						.prop('href')
+						.replace('member.php', 'member_illust.php');
+				}
+			}
+			else if (_url_obj.path.match(/bookmark_add\.php/))
+			{
+				$(window)
+					.on('load', (function ()
+					{
+						if (!$('.user-recommendation-items .user-recommendation-item').length && $(
+								'#wrapper .user-recommendation-unit ._no-item:visible').length)
+						{
+							window.close();
+						}
+					}).debounce(3000))
+				;
+
+				let _follow_area = $('.user-recommendation-items._loading');
+
+				setTimeout(() =>
+				{
+					_follow_area
+						.on('DOMNodeInserted', function (event)
+						{
+							_dummy();
+						})
+					;
+				}, 500);
+			}
+			else if (_url_obj.path.match(/jump\.php/))
+			{
+				window.location.href = $('b > a:first').attr('href');
+			}
+			else if (_url_obj.path.match(/stacc/) && _url_obj.query.match(/mode=unify/))
+			{
+				let _area_selector = '#stacc_timeline > .stacc_status_summary:not([data-done])';
+				let _area = $(_area_selector);
+
+				greasemonkey.GM_addStyle([
+					'._uf_stacc_ref_illust { box-shadow: 0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset; border-radius: 10px; }'
+				].join());
+
+				let _fn_timeline = function (event)
+				{
+					_area = $(_area_selector)
+						.each(function (index)
+						{
+							let _this = $(this);
+
+							_this
+								.attr('data-done', true)
+								.attr('data-index', index)
+							;
+
+							let _stacc_ref_illust_user_name = $('.stacc_ref_illust_user_name > a:first', _this);
+
+							let _stacc_post_user_name = $('.stacc_post_user_name', _this);
+
+							let _badge_poster = $(
+								'.stacc_follow_unify_comment_profile_list img[src*="badge_add_content.png"]:first',
+								_this
+							);
+
+							//console.log(index, _stacc_ref_illust_user_name.text(), _stacc_post_user_name.text());
+
+							if ($('.stacc_ref_thumb_caption .stacc_ref_illust_title', _this).length && !_badge_poster.length && _stacc_ref_illust_user_name.text() != _stacc_post_user_name.text())
+							{
+								_this
+									//.css('box-shadow', '0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset')
+									.addClass('_uf_stacc_ref_illust')
+								;
+							}
+
+							$('.stacc_ref_user_illust_caption_img a', _this).attr('href', function (i, v)
+							{
+								v = v.replace('member.php', 'member_illust.php');
+								return v;
+							});
+						})
+					;
+				};
+
+				$(window)
+					.on('load.timeline', _fn_timeline)
+					.triggerHandler('load.timeline')
+				;
+
+				$('#stacc_timeline')
 					.on('DOMNodeInserted', function (event)
 					{
-						_dummy();
+						setTimeout(() =>
+						{
+							$(window).triggerHandler('load.timeline');
+						}, 1000);
 					})
 				;
-			}, 500);
+			}
 
 //			$('body').on('hover', '._profile-popup', function ()
 //			{
