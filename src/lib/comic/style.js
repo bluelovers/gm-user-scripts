@@ -22,8 +22,24 @@ module.exports = {
 		background: '#34353b',
 	},
 
+	bg_dark2: {
+		background: '#4f535b',
+	},
+
 	bg_dark_text: {
 		color: '#DDDDDD',
+	},
+
+	bg_dark_border: {
+		border: '1px solid #000000',
+	},
+
+	page: {
+		position: 'fixed',
+		padding: '10px',
+		'z-index': 100,
+		'min-width': '80px',
+		'text-align': 'center',
 	},
 
 };
