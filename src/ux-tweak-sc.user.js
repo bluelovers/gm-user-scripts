@@ -37,4 +37,20 @@ function _init()
 	imagesLoaded.makeJQueryPlugin(jQuery);
 
 	require('./lib/jquery/scrollTo').makeJQueryPlugin(jQuery);
+
+	_init_gm();
+}
+
+function _init_gm()
+{
+	GM_registerMenuCommand("disable_nocontextmenu", function ()
+	{
+		const label = 'disable_nocontextmenu';
+
+		console.time(label);
+		require('./lib/dom/disable_nocontextmenu')
+			._uf_disable_nocontextmenu2(2)
+		;
+		console.timeEnd(label);
+	});
 }
