@@ -1,3 +1,6 @@
+'use strict';
+
+module.exports.name = 'ux-tweak-sc';
 
 //let jQuery = require('jquery')
 global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
@@ -13,7 +16,11 @@ global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
 		{
 			_init();
 
-			require('./ux-tweak-sc').main();
+			let index = require('./ux-tweak-sc');
+
+			index.main();
+
+			console.info(index.current);
 		}
 		catch (e)
 		{
@@ -43,14 +50,46 @@ function _init()
 
 function _init_gm()
 {
-	GM_registerMenuCommand("disable_nocontextmenu", function ()
+	GM_registerMenuCommand(`[${module.exports.name}] disable_nocontextmenu`, function ()
 	{
-		const label = 'disable_nocontextmenu';
-
+		const label = `[${module.exports.name}] disable_nocontextmenu`;
 		console.time(label);
+
 		require('./lib/dom/disable_nocontextmenu')
 			._uf_disable_nocontextmenu2(2)
 		;
+
+		console.timeEnd(label);
+	});
+
+	GM_registerMenuCommand(`[${module.exports.name}] clearly`, function ()
+	{
+		const label = `[${module.exports.name}] clearly`;
+		console.time(label);
+
+		let index = require('./ux-tweak-sc');
+
+		if (index.current && index.current.lib)
+		{
+			try
+			{
+				['adblock', 'clearly']
+					.forEach((fn) =>
+					{
+						if (typeof index.current.lib[fn] == 'function')
+						{
+							index.current.lib[fn](global._url_obj);
+						}
+					})
+				;
+			}
+			catch(e)
+			{
+				console.error(e);
+			}
+
+		}
+
 		console.timeEnd(label);
 	});
 }
