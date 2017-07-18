@@ -36,7 +36,8 @@ module.exports = {
 
 			if (_url_obj.path.match(/-end\//))
 			{
-				let _a = $('.end_mian .end_top .new_h4 a, .finalPage .topBar .right > a:has(img[src*="finalPage_4_w.png"])');
+				let _a = $(
+					'.end_mian .end_top .new_h4 a, .finalPage .topBar .right > a:has(img[src*="finalPage_4_w.png"])');
 
 				if (_a.length)
 				{
@@ -46,7 +47,8 @@ module.exports = {
 
 			const _uf_dom_filter_link = require('../../lib/dom/filter/link');
 
-			_uf_dom_filter_link('.red_lj a, #cbc_1 a, #cbc_2 a, #cbc_3 a, #abc_1 a, #abc_2 a, #index_mian .diline a, .innr22 a, .innr72 a, #tempc a.tg, .end_kk a, #search_nr .ssnr_bt a, #search_nr .matoa a, #index_left .inkk.ma5 div.sy_tb a, #todaycomic a, #index_right .inkk .innr8 li a, #search_nrl .ssnr_yt dl a, #index_mian .innr3 a, .midBar .item a')
+			_uf_dom_filter_link(
+				'.red_lj a, #cbc_1 a, #cbc_2 a, #cbc_3 a, #abc_1 a, #abc_2 a, #index_mian .diline a, .innr22 a, .innr72 a, #tempc a.tg, .end_kk a, #search_nr .ssnr_bt a, #search_nr .matoa a, #index_left .inkk.ma5 div.sy_tb a, #todaycomic a, #index_right .inkk .innr8 li a, #search_nrl .ssnr_yt dl a, #index_mian .innr3 a, .midBar .item a')
 				.not('.li_end a')
 				.attr('target', '_blank')
 			;
@@ -114,7 +116,7 @@ module.exports = {
 
 						$(window)
 							.scrollTo(_img.add('#showimage'))
-							//.triggerHandler('load.nocontextmenu')
+						//.triggerHandler('load.nocontextmenu')
 						;
 
 						//_img.triggerHandler('load.imagesLoaded');
@@ -286,6 +288,36 @@ module.exports = {
 
 			return RETURN;
 		}
+	},
+
+	clearly(_url_obj = global._url_obj)
+	{
+		let _dom = $();
+
+		_dom = _dom
+			.add($('#index_mian').siblings())
+			.add($('#index_mian').parents().not('html, body').siblings())
+			.add([
+				'#index_right a > img, .rss2, #todaycomic, .inkk.ma5 img',
+				'.btnreport, form.madi5, #bt_collect, .zmk2',
+			].join())
+		;
+
+		$('.inbt')
+			.removeClass('inbt')
+			.find('.new_h2')
+			.addBack()
+			.css({
+				'display': 'block',
+				'float': 'none',
+			})
+		;
+
+		$('#bt_shownext').text('開始閱讀');
+
+		_dom.remove();
+
+		return _dom;
 	},
 
 };
