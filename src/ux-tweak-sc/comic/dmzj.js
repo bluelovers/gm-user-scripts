@@ -135,8 +135,11 @@ module.exports = {
 					{
 						setTimeout(_fn_img, 100);
 					})
+					.hide()
 				;
 			}
+
+			let _page_select = $('#page_select');
 
 			$(window)
 				.on('keydown', function (event)
@@ -146,6 +149,14 @@ module.exports = {
 						case 33:
 						case 37:
 							var _a = $('#center_box .img_land_prev, .wrap .pages > a:eq(1)');
+
+							if (_page_select.length
+								&& _page_select.val() == _page_select.find('option').eq(0).val()
+								&& _page_select.prev('.btm_chapter_btn').length
+							)
+							{
+								_a = _page_select.prev('.btm_chapter_btn');
+							}
 
 							if (_a.length)
 							{
@@ -157,6 +168,14 @@ module.exports = {
 						case 34:
 						case 39:
 							var _a = $('#center_box .img_land_next, .wrap .pages > a:eq(-2)');
+
+							if (_page_select.length
+								&& _page_select.val() == _page_select.find('option').eq(-1).val()
+								&& _page_select.next('.btm_chapter_btn').length
+							)
+							{
+								_a = _page_select.next('.btm_chapter_btn');
+							}
 
 							if (_a.length)
 							{
