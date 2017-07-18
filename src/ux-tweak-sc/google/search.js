@@ -51,8 +51,6 @@ module.exports = {
 			.attr('target', '_blank')
 		;
 
-		require('../../lib/jquery/push').makeJQueryPlugin();
-
 		let _area = $('#topstuff .std.card-section').push('#taw > div:eq(0)').push('#ucs').eq(0);
 
 		let _div = $('<div/>');
