@@ -44,6 +44,7 @@ function _init()
 	imagesLoaded.makeJQueryPlugin(jQuery);
 
 	require('./lib/jquery/scrollTo').makeJQueryPlugin(jQuery);
+	require('./lib/jquery/push').makeJQueryPlugin(jQuery);
 
 	_init_gm();
 }
