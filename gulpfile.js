@@ -93,7 +93,7 @@ gulp.task("webpack:before", async function (callback)
 				let ret = true;
 
 				console.time(name);
-				//console.group(name);
+				console.group(name);
 
 				let lib = require('./' + name);
 
@@ -141,7 +141,7 @@ gulp.task("webpack:before", async function (callback)
 					};
 				}
 
-				//console.groupEnd();
+				console.groupEnd(name);
 				console.timeEnd(name);
 
 				return ret;
