@@ -35,7 +35,7 @@ module.exports = {
 	main(_url_obj)
 	{
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		_uf_dom_filter_link('.FM-blist .FM-blist3 a')
+		_uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a')
 			.attr('target', '_blank')
 		;
 
@@ -61,10 +61,92 @@ module.exports = {
 //				.css(comic_style.bg_dark)
 			;
 		}
+
+		$('.GN-thumbnail img')
+			.not('[data-done]')
+			.imagesLoaded()
+			.always(function (data)
+			{
+				let _this = $(data.elements);
+
+				_this
+					.not('[data-done]')
+					.attr('data-done', true)
+					.width(function (i, v)
+					{
+						return v;
+					})
+					.height(function (i, v)
+					{
+						return v;
+					})
+					.attr('src', function (i, val)
+					{
+						return val
+							.replace(/(bahamut\.com\.tw)\/M\//, '$1/B/')
+							;
+					})
+				;
+			})
+		;
 	},
 
 	adblock()
 	{
 
 	},
+
+	clearly(_url_obj = global._url_obj)
+	{
+		const greasemonkey = require('../../lib/greasemonkey');
+
+		let _dom = $();
+
+		_dom = _dom
+			.add($('#BH-master, #BH-background').siblings())
+			.add($('.FM-cbox1 .FM-cbox2 .FM-cbox5 script, .FM-cbox1 .FM-cbox2 .FM-cbox5 #BMW_2').nextAll().addBack())
+			.add($('form[name="frm"]').nextAll().addBack().not('#BH-pagebtn'))
+			.add([
+				'#BH-pagebtn .no, .nocontent',
+				'.FM-cbox1 .FM-cbox2 .FM-cbox4 a',
+				'#headnews, #comment, #track, #shop',
+				'#BH-master h4 > img',
+				'.GN-lbox5A i.fa',
+				'.MSG-list9D',
+				'.BH-rbox a > img[src*="folder"]',
+				'.HOME-mainbox1a a > img',
+				'.MSG-list8E, #frmDel, .BH-search, #BH-talk2',
+				'script, iframe',
+			].join())
+		;
+
+		if (_url_obj.path.match(/creationDetail/))
+		{
+			_dom = _dom
+				.not('#BH-slave')
+			;
+		}
+
+		greasemonkey.GM_addStyle([
+			'.FM-tags a { background: initial; }',
+			'#FM-tagsnow { background: #6073be; }',
+		].join(''));
+
+		$('body')
+			.css({
+				background: 'initial',
+				padding: 0,
+			})
+		;
+
+		$('#BH-wrapper')
+			.css({
+				margin: 'auto',
+			})
+		;
+
+		_dom.remove();
+
+		return _dom;
+	}
 };
