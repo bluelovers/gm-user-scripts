@@ -14,6 +14,7 @@ module.exports.list = [
 	"comic/nhentai.js",
 	"comic/wnacg.js",
 	"google/search.js",
+	"shop/yahoo.js",
 	"social/facebook.js",
 	"torrent/dmhy.js",
 	"torrent/jandown.js",
@@ -35,6 +36,7 @@ module.exports._lib = () =>
 	require('./comic/nhentai.js');
 	require('./comic/wnacg.js');
 	require('./google/search.js');
+	require('./shop/yahoo.js');
 	require('./social/facebook.js');
 	require('./torrent/dmhy.js');
 	require('./torrent/jandown.js');
@@ -70,6 +72,9 @@ module.exports.metadata.include = [
 	"http*://*.google.*/blank.html",
 	"http*://*.google.*/search*",
 	"http*://*.google.*/imgres*",
+	"http*://tw.buy.yahoo.com/*",
+	"http*://tw.buy.yahoo.com/bestbuy/*",
+	"http*://tw.buy.yahoo.com/activity/*",
 	"http*://www.facebook.com/*",
 	"http*://share.dmhy.org/*",
 	"http*://www.jandown.com/*",
