@@ -8,6 +8,7 @@ module.exports.list = [
 	"acg/gamer.com.tw.js",
 	"acg/getchu.js",
 	"art/pixiv.js",
+	"bbs/ptt.js",
 	"comic/dm5.js",
 	"comic/dmzj.js",
 	"comic/exhentai.js",
@@ -30,6 +31,7 @@ module.exports._lib = () =>
 	require('./acg/gamer.com.tw.js');
 	require('./acg/getchu.js');
 	require('./art/pixiv.js');
+	require('./bbs/ptt.js');
 	require('./comic/dm5.js');
 	require('./comic/dmzj.js');
 	require('./comic/exhentai.js');
@@ -60,6 +62,7 @@ module.exports.metadata.include = [
 	"http*://ani.gamer.com.tw/*",
 	"http*://*.getchu.com/*",
 	"http*://*.pixiv.net/*",
+	"http*://www.ptt.cc/*",
 	"http*://www.dm5.com/*",
 	"http*://*.dmzj.com/*",
 	"http*://exhentai.org/*",
