@@ -25,6 +25,8 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
+		const _uf_done = require('../../lib/event.done');
+
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
 		_uf_dom_filter_link('.product a, #detail_block a, .package a')
 			.attr('target', '_blank')
@@ -34,6 +36,8 @@ module.exports = {
 		{
 			return;
 		}
+
+		$(window).scrollTo('#soft_table');
 
 		$(window)
 			.on('load.link', function (event)
@@ -77,6 +81,34 @@ module.exports = {
 						return v + '&gc=gc';
 					})
 				;
+			})
+			.on('keydown', function (event)
+			{
+				switch (event.which)
+				{
+					case 33:
+					case 37:
+						var _a = $('.charanum .charavisited').prev('li').find('a');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+
+						break;
+					case 34:
+					case 39:
+						var _a = $('.charanum .charavisited').next('li').find('a');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+
+						break;
+				}
 			})
 			.triggerHandler('load')
 		;

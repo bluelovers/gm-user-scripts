@@ -97,7 +97,7 @@ module.exports.main = function ()
 				let ret = true;
 
 				console.time(name);
-				//console.group(name);
+				console.group(name);
 
 				let lib = require('./' + name);
 
@@ -145,7 +145,7 @@ module.exports.main = function ()
 					};
 				}
 
-				//console.groupEnd();
+				console.groupEnd(name);
 				console.timeEnd(name);
 
 				return ret;
