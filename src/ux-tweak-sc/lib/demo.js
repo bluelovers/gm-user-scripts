@@ -36,6 +36,16 @@ module.exports = {
 
 	clearly(_url_obj = global._url_obj)
 	{
+		let _dom = $();
 
+		_dom = _dom
+			.add([
+
+			].join())
+		;
+
+		_dom.remove();
+
+		return _dom;
 	},
 };
