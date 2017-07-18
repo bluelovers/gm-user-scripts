@@ -44,7 +44,11 @@ module.exports = {
 
 			const greasemonkey = require('../../lib/greasemonkey');
 
-			$(window).scrollTo('#search-result');
+			$(window).scrollTo($()
+				.push('.layout-body')
+				.push('#search-result')
+				.eq(0)
+			);
 
 			let _pixiv_user_id = (unsafeWindow.pixiv && unsafeWindow.pixiv.user && unsafeWindow.pixiv.user.id)
 				? unsafeWindow.pixiv.user.id
@@ -170,12 +174,40 @@ module.exports = {
 			}
 			else if (_url_obj.path.match(/search_user\.php/))
 			{
+				$('.user-search-result-container .user-recommendation-item a.title')
+					.prop('href', function (i, v)
+					{
+						return v.replace('member.php', 'member_illust.php');
+					})
+				;
+
 				if ($('.user-search-result-container .user-recommendation-item').length == 1)
 				{
 					location.href = $('.user-search-result-container .user-recommendation-item a.title')
 						.prop('href')
-						.replace('member.php', 'member_illust.php');
+						//.replace('member.php', 'member_illust.php')
+					;
 				}
+
+				let _href;
+
+				$('.follow:not(.following)')
+					.on('click', function (event)
+					{
+						_href = $(this)
+							.parents('.user-recommendation-item').eq(0)
+							.find('a.title')
+							.prop('href')
+						;
+					})
+				;
+
+				$('body')
+					.on('click', '.action-follow :submit, .action-follow ._button', function ()
+					{
+						window.open(_href, '_blank');
+					})
+				;
 			}
 			else if (_url_obj.path.match(/bookmark_add\.php/))
 			{
@@ -238,10 +270,12 @@ module.exports = {
 
 							//console.log(index, _stacc_ref_illust_user_name.text(), _stacc_post_user_name.text());
 
-							if ($('.stacc_ref_thumb_caption .stacc_ref_illust_title', _this).length && !_badge_poster.length && _stacc_ref_illust_user_name.text() != _stacc_post_user_name.text())
+							if ($('.stacc_ref_thumb_caption .stacc_ref_illust_title',
+									_this
+								).length && !_badge_poster.length && _stacc_ref_illust_user_name.text() != _stacc_post_user_name.text())
 							{
 								_this
-									//.css('box-shadow', '0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset')
+								//.css('box-shadow', '0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset')
 									.addClass('_uf_stacc_ref_illust')
 								;
 							}
