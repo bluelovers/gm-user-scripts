@@ -14,9 +14,11 @@ module.exports.list = [
 	"comic/dm5.js",
 	"comic/dmzj.js",
 	"comic/exhentai.js",
+	"comic/manben.js",
 	"comic/nhentai.js",
 	"comic/wnacg.js",
 	"google/search.js",
+	"shop/pchome.js",
 	"shop/yahoo.js",
 	"social/facebook.js",
 	"torrent/dmhy.js",
@@ -39,9 +41,11 @@ module.exports._lib = () =>
 	require('./comic/dm5.js');
 	require('./comic/dmzj.js');
 	require('./comic/exhentai.js');
+	require('./comic/manben.js');
 	require('./comic/nhentai.js');
 	require('./comic/wnacg.js');
 	require('./google/search.js');
+	require('./shop/pchome.js');
 	require('./shop/yahoo.js');
 	require('./social/facebook.js');
 	require('./torrent/dmhy.js');
@@ -73,6 +77,7 @@ module.exports.metadata.include = [
 	"http*://*.dmzj.com/*",
 	"http*://exhentai.org/*",
 	"http*://g.e-hentai.org/*",
+	"http*://www.manben.com/*",
 	"http*://nhentai.net/*",
 	"http*://*.wnacg.com/*",
 	"http*://*.wnacg.org/*",
@@ -81,6 +86,7 @@ module.exports.metadata.include = [
 	"http*://*.google.*/blank.html",
 	"http*://*.google.*/search*",
 	"http*://*.google.*/imgres*",
+	"http*://mall.pchome.com.tw/*",
 	"http*://tw.buy.yahoo.com/*",
 	"http*://tw.buy.yahoo.com/bestbuy/*",
 	"http*://tw.buy.yahoo.com/activity/*",
