@@ -179,12 +179,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 {
 	var pkg = require('./package.json');
 	var banner = `// ==UserScript==
-// @name		ux-tweak-sc
+// @name		<%= pkg.name %>
 // @namespace	bluelovers
-//
-// @include		<%= index.include %>
-//
-// @exclude		<%= index.exclude %>
 //
 // @version		<%= pkg.version %>
 //
@@ -192,6 +188,10 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @grant		unsafeWindow
 // grant		GM_addStyle
 // grant		none
+//
+// @include		<%= index.include %>
+//
+// @exclude		<%= index.exclude %>
 //
 // @require		https://code.jquery.com/jquery-3.2.1.js?<%= token %>
 // require		https://code.jquery.com/jquery-migrate-3.0.0.js?<%= token %>

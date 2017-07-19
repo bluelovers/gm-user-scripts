@@ -7,7 +7,7 @@ old version: https://gist.github.com/bluelovers/5186199
 ### 腳本管理器
 
 - Chrome: [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-- Firefox: [Greasemonkey](https://addons.mozilla.org/firefox/addon/greasemonkey/)、 [Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/)
+- Firefox: [Greasemonkey](https://addons.mozilla.org/firefox/addon/greasemonkey/)
 - Firefox mobile: [usi (User|Unified Script Injector)](https://addons.mozilla.org/firefox/addon/userunified-script-injector/) 
 
 ### 腳本

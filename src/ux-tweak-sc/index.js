@@ -5,10 +5,12 @@ module.exports.list = [
 	"_fake.js",
 	"acg/3dmgame.js",
 	"acg/blog.reimu.net.js",
+	"acg/dmm.js",
 	"acg/gamer.com.tw.js",
 	"acg/getchu.js",
 	"art/pixiv.js",
 	"bbs/ptt.js",
+	"code/npmjs.js",
 	"comic/dm5.js",
 	"comic/dmzj.js",
 	"comic/exhentai.js",
@@ -28,10 +30,12 @@ module.exports._lib = () =>
 	require('./_fake.js');
 	require('./acg/3dmgame.js');
 	require('./acg/blog.reimu.net.js');
+	require('./acg/dmm.js');
 	require('./acg/gamer.com.tw.js');
 	require('./acg/getchu.js');
 	require('./art/pixiv.js');
 	require('./bbs/ptt.js');
+	require('./code/npmjs.js');
 	require('./comic/dm5.js');
 	require('./comic/dmzj.js');
 	require('./comic/exhentai.js');
@@ -50,6 +54,7 @@ module.exports.metadata.include = [
 	"http*://www.3dmgame.com/*",
 	"http*://bbs.3dmgame.com/*",
 	"http*://blog.reimu.net/*",
+	"http*://www.dmm.co.jp/netgame/*",
 	"http*://www.gamer.com.tw/*",
 	"http*://www.gamer.com.tw/index*.php*",
 	"http*://acg.gamer.com.tw/acgDetail.php?s=*",
@@ -63,6 +68,7 @@ module.exports.metadata.include = [
 	"http*://*.getchu.com/*",
 	"http*://*.pixiv.net/*",
 	"http*://www.ptt.cc/*",
+	"http*://www.npmjs.com/search?q=*",
 	"http*://www.dm5.com/*",
 	"http*://*.dmzj.com/*",
 	"http*://exhentai.org/*",
@@ -79,6 +85,7 @@ module.exports.metadata.include = [
 	"http*://tw.buy.yahoo.com/bestbuy/*",
 	"http*://tw.buy.yahoo.com/activity/*",
 	"http*://www.facebook.com/*",
+	"http*://www.facebook.com/saved/*",
 	"http*://share.dmhy.org/*",
 	"http*://www.jandown.com/*",
 	"http*://sukebei.nyaa.si/*"
