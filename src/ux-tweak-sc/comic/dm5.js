@@ -234,7 +234,7 @@ module.exports = {
 			else
 			{
 				$(window)
-					.scrollTo($('#index_mian, #index_left').eq(-1))
+					.scrollTo($('#index_mian, #index_left, #index_left .inkk.mato20').eq(-1))
 				;
 			}
 
