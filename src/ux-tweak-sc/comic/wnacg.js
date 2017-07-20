@@ -59,12 +59,15 @@ module.exports = {
 				let _img = $(_img_selector);
 
 				_img
+					.css(comic_style.photo)
 					.imagesLoaded()
 					.done(() =>
 					{
 						$(window).triggerHandler('resize');
 					})
 				;
+
+				$.scrollTo(_img);
 
 				$('#tuzaoblock').hide();
 
@@ -73,13 +76,15 @@ module.exports = {
 					{
 						const _uf_fixsize2 = require('../../lib/dom/img/size')._uf_fixsize2;
 
-						let _this = _uf_fixsize2(_img, window, 1, {
-							width: 'auto',
-						});
+//						let _this = _uf_fixsize2(_img, window, 1, {
+//							width: 'auto',
+//						});
 
-						_this
+						_img
 							.css(comic_style.photo)
 						;
+
+						_uf_fixsize2(_img, window, 1);
 
 						$.scrollTo(_img);
 					})
@@ -121,6 +126,11 @@ module.exports = {
 						}
 					})
 				;
+
+				setTimeout(function ()
+				{
+					$(window).triggerHandler('resize')
+				}, 500);
 			}
 			else if ($('#img_list').length)
 			{
@@ -160,7 +170,7 @@ module.exports = {
 							})
 							.done(function (data)
 							{
-								_img_resize(data.images[data.progressedCount - 1].img);
+								_img_resize(data.elements);
 							})
 						;
 					})
@@ -218,6 +228,8 @@ module.exports = {
 			}
 			else
 			{
+				$(window).scrollTo('.gallary_wrap');
+
 				$(window)
 					.on('keydown', function (event)
 					{
