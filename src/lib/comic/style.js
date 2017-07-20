@@ -10,6 +10,12 @@ module.exports = {
 		margin: 'auto',
 		border: '0px none #fff',
 		outline: 0,
+
+		'max-width': 'initial',
+		'max-height': 'initial',
+
+		'min-width': 'initial',
+		'min-height': 'initial',
 	},
 
 	body: {
