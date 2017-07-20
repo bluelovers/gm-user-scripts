@@ -77,20 +77,15 @@ module.exports = {
 				;
 
 				$(window)
-					.on('resize.imagesLoaded', () =>
+					.on('resize.scroll', () =>
 					{
-						$('#showimage').css({
-							'min-height': $(window).innerHeight(),
-						});
-
 						_img = $(_img_selector);
 
 						_img.add('#showimage, #cp_img').removeAttr('oncontextmenu');
 
-						_img
-							.height($(window).innerHeight())
-							.css(comic_style.photo)
-						;
+						$('#showimage').css({
+							'min-height': $(window).innerHeight(),
+						});
 
 						$('body')
 							.css({
@@ -98,6 +93,17 @@ module.exports = {
 							})
 							.css(comic_style.body)
 							.css(comic_style.bg_dark)
+						;
+
+						$(window).scrollTo(_img.add('#showimage'));
+					})
+					.on('resize.imagesLoaded', () =>
+					{
+						_img = $(_img_selector);
+
+						_img
+							.height($(window).innerHeight())
+							.css(comic_style.photo)
 						;
 
 						_div_page
@@ -113,13 +119,6 @@ module.exports = {
 								})
 							;
 						}
-
-						$(window)
-							.scrollTo(_img.add('#showimage'))
-						//.triggerHandler('load.nocontextmenu')
-						;
-
-						//_img.triggerHandler('load.imagesLoaded');
 					})
 					.on('load', () =>
 					{
@@ -174,7 +173,7 @@ module.exports = {
 					_dm5();
 
 					$(window)
-						.scrollTo(_img.add('#showimage'))
+						.triggerHandler('resize.scroll')
 						.triggerHandler('load.nocontextmenu')
 					;
 				});
@@ -230,6 +229,8 @@ module.exports = {
 				}
 
 				_dm5();
+
+				$(window).triggerHandler('resize.scroll');
 			}
 			else
 			{

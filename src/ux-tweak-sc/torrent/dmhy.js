@@ -43,8 +43,6 @@ module.exports = {
 			})
 		;
 
-		module.exports.adblock();
-
 		$('.weekly_list_b')
 			.attr('onclick', function (i, v)
 			{
@@ -56,6 +54,9 @@ module.exports = {
 		$('.topic-title .relative-goods')
 			.empty()
 			.removeClass('relative-goods')
+			.css({
+				padding: 10,
+			})
 			.append($('#tabs-1 > p').clone())
 		;
 
@@ -66,10 +67,7 @@ module.exports = {
 
 			if (data)
 			{
-				topic_list_kw(data);
-
-
-				$('#AdvSearch')
+				topic_list_kw(data) && $('#AdvSearch')
 					.on('DOMNodeInserted', function ()
 					{
 						team_id_list(data);
@@ -79,6 +77,8 @@ module.exports = {
 
 			console.log(data);
 		}
+
+		module.exports.adblock();
 	},
 
 	adblock(_url_obj = global._url_obj)

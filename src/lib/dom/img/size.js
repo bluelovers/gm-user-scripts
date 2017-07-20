@@ -68,11 +68,11 @@ module.exports._uf_fixsize2 = function _uf_fixsize2(who, area, force, scrollsize
 	}
 
 	_elem.each(function(){
-		var _this = $(this);
-		var _area = $(_ok === true ? this : _ok);
+		let _this = $(this);
+		let _area = $(_ok === true ? this : _ok);
 
-		var _w = _this[0].naturalWidth;
-		var _h = _this[0].naturalHeight;
+		let _w = _this[0].naturalWidth;
+		let _h = _this[0].naturalHeight;
 
 		if (!_w || !_h)
 		{
@@ -80,8 +80,8 @@ module.exports._uf_fixsize2 = function _uf_fixsize2(who, area, force, scrollsize
 			_h = _this.height();
 		}
 
-		var _w2 = _area.width();
-		var _h2 = _area.height();
+		let _w2 = _area.width();
+		let _h2 = _area.height();
 
 		if (scrollsize)
 		{
@@ -94,8 +94,8 @@ module.exports._uf_fixsize2 = function _uf_fixsize2(who, area, force, scrollsize
 			_h2 = scrollsize.height == 'auto' ? _area.innerHeight() : _h2 - scrollsize.height;
 		}
 
-		var _w3 = _w;
-		var _h3 = _h;
+		let _w3 = _w;
+		let _h3 = _h;
 
 		if (_w > _w2)
 		{
@@ -119,14 +119,14 @@ module.exports._uf_fixsize2 = function _uf_fixsize2(who, area, force, scrollsize
 			_w3 = _w * (_h2 / _h);
 			_h3 = _h2;
 
-//				_uf_log(2, [_w, _h, _w/_h], [_w2, _h2, _w2/_h2], [_w3, _h3, _w3/_h3]);
+			//console.log(2, [_w, _h, _w/_h], [_w2, _h2, _w2/_h2], [_w3, _h3, _w3/_h3]);
 
 			if (_w3 > _w2)
 			{
 				_w3 = _w2;
 				_h3 = _h * (_w2 / _w);
 
-//					_uf_log(2, [_w, _h, _w/_h], [_w2, _h2, _w2/_h2], [_w3, _h3, _w3/_h3]);
+				//console.log(2, [_w, _h, _w/_h], [_w2, _h2, _w2/_h2], [_w3, _h3, _w3/_h3]);
 			}
 
 //				_this.width(_w * (_h2 / _h)).height(_h2);

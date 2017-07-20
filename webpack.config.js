@@ -2,7 +2,7 @@
  * Created by user on 2017/7/13/013.
  */
 
-var webpack = require('webpack');
+const webpack = require('webpack');
 const path = require('path');
 
 const ClosureCompilerPlugin = require('webpack-closure-compiler');
