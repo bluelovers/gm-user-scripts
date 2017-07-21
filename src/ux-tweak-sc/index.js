@@ -10,6 +10,7 @@ module.exports.list = [
 	"acg/getchu.js",
 	"art/pixiv.js",
 	"bbs/ptt.js",
+	"code/github.js",
 	"code/npmjs.js",
 	"comic/dm5.js",
 	"comic/dmzj.js",
@@ -38,6 +39,7 @@ module.exports._lib = () =>
 	require('./acg/getchu.js');
 	require('./art/pixiv.js');
 	require('./bbs/ptt.js');
+	require('./code/github.js');
 	require('./code/npmjs.js');
 	require('./comic/dm5.js');
 	require('./comic/dmzj.js');
@@ -74,6 +76,7 @@ module.exports.metadata.include = [
 	"http*://*.getchu.com/*",
 	"http*://*.pixiv.net/*",
 	"http*://www.ptt.cc/*",
+	"http*://github.com/*",
 	"http*://www.npmjs.com/search?q=*",
 	"http*://www.dm5.com/*",
 	"http*://*.dmzj.com/*",
