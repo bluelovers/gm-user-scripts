@@ -182,12 +182,16 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // @name		<%= pkg.name %>
 // @namespace	bluelovers
 //
+// @description	各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
+//
 // @version		<%= pkg.version %>
 //
 // @grant		GM_registerMenuCommand
 // @grant		unsafeWindow
 // grant		GM_addStyle
 // grant		none
+//
+// @downloadURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js
 //
 // @include		<%= index.include %>
 //
