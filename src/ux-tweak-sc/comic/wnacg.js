@@ -136,6 +136,8 @@ module.exports = {
 			{
 				const _img_area = $('#img_list');
 
+				require('../../lib/jquery/onscreen');
+
 				$('body')
 					.css(comic_style.body)
 					.css(comic_style.bg_dark)
@@ -152,7 +154,7 @@ module.exports = {
 						width: 'auto',
 					})
 						.css(comic_style.photo)
-					;
+						;
 				};
 
 				_img_area
@@ -166,7 +168,7 @@ module.exports = {
 							.imagesLoaded()
 							.always(function (data)
 							{
-								$(window).triggerHandler('load.once');
+								//$(window).triggerHandler('load.once');
 							})
 							.done(function (data)
 							{
@@ -180,51 +182,111 @@ module.exports = {
 					.on('load', function ()
 					{
 						_img_area.triggerHandler('DOMNodeInserted');
-					})
-					.on('load.once', function ()
-					{
-						$(window).scrollTo(_img[0]);
+
+						$(window).triggerHandler('resize');
 					})
 					.on('resize', function ()
 					{
 						_img = $(_img_selector);
 
-						_img.each(function ()
+						//console.log($(window).height(), $(window).innerHeight());
+
+						_img
+							.each(function ()
+							{
+								$(this).parent('div').height($(window).innerHeight());
+
+								_img_resize(this);
+							})
+						;
+					})
+					.on('resize.once', function ()
+					{
+						setTimeout(function ()
 						{
-							_img_resize(this);
-						});
+							_img = $(_img_selector);
+
+							let _to = _img_area.add(_img.eq(0));
+
+							_to = _to.add(_img.filter(':onScreen'));
+
+							$(window).scrollTo(_to.eq(-1));
+						}, 100);
+					})
+					.on('scroll', function ()
+					{
+						setTimeout(function ()
+						{
+							$(window).triggerHandler('resize.once');
+						}, 500);
 					})
 					.on('keydown', function (event)
 					{
+						_img = $(_img_selector);
+
+						let _i = 0;
+
+						_img.each(function (i, elem)
+						{
+							if ($(elem).is(":onScreen"))
+							{
+								_i = i;
+
+								return false;
+							}
+						});
+
 						switch (event.which)
 						{
 							case keycodes('pageup'):
 							case keycodes('left'):
-								var _a = $('.newpage a.btntuzao:eq(0)');
+
+								if (_i > 0)
+								{
+									_i--;
+								}
+
+								var _a = _img.eq(_i);
+
+								//console.log(_img, _i, _a);
+
+								_uf_done(event);
 
 								if (_a.length)
 								{
-									_uf_done(event);
-									_a[0].click();
+									$(window).scrollTo(_a);
 								}
 
 								break;
 							case keycodes('pagedown'):
 							case keycodes('right'):
-								var _a = $('.newpage a.btntuzao:eq(-1)');
+
+								if (_i < _img.length)
+								{
+									_i++;
+								}
+
+								var _a = _img.eq(_i);
+
+								//console.log(_img, _i, _a);
+
+								_uf_done(event);
 
 								if (_a.length)
 								{
-									_uf_done(event);
-									_a[0].click();
+									$(window).scrollTo(_a);
 								}
 
 								break;
 						}
 					})
+					.triggerHandler('resize')
 				;
 
-				$(window).scrollTo(_img_area);
+				setTimeout(function ()
+				{
+					$(window).triggerHandler('resize');
+				}, 500);
 			}
 			else
 			{

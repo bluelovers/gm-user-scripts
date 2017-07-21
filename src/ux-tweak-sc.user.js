@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports.name = 'ux-tweak-sc';
+module.exports.id = 'ux-tweak-sc';
+module.exports.name = module.exports.id;
 
 //let jQuery = require('jquery')
 global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
@@ -51,46 +52,41 @@ function _init()
 
 function _init_gm()
 {
-	GM_registerMenuCommand(`[${module.exports.name}] disable_nocontextmenu`, function ()
-	{
-		const label = `[${module.exports.name}] disable_nocontextmenu`;
-		console.time(label);
+	const UF = require('./lib/greasemonkey/framework');
 
+	UF.registerMenuCommand({
+		id: module.exports.name,
+		key: 'disable_nocontextmenu',
+	}, () =>
+	{
 		require('./lib/dom/disable_nocontextmenu')
 			._uf_disable_nocontextmenu2(2)
 		;
-
-		console.timeEnd(label);
 	});
 
-	GM_registerMenuCommand(`[${module.exports.name}] clearly`, function ()
+	UF.registerMenuCommand({
+		id: module.exports.name,
+		key: 'clearly',
+	}, () =>
 	{
-		const label = `[${module.exports.name}] clearly`;
-		console.time(label);
-
-		let index = require('./ux-tweak-sc');
+		let index = require(`./${module.exports.id}`);
 
 		if (index.current && index.current.lib)
 		{
-			try
-			{
-				['adblock', 'clearly']
-					.forEach((fn) =>
+			['adblock', 'clearly']
+				.forEach((fn) =>
+				{
+					if (typeof index.current.lib[fn] == 'function')
 					{
-						if (typeof index.current.lib[fn] == 'function')
+						let ret = index.current.lib[fn](global._url_obj);
+
+						if (ret && ret !== true)
 						{
-							index.current.lib[fn](global._url_obj);
+							console.info(label, fn, [ret.length, ret]);
 						}
-					})
-				;
-			}
-			catch(e)
-			{
-				console.error(e);
-			}
-
+					}
+				})
+			;
 		}
-
-		console.timeEnd(label);
 	});
 }
