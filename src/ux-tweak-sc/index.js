@@ -25,6 +25,7 @@ module.exports.list = [
 	"acg/blog.reimu.net.js",
 	"acg/3dmgame.js",
 	"google/search.js",
+	"global/discuz.js",
 	"_fake.js"
 ];
 
@@ -54,6 +55,7 @@ module.exports._lib = () =>
 	require('./acg/blog.reimu.net.js');
 	require('./acg/3dmgame.js');
 	require('./google/search.js');
+	require('./global/discuz.js');
 	require('./_fake.js');
 };
 
@@ -111,11 +113,11 @@ module.exports.metadata.exclude = [
 	"http*://apis.google.com/*"
 ];
 
-module.exports.main = function ()
+module.exports.main = function (list, options = {})
 		{
 			console.time(module.exports.name);
 			console.group(module.exports.name);
-			module.exports.list.every((name) =>
+			list.every((name) =>
 			{
 				let ret = true;
 
@@ -160,12 +162,12 @@ module.exports.main = function ()
 
 				if (!ret)
 				{
-					module.exports.current = {
+					module.exports.current.push({
 						name: name,
 						name_id: name_id,
 
 						lib: lib,
-					};
+					});
 				}
 
 				console.groupEnd(name);
@@ -176,4 +178,10 @@ module.exports.main = function ()
 			console.groupEnd(module.exports.name);
 			console.timeEnd(module.exports.name);
 		};
+
+module.exports.list_script = [
+	"global/discuz.js"
+];
+
+module.exports.current = [];
 
