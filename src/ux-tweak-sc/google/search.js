@@ -6,7 +6,7 @@
 
 module.exports = {
 
-	priority: 100,
+	priority: 200,
 
 	metadata: {
 		match: [
