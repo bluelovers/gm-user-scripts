@@ -86,6 +86,11 @@ gulp.task("webpack:before", async function (callback)
 				a.metadata.include = a.metadata.include.concat(lib.metadata.match);
 				a.metadata.exclude = a.metadata.exclude.concat(lib.metadata.exclude);
 
+				if (lib.script)
+				{
+					a.list_script.push(b);
+				}
+
 				return a;
 			}, {
 
@@ -96,15 +101,17 @@ gulp.task("webpack:before", async function (callback)
 					include: [],
 					exclude: [],
 				},
+
+				list_script: [],
 			});
 
 		console.log(ls);
 
-		let main = function ()
+		let main = function (list, options = {})
 		{
 			console.time(module.exports.name);
 			console.group(module.exports.name);
-			module.exports.list.every((name) =>
+			list.every((name) =>
 			{
 				let ret = true;
 
@@ -149,12 +156,12 @@ gulp.task("webpack:before", async function (callback)
 
 				if (!ret)
 				{
-					module.exports.current = {
+					module.exports.current.push({
 						name: name,
 						name_id: name_id,
 
 						lib: lib,
-					};
+					});
 				}
 
 				console.groupEnd(name);
@@ -182,6 +189,10 @@ module.exports.metadata.include = ${JSON.stringify(ls.metadata.include, null, "\
 module.exports.metadata.exclude = ${JSON.stringify(ls.metadata.exclude, null, "\t")};
 
 module.exports.main = ${main.toString()};
+
+module.exports.list_script = ${JSON.stringify(ls.list_script, null, "\t")};
+
+module.exports.current = [];
 
 `;
 
