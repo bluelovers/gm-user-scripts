@@ -2,12 +2,16 @@
 // @name		ux-tweak-sc
 // @namespace	bluelovers
 //
+// @description	各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
+//
 // @version		1.0.0
 //
 // @grant		GM_registerMenuCommand
 // @grant		unsafeWindow
 // grant		GM_addStyle
 // grant		none
+//
+// @downloadURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js
 //
 // @include		http*://www.3dmgame.com/*
 // @include		http*://bbs.3dmgame.com/*
@@ -59,10 +63,10 @@
 // @exclude		http*://apis.google.com/*
 // @exclude		http*://notifications.google.com/*
 //
-// @require		https://code.jquery.com/jquery-3.2.1.js?1500629958528
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1500629958528
+// @require		https://code.jquery.com/jquery-3.2.1.js?1500630866905
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1500630866905
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1500629958528
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1500630866905
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
