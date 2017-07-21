@@ -21,6 +21,7 @@ module.exports.list = [
 	"shop/pchome.js",
 	"shop/yahoo.js",
 	"social/facebook.js",
+	"social/weibo.js",
 	"torrent/dmhy.js",
 	"torrent/jandown.js",
 	"torrent/nyaa.js"
@@ -48,6 +49,7 @@ module.exports._lib = () =>
 	require('./shop/pchome.js');
 	require('./shop/yahoo.js');
 	require('./social/facebook.js');
+	require('./social/weibo.js');
 	require('./torrent/dmhy.js');
 	require('./torrent/jandown.js');
 	require('./torrent/nyaa.js');
@@ -92,6 +94,8 @@ module.exports.metadata.include = [
 	"http*://tw.buy.yahoo.com/activity/*",
 	"http*://www.facebook.com/*",
 	"http*://www.facebook.com/saved/*",
+	"http*://www.weibo.com/*",
+	"http*://m.weibo.cn/*",
 	"http*://share.dmhy.org/*",
 	"http*://www.jandown.com/*",
 	"http*://sukebei.nyaa.si/*"
