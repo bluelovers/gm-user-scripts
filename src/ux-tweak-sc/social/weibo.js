@@ -1,0 +1,240 @@
+/**
+ * Created by user on 2017/7/21/021.
+ */
+
+'use strict';
+
+module.exports = {
+
+	metadata: {
+		match: [
+			'http*://www.weibo.com/*',
+			'http*://m.weibo.cn/*',
+		],
+		exclude: [],
+	},
+
+	test(_url_obj = global._url_obj)
+	{
+		if (_url_obj.host.match(/weibo\.(com|cn)/))
+		{
+			return true;
+		}
+
+		return false;
+	},
+
+	main(_url_obj = global._url_obj)
+	{
+		if (err404(_url_obj))
+		{
+			return;
+		}
+
+		require('../../lib/jquery/onscreen');
+
+		//const _feed_selector = '.WB_detail, .WB_feed_detail';
+		const _feed_selector = '.WB_feed_type, .weibo-member';
+
+		let _feed = $(_feed_selector);
+
+		$(window)
+			.on('load.scroll', function (event)
+			{
+				_feed = $(_feed_selector);
+
+				//console.log(555, event.name, event, this, _feed.filter(':onScreen'));
+
+				$(window).scrollTop(_feed.filter(':onScreen').offset().top - 70);
+			})
+			.on('load.img', function (event)
+			{
+				_feed = $(_feed_selector);
+
+				//console.log(666, event.name, event, this, _feed.filter(':onScreen'));
+
+				_feed
+					.filter(':onScreen')
+					.find([
+						'.imgShow, .media_box img, .WB_expand_media_box img, .WB_media_wrap img, .WB_media_view img',
+
+						// https://m.weibo.cn/p/1005053221753697
+						'.weibo-media .m-img-box img, .weibo-media .single-img img',
+					]
+						.join())
+					.not('[data-done]')
+					.attr('data-done', true)
+					.attr('src', function (i, old)
+					{
+						let _this = $(this);
+
+						_this
+							.data('src', old)
+							.width(function (i, v)
+							{
+								return v;
+							})
+							.height(function (i, v)
+							{
+								return v;
+							})
+						;
+
+						return fix_thumb(old);
+					})
+				;
+			})
+			.on('scroll.img', function (event)
+			{
+				setTimeout(function ()
+				{
+					$(window).triggerHandler('load.img');
+				}, 1000);
+			})
+		;
+
+		setTimeout(() =>
+		{
+			$(window).triggerHandler('load.scroll');
+		}, 100);
+
+		setTimeout(() =>
+		{
+			$(window).triggerHandler('load');
+
+			_feed
+				.on('DOMNodeInserted.img', function (event)
+				{
+					//console.log(777, event.name, event, this);
+
+					$(window).triggerHandler('load.img');
+				})
+			;
+
+			_feed
+				.on('mousedown.photoview', 'a[type="widget_photoview"], a.S_txt1', function (event)
+				{
+					let _this = $(this);
+
+					//console.log(888, event.name, event, this);
+					//console.log(444, $('body > .layer_multipic_preview'));
+
+					$('body')
+						.off('DOMNodeInserted.layer_multipic_preview')
+						.on('DOMNodeInserted.layer_multipic_preview', function (event)
+						{
+							if ($(event.target).is('.layer_multipic_preview'))
+							{
+								$('body').off(`${event.type}.${event.handleObj.namespace}`);
+
+								//console.log(999, event, $('.layer_multipic_preview .pic_show_box img'));
+
+								$('.layer_multipic_preview .pic_show_box img')
+									.not('[data-done]')
+									.attr('data-done', true)
+									.on('load', function (data)
+									{
+										let _this = $(this);
+
+										_this
+											.attr('src', function (i, old)
+											{
+												let _this = $(this);
+
+												_this
+													.attr('lowsrc', old)
+												;
+
+												return fix_thumb(old);
+											})
+										;
+									})
+								;
+							}
+
+							/*
+							.imagesLoaded()
+							.always(function (data)
+							{
+								console.log(111, data);
+
+								$(data.images)
+									.attr('src', function (i, old)
+									{
+										let _this = $(this);
+
+										_this
+											.data('src', old)
+											.width(function (i, v)
+											{
+												return v;
+											})
+											.height(function (i, v)
+											{
+												return v;
+											})
+										;
+
+										console.log(old, fix_thumb(old));
+
+										return fix_thumb(old);
+									})
+								;
+							})
+							*/
+							;
+						})
+					;
+				})
+			;
+
+			$('.WB_feed')
+				.on('DOMNodeInserted.feed', function (event)
+				{
+					setTimeout(function ()
+					{
+						$(window).triggerHandler('load.img');
+					}, 1000);
+				})
+			;
+
+		}, 1000);
+
+	},
+
+	adblock(_url_obj = global._url_obj)
+	{
+
+	},
+
+	clearly(_url_obj = global._url_obj)
+	{
+		let _dom = $();
+
+		_dom = _dom
+			.add([].join())
+		;
+
+		_dom.remove();
+
+		return _dom;
+	},
+};
+
+function fix_thumb(src)
+{
+	return src
+		.replace(/\/(thumb150|mw690|mw1024|orj360)\//, '/large/')
+		;
+}
+
+function err404(_url_obj)
+{
+	if ($('body').children().length == 0 && $('body').text().match(/Not found|error to origin/i))
+	{
+		// http://www.weibo.com/coserxizi?is_all=1#_rnd1500625208315
+		location.href = _url_obj.path;
+
+		return true;
+	}
+}
