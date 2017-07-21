@@ -1,6 +1,6 @@
 # gm-user-scripts
 
-old version: https://gist.github.com/bluelovers/5186199
+各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
 
 ## install
 
@@ -13,3 +13,5 @@ old version: https://gist.github.com/bluelovers/5186199
 ### 腳本
 
 安裝連結 [ux-tweak-sc.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js)
+
+old version: https://gist.github.com/bluelovers/5186199
