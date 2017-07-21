@@ -81,7 +81,7 @@ module.exports = {
 					{
 						_img = $(_img_selector);
 
-						_img.add('#showimage, #cp_img').removeAttr('oncontextmenu');
+						//_img.add('#showimage, #cp_img').removeAttr('oncontextmenu');
 
 						$('#showimage').css({
 							'min-height': $(window).innerHeight(),
@@ -102,9 +102,13 @@ module.exports = {
 						_img = $(_img_selector);
 
 						_img
-							.height($(window).innerHeight())
+						//.height($(window).innerHeight())
 							.css(comic_style.photo)
 						;
+
+						const _uf_fixsize2 = require('../../lib/dom/img/size')._uf_fixsize2;
+
+						_uf_fixsize2(_img, window, 1);
 
 						_div_page
 							.text(unsafeWindow.DM5_PAGE + '/' + $('.pageBar a[data-pgt]:eq(-1)').attr('data-pgt'))
@@ -126,6 +130,7 @@ module.exports = {
 					})
 					.on('load.imagesLoaded', () =>
 					{
+						$(window).triggerHandler('load.nocontextmenu');
 						$(window).triggerHandler('resize');
 					})
 					.on('keydown', function (event)
@@ -172,10 +177,7 @@ module.exports = {
 					//$(window).triggerHandler('resize.imagesLoaded');
 					_dm5();
 
-					$(window)
-						.triggerHandler('resize.scroll')
-						.triggerHandler('load.nocontextmenu')
-					;
+					$(window).triggerHandler('load.imagesLoaded');
 				});
 
 				function _dm5()
@@ -203,10 +205,10 @@ module.exports = {
 								.off('load.imagesLoaded')
 								.on('load.imagesLoaded', function (instance)
 								{
-									$(window).triggerHandler('resize');
+									$(window).triggerHandler('load.imagesLoaded');
 								});
 
-							$(window).triggerHandler('resize');
+							$(window).triggerHandler('load.imagesLoaded');
 						})
 						.fail(function (_img, count)
 						{
@@ -230,7 +232,7 @@ module.exports = {
 
 				_dm5();
 
-				$(window).triggerHandler('resize.scroll');
+				$(window).triggerHandler('load.imagesLoaded');
 			}
 			else
 			{
@@ -275,7 +277,7 @@ module.exports = {
 					try
 					{
 						_uf_disable_nocontextmenu(2,
-							_img_selector + ', #cp_image, #cp_img, #showimage, #cp_funtb, .cp_tbimg, .view_bt'
+							_img_selector + ', #cp_image, #cp_img, #showimage, #cp_funtb, .cp_tbimg, .view_bt, #showimage *'
 						);
 					}
 					catch (e)
