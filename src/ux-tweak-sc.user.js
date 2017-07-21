@@ -19,9 +19,9 @@ global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
 
 			let index = require('./ux-tweak-sc');
 
-			index.main();
+			index.main(index.list);
 
-			console.info(index.current);
+			console.info('index.current', index.current);
 		}
 		catch (e)
 		{
@@ -67,25 +67,69 @@ function _init_gm()
 	UF.registerMenuCommand({
 		id: module.exports.name,
 		key: 'clearly',
-	}, () =>
+	}, (options) =>
 	{
 		let index = require(`./${module.exports.id}`);
 
-		if (index.current && index.current.lib)
+		if (index.current && index.current.length)
 		{
-			['adblock', 'clearly']
-				.forEach((fn) =>
-				{
-					if (typeof index.current.lib[fn] == 'function')
-					{
-						let ret = index.current.lib[fn](global._url_obj);
+			const label = options.label || `[${options.name || options.id}] ${options.key}`;
 
-						if (ret && ret !== true)
-						{
-							console.info(label, fn, [ret.length, ret]);
-						}
+			let _dom = $();
+
+			index.list_script
+				.reduce(function (a, name)
+				{
+					let lib = require(`./${module.exports.id}/${name}`);
+
+					let name_id = name;
+
+					if (lib.name && lib.name != name_id)
+					{
+						name_id = `${lib.name} - ${name_id}`;
 					}
+
+					if (lib.script_method && lib.script_method.clearly && lib.test(global._url_obj))
+					{
+						a.push({
+							name: name,
+							name_id: name_id,
+
+							lib: lib,
+						});
+					}
+
+					return a;
+				}, [])
+				.concat(index.current)
+				.forEach((current) =>
+				{
+					['adblock', 'clearly']
+						.forEach((fn) =>
+						{
+							if (typeof current.lib[fn] == 'function')
+							{
+								let ret = current.lib[fn](global._url_obj, _dom);
+
+								if (ret && ret !== true)
+								{
+									if (fn == 'clearly')
+									{
+										_dom = _dom.add(ret);
+									}
+
+									console.info(label, fn, [ret.length, ret]);
+								}
+							}
+						})
+					;
 				})
+			;
+
+			console.info(label, [_dom.length, _dom]);
+
+			_dom
+				.remove()
 			;
 		}
 	});
