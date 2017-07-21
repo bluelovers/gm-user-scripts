@@ -2,67 +2,87 @@
 module.exports.name = 'ux-tweak-sc';
 
 module.exports.list = [
-	"_fake.js",
-	"acg/3dmgame.js",
-	"acg/blog.reimu.net.js",
-	"acg/dmm.js",
-	"acg/gamer.com.tw.js",
-	"acg/getchu.js",
-	"art/pixiv.js",
-	"bbs/ptt.js",
-	"code/github.js",
-	"code/npmjs.js",
-	"comic/dm5.js",
-	"comic/dmzj.js",
-	"comic/exhentai.js",
-	"comic/manben.js",
-	"comic/nhentai.js",
-	"comic/wnacg.js",
-	"google/search.js",
-	"shop/pchome.js",
-	"shop/yahoo.js",
-	"social/facebook.js",
-	"social/weibo.js",
-	"torrent/dmhy.js",
+	"torrent/nyaa.js",
 	"torrent/jandown.js",
-	"torrent/nyaa.js"
+	"torrent/dmhy.js",
+	"social/weibo.js",
+	"social/facebook.js",
+	"shop/yahoo.js",
+	"shop/pchome.js",
+	"comic/wnacg.js",
+	"comic/nhentai.js",
+	"comic/manben.js",
+	"comic/exhentai.js",
+	"comic/dmzj.js",
+	"comic/dm5.js",
+	"code/npmjs.js",
+	"code/github.js",
+	"bbs/ptt.js",
+	"art/pixiv.js",
+	"acg/getchu.js",
+	"acg/gamer.com.tw.js",
+	"acg/dmm.js",
+	"acg/blog.reimu.net.js",
+	"acg/3dmgame.js",
+	"google/search.js",
+	"_fake.js"
 ];
 
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('./_fake.js');
-	require('./acg/3dmgame.js');
-	require('./acg/blog.reimu.net.js');
-	require('./acg/dmm.js');
-	require('./acg/gamer.com.tw.js');
-	require('./acg/getchu.js');
-	require('./art/pixiv.js');
-	require('./bbs/ptt.js');
-	require('./code/github.js');
-	require('./code/npmjs.js');
-	require('./comic/dm5.js');
-	require('./comic/dmzj.js');
-	require('./comic/exhentai.js');
-	require('./comic/manben.js');
-	require('./comic/nhentai.js');
-	require('./comic/wnacg.js');
-	require('./google/search.js');
-	require('./shop/pchome.js');
-	require('./shop/yahoo.js');
-	require('./social/facebook.js');
-	require('./social/weibo.js');
-	require('./torrent/dmhy.js');
-	require('./torrent/jandown.js');
 	require('./torrent/nyaa.js');
+	require('./torrent/jandown.js');
+	require('./torrent/dmhy.js');
+	require('./social/weibo.js');
+	require('./social/facebook.js');
+	require('./shop/yahoo.js');
+	require('./shop/pchome.js');
+	require('./comic/wnacg.js');
+	require('./comic/nhentai.js');
+	require('./comic/manben.js');
+	require('./comic/exhentai.js');
+	require('./comic/dmzj.js');
+	require('./comic/dm5.js');
+	require('./code/npmjs.js');
+	require('./code/github.js');
+	require('./bbs/ptt.js');
+	require('./art/pixiv.js');
+	require('./acg/getchu.js');
+	require('./acg/gamer.com.tw.js');
+	require('./acg/dmm.js');
+	require('./acg/blog.reimu.net.js');
+	require('./acg/3dmgame.js');
+	require('./google/search.js');
+	require('./_fake.js');
 };
 
 module.exports.metadata = {};
 module.exports.metadata.include = [
-	"http*://www.3dmgame.com/*",
-	"http*://bbs.3dmgame.com/*",
-	"http*://blog.reimu.net/*",
-	"http*://www.dmm.co.jp/netgame/*",
+	"http*://sukebei.nyaa.si/*",
+	"http*://www.jandown.com/*",
+	"http*://share.dmhy.org/*",
+	"http*://www.weibo.com/*",
+	"http*://m.weibo.cn/*",
+	"http*://www.facebook.com/*",
+	"http*://www.facebook.com/saved/*",
+	"http*://tw.buy.yahoo.com/*",
+	"http*://tw.buy.yahoo.com/bestbuy/*",
+	"http*://tw.buy.yahoo.com/activity/*",
+	"http*://mall.pchome.com.tw/*",
+	"http*://*.wnacg.com/*",
+	"http*://*.wnacg.org/*",
+	"http*://nhentai.net/*",
+	"http*://www.manben.com/*",
+	"http*://exhentai.org/*",
+	"http*://g.e-hentai.org/*",
+	"http*://*.dmzj.com/*",
+	"http*://www.dm5.com/*",
+	"http*://www.npmjs.com/search?q=*",
+	"http*://github.com/*",
+	"http*://www.ptt.cc/*",
+	"http*://*.pixiv.net/*",
+	"http*://*.getchu.com/*",
 	"http*://www.gamer.com.tw/*",
 	"http*://www.gamer.com.tw/index*.php*",
 	"http*://acg.gamer.com.tw/acgDetail.php?s=*",
@@ -73,42 +93,22 @@ module.exports.metadata.include = [
 	"http*://acg.gamer.com.tw/*",
 	"http*://m.gamer.com.tw/*",
 	"http*://ani.gamer.com.tw/*",
-	"http*://*.getchu.com/*",
-	"http*://*.pixiv.net/*",
-	"http*://www.ptt.cc/*",
-	"http*://github.com/*",
-	"http*://www.npmjs.com/search?q=*",
-	"http*://www.dm5.com/*",
-	"http*://*.dmzj.com/*",
-	"http*://exhentai.org/*",
-	"http*://g.e-hentai.org/*",
-	"http*://www.manben.com/*",
-	"http*://nhentai.net/*",
-	"http*://*.wnacg.com/*",
-	"http*://*.wnacg.org/*",
+	"http*://www.dmm.co.jp/netgame/*",
+	"http*://blog.reimu.net/*",
+	"http*://www.3dmgame.com/*",
+	"http*://bbs.3dmgame.com/*",
 	"http*://encrypted.google.com/*",
 	"http*://www.google.co.jp/*",
 	"http*://*.google.*/blank.html",
 	"http*://*.google.*/search*",
-	"http*://*.google.*/imgres*",
-	"http*://mall.pchome.com.tw/*",
-	"http*://tw.buy.yahoo.com/*",
-	"http*://tw.buy.yahoo.com/bestbuy/*",
-	"http*://tw.buy.yahoo.com/activity/*",
-	"http*://www.facebook.com/*",
-	"http*://www.facebook.com/saved/*",
-	"http*://www.weibo.com/*",
-	"http*://m.weibo.cn/*",
-	"http*://share.dmhy.org/*",
-	"http*://www.jandown.com/*",
-	"http*://sukebei.nyaa.si/*"
+	"http*://*.google.*/imgres*"
 ];
 module.exports.metadata.exclude = [
+	"http*://notifications.google.com/*",
 	"http*://platform.twitter.com/widgets*",
 	"http*://www.facebook.com/*plugins/*",
 	"http*://staticxx.facebook.com/*",
-	"http*://apis.google.com/*",
-	"http*://notifications.google.com/*"
+	"http*://apis.google.com/*"
 ];
 
 module.exports.main = function ()
