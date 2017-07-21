@@ -6,6 +6,8 @@
 
 module.exports = {
 
+	priority: 0,
+
 	metadata: {
 		match: [
 		],
