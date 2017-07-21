@@ -20,6 +20,8 @@ const globby = require('globby');
 
 const path = require('path');
 
+const sortBy = require('lodash.sortby')
+
 const cwd_src = path.join(__dirname, 'src');
 
 //var closureCompiler = require('google-closure-compiler').gulp();
@@ -50,7 +52,7 @@ gulp.task("webpack:before", async function (callback)
 
 		data[name] = ls.reduce((a, b) =>
 		{
-			a[b] = require(path.join(cwd_src, name, b))
+			a[b] = require(path.join(cwd_src, name, b));
 
 			return a;
 		}, {});
@@ -58,29 +60,43 @@ gulp.task("webpack:before", async function (callback)
 
 	for (let name in data)
 	{
-		let ls = Object.keys(data[name]).reduce((a, b) =>
-		{
-			a.list.push(b);
-			//a.push(`require('./${b}').main();`);
 
-			a._lib.push(`require('./${b}');`);
+		let ordered = sortBy(Object.keys(data[name]), [
+				function (b)
+				{
+					let o = data[name][b];
 
-			let lib = require(path.join(cwd_src, name, b));
+					return typeof o.priority == 'undefined' ? 500 : o.priority;
+				}
+			])
+		;
 
-			a.metadata.include = a.metadata.include.concat(lib.metadata.match);
-			a.metadata.exclude = a.metadata.exclude.concat(lib.metadata.exclude);
+		ordered.reverse();
 
-			return a;
-		}, {
+		let ls = ordered
+			.reduce((a, b) =>
+			{
+				a.list.push(b);
+				//a.push(`require('./${b}').main();`);
 
-			list: [],
-			_lib: [],
+				a._lib.push(`require('./${b}');`);
 
-			metadata: {
-				include: [],
-				exclude: [],
-			},
-		});
+				let lib = require(path.join(cwd_src, name, b));
+
+				a.metadata.include = a.metadata.include.concat(lib.metadata.match);
+				a.metadata.exclude = a.metadata.exclude.concat(lib.metadata.exclude);
+
+				return a;
+			}, {
+
+				list: [],
+				_lib: [],
+
+				metadata: {
+					include: [],
+					exclude: [],
+				},
+			});
 
 		console.log(ls);
 
