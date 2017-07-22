@@ -100,9 +100,11 @@ module.exports = {
 			}
 
 			greasemonkey.GM_addStyle([
-				'#topic_list .title > a:visited { color: rgba(51, 51, 51, 0.7); }',
+				'#topic_list .title > a[data-tag="null"] { color: rgba(40, 42, 191, 0.67); }',
+				'#topic_list tr:hover .title > a[data-tag="null"] { color: rgba(40, 42, 191, 1); }',
+				'#topic_list .title > a:visited { color: rgb(111, 111, 111); opacity: 0.5; }',
 				style_css,
-				'#topic_list tr:hover span[data-tag], #topic_list tr:hover .tag[data-team-id] { opacity: 1; }',
+				'#topic_list tr:hover span[data-tag], #topic_list tr:hover .tag[data-team-id], #topic_list tr:hover .title > a, #topic_list tr:hover .title > a:visited { opacity: 1; }',
 				jmd_color(data),
 			].join(''));
 
