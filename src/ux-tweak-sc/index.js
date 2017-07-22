@@ -9,6 +9,7 @@ module.exports.list = [
 	"social/facebook.js",
 	"shop/yahoo.js",
 	"shop/pchome.js",
+	"novel/syosetu.js",
 	"comic/wnacg.js",
 	"comic/nhentai.js",
 	"comic/manben.js",
@@ -20,12 +21,14 @@ module.exports.list = [
 	"bbs/ptt.js",
 	"art/pixiv.js",
 	"acg/getchu.js",
+	"acg/gamme.js",
 	"acg/gamer.com.tw.js",
 	"acg/dmm.js",
 	"acg/blog.reimu.net.js",
 	"acg/3dmgame.js",
 	"google/search.js",
 	"global/discuz.js",
+	"global/pagination.js",
 	"_fake.js"
 ];
 
@@ -39,6 +42,7 @@ module.exports._lib = () =>
 	require('./social/facebook.js');
 	require('./shop/yahoo.js');
 	require('./shop/pchome.js');
+	require('./novel/syosetu.js');
 	require('./comic/wnacg.js');
 	require('./comic/nhentai.js');
 	require('./comic/manben.js');
@@ -50,12 +54,14 @@ module.exports._lib = () =>
 	require('./bbs/ptt.js');
 	require('./art/pixiv.js');
 	require('./acg/getchu.js');
+	require('./acg/gamme.js');
 	require('./acg/gamer.com.tw.js');
 	require('./acg/dmm.js');
 	require('./acg/blog.reimu.net.js');
 	require('./acg/3dmgame.js');
 	require('./google/search.js');
 	require('./global/discuz.js');
+	require('./global/pagination.js');
 	require('./_fake.js');
 };
 
@@ -72,6 +78,8 @@ module.exports.metadata.include = [
 	"http*://tw.buy.yahoo.com/bestbuy/*",
 	"http*://tw.buy.yahoo.com/activity/*",
 	"http*://mall.pchome.com.tw/*",
+	"http*://syosetu.com/*",
+	"http*://ncode.syosetu.com/*",
 	"http*://*.wnacg.com/*",
 	"http*://*.wnacg.org/*",
 	"http*://nhentai.net/*",
@@ -85,6 +93,7 @@ module.exports.metadata.include = [
 	"http*://www.ptt.cc/*",
 	"http*://*.pixiv.net/*",
 	"http*://*.getchu.com/*",
+	"http*://news.gamme.com.tw/*",
 	"http*://www.gamer.com.tw/*",
 	"http*://www.gamer.com.tw/index*.php*",
 	"http*://acg.gamer.com.tw/acgDetail.php?s=*",
@@ -135,6 +144,8 @@ module.exports.main = function (list, options = {})
 
 				name_id = `[${name_id}]`;
 
+				let test;
+
 				if (lib.disable)
 				{
 					console.warn(name_id, 'disable, skip this');
@@ -143,7 +154,7 @@ module.exports.main = function (list, options = {})
 				}
 				else
 				{
-					let test = lib.test(global._url_obj);
+					test = lib.test(global._url_obj);
 
 					console.info(name_id, test);
 
@@ -153,14 +164,27 @@ module.exports.main = function (list, options = {})
 
 						if (ret_main == true || ret_main === undefined)
 						{
+							ret_main = true;
+
+							console.info(name_id, 'matched', ret_main, ret);
+						}
+
+						test = false;
+
+						if (ret_main)
+						{
 							ret = false;
 
-							console.info(name_id, 'matched', ret_main);
+							if (test && test !== true)
+							{
+								test = true;
+								ret = true;
+							}
 						}
 					}
 				}
 
-				if (!ret)
+				if (!ret || test)
 				{
 					module.exports.current.push({
 						name: name,
