@@ -8,7 +8,7 @@
  *
  * Date: @DATE
  */
-(function($, undefined)
+module.exports.makeJQueryPlugin = function($, window, undefined)
 {
 	//var _global_ = this;
 
@@ -29,7 +29,7 @@
 						execResult[4]
 					];
 				}
-			},
+		},
 			{
 				//re: /rgba?\(\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
 				re: /rgba?\(\s*((?:\d+(?:\.\d+)?)|(?:\.\d+))\%\s*,\s*((?:\d+(?:\.\d+)?)|(?:\.\d+))\%\s*,\s*((?:\d+(?:\.\d+)?)|(?:\.\d+))\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
@@ -42,7 +42,7 @@
 						execResult[4]
 					];
 				}
-			},
+		},
 			{
 				// this regex ignores A-F because it's compared against an already lowercased string
 				re: /#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})/,
@@ -54,7 +54,7 @@
 						parseInt(execResult[3], 16)
 					];
 				}
-			},
+		},
 			{
 				// this regex ignores A-F because it's compared against an already lowercased string
 				re: /#([a-f0-9])([a-f0-9])([a-f0-9])/,
@@ -66,7 +66,7 @@
 						parseInt(execResult[3] + execResult[3], 16)
 					];
 				}
-			},
+		},
 			{
 				re: /hsla?\(\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\%\s*,\s*(\d+(?:\.\d+)?)\%\s*(?:,\s*(\d?(?:\.\d+)?)\s*)?\)/,
 				space: "hsla",
@@ -79,7 +79,7 @@
 						execResult[4]
 					];
 				}
-			},
+		},
 			{
 				// hsv(30,100%,40%)
 
@@ -94,7 +94,7 @@
 						execResult[4]
 					];
 				}
-			},
+		},
 		],
 
 		// $.Color( )
@@ -104,60 +104,60 @@
 		},
 		spaces = {
 			rgba:
-				{
-					sortorder: 0,
+			{
+				sortorder: 0,
 
-					props:
-						{
-							red:
-								{
-									idx: 0,
-									type: "byte"
-								},
-							green:
-								{
-									idx: 1,
-									type: "byte"
-								},
-							blue:
-								{
-									idx: 2,
-									type: "byte"
-								}
-						}
-				},
+				props:
+				{
+					red:
+					{
+						idx: 0,
+						type: "byte"
+					},
+					green:
+					{
+						idx: 1,
+						type: "byte"
+					},
+					blue:
+					{
+						idx: 2,
+						type: "byte"
+					}
+				}
+			},
 
 			hsla:
+			{
+				sortorder: 1,
+
+				props:
 				{
-					sortorder: 1,
-
-					props:
-						{
-							hue:
-								{
-									idx: 0,
-									type: "degrees"
-								},
-							saturation:
-								{
-									idx: 1,
-									type: "percent"
-								},
-							lightness:
-								{
-									idx: 2,
-									type: "percent"
-								}
-						},
-
-					/*
-					supportTest: function (supportElem)
+					hue:
 					{
-						supportElem.style.cssText = "background-color:hsla(0, 100%, 50%, 0.3)";
-						return supportElem.style.backgroundColor.indexOf("hsla") > -1;
+						idx: 0,
+						type: "degrees"
 					},
-					*/
+					saturation:
+					{
+						idx: 1,
+						type: "percent"
+					},
+					lightness:
+					{
+						idx: 2,
+						type: "percent"
+					}
 				},
+
+				/*
+				supportTest: function (supportElem)
+				{
+					supportElem.style.cssText = "background-color:hsla(0, 100%, 50%, 0.3)";
+					return supportElem.style.backgroundColor.indexOf("hsla") > -1;
+				},
+				*/
+			},
 
 			// not work on css
 			/*
@@ -166,53 +166,53 @@
 				a.brightness(0.25).toHsvaString(), a.brightness(0.25) + '']
 			*/
 			hsva:
+			{
+				sortorder: 2,
+
+				props:
 				{
-					sortorder: 2,
-
-					props:
-						{
-							hue:
-								{
-									idx: 0,
-									type: "degrees"
-								},
-							saturation:
-								{
-									idx: 1,
-									type: "percent"
-								},
-							//value:
-							brightness:
-								{
-									idx: 2,
-									type: "percent"
-								}
-						},
-
-					/*
-					supportTest: function (supportElem)
+					hue:
 					{
-						supportElem.style.cssText = "background-color:hsva( 180, 50%, 50%, 0.5 )";
-						return supportElem.style.backgroundColor.indexOf("hsva") > -1;
+						idx: 0,
+						type: "degrees"
 					},
-					*/
+					saturation:
+					{
+						idx: 1,
+						type: "percent"
+					},
+					//value:
+					brightness:
+					{
+						idx: 2,
+						type: "percent"
+					}
 				},
+
+				/*
+				supportTest: function (supportElem)
+				{
+					supportElem.style.cssText = "background-color:hsva( 180, 50%, 50%, 0.5 )";
+					return supportElem.style.backgroundColor.indexOf("hsva") > -1;
+				},
+				*/
+			},
 		},
 		propTypes = {
 			"byte":
-				{
-					floor: true,
-					max: 255
-				},
+			{
+				floor: true,
+				max: 255
+			},
 			"percent":
-				{
-					max: 1
-				},
+			{
+				max: 1
+			},
 			"degrees":
-				{
-					mod: 360,
-					floor: true
-				},
+			{
+				mod: 360,
+				floor: true
+			},
 		},
 		support = color.support = {},
 
@@ -328,686 +328,686 @@
 	}
 
 	color.fn = $.extend(color.prototype,
+	{
+
+		_cache_: {},
+
+		parse: function(red, green, blue, alpha)
 		{
+			this._data_ = this._data_ || {};
 
-			_cache_: {},
-
-			parse: function(red, green, blue, alpha)
+			if (red === undefined)
 			{
-				this._data_ = this._data_ || {};
+				this._rgba = [null, null, null, null];
+				return this;
+			}
+			if (red.jquery || red.nodeType)
+			{
+				red = $(red)
+					.css(green);
+				green = undefined;
+			}
 
-				if (red === undefined)
+			var inst = this,
+				type = $.type(red),
+				rgba = this._rgba = [];
+
+			var _spaceName;
+
+			_spaceName = inst._data_.spaceName = 'rgba';
+
+			if (green !== undefined && (type === "array" || type === "object"))
+			{
+				if (green in spaces)
 				{
-					this._rgba = [null, null, null, null];
-					return this;
-				}
-				if (red.jquery || red.nodeType)
-				{
-					red = $(red)
-						.css(green);
+					_spaceName = inst._data_.spaceName = green + '';
+
 					green = undefined;
-				}
+					delete green;
 
-				var inst = this,
-					type = $.type(red),
-					rgba = this._rgba = [];
-
-				var _spaceName;
-
-				_spaceName = inst._data_.spaceName = 'rgba';
-
-				if (green !== undefined && (type === "array" || type === "object"))
-				{
-					if (green in spaces)
+					if (blue === true)
 					{
-						_spaceName = inst._data_.spaceName = green + '';
-
-						green = undefined;
-						delete green;
-
-						if (blue === true)
-						{
-							//console.log(_spaceName, type, red, blue);
-						}
-						else
-						{
-							var _array = {};
-
-							if (type === 'array')
-							{
-								each(spaces[_spaceName].props, function(key, prop)
-								{
-									_array[key] = clamp(red[prop.idx], prop);
-								});
-							}
-							else if (type === 'object')
-							{
-								each(spaces[_spaceName].props, function(key, prop)
-								{
-									_array[key] = clamp(red[key], prop);
-								});
-							}
-
-							//console.log(_spaceName, type, _array);
-
-							return inst.parse(_array, _spaceName, true);
-						}
-					}
-				}
-
-				// more than 1 argument specified - assume ( red, green, blue, alpha )
-				if (green !== undefined)
-				{
-					red = [red, green, blue, alpha];
-					type = "array";
-				}
-
-				if (type === "string")
-				{
-					return this.parse(stringParse(red) || colors._default);
-				}
-
-				if (type === "array")
-				{
-					each(spaces.rgba.props, function(key, prop)
-					{
-						rgba[prop.idx] = clamp(red[prop.idx], prop);
-					});
-					return this;
-				}
-
-				if (type === "object")
-				{
-					if (red instanceof color)
-					{
-						/*
-						spaces_order._each(function(spaceName, space)
-						{
-							if (red[space.cache])
-							{
-								inst[space.cache] = red[space.cache].slice();
-							}
-						});
-						*/
-
-						inst.copy(red);
+						//console.log(_spaceName, type, red, blue);
 					}
 					else
 					{
-						var _temp = {};
+						var _array = {};
 
-						spaces_order._each(function(spaceName, space)
+						if (type === 'array')
 						{
-							var cache = space.cache;
-
-							_temp[cache] = 0;
-
-							each(space.props, function(key, prop)
+							each(spaces[_spaceName].props, function(key, prop)
 							{
-								(red[key] !== undefined) && _temp[cache]++;
+								_array[key] = clamp(red[prop.idx], prop);
 							});
-
-							_temp['_'] = Math.max(_temp['_'] || 0, _temp[cache]);
-						});
-
-						spaces_order._each(function(spaceName, space)
+						}
+						else if (type === 'object')
 						{
-							var cache = space.cache;
-
-							if (spaceName != 'rgba' && (_temp['_'] > _temp[cache] || !_temp[cache]))
+							each(spaces[_spaceName].props, function(key, prop)
 							{
-								return;
-							}
-							else if (spaceName != 'rgba')
-							{
-								_temp['_']++;
-							}
-
-							_spaceName = inst._data_.spaceName = spaceName + '';
-
-							each(space.props, function(key, prop)
-							{
-								// if the cache doesn't exist, and we know how to convert
-								if (!inst[cache] && space.to)
-								{
-									// if the value was null, we don't need to copy it
-									// if the key was alpha, we don't need to copy it either
-									if (key === "alpha" || red[key] == null)
-									{
-										return;
-									}
-									inst[cache] = space.to(inst._rgba);
-								}
-
-								// this is the only case where we allow nulls for ALL properties.
-								// call clamp with alwaysAllowEmpty
-								inst[cache][prop.idx] = clamp(red[key], prop, true);
+								_array[key] = clamp(red[key], prop);
 							});
+						}
 
-							// everything defined but alpha?
-							if (inst[cache] && $.inArray(null, inst[cache].slice(0, 3)) < 0)
-							{
-								// use the default of 1
-								inst[cache][3] = 1;
-								if (space.from)
-								{
-									inst._rgba = space.from(inst[cache]);
-								}
-							}
-						});
+						//console.log(_spaceName, type, _array);
+
+						return inst.parse(_array, _spaceName, true);
 					}
-
-					return this._update();
 				}
-			},
-			is: function(compare, flag)
+			}
+
+			// more than 1 argument specified - assume ( red, green, blue, alpha )
+			if (green !== undefined)
 			{
-				var is = color(compare),
-					same = true,
-					inst = this;
+				red = [red, green, blue, alpha];
+				type = "array";
+			}
 
-				if (flag)
+			if (type === "string")
+			{
+				return this.parse(stringParse(red) || colors._default);
+			}
+
+			if (type === "array")
+			{
+				each(spaces.rgba.props, function(key, prop)
 				{
-					is = is.toVaild();
+					rgba[prop.idx] = clamp(red[prop.idx], prop);
+				});
+				return this;
+			}
 
-					if (flag > 1)
+			if (type === "object")
+			{
+				if (red instanceof color)
+				{
+					/*
+					spaces_order._each(function(spaceName, space)
 					{
-						inst = inst.toVaild();
-					}
+						if (red[space.cache])
+						{
+							inst[space.cache] = red[space.cache].slice();
+						}
+					});
+					*/
+
+					inst.copy(red);
+				}
+				else
+				{
+					var _temp = {};
+
+					spaces_order._each(function(spaceName, space)
+					{
+						var cache = space.cache;
+
+						_temp[cache] = 0;
+
+						each(space.props, function(key, prop)
+						{
+							(red[key] !== undefined) && _temp[cache]++;
+						});
+
+						_temp['_'] = Math.max(_temp['_'] || 0, _temp[cache]);
+					});
+
+					spaces_order._each(function(spaceName, space)
+					{
+						var cache = space.cache;
+
+						if (spaceName != 'rgba' && (_temp['_'] > _temp[cache] || !_temp[cache]))
+						{
+							return;
+						}
+						else if (spaceName != 'rgba')
+						{
+							_temp['_']++;
+						}
+
+						_spaceName = inst._data_.spaceName = spaceName + '';
+
+						each(space.props, function(key, prop)
+						{
+							// if the cache doesn't exist, and we know how to convert
+							if (!inst[cache] && space.to)
+							{
+								// if the value was null, we don't need to copy it
+								// if the key was alpha, we don't need to copy it either
+								if (key === "alpha" || red[key] == null)
+								{
+									return;
+								}
+								inst[cache] = space.to(inst._rgba);
+							}
+
+							// this is the only case where we allow nulls for ALL properties.
+							// call clamp with alwaysAllowEmpty
+							inst[cache][prop.idx] = clamp(red[key], prop, true);
+						});
+
+						// everything defined but alpha?
+						if (inst[cache] && $.inArray(null, inst[cache].slice(0, 3)) < 0)
+						{
+							// use the default of 1
+							inst[cache][3] = 1;
+							if (space.from)
+							{
+								inst._rgba = space.from(inst[cache]);
+							}
+						}
+					});
 				}
 
-				spaces_order._each(function(_, space)
+				return this._update();
+			}
+		},
+		is: function(compare, flag)
+		{
+			var is = color(compare),
+				same = true,
+				inst = this;
+
+			if (flag)
+			{
+				is = is.toVaild();
+
+				if (flag > 1)
 				{
-					var localCache,
-						isCache = is[space.cache];
-					if (isCache)
+					inst = inst.toVaild();
+				}
+			}
+
+			spaces_order._each(function(_, space)
+			{
+				var localCache,
+					isCache = is[space.cache];
+				if (isCache)
+				{
+					localCache = inst[space.cache] || space.to && space.to(inst._rgba) || [];
+					each(space.props, function(_, prop)
 					{
-						localCache = inst[space.cache] || space.to && space.to(inst._rgba) || [];
-						each(space.props, function(_, prop)
+						if (isCache[prop.idx] != null)
 						{
-							if (isCache[prop.idx] != null)
-							{
-								same = (isCache[prop.idx] === localCache[prop.idx]);
-								return same;
-							}
-						});
-					}
-					return same;
-				});
+							same = (isCache[prop.idx] === localCache[prop.idx]);
+							return same;
+						}
+					});
+				}
 				return same;
-			},
-			_space: function()
+			});
+			return same;
+		},
+		_space: function()
+		{
+			var used = [],
+				inst = this;
+			spaces_order._each(function(spaceName, space)
 			{
-				var used = [],
-					inst = this;
-				spaces_order._each(function(spaceName, space)
+				if (inst[space.cache])
 				{
-					if (inst[space.cache])
-					{
-						used.push(spaceName);
-					}
-				});
-				return used.pop();
-			},
-
-			spaceName: function()
-			{
-				return this._data_.spaceName;
-			},
-
-			transition: function(other, distance)
-			{
-				var end = color(other),
-					spaceName = end._space(),
-					space = spaces[spaceName],
-					startColor = this.alpha() === 0 ? color("transparent") : this,
-					start = startColor[space.cache] || space.to(startColor._rgba),
-					result = start.slice();
-
-				end = end[space.cache];
-				each(space.props, function(key, prop)
-				{
-					var index = prop.idx,
-						startValue = start[index],
-						endValue = end[index],
-						type = propTypes[prop.type] || {};
-
-					// if null, don't override start value
-					if (endValue === null)
-					{
-						return;
-					}
-					// if null - use end
-					if (startValue === null)
-					{
-						result[index] = endValue;
-					}
-					else
-					{
-						if (type.mod)
-						{
-							if (endValue - startValue > type.mod / 2)
-							{
-								startValue += type.mod;
-							}
-							else if (startValue - endValue > type.mod / 2)
-							{
-								startValue -= type.mod;
-							}
-						}
-						result[index] = clamp((endValue - startValue) * distance + startValue, prop);
-					}
-				});
-				return this[spaceName](result);
-			},
-			blend: function(opaque)
-			{
-				// if we are already opaque - return ourself
-				if (this._rgba[3] === 1)
-				{
-					return this;
+					used.push(spaceName);
 				}
+			});
+			return used.pop();
+		},
 
-				var rgb = this._rgba.slice(),
-					a = rgb.pop(),
-					blend = color(opaque)
-						._rgba;
+		spaceName: function()
+		{
+			return this._data_.spaceName;
+		},
 
-				return color($.map(rgb, function(v, i)
-				{
-					return (1 - a) * blend[i] + a * v;
-				}));
-			},
-			toRgbaString: function()
+		transition: function(other, distance)
+		{
+			var end = color(other),
+				spaceName = end._space(),
+				space = spaces[spaceName],
+				startColor = this.alpha() === 0 ? color("transparent") : this,
+				start = startColor[space.cache] || space.to(startColor._rgba),
+				result = start.slice();
+
+			end = end[space.cache];
+			each(space.props, function(key, prop)
 			{
-				var prefix = "rgba(",
-					rgba = $.map(this._rgba, function(v, i)
-					{
-						return v == null ? (i > 2 ? 1 : 0) : v;
-					});
+				var index = prop.idx,
+					startValue = start[index],
+					endValue = end[index],
+					type = propTypes[prop.type] || {};
 
-				if (rgba[3] === 1)
+				// if null, don't override start value
+				if (endValue === null)
 				{
-					rgba.pop();
-					prefix = "rgb(";
+					return;
 				}
-
-				return prefix + rgba.join() + ")";
-			},
-			toHslaString: function()
-			{
-				var prefix = "hsla(",
-					hsla = $.map(this.hsla(), function(v, i)
-					{
-						if (v == null)
-						{
-							v = i > 2 ? 1 : 0;
-						}
-
-						// catch 1 and 2
-						if (i && i < 3)
-						{
-							v = Math.round(v * 100) + "%";
-						}
-						return v;
-					});
-
-				if (hsla[3] === 1)
+				// if null - use end
+				if (startValue === null)
 				{
-					hsla.pop();
-					prefix = "hsl(";
-				}
-				return prefix + hsla.join() + ")";
-			},
-			toHexString: function(includeAlpha)
-			{
-				var rgba = this._rgba.slice(),
-					alpha = rgba.pop();
-
-				if (includeAlpha)
-				{
-					rgba.push(~~(alpha * 255));
-				}
-
-				return "#" + $.map(rgba, function(v)
-					{
-
-						// default to 0 when nulls exist
-						v = (v || 0)
-							.toString(16);
-						return v.length === 1 ? "0" + v : v;
-					})
-						.join("");
-			},
-
-			toString: function(flag)
-			{
-				//return this._rgba[3] === 0 ? "transparent" : this.toRgbaString();
-
-				if (this._rgba[3] === 0)
-				{
-					return 'transparent';
-				}
-				else if (flag || this._data_.format)
-				{
-					var spaceName = (flag == 2 ? this._space() : this.format()) || this._space();
-
-					if (spaceName && spaceName != 'rgba')
-					{
-						return this['to' + ucfirst(spaceName) + 'String']();
-					}
-				}
-
-				return this.toRgbaString();
-			},
-
-			clone: function()
-			{
-				var rgba = this._rgba.slice();
-
-				return color(rgba);
-			},
-
-			invert: function(skipAlpha)
-			{
-				var rgba = this._rgba.slice();
-
-				if (skipAlpha)
-				{
-					var _copy = this.clone().blend();
-
-					rgba = _copy._rgba.slice();
-				}
-
-				var i;
-
-				for (i = 0; i<3; i++)
-				{
-					rgba[i] = Math.abs(255 - rgba[i]);
-				}
-
-				return color(rgba);
-			},
-
-			/**
-			 * @url https://gist.github.com/kozo002/6806421
-			 **/
-			chkBrightness: function(skipAlpha)
-			{
-				var rgba = this._rgba.slice();
-
-				if (!skipAlpha && rgba[3] === 0)
-				{
-					return null;
-				}
-
-				if (skipAlpha)
-				{
-					var _copy = this.clone().blend();
-
-					rgba = _copy._rgba.slice();
-				}
-
-				var y = 2.99 * rgba[0] + 5.87 * rgba[1] + 1.14 * rgba[2];
-
-				if (y >= 1275)
-				{
-					//return 'light';
-					return 'white';
+					result[index] = endValue;
 				}
 				else
 				{
-					//return 'dark';
-					return 'black';
+					if (type.mod)
+					{
+						if (endValue - startValue > type.mod / 2)
+						{
+							startValue += type.mod;
+						}
+						else if (startValue - endValue > type.mod / 2)
+						{
+							startValue -= type.mod;
+						}
+					}
+					result[index] = clamp((endValue - startValue) * distance + startValue, prop);
 				}
-			},
-
-			exec: function(fn)
+			});
+			return this[spaceName](result);
+		},
+		blend: function(opaque)
+		{
+			// if we are already opaque - return ourself
+			if (this._rgba[3] === 1)
 			{
-				var args = Array.prototype.slice.call(arguments, 1) || [];
+				return this;
+			}
 
-				var ret = fn.apply(this, args);
+			var rgb = this._rgba.slice(),
+				a = rgb.pop(),
+				blend = color(opaque)
+				._rgba;
 
-				return ret === undefined ? this : ret;
-			},
-
-			blendBrightness: function(options, skipAlpha)
+			return color($.map(rgb, function(v, i)
 			{
-				var rgb = this._rgba.slice(),
-					a = rgb.pop()
+				return (1 - a) * blend[i] + a * v;
+			}));
+		},
+		toRgbaString: function()
+		{
+			var prefix = "rgba(",
+				rgba = $.map(this._rgba, function(v, i)
+				{
+					return v == null ? (i > 2 ? 1 : 0) : v;
+				});
+
+			if (rgba[3] === 1)
+			{
+				rgba.pop();
+				prefix = "rgb(";
+			}
+
+			return prefix + rgba.join() + ")";
+		},
+		toHslaString: function()
+		{
+			var prefix = "hsla(",
+				hsla = $.map(this.hsla(), function(v, i)
+				{
+					if (v == null)
+					{
+						v = i > 2 ? 1 : 0;
+					}
+
+					// catch 1 and 2
+					if (i && i < 3)
+					{
+						v = Math.round(v * 100) + "%";
+					}
+					return v;
+				});
+
+			if (hsla[3] === 1)
+			{
+				hsla.pop();
+				prefix = "hsl(";
+			}
+			return prefix + hsla.join() + ")";
+		},
+		toHexString: function(includeAlpha)
+		{
+			var rgba = this._rgba.slice(),
+				alpha = rgba.pop();
+
+			if (includeAlpha)
+			{
+				rgba.push(~~(alpha * 255));
+			}
+
+			return "#" + $.map(rgba, function(v)
+				{
+
+					// default to 0 when nulls exist
+					v = (v || 0)
+						.toString(16);
+					return v.length === 1 ? "0" + v : v;
+				})
+				.join("");
+		},
+
+		toString: function(flag)
+		{
+			//return this._rgba[3] === 0 ? "transparent" : this.toRgbaString();
+
+			if (this._rgba[3] === 0)
+			{
+				return 'transparent';
+			}
+			else if (flag || this._data_.format)
+			{
+				var spaceName = (flag == 2 ? this._space() : this.format()) || this._space();
+
+				if (spaceName && spaceName != 'rgba')
+				{
+					return this['to' + ucfirst(spaceName) + 'String']();
+				}
+			}
+
+			return this.toRgbaString();
+		},
+
+		clone: function()
+		{
+			var rgba = this._rgba.slice();
+
+			return color(rgba);
+		},
+
+		invert: function(skipAlpha)
+		{
+			var rgba = this._rgba.slice();
+
+			if (skipAlpha)
+			{
+				var _copy = this.clone().blend();
+
+				rgba = _copy._rgba.slice();
+			}
+
+			var i;
+
+			for (i = 0; i<3; i++)
+			{
+				rgba[i] = Math.abs(255 - rgba[i]);
+			}
+
+			return color(rgba);
+		},
+
+		/**
+		 * @url https://gist.github.com/kozo002/6806421
+		 **/
+		chkBrightness: function(skipAlpha)
+		{
+			var rgba = this._rgba.slice();
+
+			if (!skipAlpha && rgba[3] === 0)
+			{
+				return null;
+			}
+
+			if (skipAlpha)
+			{
+				var _copy = this.clone().blend();
+
+				rgba = _copy._rgba.slice();
+			}
+
+			var y = 2.99 * rgba[0] + 5.87 * rgba[1] + 1.14 * rgba[2];
+
+			if (y >= 1275)
+			{
+				//return 'light';
+				return 'white';
+			}
+			else
+			{
+				//return 'dark';
+				return 'black';
+			}
+		},
+
+		exec: function(fn)
+		{
+			var args = Array.prototype.slice.call(arguments, 1) || [];
+
+			var ret = fn.apply(this, args);
+
+			return ret === undefined ? this : ret;
+		},
+
+		blendBrightness: function(options, skipAlpha)
+		{
+			var rgb = this._rgba.slice(),
+				a = rgb.pop()
 				;
 
-				if (skipAlpha)
-				{
-					var _copy = this.clone().blend();
-
-					rgb = _copy._rgba.slice();
-					a = rgb.pop();
-				}
-
-				var max = (rgb.slice().sort(function(l,r){return r-l}))[0];
-				var multiplier = max;
-
-				multiplier = (multiplier / 255) + 1;
-
-				// if it would still be too dark, make it lighten more
-				if (multiplier < 1.5) multiplier = options || 1.9;
-
-				// if it gets to white, move away a bit
-				if ((max * multiplier) > 255)
-				{
-					multiplier = (multiplier / 230) + 1.005;
-				}
-
-				$.each(rgb, function(i, v)
-				{
-					rgb[i] = multiplier * v;
-				});
-
-				rgb.push(a);
-
-				return color(rgb);
-			},
-
-			rand: function(fn)
+			if (skipAlpha)
 			{
-				var rgba = this._rgba.slice();
+				var _copy = this.clone().blend();
 
-				if (!$.isFunction(fn))
-				{
-					fn = Math.random;
-				}
+				rgb = _copy._rgba.slice();
+				a = rgb.pop();
+			}
 
-				var i;
+			var max = (rgb.slice().sort(function(l,r){return r-l}))[0];
+			var multiplier = max;
 
-				for (i = 0; i<3; i++)
-				{
-					rgba[i] = Math.round(fn(i, rgba[i]) * (1 + rgba[i]));
-				}
+			multiplier = (multiplier / 255) + 1;
 
-				return color(rgba);
-			},
+			// if it would still be too dark, make it lighten more
+			if (multiplier < 1.5) multiplier = options || 1.9;
 
-			scale: function(value)
+			// if it gets to white, move away a bit
+			if ((max * multiplier) > 255)
 			{
-				var rgba = this._rgba.slice();
+				multiplier = (multiplier / 230) + 1.005;
+			}
 
-				var i;
-
-				if (!$.isArray(value))
-				{
-					value = [value, value, value, 1];
-				}
-
-				rgba.map(function(v, i)
-				{
-					rgba[i] = Math.round(value[i] * v);
-				});
-
-				return color(rgba);
-			},
-
-			contrastColor: function()
+			$.each(rgb, function(i, v)
 			{
-				var r = this._rgba[0], g = this._rgba[1], b = this._rgba[2];
-				return color((((r*299)+(g*587)+(b*144))/1000) >= 131.5 ? 'black' : 'white');
-			},
+				rgb[i] = multiplier * v;
+			});
 
-			toHsvaString: function()
+			rgb.push(a);
+
+			return color(rgb);
+		},
+
+		rand: function(fn)
+		{
+			var rgba = this._rgba.slice();
+
+			if (!$.isFunction(fn))
 			{
-				var prefix = "hsva(",
-					hsva = $.map(this.hsva(), function(v, i)
+				fn = Math.random;
+			}
+
+			var i;
+
+			for (i = 0; i<3; i++)
+			{
+				rgba[i] = Math.round(fn(i, rgba[i]) * (1 + rgba[i]));
+			}
+
+			return color(rgba);
+		},
+
+		scale: function(value)
+		{
+			var rgba = this._rgba.slice();
+
+			var i;
+
+			if (!$.isArray(value))
+			{
+				value = [value, value, value, 1];
+			}
+
+			rgba.map(function(v, i)
+			{
+				rgba[i] = Math.round(value[i] * v);
+			});
+
+			return color(rgba);
+		},
+
+		contrastColor: function()
+		{
+			var r = this._rgba[0], g = this._rgba[1], b = this._rgba[2];
+			return color((((r*299)+(g*587)+(b*144))/1000) >= 131.5 ? 'black' : 'white');
+		},
+
+		toHsvaString: function()
+		{
+			var prefix = "hsva(",
+				hsva = $.map(this.hsva(), function(v, i)
+				{
+					if (v == null)
 					{
-						if (v == null)
-						{
-							v = i > 2 ? 1 : 0;
-						}
-
-						// catch 1 and 2
-						if (i && i < 3)
-						{
-							v = Math.round(v * 100) + "%";
-						}
-						return v;
-					});
-
-				if (hsva[3] === 1)
-				{
-					hsva.pop();
-					prefix = "hsv(";
-				}
-				return prefix + hsva.join() + ")";
-			},
-
-			greyscale: function()
-			{
-				return this.saturation(0);
-			},
-
-			name: function()
-			{
-				var len = object_size(color.names);
-				if (_cache_['colors.names.length'] != len)
-				{
-					_cache_['colors.names.length'] = len;
-
-					_cache_['colors.names'] = {};
-
-					$.each(color.names, function(i, v){
-						_cache_['colors.names'][v] = i;
-					});
-				}
-
-				return _cache_['colors.names'][this.toHexString()];
-			},
-
-			isVaild: function()
-			{
-				if (this._rgba[3] === 0)
-				{
-					return true;
-				}
-
-				var i;
-
-				for (i =0; i<3; i++)
-				{
-					if (this._rgba[i] === null || this._rgba[i] === undefined)
-					{
-						return false;
+						v = i > 2 ? 1 : 0;
 					}
-				}
 
-				return !!(i === 2);
-			},
+					// catch 1 and 2
+					if (i && i < 3)
+					{
+						v = Math.round(v * 100) + "%";
+					}
+					return v;
+				});
 
-			vaildSpaceName: function()
+			if (hsva[3] === 1)
 			{
-				return !!(this._space() === this.spaceName());
-			},
+				hsva.pop();
+				prefix = "hsv(";
+			}
+			return prefix + hsva.join() + ")";
+		},
 
-			format: function(format)
+		greyscale: function()
+		{
+			return this.saturation(0);
+		},
+
+		name: function()
+		{
+			var len = object_size(color.names);
+			if (_cache_['colors.names.length'] != len)
 			{
-				if (format === undefined)
+				_cache_['colors.names.length'] = len;
+
+				_cache_['colors.names'] = {};
+
+				$.each(color.names, function(i, v){
+					_cache_['colors.names'][v] = i;
+				});
+			}
+
+			return _cache_['colors.names'][this.toHexString()];
+		},
+
+		isVaild: function()
+		{
+			if (this._rgba[3] === 0)
+			{
+				return true;
+			}
+
+			var i;
+
+			for (i =0; i<3; i++)
+			{
+				if (this._rgba[i] === null || this._rgba[i] === undefined)
 				{
-					return this._data_.format || color.options.format;
+					return false;
 				}
+			}
 
-				var inst = this,
-					type = $.type(format)
+			return !!(i === 2);
+		},
+
+		vaildSpaceName: function()
+		{
+			return !!(this._space() === this.spaceName());
+		},
+
+		format: function(format)
+		{
+			if (format === undefined)
+			{
+				return this._data_.format || color.options.format;
+			}
+
+			var inst = this,
+				type = $.type(format)
 				;
 
-				if (type === 'function')
-				{
-					var _val = format.call(this._data_.format);
-
-					if (_val !== undefined)
-					{
-						format = _val;
-					}
-				}
-
-				if (!format || !(format in spaces))
-				{
-					format = null;
-				}
-
-				this._data_.format = format;
-
-				return this;
-			},
-
-			_update: function ()
+			if (type === 'function')
 			{
-				this._data_ = this._data_ || {};
-				this._data_.spaceName = this._space();
+				var _val = format.call(this._data_.format);
 
-				return this;
-			},
-
-			copy: function (source)
-			{
-				var inst = this;
-
-				inst._data_ = $.extend({}, source._data_, {});
-
-				each(spaces, function(spaceName, space)
+				if (_val !== undefined)
 				{
-					delete inst[space.cache];
-
-					if (source[space.cache])
-					{
-						inst[space.cache] = source[space.cache].slice();
-					}
-				});
-
-				inst._update();
-
-				return inst;
-			},
-
-			toVaild: function(overwrite)
-			{
-				var inst = this,
-					o;
-
-				if (!inst.isVaild())
-				{
-					o = color(inst.toString(2));
-
-					if (overwrite)
-					{
-						o = inst.copy(o);
-					}
+					format = _val;
 				}
-				else
-				{
-					o = overwrite ? inst : color(inst);
-				}
-				return o;
-			},
+			}
 
-		});
+			if (!format || !(format in spaces))
+			{
+				format = null;
+			}
+
+			this._data_.format = format;
+
+			return this;
+		},
+
+		_update: function ()
+		{
+			this._data_ = this._data_ || {};
+			this._data_.spaceName = this._space();
+
+			return this;
+		},
+
+		copy: function (source)
+		{
+			var inst = this;
+
+			inst._data_ = $.extend({}, source._data_, {});
+
+			each(spaces, function(spaceName, space)
+			{
+				delete inst[space.cache];
+
+				if (source[space.cache])
+				{
+					inst[space.cache] = source[space.cache].slice();
+				}
+			});
+
+			inst._update();
+
+			return inst;
+		},
+
+		toVaild: function(overwrite)
+		{
+			var inst = this,
+				o;
+
+			if (!inst.isVaild())
+			{
+				o = color(inst.toString(2));
+
+				if (overwrite)
+				{
+					o = inst.copy(o);
+				}
+			}
+			else
+			{
+				o = overwrite ? inst : color(inst);
+			}
+			return o;
+		},
+
+	});
 	color.fn.parse.prototype = color.fn;
 
 	try
@@ -1034,17 +1034,17 @@
 	}
 
 	$.extend(color,
+	{
+		_defaults:
 		{
-			_defaults:
-				{
-					//format: 'rgba',
-				},
+			//format: 'rgba',
+		},
 
-			options:
-				{
-					//format: 'Rgba',
-				},
-		});
+		options:
+		{
+			//format: 'Rgba',
+		},
+	});
 
 	$.extend(color, {
 
@@ -1330,7 +1330,7 @@
 			s = hsva[1],
 			v = hsva[2],
 			a = hsva[3]
-		;
+			;
 
 		var rgba = color.hsv2rgb(h, s, v);
 		rgba[3] = (a == null ? 1 : a);
@@ -1571,9 +1571,9 @@
 						{
 							curElem = hook === "backgroundColor" ? elem.parentNode : elem;
 							while (
-							(backgroundColor === "" || backgroundColor === "transparent") &&
-							curElem && curElem.style
-								)
+								(backgroundColor === "" || backgroundColor === "transparent") &&
+								curElem && curElem.style
+							)
 							{
 								try
 								{
@@ -1691,9 +1691,5 @@
 
 	//console.log([_global_]);
 
-}((function()
-{
-
-	return jQuery;
-
-})()));
+	return color;
+};
