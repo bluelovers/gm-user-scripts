@@ -146,6 +146,18 @@ module.exports = {
 				const _img_selector = '#img_list img';
 				let _img = $(_img_selector);
 
+				let _div_page = $('<div/>')
+					.css(comic_style.page)
+					.css(comic_style.bg_dark)
+					.css(comic_style.bg_dark_border)
+					.css(comic_style.bg_dark_text)
+					.css({
+						top: 50,
+						position: 'fixed',
+					})
+					.appendTo('body')
+				;
+
 				let _img_resize = function (_this)
 				{
 					const _uf_fixsize2 = require('../../lib/dom/img/size')._uf_fixsize2;
@@ -165,6 +177,14 @@ module.exports = {
 						//console.log(_img);
 
 						_img
+							.attr('data-index', function (i)
+							{
+								return i;
+							})
+							.attr('name', function (i)
+							{
+								return 'img' + i;
+							})
 							.imagesLoaded()
 							.always(function (data)
 							{
@@ -174,6 +194,14 @@ module.exports = {
 							{
 								_img_resize(data.elements);
 							})
+						;
+
+						let _to = _img_area.add(_img.eq(0));
+
+						_to = _to.add(_img.filter(':onScreen'));
+
+						_div_page
+							.text((parseInt(_to.eq(-1).attr('data-index')) + 1) + '/' + _img.length)
 						;
 					})
 				;
@@ -209,6 +237,16 @@ module.exports = {
 							let _to = _img_area.add(_img.eq(0));
 
 							_to = _to.add(_img.filter(':onScreen'));
+
+							_div_page
+								.text((parseInt(_to.eq(-1).attr('data-index')) + 1) + '/' + _img.length)
+							;
+
+							_div_page
+								.offset({
+									left: _to.eq(-1).offset().left - _div_page.outerWidth(),
+								})
+							;
 
 							$(window).scrollTo(_to.eq(-1));
 						}, 100);
