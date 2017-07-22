@@ -206,7 +206,17 @@ module.exports = {
 								.on('load.imagesLoaded', function (instance)
 								{
 									$(window).triggerHandler('load.imagesLoaded');
-								});
+								})
+								.off('click.next')
+								.on('click.next', function ()
+								{
+									let e = $.Event('keydown', {
+										which: keycodes('pagedown')
+									});
+
+									$('input').trigger(e);
+								})
+							;
 
 							$(window).triggerHandler('load.imagesLoaded');
 						})

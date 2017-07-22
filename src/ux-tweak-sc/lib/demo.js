@@ -9,7 +9,6 @@ module.exports = {
 	metadata: {
 		match: [
 			'http*://www.3dmgame.com/*',
-			'http*://bbs.3dmgame.com/*',
 		],
 		exclude: [],
 	},
@@ -26,7 +25,10 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-
+		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
+		_uf_dom_filter_link('')
+			.prop('target', '_blank')
+		;
 	},
 
 	adblock(_url_obj = global._url_obj)
@@ -34,9 +36,9 @@ module.exports = {
 
 	},
 
-	clearly(_url_obj = global._url_obj)
+	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		let _dom = $();
+		let _dom = $(_dom_list);
 
 		_dom = _dom
 			.add([
@@ -44,7 +46,7 @@ module.exports = {
 			].join())
 		;
 
-		_dom.remove();
+		//_dom.remove();
 
 		return _dom;
 	},

@@ -27,7 +27,7 @@ module.exports = {
 
 	main()
 	{
-		//const greasemonkey = require('../../lib/greasemonkey');
+		const greasemonkey = require('../../lib/greasemonkey');
 		const _uf_done = require('../../lib/event.done');
 		let jquery_stylesheet = require('jquery-stylesheet');
 		jquery_stylesheet($);
@@ -65,6 +65,8 @@ module.exports = {
 		{
 			let data = mini_jmd();
 
+			let style_css = '';
+
 			if (data)
 			{
 				topic_list_kw(data) && $('#AdvSearch')
@@ -73,7 +75,36 @@ module.exports = {
 						team_id_list(data);
 					})
 				;
+
+				style_css = `
+.jmd a[data-tag] \{ opacity: 0.4; padding: 1px 3px 0px; \}
+.title span[data-tag] \{ background-color: rgb(255, 255, 102); \}
+`;
+
+				{
+					let c = [];
+
+					let css = Object.keys(data.kw_found)
+						.reduce(function (a, b)
+						{
+							a.push(`.jmd a[data-tag="${b}"]`);
+							c.push(`.jmd a[data-tag="${b}"]:hover`);
+
+							return a;
+						}, [])
+						.join()
+					;
+
+					style_css += `${css} \{ opacity: 0.85; \} ${c.join()} \{ opacity: 1; \}`;
+				}
 			}
+
+			greasemonkey.GM_addStyle([
+				'#topic_list .title > a:visited { color: rgba(51, 51, 51, 0.7); }',
+				style_css,
+				'#topic_list tr:hover span[data-tag], #topic_list tr:hover .tag[data-team-id] { opacity: 1; }',
+				jmd_color(data),
+			].join(''));
 
 			console.log(data);
 		}
@@ -160,7 +191,7 @@ function mini_jmd()
 			}
 
 			_tr
-			.attr('data-day', data.jmd[i].index)
+				.attr('data-day', data.jmd[i].index)
 			;
 
 			_th.next('th, td')
@@ -322,4 +353,94 @@ function team_id_list(data)
 			return $(this).val();
 		})
 	;
+}
+
+function jmd_color(data)
+{
+	const _colors = require('../../lib/color/tag');
+	require('../../lib/jquery/jquery.color').makeJQueryPlugin($, window);
+
+	let ret_style_css = '';
+
+	let _team_id_color = jmd_color_tag(data.team_id, _colors.tag);
+
+	ret_style_css += Object.keys(_team_id_color)
+		.reduce((a, b) =>
+		{
+			let bgcolor = $.Color(b);
+			let color = bgcolor.contrastColor();
+			let border = bgcolor.lightness(function (value)
+			{
+				return value * 0.6;
+			});
+
+			let id = _team_id_color[b];
+
+			a.push(`.tag[data-team-id="${id}"], table#topic_list tr td span.tag[data-team-id="${id}"] { color: ${color}; background: ${bgcolor}; border-color: ${border}; opacity: 0.65; }`);
+			a.push(`.tag[data-team-id="${id}"] a, table#topic_list tr td span.tag[data-team-id="${id}"] a { color: ${color}; }`);
+			a.push(`#AdvSearchTeam option[value="${id}"] { color: ${color}; background: ${bgcolor.alpha(0.9)}; }`);
+
+			return a;
+		}, [])
+		.join('')
+	;
+
+	let _kw_found_color = jmd_color_tag(data.kw_found, _colors.tag);
+
+	ret_style_css += Object.keys(_kw_found_color)
+		.reduce((a, b) =>
+		{
+			let bgcolor = $.Color(b);
+			let color = bgcolor.contrastColor();
+			let border = bgcolor.lightness(function (value)
+			{
+				return value * 0.6;
+			});
+
+			let id = _kw_found_color[b];
+
+			a.push(`.jmd a[data-tag="${id}"] { color: ${color}; background: ${bgcolor}; border-color: ${border}; opacity: 0.65; }`);
+			a.push(`#topic_list tr span[data-tag="${id}"] { color: ${color}; background: ${bgcolor}; border-color: ${border}; opacity: 0.65; }`);
+
+			return a;
+		}, [])
+		.join('')
+	;
+
+	return ret_style_css;
+}
+
+function jmd_color_tag(data, tag)
+{
+	let _kw_found_color = {};
+
+	Object.defineProperty(_kw_found_color, 'length', {
+		enumerable: false,
+		//configurable: true,
+		//writable: true,
+
+		get()
+		{
+			return Object.keys(this).length;
+		},
+	});
+
+	Object.keys(data)
+		.reduce((a, b) =>
+		{
+			let idx = _kw_found_color.length % tag.length;
+			let _color = $.Color(tag[idx]).rand();
+
+			while (_color in _kw_found_color)
+			{
+				_color = $.Color(_color).rand();
+			}
+
+			//console.log(_team_id_color.length, idx, _color, _color.toString());
+
+			_kw_found_color[_color] = b;
+		}, [])
+	;
+
+	return _kw_found_color;
 }

@@ -129,6 +129,8 @@ gulp.task("webpack:before", async function (callback)
 
 				name_id = `[${name_id}]`;
 
+				let test;
+
 				if (lib.disable)
 				{
 					console.warn(name_id, 'disable, skip this');
@@ -137,7 +139,7 @@ gulp.task("webpack:before", async function (callback)
 				}
 				else
 				{
-					let test = lib.test(global._url_obj);
+					test = lib.test(global._url_obj);
 
 					console.info(name_id, test);
 
@@ -147,14 +149,27 @@ gulp.task("webpack:before", async function (callback)
 
 						if (ret_main == true || ret_main === undefined)
 						{
+							ret_main = true;
+
+							console.info(name_id, 'matched', ret_main, ret);
+						}
+
+						test = false;
+
+						if (ret_main)
+						{
 							ret = false;
 
-							console.info(name_id, 'matched', ret_main);
+							if (test && test !== true)
+							{
+								test = true;
+								ret = true;
+							}
 						}
 					}
 				}
 
-				if (!ret)
+				if (!ret || test)
 				{
 					module.exports.current.push({
 						name: name,
@@ -218,6 +233,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 // grant		GM_addStyle
 // grant		none
 //
+// @homepageURL	https://github.com/bluelovers/gm-user-scripts
+// @supportURL	https://github.com/bluelovers/gm-user-scripts/issues
 // @downloadURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js
 //
 // @include		<%= index.include %>

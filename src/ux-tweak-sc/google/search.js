@@ -47,7 +47,7 @@ module.exports = {
 		}
 
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		_uf_dom_filter_link('#ires .g h3, #ires .g .s .th a')
+		_uf_dom_filter_link('#ires .g h3 a, #ires .g .s .th a')
 			.attr('target', '_blank')
 		;
 
