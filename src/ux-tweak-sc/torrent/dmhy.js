@@ -77,7 +77,7 @@ module.exports = {
 				;
 
 				style_css = `
-.jmd a[data-tag] \{ opacity: 0.4; padding: 1px 3px 0px; \}
+.jmd a[data-tag] \{ opacity: 0.4; padding: 1px 3px 0px; white-space: nowrap; word-break: keep-all; display: inline-block; \}
 .title span[data-tag] \{ background-color: rgb(255, 255, 102); \}
 `;
 
@@ -100,6 +100,8 @@ module.exports = {
 			}
 
 			greasemonkey.GM_addStyle([
+				'.bg { min-width: auto; }',
+				'#topic_list tr[data-day="0"] .title > a, #topic_list tr[data-day="3"] .title > a { opacity: 0.5; }',
 				'#topic_list .title > a[data-tag="null"] { color: rgba(40, 42, 191, 0.67); }',
 				'#topic_list tr:hover .title > a[data-tag="null"] { color: rgba(40, 42, 191, 1); }',
 				'#topic_list .title > a:visited { color: rgb(111, 111, 111); opacity: 0.5; }',
