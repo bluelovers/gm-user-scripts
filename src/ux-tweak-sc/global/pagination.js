@@ -16,7 +16,7 @@ module.exports = {
 
 	test(_url_obj = global._url_obj)
 	{
-		if ($('.pagination a[rel="prev"], .pagination a[rel="next"]'))
+		if ($('.pagination a[rel="prev"], .pagination a[rel="next"]').length)
 		{
 			return 2;
 		}
