@@ -50,6 +50,7 @@ module.exports = {
 
 				greasemonkey.GM_addStyle([
 					`a { color: ${comic_style.bg_dark_text.color}; }`,
+					//`#img, #i1 { max-width: initial !important; max-height: initial !important; }`,
 				].join(''));
 
 				$('body')
@@ -84,22 +85,23 @@ module.exports = {
 					{
 						const _uf_fixsize2 = require('../../lib/dom/img/size')._uf_fixsize2;
 
-						let _this = _uf_fixsize2(_img, window, 1, {
+						_img = $('#img');
+
+						_uf_fixsize2(_img, window, 1, {
 							width: 'auto',
 						});
 
-						_this
+						_img
 							.css(comic_style.photo)
 							.css({
-								'max-width': 'none',
-								'max-height': 'none',
+								'max-width': 'auto',
+								'max-height': 'auto',
 
 								/*
 								'max-width': _this.width(),
 								'max-height': _this.height(),
 								*/
 							})
-
 						;
 
 						_div_page
@@ -233,7 +235,7 @@ module.exports = {
 							_this.parents('.id1:eq(0)').addClass('_zh');
 							;
 						}
-						else if (/([\[\(])(Eng(?:lish)|Korean|korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish|Vietnamese Tiếng Việt|French|Portuguese-BR|Malay|Indonesian|German)[\]\)]/i.test(
+						else if (/([\[\(])(Eng(?:lish)?|Korean|korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish|Vietnamese Tiếng Việt|French|Portuguese-BR|Malay|Indonesian|German)[\]\)]/i.test(
 								text))
 						{
 							_this.parents('.id1:eq(0)').addClass('_other');
