@@ -32,6 +32,7 @@ module.exports = {
 		}
 
 		require('../../lib/jquery/onscreen');
+		const _uf_done = require('../../lib/event.done');
 
 		//const _feed_selector = '.WB_detail, .WB_feed_detail';
 		const _feed_selector = '.WB_feed_type, .weibo-member';
@@ -90,6 +91,40 @@ module.exports = {
 				{
 					$(window).triggerHandler('load.img');
 				}, 1000);
+			})
+			.on('keydown.page', function (event)
+			{
+				switch (event.which)
+				{
+					case 33:
+					case 37:
+						var _a = $('.pswp:visible button.pswp__button--arrow--left');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+
+							return false;
+						}
+
+						break;
+					case 34:
+					case 39:
+						var _a = $('.pswp:visible button.pswp__button--arrow--right');
+
+						console.log(_a);
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+
+							return false;
+						}
+
+						break;
+				}
 			})
 		;
 
@@ -230,9 +265,22 @@ function fix_thumb(src)
 
 function err404(_url_obj)
 {
+	if (!_url_obj.query)
+	{
+		return false;
+	}
+
+	// http://www.weibo.com/coserxizi?is_all=1#_rnd1500625208315
 	if ($('body').children().length == 0 && $('body').text().match(/Not found|error to origin/i))
 	{
-		// http://www.weibo.com/coserxizi?is_all=1#_rnd1500625208315
+		location.href = _url_obj.path;
+
+		return true;
+	}
+
+	// http://www.weibo.com/vivian19940910?is_hot=1&retcode=6102
+	if ($('body').text() == '')
+	{
 		location.href = _url_obj.path;
 
 		return true;

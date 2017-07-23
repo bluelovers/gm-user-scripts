@@ -26,6 +26,7 @@ module.exports = {
 
 	main()
 	{
+		const _uf_done = require('../../lib/event.done');
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
 
 		let _ready = function ()
@@ -76,6 +77,40 @@ module.exports = {
 		;
 
 		$(window)
+			.on('keydown.page', function (event)
+			{
+				switch (event.which)
+				{
+					case 33:
+					case 37:
+						var _a = $('#photos_snowlift:visible .snowliftPager.prev');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+
+							return false;
+						}
+
+						break;
+					case 34:
+					case 39:
+						var _a = $('#photos_snowlift:visible .snowliftPager.next');
+
+						//console.log(_a);
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+
+							return false;
+						}
+
+						break;
+				}
+			})
 			.on('load', function (event)
 			{
 				setTimeout(_ready, 1000);

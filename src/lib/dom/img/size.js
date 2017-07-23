@@ -2,11 +2,13 @@
  * Created by user on 2017/7/14/014.
  */
 
+'use strict';
+
 module.exports._uf_fixsize2 = function _uf_fixsize2(who, area, force, scrollsize)
 {
-	var _elem = $(who);
+	let _elem = $(who);
 
-	var _ok;
+	let _ok;
 
 	if ($.isPlainObject(area) && $.isNumeric(area.width))
 	{
@@ -51,20 +53,6 @@ module.exports._uf_fixsize2 = function _uf_fixsize2(who, area, force, scrollsize
 
 		scrollsize.width = scrollsize.width || 0;
 		scrollsize.height = scrollsize.height || 0;
-
-		/*
-		if (scrollsize.width == 'auto')
-		{
-//				scrollsize.width = document.documentElement.scrollWidth - document.documentElement.clientWidth;
-			scrollsize.width = (_ok === true ? 0 : $(_ok).width() - $(_ok).innerWidth());
-		}
-
-		if (scrollsize.height == 'auto')
-		{
-//				scrollsize.height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-			scrollsize.height = (_ok === true ? 0 : $(_ok).height() - $(_ok).innerHeight());
-		}
-		*/
 	}
 
 	_elem.each(function(){
@@ -85,11 +73,6 @@ module.exports._uf_fixsize2 = function _uf_fixsize2(who, area, force, scrollsize
 
 		if (scrollsize)
 		{
-			/*
-			_w2 -= scrollsize.width;
-			_h2 -= scrollsize.height;
-			*/
-
 			_w2 = scrollsize.width == 'auto' ? _area.innerWidth() : _w2 - scrollsize.width;
 			_h2 = scrollsize.height == 'auto' ? _area.innerHeight() : _h2 - scrollsize.height;
 		}
@@ -102,45 +85,37 @@ module.exports._uf_fixsize2 = function _uf_fixsize2(who, area, force, scrollsize
 			_w3 = _w2;
 			_h3 = _h * (_w2 / _w);
 
-//				_uf_log(1, [_w, _h, _w/_h], [_w2, _h2, _w2/_h2], [_w3, _h3, _w3/_h3]);
-
 			if (_h3 > _h2)
 			{
 				_w3 = _w3 * (_h2 / _h3);
 				_h3 = _h2;
-
-//					_uf_log(1, [_w, _h, _w/_h], [_w2, _h2, _w2/_h2], [_w3, _h3, _w3/_h3]);
 			}
+		}
+		else if (force > 1)
+		{
+			let scale = calc_scale(_w, _h);
 
-//				_this.height(_h * (_w2 / _w)).width(_w2);
+			_w3 = _w3 * scale;
+			_h3 = _h2;
+
+			//console.log(force, scale, [_w, _h], [_w3, _h3]);
 		}
 		else if (force || (_h > _h2))
 		{
 			_w3 = _w * (_h2 / _h);
 			_h3 = _h2;
 
-			//console.log(2, [_w, _h, _w/_h], [_w2, _h2, _w2/_h2], [_w3, _h3, _w3/_h3]);
-
 			if (_w3 > _w2)
 			{
 				_w3 = _w2;
 				_h3 = _h * (_w2 / _w);
-
-				//console.log(2, [_w, _h, _w/_h], [_w2, _h2, _w2/_h2], [_w3, _h3, _w3/_h3]);
 			}
-
-//				_this.width(_w * (_h2 / _h)).height(_h2);
 		}
 		else
 		{
-//				_uf_log(3, [_w, _h, _w/_h], [_w2, _h2, _w2/_h2], [_w3, _h3, _w3/_h3]);
-
-//				_this.height(_h).width(_w);
 		}
 
 		_this.height(_h3).width(_w3);
-
-//			_uf_log([_w, _h], [_w2, _h2], [_w3, _h3]);
 
 		_this.attr({
 			'data-naturalHeight': _h,
@@ -153,3 +128,8 @@ module.exports._uf_fixsize2 = function _uf_fixsize2(who, area, force, scrollsize
 
 	return _elem;
 };
+
+function calc_scale(w, h)
+{
+	return w / h;
+}

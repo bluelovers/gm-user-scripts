@@ -20,6 +20,7 @@ module.exports.list = [
 	"code/github.js",
 	"bbs/ptt.js",
 	"art/pixiv.js",
+	"anti-adblock/epinv.js",
 	"acg/getchu.js",
 	"acg/gamme.js",
 	"acg/gamer.com.tw.js",
@@ -53,6 +54,7 @@ module.exports._lib = () =>
 	require('./code/github.js');
 	require('./bbs/ptt.js');
 	require('./art/pixiv.js');
+	require('./anti-adblock/epinv.js');
 	require('./acg/getchu.js');
 	require('./acg/gamme.js');
 	require('./acg/gamer.com.tw.js');
@@ -92,6 +94,7 @@ module.exports.metadata.include = [
 	"http*://github.com/*",
 	"http*://www.ptt.cc/*",
 	"http*://*.pixiv.net/*",
+	"http*://www.epinv.com/*",
 	"http*://*.getchu.com/*",
 	"http*://news.gamme.com.tw/*",
 	"http*://www.gamer.com.tw/*",
