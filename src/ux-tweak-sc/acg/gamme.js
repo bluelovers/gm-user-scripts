@@ -36,6 +36,23 @@ module.exports = {
 			'.entry .photovia a { color: blue; }',
 		].join(''));
 
+		$(window)
+			.on('load', function ()
+			{
+				$('.entry .photovia')
+					.not('[data-done]')
+					.attr('data-done', true)
+					.clone()
+					.css({
+						'margin-top': 0,
+						'margin-bottom': '2.5em',
+					})
+					.insertAfter($('#entry > p.pimg:eq(0), #entry > p.pimg:eq(0) + pre').eq(-1))
+				;
+			})
+			.triggerHandler('load')
+		;
+
 		$(window).scrollTo($('#content, .body_box, .post').eq(-1))
 	},
 
