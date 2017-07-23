@@ -146,8 +146,6 @@ module.exports = {
 
 				module.exports.adblock(_url_obj);
 
-				$('.column-search-result .image-item[style]').height('inherit');
-
 				$(document).on('click mousedown', function (event)
 				{
 					var _this = $(event.target);
@@ -376,7 +374,8 @@ module.exports = {
 	{
 		if (_url_obj.path.match(/search\.php/))
 		{
-			$('.popular-introduction:has(.require-premium), .ad-printservice').remove();
+			//$('.popular-introduction:has(.require-premium), .ad-printservice').remove();
+			//$('.column-search-result .image-item[style]').height('inherit');
 		}
 	},
 };
