@@ -28,8 +28,8 @@ module.exports = {
 		const _uf_done = require('../../lib/event.done');
 
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		_uf_dom_filter_link('.cartoon_online_border a')
-			.attr('target', '_blank')
+		_uf_dom_filter_link('.cartoon_online_border a, #type_comics a')
+			.prop('target', '_blank')
 		;
 
 		const comic_style = require('../../lib/comic/style');
