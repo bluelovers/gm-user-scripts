@@ -44,12 +44,43 @@ module.exports = {
 			module.exports.adblock();
 		}, 500);
 
+		let _img = $('#image-container img');
+
+		let _div_page = $('<div/>')
+			.css(comic_style.page)
+			.css(comic_style.bg_dark)
+			.css(comic_style.bg_dark_border)
+			.css(comic_style.bg_dark_text)
+			.css({
+				top: 50,
+				position: 'fixed',
+			})
+			.appendTo('body')
+		;
+
 		$(window)
 			.on('resize', function (event)
 			{
-				_uf_fixsize2($('#image-container img'))
+				_img = $('#image-container img');
+
+				_uf_fixsize2(_img)
 					.css(comic_style.photo)
 				;
+
+				_div_page
+					.text($('.page-number .current:eq(0)').text() + '/' + $('.page-number .num-pages:eq(0)').text())
+				;
+
+				setTimeout(function ()
+				{
+					_img = $('#image-container img');
+
+					_div_page
+						.offset({
+							left: _img.offset().left - _div_page.outerWidth(),
+						})
+					;
+				}, 100);
 
 				$(window).scrollTo($('#content, #image-container').eq(-1));
 			})
