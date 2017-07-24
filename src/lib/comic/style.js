@@ -41,11 +41,17 @@ module.exports = {
 	},
 
 	page: {
-		position: 'fixed',
+		//position: 'fixed',
+		position: 'absolute',
 		padding: '10px',
 		'z-index': 100,
 		'min-width': '80px',
 		'text-align': 'center',
+	},
+
+	page_position: {
+		top: 50,
+		left: 50,
 	},
 
 };
