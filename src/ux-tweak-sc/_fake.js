@@ -10,6 +10,7 @@ module.exports = {
 
 	metadata: {
 		match: [
+			'about:neterror*',
 		],
 		exclude: [
 			'http*://platform.twitter.com/widgets*',

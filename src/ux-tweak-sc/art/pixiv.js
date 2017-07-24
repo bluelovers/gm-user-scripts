@@ -77,6 +77,10 @@ module.exports = {
 				{
 					if (_url_obj.path.match(/member\.php/))
 					{
+						setTimeout(function ()
+						{
+							location.href = location.href.replace('member.php', 'member_illust.php');
+						}, 200);
 					}
 					else if (_url_obj.path.match(/member_illust\.php/) && !_url_obj.query.match(/mode=/))
 					{
@@ -137,9 +141,9 @@ module.exports = {
 			}
 			else if (_url_obj.path.match(/search\.php/))
 			{
-				if ($('.column-header .tabs li:eq(0) a.current').length && $('.column-search-result ._no-item:visible').length)
+				if ($('.column-header, .column-label').find('.tabs li:eq(0) a.current').length && $('.column-search-result ._no-item:visible').length)
 				{
-					location.href = $('.column-header .tabs a[href*="search_user"]').prop('href');
+					location.href = $('.column-header, .column-label').find('.tabs a[href*="search_user"]').prop('href');
 				}
 
 				$.scrollTo($('#wrapper'));

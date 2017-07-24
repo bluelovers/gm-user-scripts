@@ -285,4 +285,30 @@ function err404(_url_obj)
 
 		return true;
 	}
+
+	if (window.top == window.self && !_url_obj.query.match(/uf404=true/))
+	{
+		if (
+			unsafeWindow.document.URL.match(/^about\:neterror/)
+			|| $('body.neterror').length == 1 && window.document.title.match(/頁面載入發生問題/)
+		)
+		{
+			let url = location.href
+				.replace(`${_url_obj.scheme}://`, (_url_obj.scheme == 'https' ? 'http' : 'https') + '://')
+			;
+
+			let query = _url_obj.query;
+
+			if (query)
+			{
+				query += '&';
+			}
+
+			url = url.replace(_url_obj.host + _url_obj.path + (_url_obj.query ? '?' + _url_obj.query : ''), _url_obj.host + _url_obj.path + '?' + query + 'uf404=true');
+
+			location.href = url;
+
+			return true;
+		}
+	}
 }

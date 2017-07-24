@@ -2,6 +2,7 @@
 module.exports.name = 'ux-tweak-sc';
 
 module.exports.list = [
+	"wiki/wikipedia.js",
 	"torrent/nyaa.js",
 	"torrent/jandown.js",
 	"torrent/dmhy.js",
@@ -20,14 +21,18 @@ module.exports.list = [
 	"code/github.js",
 	"bbs/ptt.js",
 	"art/pixiv.js",
+	"art/deviantart.js",
 	"anti-adblock/epinv.js",
+	"adult/up01.js",
 	"acg/getchu.js",
 	"acg/gamme.js",
 	"acg/gamer.com.tw.js",
 	"acg/dmm.js",
+	"acg/dlsite.js",
 	"acg/blog.reimu.net.js",
 	"acg/3dmgame.js",
 	"google/search.js",
+	"global/video.js",
 	"global/discuz.js",
 	"global/pagination.js",
 	"_fake.js"
@@ -36,6 +41,7 @@ module.exports.list = [
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
+	require('./wiki/wikipedia.js');
 	require('./torrent/nyaa.js');
 	require('./torrent/jandown.js');
 	require('./torrent/dmhy.js');
@@ -54,14 +60,18 @@ module.exports._lib = () =>
 	require('./code/github.js');
 	require('./bbs/ptt.js');
 	require('./art/pixiv.js');
+	require('./art/deviantart.js');
 	require('./anti-adblock/epinv.js');
+	require('./adult/up01.js');
 	require('./acg/getchu.js');
 	require('./acg/gamme.js');
 	require('./acg/gamer.com.tw.js');
 	require('./acg/dmm.js');
+	require('./acg/dlsite.js');
 	require('./acg/blog.reimu.net.js');
 	require('./acg/3dmgame.js');
 	require('./google/search.js');
+	require('./global/video.js');
 	require('./global/discuz.js');
 	require('./global/pagination.js');
 	require('./_fake.js');
@@ -69,6 +79,7 @@ module.exports._lib = () =>
 
 module.exports.metadata = {};
 module.exports.metadata.include = [
+	"http*://*.wikipedia.org/*",
 	"http*://sukebei.nyaa.si/*",
 	"http*://www.jandown.com/*",
 	"http*://share.dmhy.org/*",
@@ -94,7 +105,9 @@ module.exports.metadata.include = [
 	"http*://github.com/*",
 	"http*://www.ptt.cc/*",
 	"http*://*.pixiv.net/*",
+	"http*://*.deviantart.com/*",
 	"http*://www.epinv.com/*",
+	"http*://www.up01.cc/*",
 	"http*://*.getchu.com/*",
 	"http*://news.gamme.com.tw/*",
 	"http*://www.gamer.com.tw/*",
@@ -108,6 +121,7 @@ module.exports.metadata.include = [
 	"http*://m.gamer.com.tw/*",
 	"http*://ani.gamer.com.tw/*",
 	"http*://www.dmm.co.jp/netgame/*",
+	"http*://www.dlsite.com/*",
 	"http*://blog.reimu.net/*",
 	"http*://www.3dmgame.com/*",
 	"http*://bbs.3dmgame.com/*",
@@ -115,9 +129,12 @@ module.exports.metadata.include = [
 	"http*://www.google.co.jp/*",
 	"http*://*.google.*/blank.html",
 	"http*://*.google.*/search*",
-	"http*://*.google.*/imgres*"
+	"http*://*.google.*/imgres*",
+	"about:neterror*"
 ];
 module.exports.metadata.exclude = [
+	"http*://gc.bahamut.com.tw/*",
+	"http*://*.bahamut.com.tw/*",
 	"http*://notifications.google.com/*",
 	"http*://platform.twitter.com/widgets*",
 	"http*://www.facebook.com/*plugins/*",
@@ -153,7 +170,7 @@ module.exports.main = function (list, options = {})
 				{
 					console.warn(name_id, 'disable, skip this');
 
-					ret = false;
+					//ret = false;
 				}
 				else
 				{
@@ -207,6 +224,7 @@ module.exports.main = function (list, options = {})
 		};
 
 module.exports.list_script = [
+	"global/video.js",
 	"global/discuz.js"
 ];
 
