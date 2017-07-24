@@ -37,90 +37,99 @@ module.exports = {
 
 		const _uf_fixsize2 = require('../../lib/dom/img/size')._uf_fixsize2;
 
-		module.exports.adblock();
+		$(window)
+			.on('load.adblock', function (event)
+			{
+				module.exports.adblock();
+			})
+			.triggerHandler('load.adblock')
+		;
 
 		setTimeout(function ()
 		{
-			module.exports.adblock();
+			$(window).triggerHandler('load.adblock')
 		}, 500);
 
-		let _img = $('#image-container img');
+		if ($('#image-container').length)
+		{
+			let _img = $('#image-container img');
 
-		let _div_page = $('<div/>')
-			.css(comic_style.page)
-			.css(comic_style.bg_dark)
-			.css(comic_style.bg_dark_border)
-			.css(comic_style.bg_dark_text)
-			.css({
-				top: 50,
-				position: 'fixed',
-			})
-			.appendTo('body')
-		;
+			let _div_page = $('<div/>')
+				.css(comic_style.page)
+				.css(comic_style.bg_dark)
+				.css(comic_style.bg_dark_border)
+				.css(comic_style.bg_dark_text)
+				.css({
+					top: 50,
+					position: 'fixed',
+				})
+				.appendTo('body')
+			;
 
-		$(window)
-			.on('resize', function (event)
-			{
-				_img = $('#image-container img');
-
-				_uf_fixsize2(_img)
-					.css(comic_style.photo)
-				;
-
-				_div_page
-					.text($('.page-number .current:eq(0)').text() + '/' + $('.page-number .num-pages:eq(0)').text())
-				;
-
-				setTimeout(function ()
+			$(window)
+				.on('resize', function (event)
 				{
 					_img = $('#image-container img');
 
-					_div_page
-						.offset({
-							left: _img.offset().left - _div_page.outerWidth(),
-						})
+					_uf_fixsize2(_img)
+						.css(comic_style.photo)
 					;
-				}, 100);
 
-				$(window).scrollTo($('#content, #image-container').eq(-1));
-			})
-			.on('keydown', function (event)
-			{
-				switch (event.which)
+					_div_page
+						.text($('.page-number .current:eq(0)').text() + '/' + $('.page-number .num-pages:eq(0)').text())
+					;
+
+					setTimeout(function ()
+					{
+						_img = $('#image-container img');
+
+						_div_page
+							.offset({
+								left: _img.offset().left - _div_page.outerWidth(),
+							})
+						;
+					}, 100);
+
+					$(window).scrollTo($('#content, #image-container').eq(-1));
+				})
+				.on('keydown', function (event)
 				{
-					case keycodes('pageup'):
-					case keycodes('left'):
-						var _a = $('.pagination .previous');
+					switch (event.which)
+					{
+						case keycodes('pageup'):
+						case keycodes('left'):
+							var _a = $('.pagination .previous');
 
-						if (_a.length)
-						{
-							_uf_done(event);
-							_a[0].click();
-						}
+							if (_a.length)
+							{
+								_uf_done(event);
+								_a[0].click();
+							}
 
-						break;
-					case keycodes('pagedown'):
-					case keycodes('right'):
-						var _a = $('.pagination .next');
+							break;
+						case keycodes('pagedown'):
+						case keycodes('right'):
+							var _a = $('.pagination .next');
 
-						if (_a.length)
-						{
-							_uf_done(event);
-							_a[0].click();
-						}
+							if (_a.length)
+							{
+								_uf_done(event);
+								_a[0].click();
+							}
 
-						break;
-				}
-			})
-			.triggerHandler('resize')
-		;
+							break;
+					}
+				})
+				.triggerHandler('resize')
+			;
 
-		$('#image-container')
-			.on('DOMNodeInserted', function ()
-			{
-				$(window).triggerHandler('resize');
-			})
-		;
+			$('#image-container')
+				.on('DOMNodeInserted', function ()
+				{
+					$(window).triggerHandler('resize');
+				})
+			;
+		}
 	},
 
 	adblock()
