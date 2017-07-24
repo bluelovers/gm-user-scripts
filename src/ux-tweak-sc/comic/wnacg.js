@@ -67,6 +67,15 @@ module.exports = {
 					})
 				;
 
+				let _div_page = $('<div/>')
+					.css(comic_style.page)
+					.css(comic_style.bg_dark)
+					.css(comic_style.bg_dark_border)
+					.css(comic_style.bg_dark_text)
+					.css(comic_style.page_position)
+					.appendTo('body')
+				;
+
 				$.scrollTo(_img);
 
 				$('#tuzaoblock').hide();
@@ -85,6 +94,17 @@ module.exports = {
 						;
 
 						_uf_fixsize2(_img, window, 1);
+
+						_div_page
+							.text($('.newpagelabel').text())
+						;
+
+						_div_page
+							.offset({
+								top: _img.offset().top + 50,
+								left: _img.offset().left - _div_page.outerWidth(),
+							})
+						;
 
 						$.scrollTo(_img);
 					})
