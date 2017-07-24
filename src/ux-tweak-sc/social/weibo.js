@@ -10,6 +10,7 @@ module.exports = {
 		match: [
 			'http*://www.weibo.com/*',
 			'http*://m.weibo.cn/*',
+			//'about:neterror*',
 		],
 		exclude: [],
 	},

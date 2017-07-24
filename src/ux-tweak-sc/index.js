@@ -129,8 +129,7 @@ module.exports.metadata.include = [
 	"http*://www.google.co.jp/*",
 	"http*://*.google.*/blank.html",
 	"http*://*.google.*/search*",
-	"http*://*.google.*/imgres*",
-	"about:neterror*"
+	"http*://*.google.*/imgres*"
 ];
 module.exports.metadata.exclude = [
 	"http*://gc.bahamut.com.tw/*",
