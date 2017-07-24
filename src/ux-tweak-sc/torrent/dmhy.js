@@ -65,50 +65,59 @@ module.exports = {
 		{
 			let data = mini_jmd();
 
-			let style_css = '';
-
 			if (data)
 			{
-				topic_list_kw(data) && $('#AdvSearch')
-					.on('DOMNodeInserted', function ()
-					{
-						team_id_list(data);
-					})
-				;
+				let style_css = '';
 
-				style_css = `
+				topic_list_kw(data);
+
+				$('#AdvSearch')
+					.one('DOMNodeInserted', function ()
+					{
+						setTimeout(function ()
+						{
+							team_id_list(data);
+
+							style_css = `
 .jmd a[data-tag] \{ opacity: 0.4; padding: 1px 3px 0px; white-space: nowrap; word-break: keep-all; display: inline-block; \}
 .title span[data-tag] \{ background-color: rgb(255, 255, 102); \}
 `;
+							{
+								let c = [];
 
+								let css = Object.keys(data.kw_found)
+									.reduce(function (a, b)
+									{
+										a.push(`.jmd a[data-tag="${b}"]`);
+										c.push(`.jmd a[data-tag="${b}"]:hover`);
+
+										return a;
+									}, [])
+									.join()
+								;
+
+								style_css += `${css} \{ opacity: 0.85; \} ${c.join()} \{ opacity: 1; \}`;
+							}
+
+							greasemonkey.GM_addStyle([
+								'.bg { min-width: auto; }',
+								'#topic_list .title > a:visited { color: rgb(111, 111, 111); opacity: 0.5; }',
+								style_css,
+								'#topic_list tr:hover span[data-tag], #topic_list tr:hover .tag[data-team-id], #topic_list tr:hover .title > a, #topic_list tr:hover .title > a:visited { opacity: 1; }',
+								jmd_color(data),
+							].join(''));
+
+						}, 200);
+					})
+				;
+
+				let AdvSearch = $('#AdvSearch');
+
+				if (!AdvSearch.children().length && $('#keyword').val())
 				{
-					let c = [];
-
-					let css = Object.keys(data.kw_found)
-						.reduce(function (a, b)
-						{
-							a.push(`.jmd a[data-tag="${b}"]`);
-							c.push(`.jmd a[data-tag="${b}"]:hover`);
-
-							return a;
-						}, [])
-						.join()
-					;
-
-					style_css += `${css} \{ opacity: 0.85; \} ${c.join()} \{ opacity: 1; \}`;
+					unsafeWindow.showHideAdvSearch();
 				}
 			}
-
-			greasemonkey.GM_addStyle([
-				'.bg { min-width: auto; }',
-				'#topic_list tr[data-day="0"] .title > a, #topic_list tr[data-day="3"] .title > a { opacity: 0.5; }',
-				'#topic_list .title > a[data-tag="null"] { color: rgba(40, 42, 191, 0.67); }',
-				'#topic_list tr:hover .title > a[data-tag="null"] { color: rgba(40, 42, 191, 1); }',
-				'#topic_list .title > a:visited { color: rgb(111, 111, 111); opacity: 0.5; }',
-				style_css,
-				'#topic_list tr:hover span[data-tag], #topic_list tr:hover .tag[data-team-id], #topic_list tr:hover .title > a, #topic_list tr:hover .title > a:visited { opacity: 1; }',
-				jmd_color(data),
-			].join(''));
 
 			console.log(data);
 		}
@@ -389,27 +398,34 @@ function jmd_color(data)
 		.join('')
 	;
 
-	let _kw_found_color = jmd_color_tag(data.kw_found, _colors.tag);
+	if ([2, 31].includes(parseInt($('#AdvSearchSort :selected').val())))
+	{
+		let _kw_found_color = jmd_color_tag(data.kw_found, _colors.tag);
 
-	ret_style_css += Object.keys(_kw_found_color)
-		.reduce((a, b) =>
-		{
-			let bgcolor = $.Color(b);
-			let color = bgcolor.contrastColor();
-			let border = bgcolor.lightness(function (value)
+		ret_style_css += Object.keys(_kw_found_color)
+			.reduce((a, b) =>
 			{
-				return value * 0.6;
-			});
+				let bgcolor = $.Color(b);
+				let color = bgcolor.contrastColor();
+				let border = bgcolor.lightness(function (value)
+				{
+					return value * 0.6;
+				});
 
-			let id = _kw_found_color[b];
+				let id = _kw_found_color[b];
 
-			a.push(`.jmd a[data-tag="${id}"] { color: ${color}; background: ${bgcolor}; border-color: ${border}; opacity: 0.65; }`);
-			a.push(`#topic_list tr span[data-tag="${id}"] { color: ${color}; background: ${bgcolor}; border-color: ${border}; opacity: 0.65; }`);
+				a.push(`.jmd a[data-tag="${id}"] { color: ${color}; background: ${bgcolor}; border-color: ${border}; opacity: 0.65; }`);
+				a.push(`#topic_list tr span[data-tag="${id}"] { color: ${color}; background: ${bgcolor}; border-color: ${border}; opacity: 0.65; }`);
 
-			return a;
-		}, [])
-		.join('')
-	;
+				return a;
+			}, [
+				'#topic_list tr[data-day="0"] .title > a, #topic_list tr[data-day="3"] .title > a { opacity: 0.5; }',
+				'#topic_list .title > a[data-tag="null"] { color: rgba(40, 42, 191, 0.67); }',
+				'#topic_list tr:hover .title > a[data-tag="null"] { color: rgba(40, 42, 191, 1); }',
+			])
+			.join('')
+		;
+	}
 
 	return ret_style_css;
 }
