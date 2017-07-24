@@ -19,7 +19,10 @@ module.exports = {
 			'http*://m.gamer.com.tw/*',
 			'http*://ani.gamer.com.tw/*',
 		],
-		exclude: [],
+		exclude: [
+			'http*://gc.bahamut.com.tw/*',
+			'http*://*.bahamut.com.tw/*',
+		],
 	},
 
 	test(_url_obj)
@@ -35,7 +38,7 @@ module.exports = {
 	main(_url_obj)
 	{
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		_uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a')
+		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a')
 			.attr('target', '_blank')
 		;
 
@@ -62,8 +65,16 @@ module.exports = {
 			;
 		}
 
-		$('.GN-thumbnail img')
+		$('.GN-thumbnail img, article img.lazyload')
 			.not('[data-done]')
+			.filter('[data-src]:not([src])')
+			.attr('src', function()
+			{
+				return $(this).attr('data-src');
+			})
+			.addClass('lazyautosizes lazyloaded')
+			.removeClass('lazyload')
+			.addBack()
 			.imagesLoaded()
 			.always(function (data)
 			{
@@ -116,7 +127,9 @@ module.exports = {
 				'.BH-rbox a > img[src*="folder"]',
 				'.HOME-mainbox1a a > img',
 				'.MSG-list8E, #frmDel, .BH-search, #BH-talk2',
-				'script, iframe',
+				'script, iframe, #replys img.msghead.gamercard, img.IMG-C09, #BH-slave > .BH-slave_btns:eq(0) > .BH-slave_btnA:eq(0)',
+				'a[name="heretop"] + h4',
+				'.FM-cbox2 img[id*="avatar"], .FM-msgbg button, .IMG-GA19',
 			].join())
 		;
 
@@ -126,6 +139,13 @@ module.exports = {
 				.not('#BH-slave')
 			;
 		}
+
+		$('.FM-cbox10D a[id*="showoldCommend_"]')
+			.each(function ()
+			{
+				this.click();
+			})
+		;
 
 		greasemonkey.GM_addStyle([
 			'.FM-tags a { background: initial; }',
@@ -145,7 +165,7 @@ module.exports = {
 			})
 		;
 
-		_dom.remove();
+		//_dom.remove();
 
 		return _dom;
 	}
