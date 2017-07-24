@@ -135,7 +135,7 @@ gulp.task("webpack:before", async function (callback)
 				{
 					console.warn(name_id, 'disable, skip this');
 
-					ret = false;
+					//ret = false;
 				}
 				else
 				{
