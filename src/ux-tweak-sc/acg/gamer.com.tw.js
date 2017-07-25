@@ -45,7 +45,7 @@ module.exports = {
 		const comic_style = require('../../lib/comic/style');
 		const greasemonkey = require('../../lib/greasemonkey');
 
-		module.exports.adblock();
+		module.exports.adblock(_url_obj);
 
 		if (_url_obj.path.match(/animeVideo/))
 		{
@@ -64,6 +64,8 @@ module.exports = {
 //				.css(comic_style.bg_dark)
 			;
 		}
+
+		daily_signin(_url_obj);
 
 		$('.GN-thumbnail img, article img.lazyload')
 			.not('[data-done]')
@@ -170,3 +172,16 @@ module.exports = {
 		return _dom;
 	}
 };
+
+function daily_signin(_url_obj)
+{
+	if (_url_obj.host.match(/www\.gamer\.com\.tw/))
+	{
+		let _a = $('.BA-left #signin-btn[onclick]');
+
+		if (_a.length)
+		{
+			_a[0].click();
+		}
+	}
+}
