@@ -53,10 +53,7 @@ module.exports = {
 				.css(comic_style.bg_dark)
 				.css(comic_style.bg_dark_border)
 				.css(comic_style.bg_dark_text)
-				.css({
-					top: 50,
-					position: 'fixed',
-				})
+				.css(comic_style.page_position)
 				.appendTo('body')
 			;
 
@@ -87,6 +84,13 @@ module.exports = {
 					_div_page
 						.text(selected.text()
 							.replace(/^.*[^\d]+(\d+)[^\d]+.*$/, '$1') + '/' + $('#page_select option').length)
+					;
+
+					_div_page
+						.offset({
+							top: _img.offset().top + 50,
+							left: _img.offset().left - _div_page.outerWidth(),
+						})
 					;
 
 					$.scrollTo(_img);
