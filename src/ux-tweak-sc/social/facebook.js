@@ -11,7 +11,11 @@ module.exports = {
 			'http*://www.facebook.com/*',
 			'http*://www.facebook.com/saved/*',
 		],
-		exclude: [],
+		exclude: [
+			'http*://www.facebook.com/ajax/*',
+			'http*://www.facebook.com/*plugins/*',
+			'http*://staticxx.facebook.com/*',
+		],
 	},
 
 	test(_url_obj)
@@ -29,7 +33,9 @@ module.exports = {
 		const _uf_done = require('../../lib/event.done');
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
 
-		let _ready = function ()
+		const debounce = require('throttle-debounce/debounce');
+
+		let _ready = debounce(1500, function ()
 		{
 			let _a = $('#appsNav > ul > li > a[data-testid="left_nav_item_建立特效框"]:eq(0)')
 				.not('[data-uf]')
@@ -67,13 +73,11 @@ module.exports = {
 			;
 
 			//console.log(_link);
-		};
+		});
 
 		$('body')
-			.on('click', 'a[href]:not([rel="ignore"] or [role] or [href="#"])', function (event)
-			{
-				setTimeout(_ready, 3000);
-			})
+			.on('click', 'a[href]:not([rel="ignore"] or [role] or [href="#"])', _ready)
+			.on('DOMNodeInserted', '#content ._5wci._5wch._2pjv, #content #appsNav', _ready)
 		;
 
 		$(window)
@@ -111,17 +115,8 @@ module.exports = {
 						break;
 				}
 			})
-			.on('load', function (event)
-			{
-				setTimeout(_ready, 1000);
-			})
-		;
-
-		$('#content')
-			.on('DOMNodeInserted', '._5wci._5wch._2pjv, #appsNav', function (event)
-			{
-				setTimeout(_ready, 1000);
-			})
+			.on('load', _ready)
+			.triggerHandler('load')
 		;
 
 		setTimeout(_ready, 1500);
