@@ -132,12 +132,13 @@ module.exports.metadata.include = [
 	"http*://*.google.*/imgres*"
 ];
 module.exports.metadata.exclude = [
+	"http*://www.facebook.com/ajax/*",
+	"http*://www.facebook.com/*plugins/*",
+	"http*://staticxx.facebook.com/*",
 	"http*://gc.bahamut.com.tw/*",
 	"http*://*.bahamut.com.tw/*",
 	"http*://notifications.google.com/*",
 	"http*://platform.twitter.com/widgets*",
-	"http*://www.facebook.com/*plugins/*",
-	"http*://staticxx.facebook.com/*",
 	"http*://apis.google.com/*"
 ];
 
