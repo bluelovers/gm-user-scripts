@@ -226,6 +226,8 @@ module.exports = {
 					})
 				;
 
+				const debounce = require('throttle-debounce/debounce');
+
 				$(window)
 					.on('load', function ()
 					{
@@ -271,13 +273,10 @@ module.exports = {
 							$(window).scrollTo(_to.eq(-1));
 						}, 100);
 					})
-					.on('scroll', function ()
+					.on('scroll', debounce(1000, function (event)
 					{
-						setTimeout(function ()
-						{
-							$(window).triggerHandler('resize.once');
-						}, 500);
-					})
+						$(window).triggerHandler('resize.once');
+					}))
 					.on('keydown', function (event)
 					{
 						_img = $(_img_selector);
@@ -348,6 +347,19 @@ module.exports = {
 			}
 			else
 			{
+				if (_url_obj.path.match(/photos-index-aid-/))
+				{
+					if ($('.paginator .thispage').text() == 1)
+					{
+						$('.gallary_wrap .gallary_item:eq(0) a')
+							.attr('href', function ()
+							{
+								return _url_obj.path.replace(/photos-index-aid-/, 'photos-slide-aid-');
+							})
+						;
+					}
+				}
+
 				$(window).scrollTo('.gallary_wrap');
 
 				$(window)
