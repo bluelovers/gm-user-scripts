@@ -14,8 +14,6 @@ module.exports = {
 		],
 		exclude: [
 			'http*://platform.twitter.com/widgets*',
-			'http*://www.facebook.com/*plugins/*',
-			'http*://staticxx.facebook.com/*',
 			'http*://apis.google.com/*'
 		],
 	},
