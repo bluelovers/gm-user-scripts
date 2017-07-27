@@ -19,6 +19,7 @@ module.exports.list = [
 	"comic/dm5.js",
 	"code/npmjs.js",
 	"code/github.js",
+	"blog/dulfy.js",
 	"bbs/ptt.js",
 	"art/pixiv.js",
 	"art/deviantart.js",
@@ -58,6 +59,7 @@ module.exports._lib = () =>
 	require('./comic/dm5.js');
 	require('./code/npmjs.js');
 	require('./code/github.js');
+	require('./blog/dulfy.js');
 	require('./bbs/ptt.js');
 	require('./art/pixiv.js');
 	require('./art/deviantart.js');
@@ -103,6 +105,7 @@ module.exports.metadata.include = [
 	"http*://www.dm5.com/*",
 	"http*://www.npmjs.com/search?q=*",
 	"http*://github.com/*",
+	"http*://dulfy.net/*",
 	"http*://www.ptt.cc/*",
 	"http*://*.pixiv.net/*",
 	"http*://*.deviantart.com/*",
