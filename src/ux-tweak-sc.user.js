@@ -118,7 +118,7 @@ function _init_gm()
 										_dom = _dom.add(ret);
 									}
 
-									console.info(label, fn, [ret.length, ret]);
+									console.info(label, current.name, fn, [ret.length, ret]);
 								}
 							}
 						})
