@@ -37,6 +37,8 @@ module.exports = {
 
 	main(_url_obj)
 	{
+		const _uf_done = require('../../lib/event.done');
+
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
 		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a')
 			.attr('target', '_blank')
@@ -64,13 +66,32 @@ module.exports = {
 //				.css(comic_style.bg_dark)
 			;
 		}
+		else if (_url_obj.host.match(/www\.gamer\.com\.tw/))
+		{
+			$('#gnn_head, #homeOdata, #LiveBlock, #hothala, #rivers')
+				.on('click', '.BA-cbox a, .EXA8 a, .figure a', function (event)
+				{
+					_uf_done(event);
+					window.open($(this).prop('href'), '_blank');
+				})
+			;
+		}
+		else if (_url_obj.path.match(/G1\.php/))
+		{
+			// 精華區
+			let _a = _uf_dom_filter_link('#BH-master .FM-stb1 a')
+				.prop('target', '_blank')
+			;
+		}
 
 		daily_signin(_url_obj);
+
+		ref_url(_url_obj);
 
 		$('.GN-thumbnail img, article img.lazyload')
 			.not('[data-done]')
 			.filter('[data-src]:not([src])')
-			.attr('src', function()
+			.attr('src', function ()
 			{
 				return $(this).attr('data-src');
 			})
@@ -132,6 +153,7 @@ module.exports = {
 				'script, iframe, #replys img.msghead.gamercard, img.IMG-C09, #BH-slave > .BH-slave_btns:eq(0) > .BH-slave_btnA:eq(0)',
 				'a[name="heretop"] + h4',
 				'.FM-cbox2 img[id*="avatar"], .FM-msgbg button, .IMG-GA19',
+				'.FM-guild',
 			].join())
 		;
 
@@ -173,6 +195,10 @@ module.exports = {
 	}
 };
 
+/**
+ * 每日簽到
+ * @param _url_obj
+ */
 function daily_signin(_url_obj)
 {
 	if (_url_obj.host.match(/www\.gamer\.com\.tw/))
@@ -184,4 +210,18 @@ function daily_signin(_url_obj)
 			_a[0].click();
 		}
 	}
+}
+
+function ref_url(_url_obj)
+{
+	$('article a[href*="ref.gamer.com.tw"]')
+		.attr('href', function (i, old)
+		{
+			let url = old.substr(old.indexOf('redir.php?url=') + 'redir.php?url='.length);
+
+			console.log(i, old, url);
+
+			return decodeURIComponent(url);
+		})
+	;
 }
