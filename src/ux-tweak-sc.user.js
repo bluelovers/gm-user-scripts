@@ -57,7 +57,7 @@ function _init_gm()
 	UF.registerMenuCommand({
 		id: module.exports.name,
 		key: 'disable_nocontextmenu',
-	}, () =>
+	}, (options) =>
 	{
 		require('./lib/dom/disable_nocontextmenu')
 			._uf_disable_nocontextmenu2(2)

@@ -17,8 +17,10 @@ module.exports.list = [
 	"comic/exhentai.js",
 	"comic/dmzj.js",
 	"comic/dm5.js",
+	"code/sourceforge.js",
 	"code/npmjs.js",
 	"code/github.js",
+	"blog/steachs.js",
 	"blog/dulfy.js",
 	"bbs/ptt.js",
 	"art/pixiv.js",
@@ -57,8 +59,10 @@ module.exports._lib = () =>
 	require('./comic/exhentai.js');
 	require('./comic/dmzj.js');
 	require('./comic/dm5.js');
+	require('./code/sourceforge.js');
 	require('./code/npmjs.js');
 	require('./code/github.js');
+	require('./blog/steachs.js');
 	require('./blog/dulfy.js');
 	require('./bbs/ptt.js');
 	require('./art/pixiv.js');
@@ -103,8 +107,10 @@ module.exports.metadata.include = [
 	"http*://g.e-hentai.org/*",
 	"http*://*.dmzj.com/*",
 	"http*://www.dm5.com/*",
+	"http*://sourceforge.net/projects/*/files/*",
 	"http*://www.npmjs.com/search?q=*",
 	"http*://github.com/*",
+	"http*://steachs.com/*",
 	"http*://dulfy.net/*",
 	"http*://www.ptt.cc/*",
 	"http*://*.pixiv.net/*",

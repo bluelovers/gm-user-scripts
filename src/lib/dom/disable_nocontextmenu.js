@@ -6,7 +6,7 @@ const greasemonkey = require('../greasemonkey');
 
 module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
 {
-	let _fn_event = ['dragstart', 'contextmenu', 'selectstart', 'mousedown', 'mouseup', 'source'];
+	let _fn_event = ['dragstart', 'contextmenu', 'selectstart', 'mousedown', 'mouseup', 'source', 'copy'];
 	let _fn_off = ['unbind', 'die', 'off'];
 
 	let jq;
@@ -42,7 +42,13 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
 	}
 
 	// 保留此語法 防止發生BUG
-	let arr2 = jQuery(elem);
+	let arr2 = jQuery(elem)
+		.add('body, html')
+		// http://ftp.ezla.com.tw/files/article/html/54/54491/217056.html
+		.add(unsafeWindow.document)
+	;
+
+	console.log(jq, arr, arr2);
 
 	arr2
 		.css({
