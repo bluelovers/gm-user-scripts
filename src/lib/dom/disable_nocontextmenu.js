@@ -35,7 +35,8 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
 
 		if (1 && !_style.length)
 		{
-			_style = greasemonkey.GM_addStyle('* { -moz-user-select: auto !important; -webkit-user-select: auto !important; -ms-user-select: auto !important; user-select: auto !important; }');
+			_style = greasemonkey.GM_addStyle(
+				'* { -moz-user-select: auto !important; -webkit-user-select: auto !important; -ms-user-select: auto !important; user-select: auto !important; }');
 
 			jq(_style).attr('id', '_uf_disable_nocontextmenu');
 		}
@@ -59,7 +60,7 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
 		})
 	;
 
-	_fn_event.forEach((event)=>
+	_fn_event.forEach((event) =>
 	{
 		arr2
 			.removeAttr(`on${event}`)
@@ -71,7 +72,7 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
 				.prop(`on${event}`, null)
 			;
 
-			_fn_off.forEach((fn)=>
+			_fn_off.forEach((fn) =>
 			{
 				if (jq.fn[fn])
 				{
