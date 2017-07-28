@@ -27,6 +27,7 @@ module.exports.list = [
 	"art/deviantart.js",
 	"anti-adblock/epinv.js",
 	"adult/up01.js",
+	"acg/reddit.js",
 	"acg/getchu.js",
 	"acg/gamme.js",
 	"acg/gamer.com.tw.js",
@@ -69,6 +70,7 @@ module.exports._lib = () =>
 	require('./art/deviantart.js');
 	require('./anti-adblock/epinv.js');
 	require('./adult/up01.js');
+	require('./acg/reddit.js');
 	require('./acg/getchu.js');
 	require('./acg/gamme.js');
 	require('./acg/gamer.com.tw.js');
@@ -117,6 +119,7 @@ module.exports.metadata.include = [
 	"http*://*.deviantart.com/*",
 	"http*://www.epinv.com/*",
 	"http*://www.up01.cc/*",
+	"http*://www.reddit.com/r/*",
 	"http*://*.getchu.com/*",
 	"http*://news.gamme.com.tw/*",
 	"http*://www.gamer.com.tw/*",
