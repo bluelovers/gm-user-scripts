@@ -39,13 +39,14 @@ module.exports = {
 
 		$(window).scrollTo($('.newpic_content, .wrap, #center_box').eq(-1));
 
-		if ($('#center_box').length)
+		// http://www.dmzj.com/info/shenqilishangpian.html
+		if ($('#center_box, .comic_wraCon').length)
 		{
 			require('../../lib/dom/disable_nocontextmenu')
 				._uf_disable_nocontextmenu2(2)
 			;
 
-			let _img_selector = '#center_box img';
+			let _img_selector = '#center_box img, .comic_wraCon img';
 			let _img = $(_img_selector);
 
 			let _div_page = $('<div/>')
@@ -177,7 +178,7 @@ module.exports = {
 				{
 					case 33:
 					case 37:
-						var _a = $('#center_box .img_land_prev, .wrap .pages > a:eq(1)');
+						var _a = $('#center_box .img_land_prev, .wrap .pages > a:eq(1), .comic_wraCon .img_land_prev');
 
 						if (_page_select.length
 							&& _page_select.val() == _page_select.find('option').eq(0).val()
@@ -196,7 +197,7 @@ module.exports = {
 						break;
 					case 34:
 					case 39:
-						var _a = $('#center_box .img_land_next, .wrap .pages > a:eq(-2)');
+						var _a = $('#center_box .img_land_next, .wrap .pages > a:eq(-2), .comic_wraCon .img_land_next');
 
 						if (_page_select.length
 							&& _page_select.val() == _page_select.find('option').eq(-1).val()

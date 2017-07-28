@@ -40,8 +40,8 @@ module.exports = {
 		const _uf_done = require('../../lib/event.done');
 
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a')
-			.attr('target', '_blank')
+		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a')
+			.prop('target', '_blank')
 		;
 
 		const comic_style = require('../../lib/comic/style');
@@ -88,7 +88,7 @@ module.exports = {
 
 		ref_url(_url_obj);
 
-		$('.GN-thumbnail img, article img.lazyload')
+		$('.GN-thumbnail img, article img.lazyload, .c-article__content img.lazyload')
 			.not('[data-done]')
 			.filter('[data-src]:not([src])')
 			.attr('src', function ()
@@ -139,7 +139,7 @@ module.exports = {
 		_dom = _dom
 			.add($('#BH-master, #BH-background').siblings())
 			.add($('.FM-cbox1 .FM-cbox2 .FM-cbox5 script, .FM-cbox1 .FM-cbox2 .FM-cbox5 #BMW_2').nextAll().addBack())
-			.add($('form[name="frm"]').nextAll().addBack().not('#BH-pagebtn'))
+			.add($('form[name="frm"]').nextAll().addBack().not('#BH-pagebtn').not('#BH-master > section, #BH-master > a'))
 			.add([
 				'#BH-pagebtn .no, .nocontent',
 				'.FM-cbox1 .FM-cbox2 .FM-cbox4 a',
@@ -154,6 +154,12 @@ module.exports = {
 				'a[name="heretop"] + h4',
 				'.FM-cbox2 img[id*="avatar"], .FM-msgbg button, .IMG-GA19',
 				'.FM-guild',
+
+				//https://forum.gamer.com.tw/C_card.php?bsn=16901&snA=27428&tnum=6
+				'.c-user__guild, .c-user__avatar, .c-section__side, .c-post__body__buttonbar',
+				'.c-section:has(> .c-editor, > .popular), .c-reply__editor, .reply-avatar',
+
+				'#BH-footer',
 			].join())
 		;
 
