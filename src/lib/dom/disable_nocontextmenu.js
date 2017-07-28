@@ -69,6 +69,7 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
 		if (mode)
 		{
 			arr2
+
 				.prop(`on${event}`, null)
 			;
 
