@@ -36,9 +36,10 @@ global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
 
 function _init()
 {
-	const parse_url = require('./lib/func/parse_url');
+	const parse_url = require('./lib/func/parse_url').parse_url;
 
-	global._url = window.location.href;
+	module.exports._url = global._url = window.location.href;
+	module.exports._url_obj = module.exports._url_obj_  = parse_url(global._url);
 	global._url_obj = global._url_obj_ = parse_url(global._url);
 
 	let imagesLoaded = require('imagesloaded');
