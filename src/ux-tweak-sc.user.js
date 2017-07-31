@@ -39,7 +39,7 @@ function _init()
 	const parse_url = require('./lib/func/parse_url').parse_url;
 
 	module.exports._url = global._url = window.location.href;
-	module.exports._url_obj = module.exports._url_obj_  = parse_url(global._url);
+	module.exports._url_obj = module.exports._url_obj_ = parse_url(global._url);
 	global._url_obj = global._url_obj_ = parse_url(global._url);
 
 	let imagesLoaded = require('imagesloaded');
@@ -103,27 +103,28 @@ function _init_gm()
 					return a;
 				}, [])
 				.concat(index.current)
-				.forEach((current) =>
+				.map((current) =>
 				{
-					['adblock', 'clearly']
-						.forEach((fn) =>
+					for (let fn of ['adblock', 'clearly'])
+					{
+						if (typeof current.lib[fn] == 'function')
 						{
-							if (typeof current.lib[fn] == 'function')
+							let ret = current.lib[fn](global._url_obj, _dom);
+
+							if (ret && ret !== true)
 							{
-								let ret = current.lib[fn](global._url_obj, _dom);
-
-								if (ret && ret !== true)
+								if (fn == 'clearly')
 								{
-									if (fn == 'clearly')
-									{
-										_dom = _dom.add(ret);
-									}
+									//_dom = _dom.add(ret);
+									_dom = ret;
 
-									console.info(label, current.name, fn, [ret.length, ret]);
+									//console.log(777, [ret.length, ret], [_dom.length, _dom]);
 								}
+
+								console.info(label, current.name, fn, [ret.length, ret], [_dom.length, _dom]);
 							}
-						})
-					;
+						}
+					}
 				})
 			;
 
