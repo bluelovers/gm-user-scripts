@@ -53,6 +53,8 @@ module.exports = {
 
 function _uf_clearly_viedo(_url_obj, mode)
 {
+	const comic_style = require('../../lib/comic/style');
+
 	var _dom_return = $('<div/>');
 
 	$('embed[type="application/x-shockwave-flash"], iframe[src*="youtube"], iframe[data-src*="youtube"], article a[name="attachMovieName"][href*="youtube"]')
@@ -130,7 +132,40 @@ function _uf_clearly_viedo(_url_obj, mode)
 
 //				_dom.after(_elem).remove();
 			}
-		});
+		})
+	;
+
+	$('embed[src*="hdslb.com"]')
+		.each(function ()
+		{
+			let _this = $(this);
+			let _url = _this.attr('src');
+
+			let _flashvars = _this.attr('flashvars');
+
+			if (_flashvars)
+			{
+				_url += '?' + _flashvars;
+			}
+
+			$('<div/>')
+				.css(comic_style.video_thumb)
+				.append(function ()
+				{
+					let _a = $('<a/>')
+						.attr('href', _url)
+						.attr('target', '_blank')
+						.text(_flashvars)
+					;
+
+					return _a;
+				})
+				.insertAfter(_this)
+			;
+
+			_dom_return = _dom_return.add(_this);
+		})
+	;
 
 	return _dom_return;
 }
