@@ -35,6 +35,7 @@ module.exports.list = [
 	"acg/dlsite.js",
 	"acg/blog.reimu.net.js",
 	"acg/3dmgame.js",
+	"acg/2dfan.js",
 	"google/search.js",
 	"global/video.js",
 	"global/mediawiki.js",
@@ -79,6 +80,7 @@ module.exports._lib = () =>
 	require('./acg/dlsite.js');
 	require('./acg/blog.reimu.net.js');
 	require('./acg/3dmgame.js');
+	require('./acg/2dfan.js');
 	require('./google/search.js');
 	require('./global/video.js');
 	require('./global/mediawiki.js');
@@ -139,6 +141,7 @@ module.exports.metadata.include = [
 	"http*://blog.reimu.net/*",
 	"http*://www.3dmgame.com/*",
 	"http*://bbs.3dmgame.com/*",
+	"http*://www.2dfan.com/*",
 	"http*://encrypted.google.com/*",
 	"http*://www.google.co.jp/*",
 	"http*://*.google.*/blank.html",
