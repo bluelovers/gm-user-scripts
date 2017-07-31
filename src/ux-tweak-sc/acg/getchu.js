@@ -37,6 +37,16 @@ module.exports = {
 			return;
 		}
 
+		if (_url_obj.path.match(/search/))
+		{
+			if ($('.search_container .display > li').length == 1)
+			{
+				window.location.href = $('.search_container .display > li #package_block a').eq(0).prop('href');
+
+				return;
+			}
+		}
+
 		$(window).scrollTo('#soft_table');
 
 		$(window)
