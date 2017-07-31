@@ -16,6 +16,7 @@
     "jquery": "^3.2.1",
     "keycodes": "^0.2.5",
     "lodash.sortby": "^4.7.0",
+    "parse-domain": "^1.1.0",
     "throttle-debounce": "^1.0.1"
   },
   "devDependencies": {
