@@ -38,9 +38,10 @@ module.exports = {
 	main(_url_obj)
 	{
 		const _uf_done = require('../../lib/event.done');
+		const keycodes = require('keycodes');
 
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a')
+		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a')
 			.prop('target', '_blank')
 		;
 
@@ -123,6 +124,43 @@ module.exports = {
 				;
 			})
 		;
+
+		$(window)
+			.on('keydown.page', function (event)
+			{
+				switch (event.which)
+				{
+					case keycodes('pageup'):
+					case keycodes('left'):
+
+						var _a = $('#BH-pagebtn .prev:not(.no)');
+
+						console.log(event, _a);
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+
+						break;
+					case keycodes('pagedown'):
+					case keycodes('right'):
+
+						var _a = $('#BH-pagebtn .next:not(.no)');
+
+						console.log(event, _a);
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+
+						break;
+				}
+			})
+		;
 	},
 
 	adblock()
@@ -143,7 +181,7 @@ module.exports = {
 			.add([
 				'#BH-pagebtn .no, .nocontent',
 				'.FM-cbox1 .FM-cbox2 .FM-cbox4 a',
-				'#headnews, #comment, #track, #shop',
+				'#headnews img, #track, #shop',
 				'#BH-master h4 > img',
 				'.GN-lbox5A i.fa',
 				'.MSG-list9D',
@@ -154,6 +192,8 @@ module.exports = {
 				'a[name="heretop"] + h4',
 				'.FM-cbox2 img[id*="avatar"], .FM-msgbg button, .IMG-GA19',
 				'.FM-guild',
+
+				'#comment img, #comment .GN-lbox6B, h1 > img, h1 + .GN-lbox3A > img',
 
 				//https://forum.gamer.com.tw/C_card.php?bsn=16901&snA=27428&tnum=6
 				'.c-user__guild, .c-user__avatar, .c-section__side, .c-post__body__buttonbar',
