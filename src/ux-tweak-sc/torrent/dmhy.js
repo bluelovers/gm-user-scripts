@@ -449,11 +449,14 @@ function jmd_color_tag(data, tag)
 		.reduce((a, b) =>
 		{
 			let idx = _kw_found_color.length % tag.length;
-			let _color = $.Color(tag[idx]).rand();
+
+			let _color = $.Color(tag[idx])
+				.rand()
+			;
 
 			while (_color in _kw_found_color)
 			{
-				_color = $.Color(_color).rand();
+				_color = $.Color(tag[idx]).rand();
 			}
 
 			//console.log(_team_id_color.length, idx, _color, _color.toString());

@@ -154,7 +154,7 @@ gulp.task("webpack:before", async function (callback)
 							console.info(name_id, 'matched', ret_main, ret);
 						}
 
-						test = false;
+						//test = false;
 
 						if (ret_main)
 						{
@@ -162,9 +162,11 @@ gulp.task("webpack:before", async function (callback)
 
 							if (test && test !== true)
 							{
-								test = true;
+								//test = true;
 								ret = true;
 							}
+
+							console.debug(name_id, 'chk', ret_main, ret, test)
 						}
 					}
 				}

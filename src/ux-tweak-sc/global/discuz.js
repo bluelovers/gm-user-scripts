@@ -23,7 +23,7 @@ module.exports = {
 	{
 		if ($('.discuz_tips, body#nv_forum').length)
 		{
-			return true;
+			return 2;
 		}
 
 		return false;
@@ -31,7 +31,21 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
+		$('ignore_js_op img[zoomfile], ignore_js_op img[file]', '.t_f')
+			.not('[data-done]')
+			.attr('data-done', true)
+			.each(function ()
+			{
+				let _img = $(this);
 
+				let _src = _img.attr('zoomfile') || _img.attr('file');
+
+				if (_src && _src != _img.prop('src'))
+				{
+					_img.prop('src', _src);
+				}
+			})
+		;
 	},
 
 	adblock(_url_obj = global._url_obj)

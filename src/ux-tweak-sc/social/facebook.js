@@ -33,10 +33,22 @@ module.exports = {
 		const _uf_done = require('../../lib/event.done');
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
 
+		const parse_url = require('../../lib/func/parse_url').parse_url;
+
 		const debounce = require('throttle-debounce/debounce');
 
 		let _ready = debounce(1500, function ()
 		{
+			if (global._url != window.location.href)
+			{
+				let old = global._url_obj;
+
+				global._url = window.location.href;
+				global._url_obj = parse_url(global._url);
+
+				console.log('location', window.location.href, global._url_obj, old);
+			}
+
 			let _a = $('#appsNav > ul > li > a[data-testid="left_nav_item_建立特效框"]:eq(0)')
 				.not('[data-uf]')
 			;
@@ -72,12 +84,29 @@ module.exports = {
 				.prop('target', '_blank')
 			;
 
+			module.exports.adblock(_url_obj);
+
 			//console.log(_link);
 		});
 
 		$('body')
 			.on('click', 'a[href]:not([rel="ignore"] or [role] or [href="#"])', _ready)
 			.on('DOMNodeInserted', '#content ._5wci._5wch._2pjv, #content #appsNav', _ready)
+			.on('DOMAttrModified', function (event)
+			{
+				let _this = $(event.target);
+
+				if (_this.is('body') && event.originalEvent.attrName == 'class')
+				{
+					console.log(888, [_this, event.originalEvent.attrName, event]);
+
+					_ready();
+				}
+				else
+				{
+					//console.log(_this, event);
+				}
+			})
 		;
 
 		$(window)
@@ -122,8 +151,25 @@ module.exports = {
 		setTimeout(_ready, 1500);
 	},
 
-	adblock()
+	adblock(_url_obj)
 	{
+		let _dom = $();
 
+		if ($('body').not('.home, .timelineLayout').length)
+		{
+			// 粉絲頁
+
+			_dom = _dom
+				.add([
+					'#pagelet_timeline_main_column #after_party_www_cards',
+
+					'#pagelet_timeline_main_column ._1xnd > ._4-u2._3xaf._3-95._4-u8:eq(0)',
+
+					'#pagelet_timeline_main_column ._1xnd #videos, #pagelet_timeline_main_column ._1xnd #page_photos',
+				].join())
+			;
+		}
+
+		return _dom.hide();
 	},
 };

@@ -37,6 +37,7 @@ module.exports.list = [
 	"acg/3dmgame.js",
 	"google/search.js",
 	"global/video.js",
+	"global/mediawiki.js",
 	"global/discuz.js",
 	"global/pagination.js",
 	"_fake.js"
@@ -80,6 +81,7 @@ module.exports._lib = () =>
 	require('./acg/3dmgame.js');
 	require('./google/search.js');
 	require('./global/video.js');
+	require('./global/mediawiki.js');
 	require('./global/discuz.js');
 	require('./global/pagination.js');
 	require('./_fake.js');
@@ -201,7 +203,7 @@ module.exports.main = function (list, options = {})
 							console.info(name_id, 'matched', ret_main, ret);
 						}
 
-						test = false;
+						//test = false;
 
 						if (ret_main)
 						{
@@ -209,9 +211,11 @@ module.exports.main = function (list, options = {})
 
 							if (test && test !== true)
 							{
-								test = true;
+								//test = true;
 								ret = true;
 							}
+
+							console.debug(name_id, 'chk', ret_main, ret, test)
 						}
 					}
 				}
@@ -237,6 +241,7 @@ module.exports.main = function (list, options = {})
 
 module.exports.list_script = [
 	"global/video.js",
+	"global/mediawiki.js",
 	"global/discuz.js"
 ];
 
