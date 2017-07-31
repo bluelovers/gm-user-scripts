@@ -78,6 +78,8 @@ function _init_gm()
 
 			let _dom = $();
 
+			let temp = null;
+
 			index.list_script
 				.reduce(function (a, name)
 				{
@@ -103,8 +105,15 @@ function _init_gm()
 					return a;
 				}, [])
 				.concat(index.current)
-				.map((current) =>
+				.reduce((a, current) =>
 				{
+					if (a.includes(current.name))
+					{
+						return a;
+					}
+
+					a.push(current.name);
+
 					for (let fn of ['adblock', 'clearly'])
 					{
 						if (typeof current.lib[fn] == 'function')
@@ -125,7 +134,9 @@ function _init_gm()
 							}
 						}
 					}
-				})
+
+					return a;
+				}, [])
 			;
 
 			console.info(label, [_dom.length, _dom]);
