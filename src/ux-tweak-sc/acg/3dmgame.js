@@ -26,11 +26,31 @@ module.exports = {
 
 	main(_url_obj)
 	{
+		require('../global/discuz').main(_url_obj);
+	},
+
+	adblock(_url_obj = global._url_obj)
+	{
 
 	},
 
-	adblock(_url_obj)
+	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
+		const greasemonkey = require('../../lib/greasemonkey');
 
+		let _dom = $(_dom_list);
+
+		_dom = _dom
+			.add([
+				'.avatar',
+				'.pct > img.image',
+			].join())
+		;
+
+		greasemonkey.GM_addStyle([
+			'.pl .quote blockquote { background-image: none; }',
+		].join(''));
+
+		return _dom;
 	},
 };
