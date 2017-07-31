@@ -54,4 +54,16 @@ module.exports = {
 		left: 50,
 	},
 
+	video_thumb: {
+		'min-width': 120,
+		'min-height': 90,
+
+		display: 'inline-block',
+		background: 'rgb(0, 0, 0) none repeat scroll 0% 0%',
+		color: 'rgb(255, 255, 255)',
+		'text-decoration': 'none',
+		'text-align': 'center',
+		padding: 5,
+	},
+
 };
