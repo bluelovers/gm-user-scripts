@@ -2,7 +2,7 @@
  * Created by user on 2017/7/13/013.
  */
 
-module.exports = function parse_url(str, component)
+module.exports.parse_url = function parse_url(str, component)
 {
 	// eslint-disable-line camelcase
 	//       discuss at: http://locutus.io/php/parse_url/
@@ -97,4 +97,5 @@ module.exports = function parse_url(str, component)
 	}
 	delete uri.source
 	return uri
-}
+};
+
