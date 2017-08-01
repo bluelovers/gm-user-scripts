@@ -29,7 +29,11 @@ module.exports = {
 		const keycodes = require('keycodes');
 		const _uf_done = require('../../lib/event.done');
 
-		$(window)
+		let _win = $(window);
+
+		console.log(_win.data('events'), _win.data('events').keydown);
+
+		_win
 			.on('keydown.page', function (event)
 			{
 				switch (event.which)
