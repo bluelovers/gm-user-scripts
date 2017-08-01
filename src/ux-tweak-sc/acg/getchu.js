@@ -148,28 +148,39 @@ module.exports = {
 			.add($('#camp').prev())
 			.add($('#camp').prev().nextAll())
 			.add($('#camp').parents('td, th').eq(0).next())
+			//.add($('#wrapper > .gr_soft_carousel_wrap:eq(-1)').nextAll())
+			.add($('#sample').next('.tabletitle').next('div, table').nextAll().find('img'))
+			.add($('a[name="REVIEW_UNIT"]').nextAll())
 			.add([
 				'.snsbox, .bikoubody',
 				'.mejs-video',
 				'iframe, script',
 				'button.header_wish, a[rel="leanModal"]',
+				'body :hidden',
+				'.footer_guide, .top_return',
 			].join())
 		;
 
 		{
-			let r = /このブランドの作品一覧|この商品を見た人はこんな商品もチェックしています|チェックした商品の履歴/i;
+			let r = /このブランドの作品一覧|この商品を見た人はこんな商品もチェックしています|チェックした商品の履歴|ユーザーレビュー/i;
 
-			$('.tabletitle').each(function ()
-			{
-				if (r.test($(this).text()))
+			$('.tabletitle')
+				.each(function ()
 				{
-					_dom = _dom
-						.add(this)
-						.add($(this).nextAll())
-					;
-				}
-			});
+					if (r.test($(this).text()))
+					{
+						_dom = _dom
+							//.add(this)
+							.add($(this).nextAll().addBack())
+						;
+					}
+				})
+				.removeClass('tabletitle')
+				.wrapInner('<h1/>')
+			;
 		}
+
+		$('.highslide').removeClass('highslide');
 
 		_dom.remove();
 

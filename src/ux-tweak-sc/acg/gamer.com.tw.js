@@ -66,6 +66,8 @@ module.exports = {
 			$('#BH_background, .BH_background, .sky')
 //				.css(comic_style.bg_dark)
 			;
+
+			$('#video-container .ncc > .choose > a:eq(0)').click();
 		}
 		else if (_url_obj.host.match(/www\.gamer\.com\.tw/))
 		{
