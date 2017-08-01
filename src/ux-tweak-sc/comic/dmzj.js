@@ -174,10 +174,12 @@ module.exports = {
 		$(window)
 			.on('keydown', function (event)
 			{
+				const keycodes = require('keycodes');
+
 				switch (event.which)
 				{
-					case 33:
-					case 37:
+					case keycodes('pageup'):
+					//case keycodes('left'):
 						var _a = $('#center_box .img_land_prev, .wrap .pages > a:eq(1), .comic_wraCon .img_land_prev');
 
 						if (_page_select.length
@@ -195,8 +197,8 @@ module.exports = {
 						}
 
 						break;
-					case 34:
-					case 39:
+					case keycodes('pagedown'):
+					//case keycodes('right'):
 						var _a = $('#center_box .img_land_next, .wrap .pages > a:eq(-2), .comic_wraCon .img_land_next');
 
 						if (_page_select.length
