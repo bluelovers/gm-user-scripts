@@ -51,11 +51,13 @@ module.exports = {
 	},
 };
 
-function _uf_clearly_viedo(_url_obj, mode)
+function _uf_clearly_viedo(_url_obj = global._url_obj, mode)
 {
 	const comic_style = require('../../lib/comic/style');
 
 	var _dom_return = $('<div/>');
+
+	const scheme = _url_obj.scheme || 'http';
 
 	$('embed[type="application/x-shockwave-flash"], iframe[src*="youtube"], iframe[data-src*="youtube"], article a[name="attachMovieName"][href*="youtube"]')
 		.each(function ()
@@ -79,8 +81,8 @@ function _uf_clearly_viedo(_url_obj, mode)
 					matches: _matches,
 
 					thumb: [
-						'http://img.youtube.com/vi/' + _matches[1] + '/0.jpg',
-						'http://img.youtube.com/vi/' + _matches[1] + '/2.jpg'
+						`${scheme}://img.youtube.com/vi/${_matches[1]}/0.jpg`,
+						`${scheme}://img.youtube.com/vi/${_matches[1]}/2.jpg`
 					],
 				};
 			}
