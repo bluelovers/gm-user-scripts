@@ -169,11 +169,12 @@ module.exports.metadata.exclude = [
 	"http*://apis.google.com/*"
 ];
 
-module.exports.main = function (list, options = {})
+module.exports.main = async function (list, options = {})
 		{
 			console.time(module.exports.name);
 			console.group(module.exports.name);
-			list.every((name) =>
+
+			for (let name of list)
 			{
 				let ret = true;
 
@@ -192,6 +193,7 @@ module.exports.main = function (list, options = {})
 				name_id = `[${name_id}]`;
 
 				let test;
+				let ret_main;
 
 				if (lib.disable)
 				{
@@ -201,13 +203,13 @@ module.exports.main = function (list, options = {})
 				}
 				else
 				{
-					test = lib.test(global._url_obj);
+					test = await lib.test(global._url_obj);
 
 					console.info(name_id, test);
 
 					if (test)
 					{
-						let ret_main = lib.main(global._url_obj);
+						ret_main = await lib.main(global._url_obj);
 
 						if (ret_main == true || ret_main === undefined)
 						{
@@ -228,7 +230,7 @@ module.exports.main = function (list, options = {})
 								ret = true;
 							}
 
-							console.debug(name_id, 'chk', ret_main, ret, test)
+							console.debug(name_id, 'chk', ret_main, ret, test);
 						}
 					}
 				}
@@ -246,8 +248,14 @@ module.exports.main = function (list, options = {})
 				console.groupEnd(name);
 				console.timeEnd(name);
 
-				return ret;
-			});
+				if (!ret)
+				{
+					console.debug(name_id, 'break', ret_main, ret, test);
+
+					break;
+				}
+			}
+
 			console.groupEnd(module.exports.name);
 			console.timeEnd(module.exports.name);
 		};

@@ -41,7 +41,8 @@ module.exports = {
 		const keycodes = require('keycodes');
 
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a')
+		let _a = _uf_dom_filter_link(
+			'.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a')
 			.prop('target', '_blank')
 		;
 
@@ -91,7 +92,10 @@ module.exports = {
 
 		ref_url(_url_obj);
 
-		$('.GN-thumbnail img, article img.lazyload, .c-article__content img.lazyload')
+		$([
+			'.GN-thumbnail img, article img.lazyload, .c-article__content img.lazyload',
+			'#showPic img.acgPIC, .wikiContent img.gallery-image',
+		].join())
 			.not('[data-done]')
 			.filter('[data-src]:not([src])')
 			.attr('src', function ()
@@ -120,7 +124,7 @@ module.exports = {
 					.attr('src', function (i, val)
 					{
 						return val
-							.replace(/(bahamut\.com\.tw)\/M\//, '$1/B/')
+							.replace(/(bahamut\.com\.tw)\/[MS]\//, '$1/B/')
 							;
 					})
 				;
@@ -179,7 +183,11 @@ module.exports = {
 		_dom = _dom
 			.add($('#BH-master, #BH-background').siblings())
 			.add($('.FM-cbox1 .FM-cbox2 .FM-cbox5 script, .FM-cbox1 .FM-cbox2 .FM-cbox5 #BMW_2').nextAll().addBack())
-			.add($('form[name="frm"]').nextAll().addBack().not('#BH-pagebtn').not('#BH-master > section, #BH-master > a'))
+			.add($('form[name="frm"]')
+				.nextAll()
+				.addBack()
+				.not('#BH-pagebtn')
+				.not('#BH-master > section, #BH-master > a'))
 			.add([
 				'#BH-pagebtn .no, .nocontent',
 				'.FM-cbox1 .FM-cbox2 .FM-cbox4 a',
@@ -202,6 +210,7 @@ module.exports = {
 				'.c-section:has(> .c-editor, > .popular), .c-reply__editor, .reply-avatar',
 
 				'#BH-footer',
+				'#ACG-box1mark, .BH-lbox.ACG-mster_box4 a > img, .BH-lbox img[src*="newbtn_talk"], .BH-lbox img[src*="btn_edit"]',
 			].join())
 		;
 
