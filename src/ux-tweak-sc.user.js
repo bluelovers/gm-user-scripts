@@ -11,7 +11,7 @@ global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
 {
 	global.$ = $;
 
-	$(() =>
+	let _dummy = async () =>
 	{
 		try
 		{
@@ -19,7 +19,7 @@ global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
 
 			let index = require('./ux-tweak-sc');
 
-			index.main(index.list);
+			await index.main(index.list);
 
 			console.info('index.current', index.current);
 		}
@@ -31,6 +31,11 @@ global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
 		{
 			console.info([global._url, global._url_obj, global.unsafeWindow]);
 		}
+	};
+
+	$(() =>
+	{
+		_dummy();
 	});
 })(jQuery);
 
@@ -68,7 +73,7 @@ function _init_gm()
 	UF.registerMenuCommand({
 		id: module.exports.name,
 		key: 'clearly',
-	}, (options) =>
+	}, async (options) =>
 	{
 		let index = require(`./${module.exports.id}`);
 
@@ -80,7 +85,7 @@ function _init_gm()
 
 			let temp = null;
 
-			index.list_script
+			let list_script = index.list_script
 				.reduce(function (a, name)
 				{
 					let lib = require(`./${module.exports.id}/${name}`);
@@ -105,11 +110,15 @@ function _init_gm()
 					return a;
 				}, [])
 				.concat(index.current)
-				.reduce((a, current) =>
+			;
+
+			{
+				let a = [];
+				for (let current of list_script)
 				{
 					if (a.includes(current.name))
 					{
-						return a;
+						continue;
 					}
 
 					a.push(current.name);
@@ -118,7 +127,7 @@ function _init_gm()
 					{
 						if (typeof current.lib[fn] == 'function')
 						{
-							let ret = current.lib[fn](global._url_obj, _dom);
+							let ret = await current.lib[fn](global._url_obj, _dom);
 
 							if (ret && ret !== true)
 							{
@@ -126,9 +135,12 @@ function _init_gm()
 								{
 									//_dom = _dom.add(ret);
 
-									// allow remove dom from list
-									// need update clearly
-									_dom = ret;
+									if (ret.length)
+									{
+										// allow remove dom from list
+										// need update clearly
+										_dom = ret;
+									}
 
 									//console.log(777, [ret.length, ret], [_dom.length, _dom]);
 								}
@@ -137,10 +149,8 @@ function _init_gm()
 							}
 						}
 					}
-
-					return a;
-				}, [])
-			;
+				}
+			}
 
 			console.info(label, [_dom.length, _dom]);
 
