@@ -42,7 +42,7 @@ module.exports = {
 			.add([
 				'',
 			].join())
-			.add(_uf_clearly_viedo())
+			.add(_uf_clearly_viedo(_url_obj))
 		;
 
 		//_dom.remove();
@@ -89,7 +89,11 @@ function _uf_clearly_viedo(_url_obj, mode)
 			{
 				var _dom;
 
-				if (_this.parent().is('object'))
+				if (_this.parents('a[name="attachMovieName"]').length)
+				{
+					_dom = _this.parents('a[name="attachMovieName"]').eq(0);
+				}
+				else if (_this.parent().is('object'))
 				{
 					_dom = _this.parent();
 				}

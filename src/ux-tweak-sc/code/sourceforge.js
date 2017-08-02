@@ -27,7 +27,7 @@ module.exports = {
 	main(_url_obj = global._url_obj)
 	{
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		_uf_dom_filter_link('#files_list .file a.name')
+		_uf_dom_filter_link('#files_list .file a.name, #page-body .download-bar a')
 			.prop('target', '_blank')
 		;
 

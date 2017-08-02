@@ -41,7 +41,7 @@ module.exports = {
 		const keycodes = require('keycodes');
 
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a')
+		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a')
 			.prop('target', '_blank')
 		;
 
@@ -170,11 +170,11 @@ module.exports = {
 
 	},
 
-	clearly(_url_obj = global._url_obj)
+	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
 		const greasemonkey = require('../../lib/greasemonkey');
 
-		let _dom = $();
+		let _dom = $(_dom_list);
 
 		_dom = _dom
 			.add($('#BH-master, #BH-background').siblings())

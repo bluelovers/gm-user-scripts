@@ -125,6 +125,9 @@ function _init_gm()
 								if (fn == 'clearly')
 								{
 									//_dom = _dom.add(ret);
+
+									// allow remove dom from list
+									// need update clearly
 									_dom = ret;
 
 									//console.log(777, [ret.length, ret], [_dom.length, _dom]);
