@@ -64,15 +64,15 @@ module.exports = {
 
 	},
 
-	clearly(_url_obj = global._url_obj)
+	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		let _dom = $();
+		let _dom = $(_dom_list);
 
 		_dom = _dom
 			.add([].join())
 		;
 
-		_dom.remove();
+		//_dom.remove();
 
 		return _dom;
 	},
