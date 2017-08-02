@@ -167,17 +167,41 @@ module.exports = {
 				})
 				.hide()
 			;
+
+			$('#center_box')
+				.on('DOMNodeInserted', function (event)
+				{
+					setTimeout(_fn_img, 100);
+				})
+			;
 		}
 
 		let _page_select = $('#page_select');
 
 		$(window)
-			.on('keydown', function (event)
+			.on('keydown.page', function (event)
 			{
 				const keycodes = require('keycodes');
 
 				switch (event.which)
 				{
+					case keycodes('left'):
+
+						if (_page_select.length
+							&& _page_select.val() == _page_select.find('option').eq(0).val()
+							&& _page_select.prev('.btm_chapter_btn').length
+						)
+						{
+							let _a = _page_select.prev('.btm_chapter_btn');
+
+							if (_a.length)
+							{
+								_uf_done(event);
+								_a[0].click();
+							}
+						}
+
+						break;
 					case keycodes('pageup'):
 					//case keycodes('left'):
 						var _a = $('#center_box .img_land_prev, .wrap .pages > a:eq(1), .comic_wraCon .img_land_prev');
@@ -194,6 +218,23 @@ module.exports = {
 						{
 							_uf_done(event);
 							_a[0].click();
+						}
+
+						break;
+					case keycodes('right'):
+
+						if (_page_select.length
+							&& _page_select.val() == _page_select.find('option').eq(-1).val()
+							&& _page_select.next('.btm_chapter_btn').length
+						)
+						{
+							let _a = _page_select.next('.btm_chapter_btn');
+
+							if (_a.length)
+							{
+								_uf_done(event);
+								_a[0].click();
+							}
 						}
 
 						break;
