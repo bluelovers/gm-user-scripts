@@ -10,6 +10,7 @@ module.exports.list = [
 	"social/facebook.js",
 	"shop/yahoo.js",
 	"shop/pchome.js",
+	"shop/mall.yahoo.js",
 	"novel/syosetu.js",
 	"comic/wnacg.js",
 	"comic/nhentai.js",
@@ -19,8 +20,10 @@ module.exports.list = [
 	"comic/dm5.js",
 	"code/sourceforge.js",
 	"code/npmjs.js",
+	"code/greasyfork.js",
 	"code/github.js",
 	"blog/steachs.js",
+	"blog/oneapm.js",
 	"blog/dulfy.js",
 	"bbs/ptt.js",
 	"art/pixiv.js",
@@ -55,6 +58,7 @@ module.exports._lib = () =>
 	require('./social/facebook.js');
 	require('./shop/yahoo.js');
 	require('./shop/pchome.js');
+	require('./shop/mall.yahoo.js');
 	require('./novel/syosetu.js');
 	require('./comic/wnacg.js');
 	require('./comic/nhentai.js');
@@ -64,8 +68,10 @@ module.exports._lib = () =>
 	require('./comic/dm5.js');
 	require('./code/sourceforge.js');
 	require('./code/npmjs.js');
+	require('./code/greasyfork.js');
 	require('./code/github.js');
 	require('./blog/steachs.js');
+	require('./blog/oneapm.js');
 	require('./blog/dulfy.js');
 	require('./bbs/ptt.js');
 	require('./art/pixiv.js');
@@ -103,6 +109,8 @@ module.exports.metadata.include = [
 	"http*://tw.buy.yahoo.com/bestbuy/*",
 	"http*://tw.buy.yahoo.com/activity/*",
 	"http*://mall.pchome.com.tw/*",
+	"http*://tw.mall.yahoo.com/*",
+	"http*://tw.user.mall.yahoo.com/my/*",
 	"http*://syosetu.com/*",
 	"http*://ncode.syosetu.com/*",
 	"http*://*.wnacg.com/*",
@@ -115,8 +123,10 @@ module.exports.metadata.include = [
 	"http*://www.dm5.com/*",
 	"http*://sourceforge.net/projects/*/files/*",
 	"http*://www.npmjs.com/search?q=*",
+	"http*://greasyfork.org/*",
 	"http*://github.com/*",
 	"http*://steachs.com/*",
+	"http*://blog.oneapm.com/*",
 	"http*://dulfy.net/*",
 	"http*://www.ptt.cc/*",
 	"http*://*.pixiv.net/*",
