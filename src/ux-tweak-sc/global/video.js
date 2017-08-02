@@ -55,20 +55,20 @@ function _uf_clearly_viedo(_url_obj = global._url_obj, mode)
 {
 	const comic_style = require('../../lib/comic/style');
 
-	var _dom_return = $('<div/>');
+	let _dom_return = $('<div/>');
 
 	const scheme = _url_obj.scheme || 'http';
 
 	$('embed[type="application/x-shockwave-flash"], iframe[src*="youtube"], iframe[data-src*="youtube"], article a[name="attachMovieName"][href*="youtube"]')
 		.each(function ()
 		{
-			var _this = $(this);
-			var _url = _this.attr('src') || _this.attr('data-src') || _this.attr('href');
+			let _this = $(this);
+			let _url = _this.attr('src') || _this.attr('data-src') || _this.attr('href');
 
-			var _matches = _url.match(
+			let _matches = _url.match(
 				'^(?:https?:)?\/\/(?:www\.)?youtube\.(?:googleapis\.)?com\/(?:v|embed)\/([A-Za-z0-9_\-]{11})');
 
-			var _data;
+			let _data;
 
 			if (_matches)
 			{
@@ -89,11 +89,13 @@ function _uf_clearly_viedo(_url_obj = global._url_obj, mode)
 
 			if (_data)
 			{
-				var _dom;
+				let _dom;
 
-				if (_this.parents('a[name="attachMovieName"]').length)
+				let _p = _this.parents('a[name="attachMovieName"], .videoWrapper');
+
+				if (_p.length)
 				{
-					_dom = _this.parents('a[name="attachMovieName"]').eq(0);
+					_dom = _p.eq(0);
 				}
 				else if (_this.parent().is('object'))
 				{
@@ -104,7 +106,7 @@ function _uf_clearly_viedo(_url_obj = global._url_obj, mode)
 					_dom = _this;
 				}
 
-				var _elem = $('<a/>')
+				let _elem = $('<a/>')
 						.attr({
 							href: _data.src,
 							target: '_blank',
