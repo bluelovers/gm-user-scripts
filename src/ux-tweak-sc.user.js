@@ -85,32 +85,7 @@ function _init_gm()
 
 			let temp = null;
 
-			let list_script = index.list_script
-				.reduce(function (a, name)
-				{
-					let lib = require(`./${module.exports.id}/${name}`);
-
-					let name_id = name;
-
-					if (lib.name && lib.name != name_id)
-					{
-						name_id = `${lib.name} - ${name_id}`;
-					}
-
-					if (lib.script_method && lib.script_method.clearly && lib.test(global._url_obj))
-					{
-						a.push({
-							name: name,
-							name_id: name_id,
-
-							lib: lib,
-						});
-					}
-
-					return a;
-				}, [])
-				.concat(index.current)
-			;
+			let list_script = get_list_script(index, global._url_obj);
 
 			{
 				let a = [];
@@ -159,4 +134,36 @@ function _init_gm()
 			;
 		}
 	});
+}
+
+function get_list_script(index, _url_obj)
+{
+	let list_script = index.list_script
+		.reduce(function (a, name)
+		{
+			let lib = require(`./${module.exports.id}/${name}`);
+
+			let name_id = name;
+
+			if (lib.name && lib.name != name_id)
+			{
+				name_id = `${lib.name} - ${name_id}`;
+			}
+
+			if (lib.script_method && lib.script_method.clearly && lib.test(_url_obj))
+			{
+				a.push({
+					name: name,
+					name_id: name_id,
+
+					lib: lib,
+				});
+			}
+
+			return a;
+		}, [])
+		.concat(index.current)
+	;
+
+	return list_script;
 }
