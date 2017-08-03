@@ -87,6 +87,7 @@ module.exports = {
 				'#post-form, .js-add-link.comments-link',
 				'body :hidden, iframe, script',
 				'link[rel="stylesheet"][href*="adFeedback"]',
+				'#clc-tlb',
 			].join())
 		;
 
