@@ -91,7 +91,7 @@ function _uf_clearly_viedo(_url_obj = global._url_obj, mode)
 			{
 				let _dom;
 
-				let _p = _this.parents('a[name="attachMovieName"], .videoWrapper');
+				let _p = _this.parents('a[name="attachMovieName"], .videoWrapper, .richcontent');
 
 				if (_p.length)
 				{
