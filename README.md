@@ -16,8 +16,8 @@
 
 安裝連結 [ux-tweak-sc.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js)
 
-![https://share.dmhy.org](readme/2017-07-23-15-09-39-1.jpg)
+![https://share.dmhy.org](readme/dmhy001.jpg)
 
-![https://share.dmhy.org](readme/2017-07-23-15-10-34-2.jpg)
+![https://share.dmhy.org](readme/dmhy002.jpg)
 
 old version: https://gist.github.com/bluelovers/5186199
