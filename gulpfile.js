@@ -4,15 +4,15 @@
 
 'use strict';
 
-var gulp = require("gulp");
+const gulp = require("gulp");
 
-var gutil = require("gulp-util");
-var concat = require('gulp-concat');
-var header = require('gulp-header');
-var sourcemaps = require('gulp-sourcemaps');
+const gutil = require("gulp-util");
+const concat = require('gulp-concat');
+const header = require('gulp-header');
+const sourcemaps = require('gulp-sourcemaps');
 
-var webpack = require("webpack");
-var gulpWebpack = require('webpack-stream');
+const webpack = require("webpack");
+const gulpWebpack = require('webpack-stream');
 
 const Promise = require("bluebird");
 const fs = Promise.promisifyAll(require("fs"));
