@@ -112,6 +112,11 @@ module.exports = {
 		$(window)
 			.on('keydown.page', function (event)
 			{
+				if ($(event.target).is(':input, .notranslate'))
+				{
+					return;
+				}
+
 				switch (event.which)
 				{
 					case 33:
