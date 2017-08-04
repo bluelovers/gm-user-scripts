@@ -55,6 +55,13 @@ module.exports = {
 				;
 			})
 		;
+
+		$(window)
+			.on('load.amupper', function ()
+			{
+				amupper(_url_obj);
+			})
+		;
 	},
 
 	adblock(_url_obj = global._url_obj)
@@ -88,3 +95,15 @@ module.exports = {
 		return _dom;
 	},
 };
+
+function amupper(_url_obj)
+{
+	let a = $('#my_amupper');
+
+	if (a.length)
+	{
+		a[0].click();
+
+		return true;
+	}
+}
