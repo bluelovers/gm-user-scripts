@@ -2,10 +2,10 @@
  * Created by user on 2017/7/13/013.
  */
 
-const webpack = require('webpack');
+//const webpack = require('webpack');
 const path = require('path');
 
-const ClosureCompilerPlugin = require('webpack-closure-compiler');
+//const ClosureCompilerPlugin = require('webpack-closure-compiler');
 
 module.exports = {
 	entry: {
@@ -18,9 +18,20 @@ module.exports = {
 		filename: '[name].js',
 		sourceMapFilename: "[file].map",
 	},
+
+	resolve: {
+		// Add `.ts` and `.tsx` as a resolvable extension.
+		extensions: [
+			'.ts',
+			'.tsx',
+			'.js',
+		]
+	},
+
 	module: {
 		loaders: [
-			{ test: /\.css$/, loader: 'style-loader!css-loader' }
+			{ test: /\.css$/, loader: 'style-loader!css-loader' },
+			{ test: /\.tsx?$/, loader: 'ts-loader' }
 		]
 	},
 
