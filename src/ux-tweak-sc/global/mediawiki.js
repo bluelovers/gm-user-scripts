@@ -67,8 +67,20 @@ module.exports = {
 			'div#column-content { background-image: none; }'
 		].join(''));
 
+		image(_url_obj);
+
 		//_dom.remove();
 
 		return _dom;
 	},
 };
+
+function image(_url_obj)
+{
+	$('#mw-content-text img')
+		.attr('src', function (i, old)
+		{
+			return old.replace(/(\/images)\/thumb\/([^\/]+\/[^\/]+)\/([^\/]+)\/.+$/, '$1/$2/$3');
+		})
+	;
+}
