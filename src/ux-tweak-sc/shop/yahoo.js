@@ -10,7 +10,8 @@ module.exports = {
 		match: [
 			'http*://tw.buy.yahoo.com/*',
 			'http*://tw.buy.yahoo.com/bestbuy/*',
-			'http*://tw.buy.yahoo.com/activity/*'
+			'http*://tw.buy.yahoo.com/activity/*',
+			'https://tw.search.buy.yahoo.com/search/shopping/*',
 		],
 		exclude: [],
 	},
@@ -56,6 +57,8 @@ module.exports = {
 
 					// https://tw.buy.yahoo.com/myaccount/service
 					'.myacc-mod .listbox .pdname a, .myacc-mod .listbox .proc a',
+
+					'#auction_bf .bd a',
 				].join(','))
 					.prop('target', '_blank')
 					.off('click.open')
