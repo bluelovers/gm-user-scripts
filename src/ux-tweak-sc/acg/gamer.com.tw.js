@@ -46,7 +46,8 @@ module.exports = {
 		const keycodes = require('keycodes');
 
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		let _a = _uf_dom_filter_link('.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a, .ACG-mster_box4 a')
+		let _a = _uf_dom_filter_link(
+			'.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a, .ACG-mster_box4 a')
 			.prop('target', '_blank')
 		;
 
@@ -91,6 +92,8 @@ module.exports = {
 				.prop('target', '_blank')
 			;
 		}
+
+		post_captcha(_url_obj);
 
 		daily_signin(_url_obj);
 
@@ -296,5 +299,28 @@ function page_redirect(_url_obj)
 		location.href = location.href.replace('/A.php', '/B.php');
 
 		return true;
+	}
+}
+
+function post_captcha(_url_obj)
+{
+	if (_url_obj.path.match(/post1\.php/))
+	{
+		$('#BH-master #form1').eq(0)
+			.each(function ()
+			{
+				let form = $(this);
+
+				$(':input[name="pwd2"]', form)
+					.val(function (i, old)
+					{
+						if (!old)
+						{
+							return $(this).prev('span').find('strong').text();
+						}
+					})
+				;
+			})
+		;
 	}
 }

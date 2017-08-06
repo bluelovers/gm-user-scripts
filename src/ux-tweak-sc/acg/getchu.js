@@ -151,9 +151,10 @@ module.exports = {
 			//.add($('#wrapper > .gr_soft_carousel_wrap:eq(-1)').nextAll())
 			.add($('#sample').next('.tabletitle').next('div, table').nextAll().find('img'))
 			.add($('a[name="REVIEW_UNIT"]').nextAll())
+			.add($('.mejs-video video').parentsUntil('.mejs-video').addBack().siblings())
 			.add([
 				'.snsbox, .bikoubody',
-				'.mejs-video',
+				'.mejs-video:not(:has(video))',
 				'iframe, script',
 				'button.header_wish, a[rel="leanModal"]',
 				'body :hidden',

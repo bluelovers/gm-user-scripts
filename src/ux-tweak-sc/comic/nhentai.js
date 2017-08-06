@@ -41,6 +41,10 @@ module.exports = {
 			.on('load.adblock', function (event)
 			{
 				module.exports.adblock();
+
+				require('../../lib/dom/disable_nocontextmenu')
+					._uf_disable_nocontextmenu2(2)
+				;
 			})
 			.triggerHandler('load.adblock')
 		;

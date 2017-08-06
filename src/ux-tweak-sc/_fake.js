@@ -20,7 +20,7 @@ module.exports = {
 
 	test(_url_obj)
 	{
-		return false;
+		return true;
 	},
 
 	main(_url_obj)
