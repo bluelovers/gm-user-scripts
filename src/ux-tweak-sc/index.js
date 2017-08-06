@@ -27,6 +27,7 @@ module.exports.list = [
 	"blog/oneapm.js",
 	"blog/jianshu.js",
 	"blog/dulfy.js",
+	"blog/blog.xuite.js",
 	"bbs/ptt.js",
 	"art/pixiv.js",
 	"art/deviantart.js",
@@ -47,6 +48,7 @@ module.exports.list = [
 	"global/video.js",
 	"global/mediawiki.js",
 	"global/discuz.js",
+	"global/social.js",
 	"global/pagination.js",
 	"_fake.js"
 ];
@@ -79,6 +81,7 @@ module.exports._lib = () =>
 	require('./blog/oneapm.js');
 	require('./blog/jianshu.js');
 	require('./blog/dulfy.js');
+	require('./blog/blog.xuite.js');
 	require('./bbs/ptt.js');
 	require('./art/pixiv.js');
 	require('./art/deviantart.js');
@@ -99,6 +102,7 @@ module.exports._lib = () =>
 	require('./global/video.js');
 	require('./global/mediawiki.js');
 	require('./global/discuz.js');
+	require('./global/social.js');
 	require('./global/pagination.js');
 	require('./_fake.js');
 };
@@ -116,6 +120,7 @@ module.exports.metadata.include = [
 	"http*://tw.buy.yahoo.com/*",
 	"http*://tw.buy.yahoo.com/bestbuy/*",
 	"http*://tw.buy.yahoo.com/activity/*",
+	"https://tw.search.buy.yahoo.com/search/shopping/*",
 	"http*://mall.pchome.com.tw/*",
 	"http*://tw.mall.yahoo.com/*",
 	"http*://tw.user.mall.yahoo.com/my/*",
@@ -139,6 +144,7 @@ module.exports.metadata.include = [
 	"http*://blog.oneapm.com/*",
 	"http*://www.jianshu.com/*",
 	"http*://dulfy.net/*",
+	"http*://blog.xuite.net/*",
 	"http*://www.ptt.cc/*",
 	"http*://*.pixiv.net/*",
 	"http*://*.deviantart.com/*",
