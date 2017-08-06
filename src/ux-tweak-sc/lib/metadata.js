@@ -6,7 +6,7 @@ module.exports.metadata = `// ==UserScript==
 // @name		<%= pkg.name %>
 // @namespace	bluelovers
 //
-// @description	各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
+// @description	各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作 並且適合搭配 Scrapbook 擷取內容
 //
 // @version		<%= pkg.version %>
 //
