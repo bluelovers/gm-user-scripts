@@ -229,37 +229,11 @@ module.exports.current = [];
 
 gulp.task("webpack", ["webpack:before"], function (callback)
 {
-	var pkg = require('./package.json');
-	var banner = `// ==UserScript==
-// @name		<%= pkg.name %>
-// @namespace	bluelovers
-//
-// @description	各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
-//
-// @version		<%= pkg.version %>
-//
-// @grant		GM_registerMenuCommand
-// @grant		unsafeWindow
-// grant		GM_addStyle
-// grant		none
-//
-// @homepageURL	https://github.com/bluelovers/gm-user-scripts
-// @supportURL	https://github.com/bluelovers/gm-user-scripts/issues
-// @downloadURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js
-//
-// @include		<%= index.include %>
-//
-// @exclude		<%= index.exclude %>
-//
-// @require		https://code.jquery.com/jquery-3.2.1.js?<%= token %>
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?<%= token %>
-//
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?<%= token %>
-//
-// ==/UserScript==
-`;
+	const pkg = require('./package.json');
 
 	const index = require(path.join(cwd_src, 'ux-tweak-sc', 'index'));
+
+	let banner = require(path.join(cwd_src, 'ux-tweak-sc', 'lib/metadata')).metadata;
 
 	return gulp.src('src/ux-tweak-sc.user.js')
 	//		.pipe(sourcemaps.init())
@@ -280,6 +254,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 			index: {
 				include: index.metadata.include.join("\n// @include		"),
+				match: index.metadata.include.join("\n// @match		"),
+
 				exclude: index.metadata.exclude.join("\n// @exclude		"),
 			},
 
