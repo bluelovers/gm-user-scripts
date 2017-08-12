@@ -18,7 +18,7 @@ module.exports = {
 	{
 		if ($('.pagination a[rel="prev"], .pagination a[rel="next"]').length)
 		{
-			return 2;
+			return true;
 		}
 
 		return false;
