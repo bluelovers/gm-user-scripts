@@ -22,6 +22,7 @@ module.exports = {
 		exclude: [
 			'http*://gc.bahamut.com.tw/*',
 			'http*://*.bahamut.com.tw/*',
+			'http*://*.bahamut.com.tw/js/*',
 		],
 	},
 
@@ -46,9 +47,11 @@ module.exports = {
 		const keycodes = require('keycodes');
 
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		let _a = _uf_dom_filter_link(
-			'.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a, .ACG-mster_box4 a')
-			.prop('target', '_blank')
+		let _a = _uf_dom_filter_link([
+				'.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a, .ACG-mster_box4 a',
+				'.newanime a, a.animelook, a.newanime__content',
+			].join())
+				.prop('target', '_blank')
 		;
 
 		const comic_style = require('../../lib/comic/style');
@@ -68,12 +71,83 @@ module.exports = {
 			$('.news_list')
 				.css('background-color', $('.anime-title').css('background-color'))
 			;
-//
+			//
 			$('#BH_background, .BH_background, .sky')
-//				.css(comic_style.bg_dark)
+			//				.css(comic_style.bg_dark)
 			;
 
-			$('#video-container .ncc > .choose > a:eq(0)').click();
+			const waitUntil = require('../../lib/promise/wait').jquery;
+
+			$(window)
+				.on('load.animeVideo', function ()
+				{
+					let video_container = $('#video-container');
+
+					let _a = $('.ncc > .choose:visible > a:eq(0)', video_container);
+
+					if (_a.length)
+					{
+						console.log('自動略過警告');
+
+						_a.click();
+					}
+
+					waitUntil(function (deferred, count)
+					{
+						_a = $('.vast-skip-button:visible', video_container);
+
+						if (_a.length)
+						{
+							deferred.resolveWith(_a, [_a, count]);
+						}
+						else if (count < 50)
+						{
+							return true;
+						}
+
+						return _a;
+					})
+						.done(function (_a, count)
+						{
+							console.log('等待允許略過廣告時間');
+
+							return waitUntil(function (deferred, count)
+							{
+								let text = _a.text();
+
+								if (text == '點此跳過廣告' || text && !/\d+/g.test(text))
+								{
+									deferred.resolveWith(_a, [_a, count]);
+								}
+								else if (count < 400)
+								{
+									return true;
+								}
+								else
+								{
+									console.log('等待超時 網頁可能已出錯 或 請手動點取');
+								}
+
+								return _a;
+							});
+						})
+						.then(function (_a, count)
+						{
+							console.log('開始播放', _a.text());
+							_a.click();
+						})
+						.fail(function (_a, count)
+						{
+							console.error(this, _a, count);
+						})
+					;
+				})
+			;
+
+			setTimeout(function ()
+			{
+				$(window).triggerHandler('load.animeVideo');
+			}, 3000);
 		}
 		else if (_url_obj.host.match(/www\.gamer\.com\.tw/))
 		{
@@ -101,7 +175,7 @@ module.exports = {
 
 		$([
 			'.GN-thumbnail img, article img.lazyload, .c-article__content img.lazyload',
-			'#showPic img.acgPIC, .wikiContent img.gallery-image',
+			'#showPic img.acgPIC, .wikiContent img.gallery-image, img.lazyload',
 		].join())
 			.not('[data-done]')
 			.filter('[data-src]:not([src])')
@@ -278,15 +352,16 @@ function daily_signin(_url_obj)
 
 function ref_url(_url_obj)
 {
-	$('article a[href*="ref.gamer.com.tw"]')
+	$('a[href*="ref.gamer.com.tw"]', 'article, #BH-master')
 		.attr('href', function (i, old)
 		{
 			let url = old.substr(old.indexOf('redir.php?url=') + 'redir.php?url='.length);
 
-			console.log(i, old, url);
+			//console.log(i, old, url);
 
 			return decodeURIComponent(url);
 		})
+		.prop('target', '_blank')
 	;
 }
 
