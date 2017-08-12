@@ -36,6 +36,8 @@ module.exports.list = [
 	"acg/vsgames.js",
 	"acg/tieba.baidu.js",
 	"acg/reddit.js",
+	"acg/guildwars2/wiki.js",
+	"acg/guildwars2/forum.js",
 	"acg/getchu.js",
 	"acg/gamme.js",
 	"acg/gamer.com.tw.js",
@@ -90,6 +92,8 @@ module.exports._lib = () =>
 	require('./acg/vsgames.js');
 	require('./acg/tieba.baidu.js');
 	require('./acg/reddit.js');
+	require('./acg/guildwars2/wiki.js');
+	require('./acg/guildwars2/forum.js');
 	require('./acg/getchu.js');
 	require('./acg/gamme.js');
 	require('./acg/gamer.com.tw.js');
@@ -154,6 +158,8 @@ module.exports.metadata.include = [
 	"http*://*.vsgames.cn/*",
 	"http*://tieba.baidu.com/*",
 	"http*://www.reddit.com/r/*",
+	"http*://wiki.guildwars2.com/*",
+	"http*://forum-*.guildwars2.com/forum/*",
 	"http*://*.getchu.com/*",
 	"http*://news.gamme.com.tw/*",
 	"http*://www.gamer.com.tw/*",
@@ -184,6 +190,7 @@ module.exports.metadata.exclude = [
 	"http*://staticxx.facebook.com/*",
 	"http*://gc.bahamut.com.tw/*",
 	"http*://*.bahamut.com.tw/*",
+	"http*://*.bahamut.com.tw/js/*",
 	"http*://notifications.google.com/*",
 	"http*://platform.twitter.com/widgets*",
 	"http*://apis.google.com/*"
@@ -194,13 +201,10 @@ module.exports.main = async function (list, options = {})
 			console.time(module.exports.name);
 			console.group(module.exports.name);
 
+			let _break;
+
 			for (let name of list)
 			{
-				let ret = true;
-
-				console.time(name);
-				console.group(name);
-
 				let lib = require('./' + name);
 
 				let name_id = name;
@@ -212,20 +216,37 @@ module.exports.main = async function (list, options = {})
 
 				name_id = `[${name_id}]`;
 
+				if (_break && !lib.script)
+				{
+					//console.debug(name_id, 'break:script', lib.script);
+					continue;
+				}
+				else if (lib.disable)
+				{
+					console.warn(name_id, 'disable, skip this');
+					continue;
+				}
+
+				let ret = true;
+
+				console.time(name);
+				console.group(name);
+
 				let test;
 				let ret_main;
 
-				if (lib.disable)
-				{
-					console.warn(name_id, 'disable, skip this');
-
-					//ret = false;
-				}
-				else
+				CHK:
 				{
 					test = await lib.test(global._url_obj);
 
-					console.info(name_id, test);
+					console.info(name_id, 'test', test);
+
+					if (_break && test !== 2)
+					{
+						console.debug(name_id, 'break:test', test);
+
+						break CHK;
+					}
 
 					if (test)
 					{
@@ -236,6 +257,10 @@ module.exports.main = async function (list, options = {})
 							ret_main = true;
 
 							console.info(name_id, 'matched', ret_main, ret);
+						}
+						else
+						{
+							console.debug(name_id, 'main', ret_main);
 						}
 
 						//test = false;
@@ -253,26 +278,30 @@ module.exports.main = async function (list, options = {})
 							console.debug(name_id, 'chk', ret_main, ret, test);
 						}
 					}
-				}
 
-				if (!ret || test)
-				{
-					module.exports.current.push({
-						name: name,
-						name_id: name_id,
+					if (!ret || test)
+					{
+						console.debug(name_id, 'current:push', ret_main, ret, test);
 
-						lib: lib,
-					});
+						module.exports.current.push({
+							name: name,
+							name_id: name_id,
+
+							lib: lib,
+						});
+					}
 				}
 
 				console.groupEnd(name);
 				console.timeEnd(name);
 
-				if (!ret)
+				if (!_break && !ret)
 				{
 					console.debug(name_id, 'break', ret_main, ret, test);
 
-					break;
+					_break = true;
+
+					//break;
 				}
 			}
 
