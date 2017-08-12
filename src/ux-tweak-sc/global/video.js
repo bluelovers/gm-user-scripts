@@ -21,7 +21,7 @@ module.exports = {
 
 	test(_url_obj = global._url_obj)
 	{
-		return 2;
+		return true;
 	},
 
 	main(_url_obj = global._url_obj)
