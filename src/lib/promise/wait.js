@@ -16,7 +16,11 @@ module.exports.jquery = function waitUntil(cb)
 		if (deferred.isRejected() || deferred.isResolved())
 		{
 		}
-		else if (count <= 20)
+		else if (ret === false)
+		{
+			deferred.reject([ret, count]);
+		}
+		else if (count <= 20 || ret === true)
 		{
 			setTimeout(_wait, 100);
 		}
