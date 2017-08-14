@@ -8,6 +8,8 @@ module.exports = {
 
 	priority: 0,
 
+	script: true,
+
 	metadata: {
 		match: [
 		],
@@ -18,7 +20,7 @@ module.exports = {
 	{
 		if ($('.pagination a[rel="prev"], .pagination a[rel="next"]').length)
 		{
-			return true;
+			return 2;
 		}
 
 		return false;
@@ -26,12 +28,19 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const keycodes = require('keycodes');
-		const _uf_done = require('../../lib/event.done');
+		require('../../lib/jquery/event').makeJQueryPlugin($, window);
 
 		let _win = $(window);
 
-		console.log(_win.data('events'), _win.data('events').keydown);
+		if (_win.eventExists('keydown'))
+		{
+			console.log(_win.events());
+
+			return false;
+		}
+
+		const keycodes = require('keycodes');
+		const _uf_done = require('../../lib/event.done');
 
 		_win
 			.on('keydown.page', function (event)
@@ -48,6 +57,10 @@ module.exports = {
 							_uf_done(event);
 							_a[0].click();
 						}
+						else
+						{
+							console.log(event, _a);
+						}
 
 						break;
 					case keycodes('pagedown'):
@@ -59,6 +72,10 @@ module.exports = {
 						{
 							_uf_done(event);
 							_a[0].click();
+						}
+						else
+						{
+							console.log(event, _a);
 						}
 
 						break;
