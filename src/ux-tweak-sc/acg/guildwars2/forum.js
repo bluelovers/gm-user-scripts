@@ -33,6 +33,12 @@ module.exports = {
 		].join())
 			.prop('target', '_blank')
 		;
+
+		ref_url(_url_obj);
+
+		let realname = $('.realname').text().trim();
+
+		$(window).scrollTo('#header .bookcrumbs, #content');
 	},
 
 	adblock(_url_obj = global._url_obj)
@@ -53,3 +59,18 @@ module.exports = {
 		return _dom;
 	},
 };
+
+function ref_url(_url_obj)
+{
+	$('a[href*="external?l="]', '.message-content')
+		.attr('href', function (i, old)
+		{
+			let url = old.substr(old.indexOf('external?l=') + 'external?l='.length);
+
+			//console.log(i, old, url);
+
+			return decodeURIComponent(url);
+		})
+		.prop('target', '_blank')
+	;
+}
