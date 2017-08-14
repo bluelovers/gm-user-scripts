@@ -28,7 +28,7 @@ module.exports = {
 		const _uf_dom_filter_link = require('../../../lib/dom/filter/link');
 
 		let _link = [
-			'a.external',
+			'a.external, .gallery .thumb a.image',
 		];
 
 		if (_url_obj.path.match(/\/Game_updates\//))
