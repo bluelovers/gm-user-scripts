@@ -312,7 +312,8 @@ module.exports.main = async function (list, options = {})
 module.exports.list_script = [
 	"global/video.js",
 	"global/mediawiki.js",
-	"global/discuz.js"
+	"global/discuz.js",
+	"global/pagination.js"
 ];
 
 module.exports.current = [];

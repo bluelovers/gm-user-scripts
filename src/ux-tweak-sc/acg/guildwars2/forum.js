@@ -28,6 +28,8 @@ module.exports = {
 		const _uf_dom_filter_link = require('../../../lib/dom/filter/link');
 		_uf_dom_filter_link([
 			'.message-content a, .topiclist .topic .title a, a.topic',
+			'.post-topic-header a',
+			'.character .links a:not([rel="nofollow"]), .body.rules a',
 		].join())
 			.prop('target', '_blank')
 		;
@@ -43,9 +45,7 @@ module.exports = {
 		let _dom = $(_dom_list);
 
 		_dom = _dom
-			.add([
-
-			].join())
+			.add([].join())
 		;
 
 		//_dom.remove();
