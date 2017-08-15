@@ -133,7 +133,7 @@ module.exports = {
 						$(window).triggerHandler('load.nocontextmenu');
 						$(window).triggerHandler('resize');
 					})
-					.on('keydown', function (event)
+					.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 					{
 						var _jq = unsafeWindow.$ || $;
 
@@ -169,7 +169,7 @@ module.exports = {
 
 								break;
 						}
-					})
+					}))
 				;
 
 				$('#showimage').on('DOMNodeInserted', function ()
@@ -252,7 +252,7 @@ module.exports = {
 			}
 
 			$(window)
-				.on('keydown', function (event)
+				.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					switch (event.which)
 					{
@@ -279,7 +279,7 @@ module.exports = {
 
 							break;
 					}
-				})
+				}))
 				.on('load.nocontextmenu', () =>
 				{
 					const _uf_disable_nocontextmenu = require('../../lib/dom/disable_nocontextmenu')._uf_disable_nocontextmenu2;
