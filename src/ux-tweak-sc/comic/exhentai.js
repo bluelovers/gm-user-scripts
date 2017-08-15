@@ -119,7 +119,7 @@ module.exports = {
 					{
 						_fn_img();
 					})
-					.on('keydown', function (event)
+					.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 					{
 						switch (event.which)
 						{
@@ -138,7 +138,7 @@ module.exports = {
 						}
 
 						setTimeout(_fn_img, 500);
-					})
+					}))
 					.triggerHandler('load.imagesLoaded')
 				;
 
@@ -245,7 +245,7 @@ module.exports = {
 			}
 
 			$(window)
-				.on('keydown', function (event)
+				.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					let _a = $('.ptt td > a[onclick]');
 
@@ -276,7 +276,7 @@ module.exports = {
 
 							break;
 					}
-				})
+				}))
 			;
 
 			return RETURN;
