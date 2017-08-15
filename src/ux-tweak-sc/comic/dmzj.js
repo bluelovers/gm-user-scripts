@@ -179,7 +179,7 @@ module.exports = {
 		let _page_select = $('#page_select');
 
 		$(window)
-			.on('keydown.page', function (event)
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
 
@@ -258,7 +258,7 @@ module.exports = {
 
 						break;
 				}
-			})
+			}))
 		;
 	},
 
