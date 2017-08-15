@@ -212,8 +212,12 @@ module.exports = {
 			})
 		;
 
+		const packEvent = require('../../lib/jquery/event/hotkey').packEvent;
+
+		console.log(777, packEvent);
+
 		$(window)
-			.on('keydown.page', function (event)
+			.on('keydown.page', packEvent(function (event)
 			{
 				switch (event.which)
 				{
@@ -246,7 +250,7 @@ module.exports = {
 
 						break;
 				}
-			})
+			}))
 		;
 	},
 
