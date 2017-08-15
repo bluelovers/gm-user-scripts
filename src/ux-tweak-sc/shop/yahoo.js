@@ -129,7 +129,7 @@ module.exports = {
 					.prop('href', 'https://tw.buy.yahoo.com/myaccount/orderlist?hpp=S2')
 				;
 			})
-			.on('keydown', function (event)
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
 				{
@@ -156,7 +156,7 @@ module.exports = {
 
 						break;
 				}
-			})
+			}))
 			.triggerHandler('load')
 		;
 	},
