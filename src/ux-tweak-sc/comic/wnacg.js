@@ -108,7 +108,7 @@ module.exports = {
 
 						$.scrollTo(_img);
 					})
-					.on('keydown', function (event)
+					.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 					{
 						let [page, page_max] = $('.newpagelabel').text().replace(/[\n\s]/ig, '').split('/').map((a) =>
 						{
@@ -144,7 +144,7 @@ module.exports = {
 
 								break;
 						}
-					})
+					}))
 				;
 
 				setTimeout(function ()
@@ -277,7 +277,7 @@ module.exports = {
 					{
 						$(window).triggerHandler('resize.once');
 					}))
-					.on('keydown', function (event)
+					.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 					{
 						_img = $(_img_selector);
 
@@ -336,7 +336,7 @@ module.exports = {
 
 								break;
 						}
-					})
+					}))
 					.triggerHandler('resize')
 				;
 
@@ -363,7 +363,7 @@ module.exports = {
 				$(window).scrollTo('.gallary_wrap');
 
 				$(window)
-					.on('keydown', function (event)
+					.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 					{
 						switch (event.which)
 						{
@@ -390,7 +390,7 @@ module.exports = {
 
 								break;
 						}
-					})
+					}))
 				;
 			}
 
