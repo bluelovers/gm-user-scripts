@@ -313,7 +313,7 @@ module.exports = {
 //			});
 
 			$(window)
-				.on('keydown', function (event)
+				.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					switch (event.which)
 					{
@@ -346,7 +346,7 @@ module.exports = {
 
 							break;
 					}
-				})
+				}))
 				.on('load', function ()
 				{
 					_dummy();

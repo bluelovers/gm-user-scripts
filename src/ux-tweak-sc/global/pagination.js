@@ -43,7 +43,7 @@ module.exports = {
 		const _uf_done = require('../../lib/event.done');
 
 		_win
-			.on('keydown.page', function (event)
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
 				{
@@ -80,7 +80,7 @@ module.exports = {
 
 						break;
 				}
-			})
+			}))
 		;
 	},
 

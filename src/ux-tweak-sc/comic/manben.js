@@ -30,7 +30,7 @@ module.exports = {
 		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
 
 		$(window)
-			.on('keydown', function (event)
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
 				{
@@ -57,7 +57,7 @@ module.exports = {
 
 						break;
 				}
-			})
+			}))
 		;
 	},
 

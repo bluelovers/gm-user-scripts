@@ -110,7 +110,7 @@ module.exports = {
 		;
 
 		$(window)
-			.on('keydown.page', function (event)
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				if ($(event.target).is(':input, .notranslate'))
 				{
@@ -148,7 +148,7 @@ module.exports = {
 
 						break;
 				}
-			})
+			}))
 			.on('load', _ready)
 			.triggerHandler('load')
 		;
