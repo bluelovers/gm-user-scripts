@@ -93,7 +93,7 @@ module.exports = {
 					$(window).triggerHandler('load.img');
 				}, 1000);
 			})
-			.on('keydown.page', function (event)
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
 				{
@@ -126,7 +126,7 @@ module.exports = {
 
 						break;
 				}
-			})
+			}))
 		;
 
 		setTimeout(() =>
