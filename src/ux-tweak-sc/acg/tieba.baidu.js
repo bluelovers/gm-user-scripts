@@ -35,7 +35,69 @@ module.exports = {
 			{
 				sign(_url_obj);
 			})
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+			{
+				const keycodes = require('keycodes');
+				const _uf_done = require('../../lib/event.done');
+
+				switch (event.which)
+				{
+					case keycodes('pageup'):
+					case keycodes('left'):
+
+						var _a = $('.pagination-default a.prev');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+						else
+						{
+							console.log(event, _a);
+						}
+
+						break;
+					case keycodes('pagedown'):
+					case keycodes('right'):
+
+						var _a = $('.pagination-default a.next');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+						else
+						{
+							console.log(event, _a);
+						}
+
+						break;
+				}
+			}))
+			.on('load.scroll', function ()
+			{
+				if ($(window).scrollTop() < 300)
+				{
+					$(window).scrollTo('#pb_content, .head_content .card_title, #content, #tab_forumname');
+				}
+			})
+			.scrollTo('.head_content')
+			.one('scroll', function (event)
+			{
+				console.log(event);
+			})
 		;
+
+		$('#content_leftList')
+			.on('DOMNodeInserted.page', function ()
+			{
+				$(window).scrollTo('.head_content .card_title, #content, #tab_forumname');
+			})
+		;
+
+		lazyload(_url_obj);
 	},
 
 	adblock(_url_obj = global._url_obj)
@@ -78,4 +140,21 @@ function sign(_url_obj = global._url_obj)
 
 		return true;
 	}
+}
+
+function lazyload(_url_obj)
+{
+	$('img.BDE_Image[data-original], img.threadlist_pic')
+		.not('[data-done]')
+		.attr('data-done', true)
+		.attr('src', function (i, old)
+		{
+			let src = $(this).attr('data-original');
+
+			if (old != src)
+			{
+				return src;
+			}
+		})
+	;
 }
