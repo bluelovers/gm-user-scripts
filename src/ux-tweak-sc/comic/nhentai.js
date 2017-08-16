@@ -43,7 +43,7 @@ module.exports = {
 				module.exports.adblock();
 
 				require('../../lib/dom/disable_nocontextmenu')
-					._uf_disable_nocontextmenu2(2)
+					._uf_disable_nocontextmenu2(2, '#content')
 				;
 			})
 			.triggerHandler('load.adblock')

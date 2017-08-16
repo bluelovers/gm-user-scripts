@@ -39,12 +39,12 @@ module.exports = {
 			return false;
 		}
 
-		const keycodes = require('keycodes');
-		const _uf_done = require('../../lib/event.done');
-
 		_win
 			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
 			{
+				const keycodes = require('keycodes');
+				const _uf_done = require('../../lib/event.done');
+
 				switch (event.which)
 				{
 					case keycodes('pageup'):
