@@ -51,6 +51,7 @@ module.exports.list = [
 	"global/mediawiki.js",
 	"global/discuz.js",
 	"global/social.js",
+	"global/pagination/pagination.active.js",
 	"global/pagination.js",
 	"_fake.js"
 ];
@@ -107,6 +108,7 @@ module.exports._lib = () =>
 	require('./global/mediawiki.js');
 	require('./global/discuz.js');
 	require('./global/social.js');
+	require('./global/pagination/pagination.active.js');
 	require('./global/pagination.js');
 	require('./_fake.js');
 };
@@ -313,6 +315,7 @@ module.exports.list_script = [
 	"global/video.js",
 	"global/mediawiki.js",
 	"global/discuz.js",
+	"global/pagination/pagination.active.js",
 	"global/pagination.js"
 ];
 

@@ -20,6 +20,11 @@ module.exports = {
 	},
 
 	resolve: {
+
+		alias: {
+			'root': __dirname,
+		},
+
 		// Add `.ts` and `.tsx` as a resolvable extension.
 		extensions: [
 			'.ts',
