@@ -90,7 +90,7 @@ module.exports = {
 			})
 		;
 
-		$('#content_leftList')
+		$('#frs_list_pager')
 			.on('DOMNodeInserted.page', function ()
 			{
 				$(window).scrollTo('.head_content .card_title, #content, #tab_forumname');
