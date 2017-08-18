@@ -52,7 +52,7 @@ module.exports = {
 				'.newanime a, a.animelook, a.newanime__content',
 				'.BH-rbox a[data-gtm]',
 			].join())
-				.prop('target', '_blank')
+			.prop('target', '_blank')
 		;
 
 		const comic_style = require('../../lib/comic/style');
@@ -165,6 +165,26 @@ module.exports = {
 			// 精華區
 			let _a = _uf_dom_filter_link('#BH-master .FM-stb1 a')
 				.prop('target', '_blank')
+			;
+		}
+		else if (_url_obj.path.match(/B(?:_legend)?\.php/))
+		{
+			$('#BH-master > .FM-tags:eq(0) a:eq(0)').clone()
+				.attr('href', function (i, old)
+				{
+					let bsn = old.replace(/^.+[\?&]bsn=(\d+)(?:&.+)?$/ig, '$1');
+
+					//console.log(i, old);
+
+					return `https://forum.gamer.com.tw/listtype.php?bsn=${bsn}&stype=10`;
+				})
+				.text('取消搜尋')
+				.removeAttr('id, title')
+				.css({
+					'margin-left': '0.25em',
+					'border-color': '#6b676a',
+				})
+				.appendTo('#BH-master > .FM-tags:eq(0)')
 			;
 		}
 
