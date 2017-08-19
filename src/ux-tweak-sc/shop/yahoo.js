@@ -59,14 +59,17 @@ module.exports = {
 					'.myacc-mod .listbox .pdname a, .myacc-mod .listbox .proc a',
 
 					'#auction_bf .bd a',
+
+					'#srp_result_list .item a'
 				].join(','))
 					.prop('target', '_blank')
+					.attr('data-done', true)
 					.off('click.open')
 					.on('click.open', function (event)
 					{
 						window.open(this.href, '_blank');
 
-						_uf_done(event);
+						return _uf_done(event);
 					})
 				;
 
