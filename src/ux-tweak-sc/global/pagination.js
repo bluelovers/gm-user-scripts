@@ -18,7 +18,7 @@ module.exports = {
 
 	test(_url_obj = global._url_obj)
 	{
-		if ($('.pagination a[rel="prev"], .pagination a[rel="next"]').length)
+		if ($('.pagination a[rel*="prev"], .pagination a[rel*="next"]').length)
 		{
 			return 2;
 		}
@@ -50,7 +50,7 @@ module.exports = {
 					case keycodes('pageup'):
 					case keycodes('left'):
 
-						var _a = $('.pagination a[rel="prev"]');
+						var _a = $('.pagination a[rel*="prev"]');
 
 						if (_a.length)
 						{
@@ -66,7 +66,7 @@ module.exports = {
 					case keycodes('pagedown'):
 					case keycodes('right'):
 
-						var _a = $('.pagination a[rel="next"]');
+						var _a = $('.pagination a[rel*="next"]');
 
 						if (_a.length)
 						{
