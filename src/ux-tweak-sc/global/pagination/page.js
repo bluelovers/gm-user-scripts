@@ -18,7 +18,7 @@ module.exports = {
 
 	test(_url_obj = global._url_obj)
 	{
-		if ($('.pagination a[rel*="prev"], .pagination a[rel*="next"]').length)
+		if ($('.pagination > .page-prev, .pagination > .page-next').length)
 		{
 			return 2;
 		}
@@ -28,7 +28,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		require('../../lib/jquery/event').makeJQueryPlugin($, window);
+		require('root/src/lib/jquery/event').makeJQueryPlugin($, window);
 
 		let _win = $(window);
 
@@ -40,17 +40,17 @@ module.exports = {
 		}
 
 		_win
-			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
-				const _uf_done = require('../../lib/event.done');
+				const _uf_done = require('root/src/lib/event.done');
 
 				switch (event.which)
 				{
 					case keycodes('pageup'):
 					case keycodes('left'):
 
-						var _a = $('.pagination a[rel*="prev"]');
+						var _a = $('.pagination > .page-prev');
 
 						if (_a.length)
 						{
@@ -66,7 +66,7 @@ module.exports = {
 					case keycodes('pagedown'):
 					case keycodes('right'):
 
-						var _a = $('.pagination a[rel*="next"]');
+						var _a = $('.pagination > .page-next');
 
 						if (_a.length)
 						{

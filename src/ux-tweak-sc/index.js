@@ -36,6 +36,7 @@ module.exports.list = [
 	"acg/vsgames.js",
 	"acg/tieba.baidu.js",
 	"acg/reddit.js",
+	"acg/qoo-app.js",
 	"acg/guildwars2/wiki.js",
 	"acg/guildwars2/forum.js",
 	"acg/getchu.js",
@@ -52,6 +53,7 @@ module.exports.list = [
 	"global/discuz.js",
 	"global/social.js",
 	"global/pagination/pagination.active.js",
+	"global/pagination/page.js",
 	"global/pagination.js",
 	"_fake.js"
 ];
@@ -93,6 +95,7 @@ module.exports._lib = () =>
 	require('./acg/vsgames.js');
 	require('./acg/tieba.baidu.js');
 	require('./acg/reddit.js');
+	require('./acg/qoo-app.js');
 	require('./acg/guildwars2/wiki.js');
 	require('./acg/guildwars2/forum.js');
 	require('./acg/getchu.js');
@@ -109,6 +112,7 @@ module.exports._lib = () =>
 	require('./global/discuz.js');
 	require('./global/social.js');
 	require('./global/pagination/pagination.active.js');
+	require('./global/pagination/page.js');
 	require('./global/pagination.js');
 	require('./_fake.js');
 };
@@ -160,6 +164,7 @@ module.exports.metadata.include = [
 	"http*://*.vsgames.cn/*",
 	"http*://tieba.baidu.com/*",
 	"http*://www.reddit.com/r/*",
+	"http*://*.qoo-app.com/*",
 	"http*://wiki.guildwars2.com/*",
 	"http*://forum-*.guildwars2.com/forum/*",
 	"http*://*.getchu.com/*",
@@ -316,6 +321,7 @@ module.exports.list_script = [
 	"global/mediawiki.js",
 	"global/discuz.js",
 	"global/pagination/pagination.active.js",
+	"global/pagination/page.js",
 	"global/pagination.js"
 ];
 
