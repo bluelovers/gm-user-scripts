@@ -139,5 +139,7 @@ module.exports = {
 	adblock()
 	{
 		unsafeWindow.N.options.ads.show_popunders = false;
+		unsafeWindow.N.popunder = null;
+		unsafeWindow.N.advertising = null;
 	},
 };
