@@ -54,6 +54,8 @@ module.exports = {
 			$(window).triggerHandler('load.adblock')
 		}, 500);
 
+		$(window).scrollTo($('#content, #image-container').eq(-1));
+
 		if ($('#image-container').length)
 		{
 			let _img = $('#image-container img');
@@ -96,34 +98,6 @@ module.exports = {
 
 					$(window).scrollTo($('#content, #image-container').eq(-1));
 				})
-				.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
-				{
-					switch (event.which)
-					{
-						case keycodes('pageup'):
-						case keycodes('left'):
-							var _a = $('.pagination .previous');
-
-							if (_a.length)
-							{
-								_uf_done(event);
-								_a[0].click();
-							}
-
-							break;
-						case keycodes('pagedown'):
-						case keycodes('right'):
-							var _a = $('.pagination .next');
-
-							if (_a.length)
-							{
-								_uf_done(event);
-								_a[0].click();
-							}
-
-							break;
-					}
-				}))
 				.triggerHandler('resize')
 			;
 
@@ -134,6 +108,37 @@ module.exports = {
 				})
 			;
 		}
+
+		$(window)
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+			{
+				switch (event.which)
+				{
+					case keycodes('pageup'):
+					case keycodes('left'):
+						var _a = $('.pagination .previous');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+
+						break;
+					case keycodes('pagedown'):
+					case keycodes('right'):
+						var _a = $('.pagination .next');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+
+						break;
+				}
+			}))
+		;
 	},
 
 	adblock()
