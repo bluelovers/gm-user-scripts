@@ -51,6 +51,7 @@ module.exports = {
 				'.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a, .ACG-mster_box4 a',
 				'.newanime a, a.animelook, a.newanime__content',
 				'.BH-rbox a[data-gtm]',
+				'.HOME-mainbox1 a',
 			].join())
 			.prop('target', '_blank')
 		;
