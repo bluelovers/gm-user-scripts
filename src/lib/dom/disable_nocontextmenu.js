@@ -4,7 +4,7 @@
 
 const greasemonkey = require('../greasemonkey');
 
-module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
+module.exports._uf_disable_nocontextmenu2 = function (mode, elem, options = {})
 {
 	let _fn_event = ['dragstart', 'contextmenu', 'selectstart', 'mousedown', 'mouseup', 'source', 'copy'];
 	let _fn_off = ['unbind', 'die', 'off'];
@@ -59,6 +59,11 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem)
 			'user-select': 'auto',
 		})
 	;
+
+	if (options.types)
+	{
+		_fn_event = _fn_event.concat(options.types);
+	}
 
 	_fn_event.forEach((event) =>
 	{
