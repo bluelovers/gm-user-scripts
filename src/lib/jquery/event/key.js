@@ -13,6 +13,7 @@ module.exports.makeJQueryPlugin = ($ = global.jQuery, window = global.window) =>
 		{
 			data = Object.assign({}, {
 				which: data,
+				keyCode: data,
 			})
 		}
 
@@ -20,7 +21,7 @@ module.exports.makeJQueryPlugin = ($ = global.jQuery, window = global.window) =>
 
 		Object.assign(e, data);
 
-		console.log(e);
+		console.log('triggerKey', this, e);
 
 		return this.trigger(e);
 	};
