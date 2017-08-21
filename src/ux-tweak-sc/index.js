@@ -16,6 +16,7 @@ module.exports.list = [
 	"comic/wnacg.js",
 	"comic/nhentai.js",
 	"comic/manben.js",
+	"comic/ikanman.js",
 	"comic/exhentai.js",
 	"comic/dmzj.js",
 	"comic/dm5.js",
@@ -76,6 +77,7 @@ module.exports._lib = () =>
 	require('./comic/wnacg.js');
 	require('./comic/nhentai.js');
 	require('./comic/manben.js');
+	require('./comic/ikanman.js');
 	require('./comic/exhentai.js');
 	require('./comic/dmzj.js');
 	require('./comic/dm5.js');
@@ -143,6 +145,7 @@ module.exports.metadata.include = [
 	"http*://*.wnacg.org/*",
 	"http*://nhentai.net/*",
 	"http*://www.manben.com/*",
+	"http*://*.ikanman.com/*",
 	"http*://exhentai.org/*",
 	"http*://g.e-hentai.org/*",
 	"http*://*.dmzj.com/*",

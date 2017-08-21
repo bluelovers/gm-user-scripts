@@ -18,10 +18,21 @@ module.exports = {
 		'min-height': 'initial',
 	},
 
+	photo_area: {
+		padding: 0,
+		margin: 'auto',
+		border: '0px none #fff',
+		outline: 0,
+	},
+
 	body: {
 		margin: 0,
 		padding: 0,
 		outline: 0,
+	},
+
+	bg_transparent: {
+		background: 'transparent',
 	},
 
 	bg_dark: {
