@@ -25,353 +25,274 @@ module.exports = {
 
 	main: () =>
 	{
-		const RETURN = module.exports.test(_url_obj);
+		const _uf_done = require('../../lib/event.done');
+		require('../../lib/func/debounce');
 
-		//console.log(_url_obj, RETURN);
+		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
+		_uf_dom_filter_link([
+			'.works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a',
+			'.post a',
+		].join(','))
+			.prop('target', '_blank')
+		;
 
-		if (RETURN)
+		const greasemonkey = require('../../lib/greasemonkey');
+
+		$(window).scrollTo($()
+			.push('.layout-body')
+			.push('#search-result')
+			.eq(0)
+		);
+
+		let _pixiv_user_id = (unsafeWindow.pixiv && unsafeWindow.pixiv.user && unsafeWindow.pixiv.user.id)
+			? unsafeWindow.pixiv.user.id
+			: null;
+
+		if (_pixiv_user_id)
 		{
-			const _uf_done = require('../../lib/event.done');
-			require('../../lib/func/debounce');
-
-			const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-			_uf_dom_filter_link([
-				'.works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a',
-				'.post a',
-			].join(','))
-				.prop('target', '_blank')
-			;
-
-			const greasemonkey = require('../../lib/greasemonkey');
-
-			$(window).scrollTo($()
-				.push('.layout-body')
-				.push('#search-result')
-				.eq(0)
-			);
-
-			let _pixiv_user_id = (unsafeWindow.pixiv && unsafeWindow.pixiv.user && unsafeWindow.pixiv.user.id)
-				? unsafeWindow.pixiv.user.id
-				: null;
-
-			if (_pixiv_user_id)
-			{
-				$('.navigation-list .menus .bookmarks')
-					.prop(function ()
-					{
-						let _a = $('<a/>')
-							.prop({
-								'href': 'http://www.pixiv.net/bookmark.php?type=user',
-							})
-							.html('<i class="_icon sprites-bookmarks"></i>關注')
-						;
-
-						return $('<li class="bookmarks"/>').append(_a);
-					})
-				;
-			}
-
-			$('.profile-unit .user-relation #favorite-preference form')
-				.prop('target', '_blank')
-				.on('submit', function ()
+			$('.navigation-list .menus .bookmarks')
+				.prop(function ()
 				{
-					if (_url_obj.path.match(/member\.php/))
-					{
-						setTimeout(function ()
-						{
-							location.href = location.href.replace('member.php', 'member_illust.php');
-						}, 200);
-					}
-					else if (_url_obj.path.match(/member_illust\.php/) && !_url_obj.query.match(/mode=/))
-					{
-					}
-					else
-					{
-						let _form = $(this);
-						let uid = $(':input[name="user_id"]', _form).val();
+					let _a = $('<a/>')
+						.prop({
+							'href': 'http://www.pixiv.net/bookmark.php?type=user',
+						})
+						.html('<i class="_icon sprites-bookmarks"></i>關注')
+					;
 
-						window.open(pixiv_link_uid(uid), '_blank');
-					}
+					return $('<li class="bookmarks"/>').append(_a);
 				})
 			;
+		}
 
-			$('#favorite-button').prop('href', 'javasctipt:void(0);');
+		$('#favorite-button').prop('href', 'javasctipt:void(0);');
 
-			let _dummy = function ()
+		follow_button(_url_obj, window);
+
+		if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=medium/))
+		{
+			if ($('body').css('background-color') == '#E4E7EE' || $('body')
+					.css('background-color') == 'rgb(228, 231, 238)')
 			{
-				if ($('.follow-button').length)
-				{
-					$(':not(.following2) .follow-button')
-						.not('[data-uf]')
-						.attr('data-uf', true)
-						.one('click', function (event)
-						{
-							let _this = $(this);
-
-							let uid = _this.parents('[data-id]:eq(0)').eq(0)
-								.attr('data-id')
-							;
-
-							window.open(pixiv_link_uid(uid), '_blank');
-
-							setTimeout(() =>
-							{
-								_follow_area
-									.triggerHandler('DOMNodeInserted')
-								;
-							}, 500);
-						})
-						.each(function ()
-						{
-							let _this = $(this);
-						})
-					;
-				}
-			};
-
-			setTimeout(_dummy, 500);
-
-			if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=medium/))
-			{
-				if ($('body').css('background-color') == '#E4E7EE' || $('body')
-						.css('background-color') == 'rgb(228, 231, 238)')
-				{
-					$('body').css('background-color', 'rgba(0, 3, 11, 0.9)');
-				}
+				$('body').css('background-color', 'rgba(0, 3, 11, 0.9)');
 			}
-			else if (_url_obj.path.match(/search\.php/))
+		}
+		else if (_url_obj.path.match(/search\.php/))
+		{
+			if ($('.column-header, .column-label')
+					.find('.tabs li:eq(0) a.current').length && $('.column-search-result ._no-item:visible').length)
 			{
-				if ($('.column-header, .column-label').find('.tabs li:eq(0) a.current').length && $('.column-search-result ._no-item:visible').length)
-				{
-					location.href = $('.column-header, .column-label').find('.tabs a[href*="search_user"]').prop('href');
-				}
-
-				$.scrollTo($('#wrapper'));
-
-				module.exports.adblock(_url_obj);
-
-				$(document).on('click mousedown', function (event)
-				{
-					var _this = $(event.target);
-
-					//_uf_log(event, this);
-
-					if (_this.is(':not(.following2) .follow-button'))
-					{
-						//_uf_log(777, event, _this);
-
-						var _a = _this.parents('.user-info:first').find('a.user-name:first');
-
-						var _href = _a.prop('href')
-							.replace('member.php', 'member_illust.php');
-
-						//_uf_log(event, _this, _a, _href);
-
-						setTimeout(function ()
-						{
-							window.open(_href, '_blank');
-						}, 200);
-					}
-				});
+				location.href = $('.column-header, .column-label').find('.tabs a[href*="search_user"]').prop('href');
 			}
-			else if (_url_obj.path.match(/search_user\.php/))
+
+			$.scrollTo($('#wrapper'));
+
+			module.exports.adblock(_url_obj);
+
+			$(document).on('click mousedown', function (event)
 			{
-				$('.user-search-result-container .user-recommendation-item a.title')
-					.prop('href', function (i, v)
-					{
-						return v.replace('member.php', 'member_illust.php');
-					})
-				;
+				var _this = $(event.target);
 
-				if ($('.user-search-result-container .user-recommendation-item').length == 1)
+				//_uf_log(event, this);
+
+				if (_this.is(':not(.following2) .follow-button'))
 				{
-					location.href = $('.user-search-result-container .user-recommendation-item a.title')
-						.prop('href')
-						//.replace('member.php', 'member_illust.php')
-					;
-				}
+					//_uf_log(777, event, _this);
 
-				let _href;
+					var _a = _this.parents('.user-info:first').find('a.user-name:first');
 
-				$('.follow:not(.following)')
-					.on('click', function (event)
-					{
-						_href = $(this)
-							.parents('.user-recommendation-item').eq(0)
-							.find('a.title')
-							.prop('href')
-						;
-					})
-				;
+					var _href = _a.prop('href')
+						.replace('member.php', 'member_illust.php');
 
-				$('body')
-					.on('click', '.action-follow :submit, .action-follow ._button', function ()
+					//_uf_log(event, _this, _a, _href);
+
+					setTimeout(function ()
 					{
 						window.open(_href, '_blank');
-					})
+					}, 200);
+				}
+			});
+		}
+		else if (_url_obj.path.match(/search_user\.php/))
+		{
+			$('.user-search-result-container .user-recommendation-item a.title')
+				.prop('href', function (i, v)
+				{
+					return v.replace('member.php', 'member_illust.php');
+				})
+			;
+
+			if ($('.user-search-result-container .user-recommendation-item').length == 1)
+			{
+				location.href = $('.user-search-result-container .user-recommendation-item a.title')
+					.prop('href')
+				//.replace('member.php', 'member_illust.php')
 				;
 			}
-			else if (_url_obj.path.match(/bookmark_add\.php/))
-			{
-				$(window)
-					.on('load', (function ()
-					{
-						if (!$('.user-recommendation-items .user-recommendation-item').length && $(
-								'#wrapper .user-recommendation-unit ._no-item:visible').length)
-						{
-							window.close();
-						}
-					}).debounce(3000))
-				;
 
-				let _follow_area = $('.user-recommendation-items._loading');
+			let _href;
 
-				setTimeout(() =>
+			$('.follow:not(.following)')
+				.on('click', function (event)
 				{
-					_follow_area
-						.on('DOMNodeInserted', function (event)
-						{
-							_dummy();
-						})
+					_href = $(this)
+						.parents('.user-recommendation-item').eq(0)
+						.find('a.title')
+						.prop('href')
 					;
-				}, 500);
-			}
-			else if (_url_obj.path.match(/jump\.php/))
-			{
-				window.location.href = $('b > a:first').attr('href');
-			}
-			else if (_url_obj.path.match(/stacc/) && _url_obj.query.match(/mode=unify/))
-			{
-				let _area_selector = '#stacc_timeline > .stacc_status_summary:not([data-done])';
-				let _area = $(_area_selector);
+				})
+			;
 
-				greasemonkey.GM_addStyle([
-					'._uf_stacc_ref_illust { box-shadow: 0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset; border-radius: 10px; }'
-				].join());
-
-				let _fn_timeline = function (event)
+			$('body')
+				.on('click', '.action-follow :submit, .action-follow ._button', function ()
 				{
-					_area = $(_area_selector)
-						.each(function (index)
-						{
-							let _this = $(this);
+					window.open(_href, '_blank');
+				})
+			;
+		}
+		else if (_url_obj.path.match(/bookmark_add\.php/))
+		{
+			$(window)
+				.on('load', (function ()
+				{
+					if (!$('.user-recommendation-items .user-recommendation-item').length && $(
+							'#wrapper .user-recommendation-unit ._no-item:visible').length)
+					{
+						window.close();
+					}
+				}).debounce(3000))
+			;
 
+			let _follow_area = $('.user-recommendation-items._loading');
+		}
+		else if (_url_obj.path.match(/jump\.php/))
+		{
+			window.location.href = $('b > a:first').attr('href');
+		}
+		else if (_url_obj.path.match(/stacc/) && _url_obj.query.match(/mode=unify/))
+		{
+			let _area_selector = '#stacc_timeline > .stacc_status_summary:not([data-done])';
+			let _area = $(_area_selector);
+
+			greasemonkey.GM_addStyle([
+				'._uf_stacc_ref_illust { box-shadow: 0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset; border-radius: 10px; }'
+			].join());
+
+			let _fn_timeline = function (event)
+			{
+				_area = $(_area_selector)
+					.each(function (index)
+					{
+						let _this = $(this);
+
+						_this
+							.attr('data-done', true)
+							.attr('data-index', index)
+						;
+
+						let _stacc_ref_illust_user_name = $('.stacc_ref_illust_user_name > a:first', _this);
+
+						let _stacc_post_user_name = $('.stacc_post_user_name', _this);
+
+						let _badge_poster = $(
+							'.stacc_follow_unify_comment_profile_list img[src*="badge_add_content.png"]:first',
 							_this
-								.attr('data-done', true)
-								.attr('data-index', index)
-							;
+						);
 
-							let _stacc_ref_illust_user_name = $('.stacc_ref_illust_user_name > a:first', _this);
+						//console.log(index, _stacc_ref_illust_user_name.text(), _stacc_post_user_name.text());
 
-							let _stacc_post_user_name = $('.stacc_post_user_name', _this);
-
-							let _badge_poster = $(
-								'.stacc_follow_unify_comment_profile_list img[src*="badge_add_content.png"]:first',
+						if ($('.stacc_ref_thumb_caption .stacc_ref_illust_title',
 								_this
-							);
-
-							//console.log(index, _stacc_ref_illust_user_name.text(), _stacc_post_user_name.text());
-
-							if ($('.stacc_ref_thumb_caption .stacc_ref_illust_title',
-									_this
-								).length && !_badge_poster.length && _stacc_ref_illust_user_name.text() != _stacc_post_user_name.text())
-							{
-								_this
-								//.css('box-shadow', '0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset')
-									.addClass('_uf_stacc_ref_illust')
-								;
-							}
-
-							$('.stacc_ref_user_illust_caption_img a', _this).attr('href', function (i, v)
-							{
-								v = v.replace('member.php', 'member_illust.php');
-								return v;
-							});
-						})
-					;
-				};
-
-				$(window)
-					.on('load.timeline', _fn_timeline)
-					.triggerHandler('load.timeline')
-				;
-
-				$('#stacc_timeline')
-					.on('DOMNodeInserted', function (event)
-					{
-						setTimeout(() =>
+							).length && !_badge_poster.length && _stacc_ref_illust_user_name.text() != _stacc_post_user_name.text())
 						{
-							$(window).triggerHandler('load.timeline');
-						}, 1000);
+							_this
+							//.css('box-shadow', '0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset')
+								.addClass('_uf_stacc_ref_illust')
+							;
+						}
+
+						$('.stacc_ref_user_illust_caption_img a', _this).attr('href', function (i, v)
+						{
+							v = v.replace('member.php', 'member_illust.php');
+							return v;
+						});
 					})
 				;
-			}
-
-//			$('body').on('hover', '._profile-popup', function ()
-//			{
-//				_dummy();
-//			});
+			};
 
 			$(window)
-				.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
-				{
-					switch (event.which)
-					{
-						case 33:
-						case 37:
-							var _a = $('.pager-container a[rel="prev"]')
-
-							if (_a.length)
-							{
-								_uf_done(event);
-
-								location.href = _a.prop('href');
-
-								return false;
-							}
-
-							break;
-						case 34:
-						case 39:
-							var _a = $('.pager-container a[rel="next"]');
-
-							if (_a.length)
-							{
-								_uf_done(event);
-
-								location.href = _a.prop('href');
-
-								return false;
-							}
-
-							break;
-					}
-				}))
-				.on('load', function ()
-				{
-					_dummy();
-				})
+				.on('load.timeline', _fn_timeline)
+				.triggerHandler('load.timeline')
 			;
 
-			$('a[href*="jump.php"]', '.profile-web, .caption, .body')
-				.each(function ()
+			$('#stacc_timeline')
+				.on('DOMNodeInserted', function (event)
 				{
-					var _this = $(this);
-
-					var _url = _this.prop('href');
-
-					if (_url.match(/jump\.php\?(.+)$/))
+					setTimeout(() =>
 					{
-						_url = decodeURIComponent(RegExp.$1);
-
-						_this.prop('href', _url);
-					}
+						$(window).triggerHandler('load.timeline');
+					}, 1000);
 				})
-				.prop('target', '_blank')
 			;
-
-			return RETURN;
 		}
+
+		$(window)
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+			{
+				switch (event.which)
+				{
+					case 33:
+					case 37:
+						var _a = $('.pager-container a[rel="prev"]')
+
+						if (_a.length)
+						{
+							_uf_done(event);
+
+							location.href = _a.prop('href');
+
+							return false;
+						}
+
+						break;
+					case 34:
+					case 39:
+						var _a = $('.pager-container a[rel="next"]');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+
+							location.href = _a.prop('href');
+
+							return false;
+						}
+
+						break;
+				}
+			}))
+			.on('load', function ()
+			{
+
+			})
+		;
+
+		$('a[href*="jump.php"]', '.profile-web, .caption, .body')
+			.each(function ()
+			{
+				var _this = $(this);
+
+				var _url = _this.prop('href');
+
+				if (_url.match(/jump\.php\?(.+)$/))
+				{
+					_url = decodeURIComponent(RegExp.$1);
+
+					_this.prop('href', _url);
+				}
+			})
+			.prop('target', '_blank')
+		;
 	},
 
 	adblock(_url_obj)
@@ -409,4 +330,49 @@ function _pixiv_source(_src)
 function pixiv_link_uid(uid, type = 'member_illust')
 {
 	return `http://www.pixiv.net/${type}.php?id=${uid}`;
+}
+
+function follow_button(_url_obj, window)
+{
+	$('body')
+		.on('click.follow', ':not(.following2) .follow-button:not(.on)', function (event)
+		{
+			let _this = $(this);
+
+			let uid = _this.attr('data-user-id');
+
+			if (!uid)
+			{
+				uid = _this.parents('[data-id]:eq(0)').eq(0)
+					.attr('data-id')
+				;
+			}
+
+			if (uid)
+			{
+				if (_url_obj.path.match(/member\.php/))
+				{
+					setTimeout(function ()
+					{
+						window.location.href = pixiv_link_uid(uid);
+					}, 200);
+				}
+				else
+				{
+					window.open(pixiv_link_uid(uid), '_blank');
+				}
+
+				setTimeout(() =>
+				{
+					_follow_area
+						.triggerHandler('DOMNodeInserted')
+					;
+				}, 500);
+			}
+			else
+			{
+				console.debug(_this, uid, event);
+			}
+		})
+	;
 }
