@@ -253,38 +253,44 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 {
 	const pkg = require('./package.json');
 
-	const index = require(path.join(cwd_src, 'ux-tweak-sc', 'index'));
-
-	let banner = require(path.join(cwd_src, 'ux-tweak-sc', 'lib/metadata')).metadata;
-
-	return gulp.src('src/ux-tweak-sc.user.js')
-	//		.pipe(sourcemaps.init())
-		.pipe(gulpWebpack(require('./webpack.config.js'), webpack, function (err, stats)
+	return globby([
+		'src/*.user.js'
+	], {
+		cwd: __dirname,
+	})
+		.then(function (ls)
 		{
-			/* Use stats to do more things if needed */
-		}))
-		//		.pipe(closureCompiler({
-		//			compilation_level: 'SIMPLE',
-		//			warning_level: 'VERBOSE',
-		//			language_in: 'ECMASCRIPT6_STRICT',
-		//			language_out: 'ECMASCRIPT5_STRICT',
-		////			output_wrapper: '(function(){\n%output%\n}).call(this)',
-		//			js_output_file: 'name.min.js'
-		//		}))
-		.pipe(header(banner, {
-			pkg: pkg,
+			ls = ls.map(function (v)
+			{
+				let k = v.match(/src\/(.+)\.user\.js$/)[1];
 
-			index: {
-				include: index.metadata.include.join("\n// @include		"),
-				match: index.metadata.include.join("\n// @match		"),
+				const index = require(path.join(cwd_src, k, 'index'));
 
-				exclude: index.metadata.exclude.join("\n// @exclude		"),
-			},
+				let banner = require(path.join(cwd_src, k, 'lib/metadata')).metadata;
 
-			token: Date.now()
-		}))
-		//		.pipe(sourcemaps.write('/'))
-		.pipe(gulp.dest('dist/'));
+				return gulp.src(`src/${k}.user.js`)
+					.pipe(gulpWebpack(require('./webpack.config.js'), webpack, function (err, stats)
+					{
+						/* Use stats to do more things if needed */
+					}))
+					.pipe(header(banner, {
+						pkg: pkg,
+
+						index: {
+							include: index.metadata.include.join("\n// @include		"),
+							match: index.metadata.include.join("\n// @match		"),
+
+							exclude: index.metadata.exclude.join("\n// @exclude		"),
+						},
+
+						token: Date.now()
+					}))
+					.pipe(gulp.dest('dist/'));
+			});
+
+			return Promise.all(ls);
+		})
+	;
 });
 
 gulp.task("default", ["webpack"], function (callback)

@@ -30,6 +30,52 @@ module.exports = {
 		_uf_dom_filter_link('a', '.usertext-body, .md-container, .thing')
 			.prop('target', '_blank')
 		;
+
+		let _win = $(window);
+
+		_win
+			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+			{
+				const keycodes = require('keycodes');
+				const _uf_done = require('../../lib/event.done');
+
+				switch (event.which)
+				{
+					case keycodes('pageup'):
+					case keycodes('left'):
+
+						var _a = $('.nav-buttons .prev-button a');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+						else
+						{
+							console.log(event, _a);
+						}
+
+						break;
+					case keycodes('pagedown'):
+					case keycodes('right'):
+
+						var _a = $('.nav-buttons .next-button a');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+						}
+						else
+						{
+							console.log(event, _a);
+						}
+
+						break;
+				}
+			}))
+		;
 	},
 
 	adblock(_url_obj = global._url_obj)
