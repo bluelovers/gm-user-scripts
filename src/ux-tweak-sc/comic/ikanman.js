@@ -9,13 +9,14 @@ module.exports = {
 	metadata: {
 		match: [
 			'http*://*.ikanman.com/*',
+			'http*://*.manhuagui.com/*',
 		],
 		exclude: [],
 	},
 
 	test(_url_obj = global._url_obj)
 	{
-		if (_url_obj.host.match(/ikanman\.com/))
+		if (_url_obj.host.match(/ikanman\.com/) || _url_obj.host.match(/manhuagui\.com/))
 		{
 			return true;
 		}
@@ -201,11 +202,17 @@ module.exports = {
 				}
 			}))
 		;
+
+		module.exports.adblock();
 	},
 
 	adblock(_url_obj = global._url_obj)
 	{
-
+		$([
+			'.gg_728',
+		].join())
+			.hide()
+		;
 	},
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
