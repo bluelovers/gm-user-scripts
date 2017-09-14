@@ -160,7 +160,7 @@ module.exports = {
 	{
 		let _dom = $();
 
-		if ($('body').not('.home, .timelineLayout').length)
+		if (0 && $('body').not('.home, .timelineLayout').length)
 		{
 			// 粉絲頁
 
