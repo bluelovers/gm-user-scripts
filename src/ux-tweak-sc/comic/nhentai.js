@@ -43,7 +43,7 @@ module.exports = {
 				module.exports.adblock();
 
 				require('../../lib/dom/disable_nocontextmenu')
-					._uf_disable_nocontextmenu2(2, '#content, #content *')
+					._uf_disable_nocontextmenu2(2, '#content, #content *, #bigcontainer, #thumbnail-container, .thumb-container, .gallerythumb')
 				;
 			})
 			.triggerHandler('load.adblock')
@@ -143,8 +143,22 @@ module.exports = {
 
 	adblock()
 	{
-		unsafeWindow.N.options.ads.show_popunders = false;
-		unsafeWindow.N.popunder = null;
-		unsafeWindow.N.advertising = null;
+		$('.advertisement').remove();
+		$('body > script + div[style]:hidden:eq(-1)').remove();
+
+		try
+		{
+			if (unsafeWindow.N)
+			{
+				unsafeWindow.N.popunder = null;
+				unsafeWindow.N.advertising = null;
+
+				unsafeWindow.N.options.ads.show_popunders = false;
+			}
+		}
+		catch (e)
+		{
+			console.error(e);
+		}
 	},
 };
