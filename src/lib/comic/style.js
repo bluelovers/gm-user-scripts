@@ -16,6 +16,8 @@ module.exports = {
 
 		'min-width': 'initial',
 		'min-height': 'initial',
+
+		'border-spacing': 0,
 	},
 
 	photo_area: {
@@ -23,6 +25,11 @@ module.exports = {
 		margin: 'auto',
 		border: '0px none #fff',
 		outline: 0,
+		'border-spacing': 0,
+	},
+
+	overflow_hidden: {
+		'overflow-x': 'hidden',
 	},
 
 	body: {
