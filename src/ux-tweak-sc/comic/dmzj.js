@@ -9,6 +9,7 @@ module.exports = {
 	metadata: {
 		match: [
 			'http*://*.dmzj.com/*',
+			'https://i.dmzj.com/*',
 		],
 		exclude: [],
 	},
@@ -175,6 +176,35 @@ module.exports = {
 				})
 			;
 		}
+		else if (_url_obj.host.match(/i\.dmzj\.com/))
+		{
+
+			$(window)
+				.on('load.q', function ()
+				{
+					$('#my_subscribe_id a')
+						.not('[data-done]')
+						.attr('data-done', true)
+						.attr('href', function (i, old)
+						{
+							return old.replace('xs.dmzj.com', 'q.dmzj.com');
+						})
+					;
+				})
+			;
+
+			setTimeout(function ()
+			{
+				$(window).triggerHandler('load.q');
+			}, 3000);
+		}
+
+		$('.mainNav a')
+			.attr('href', function (i, old)
+			{
+				return old.replace('xs.dmzj.com', 'q.dmzj.com');
+			})
+		;
 
 		let _page_select = $('#page_select');
 
