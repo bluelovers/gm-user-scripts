@@ -15,10 +15,20 @@ module.exports = {
 
 	test(_url_obj = global._url_obj)
 	{
+		let ret;
+
+		if (ret = require('root/src/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
+		{
+			return true;
+		}
+		//console.debug(777, ret);
+
+		/*
 		if (_url_obj.host.match(/3dmgame\.com/))
 		{
 			return true;
 		}
+		*/
 
 		return false;
 	},
