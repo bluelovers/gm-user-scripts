@@ -221,6 +221,7 @@ module.exports = {
 			;
 
 			const debounce = require('throttle-debounce/debounce');
+			const throttle = require('throttle-debounce/throttle');
 
 			$(window)
 				.on('load', function ()
@@ -267,6 +268,10 @@ module.exports = {
 						$(window).scrollTo(_to.eq(-1));
 					}, 100);
 				})
+				.on('scroll', throttle(1000, function (event)
+				{
+					$(window).triggerHandler('resize.once');
+				}))
 				.on('scroll', debounce(1000, function (event)
 				{
 					$(window).triggerHandler('resize.once');
