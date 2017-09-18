@@ -6,6 +6,8 @@
 
 module.exports = {
 
+	disable: true,
+
 	metadata: {
 		match: [
 			'http*://forum-*.guildwars2.com/forum/*',
