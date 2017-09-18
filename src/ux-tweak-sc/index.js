@@ -42,6 +42,7 @@ module.exports.list = [
 	"acg/qoo-app.js",
 	"acg/guildwars2/wiki.js",
 	"acg/guildwars2/forum.js",
+	"acg/guildwars2/forum.2017.js",
 	"acg/getchu.js",
 	"acg/gamme.js",
 	"acg/gamer.com.tw.js",
@@ -104,6 +105,7 @@ module.exports._lib = () =>
 	require('./acg/qoo-app.js');
 	require('./acg/guildwars2/wiki.js');
 	require('./acg/guildwars2/forum.js');
+	require('./acg/guildwars2/forum.2017.js');
 	require('./acg/getchu.js');
 	require('./acg/gamme.js');
 	require('./acg/gamer.com.tw.js');
@@ -179,6 +181,7 @@ module.exports.metadata.include = [
 	"http*://*.qoo-app.com/*",
 	"http*://wiki.guildwars2.com/*",
 	"http*://forum-*.guildwars2.com/forum/*",
+	"http*://*-forum.guildwars2.com/*",
 	"http*://*.getchu.com/*",
 	"http*://news.gamme.com.tw/*",
 	"http*://www.gamer.com.tw/*",
