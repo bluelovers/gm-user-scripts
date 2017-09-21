@@ -32,6 +32,7 @@ module.exports = {
 		_uf_dom_filter_link([
 			'.works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a',
 			'.post a',
+			'.column-search-result a',
 		].join(','))
 			.prop('target', '_blank')
 		;
@@ -88,6 +89,18 @@ module.exports = {
 			$.scrollTo($('#wrapper'));
 
 			module.exports.adblock(_url_obj);
+
+			const debounce = require('throttle-debounce/debounce');
+			const throttle = require('throttle-debounce/throttle');
+
+			$('.column-search-result').on('DOMNodeInserted', throttle(300, function ()
+			{
+				_uf_dom_filter_link([
+					'.column-search-result a',
+				].join(','))
+					.prop('target', '_blank')
+				;
+			}));
 
 			$(document).on('click mousedown', function (event)
 			{
@@ -301,6 +314,8 @@ module.exports = {
 		{
 			//$('.popular-introduction:has(.require-premium), .ad-printservice').remove();
 			//$('.column-search-result .image-item[style]').height('inherit');
+
+			$('.popular-introduction-overlay').hide();
 		}
 	},
 };
