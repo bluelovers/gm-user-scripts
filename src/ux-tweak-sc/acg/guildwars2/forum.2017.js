@@ -30,7 +30,7 @@ module.exports = {
 	{
 		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		_uf_dom_filter_link([
-			'.Item a.Title',
+			'.Item a.Title, .DataList .Title a',
 		].join())
 			.prop('target', '_blank')
 		;
@@ -39,7 +39,32 @@ module.exports = {
 
 		let realname = $('.HeaderWrap .Username').text().trim();
 
+		require('root/src/lib/greasemonkey')
+			.GM_addStyle([
+				'.HeaderTopRight { background-color: #0006; }',
+				'.HeaderTopRight:hover { background-color: #0009; }',
+			].join(''))
+		;
+
 		$(window)
+			.on('resize', function ()
+			{
+				let h = $('.HeaderTopRight');
+
+				if (h.length)
+				{
+					console.log($('.HeaderTop').position(), $('.HeaderTop').offset());
+
+					h
+						.css('top', $('.HeaderTop').offset().top)
+						.css('left', $('.HeaderTop').offset().left + $('.HeaderTop').width() - h.width())
+						.css({
+							'position': 'fixed',
+							'z-index': 1000,
+						})
+					;
+				}
+			})
 			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
@@ -73,6 +98,11 @@ module.exports = {
 						break;
 				}
 			}))
+			.on('load', function ()
+			{
+				$(window).triggerHandler('resize');
+			})
+			.triggerHandler('resize')
 		;
 
 		if (_url_obj.fragment)
