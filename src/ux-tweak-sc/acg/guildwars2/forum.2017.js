@@ -28,6 +28,8 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
+		const _uf_done = require('root/src/lib/event.done');
+
 		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		_uf_dom_filter_link([
 			'.Item a.Title, .DataList .Title a',
@@ -44,6 +46,15 @@ module.exports = {
 				'.HeaderTopRight { background-color: #0006; }',
 				'.HeaderTopRight:hover { background-color: #0009; }',
 			].join(''))
+		;
+
+		$('.MeMenu')
+			.on('click', '.PopList.Activities .Item a', function (event)
+			{
+				_uf_done(event);
+
+				window.open(this.href, '_blank');
+			})
 		;
 
 		$(window)
@@ -146,5 +157,27 @@ function ref_url(_url_obj)
 			return decodeURIComponent(url);
 		})
 		.prop('target', '_blank')
+	;
+
+	const _uf_done = require('root/src/lib/event.done');
+
+	$('a[href*="/home/leaving?target="]', '.Message')
+		.attr('href', function (i, old)
+		{
+			let s = '/home/leaving?target=';
+
+			let url = old.substr(old.indexOf(s) + s.length);
+
+			//console.log(i, old, url);
+
+			return decodeURIComponent(url);
+		})
+		.prop('target', '_blank')
+		.on('click', function (event)
+		{
+			_uf_done(event);
+
+			window.open(this.href, '_blank');
+		})
 	;
 }
