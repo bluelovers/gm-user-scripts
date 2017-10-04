@@ -80,10 +80,27 @@ module.exports = {
 		}
 		else if (_url_obj.path.match(/search\.php/))
 		{
-			if ($('.column-header, .column-label')
-					.find('.tabs li:eq(0) a.current').length && $('.column-search-result ._no-item:visible').length)
+			if ($('.column-header, .column-label').find('.tabs li:eq(0) a.current').length)
 			{
-				location.href = $('.column-header, .column-label').find('.tabs a[href*="search_user"]').prop('href');
+				let fn = function ()
+				{
+					if ($('.column-search-result ._no-item:visible, #js-react-search-mid:visible > ._no-item:visible').length)
+					{
+						location.href = $('.column-header, .column-label')
+							.find('.tabs a[href*="search_user"]')
+							.prop('href')
+						;
+
+						return true;
+					}
+				};
+
+				if (!fn())
+				{
+					$('#js-react-search-mid')
+						.on('DOMNodeInserted', fn)
+					;
+				}
 			}
 
 			$.scrollTo($('#wrapper'));
