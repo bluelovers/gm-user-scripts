@@ -148,6 +148,10 @@ module.exports = {
 
 		try
 		{
+			require('root/src/lib/dom/disable_nocontextmenu')
+				._uf_disable_nocontextmenu2(1)
+			;
+
 			if (unsafeWindow.N)
 			{
 				unsafeWindow.N.popunder = null;
