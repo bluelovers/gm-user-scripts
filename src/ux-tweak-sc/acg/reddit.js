@@ -98,6 +98,8 @@ module.exports = {
 				'.thing > .thumbnail, .thing > .midcol.unvoted',
 				'body > :hidden, iframe, script',
 				'link[rel="icon"], link[rel="apple-touch-icon-precomposed"]',
+				'.commentarea > form.usertext:eq(0)',
+				'.link-save-button, .save-button, .share, .hide-button, .give-gold-button, .report-button',
 			].join())
 		;
 
@@ -120,6 +122,13 @@ module.exports = {
 
 		$('#header .pagename.redditname').removeClass('pagename').prependTo('body > .content');
 		$('body > .side').appendTo('body');
+
+		$('.expando-gate__show-once')
+			.each(function ()
+			{
+				this.click();
+			})
+		;
 
 		//_dom.remove();
 
