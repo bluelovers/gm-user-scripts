@@ -45,6 +45,11 @@ module.exports = {
 			.GM_addStyle([
 				'.HeaderTopRight { background-color: #0006; }',
 				'.HeaderTopRight:hover { background-color: #0009; }',
+				'.Profile .DataListWrap .Title a { color: #2a2a2a; }',
+				'.Profile .DataListWrap .Title a:focus, .Profile .DataListWrap .Title a:hover { color: #d90000; }',
+				'.Section-DiscussionList .DiscussionsTable .DiscussionName a.Title { color: #e1261c; }',
+				'.Section-DiscussionList .DiscussionsTable .DiscussionName a.Title:visited { color: #2a2a2a; }',
+				'.Section-DiscussionList .DiscussionsTable .DiscussionName:hover a.Title { color: #e1261cb3; }',
 			].join(''))
 		;
 

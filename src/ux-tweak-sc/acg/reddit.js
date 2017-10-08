@@ -31,6 +31,14 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
+		require('root/src/lib/greasemonkey')
+			.GM_addStyle([
+				'.thing a.title { color: #0000ff; }',
+				'.thing a.title:visited { color: #2a2a2a; }',
+				'.thing:hover a.title { color: #0000ffb3; }',
+			].join(''))
+		;
+
 		let _win = $(window);
 
 		_win
