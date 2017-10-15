@@ -39,6 +39,7 @@ module.exports.list = [
 	"acg/vsgames.js",
 	"acg/tieba.baidu.js",
 	"acg/reddit.js",
+	"acg/qtfy.eu.js",
 	"acg/qoo-app.js",
 	"acg/gw2bltc.js",
 	"acg/guildwars2/wiki.js",
@@ -103,6 +104,7 @@ module.exports._lib = () =>
 	require('./acg/vsgames.js');
 	require('./acg/tieba.baidu.js');
 	require('./acg/reddit.js');
+	require('./acg/qtfy.eu.js');
 	require('./acg/qoo-app.js');
 	require('./acg/gw2bltc.js');
 	require('./acg/guildwars2/wiki.js');
@@ -180,6 +182,7 @@ module.exports.metadata.include = [
 	"http*://*.vsgames.cn/*",
 	"http*://tieba.baidu.com/*",
 	"http*://www.reddit.com/r/*",
+	"http*://qtfy.eu/*",
 	"http*://*.qoo-app.com/*",
 	"http*://www.gw2bltc.com/*",
 	"http*://wiki.guildwars2.com/*",
