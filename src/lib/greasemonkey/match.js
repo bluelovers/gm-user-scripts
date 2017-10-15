@@ -42,7 +42,7 @@ module.exports = {
 			nocase: true,
 			//noglobstar: true,
 			dot: true,
-			debug: true,
+			//debug: true,
 		}, options);
 
 		let ret = false;
