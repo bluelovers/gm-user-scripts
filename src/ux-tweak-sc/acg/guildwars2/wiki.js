@@ -29,6 +29,7 @@ module.exports = {
 
 		let _link = [
 			'a.external, .gallery .thumb a.image',
+			'.recipe-box a, .tpwrapper a, .recipe a',
 		];
 
 		if (_url_obj.path.match(/\/Game_updates\//))
