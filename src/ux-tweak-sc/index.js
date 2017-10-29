@@ -28,6 +28,7 @@ module.exports.list = [
 	"code/github.js",
 	"blog/steachs.js",
 	"blog/oneapm.js",
+	"blog/juejin.im.js",
 	"blog/jianshu.js",
 	"blog/dulfy.js",
 	"blog/blog.xuite.js",
@@ -93,6 +94,7 @@ module.exports._lib = () =>
 	require('./code/github.js');
 	require('./blog/steachs.js');
 	require('./blog/oneapm.js');
+	require('./blog/juejin.im.js');
 	require('./blog/jianshu.js');
 	require('./blog/dulfy.js');
 	require('./blog/blog.xuite.js');
@@ -170,6 +172,7 @@ module.exports.metadata.include = [
 	"http*://github.com/*",
 	"http*://steachs.com/*",
 	"http*://blog.oneapm.com/*",
+	"http*://juejin.im/*",
 	"http*://www.jianshu.com/*",
 	"http*://dulfy.net/*",
 	"http*://blog.xuite.net/*",
