@@ -43,18 +43,63 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
+		require('root/src/lib/jquery/event').makeJQueryPlugin($, window);
+
 		$('.floatThead-wrapper')
 			.on('DOMNodeInserted', debounce(300, function (event)
 			{
-				_uf_dom_filter_link([
-					'.td-name a',
-				].join())
-					.prop('target', '_blank')
+				let a = _uf_dom_filter_link([
+						'tbody .td-name > a',
+					].join())
 				;
+
+				if (a.length > 1)
+				{
+					a.prop('target', '_blank');
+				}
+				else if ($(window).eventExists('load.referer'))
+				{
+					$(window).triggerHandler('load.referer');
+				}
+				else if (a.length == 1)
+				{
+					a.prop('target', '_blank');
+				}
 			}))
 		;
 
+		$('#wrap')
+			.on('submit.search', '#form-search-tp', function ()
+			{
+				$(window).triggerHandler('form.search');
+			})
+			.on('click.search', '#form-search-tp #submit-search', function ()
+			{
+				$(window).triggerHandler('form.search');
+			})
+		;
+
 		$(window)
+			.on('form.search', function ()
+			{
+				$(window).off('load.referer');
+			})
+			.on('load.referer', debounce(500, function ()
+			{
+				if (!document.referrer || document.referrer.match(/\/item\/.+/))
+				{
+					let a = _uf_dom_filter_link([
+							'tbody .td-name > a',
+						].join())
+					;
+
+					if (a.length == 1)
+					{
+						a.prop('target', '_self');
+						location.href = a.attr('href');
+					}
+				}
+			}))
 			.on('load.ready', function ()
 			{
 				$('.floatThead-wrapper').triggerHandler('DOMNodeInserted');
