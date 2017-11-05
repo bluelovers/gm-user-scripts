@@ -13,7 +13,7 @@ module.exports.packEvent = function (fn, context = global.window, filter = ':inp
 
 		if (!d.is(filter))
 		{
-			console.log(':focus', true, d, event);
+			//console.log(':focus', true, d, event);
 
 			let ret = global.jQuery.proxy(fn, _self, event, ...argv)();
 
@@ -21,7 +21,7 @@ module.exports.packEvent = function (fn, context = global.window, filter = ':inp
 		}
 		else
 		{
-			console.log(':focus', false, d, event);
+			//console.log(':focus', false, d, event);
 		}
 	};
 };
