@@ -20,6 +20,7 @@ module.exports.list = [
 	"comic/exhentai.js",
 	"comic/dmzj.js",
 	"comic/dm5.js",
+	"comic/comico.js",
 	"comic/999comic.js",
 	"code/stackoverflow.js",
 	"code/sourceforge.js",
@@ -86,6 +87,7 @@ module.exports._lib = () =>
 	require('./comic/exhentai.js');
 	require('./comic/dmzj.js');
 	require('./comic/dm5.js');
+	require('./comic/comico.js');
 	require('./comic/999comic.js');
 	require('./code/stackoverflow.js');
 	require('./code/sourceforge.js');
@@ -162,6 +164,7 @@ module.exports.metadata.include = [
 	"http*://*.dmzj.com/*",
 	"https://i.dmzj.com/*",
 	"http*://www.dm5.com/*",
+	"http*://www.comico.com.tw/*",
 	"http*://www.999comic.com/*",
 	"http://t.168girl.com/*",
 	"http*://stackoverflow.com/*",
