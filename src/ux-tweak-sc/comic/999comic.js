@@ -188,7 +188,15 @@ module.exports = {
 		let _dom = $(_dom_list);
 
 		_dom = _dom
-			.add([].join())
+			.add([
+				'#fb-root, .fb-comments, #bdShare',
+				'.likenews',
+				'.book-similar2 img',
+				'script',
+				'.scover .bg, .cover .bg, .bcover .bg, .hcover .bg',
+			].join())
+			.add($('#bd1').prevAll().addBack())
+			.add($('.footer').nextAll().addBack())
 		;
 
 		//_dom.remove();
