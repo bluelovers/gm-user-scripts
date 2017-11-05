@@ -13,6 +13,7 @@ module.exports.list = [
 	"shop/mall.yahoo.js",
 	"novel/syosetu.js",
 	"google/drive.js",
+	"content/farm/fun01.cc.js",
 	"comic/wnacg.js",
 	"comic/nhentai.js",
 	"comic/manben.js",
@@ -80,6 +81,7 @@ module.exports._lib = () =>
 	require('./shop/mall.yahoo.js');
 	require('./novel/syosetu.js');
 	require('./google/drive.js');
+	require('./content/farm/fun01.cc.js');
 	require('./comic/wnacg.js');
 	require('./comic/nhentai.js');
 	require('./comic/manben.js');
@@ -153,6 +155,7 @@ module.exports.metadata.include = [
 	"http*://syosetu.com/*",
 	"http*://ncode.syosetu.com/*",
 	"http*://drive.google.com/*",
+	"http*://www.fun01.cc/*",
 	"http*://*.wnacg.com/*",
 	"http*://*.wnacg.org/*",
 	"http*://nhentai.net/*",
