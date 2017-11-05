@@ -312,6 +312,7 @@ module.exports = {
 				'#type_comics img, .icorss_acg, .photo_part .h2_title2, .icon_nan, .icon_gg, .icon_nv, .icon_hf, .icon_ding',
 				'#floatCode, #fixbdshare, .footer, body :hidden, script, iframe',
 				'.anim_grade img, .impunity, .week_foot, .odd_anim_title_l, .odd_anim_title_r',
+				'.middleright img',
 			].join())
 		;
 
