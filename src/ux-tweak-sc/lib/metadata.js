@@ -21,7 +21,7 @@ module.exports.metadata = `// ==UserScript==
 // @supportURL	https://github.com/bluelovers/gm-user-scripts/issues
 // @downloadURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js
 //
-// @match		<%= index.match %>
+// @include		<%= index.include %>
 //
 // @exclude		<%= index.exclude %>
 //
