@@ -278,7 +278,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 						index: {
 							include: index.metadata.include.join("\n// @include		"),
-							match: index.metadata.include.join("\n// @match		"),
+							match: meta_match(index.metadata.include).join("\n// @match		"),
 
 							exclude: index.metadata.exclude.join("\n// @exclude		"),
 						},
@@ -297,3 +297,27 @@ gulp.task("default", ["webpack"], function (callback)
 {
 
 });
+
+function meta_match(matchs)
+{
+	return matchs.reduce(function (a, b)
+	{
+		if (b.match(/^(http)\*(.+)$/))
+		{
+			a.push(`${RegExp.$1}${RegExp.$2}`);
+			a.push(`${RegExp.$1}s${RegExp.$2}`);
+		}
+		else
+		{
+			a.push(b);
+		}
+
+		return a;
+	}, [])
+}
+
+function meta_inlude_match(includes, matchs)
+{
+	let a1 = [];
+	let a2 = [];
+}
