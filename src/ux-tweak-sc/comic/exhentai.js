@@ -33,10 +33,10 @@ module.exports = {
 		if (RETURN)
 		{
 			const keycodes = require('keycodes');
-			const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-			const _uf_done = require('../../lib/event.done');
-			const comic_style = require('../../lib/comic/style');
-			const greasemonkey = require('../../lib/greasemonkey');
+			const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+			const _uf_done = require('root/src/lib/event.done');
+			const comic_style = require('root/src/lib/comic/style');
+			const greasemonkey = require('root/src/lib/greasemonkey');
 
 			_uf_dom_filter_link('.itg a, #gdt a')
 				.attr('target', '_blank')
