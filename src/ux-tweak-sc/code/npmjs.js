@@ -8,7 +8,8 @@ module.exports = {
 
 	metadata: {
 		match: [
-			'http*://www.npmjs.com/search?q=*',
+			'https://www.npmjs.com/search?q=*',
+			'https://www.npmjs.com/~*',
 		],
 		exclude: [],
 	},
@@ -25,12 +26,89 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		_uf_dom_filter_link('#readme a, .box a, a.packageName, a.authorName')
-			.prop('target', '_blank')
+		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const debounce = require('throttle-debounce/debounce');
+		const throttle = require('throttle-debounce/throttle');
+		const greasemonkey = require('root/src/lib/greasemonkey');
+
+		greasemonkey.GM_addStyle([
+			`.package-details { padding-bottom: 0.25em; }`,
+			`.package-details h3 { padding-top: 0.25em; }`,
+		].join(''));
+
+		$('.search-results')
+			.on('DOMNodeInserted.ready', throttle(300, function ()
+			{
+				$(window)
+					.triggerHandler('load')
+				;
+			}))
 		;
 
-		$(window).scrollTo('.container');
+		$(window)
+			.on('load.ready', throttle(200, function ()
+			{
+				_uf_dom_filter_link([
+					'#readme a, .box a, a.packageName, a.authorName',
+					'.collaborated-packages a, .bullet-free a, .starred-packages a',
+					'.list-of-links a',
+				].join(','))
+					.prop('target', '_blank')
+				;
+			}))
+			.on('load.page', throttle(200, function ()
+			{
+				$(window).scrollTo('.container');
+			}))
+			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			{
+				const keycodes = require('keycodes');
+				const _uf_done = require('root/src/lib/event.done');
+
+				switch (event.which)
+				{
+					case keycodes('pageup'):
+						//case keycodes('left'):
+
+						var _a = $('.container > div:eq(1) > span:eq(0) a.next');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+
+							_a[0].click();
+
+							$(window).triggerHandler('load.page');
+						}
+						else
+						{
+							//console.log(event, _a);
+						}
+
+						break;
+					case keycodes('pagedown'):
+						//case keycodes('right'):
+
+						var _a = $('.container > div:eq(1) > span:eq(-1) a.next');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+
+							_a[0].click();
+
+							$(window).triggerHandler('load.page');
+						}
+						else
+						{
+							//console.log(event, _a);
+						}
+
+						break;
+				}
+			}))
+			.triggerHandler('load')
+		;
 	},
 
 	adblock(_url_obj = global._url_obj)
@@ -43,9 +121,7 @@ module.exports = {
 		let _dom = $(_dom_list);
 
 		_dom = _dom
-			.add([
-
-			].join())
+			.add([].join())
 		;
 
 		//_dom.remove();
