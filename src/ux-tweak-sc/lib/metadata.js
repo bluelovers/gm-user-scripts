@@ -16,10 +16,12 @@ module.exports.metadata = `// ==UserScript==
 // grant		none
 //
 // @noframes
+// @encoding	utf-8
 //
 // @homepageURL	https://github.com/bluelovers/gm-user-scripts
 // @supportURL	https://github.com/bluelovers/gm-user-scripts/issues
 // @downloadURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js
+// @updateURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js
 //
 // @include		<%= index.include %>
 //
