@@ -25,12 +25,12 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		_uf_dom_filter_link('#Foot-Photo a, #Foot-Photo1 a, #openlist')
 			.prop('target', '_blank')
 		;
 
-		const greasemonkey = require('../../lib/greasemonkey');
+		const greasemonkey = require('root/src/lib/greasemonkey');
 		greasemonkey.GM_addStyle([
 			'.entry em a { color: initial; }',
 			'.entry .photovia a { color: blue; }',
