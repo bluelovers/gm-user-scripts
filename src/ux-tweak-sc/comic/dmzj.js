@@ -26,15 +26,15 @@ module.exports = {
 
 	main()
 	{
-		const _uf_done = require('../../lib/event.done');
+		const _uf_done = require('root/src/lib/event.done');
 
-		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
-		_uf_dom_filter_link('.cartoon_online_border a, #type_comics a')
+		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		_uf_dom_filter_link('.cartoon_online_border a, #type_comics a, .anim-main_list a')
 			.prop('target', '_blank')
 		;
 
-		const comic_style = require('../../lib/comic/style');
-		const greasemonkey = require('../../lib/greasemonkey');
+		const comic_style = require('root/src/lib/comic/style');
+		const greasemonkey = require('root/src/lib/greasemonkey');
 
 		module.exports.adblock();
 
@@ -43,7 +43,7 @@ module.exports = {
 		// http://www.dmzj.com/info/shenqilishangpian.html
 		if ($('#center_box, .comic_wraCon').length)
 		{
-			require('../../lib/dom/disable_nocontextmenu')
+			require('root/src/lib/dom/disable_nocontextmenu')
 				._uf_disable_nocontextmenu2(2)
 			;
 
@@ -62,7 +62,7 @@ module.exports = {
 			$(window)
 				.on('resize', function ()
 				{
-					const _uf_fixsize2 = require('../../lib/dom/img/size')._uf_fixsize2;
+					const _uf_fixsize2 = require('root/src/lib/dom/img/size')._uf_fixsize2;
 
 					let _this = _uf_fixsize2(_img, window, 1, {
 						width: 'auto',
@@ -109,7 +109,7 @@ module.exports = {
 				.triggerHandler('resize')
 			;
 
-			const waitUntil = require('../../lib/promise/wait').jquery;
+			const waitUntil = require('root/src/lib/promise/wait').jquery;
 
 			function _fn_img()
 			{
@@ -199,7 +199,7 @@ module.exports = {
 			}, 3000);
 		}
 
-		$('.mainNav a')
+		$('.mainNav a, .about-info a')
 			.attr('href', function (i, old)
 			{
 				return old.replace('xs.dmzj.com', 'q.dmzj.com');
@@ -209,7 +209,7 @@ module.exports = {
 		let _page_select = $('#page_select');
 
 		$(window)
-			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
 
@@ -299,7 +299,7 @@ module.exports = {
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		const greasemonkey = require('../../lib/greasemonkey');
+		const greasemonkey = require('root/src/lib/greasemonkey');
 
 		let _dom = $(_dom_list);
 
