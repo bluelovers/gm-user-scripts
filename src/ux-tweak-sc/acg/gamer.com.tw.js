@@ -43,10 +43,10 @@ module.exports = {
 			return;
 		}
 
-		const _uf_done = require('../../lib/event.done');
+		const _uf_done = require('root/src/lib/event.done');
 		const keycodes = require('keycodes');
 
-		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		let _a = _uf_dom_filter_link([
 				'.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a, .ACG-mster_box4 a',
 				'.newanime a, a.animelook, a.newanime__content',
@@ -56,8 +56,8 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
-		const comic_style = require('../../lib/comic/style');
-		const greasemonkey = require('../../lib/greasemonkey');
+		const comic_style = require('root/src/lib/comic/style');
+		const greasemonkey = require('root/src/lib/greasemonkey');
 
 		module.exports.adblock(_url_obj);
 
@@ -78,7 +78,7 @@ module.exports = {
 			//				.css(comic_style.bg_dark)
 			;
 
-			const waitUntil = require('../../lib/promise/wait').jquery;
+			const waitUntil = require('root/src/lib/promise/wait').jquery;
 
 			$(window)
 				.on('load.animeVideo', function ()
@@ -234,7 +234,7 @@ module.exports = {
 			})
 		;
 
-		const packEvent = require('../../lib/jquery/event/hotkey').packEvent;
+		const packEvent = require('root/src/lib/jquery/event/hotkey').packEvent;
 
 		console.log(777, packEvent);
 
@@ -283,7 +283,7 @@ module.exports = {
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		const greasemonkey = require('../../lib/greasemonkey');
+		const greasemonkey = require('root/src/lib/greasemonkey');
 
 		let _dom = $(_dom_list);
 

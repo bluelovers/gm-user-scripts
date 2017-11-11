@@ -31,7 +31,7 @@ module.exports = {
 			return;
 		}
 
-		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		_uf_dom_filter_link([
 			'#srp_sl_result #srp_result_list .item a, #ypsmyeco .listtable a',
 			'#ypswlicon .bd a, #ypswlicon .watchlist a, .ypsmodule .listtable a',

@@ -25,10 +25,10 @@ module.exports = {
 
 	main: () =>
 	{
-		const _uf_done = require('../../lib/event.done');
-		require('../../lib/func/debounce');
+		const _uf_done = require('root/src/lib/event.done');
+		require('root/src/lib/func/debounce');
 
-		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		_uf_dom_filter_link([
 			'.works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a',
 			'.post a',
@@ -37,7 +37,7 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
-		const greasemonkey = require('../../lib/greasemonkey');
+		const greasemonkey = require('root/src/lib/greasemonkey');
 
 		$(window).scrollTo($()
 			.push('.layout-body')
@@ -267,7 +267,7 @@ module.exports = {
 		}
 
 		$(window)
-			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
 				{

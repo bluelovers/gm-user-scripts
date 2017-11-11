@@ -36,7 +36,7 @@ module.exports = {
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		const greasemonkey = require('../../lib/greasemonkey');
+		const greasemonkey = require('root/src/lib/greasemonkey');
 
 		let _dom = $(_dom_list);
 

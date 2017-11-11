@@ -27,12 +27,12 @@ module.exports = {
 
 	main()
 	{
-		const greasemonkey = require('../../lib/greasemonkey');
-		const _uf_done = require('../../lib/event.done');
+		const greasemonkey = require('root/src/lib/greasemonkey');
+		const _uf_done = require('root/src/lib/event.done');
 		let jquery_stylesheet = require('jquery-stylesheet');
 		jquery_stylesheet($);
 
-		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		_uf_dom_filter_link('.weekly_list_part a')
 			.prop('target', '_blank')
 			.off('click.open')
@@ -370,8 +370,8 @@ function team_id_list(data)
 
 function jmd_color(data)
 {
-	const _colors = require('../../lib/color/tag');
-	require('../../lib/jquery/jquery.color').makeJQueryPlugin($, window);
+	const _colors = require('root/src/lib/color/tag');
+	require('root/src/lib/jquery/jquery.color').makeJQueryPlugin($, window);
 
 	let ret_style_css = '';
 

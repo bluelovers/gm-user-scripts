@@ -31,7 +31,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_fixsize2 = require('../../lib/dom/img/size')._uf_fixsize2;
+		const _uf_fixsize2 = require('root/src/lib/dom/img/size')._uf_fixsize2;
 
 		let _i = $('ignore_js_op img[zoomfile], ignore_js_op img[file]', '.t_f, .t_fsz')
 			.not('[data-done]')
