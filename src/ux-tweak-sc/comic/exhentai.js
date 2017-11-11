@@ -83,7 +83,7 @@ module.exports = {
 				$(window)
 					.on('resize', function ()
 					{
-						const _uf_fixsize2 = require('../../lib/dom/img/size')._uf_fixsize2;
+						const _uf_fixsize2 = require('root/src/lib/dom/img/size')._uf_fixsize2;
 
 						_img = $('#img');
 
@@ -119,7 +119,7 @@ module.exports = {
 					{
 						_fn_img();
 					})
-					.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+					.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 					{
 						switch (event.which)
 						{
@@ -245,7 +245,7 @@ module.exports = {
 			}
 
 			$(window)
-				.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+				.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					let _a = $('.ptt td > a[onclick]');
 
