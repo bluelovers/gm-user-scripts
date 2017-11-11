@@ -26,7 +26,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('../../lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		_uf_dom_filter_link('.usertext-body a, .md-container a, .thing a, #mail, .message-count')
 			.prop('target', '_blank')
 		;
@@ -42,10 +42,10 @@ module.exports = {
 		let _win = $(window);
 
 		_win
-			.on('keydown.page', require('../../lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
-				const _uf_done = require('../../lib/event.done');
+				const _uf_done = require('root/src/lib/event.done');
 
 				switch (event.which)
 				{
@@ -93,7 +93,7 @@ module.exports = {
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		const greasemonkey = require('../../lib/greasemonkey');
+		const greasemonkey = require('root/src/lib/greasemonkey');
 
 		let _dom = $(_dom_list);
 
