@@ -12,6 +12,7 @@ module.exports = {
 			'http*://tw.buy.yahoo.com/bestbuy/*',
 			'http*://tw.buy.yahoo.com/activity/*',
 			'https://tw.search.buy.yahoo.com/search/shopping/*',
+			'https://twpay.buy.yahoo.com/checkout/preview*',
 		],
 		exclude: [],
 	},
@@ -28,26 +29,33 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
+		if (adult_chk())
+		{
+			return;
+		}
+
 		const keycodes = require('keycodes');
 		const _uf_done = require('root/src/lib/event.done');
 		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const debounce = require('throttle-debounce/debounce');
+		const throttle = require('throttle-debounce/throttle');
 
 		$('#srp-pjax')
-			.on('DOMNodeInserted', '#srp-pjax-content', function ()
+			.on('DOMNodeInserted', '#srp-pjax-content', debounce(200, function ()
 			{
 				$(window).triggerHandler('load');
-			})
+			}))
 		;
 
 		$('.orderbox')
-			.on('DOMNodeInserted', '#srp-pjax-content', function ()
+			.on('DOMNodeInserted', '#srp-pjax-content', debounce(200, function ()
 			{
 				$(window).triggerHandler('load');
-			})
+			}))
 		;
 
 		$(window)
-			.on('load.ready', function ()
+			.on('load.ready', debounce(500, function ()
 			{
 				_uf_dom_filter_link([
 					'#sr a, #cl-bestbuypd a, #bestdeal-bound, #eventKV_wrap a, .eventKV_wrap a',
@@ -60,16 +68,38 @@ module.exports = {
 
 					'#auction_bf .bd a',
 
-					'#srp_result_list .item a'
+					'#srp_result_list .item a',
+					'#cl-vvrecmd .page-item a',
+
+					'.header .link',
+
+					'#shopcart a',
+					'#myaccount a',
+
+					'a[class*="OrderItem__item"]',
+
 				].join(','))
 					.prop('target', '_blank')
 					.attr('data-done', true)
 					.off('click.open')
 					.on('click.open', function (event)
 					{
-						window.open(this.href, '_blank');
+						window.open($(this).attr('data-href') || this.href, '_blank');
 
 						return _uf_done(event);
+					})
+				;
+
+				_uf_dom_filter_link([
+					'#srp_result_list .item a',
+					'#cl-vvrecmd .page-item a',
+				].join(','))
+					.attr('data-href', function ()
+					{
+						let href = $(this).attr('href');
+						$(this).attr('href', 'javascript:void(0)');
+
+						return href;
 					})
 				;
 
@@ -131,6 +161,11 @@ module.exports = {
 				$('#myaccount > a:has(> .username)')
 					.prop('href', 'https://tw.buy.yahoo.com/myaccount/orderlist?hpp=S2')
 				;
+			}))
+			.on('load.search', function ()
+			{
+				require('root/src/lib/dom/disable_nocontextmenu')
+					//._uf_disable_nocontextmenu2(1, '#srp_result_list .item, #srp_result_list .item *');
 			})
 			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 			{
@@ -217,4 +252,16 @@ function problem(id, problemtype = 1)
 	;
 
 	return area;
+}
+
+function adult_chk()
+{
+	let _a = $('#cl-restriction > .action > form .next:submit');
+
+	if (_a.length)
+	{
+		_a[0].click();
+
+		return true;
+	}
 }
