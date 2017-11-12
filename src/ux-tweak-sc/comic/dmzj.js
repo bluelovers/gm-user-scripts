@@ -29,7 +29,10 @@ module.exports = {
 		const _uf_done = require('root/src/lib/event.done');
 
 		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
-		_uf_dom_filter_link('.cartoon_online_border a, #type_comics a, .anim-main_list a')
+		_uf_dom_filter_link([
+			'.cartoon_online_border a, #type_comics a, .anim-main_list a',
+			'#author_comics a',
+		].join(','))
 			.prop('target', '_blank')
 		;
 
