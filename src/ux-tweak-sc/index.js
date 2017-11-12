@@ -8,9 +8,9 @@ module.exports.list = [
 	"torrent/dmhy.js",
 	"social/weibo.js",
 	"social/facebook.js",
-	"shop/yahoo.js",
+	"shop/yahoo/mall.js",
+	"shop/yahoo/buy.js",
 	"shop/pchome.js",
-	"shop/mall.yahoo.js",
 	"novel/syosetu.js",
 	"google/drive.js",
 	"content/farm/fun01.cc.js",
@@ -76,9 +76,9 @@ module.exports._lib = () =>
 	require('./torrent/dmhy.js');
 	require('./social/weibo.js');
 	require('./social/facebook.js');
-	require('./shop/yahoo.js');
+	require('./shop/yahoo/mall.js');
+	require('./shop/yahoo/buy.js');
 	require('./shop/pchome.js');
-	require('./shop/mall.yahoo.js');
 	require('./novel/syosetu.js');
 	require('./google/drive.js');
 	require('./content/farm/fun01.cc.js');
@@ -145,13 +145,14 @@ module.exports.metadata.include = [
 	"http*://m.weibo.cn/*",
 	"http*://www.facebook.com/*",
 	"http*://www.facebook.com/saved/*",
+	"http*://tw.mall.yahoo.com/*",
+	"http*://tw.user.mall.yahoo.com/my/*",
 	"http*://tw.buy.yahoo.com/*",
 	"http*://tw.buy.yahoo.com/bestbuy/*",
 	"http*://tw.buy.yahoo.com/activity/*",
 	"https://tw.search.buy.yahoo.com/search/shopping/*",
+	"https://twpay.buy.yahoo.com/checkout/preview*",
 	"http*://mall.pchome.com.tw/*",
-	"http*://tw.mall.yahoo.com/*",
-	"http*://tw.user.mall.yahoo.com/my/*",
 	"http*://syosetu.com/*",
 	"http*://ncode.syosetu.com/*",
 	"http*://drive.google.com/*",

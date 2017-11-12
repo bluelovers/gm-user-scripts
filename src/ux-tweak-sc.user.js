@@ -4,7 +4,7 @@ module.exports.id = 'ux-tweak-sc';
 module.exports.name = module.exports.id;
 
 //let jQuery = require('jquery')
-global.jQuery = this.$ = this.jQuery = jQuery.noConflict();
+global.jQuery = this.$ = this.jQuery = (jQuery || window.jQuery).noConflict();
 //global.Promise = require('bluebird');
 
 (function ($, undefined)

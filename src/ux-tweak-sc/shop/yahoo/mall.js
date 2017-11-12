@@ -35,6 +35,7 @@ module.exports = {
 		_uf_dom_filter_link([
 			'#srp_sl_result #srp_result_list .item a, #ypsmyeco .listtable a',
 			'#ypswlicon .bd a, #ypswlicon .watchlist a, .ypsmodule .listtable a',
+			'#EC-UH a',
 		].join())
 			.prop('target', '_blank')
 		;
