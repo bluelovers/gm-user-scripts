@@ -27,7 +27,7 @@ module.exports.metadata = `// ==UserScript==
 //
 // @exclude		<%= index.exclude %>
 //
-// @require		https://code.jquery.com/jquery-3.2.1.js?<%= token %>
+// require		https://code.jquery.com/jquery-3.2.1.js?<%= token %>
 // require		https://code.jquery.com/jquery-migrate-3.0.0.js?<%= token %>
 //
 // require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?<%= token %>

@@ -10,6 +10,7 @@ module.exports.list = [
 	"social/facebook.js",
 	"shop/yahoo/mall.js",
 	"shop/yahoo/buy.js",
+	"shop/post/gov/tw/pstmail.js",
 	"shop/pchome.js",
 	"novel/syosetu.js",
 	"google/drive.js",
@@ -78,6 +79,7 @@ module.exports._lib = () =>
 	require('./social/facebook.js');
 	require('./shop/yahoo/mall.js');
 	require('./shop/yahoo/buy.js');
+	require('./shop/post/gov/tw/pstmail.js');
 	require('./shop/pchome.js');
 	require('./novel/syosetu.js');
 	require('./google/drive.js');
@@ -152,6 +154,7 @@ module.exports.metadata.include = [
 	"http*://tw.buy.yahoo.com/activity/*",
 	"https://tw.search.buy.yahoo.com/search/shopping/*",
 	"https://twpay.buy.yahoo.com/checkout/preview*",
+	"http://postserv.post.gov.tw/pstmail/main_mail.html*",
 	"http*://mall.pchome.com.tw/*",
 	"http*://syosetu.com/*",
 	"http*://ncode.syosetu.com/*",

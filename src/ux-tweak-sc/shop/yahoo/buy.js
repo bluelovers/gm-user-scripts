@@ -54,6 +54,8 @@ module.exports = {
 			}))
 		;
 
+		proctip_post_gov(_url_obj);
+
 		$(window)
 			.on('load.ready', debounce(500, function ()
 			{
@@ -264,4 +266,24 @@ function adult_chk()
 
 		return true;
 	}
+}
+
+function proctip_post_gov(_url_obj = global._url_obj)
+{
+	if (!_url_obj.path.match(/orderlist/))
+	{
+		return;
+	}
+
+	$('.proctip a')
+		.each(function (i, elem)
+		{
+			let _this = $(this);
+
+			if (_this.attr('href').match(/postserv\.post\.gov\.tw\/webpost\/CSController.+(?:MAILNO=(\d+))/))
+			{
+				_this.attr('href', `http://postserv.post.gov.tw/pstmail/main_mail.html?MAILNO=${RegExp.$1}`);
+			}
+		})
+	;
 }
