@@ -166,7 +166,7 @@ module.exports = {
 			}))
 			.on('load.search', function ()
 			{
-				require('root/src/lib/dom/disable_nocontextmenu')
+				//require('root/src/lib/dom/disable_nocontextmenu')
 					//._uf_disable_nocontextmenu2(1, '#srp_result_list .item, #srp_result_list .item *');
 			})
 			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
