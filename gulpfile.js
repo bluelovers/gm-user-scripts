@@ -20,9 +20,14 @@ const globby = require('globby');
 
 const path = require('path');
 
-const sortBy = require('lodash.sortby')
+const sortBy = require('lodash.sortby');
+
+const cheerio = require('cheerio');
 
 const cwd_src = path.join(__dirname, 'src');
+
+const prettifyXml = require('prettify-xml');
+const pd = require('pretty-data').pd;
 
 //var closureCompiler = require('google-closure-compiler').gulp();
 
@@ -249,6 +254,72 @@ module.exports.current = [];
 	console.log(data);
 });
 
+gulp.task("gm_scripts:config", ["webpack"], async function (callback)
+{
+	const config_path = 'D:\\Users\\Documents\\The Project\\gm_scripts_repo\\gm_scripts\\config.xml';
+
+	let _data = await fs.readFileAsync(config_path)
+
+	const $ = cheerio.load(_data, {
+		xmlMode: true,
+		decodeEntities: false,
+	});
+
+	let ls = await globby(['*.user.js'], {
+		cwd: cwd_src,
+	})
+		.then((ls) =>
+		{
+			return ls.reduce((a, b) =>
+			{
+				let name = path.basename(b, '.user.js')
+
+				a.push(name);
+
+				return a;
+			}, []);
+		})
+	;
+
+	for (let name of ls)
+	{
+		let index = require(path.join(cwd_src, name, 'index.js'));
+
+		let script = $(`Script[basedir="${index.name}"]`);
+
+		if (!script.length)
+		{
+			continue;
+		}
+
+		script.find('Exclude, Include').remove();
+
+		for (let row of index.metadata.exclude)
+		{
+			script.append(`<Exclude>${row}</Exclude>`);
+		}
+
+		for (let row of index.metadata.include)
+		{
+			script.append(`<Include>${row}</Include>`);
+		}
+
+	}
+
+	let dump = $.html();
+
+	dump = pd.xmlmin(dump);
+
+	dump = prettifyXml(dump, {
+		indent: 1,
+		newline: '\n',
+		indentWithTab: true,
+	});
+
+	//console.log(dump);
+	await fs.writeFileAsync(config_path, dump);
+});
+
 gulp.task("webpack", ["webpack:before"], function (callback)
 {
 	const pkg = require('./package.json');
@@ -293,7 +364,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 	;
 });
 
-gulp.task("default", ["webpack"], function (callback)
+gulp.task("default", ["webpack", "gm_scripts:config"], function (callback)
 {
 
 });
