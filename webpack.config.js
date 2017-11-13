@@ -2,7 +2,7 @@
  * Created by user on 2017/7/13/013.
  */
 
-//const webpack = require('webpack');
+const webpack = require('webpack');
 const path = require('path');
 
 //const ClosureCompilerPlugin = require('webpack-closure-compiler');
@@ -52,5 +52,11 @@ module.exports = {
 //			},
 //			concurrency: 3,
 //		})
+
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery'
+		}),
+
 	],
 };
