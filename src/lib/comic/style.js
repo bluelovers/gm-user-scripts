@@ -4,6 +4,47 @@
 
 module.exports = {
 
+	toCss(css = {}, css_important = {})
+	{
+		let t = $('<div/>');
+
+		if (Array.isArray(css))
+		{
+			css.forEach(function (css)
+			{
+				t.css(css);
+			})
+		}
+		else
+		{
+			t.css(css);
+		}
+
+		let s = [];
+
+		s.push(t.attr('style'));
+
+		t.removeAttr('style');
+
+		if (Array.isArray(css_important))
+		{
+			css_important.forEach(function (css)
+			{
+				t.css(css);
+			})
+		}
+		else
+		{
+			t.css(css_important);
+		}
+
+		s.push(t.attr('style').replace(/;/g, ' !important;'));
+
+		t.remove();
+
+		return s.join(';');
+	},
+
 	photo: {
 		filter: 'contrast(115%)',
 		padding: 0,
