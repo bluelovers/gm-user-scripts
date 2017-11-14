@@ -8,18 +8,17 @@ export {
 	FileSaver,
 };
 
-export function saveCanvas(canvas: HTMLCanvasElement, filename?: string)
+export function saveBlob(blob: Blob, filename?: string): Promise<FileSaver>
 {
 	let timerid;
 	let filesaver: FileSaver;
 
 	let p = new Promise(function (resolve, reject)
-	{
-		canvas.toBlob(function (blob)
 		{
-			p.filesaver = filesaver = FileSaver.saveAs(blob, filename || canvas.download || 'download.png');
+			// @ts-ignore
+			filesaver = FileSaver.saveAs(blob, filename || blob.name);
 
-			p.timerid = timerid = setInterval(function ()
+			timerid = setInterval(function ()
 			{
 
 				if (filesaver.readyState == filesaver.DONE)
@@ -29,8 +28,7 @@ export function saveCanvas(canvas: HTMLCanvasElement, filename?: string)
 				}
 
 			}, 500);
-		});
-	})
+		})
 		.catch(err =>
 		{
 			clearInterval(timerid);
@@ -38,7 +36,32 @@ export function saveCanvas(canvas: HTMLCanvasElement, filename?: string)
 			err.filesaver = filesaver;
 			return Promise.reject(err)
 		})
-		;
+	;
+
+	p.filesaver = filesaver;
+	p.timerid = timerid;
 
 	return p;
 }
+
+export function saveCanvas(canvas: HTMLCanvasElement, filename?: string): Promise<FileSaver>
+{
+	return new Promise(function (resolve, reject)
+	{
+		canvas.toBlob(function (blob)
+		{
+			resolve(saveBlob(blob, filename || canvas.download || blob.name || 'download.png'));
+		});
+	});
+}
+
+export function saveText(data: string, filename?: string, options?): Promise<FileSaver>
+{
+	let blob = new Blob([data.toString()], Object.assign({
+		type: 'text/plain;charset=utf-8',
+	}, options));
+
+	return saveBlob(blob, filename || blob.name || 'download.txt');
+}
+
+export default exports;

@@ -24,6 +24,7 @@ module.exports.list = [
 	"comic/dm5.js",
 	"comic/comico.js",
 	"comic/comic-walker.js",
+	"comic/alphapolis.co.jp.js",
 	"comic/999comic.js",
 	"code/stackoverflow.js",
 	"code/sourceforge.js",
@@ -94,6 +95,7 @@ module.exports._lib = () =>
 	require('./comic/dm5.js');
 	require('./comic/comico.js');
 	require('./comic/comic-walker.js');
+	require('./comic/alphapolis.co.jp.js');
 	require('./comic/999comic.js');
 	require('./code/stackoverflow.js');
 	require('./code/sourceforge.js');
@@ -175,6 +177,7 @@ module.exports.metadata.include = [
 	"http*://www.dm5.com/*",
 	"http*://www.comico.com.tw/*",
 	"https://comic-walker.com/*",
+	"http*://www.alphapolis.co.jp/*",
 	"http*://www.999comic.com/*",
 	"http://t.168girl.com/*",
 	"http*://stackoverflow.com/*",

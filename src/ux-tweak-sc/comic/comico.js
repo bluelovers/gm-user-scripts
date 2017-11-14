@@ -85,7 +85,7 @@ module.exports = {
 				switch (event.which)
 				{
 					case keycodes('pageup'):
-						//case keycodes('left'):
+					case keycodes('left'):
 
 						var _a = $('.nav-episode02:eq(0) .nav-episode02__item:eq(0) a');
 
@@ -104,7 +104,7 @@ module.exports = {
 
 						break;
 					case keycodes('pagedown'):
-						//case keycodes('right'):
+					case keycodes('right'):
 
 						var _a = $('.nav-episode02:eq(0) .nav-episode02__item:eq(2) a');
 
