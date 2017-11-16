@@ -64,6 +64,7 @@ module.exports.list = [
 	"global/mediawiki.js",
 	"global/discuz.js",
 	"global/social.js",
+	"global/pagination/srp_pagination.js",
 	"global/pagination/pagination.active.js",
 	"global/pagination/page.js",
 	"global/pagination.js",
@@ -135,6 +136,7 @@ module.exports._lib = () =>
 	require('./global/mediawiki.js');
 	require('./global/discuz.js');
 	require('./global/social.js');
+	require('./global/pagination/srp_pagination.js');
 	require('./global/pagination/pagination.active.js');
 	require('./global/pagination/page.js');
 	require('./global/pagination.js');
@@ -153,6 +155,7 @@ module.exports.metadata.include = [
 	"http*://www.facebook.com/saved/*",
 	"http*://tw.mall.yahoo.com/*",
 	"http*://tw.user.mall.yahoo.com/my/*",
+	"https://tw.search.mall.yahoo.com/*",
 	"http*://tw.buy.yahoo.com/*",
 	"http*://tw.buy.yahoo.com/bestbuy/*",
 	"http*://tw.buy.yahoo.com/activity/*",
@@ -361,6 +364,7 @@ module.exports.list_script = [
 	"global/video.js",
 	"global/mediawiki.js",
 	"global/discuz.js",
+	"global/pagination/srp_pagination.js",
 	"global/pagination/pagination.active.js",
 	"global/pagination/page.js",
 	"global/pagination.js"
