@@ -35,7 +35,7 @@ module.exports = {
 		}
 
 		const keycodes = require('keycodes');
-		const _uf_done = require('root/src/lib/event.done');
+		const _uf_done = require('root/src/lib/event/done');
 		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
