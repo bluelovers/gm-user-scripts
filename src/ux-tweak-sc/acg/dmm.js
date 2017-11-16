@@ -25,7 +25,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_done = require('root/src/lib/event.done');
+		const _uf_done = require('root/src/lib/event/done');
 
 		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		_uf_dom_filter_link('.d-sect .d-item a, a[href*="rcv.ixd.dmm.com"], a[href*="netgame_s"]')
