@@ -54,7 +54,7 @@ module.exports = {
 			;
 
 			const keycodes = require('keycodes');
-			const _uf_done = require('root/src/lib/event.done');
+			const _uf_done = require('root/src/lib/event/done');
 			const comic_style = require('root/src/lib/comic/style');
 
 			let _img_selector = '#cp_image2:visible, #cp_image:visible';
