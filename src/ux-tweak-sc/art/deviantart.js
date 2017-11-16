@@ -31,7 +31,7 @@ module.exports = {
 		;
 
 		const keycodes = require('keycodes');
-		const _uf_done = require('root/src/lib/event.done');
+		const _uf_done = require('root/src/lib/event/done');
 
 		$(window)
 			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
