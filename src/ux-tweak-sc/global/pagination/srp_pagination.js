@@ -1,5 +1,5 @@
 /**
- * Created by user on 2017/7/22/022.
+ * Created by user on 2017/11/17/017.
  */
 
 'use strict';
@@ -18,7 +18,7 @@ module.exports = {
 
 	test(_url_obj = global._url_obj)
 	{
-		if ($('.pagination > .page-prev, .pagination > .page-next').length)
+		if ($('#srp_pagination').length)
 		{
 			return 2;
 		}
@@ -42,40 +42,30 @@ module.exports = {
 		_win
 			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 			{
-				const keycodes = require('keycodes');
 				const _uf_done = require('root/src/lib/event/done');
+				const keycodes = require('keycodes');
 
 				switch (event.which)
 				{
 					case keycodes('pageup'):
 					case keycodes('left'):
-
-						var _a = $('.pagination > .page-prev');
+						var _a = $('#srp_pagination .pre-page a');
 
 						if (_a.length)
 						{
 							_uf_done(event);
 							_a[0].click();
-						}
-						else
-						{
-							console.log(event, _a);
 						}
 
 						break;
 					case keycodes('pagedown'):
 					case keycodes('right'):
-
-						var _a = $('.pagination > .page-next');
+						var _a = $('#srp_pagination .next-page a');
 
 						if (_a.length)
 						{
 							_uf_done(event);
 							_a[0].click();
-						}
-						else
-						{
-							console.log(event, _a);
 						}
 
 						break;

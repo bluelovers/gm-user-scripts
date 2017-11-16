@@ -30,7 +30,7 @@ module.exports = {
 
 	main()
 	{
-		const _uf_done = require('root/src/lib/event.done');
+		const _uf_done = require('root/src/lib/event/done');
 		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 
 		const parse_url = require('root/src/lib/func/parse_url').parse_url;

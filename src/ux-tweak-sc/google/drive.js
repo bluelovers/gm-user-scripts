@@ -43,7 +43,7 @@ module.exports = {
 			.on('keydown.page', '[role="dialog"], .a-b-lc.a-b-ta-lc, .a-b-ta-Ua', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
-				const _uf_done = require('root/src/lib/event.done');
+				const _uf_done = require('root/src/lib/event/done');
 
 				switch (event.which)
 				{

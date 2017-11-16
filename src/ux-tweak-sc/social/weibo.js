@@ -33,7 +33,7 @@ module.exports = {
 		}
 
 		require('root/src/lib/jquery/onscreen');
-		const _uf_done = require('root/src/lib/event.done');
+		const _uf_done = require('root/src/lib/event/done');
 
 		//const _feed_selector = '.WB_detail, .WB_feed_detail';
 		const _feed_selector = '.WB_feed_type, .weibo-member';
