@@ -26,7 +26,7 @@ module.exports = {
 
 	main()
 	{
-		const _uf_done = require('root/src/lib/event.done');
+		const _uf_done = require('root/src/lib/event/done');
 
 		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
 		_uf_dom_filter_link([
