@@ -20,11 +20,14 @@
     "jquery": "^3.2.1",
     "jquery-stylesheet": "^0.3.7",
     "keycodes": "^0.2.5",
+    "lodash": "^4.17.4",
+    "lodash.clone": "^4.5.0",
     "lodash.sortby": "^4.7.0",
     "parse-domain": "^1.1.0",
     "prettify-xml": "^1.2.0",
     "pretty-data": "^0.40.0",
     "stonejs": "^2.3.0",
+    "stream-to-promise": "^2.2.0",
     "throttle-debounce": "^1.0.1",
     "zh2cht": "0.0.2"
   },
@@ -33,9 +36,9 @@
     "google-closure-compiler": "^20170626.0.0",
     "gulp-header": "^1.8.8",
     "gulp-util": "^3.0.8",
+    "phantomjs-prebuilt": "^2.1.14",
+    "webpack": "^3.8.1",
     "webpack-closure-compiler": "^2.1.4",
-    "webpack-stream": "^3.2.0",
-    "webpack": "^3.2.0",
-    "phantomjs-prebuilt": "^2.1.14"
+    "webpack-stream": "^3.2.0"
   }
 }
