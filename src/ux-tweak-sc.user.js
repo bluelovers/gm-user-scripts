@@ -41,6 +41,7 @@ module.exports.name = module.exports.id;
 
 function _init()
 {
+	/*
 	const parse_url = require('root/src/lib/func/parse_url').parse_url;
 
 	module.exports._url = global._url = window.location.href;
@@ -48,6 +49,9 @@ function _init()
 	global._url_obj = global._url_obj_ = parse_url(global._url);
 
 	global._url_obj._source = global._url_obj_._source = global._url;
+	*/
+
+	require('root/src/lib/core').init(module.exports, global, window, window.location.href);
 
 	let imagesLoaded = require('imagesloaded');
 	imagesLoaded.makeJQueryPlugin(jQuery);
@@ -87,7 +91,7 @@ function _init_gm()
 
 			let temp = null;
 
-			let list_script = get_list_script(index, global._url_obj);
+			let list_script = require('root/src/lib/core').get_list_script(module.exports.id, index, global._url_obj);
 
 			{
 				let a = [];
@@ -138,6 +142,7 @@ function _init_gm()
 	});
 }
 
+/*
 function get_list_script(index, _url_obj)
 {
 	let list_script = index.list_script
@@ -169,3 +174,4 @@ function get_list_script(index, _url_obj)
 
 	return list_script;
 }
+*/
