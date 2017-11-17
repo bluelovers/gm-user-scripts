@@ -35,8 +35,8 @@ module.exports = {
 		}
 
 		const keycodes = require('keycodes');
-		const _uf_done = require('root/src/lib/event/done');
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_done = require('root/lib/event/done');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
 
@@ -166,10 +166,10 @@ module.exports = {
 			}))
 			.on('load.search', function ()
 			{
-				//require('root/src/lib/dom/disable_nocontextmenu')
+				//require('root/lib/dom/disable_nocontextmenu')
 					//._uf_disable_nocontextmenu2(1, '#srp_result_list .item, #srp_result_list .item *');
 			})
-			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
 				{
