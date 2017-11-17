@@ -5,3 +5,4 @@
 /src/lib/save.js
 /src/lib/event/done.js
 /src/lib/greasemonkey/framework.js
+/src/lib/greasemonkey/uf.js
