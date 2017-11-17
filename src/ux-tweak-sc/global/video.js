@@ -53,7 +53,7 @@ module.exports = {
 
 function _uf_clearly_viedo(_url_obj = global._url_obj, mode)
 {
-	const comic_style = require('root/src/lib/comic/style');
+	const comic_style = require('root/lib/comic/style');
 
 	let _dom_return = $('<div/>');
 
