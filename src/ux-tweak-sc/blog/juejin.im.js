@@ -17,7 +17,7 @@ module.exports = {
 	{
 		let ret;
 
-		if (ret = require('root/src/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
+		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
 		{
 			return true;
 		}
@@ -35,7 +35,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
 
 		].join())
@@ -55,7 +55,7 @@ module.exports = {
 
 	adblock(_url_obj = global._url_obj)
 	{
-		require('root/src/lib/greasemonkey')
+		require('root/lib/greasemonkey')
 			.GM_addStyle([
 				'.container.entry-view .show-full { display: none !important; }',
 				'.container.entry-view .show-full-block { display: none !important; }',
