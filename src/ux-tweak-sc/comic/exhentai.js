@@ -33,10 +33,10 @@ module.exports = {
 		if (RETURN)
 		{
 			const keycodes = require('keycodes');
-			const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
-			const _uf_done = require('root/src/lib/event/done');
-			const comic_style = require('root/src/lib/comic/style');
-			const greasemonkey = require('root/src/lib/greasemonkey');
+			const _uf_dom_filter_link = require('root/lib/dom/filter/link');
+			const _uf_done = require('root/lib/event/done');
+			const comic_style = require('root/lib/comic/style');
+			const greasemonkey = require('root/lib/greasemonkey');
 
 			_uf_dom_filter_link('.itg a, #gdt a')
 				.attr('target', '_blank')
@@ -83,7 +83,7 @@ module.exports = {
 				$(window)
 					.on('resize', function ()
 					{
-						const _uf_fixsize2 = require('root/src/lib/dom/img/size')._uf_fixsize2;
+						const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
 
 						_img = $('#img');
 
@@ -119,7 +119,7 @@ module.exports = {
 					{
 						_fn_img();
 					})
-					.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+					.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 					{
 						switch (event.which)
 						{
@@ -245,7 +245,7 @@ module.exports = {
 			}
 
 			$(window)
-				.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					let _a = $('.ptt td > a[onclick]');
 
