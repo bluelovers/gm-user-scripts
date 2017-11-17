@@ -17,7 +17,7 @@ module.exports = {
 	{
 		let ret;
 
-		if (ret = require('root/src/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
+		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
 		{
 			return true;
 		}
@@ -35,12 +35,12 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([].join())
 			.prop('target', '_blank')
 		;
 
-		const _uf_disable_nocontextmenu = require('root/src/lib/dom/disable_nocontextmenu')
+		const _uf_disable_nocontextmenu = require('root/lib/dom/disable_nocontextmenu')
 			._uf_disable_nocontextmenu2(2, '.postDetail')
 		;
 	},
@@ -63,7 +63,7 @@ module.exports = {
 			.add($('.postDetail #postEnd').nextAll())
 		;
 
-		require('root/src/lib/greasemonkey')
+		require('root/lib/greasemonkey')
 			.GM_addStyle([
 			`body { background: none; }`,
 		].join(''))
