@@ -6,7 +6,7 @@
 
 module.exports = {
 
-	priority: 0,
+	priority: -1,
 
 	metadata: {
 		match: [
@@ -20,7 +20,7 @@ module.exports = {
 
 	test(_url_obj)
 	{
-		return true;
+		return false;
 	},
 
 	main(_url_obj)
