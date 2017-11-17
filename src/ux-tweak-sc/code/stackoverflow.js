@@ -26,16 +26,16 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('.post-text a, .question-hyperlink')
 			.prop('target', '_blank')
 		;
 
 		$(window)
-			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
-				const _uf_done = require('root/src/lib/event/done');
+				const _uf_done = require('root/lib/event/done');
 
 				//console.log(event, event.which);
 
