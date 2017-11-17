@@ -25,7 +25,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('')
 			.prop('target', '_blank')
 		;
@@ -48,7 +48,7 @@ module.exports = {
 			].join())
 		;
 
-		require('root/src/lib/greasemonkey')
+		require('root/lib/greasemonkey')
 			.GM_addStyle([
 				'#content.with-header-fix { padding-top: 0; }',
 			].join(''))
