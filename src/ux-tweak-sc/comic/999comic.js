@@ -18,7 +18,7 @@ module.exports = {
 	{
 		let ret;
 
-		if (ret = require('root/src/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
+		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
 		{
 			return true;
 		}
@@ -34,14 +34,14 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([].join())
 			.prop('target', '_blank')
 		;
 
 		if ($('#manga').length)
 		{
-			const comic_style = require('root/src/lib/comic/style');
+			const comic_style = require('root/lib/comic/style');
 			const debounce = require('throttle-debounce/debounce');
 			const throttle = require('throttle-debounce/throttle');
 
@@ -78,7 +78,7 @@ module.exports = {
 						.css(comic_style.photo)
 					;
 
-					require('root/src/lib/dom/img/size')
+					require('root/lib/dom/img/size')
 						._uf_fixsize2(_img, window, 1)
 					;
 				})
@@ -115,7 +115,7 @@ module.exports = {
 				})
 				.on('load.nocontextmenu', () =>
 				{
-					require('root/src/lib/dom/disable_nocontextmenu')
+					require('root/lib/dom/disable_nocontextmenu')
 						._uf_disable_nocontextmenu2(2,
 							_img_selector + ', #tbCenter, .cf'
 						)
@@ -125,10 +125,10 @@ module.exports = {
 			;
 
 			$(window)
-				.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					const keycodes = require('keycodes');
-					const _uf_done = require('root/src/lib/event/done');
+					const _uf_done = require('root/lib/event/done');
 
 					switch (event.which)
 					{
