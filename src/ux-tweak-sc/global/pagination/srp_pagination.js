@@ -28,7 +28,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		require('root/src/lib/jquery/event').makeJQueryPlugin($, window);
+		require('root/lib/jquery/event').makeJQueryPlugin($, window);
 
 		let _win = $(window);
 
@@ -40,9 +40,9 @@ module.exports = {
 		}
 
 		_win
-			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
-				const _uf_done = require('root/src/lib/event/done');
+				const _uf_done = require('root/lib/event/done');
 				const keycodes = require('keycodes');
 
 				switch (event.which)
