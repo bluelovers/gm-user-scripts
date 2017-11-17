@@ -36,7 +36,7 @@ export function registerMenuCommand(options: string | IRegisterMenuCommandOption
 
 	const label = options.label || `[${options.name || options.id}] ${options.key}`;
 
-	GM_registerMenuCommand(label, function ()
+	GM_registerMenuCommand(label, async function ()
 	{
 		console.time(label);
 		console.group(label);
@@ -45,7 +45,7 @@ export function registerMenuCommand(options: string | IRegisterMenuCommandOption
 
 		try
 		{
-			ret = callback(options as IRegisterMenuCommandOptions, ...argv);
+			ret = await callback(options as IRegisterMenuCommandOptions, ...argv);
 
 			if (ret && ret !== true)
 			{

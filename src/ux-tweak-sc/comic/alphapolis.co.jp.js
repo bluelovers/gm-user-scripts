@@ -17,7 +17,7 @@ module.exports = {
 	{
 		let ret;
 
-		if (ret = require('root/src/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
+		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
 		{
 			return true;
 		}
@@ -37,13 +37,13 @@ module.exports = {
 	{
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
-		const greasemonkey = require('root/src/lib/greasemonkey/uf');
+		const greasemonkey = require('root/lib/greasemonkey/uf');
 
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
 		if ($('body.officialmangas').length)
 		{
-			const comic_style = require('root/src/lib/comic/style');
+			const comic_style = require('root/lib/comic/style');
 
 			{
 				let css = comic_style.toCss(comic_style.body, comic_style.bg_dark);
@@ -63,17 +63,17 @@ module.exports = {
 				;
 			}
 
-			require('root/src/lib/dom/disable_nocontextmenu')
+			require('root/lib/dom/disable_nocontextmenu')
 				._uf_disable_nocontextmenu2(1, 'body, canvas.comic, .book, .book *')
 			;
 
-			require('root/src/lib/jquery/event/key').makeJQueryPlugin($);
+			require('root/lib/jquery/event/key').makeJQueryPlugin($);
 
 			$(window)
-				.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					const keycodes = require('keycodes');
-					const _uf_done = require('root/src/lib/event/done');
+					const _uf_done = require('root/lib/event/done');
 
 					switch (event.which)
 					{

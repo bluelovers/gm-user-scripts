@@ -17,7 +17,7 @@ module.exports = {
 	{
 		let ret;
 
-		if (ret = require('root/src/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
+		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
 		{
 			return true;
 		}
@@ -38,7 +38,7 @@ module.exports = {
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
 
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
 			'#main-layout .class-bar a',
 		].join())

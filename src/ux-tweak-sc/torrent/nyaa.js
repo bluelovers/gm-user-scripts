@@ -31,7 +31,7 @@ module.exports = {
 
 		if (RETURN)
 		{
-			const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+			const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 			_uf_dom_filter_link('.torrent-list tr > td[colspan="2"] a, #torrent-description a')
 				.attr('target', '_blank')
 			;

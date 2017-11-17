@@ -26,23 +26,23 @@ module.exports = {
 	main()
 	{
 		const keycodes = require('keycodes');
-		const _uf_done = require('root/src/lib/event/done');
-		const comic_style = require('root/src/lib/comic/style');
-		const greasemonkey = require('root/src/lib/greasemonkey');
+		const _uf_done = require('root/lib/event/done');
+		const comic_style = require('root/lib/comic/style');
+		const greasemonkey = require('root/lib/greasemonkey');
 
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('#content .gallery a')
 			.attr('target', '_blank')
 		;
 
-		const _uf_fixsize2 = require('root/src/lib/dom/img/size')._uf_fixsize2;
+		const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
 
 		$(window)
 			.on('load.adblock', function (event)
 			{
 				module.exports.adblock();
 
-				require('root/src/lib/dom/disable_nocontextmenu')
+				require('root/lib/dom/disable_nocontextmenu')
 					._uf_disable_nocontextmenu2(2, '#content, #content *, #bigcontainer, #thumbnail-container, .thumb-container, .gallerythumb')
 				;
 			})
@@ -110,7 +110,7 @@ module.exports = {
 		}
 
 		$(window)
-			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
 				{
@@ -148,7 +148,7 @@ module.exports = {
 
 		try
 		{
-			require('root/src/lib/dom/disable_nocontextmenu')
+			require('root/lib/dom/disable_nocontextmenu')
 				._uf_disable_nocontextmenu2(1)
 			;
 

@@ -26,10 +26,10 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
-		const greasemonkey = require('root/src/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey');
 
 		greasemonkey.GM_addStyle([
 			`.package-details { padding-bottom: 0.25em; }`,
@@ -60,10 +60,10 @@ module.exports = {
 			{
 				$(window).scrollTo('.container');
 			}))
-			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
-				const _uf_done = require('root/src/lib/event/done');
+				const _uf_done = require('root/lib/event/done');
 
 				switch (event.which)
 				{

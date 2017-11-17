@@ -1,8 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 *.d.ts
-/src/lib/func/parse_url.js
-/src/lib/core/index.js
-/src/lib/save.js
-/src/lib/event/done.js
-/src/lib/greasemonkey/framework.js
-/src/lib/greasemonkey/uf.js
+/lib/func/parse_url.js
+/lib/core/index.js
+/lib/save.js
+/lib/event/done.js
+/lib/greasemonkey/framework.js
+/lib/greasemonkey/uf.js
+/src/dmm-plus-sc/lib/metadata.js
+/src/dmm-plus-sc/index.user.js

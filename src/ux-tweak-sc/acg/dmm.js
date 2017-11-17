@@ -25,9 +25,9 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_done = require('root/src/lib/event/done');
+		const _uf_done = require('root/lib/event/done');
 
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('.d-sect .d-item a, a[href*="rcv.ixd.dmm.com"], a[href*="netgame_s"]')
 			.prop('target', '_blank')
 			.on('click', function (event)
@@ -37,9 +37,9 @@ module.exports = {
 			})
 		;
 
-		const comic_style = require('root/src/lib/comic/style');
+		const comic_style = require('root/lib/comic/style');
 
-		const greasemonkey = require('root/src/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey');
 		greasemonkey.GM_addStyle([
 			`html, body, #main-ntg, iframe, .dmm-ntgnavi { margin: auto; padding: 0; min-width: auto; min-height: auto; }`,
 		].join(''));

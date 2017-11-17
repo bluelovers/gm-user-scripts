@@ -29,11 +29,16 @@ const cwd_src = path.join(__dirname, 'src');
 const prettifyXml = require('prettify-xml');
 const pd = require('pretty-data').pd;
 
+const streamToPromise = require('stream-to-promise');
+const clone = require('lodash.clone');
+const lodash = require('lodash');
+
 //var closureCompiler = require('google-closure-compiler').gulp();
 
 gulp.task("webpack:before", async function (callback)
 {
 
+	/*
 	let ls = await globby(['*.user.js'], {
 		cwd: cwd_src,
 	});
@@ -46,10 +51,25 @@ gulp.task("webpack:before", async function (callback)
 
 		return a;
 	}, {});
+	*/
+
+	let data = await get_userscript_list()
+		.then(ls =>
+		{
+			return ls.reduce((a, b) =>
+			{
+				a[b] = {};
+
+				return a;
+			}, {})
+		})
+	;
+
+	//console.log(666, data);
 
 	for (let name in data)
 	{
-		let ls = await globby(['**/*.js', '!index.js', '!lib/*'], {
+		let ls = await globby(['**/*.js', '!index.js', '!lib/*', '!index.user.js'], {
 			cwd: path.join(cwd_src, name),
 		});
 
@@ -57,6 +77,9 @@ gulp.task("webpack:before", async function (callback)
 
 		data[name] = ls.reduce((a, b) =>
 		{
+
+			//console.log(name, b);
+
 			a[b] = require(path.join(cwd_src, name, b));
 
 			return a;
@@ -66,27 +89,68 @@ gulp.task("webpack:before", async function (callback)
 	for (let name in data)
 	{
 
+		/*
 		let ordered = sortBy(Object.keys(data[name]), [
 				function (b)
 				{
 					let o = data[name][b];
 
+					console.log(typeof o.priority == 'undefined' ? 500 : o.priority);
+
 					return typeof o.priority == 'undefined' ? 500 : o.priority;
-				}
+				},
+
+				function ()
+				{
+					return name;
+				},
 			])
 		;
 
 		ordered.reverse();
+		*/
+
+		let ordered = Object.keys(data[name])
+			.reduce(function (a, b)
+			{
+				let o = data[name][b];
+
+				o.priority = typeof o.priority == 'undefined' ? 500 : o.priority;
+				o.name = b;
+
+				a.push(o);
+
+				return a;
+			}, [])
+		;
+
+		ordered = lodash.orderBy(ordered, ['priority', 'name'], ['desc', 'asc']);
+
+		ordered = ordered.map(function (v)
+		{
+			return v.name;
+		});
+
+		//console.log(ordered);
+
+		//continue;
 
 		let ls = ordered
 			.reduce((a, b) =>
 			{
-				a.list.push(b);
-				//a.push(`require('./${b}').main();`);
-
-				a._lib.push(`require('./${b}');`);
-
 				let lib = require(path.join(cwd_src, name, b));
+
+				if (lib.disable)
+				{
+					a.list_disable.push(b);
+
+					return a;
+				}
+
+				a.list.push(b);
+
+				//a._lib.push(`require('./${b}');`);
+				a._lib.push(`require('root/src/${name}/${b}');`);
 
 				a.metadata.include = a.metadata.include.concat(lib.metadata.match);
 				a.metadata.exclude = a.metadata.exclude.concat(lib.metadata.exclude);
@@ -102,6 +166,8 @@ gulp.task("webpack:before", async function (callback)
 				list: [],
 				_lib: [],
 
+				list_disable: [],
+
 				metadata: {
 					include: [],
 					exclude: [],
@@ -110,7 +176,7 @@ gulp.task("webpack:before", async function (callback)
 				list_script: [],
 			});
 
-		console.debug(ls);
+		//console.debug(ls);
 
 		let main = async function (list, options = {})
 		{
@@ -121,6 +187,8 @@ gulp.task("webpack:before", async function (callback)
 
 			for (let name of list)
 			{
+				//console.log(888, name);
+
 				let lib = require('./' + name);
 
 				let name_id = name;
@@ -131,6 +199,8 @@ gulp.task("webpack:before", async function (callback)
 				}
 
 				name_id = `[${name_id}]`;
+
+				//console.log(999, name_id);
 
 				if (_break && !lib.script)
 				{
@@ -226,9 +296,12 @@ gulp.task("webpack:before", async function (callback)
 		};
 
 		let text = `
+module.exports.id = '${name}';
 module.exports.name = '${name}';
 
 module.exports.list = ${JSON.stringify(ls.list, null, "\t")};
+
+module.exports.list_disable = ${JSON.stringify(ls.list_disable, null, "\t")};
 
 // for webpack, don't use this method
 module.exports._lib = () =>
@@ -251,7 +324,7 @@ module.exports.current = [];
 		await fs.writeFileAsync(path.join(cwd_src, name, 'index.js'), text);
 	}
 
-	console.log(data);
+	//console.log(data);
 });
 
 gulp.task("gm_scripts:config", ["webpack"], async function (callback)
@@ -265,9 +338,10 @@ gulp.task("gm_scripts:config", ["webpack"], async function (callback)
 		decodeEntities: false,
 	});
 
+	/*
 	let ls = await globby(['*.user.js'], {
-		cwd: cwd_src,
-	})
+			cwd: cwd_src,
+		})
 		.then((ls) =>
 		{
 			return ls.reduce((a, b) =>
@@ -280,6 +354,9 @@ gulp.task("gm_scripts:config", ["webpack"], async function (callback)
 			}, []);
 		})
 	;
+	*/
+
+	let ls = await get_userscript_list();
 
 	for (let name of ls)
 	{
@@ -324,30 +401,141 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 {
 	const pkg = require('./package.json');
 
-	return globby([
-		'src/*.user.js'
-	], {
-		cwd: __dirname,
-	})
-		.then(function (ls)
+	return get_userscript_list()
+		.then(async function (ls)
 		{
-			ls = ls.map(function (v)
+			for (let k of ls)
 			{
-				let k = v.match(/src\/(.+)\.user\.js$/)[1];
+				//let k = v.match(/src\/(.+)\/index\.user\.js$/)[1];
+
+				console.log(k);
 
 				const index = require(path.join(cwd_src, k, 'index'));
 
 				let banner = require(path.join(cwd_src, k, 'lib/metadata')).metadata;
 
-				return gulp.src(`src/${k}.user.js`)
-					.pipe(gulpWebpack(require('./webpack.config.js'), webpack, function (err, stats)
+				let s = gulp.src(`src/${k}/index.user.js`)
+					.pipe(gulpWebpack(webpack_runtime({}, function (config, options, webpack_config)
+					{
+
+						config.entry = {};
+						config.entry[`${k}.user`] = `./src/${k}/index.user.js`;
+
+						config.module = config.module || {};
+						config.module.rules = [];
+
+						config.module.rules.push({
+							test: /\.js$/,
+
+							exclude: function (modulePath)
+							{
+								let file = path.relative(__dirname, modulePath);
+
+								if (/^src/.test(file))
+								{
+									//console.log(file);
+
+									if (/^lib/.test(file) || file.indexOf(`src\\${k}`) === 0)
+									{
+										//console.log(k, file, file.indexOf(`src\\${k}`));
+
+										return false;
+									}
+
+									return true;
+								}
+
+								return false;
+							},
+
+						});
+
+						config.module.noParse = function (modulePath)
+						{
+							let file = path.relative(__dirname, modulePath);
+
+							if (/^src/.test(file))
+							{
+								//console.log(file);
+
+								if (/^lib/.test(file) || file.indexOf(`src\\${k}\\`) === 0)
+								{
+									//console.log(k, file, file.indexOf(`src\\${k}`));
+
+									return false;
+								}
+
+								return true;
+							}
+
+							return false;
+						};
+
+						config.plugins = [
+							new webpack.ProvidePlugin({
+								$: 'jquery',
+								jQuery: 'jquery'
+							}),
+
+							new webpack.IgnorePlugin(/\.(txt|ts)$/),
+						];
+
+						let myIgnorePlugin = new webpack.IgnorePlugin(/\.\/dmm-plus-sc|\.js$/, /ux-tweak-sc[\/\\]+src/);
+
+						myIgnorePlugin.checkResource = function (resource)
+						{
+							if (!this.resourceRegExp)
+							{
+								return false;
+							}
+
+							if (!/^\.\//.test(resource) || /^\.\/\.\./.test(resource) || ['.', './'].includes(resource) || /^\.\/[^\/]+\.js$/.test(resource))
+							{
+								//console.log(555, resource);
+
+								return false;
+							}
+
+							let bool = !this.resourceRegExp.test(resource);
+
+							//console[(0 && bool) ? 'error' : 'log'](666, resource, bool, this.resourceRegExp);
+
+							return bool;
+						};
+
+						myIgnorePlugin.checkContext = function (context)
+						{
+							/*
+							if (!this.contextRegExp)
+							{
+								return true;
+							}
+							*/
+
+							let bool = context.indexOf(path.join(__dirname, 'src')) == 0 && context.indexOf(path.join(__dirname, 'src', k)) == -1;
+
+							//console[(0 && bool) ? 'error' : 'log'](777, context, bool, this.contextRegExp);
+
+							return bool;
+						};
+
+						myIgnorePlugin.resourceRegExp = new RegExp(`(\\.|src)\\/${k}`);
+						config.plugins.push(myIgnorePlugin);
+
+					}), webpack, function (err, stats)
 					{
 						/* Use stats to do more things if needed */
+
+						//console.log(k, stats);
+
 					}))
 					.pipe(header(banner, {
 						pkg: pkg,
 
 						index: {
+							id: index.id,
+							name: index.name,
+
 							include: index.metadata.include.join("\n// @include		"),
 							match: meta_match(index.metadata.include).join("\n// @match		"),
 
@@ -356,12 +544,17 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 						token: Date.now()
 					}))
-					.pipe(gulp.dest('dist/'));
-			});
+					.pipe(gulp.dest('dist/'))
+				;
 
-			return Promise.all(ls);
+				await streamToPromise(s);
+
+				//break;
+			}
+
+			return;
 		})
-	;
+		;
 });
 
 gulp.task("default", ["webpack", "gm_scripts:config"], function (callback)
@@ -391,4 +584,46 @@ function meta_inlude_match(includes, matchs)
 {
 	let a1 = [];
 	let a2 = [];
+}
+
+let webpack_config = Object.assign({}, clone(require('./webpack.config'), true));
+
+function webpack_runtime(options, cb)
+{
+	let config = Object.assign({}, webpack_config, options);
+
+	if (cb)
+	{
+		let ret = cb(config, options, webpack_config);
+
+		if (ret)
+		{
+			config = ret;
+		}
+	}
+
+	//console.log(config);
+
+	return config;
+}
+
+async function get_userscript_list()
+{
+	let ls = await globby([
+			'src/*/index.user.js'
+		], {
+			cwd: __dirname,
+		})
+		.then(async function (ls)
+		{
+			return ls.map(function (v)
+			{
+				return v.match(/src\/(.+)\/index\.user\.js$/)[1];
+			});
+		})
+	;
+
+	//console.log(ls);
+
+	return ls;
 }

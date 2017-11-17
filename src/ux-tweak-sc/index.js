@@ -1,218 +1,158 @@
 
+module.exports.id = 'ux-tweak-sc';
 module.exports.name = 'ux-tweak-sc';
 
 module.exports.list = [
-	"wiki/wikipedia.js",
-	"torrent/nyaa.js",
-	"torrent/jandown.js",
-	"torrent/dmhy.js",
-	"social/weibo.js",
-	"social/facebook.js",
-	"shop/yahoo/mall.js",
-	"shop/yahoo/buy.js",
-	"shop/post/gov/tw/pstmail.js",
-	"shop/pchome.js",
-	"novel/syosetu.js",
-	"google/drive.js",
-	"content/farm/fun01.cc.js",
-	"comic/wnacg.js",
-	"comic/nhentai.js",
-	"comic/manben.js",
-	"comic/ikanman.js",
-	"comic/exhentai.js",
-	"comic/dmzj.js",
-	"comic/dm5.js",
-	"comic/comico.js",
-	"comic/comic-walker.js",
-	"comic/alphapolis.co.jp.js",
-	"comic/999comic.js",
-	"code/stackoverflow.js",
-	"code/sourceforge.js",
-	"code/npmjs.js",
-	"code/greasyfork.js",
-	"code/github.js",
-	"blog/steachs.js",
-	"blog/oneapm.js",
-	"blog/juejin.im.js",
-	"blog/jianshu.js",
-	"blog/dulfy.js",
-	"blog/blog.xuite.js",
-	"bbs/ptt.js",
-	"art/pixiv.js",
-	"art/deviantart.js",
-	"anti-adblock/epinv.js",
-	"adult/up01.js",
-	"acg/vsgames.js",
-	"acg/tieba.baidu.js",
-	"acg/reddit.js",
-	"acg/qtfy.eu.js",
-	"acg/qoo-app.js",
-	"acg/gw2bltc.js",
-	"acg/guildwars2/wiki.js",
-	"acg/guildwars2/forum.js",
-	"acg/guildwars2/forum.2017.js",
-	"acg/getchu.js",
-	"acg/gamme.js",
-	"acg/gamer.com.tw.js",
-	"acg/dmm.js",
-	"acg/dlsite.js",
-	"acg/blog.reimu.net.js",
-	"acg/3dmgame.js",
 	"acg/2dfan.js",
+	"acg/3dmgame.js",
+	"acg/blog.reimu.net.js",
+	"acg/dlsite.js",
+	"acg/dmm.js",
+	"acg/gamer.com.tw.js",
+	"acg/gamme.js",
+	"acg/getchu.js",
+	"acg/guildwars2/forum.2017.js",
+	"acg/guildwars2/wiki.js",
+	"acg/gw2bltc.js",
+	"acg/qoo-app.js",
+	"acg/qtfy.eu.js",
+	"acg/reddit.js",
+	"acg/tieba.baidu.js",
+	"acg/vsgames.js",
+	"adult/up01.js",
+	"anti-adblock/epinv.js",
+	"art/deviantart.js",
+	"art/pixiv.js",
+	"bbs/ptt.js",
+	"blog/blog.xuite.js",
+	"blog/dulfy.js",
+	"blog/jianshu.js",
+	"blog/juejin.im.js",
+	"blog/oneapm.js",
+	"blog/steachs.js",
+	"code/github.js",
+	"code/greasyfork.js",
+	"code/npmjs.js",
+	"code/sourceforge.js",
+	"code/stackoverflow.js",
+	"comic/999comic.js",
+	"comic/alphapolis.co.jp.js",
+	"comic/comic-walker.js",
+	"comic/comico.js",
+	"comic/dm5.js",
+	"comic/dmzj.js",
+	"comic/exhentai.js",
+	"comic/ikanman.js",
+	"comic/manben.js",
+	"comic/nhentai.js",
+	"comic/wnacg.js",
+	"content/farm/fun01.cc.js",
+	"novel/syosetu.js",
+	"shop/pchome.js",
+	"shop/post/gov/tw/pstmail.js",
+	"shop/yahoo/buy.js",
+	"shop/yahoo/mall.js",
+	"social/facebook.js",
+	"social/weibo.js",
+	"torrent/dmhy.js",
+	"torrent/jandown.js",
+	"torrent/nyaa.js",
+	"wiki/wikipedia.js",
 	"google/search.js",
-	"global/video.js",
-	"global/mediawiki.js",
 	"global/discuz.js",
-	"global/social.js",
-	"global/pagination/srp_pagination.js",
-	"global/pagination/pagination.active.js",
-	"global/pagination/page.js",
+	"global/mediawiki.js",
+	"global/video.js",
 	"global/pagination.js",
+	"global/pagination/page.js",
+	"global/pagination/pagination.active.js",
+	"global/pagination/srp_pagination.js",
+	"global/social.js",
 	"_fake.js"
+];
+
+module.exports.list_disable = [
+	"acg/guildwars2/forum.js",
+	"google/drive.js"
 ];
 
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('./wiki/wikipedia.js');
-	require('./torrent/nyaa.js');
-	require('./torrent/jandown.js');
-	require('./torrent/dmhy.js');
-	require('./social/weibo.js');
-	require('./social/facebook.js');
-	require('./shop/yahoo/mall.js');
-	require('./shop/yahoo/buy.js');
-	require('./shop/post/gov/tw/pstmail.js');
-	require('./shop/pchome.js');
-	require('./novel/syosetu.js');
-	require('./google/drive.js');
-	require('./content/farm/fun01.cc.js');
-	require('./comic/wnacg.js');
-	require('./comic/nhentai.js');
-	require('./comic/manben.js');
-	require('./comic/ikanman.js');
-	require('./comic/exhentai.js');
-	require('./comic/dmzj.js');
-	require('./comic/dm5.js');
-	require('./comic/comico.js');
-	require('./comic/comic-walker.js');
-	require('./comic/alphapolis.co.jp.js');
-	require('./comic/999comic.js');
-	require('./code/stackoverflow.js');
-	require('./code/sourceforge.js');
-	require('./code/npmjs.js');
-	require('./code/greasyfork.js');
-	require('./code/github.js');
-	require('./blog/steachs.js');
-	require('./blog/oneapm.js');
-	require('./blog/juejin.im.js');
-	require('./blog/jianshu.js');
-	require('./blog/dulfy.js');
-	require('./blog/blog.xuite.js');
-	require('./bbs/ptt.js');
-	require('./art/pixiv.js');
-	require('./art/deviantart.js');
-	require('./anti-adblock/epinv.js');
-	require('./adult/up01.js');
-	require('./acg/vsgames.js');
-	require('./acg/tieba.baidu.js');
-	require('./acg/reddit.js');
-	require('./acg/qtfy.eu.js');
-	require('./acg/qoo-app.js');
-	require('./acg/gw2bltc.js');
-	require('./acg/guildwars2/wiki.js');
-	require('./acg/guildwars2/forum.js');
-	require('./acg/guildwars2/forum.2017.js');
-	require('./acg/getchu.js');
-	require('./acg/gamme.js');
-	require('./acg/gamer.com.tw.js');
-	require('./acg/dmm.js');
-	require('./acg/dlsite.js');
-	require('./acg/blog.reimu.net.js');
-	require('./acg/3dmgame.js');
-	require('./acg/2dfan.js');
-	require('./google/search.js');
-	require('./global/video.js');
-	require('./global/mediawiki.js');
-	require('./global/discuz.js');
-	require('./global/social.js');
-	require('./global/pagination/srp_pagination.js');
-	require('./global/pagination/pagination.active.js');
-	require('./global/pagination/page.js');
-	require('./global/pagination.js');
-	require('./_fake.js');
+	require('root/src/ux-tweak-sc/acg/2dfan.js');
+	require('root/src/ux-tweak-sc/acg/3dmgame.js');
+	require('root/src/ux-tweak-sc/acg/blog.reimu.net.js');
+	require('root/src/ux-tweak-sc/acg/dlsite.js');
+	require('root/src/ux-tweak-sc/acg/dmm.js');
+	require('root/src/ux-tweak-sc/acg/gamer.com.tw.js');
+	require('root/src/ux-tweak-sc/acg/gamme.js');
+	require('root/src/ux-tweak-sc/acg/getchu.js');
+	require('root/src/ux-tweak-sc/acg/guildwars2/forum.2017.js');
+	require('root/src/ux-tweak-sc/acg/guildwars2/wiki.js');
+	require('root/src/ux-tweak-sc/acg/gw2bltc.js');
+	require('root/src/ux-tweak-sc/acg/qoo-app.js');
+	require('root/src/ux-tweak-sc/acg/qtfy.eu.js');
+	require('root/src/ux-tweak-sc/acg/reddit.js');
+	require('root/src/ux-tweak-sc/acg/tieba.baidu.js');
+	require('root/src/ux-tweak-sc/acg/vsgames.js');
+	require('root/src/ux-tweak-sc/adult/up01.js');
+	require('root/src/ux-tweak-sc/anti-adblock/epinv.js');
+	require('root/src/ux-tweak-sc/art/deviantart.js');
+	require('root/src/ux-tweak-sc/art/pixiv.js');
+	require('root/src/ux-tweak-sc/bbs/ptt.js');
+	require('root/src/ux-tweak-sc/blog/blog.xuite.js');
+	require('root/src/ux-tweak-sc/blog/dulfy.js');
+	require('root/src/ux-tweak-sc/blog/jianshu.js');
+	require('root/src/ux-tweak-sc/blog/juejin.im.js');
+	require('root/src/ux-tweak-sc/blog/oneapm.js');
+	require('root/src/ux-tweak-sc/blog/steachs.js');
+	require('root/src/ux-tweak-sc/code/github.js');
+	require('root/src/ux-tweak-sc/code/greasyfork.js');
+	require('root/src/ux-tweak-sc/code/npmjs.js');
+	require('root/src/ux-tweak-sc/code/sourceforge.js');
+	require('root/src/ux-tweak-sc/code/stackoverflow.js');
+	require('root/src/ux-tweak-sc/comic/999comic.js');
+	require('root/src/ux-tweak-sc/comic/alphapolis.co.jp.js');
+	require('root/src/ux-tweak-sc/comic/comic-walker.js');
+	require('root/src/ux-tweak-sc/comic/comico.js');
+	require('root/src/ux-tweak-sc/comic/dm5.js');
+	require('root/src/ux-tweak-sc/comic/dmzj.js');
+	require('root/src/ux-tweak-sc/comic/exhentai.js');
+	require('root/src/ux-tweak-sc/comic/ikanman.js');
+	require('root/src/ux-tweak-sc/comic/manben.js');
+	require('root/src/ux-tweak-sc/comic/nhentai.js');
+	require('root/src/ux-tweak-sc/comic/wnacg.js');
+	require('root/src/ux-tweak-sc/content/farm/fun01.cc.js');
+	require('root/src/ux-tweak-sc/novel/syosetu.js');
+	require('root/src/ux-tweak-sc/shop/pchome.js');
+	require('root/src/ux-tweak-sc/shop/post/gov/tw/pstmail.js');
+	require('root/src/ux-tweak-sc/shop/yahoo/buy.js');
+	require('root/src/ux-tweak-sc/shop/yahoo/mall.js');
+	require('root/src/ux-tweak-sc/social/facebook.js');
+	require('root/src/ux-tweak-sc/social/weibo.js');
+	require('root/src/ux-tweak-sc/torrent/dmhy.js');
+	require('root/src/ux-tweak-sc/torrent/jandown.js');
+	require('root/src/ux-tweak-sc/torrent/nyaa.js');
+	require('root/src/ux-tweak-sc/wiki/wikipedia.js');
+	require('root/src/ux-tweak-sc/google/search.js');
+	require('root/src/ux-tweak-sc/global/discuz.js');
+	require('root/src/ux-tweak-sc/global/mediawiki.js');
+	require('root/src/ux-tweak-sc/global/video.js');
+	require('root/src/ux-tweak-sc/global/pagination.js');
+	require('root/src/ux-tweak-sc/global/pagination/page.js');
+	require('root/src/ux-tweak-sc/global/pagination/pagination.active.js');
+	require('root/src/ux-tweak-sc/global/pagination/srp_pagination.js');
+	require('root/src/ux-tweak-sc/global/social.js');
+	require('root/src/ux-tweak-sc/_fake.js');
 };
 
 module.exports.metadata = {};
 module.exports.metadata.include = [
-	"http*://*.wikipedia.org/*",
-	"http*://sukebei.nyaa.si/*",
-	"http*://www.jandown.com/*",
-	"http*://share.dmhy.org/*",
-	"http*://www.weibo.com/*",
-	"http*://m.weibo.cn/*",
-	"http*://www.facebook.com/*",
-	"http*://www.facebook.com/saved/*",
-	"http*://tw.mall.yahoo.com/*",
-	"http*://tw.user.mall.yahoo.com/my/*",
-	"https://tw.search.mall.yahoo.com/*",
-	"http*://tw.buy.yahoo.com/*",
-	"http*://tw.buy.yahoo.com/bestbuy/*",
-	"http*://tw.buy.yahoo.com/activity/*",
-	"https://tw.search.buy.yahoo.com/search/shopping/*",
-	"https://twpay.buy.yahoo.com/checkout/preview*",
-	"http://postserv.post.gov.tw/pstmail/main_mail.html*",
-	"http*://mall.pchome.com.tw/*",
-	"http*://syosetu.com/*",
-	"http*://ncode.syosetu.com/*",
-	"http*://drive.google.com/*",
-	"http*://www.fun01.cc/*",
-	"http*://*.wnacg.com/*",
-	"http*://*.wnacg.org/*",
-	"http*://nhentai.net/*",
-	"http*://www.manben.com/*",
-	"http*://*.ikanman.com/*",
-	"http*://*.manhuagui.com/*",
-	"http*://exhentai.org/*",
-	"http*://g.e-hentai.org/*",
-	"http*://*.dmzj.com/*",
-	"https://i.dmzj.com/*",
-	"http*://www.dm5.com/*",
-	"http*://www.comico.com.tw/*",
-	"https://comic-walker.com/*",
-	"http*://www.alphapolis.co.jp/*",
-	"http*://www.999comic.com/*",
-	"http://t.168girl.com/*",
-	"http*://stackoverflow.com/*",
-	"http*://superuser.com/*",
-	"http*://sourceforge.net/projects/*/files/*",
-	"https://www.npmjs.com/search?q=*",
-	"https://www.npmjs.com/~*",
-	"http*://greasyfork.org/*",
-	"http*://github.com/*",
-	"http*://steachs.com/*",
-	"http*://blog.oneapm.com/*",
-	"http*://juejin.im/*",
-	"http*://www.jianshu.com/*",
-	"http*://dulfy.net/*",
-	"http*://blog.xuite.net/*",
-	"http*://www.ptt.cc/*",
-	"http*://*.pixiv.net/*",
-	"http*://*.deviantart.com/*",
-	"http*://www.epinv.com/*",
-	"http*://www.up01.cc/*",
-	"http*://gw2.vsgames.cn/*",
-	"http*://*.vsgames.cn/*",
-	"http*://tieba.baidu.com/*",
-	"http*://www.reddit.com/r/*",
-	"http*://qtfy.eu/*",
-	"http*://*.qoo-app.com/*",
-	"http*://www.gw2bltc.com/*",
-	"http*://wiki.guildwars2.com/*",
-	"http*://forum-*.guildwars2.com/forum/*",
-	"http*://*-forum.guildwars2.com/*",
-	"http*://*.getchu.com/*",
-	"http*://news.gamme.com.tw/*",
+	"http*://www.2dfan.com/*",
+	"http*://www.3dmgame.com/*",
+	"http*://bbs.3dmgame.com/*",
+	"http*://blog.reimu.net/*",
+	"http*://www.dlsite.com/*",
+	"http*://www.dmm.co.jp/netgame/*",
 	"http*://www.gamer.com.tw/*",
 	"http*://www.gamer.com.tw/index*.php*",
 	"http*://acg.gamer.com.tw/acgDetail.php?s=*",
@@ -223,12 +163,72 @@ module.exports.metadata.include = [
 	"http*://acg.gamer.com.tw/*",
 	"http*://m.gamer.com.tw/*",
 	"http*://ani.gamer.com.tw/*",
-	"http*://www.dmm.co.jp/netgame/*",
-	"http*://www.dlsite.com/*",
-	"http*://blog.reimu.net/*",
-	"http*://www.3dmgame.com/*",
-	"http*://bbs.3dmgame.com/*",
-	"http*://www.2dfan.com/*",
+	"http*://news.gamme.com.tw/*",
+	"http*://*.getchu.com/*",
+	"http*://*-forum.guildwars2.com/*",
+	"http*://wiki.guildwars2.com/*",
+	"http*://www.gw2bltc.com/*",
+	"http*://*.qoo-app.com/*",
+	"http*://qtfy.eu/*",
+	"http*://www.reddit.com/r/*",
+	"http*://tieba.baidu.com/*",
+	"http*://gw2.vsgames.cn/*",
+	"http*://*.vsgames.cn/*",
+	"http*://www.up01.cc/*",
+	"http*://www.epinv.com/*",
+	"http*://*.deviantart.com/*",
+	"http*://*.pixiv.net/*",
+	"http*://www.ptt.cc/*",
+	"http*://blog.xuite.net/*",
+	"http*://dulfy.net/*",
+	"http*://www.jianshu.com/*",
+	"http*://juejin.im/*",
+	"http*://blog.oneapm.com/*",
+	"http*://steachs.com/*",
+	"http*://github.com/*",
+	"http*://greasyfork.org/*",
+	"https://www.npmjs.com/search?q=*",
+	"https://www.npmjs.com/~*",
+	"http*://sourceforge.net/projects/*/files/*",
+	"http*://stackoverflow.com/*",
+	"http*://superuser.com/*",
+	"http*://www.999comic.com/*",
+	"http://t.168girl.com/*",
+	"http*://www.alphapolis.co.jp/*",
+	"https://comic-walker.com/*",
+	"http*://www.comico.com.tw/*",
+	"http*://www.dm5.com/*",
+	"http*://*.dmzj.com/*",
+	"https://i.dmzj.com/*",
+	"http*://exhentai.org/*",
+	"http*://g.e-hentai.org/*",
+	"http*://*.ikanman.com/*",
+	"http*://*.manhuagui.com/*",
+	"http*://www.manben.com/*",
+	"http*://nhentai.net/*",
+	"http*://*.wnacg.com/*",
+	"http*://*.wnacg.org/*",
+	"http*://www.fun01.cc/*",
+	"http*://syosetu.com/*",
+	"http*://ncode.syosetu.com/*",
+	"http*://mall.pchome.com.tw/*",
+	"http://postserv.post.gov.tw/pstmail/main_mail.html*",
+	"http*://tw.buy.yahoo.com/*",
+	"http*://tw.buy.yahoo.com/bestbuy/*",
+	"http*://tw.buy.yahoo.com/activity/*",
+	"https://tw.search.buy.yahoo.com/search/shopping/*",
+	"https://twpay.buy.yahoo.com/checkout/preview*",
+	"http*://tw.mall.yahoo.com/*",
+	"http*://tw.user.mall.yahoo.com/my/*",
+	"https://tw.search.mall.yahoo.com/*",
+	"http*://www.facebook.com/*",
+	"http*://www.facebook.com/saved/*",
+	"http*://www.weibo.com/*",
+	"http*://m.weibo.cn/*",
+	"http*://share.dmhy.org/*",
+	"http*://www.jandown.com/*",
+	"http*://sukebei.nyaa.si/*",
+	"http*://*.wikipedia.org/*",
 	"http*://encrypted.google.com/*",
 	"http*://www.google.co.jp/*",
 	"http*://*.google.*/blank.html",
@@ -236,12 +236,12 @@ module.exports.metadata.include = [
 	"http*://*.google.*/imgres*"
 ];
 module.exports.metadata.exclude = [
-	"http*://www.facebook.com/ajax/*",
-	"http*://www.facebook.com/*plugins/*",
-	"http*://staticxx.facebook.com/*",
 	"http*://gc.bahamut.com.tw/*",
 	"http*://*.bahamut.com.tw/*",
 	"http*://*.bahamut.com.tw/js/*",
+	"http*://www.facebook.com/ajax/*",
+	"http*://www.facebook.com/*plugins/*",
+	"http*://staticxx.facebook.com/*",
 	"http*://notifications.google.com/*",
 	"http*://platform.twitter.com/widgets*",
 	"http*://apis.google.com/*"
@@ -256,6 +256,8 @@ module.exports.main = async function (list, options = {})
 
 			for (let name of list)
 			{
+				//console.log(888, name);
+
 				let lib = require('./' + name);
 
 				let name_id = name;
@@ -266,6 +268,8 @@ module.exports.main = async function (list, options = {})
 				}
 
 				name_id = `[${name_id}]`;
+
+				//console.log(999, name_id);
 
 				if (_break && !lib.script)
 				{
@@ -361,13 +365,13 @@ module.exports.main = async function (list, options = {})
 		};
 
 module.exports.list_script = [
-	"global/video.js",
-	"global/mediawiki.js",
 	"global/discuz.js",
-	"global/pagination/srp_pagination.js",
-	"global/pagination/pagination.active.js",
+	"global/mediawiki.js",
+	"global/video.js",
+	"global/pagination.js",
 	"global/pagination/page.js",
-	"global/pagination.js"
+	"global/pagination/pagination.active.js",
+	"global/pagination/srp_pagination.js"
 ];
 
 module.exports.current = [];

@@ -26,7 +26,7 @@ module.exports = {
 
 	main(_url_obj)
 	{
-		require('../global/discuz').main(_url_obj);
+		require('root/src/ux-tweak-sc/global/discuz').main(_url_obj);
 	},
 
 	adblock(_url_obj = global._url_obj)
@@ -36,7 +36,7 @@ module.exports = {
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		const greasemonkey = require('root/src/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey');
 
 		let _dom = $(_dom_list);
 

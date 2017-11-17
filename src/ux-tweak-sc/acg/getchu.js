@@ -25,9 +25,9 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_done = require('root/src/lib/event/done');
+		const _uf_done = require('root/lib/event/done');
 
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('.product a, #detail_block a, .package a')
 			.attr('target', '_blank')
 		;
@@ -92,7 +92,7 @@ module.exports = {
 					})
 				;
 			})
-			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
 				{

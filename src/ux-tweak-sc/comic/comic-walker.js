@@ -17,7 +17,7 @@ module.exports = {
 	{
 		let ret;
 
-		if (ret = require('root/src/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
+		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
 		{
 			return true;
 		}
@@ -35,7 +35,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
 			'.detail_latestStoryBtn a, .bookAuther a, .readableLinkColor a',
 			'#togetherRead a, #comicsRelative a, #bookSummary a',
@@ -53,13 +53,13 @@ module.exports = {
 		{
 			let cw_viewer = $('#cw-viewer');
 
-			require('root/src/lib/dom/disable_nocontextmenu')
+			require('root/lib/dom/disable_nocontextmenu')
 				._uf_disable_nocontextmenu2(1, 'body')
 			;
 
-			require('root/src/lib/jquery/event').makeJQueryPlugin($, window);
+			require('root/lib/jquery/event').makeJQueryPlugin($, window);
 
-			//require('root/src/lib/jquery/event/key').makeJQueryPlugin($);
+			//require('root/lib/jquery/event/key').makeJQueryPlugin($);
 
 			$(window)
 				.on('load.ready', function ()
@@ -103,7 +103,7 @@ module.exports = {
 								{
 									let canvas = $(this).find('canvas');
 
-									require('root/src/lib/save').saveCanvas(canvas[0], canvas.attr('download'))
+									require('root/lib/save').saveCanvas(canvas[0], canvas.attr('download'))
 										.then(function (r)
 										{
 											console.log(r);
@@ -116,10 +116,10 @@ module.exports = {
 						})
 					;
 				})
-				.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					const keycodes = require('keycodes');
-					const _uf_done = require('root/src/lib/event/done');
+					const _uf_done = require('root/lib/event/done');
 
 					switch (event.which)
 					{
