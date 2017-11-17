@@ -45,7 +45,7 @@ module.exports = {
 				}
 			}
 
-			const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+			const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
 			_uf_dom_filter_link(
 				'.red_lj a, #cbc_1 a, #cbc_2 a, #cbc_3 a, #abc_1 a, #abc_2 a, #index_mian .diline a, .innr22 a, .innr72 a, #tempc a.tg, .end_kk a, #search_nr .ssnr_bt a, #search_nr .matoa a, #index_left .inkk.ma5 div.sy_tb a, #todaycomic a, #index_right .inkk .innr8 li a, #search_nrl .ssnr_yt dl a, #index_mian .innr3 a, .midBar .item a')
@@ -54,12 +54,12 @@ module.exports = {
 			;
 
 			const keycodes = require('keycodes');
-			const _uf_done = require('root/src/lib/event/done');
-			const comic_style = require('root/src/lib/comic/style');
+			const _uf_done = require('root/lib/event/done');
+			const comic_style = require('root/lib/comic/style');
 
 			let _img_selector = '#cp_image2:visible, #cp_image:visible';
 
-			const waitUntil = require('root/src/lib/promise/wait').jquery;
+			const waitUntil = require('root/lib/promise/wait').jquery;
 
 			if ($('body.vPage').length)
 			{
@@ -106,7 +106,7 @@ module.exports = {
 							.css(comic_style.photo)
 						;
 
-						const _uf_fixsize2 = require('root/src/lib/dom/img/size')._uf_fixsize2;
+						const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
 
 						_uf_fixsize2(_img, window, 1);
 
@@ -133,7 +133,7 @@ module.exports = {
 						$(window).triggerHandler('load.nocontextmenu');
 						$(window).triggerHandler('resize');
 					})
-					.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+					.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 					{
 						var _jq = unsafeWindow.$ || $;
 
@@ -252,7 +252,7 @@ module.exports = {
 			}
 
 			$(window)
-				.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					switch (event.which)
 					{
@@ -282,7 +282,7 @@ module.exports = {
 				}))
 				.on('load.nocontextmenu', () =>
 				{
-					const _uf_disable_nocontextmenu = require('root/src/lib/dom/disable_nocontextmenu')._uf_disable_nocontextmenu2;
+					const _uf_disable_nocontextmenu = require('root/lib/dom/disable_nocontextmenu')._uf_disable_nocontextmenu2;
 
 					try
 					{
