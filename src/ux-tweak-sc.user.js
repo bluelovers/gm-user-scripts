@@ -17,7 +17,7 @@ module.exports.name = module.exports.id;
 		{
 			_init();
 
-			let index = require('./ux-tweak-sc');
+			let index = require(`./${module.exports.id}`);
 
 			await index.main(index.list);
 
@@ -41,7 +41,7 @@ module.exports.name = module.exports.id;
 
 function _init()
 {
-	const parse_url = require('./lib/func/parse_url').parse_url;
+	const parse_url = require('root/src/lib/func/parse_url').parse_url;
 
 	module.exports._url = global._url = window.location.href;
 	module.exports._url_obj = module.exports._url_obj_ = parse_url(global._url);
@@ -52,22 +52,22 @@ function _init()
 	let imagesLoaded = require('imagesloaded');
 	imagesLoaded.makeJQueryPlugin(jQuery);
 
-	require('./lib/jquery/scrollTo').makeJQueryPlugin(jQuery);
-	require('./lib/jquery/push').makeJQueryPlugin(jQuery);
+	require('root/src/lib/jquery/scrollTo').makeJQueryPlugin(jQuery);
+	require('root/src/lib/jquery/push').makeJQueryPlugin(jQuery);
 
 	_init_gm();
 }
 
 function _init_gm()
 {
-	const UF = require('./lib/greasemonkey/framework');
+	const UF = require('root/src/lib/greasemonkey/framework');
 
 	UF.registerMenuCommand({
 		id: module.exports.name,
 		key: 'disable_nocontextmenu',
 	}, (options) =>
 	{
-		require('./lib/dom/disable_nocontextmenu')
+		require('root/src/lib/dom/disable_nocontextmenu')
 			._uf_disable_nocontextmenu2(2)
 		;
 	});
