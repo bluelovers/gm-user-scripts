@@ -41,12 +41,12 @@ module.exports.name = module.exports.id;
 })(jQuery);
 */
 
-require('root/src/lib/core').run(module.exports.id, _init, jQuery);
+require('root/lib/core/index').run(module.exports.id, jQuery, _init);
 
 function _init()
 {
 	/*
-	const parse_url = require('root/src/lib/func/parse_url').parse_url;
+	const parse_url = require('root/lib/func/parse_url').parse_url;
 
 	module.exports._url = global._url = window.location.href;
 	module.exports._url_obj = module.exports._url_obj_ = parse_url(global._url);
@@ -55,27 +55,27 @@ function _init()
 	global._url_obj._source = global._url_obj_._source = global._url;
 	*/
 
-	require('root/src/lib/core').init(module.exports, global, window, window.location.href);
+	require('root/lib/core/index').init(module.exports, global, window, window.location.href);
 
 	let imagesLoaded = require('imagesloaded');
 	imagesLoaded.makeJQueryPlugin(jQuery);
 
-	require('root/src/lib/jquery/scrollTo').makeJQueryPlugin(jQuery);
-	require('root/src/lib/jquery/push').makeJQueryPlugin(jQuery);
+	require('root/lib/jquery/scrollTo').makeJQueryPlugin(jQuery);
+	require('root/lib/jquery/push').makeJQueryPlugin(jQuery);
 
 	_init_gm();
 }
 
 function _init_gm()
 {
-	const UF = require('root/src/lib/greasemonkey/framework');
+	const UF = require('root/lib/greasemonkey/framework');
 
 	UF.registerMenuCommand({
 		id: module.exports.name,
 		key: 'disable_nocontextmenu',
 	}, (options) =>
 	{
-		require('root/src/lib/dom/disable_nocontextmenu')
+		require('root/lib/dom/disable_nocontextmenu')
 			._uf_disable_nocontextmenu2(2)
 		;
 	});
@@ -85,7 +85,7 @@ function _init_gm()
 		key: 'clearly',
 	}, async (options) =>
 	{
-		let index = require(`./${module.exports.id}`);
+		let index = require(`root/src/${module.exports.id}`);
 
 		if (index.current && index.current.length)
 		{
@@ -95,7 +95,9 @@ function _init_gm()
 
 			let temp = null;
 
-			let list_script = require('root/src/lib/core').get_list_script(module.exports.id, index, global._url_obj);
+			let list_script = require('root/lib/core/index').get_list_script(module.exports.id, index, global._url_obj);
+
+			//console.log(list_script);
 
 			{
 				let a = [];

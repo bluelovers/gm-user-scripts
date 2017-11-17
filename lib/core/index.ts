@@ -2,7 +2,7 @@
  * Created by user on 2017/11/17/017.
  */
 
-import { parse_url, IUrlObject } from 'root/src/lib/func/parse_url';
+import { parse_url, IUrlObject } from 'root/lib/func/parse_url';
 
 export interface IUrlObject2 extends IUrlObject
 {
@@ -22,7 +22,7 @@ export interface IGetListScript
 	lib: any;
 }
 
-export function run(uxid: string, cb?: Function, $ = jQuery)
+export function run(uxid: string, $: JQueryStatic, cb?: Function)
 {
 	let _dummy = async () =>
 	{
@@ -60,7 +60,7 @@ export function init(exports, global, window: Window, url?: string)
 	exports._url = global._url = url || window.location.href;
 
 	{
-		const parse_url = require('root/src/lib/func/parse_url').parse_url;
+		const parse_url = require('root/lib/func/parse_url').parse_url;
 		let obj = parse_url(global._url);
 
 		exports._url_obj = _parse_url(global._url, obj);
