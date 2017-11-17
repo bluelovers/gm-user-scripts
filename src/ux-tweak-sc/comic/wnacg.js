@@ -26,15 +26,15 @@ module.exports = {
 
 	main()
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('.gallary_item a')
 			.attr('target', '_blank')
 		;
 
 		const keycodes = require('keycodes');
-		const _uf_done = require('root/src/lib/event/done');
-		const comic_style = require('root/src/lib/comic/style');
-		const greasemonkey = require('root/src/lib/greasemonkey');
+		const _uf_done = require('root/lib/event/done');
+		const comic_style = require('root/lib/comic/style');
+		const greasemonkey = require('root/lib/greasemonkey');
 
 		if ($('#photo_body').length)
 		{
@@ -77,7 +77,7 @@ module.exports = {
 			$(window)
 				.on('resize', function ()
 				{
-					const _uf_fixsize2 = require('root/src/lib/dom/img/size')._uf_fixsize2;
+					const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
 
 //						let _this = _uf_fixsize2(_img, window, 1, {
 //							width: 'auto',
@@ -102,7 +102,7 @@ module.exports = {
 
 					$.scrollTo(_img);
 				})
-				.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					let [page, page_max] = $('.newpagelabel').text().replace(/[\n\s]/ig, '').split('/').map((a) =>
 					{
@@ -150,7 +150,7 @@ module.exports = {
 		{
 			const _img_area = $('#img_list');
 
-			require('root/src/lib/jquery/onscreen');
+			require('root/lib/jquery/onscreen');
 
 			$('body')
 				.css(comic_style.body)
@@ -174,7 +174,7 @@ module.exports = {
 
 			let _img_resize = function (_this)
 			{
-				const _uf_fixsize2 = require('root/src/lib/dom/img/size')._uf_fixsize2;
+				const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
 
 				return _uf_fixsize2($(_this), window, 1, {
 					width: 'auto',
@@ -276,7 +276,7 @@ module.exports = {
 				{
 					$(window).triggerHandler('resize.once');
 				}))
-				.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					_img = $(_img_selector);
 
@@ -362,7 +362,7 @@ module.exports = {
 			$(window).scrollTo('.gallary_wrap');
 
 			$(window)
-				.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					switch (event.which)
 					{
