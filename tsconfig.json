@@ -27,6 +27,15 @@
     "rootDir": ".",
     "outDir": ".",
 
+    "paths": {
+      "root/src/*": [
+        "./src/*"
+      ],
+      "root/*": [
+        "./*"
+      ]
+    },
+
     "traceResolution": true,
     "newLine": "lf"
   },
