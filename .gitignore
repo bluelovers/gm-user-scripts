@@ -1,2 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 *.d.ts
+/src/lib/func/parse_url.js
+/src/lib/core/index.js
+/src/lib/save.js
+/src/lib/event/done.js
