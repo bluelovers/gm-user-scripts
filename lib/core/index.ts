@@ -69,6 +69,8 @@ export function init(exports, global, window: Window, url?: string)
 		global._url_obj = _parse_url(global._url, obj);
 		global._url_obj_ = _parse_url(global._url, obj);
 	}
+
+	global.$ = global.$ || $;
 }
 
 function _parse_url(_url: string, _url_obj: IUrlObject | IUrlObject2): IUrlObject2
