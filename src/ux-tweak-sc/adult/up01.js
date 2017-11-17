@@ -30,7 +30,7 @@ module.exports = {
 			return true;
 		}
 
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('')
 			.prop('target', '_blank')
 		;
