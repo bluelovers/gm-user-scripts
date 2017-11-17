@@ -35,3 +35,5 @@ export const metadata = `// ==UserScript==
 //
 // ==/UserScript==
 `;
+
+export default metadata;
