@@ -1,46 +1,31 @@
 /**
  * Created by user on 2017/7/21/021.
  */
-
 'use strict';
-
 module.exports = {
-
-	registerMenuCommand(options, callback, argv = [])
-	{
-		if (typeof options == 'string')
-		{
-			options = {
-				label: options,
-			};
-		}
-
-		const label = options.label || `[${options.name || options.id}] ${options.key}`;
-
-		GM_registerMenuCommand(label, function ()
-		{
-			console.time(label);
-			console.group(label);
-
-			let ret;
-
-			try
-			{
-				ret = callback(options, ...argv);
-
-				if (ret && ret !== true)
-				{
-					console.info(label, options.fn_name || callback.name, [ret.length, ret]);
-				}
-			}
-			catch(e)
-			{
-				console.error(e);
-			}
-
-			console.groupEnd(label);
-			console.timeEnd(label);
-		});
-	},
-
+    registerMenuCommand(options, callback, argv = []) {
+        if (typeof options == 'string') {
+            options = {
+                label: options,
+            };
+        }
+        const label = options.label || `[${options.name || options.id}] ${options.key}`;
+        GM_registerMenuCommand(label, function () {
+            console.time(label);
+            console.group(label);
+            let ret;
+            try {
+                ret = callback(options, ...argv);
+                if (ret && ret !== true) {
+                    console.info(label, options.fn_name || callback.name, [ret.length, ret]);
+                }
+            }
+            catch (e) {
+                console.error(e);
+            }
+            console.groupEnd(label);
+            console.timeEnd(label);
+        });
+    },
 };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZnJhbWV3b3JrLmpzIiwic291cmNlUm9vdCI6IkQ6L1VzZXJzL0RvY3VtZW50cy9UaGUgUHJvamVjdC9nbV9zY3JpcHRzX3JlcG8vdXgtdHdlYWstc2MvIiwic291cmNlcyI6WyJzcmMvbGliL2dyZWFzZW1vbmtleS9mcmFtZXdvcmsudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxZQUFZLENBQUM7QUFFYixNQUFNLENBQUMsT0FBTyxHQUFHO0lBRWhCLG1CQUFtQixDQUFDLE9BQU8sRUFBRSxRQUFRLEVBQUUsSUFBSSxHQUFHLEVBQUU7UUFFL0MsRUFBRSxDQUFDLENBQUMsT0FBTyxPQUFPLElBQUksUUFBUSxDQUFDLENBQy9CLENBQUM7WUFDQSxPQUFPLEdBQUc7Z0JBQ1QsS0FBSyxFQUFFLE9BQU87YUFDZCxDQUFDO1FBQ0gsQ0FBQztRQUVELE1BQU0sS0FBSyxHQUFHLE9BQU8sQ0FBQyxLQUFLLElBQUksSUFBSSxPQUFPLENBQUMsSUFBSSxJQUFJLE9BQU8sQ0FBQyxFQUFFLEtBQUssT0FBTyxDQUFDLEdBQUcsRUFBRSxDQUFDO1FBRWhGLHNCQUFzQixDQUFDLEtBQUssRUFBRTtZQUU3QixPQUFPLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO1lBQ3BCLE9BQU8sQ0FBQyxLQUFLLENBQUMsS0FBSyxDQUFDLENBQUM7WUFFckIsSUFBSSxHQUFHLENBQUM7WUFFUixJQUNBLENBQUM7Z0JBQ0EsR0FBRyxHQUFHLFFBQVEsQ0FBQyxPQUFPLEVBQUUsR0FBRyxJQUFJLENBQUMsQ0FBQztnQkFFakMsRUFBRSxDQUFDLENBQUMsR0FBRyxJQUFJLEdBQUcsS0FBSyxJQUFJLENBQUMsQ0FDeEIsQ0FBQztvQkFDQSxPQUFPLENBQUMsSUFBSSxDQUFDLEtBQUssRUFBRSxPQUFPLENBQUMsT0FBTyxJQUFJLFFBQVEsQ0FBQyxJQUFJLEVBQUUsQ0FBQyxHQUFHLENBQUMsTUFBTSxFQUFFLEdBQUcsQ0FBQyxDQUFDLENBQUM7Z0JBQzFFLENBQUM7WUFDRixDQUFDO1lBQ0QsS0FBSyxDQUFBLENBQUMsQ0FBQyxDQUFDLENBQ1IsQ0FBQztnQkFDQSxPQUFPLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1lBQ2xCLENBQUM7WUFFRCxPQUFPLENBQUMsUUFBUSxDQUFDLEtBQUssQ0FBQyxDQUFDO1lBQ3hCLE9BQU8sQ0FBQyxPQUFPLENBQUMsS0FBSyxDQUFDLENBQUM7UUFDeEIsQ0FBQyxDQUFDLENBQUM7SUFDSixDQUFDO0NBRUQsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSB1c2VyIG9uIDIwMTcvNy8yMS8wMjEuXG4gKi9cblxuJ3VzZSBzdHJpY3QnO1xuXG5tb2R1bGUuZXhwb3J0cyA9IHtcblxuXHRyZWdpc3Rlck1lbnVDb21tYW5kKG9wdGlvbnMsIGNhbGxiYWNrLCBhcmd2ID0gW10pXG5cdHtcblx0XHRpZiAodHlwZW9mIG9wdGlvbnMgPT0gJ3N0cmluZycpXG5cdFx0e1xuXHRcdFx0b3B0aW9ucyA9IHtcblx0XHRcdFx0bGFiZWw6IG9wdGlvbnMsXG5cdFx0XHR9O1xuXHRcdH1cblxuXHRcdGNvbnN0IGxhYmVsID0gb3B0aW9ucy5sYWJlbCB8fCBgWyR7b3B0aW9ucy5uYW1lIHx8IG9wdGlvbnMuaWR9XSAke29wdGlvbnMua2V5fWA7XG5cblx0XHRHTV9yZWdpc3Rlck1lbnVDb21tYW5kKGxhYmVsLCBmdW5jdGlvbiAoKVxuXHRcdHtcblx0XHRcdGNvbnNvbGUudGltZShsYWJlbCk7XG5cdFx0XHRjb25zb2xlLmdyb3VwKGxhYmVsKTtcblxuXHRcdFx0bGV0IHJldDtcblxuXHRcdFx0dHJ5XG5cdFx0XHR7XG5cdFx0XHRcdHJldCA9IGNhbGxiYWNrKG9wdGlvbnMsIC4uLmFyZ3YpO1xuXG5cdFx0XHRcdGlmIChyZXQgJiYgcmV0ICE9PSB0cnVlKVxuXHRcdFx0XHR7XG5cdFx0XHRcdFx0Y29uc29sZS5pbmZvKGxhYmVsLCBvcHRpb25zLmZuX25hbWUgfHwgY2FsbGJhY2submFtZSwgW3JldC5sZW5ndGgsIHJldF0pO1xuXHRcdFx0XHR9XG5cdFx0XHR9XG5cdFx0XHRjYXRjaChlKVxuXHRcdFx0e1xuXHRcdFx0XHRjb25zb2xlLmVycm9yKGUpO1xuXHRcdFx0fVxuXG5cdFx0XHRjb25zb2xlLmdyb3VwRW5kKGxhYmVsKTtcblx0XHRcdGNvbnNvbGUudGltZUVuZChsYWJlbCk7XG5cdFx0fSk7XG5cdH0sXG5cbn07XG4iXX0=
