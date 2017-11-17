@@ -29,7 +29,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('a.external')
 			.prop('target', '_blank')
 		;
@@ -42,7 +42,7 @@ module.exports = {
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		const greasemonkey = require('root/src/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey');
 
 		let _dom = $(_dom_list);
 
