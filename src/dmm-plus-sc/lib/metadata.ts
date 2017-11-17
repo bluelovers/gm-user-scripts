@@ -16,7 +16,7 @@ export const metadata = `// ==UserScript==
 // grant		GM_addStyle
 // grant		none
 //
-// @noframes
+// noframes
 // @encoding	utf-8
 //
 // @homepageURL	https://github.com/bluelovers/gm-user-scripts

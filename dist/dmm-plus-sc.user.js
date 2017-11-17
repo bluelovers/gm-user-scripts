@@ -5,7 +5,7 @@
 //
 // @description	
 //
-// @version		1.0.0
+// @version		2.0.0
 //
 // @grant		GM_registerMenuCommand
 // @grant		unsafeWindow
@@ -24,10 +24,10 @@
 //
 // @exclude		
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1510916129589
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1510916129589
+// require		https://code.jquery.com/jquery-3.2.1.js?1510916730644
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1510916730644
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1510916129589
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1510916730644
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
@@ -116,7 +116,7 @@ eval("/* WEBPACK VAR INJECTION */(function(global) {\nmodule.exports.id = 'dmm-p
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/* WEBPACK VAR INJECTION */(function(jQuery) {/**\n * Created by user on 2017/11/17/017.\n */\n\nmodule.exports.id = 'dmm-plus-sc';\nmodule.exports.name = module.exports.id;\n__webpack_require__(/*! root/lib/core */ 6).run(module.exports.id, jQuery, function () {\n});\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXgudXNlci5qcyIsInNvdXJjZVJvb3QiOiJEOi9Vc2Vycy9Eb2N1bWVudHMvVGhlIFByb2plY3QvZ21fc2NyaXB0c19yZXBvL3V4LXR3ZWFrLXNjLyIsInNvdXJjZXMiOlsic3JjL2RtbS1wbHVzLXNjL2luZGV4LnVzZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxZQUFZLENBQUM7QUFFYixNQUFNLENBQUMsT0FBTyxDQUFDLEVBQUUsR0FBRyxhQUFhLENBQUM7QUFDbEMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxJQUFJLEdBQUcsTUFBTSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUM7QUFFeEMsT0FBTyxDQUFDLGVBQWUsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUMsT0FBTyxDQUFDLEVBQUUsRUFBRSxNQUFNLEVBQUU7QUFHeEQsQ0FBQyxDQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIENyZWF0ZWQgYnkgdXNlciBvbiAyMDE3LzExLzE3LzAxNy5cbiAqL1xuXG4ndXNlIHN0cmljdCc7XG5cbm1vZHVsZS5leHBvcnRzLmlkID0gJ2RtbS1wbHVzLXNjJztcbm1vZHVsZS5leHBvcnRzLm5hbWUgPSBtb2R1bGUuZXhwb3J0cy5pZDtcblxucmVxdWlyZSgncm9vdC9saWIvY29yZScpLnJ1bihtb2R1bGUuZXhwb3J0cy5pZCwgalF1ZXJ5LCBmdW5jdGlvbiAoKVxue1xuXHRcbn0pO1xuIl19\n/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 5)))\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/dmm-plus-sc/index.user.js\n// module id = 1\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/dmm-plus-sc/index.user.js?");
+eval("/* WEBPACK VAR INJECTION */(function(jQuery) {/**\n * Created by user on 2017/11/17/017.\n */\n\nmodule.exports.id = 'dmm-plus-sc';\nmodule.exports.name = module.exports.id;\n__webpack_require__(/*! root/lib/core */ 6).run(module.exports.id, jQuery, function () {\n});\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXgudXNlci5qcyIsInNvdXJjZVJvb3QiOiJEOi9Vc2Vycy9Eb2N1bWVudHMvVGhlIFByb2plY3QvZ21fc2NyaXB0c19yZXBvL3V4LXR3ZWFrLXNjLyIsInNvdXJjZXMiOlsic3JjL2RtbS1wbHVzLXNjL2luZGV4LnVzZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxZQUFZLENBQUM7QUFFYixNQUFNLENBQUMsT0FBTyxDQUFDLEVBQUUsR0FBRyxhQUFhLENBQUM7QUFDbEMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxJQUFJLEdBQUcsTUFBTSxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUM7QUFFeEMsT0FBTyxDQUFDLGVBQWUsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUMsT0FBTyxDQUFDLEVBQUUsRUFBRSxNQUFNLEVBQUU7QUFHeEQsQ0FBQyxDQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcclxuICogQ3JlYXRlZCBieSB1c2VyIG9uIDIwMTcvMTEvMTcvMDE3LlxyXG4gKi9cclxuXHJcbid1c2Ugc3RyaWN0JztcclxuXHJcbm1vZHVsZS5leHBvcnRzLmlkID0gJ2RtbS1wbHVzLXNjJztcclxubW9kdWxlLmV4cG9ydHMubmFtZSA9IG1vZHVsZS5leHBvcnRzLmlkO1xyXG5cclxucmVxdWlyZSgncm9vdC9saWIvY29yZScpLnJ1bihtb2R1bGUuZXhwb3J0cy5pZCwgalF1ZXJ5LCBmdW5jdGlvbiAoKVxyXG57XHJcblx0XHJcbn0pO1xyXG4iXX0=\n/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 5)))\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/dmm-plus-sc/index.user.js\n// module id = 1\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/dmm-plus-sc/index.user.js?");
 
 /***/ }),
 /* 2 */
