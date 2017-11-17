@@ -22,6 +22,39 @@ export interface IGetListScript
 	lib: any;
 }
 
+export function run(uxid: string, cb?: Function, $ = jQuery)
+{
+	let _dummy = async () =>
+	{
+		try
+		{
+			if (cb)
+			{
+				cb();
+			}
+
+			let index = require(`root/src/${uxid}`);
+
+			await index.main(index.list);
+
+			console.info('index.current', index.current);
+		}
+		catch (e)
+		{
+			console.error(e.message, e.stack);
+		}
+		finally
+		{
+			console.info([global._url, global._url_obj, global.unsafeWindow]);
+		}
+	};
+
+	$(() =>
+	{
+		_dummy();
+	});
+}
+
 export function init(exports, global, window: Window, url?: string)
 {
 	exports._url = global._url = url || window.location.href;
@@ -47,7 +80,7 @@ function _parse_url(_url: string, _url_obj: IUrlObject | IUrlObject2): IUrlObjec
 	return obj;
 }
 
-export function get_list_script(uxid: string, index: IIndex, _url_obj: IUrlObject2, cwd): IGetListScript[]
+export function get_list_script(uxid: string, index: IIndex, _url_obj: IUrlObject2): IGetListScript[]
 {
 	let list_script = index.list_script
 		.reduce(function (a: IGetListScript[], name)

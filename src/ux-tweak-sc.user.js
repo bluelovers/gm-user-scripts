@@ -7,6 +7,7 @@ module.exports.name = module.exports.id;
 //global.jQuery = this.$ = this.jQuery = (jQuery || window.jQuery).noConflict();
 //global.Promise = require('bluebird');
 
+/*
 (function ($, undefined)
 {
 	//window.$ = global.$ = $;
@@ -38,6 +39,9 @@ module.exports.name = module.exports.id;
 		_dummy();
 	});
 })(jQuery);
+*/
+
+require('root/src/lib/core').run(module.exports.id, _init, jQuery);
 
 function _init()
 {

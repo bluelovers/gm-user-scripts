@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/greasemonkey": "0.0.28",
     "@types/jquery": "^3.2.16",
     "bluebird": "^3.5.0",
     "cheerio": "^1.0.0-rc.2",
