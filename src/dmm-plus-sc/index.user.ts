@@ -9,5 +9,6 @@ module.exports.name = module.exports.id;
 
 require('root/lib/core').run(module.exports.id, jQuery, function ()
 {
-	
+	require('root/lib/core').init(module.exports, global, window, window.location.href);
+	require('root/lib/jquery/scrollTo').makeJQueryPlugin(jQuery);
 });
