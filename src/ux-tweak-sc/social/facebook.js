@@ -30,10 +30,10 @@ module.exports = {
 
 	main()
 	{
-		const _uf_done = require('root/src/lib/event/done');
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_done = require('root/lib/event/done');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
-		const parse_url = require('root/src/lib/func/parse_url').parse_url;
+		const parse_url = require('root/lib/func/parse_url').parse_url;
 
 		const debounce = require('throttle-debounce/debounce');
 
@@ -110,7 +110,7 @@ module.exports = {
 		;
 
 		$(window)
-			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				if ($(event.target).is(':input, .notranslate'))
 				{
