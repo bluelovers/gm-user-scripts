@@ -32,8 +32,8 @@ module.exports = {
 			return;
 		}
 
-		require('root/src/lib/jquery/onscreen');
-		const _uf_done = require('root/src/lib/event/done');
+		require('root/lib/jquery/onscreen');
+		const _uf_done = require('root/lib/event/done');
 
 		//const _feed_selector = '.WB_detail, .WB_feed_detail';
 		const _feed_selector = '.WB_feed_type, .weibo-member';
@@ -93,7 +93,7 @@ module.exports = {
 					$(window).triggerHandler('load.img');
 				}, 1000);
 			})
-			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
 				{
