@@ -11,3 +11,9 @@
 /lib/core/demo.js
 /src/dmm-plus-sc/dmm.co.jp.js
 /src/dmm-plus-sc/_fake.js
+/src/dmm-plus-sc/game/canvas.js
+/src/dmm-plus-sc/dmm/co/jp/games.js
+/src/dmm-plus-sc/global/pc-play.js
+/src/dmm-plus-sc/*.js
+/src/dmm-plus-sc/**/*.js
+!/src/dmm-plus-sc/index.js

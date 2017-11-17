@@ -11,6 +11,11 @@ export function GM_addStyle(css, head?)
 		css = css.join('');
 	}
 
+	if (typeof head == 'string')
+	{
+		head = $(head);
+	}
+
 	if (typeof head == 'object' && head.length && typeof head[0] == 'object')
 	{
 		head = head[0];
