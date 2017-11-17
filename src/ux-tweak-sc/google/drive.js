@@ -27,23 +27,23 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
 
 		].join())
 			.prop('target', '_blank')
 		;
 
-		require('root/src/lib/jquery/event/key').makeJQueryPlugin($, window);
+		require('root/lib/jquery/event/key').makeJQueryPlugin($, window);
 
 		let _win = $(window);
 
 		// TODO: fix me, this not work
 		_win
-			.on('keydown.page', '[role="dialog"], .a-b-lc.a-b-ta-lc, .a-b-ta-Ua', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', '[role="dialog"], .a-b-lc.a-b-ta-lc, .a-b-ta-Ua', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
-				const _uf_done = require('root/src/lib/event/done');
+				const _uf_done = require('root/lib/event/done');
 
 				switch (event.which)
 				{
