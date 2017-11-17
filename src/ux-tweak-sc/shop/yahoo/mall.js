@@ -35,7 +35,7 @@ module.exports = {
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
 
-		const _uf_dom_filter_link = require('root/src/lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
 		$('#srp-pjax')
 			.on('DOMNodeInserted', '#srp-pjax-content', debounce(200, function ()
@@ -55,9 +55,9 @@ module.exports = {
 					.prop('target', '_blank')
 				;
 			})
-			.on('keydown.page', require('root/src/lib/jquery/event/hotkey').packEvent(function (event)
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
-				const _uf_done = require('root/src/lib/event/done');
+				const _uf_done = require('root/lib/event/done');
 				const keycodes = require('keycodes');
 
 				switch (event.which)
