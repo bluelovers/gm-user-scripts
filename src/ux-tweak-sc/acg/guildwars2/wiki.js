@@ -25,7 +25,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('../../../lib/dom/filter/link');
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
 		let _link = [
 			'a.external, .gallery .thumb a.image',
