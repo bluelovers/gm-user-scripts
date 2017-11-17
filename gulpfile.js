@@ -369,6 +369,8 @@ gulp.task("gm_scripts:config", ["webpack"], async function (callback)
 			continue;
 		}
 
+		console.log(name);
+
 		script.find('Exclude, Include').remove();
 
 		for (let row of index.metadata.exclude)
