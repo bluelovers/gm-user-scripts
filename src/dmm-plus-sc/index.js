@@ -2,19 +2,42 @@
 module.exports.id = 'dmm-plus-sc';
 module.exports.name = 'dmm-plus-sc';
 
-module.exports.list = [];
+module.exports.list = [
+	"dmm/co/jp/games.js",
+	"game/canvas.js",
+	"game/gadgets.js",
+	"global/pc-play.js",
+	"_fake.js"
+];
 
 module.exports.list_disable = [];
 
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	
+	require('root/src/dmm-plus-sc/dmm/co/jp/games.js');
+	require('root/src/dmm-plus-sc/game/canvas.js');
+	require('root/src/dmm-plus-sc/game/gadgets.js');
+	require('root/src/dmm-plus-sc/global/pc-play.js');
+	require('root/src/dmm-plus-sc/_fake.js');
 };
 
 module.exports.metadata = {};
-module.exports.metadata.include = [];
-module.exports.metadata.exclude = [];
+module.exports.metadata.include = [
+	"http*://games.dmm.co.jp/*",
+	"http*://games.dmm.co.jp/detail/*",
+	"http*://www.dmm.co.jp/netgame/*",
+	"http*://personal.games.dmm.co.jp/my-games/*",
+	"http*://web.killdoya.jp/*",
+	"http*://dmm-*.iolite.link/*",
+	"http*://*/product/dmm_pc.php/*",
+	"http*://osapi.dmm.com/gadgets/*",
+	"http*://pc-play.games.dmm.co.jp/play/*",
+	"http*://*.dmm.co*/*"
+];
+module.exports.metadata.exclude = [
+	"http://pc-play.games.dmm.co.jp/headnavi/*"
+];
 
 module.exports.main = async function (list, options = {})
 		{
