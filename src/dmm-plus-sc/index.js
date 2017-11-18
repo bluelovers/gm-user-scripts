@@ -7,6 +7,7 @@ module.exports.list = [
 	"game/canvas.js",
 	"game/gadgets.js",
 	"global/pc-play.js",
+	"global/script.js",
 	"_fake.js"
 ];
 
@@ -19,6 +20,7 @@ module.exports._lib = () =>
 	require('root/src/dmm-plus-sc/game/canvas.js');
 	require('root/src/dmm-plus-sc/game/gadgets.js');
 	require('root/src/dmm-plus-sc/global/pc-play.js');
+	require('root/src/dmm-plus-sc/global/script.js');
 	require('root/src/dmm-plus-sc/_fake.js');
 };
 
@@ -28,6 +30,10 @@ module.exports.metadata.include = [
 	"http*://games.dmm.co.jp/detail/*",
 	"http*://www.dmm.co.jp/netgame/*",
 	"http*://personal.games.dmm.co.jp/my-games/*",
+	"http*://games.dmm.com/*",
+	"http*://games.dmm.com/detail/*",
+	"http*://www.dmm.com/netgame/*",
+	"http*://personal.games.dmm.com/my-games/*",
 	"http*://web.killdoya.jp/*",
 	"http*://dmm-*.iolite.link/*",
 	"http*://*/product/dmm_pc.php/*",
@@ -156,7 +162,9 @@ module.exports.main = async function (list, options = {})
 			console.timeEnd(module.exports.name);
 		};
 
-module.exports.list_script = [];
+module.exports.list_script = [
+	"global/script.js"
+];
 
 module.exports.current = [];
 

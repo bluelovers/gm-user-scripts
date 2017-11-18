@@ -89,7 +89,7 @@ function _init_gm()
 
 		if (index.current && index.current.length)
 		{
-			const label = options.label || `[${options.name || options.id}] ${options.key}`;
+			const label = UF.getLabel(options);
 
 			let _dom = $();
 

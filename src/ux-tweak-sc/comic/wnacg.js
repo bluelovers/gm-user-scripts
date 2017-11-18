@@ -31,10 +31,13 @@ module.exports = {
 			.attr('target', '_blank')
 		;
 
+		module.exports.adblock();
+
 		const keycodes = require('keycodes');
 		const _uf_done = require('root/lib/event/done');
 		const comic_style = require('root/lib/comic/style');
 		const greasemonkey = require('root/lib/greasemonkey/uf');
+		const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
 
 		if ($('#photo_body').length)
 		{
@@ -77,12 +80,6 @@ module.exports = {
 			$(window)
 				.on('resize', function ()
 				{
-					const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
-
-//						let _this = _uf_fixsize2(_img, window, 1, {
-//							width: 'auto',
-//						});
-
 					_img
 						.css(comic_style.photo)
 					;
@@ -156,7 +153,7 @@ module.exports = {
 			greasemonkey
 				.GM_addStyle([
 					'#img_list img { vertical-align: middle; display: inline-block; }',
-					'#img_list > div { padding: 0 !important; vertical-align: middle; }',
+					'#img_list > div { padding: 0 !important; overflow: hidden; }',
 					`#img_list > div:before { content: ''; display: inline-block; vertical-align: middle; height: 100%; }`,
 				])
 			;
@@ -183,8 +180,6 @@ module.exports = {
 
 			let _img_resize = function (_this)
 			{
-				const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
-
 				return _uf_fixsize2($(_this), window, 1, {
 					width: 'auto',
 				})
@@ -223,16 +218,29 @@ module.exports = {
 
 					let _to = _img_area.add(_img.eq(0));
 
-					_to = _to.add(_img.filter(':onScreen'));
+					_to = _to.add(_img.filter(':onScreen')).eq(-1);
 
 					_div_page
-						.text((parseInt(_to.eq(-1).attr('data-index')) + 1) + '/' + _img.length)
+						.text((parseInt(_to.attr('data-index')) + 1) + '/' + _img.length)
 					;
 				})
 			;
 
 			const debounce = require('throttle-debounce/debounce');
 			const throttle = require('throttle-debounce/throttle');
+
+			let _fn_page = function (_to)
+			{
+				_div_page
+					.text((parseInt(_to.attr('data-index')) + 1) + '/' + _img.length)
+				;
+
+				_div_page
+					.offset({
+						left: _to.offset().left - _div_page.outerWidth(),
+					})
+				;
+			};
 
 			$(window)
 				.on('load', function ()
@@ -256,7 +264,7 @@ module.exports = {
 						})
 					;
 
-					$.stylesheet('#img_list > div').css('height', $(window).innerHeight());
+					//$.stylesheet('#img_list > div').css('height', $(window).innerHeight());
 				})
 				.on('resize.once', debounce(100, function ()
 				{
@@ -266,31 +274,19 @@ module.exports = {
 
 					_to = _to.add(_img.filter(':onScreen')).eq(-1);
 
-					_div_page
-						.text((parseInt(_to.attr('data-index')) + 1) + '/' + _img.length)
-					;
+					_fn_page(_to);
 
-					_div_page
-						.offset({
-							left: _to.offset().left - _div_page.outerWidth(),
-						})
-					;
-
-					$(window).scrollTo(_to.parents('div:eq(0)').eq(0));
+					$(window).scrollTo(_to.parent());
 				}))
-				/*
-				.on('scroll', throttle(1000, function (event)
-				{
-					$(window).triggerHandler('resize.once');
-				}))
-				*/
 				.on('scroll', debounce(1000, function (event)
 				{
 					$(window).triggerHandler('resize.once');
 				}))
 				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
-					_img = $(_img_selector);
+					_img = $(_img_selector)
+						//.parent('div')
+					;
 
 					let _i = 0;
 
@@ -322,12 +318,9 @@ module.exports = {
 
 							if (_a.length)
 							{
-								if (_a.parent('div').length)
-								{
-									_a = _a.parent('div');
-								}
+								_fn_page(_a);
 
-								$(window).scrollTo(_a);
+								$(window).scrollTo(_a.parent());
 							}
 
 							break;
@@ -347,12 +340,9 @@ module.exports = {
 
 							if (_a.length)
 							{
-								if (_a.parent('div').length)
-								{
-									_a = _a.parent('div');
-								}
+								_fn_page(_a);
 
-								$(window).scrollTo(_a);
+								$(window).scrollTo(_a.parent());
 							}
 
 							break;
@@ -418,6 +408,8 @@ module.exports = {
 
 	adblock()
 	{
-
+		require('root/lib/dom/disable_nocontextmenu')
+			._uf_disable_nocontextmenu2(1)
+		;
 	},
 };

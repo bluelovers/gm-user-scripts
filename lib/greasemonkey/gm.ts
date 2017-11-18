@@ -4,6 +4,8 @@
 
 'use strict';
 
+const Map_registerMenuCommand = new Map();
+
 export interface IRegisterMenuCommandOptions
 {
 	id?: string;
@@ -34,9 +36,9 @@ export function registerMenuCommand(options: string | IRegisterMenuCommandOption
 		} as IRegisterMenuCommandOptions;
 	}
 
-	const label = options.label || `[${options.name || options.id}] ${options.key}`;
+	const label = getLabel(options);
 
-	GM_registerMenuCommand(label, async function ()
+	const fn = async function ()
 	{
 		console.time(label);
 		console.group(label);
@@ -59,5 +61,50 @@ export function registerMenuCommand(options: string | IRegisterMenuCommandOption
 
 		console.groupEnd(label);
 		console.timeEnd(label);
+	};
+
+	GM_registerMenuCommand(label, fn);
+	Map_registerMenuCommand.set(label, fn);
+
+	return label;
+}
+
+export function getLabel(options: string | IRegisterMenuCommandOptions): string
+{
+	if (typeof options == 'string')
+	{
+		options = {
+			label: options as string,
+		} as IRegisterMenuCommandOptions;
+	}
+
+	const label = options.label || `[${options.name || options.id}] ${options.key}`;
+
+	return label;
+}
+
+export async function callMenuCommand(options: string | IRegisterMenuCommandOptions, ...argv)
+{
+	const label = getLabel(options);
+
+	let fn = Map_registerMenuCommand.get(label) as Function;
+
+	if (fn)
+	{
+		return await fn(...argv);
+	}
+
+	return fn;
+}
+
+export function listMenuCommand(): string[]
+{
+	let ls = [];
+
+	Map_registerMenuCommand.forEach(function (value, key, map)
+	{
+		ls.push(key);
 	});
+
+	return ls;
 }
