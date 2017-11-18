@@ -34,7 +34,7 @@ module.exports = {
 		const keycodes = require('keycodes');
 		const _uf_done = require('root/lib/event/done');
 		const comic_style = require('root/lib/comic/style');
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/uf');
 
 		if ($('#photo_body').length)
 		{
@@ -151,6 +151,15 @@ module.exports = {
 			const _img_area = $('#img_list');
 
 			require('root/lib/jquery/onscreen');
+			require('jquery-stylesheet')($);
+
+			greasemonkey
+				.GM_addStyle([
+					'#img_list img { vertical-align: middle; display: inline-block; }',
+					'#img_list > div { padding: 0 !important; vertical-align: middle; }',
+					`#img_list > div:before { content: ''; display: inline-block; vertical-align: middle; height: 100%; }`,
+				])
+			;
 
 			$('body')
 				.css(comic_style.body)
@@ -206,6 +215,8 @@ module.exports = {
 						})
 						.done(function (data)
 						{
+							$(data.elements).parent('div').height($(window).innerHeight());
+
 							_img_resize(data.elements);
 						})
 					;
@@ -244,34 +255,35 @@ module.exports = {
 							_img_resize(this);
 						})
 					;
+
+					$.stylesheet('#img_list > div').css('height', $(window).innerHeight());
 				})
-				.on('resize.once', function ()
+				.on('resize.once', debounce(100, function ()
 				{
-					setTimeout(function ()
-					{
-						_img = $(_img_selector);
+					_img = $(_img_selector);
 
-						let _to = _img_area.add(_img.eq(0));
+					let _to = _img_area.add(_img.eq(0));
 
-						_to = _to.add(_img.filter(':onScreen'));
+					_to = _to.add(_img.filter(':onScreen')).eq(-1);
 
-						_div_page
-							.text((parseInt(_to.eq(-1).attr('data-index')) + 1) + '/' + _img.length)
-						;
+					_div_page
+						.text((parseInt(_to.attr('data-index')) + 1) + '/' + _img.length)
+					;
 
-						_div_page
-							.offset({
-								left: _to.eq(-1).offset().left - _div_page.outerWidth(),
-							})
-						;
+					_div_page
+						.offset({
+							left: _to.offset().left - _div_page.outerWidth(),
+						})
+					;
 
-						$(window).scrollTo(_to.eq(-1));
-					}, 100);
-				})
+					$(window).scrollTo(_to.parents('div:eq(0)').eq(0));
+				}))
+				/*
 				.on('scroll', throttle(1000, function (event)
 				{
 					$(window).triggerHandler('resize.once');
 				}))
+				*/
 				.on('scroll', debounce(1000, function (event)
 				{
 					$(window).triggerHandler('resize.once');
@@ -310,6 +322,11 @@ module.exports = {
 
 							if (_a.length)
 							{
+								if (_a.parent('div').length)
+								{
+									_a = _a.parent('div');
+								}
+
 								$(window).scrollTo(_a);
 							}
 
@@ -330,6 +347,11 @@ module.exports = {
 
 							if (_a.length)
 							{
+								if (_a.parent('div').length)
+								{
+									_a = _a.parent('div');
+								}
+
 								$(window).scrollTo(_a);
 							}
 
