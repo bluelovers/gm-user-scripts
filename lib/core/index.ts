@@ -30,7 +30,7 @@ export function run(uxid: string, $: JQueryStatic, cb?: Function)
 		{
 			if (cb)
 			{
-				cb();
+				cb(uxid, exports, global, window, $);
 			}
 
 			let index = require(`root/src/${uxid}`);
@@ -71,6 +71,7 @@ export function init(exports, global, window: Window, url?: string)
 	}
 
 	global.$ = global.$ || $;
+	global.jQuery = global.jQuery || jQuery;
 }
 
 function _parse_url(_url: string, _url_obj: IUrlObject | IUrlObject2): IUrlObject2
