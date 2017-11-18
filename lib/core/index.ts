@@ -72,6 +72,8 @@ export function init(exports, global, window: Window, url?: string)
 
 	global.$ = global.$ || $;
 	global.jQuery = global.jQuery || jQuery;
+
+	global.userScript = exports;
 }
 
 function _parse_url(_url: string, _url_obj: IUrlObject | IUrlObject2): IUrlObject2
