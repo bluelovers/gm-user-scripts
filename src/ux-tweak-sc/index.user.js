@@ -68,7 +68,7 @@ function _init()
 
 function _init_gm()
 {
-	const UF = require('root/lib/greasemonkey/framework');
+	const UF = require('root/lib/greasemonkey/gm');
 
 	UF.registerMenuCommand({
 		id: module.exports.name,

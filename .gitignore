@@ -4,7 +4,7 @@
 /lib/core/index.js
 /lib/save.js
 /lib/event/done.js
-/lib/greasemonkey/framework.js
+/lib/greasemonkey/gm.js
 /lib/greasemonkey/uf.js
 /src/dmm-plus-sc/lib/metadata.js
 /src/dmm-plus-sc/index.user.js
@@ -17,3 +17,5 @@
 /src/dmm-plus-sc/*.js
 /src/dmm-plus-sc/**/*.js
 !/src/dmm-plus-sc/index.js
+/lib/dom/iframe.js
+/lib/color/tag.ts
