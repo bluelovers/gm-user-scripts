@@ -27,6 +27,8 @@ module.exports = {
 	main()
 	{
 		const _uf_done = require('root/lib/event/done');
+		const debounce = require('throttle-debounce/debounce');
+		const throttle = require('throttle-debounce/throttle');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
@@ -181,37 +183,26 @@ module.exports = {
 		}
 		else if (_url_obj.host.match(/i\.dmzj\.com/))
 		{
-
-			$(window)
-				.on('load.q', function ()
+			$('#my_subscribe_id')
+				.on('DOMNodeInserted', debounce(200, function (event)
 				{
-					$('#my_subscribe_id a')
-						.not('[data-done]')
-						.attr('data-done', true)
-						.attr('href', function (i, old)
-						{
-							return old.replace('xs.dmzj.com', 'q.dmzj.com');
-						})
-					;
-				})
+					$(window).triggerHandler('load.ready');
+				}))
 			;
-
-			setTimeout(function ()
-			{
-				$(window).triggerHandler('load.q');
-			}, 3000);
 		}
-
-		$('.mainNav a, .about-info a')
-			.attr('href', function (i, old)
-			{
-				return old.replace('xs.dmzj.com', 'q.dmzj.com');
-			})
-		;
 
 		let _page_select = $('#page_select');
 
 		$(window)
+			.on('load.ready', function ()
+			{
+				$('.mainNav a, .about-info a, #my_subscribe_id a')
+					.attr('href', function (i, old)
+					{
+						return old.replace('xs.dmzj.com', 'q.dmzj.com');
+					})
+				;
+			})
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
@@ -237,7 +228,7 @@ module.exports = {
 						break;
 					case keycodes('pageup'):
 					//case keycodes('left'):
-						var _a = $('#center_box .img_land_prev, .wrap .pages > a:eq(1), .comic_wraCon .img_land_prev');
+						var _a = $('#center_box .img_land_prev, .wrap .pages > a:eq(1), .comic_wraCon .img_land_prev, #page_id .next');
 
 						if (_page_select.length
 							&& _page_select.val() == _page_select.find('option').eq(0).val()
@@ -273,7 +264,7 @@ module.exports = {
 						break;
 					case keycodes('pagedown'):
 					//case keycodes('right'):
-						var _a = $('#center_box .img_land_next, .wrap .pages > a:eq(-2), .comic_wraCon .img_land_next');
+						var _a = $('#center_box .img_land_next, .wrap .pages > a:eq(-2), .comic_wraCon .img_land_next, #page_id .next');
 
 						if (_page_select.length
 							&& _page_select.val() == _page_select.find('option').eq(-1).val()
@@ -292,6 +283,7 @@ module.exports = {
 						break;
 				}
 			}))
+			.triggerHandler('load.ready')
 		;
 	},
 
