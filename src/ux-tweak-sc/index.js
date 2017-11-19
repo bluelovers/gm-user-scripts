@@ -45,6 +45,7 @@ module.exports.list = [
 	"comic/ikanman.js",
 	"comic/manben.js",
 	"comic/nhentai.js",
+	"comic/rawdevart.js",
 	"comic/wnacg.js",
 	"content/farm/fun01.cc.js",
 	"novel/syosetu.js",
@@ -120,6 +121,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/comic/ikanman.js');
 	require('root/src/ux-tweak-sc/comic/manben.js');
 	require('root/src/ux-tweak-sc/comic/nhentai.js');
+	require('root/src/ux-tweak-sc/comic/rawdevart.js');
 	require('root/src/ux-tweak-sc/comic/wnacg.js');
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc.js');
 	require('root/src/ux-tweak-sc/novel/syosetu.js');
@@ -206,6 +208,7 @@ module.exports.metadata.include = [
 	"http*://*.manhuagui.com/*",
 	"http*://www.manben.com/*",
 	"http*://nhentai.net/*",
+	"http*://www.rawdevart.com/*",
 	"http*://*.wnacg.com/*",
 	"http*://*.wnacg.org/*",
 	"http*://www.fun01.cc/*",
