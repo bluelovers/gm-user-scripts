@@ -14,6 +14,7 @@ module.exports.list = [
 	"acg/guildwars2/forum.2017.js",
 	"acg/guildwars2/wiki.js",
 	"acg/gw2bltc.js",
+	"acg/movie/yahoo.js",
 	"acg/qoo-app.js",
 	"acg/qtfy.eu.js",
 	"acg/reddit.js",
@@ -90,6 +91,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/acg/guildwars2/forum.2017.js');
 	require('root/src/ux-tweak-sc/acg/guildwars2/wiki.js');
 	require('root/src/ux-tweak-sc/acg/gw2bltc.js');
+	require('root/src/ux-tweak-sc/acg/movie/yahoo.js');
 	require('root/src/ux-tweak-sc/acg/qoo-app.js');
 	require('root/src/ux-tweak-sc/acg/qtfy.eu.js');
 	require('root/src/ux-tweak-sc/acg/reddit.js');
@@ -170,6 +172,7 @@ module.exports.metadata.include = [
 	"http*://*-forum.guildwars2.com/*",
 	"http*://wiki.guildwars2.com/*",
 	"http*://www.gw2bltc.com/*",
+	"http*://tw.movies.yahoo.com/*",
 	"http*://*.qoo-app.com/*",
 	"http*://qtfy.eu/*",
 	"http*://www.reddit.com/r/*",
