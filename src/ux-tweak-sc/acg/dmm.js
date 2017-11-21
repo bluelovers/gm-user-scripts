@@ -6,6 +6,8 @@
 
 module.exports = {
 
+	disable: true,
+
 	metadata: {
 		match: [
 			'http*://www.dmm.co.jp/netgame/*',
