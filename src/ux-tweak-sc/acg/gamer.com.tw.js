@@ -58,7 +58,7 @@ module.exports = {
 		;
 
 		const comic_style = require('root/lib/comic/style');
-		const greasemonkey = require('root/lib/greasemonkey/index');
+		const greasemonkey = require('root/lib/greasemonkey/uf');
 
 		module.exports.adblock(_url_obj);
 
@@ -90,18 +90,18 @@ module.exports = {
 			{
 				let _a = $('#video-container #adult');
 
-				console.log(defer.count, _a);
+				greasemonkey.debug(defer.count, _a);
 
 				if (_a.length)
 				{
 					if (_a.is(':visible'))
 					{
-						console.log('自動略過警告');
+						greasemonkey.log('自動略過警告');
 						_a[0].click();
 					}
 					else
 					{
-						console.log($('#ani_video').attr('class'));
+						greasemonkey.debug($('#ani_video').attr('class'));
 					}
 
 					return true;
@@ -118,13 +118,13 @@ module.exports = {
 				.delay(2000)
 				.then(function ()
 				{
-					console.log($('#ani_video').attr('class'));
+					greasemonkey.debug($('#ani_video').attr('class'));
 
 					let p = PromiseInterval(function (defer)
 					{
 						let _a = $('#video-container .vast-skip-button:visible');
 
-						console.log(defer.count, _a);
+						greasemonkey.debug(defer.count, _a);
 
 						if (_a.length)
 						{
@@ -132,14 +132,14 @@ module.exports = {
 
 							if (text == '點此跳過廣告' || text && !/(\d+)/g.test(text))
 							{
-								console.log('開始播放', text);
+								greasemonkey.log('開始播放', text);
 								_a[0].click();
 
 								return true;
 							}
 							else if (/(\d+)/g.test(text))
 							{
-								console.log('等待播放', `${RegExp.$1}s`);
+								greasemonkey.log('等待播放', `${RegExp.$1}s`);
 							}
 						}
 						else if ($('#ani_video.vjs-waiting').length)
@@ -148,7 +148,7 @@ module.exports = {
 						}
 						else if (!$('#ani_video.vjs-ad-playing').length)
 						{
-							console.log('似乎已經略過廣告', $('#ani_video').attr('class'));
+							greasemonkey.log('似乎已經略過廣告', $('#ani_video').attr('class'));
 
 							return false;
 						}
@@ -328,8 +328,6 @@ module.exports = {
 
 		const packEvent = require('root/lib/jquery/event/hotkey').packEvent;
 
-		console.log(777, packEvent);
-
 		$(window)
 			.on('keydown.page', packEvent(function (event)
 			{
@@ -340,7 +338,7 @@ module.exports = {
 
 						var _a = $('#BH-pagebtn .prev:not(.no)');
 
-						console.log(event, _a);
+						//console.log(event, _a);
 
 						if (_a.length)
 						{
@@ -354,7 +352,7 @@ module.exports = {
 
 						var _a = $('#BH-pagebtn .next:not(.no)');
 
-						console.log(event, _a);
+						//console.log(event, _a);
 
 						if (_a.length)
 						{
@@ -485,7 +483,7 @@ function ref_url(_url_obj)
 
 function page_redirect(_url_obj)
 {
-	console.log(document.referrer, location, _url_obj);
+	//console.log(document.referrer, location, _url_obj);
 
 	if (_url_obj.path.match(/\/A\.php/) && document.referrer.match(/acgDetail\.php/))
 	{
