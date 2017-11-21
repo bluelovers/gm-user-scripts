@@ -207,6 +207,7 @@ module.exports.metadata.include = [
 	"https://i.dmzj.com/*",
 	"http*://exhentai.org/*",
 	"http*://g.e-hentai.org/*",
+	"http*://e-hentai.org/*",
 	"http*://*.ikanman.com/*",
 	"http*://*.manhuagui.com/*",
 	"http*://www.manben.com/*",
