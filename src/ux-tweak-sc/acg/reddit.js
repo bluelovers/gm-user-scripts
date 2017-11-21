@@ -31,7 +31,7 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
-		require('root/lib/greasemonkey')
+		require('root/lib/greasemonkey/index')
 			.GM_addStyle([
 				'.thing a.title { color: #0000ff; }',
 				'.thing a.title:visited { color: #2a2a2a; }',
@@ -93,7 +93,7 @@ module.exports = {
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/index');
 
 		let _dom = $(_dom_list);
 
