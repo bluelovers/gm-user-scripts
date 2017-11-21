@@ -49,6 +49,11 @@ export function auto(url: string, self: IDemo, options = {})
 
 	//console.debug(url, self.metadata.exclude, self.metadata.match);
 
+	if (self.metadata.nomatch && self.metadata.nomatch.length && match(url, self.metadata.nomatch, options))
+	{
+		return false;
+	}
+
 	if (self.metadata.exclude && self.metadata.exclude.length && match(url, self.metadata.exclude, options))
 	{
 		return false;
