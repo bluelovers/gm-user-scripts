@@ -63,7 +63,7 @@ module.exports = {
 			.add($('.postDetail #postEnd').nextAll())
 		;
 
-		require('root/lib/greasemonkey')
+		require('root/lib/greasemonkey/index')
 			.GM_addStyle([
 			`body { background: none; }`,
 		].join(''))

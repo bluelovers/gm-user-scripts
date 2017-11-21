@@ -29,7 +29,7 @@ module.exports = {
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/index');
 
 		greasemonkey.GM_addStyle([
 			`.package-details { padding-bottom: 0.25em; }`,

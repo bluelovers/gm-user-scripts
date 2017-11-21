@@ -37,7 +37,7 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/index');
 
 		$(window).scrollTo($()
 			.push('.layout-body')

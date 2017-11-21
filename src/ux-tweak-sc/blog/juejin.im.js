@@ -55,7 +55,7 @@ module.exports = {
 
 	adblock(_url_obj = global._url_obj)
 	{
-		require('root/lib/greasemonkey')
+		require('root/lib/greasemonkey/index')
 			.GM_addStyle([
 				'.container.entry-view .show-full { display: none !important; }',
 				'.container.entry-view .show-full-block { display: none !important; }',

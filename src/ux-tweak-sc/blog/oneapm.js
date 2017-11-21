@@ -48,7 +48,7 @@ module.exports = {
 			].join())
 		;
 
-		require('root/lib/greasemonkey')
+		require('root/lib/greasemonkey/index')
 			.GM_addStyle([
 				'#content.with-header-fix { padding-top: 0; }',
 			].join(''))

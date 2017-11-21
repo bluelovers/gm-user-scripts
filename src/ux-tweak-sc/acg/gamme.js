@@ -30,7 +30,7 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/index');
 		greasemonkey.GM_addStyle([
 			'.entry em a { color: initial; }',
 			'.entry .photovia a { color: blue; }',
