@@ -41,7 +41,7 @@ module.exports = {
 
 		let realname = $('.HeaderWrap .Username').text().trim();
 
-		require('root/lib/greasemonkey')
+		require('root/lib/greasemonkey/index')
 			.GM_addStyle([
 				'.HeaderTopRight { background-color: #0006; }',
 				'.HeaderTopRight:hover { background-color: #0009; }',
