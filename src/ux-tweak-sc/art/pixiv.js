@@ -9,6 +9,7 @@ module.exports = {
 	metadata: {
 		match: [
 			'http*://*.pixiv.net/*',
+			'http*://www.pixiv.net/search*',
 		],
 		exclude: [],
 	},
@@ -23,21 +24,39 @@ module.exports = {
 		return false;
 	},
 
-	main: () =>
+	main()
 	{
+		const debounce = require('throttle-debounce/debounce');
+		const throttle = require('throttle-debounce/throttle');
+
 		const _uf_done = require('root/lib/event/done');
-		require('root/lib/func/debounce');
+		//require('root/lib/func/debounce');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
-		_uf_dom_filter_link([
-			'.works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a',
-			'.post a',
-			'.column-search-result a',
-		].join(','))
-			.prop('target', '_blank')
+
+		$(window)
+			.on('load.link', debounce(100, function ()
+			{
+				_uf_dom_filter_link([
+					'.works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a',
+					'.post a',
+					'.column-search-result a',
+					'#js-react-search-mid a',
+				].join(','))
+					.prop('target', '_blank')
+				;
+			}))
+			.triggerHandler('load.link')
 		;
 
-		const greasemonkey = require('root/lib/greasemonkey/index');
+		$('#js-react-search-mid')
+			.on('DOMNodeInserted', debounce(100, function ()
+			{
+				$(window).triggerHandler('load.link');
+			}))
+		;
+
+		const greasemonkey = require('root/lib/greasemonkey/uf');
 
 		$(window).scrollTo($()
 			.push('.layout-body')
@@ -103,12 +122,12 @@ module.exports = {
 				}
 			}
 
-			$.scrollTo($('#wrapper'));
+			$.scrollTo($('#js-react-search-mid, #wrapper').eq(-1));
 
 			module.exports.adblock(_url_obj);
 
-			const debounce = require('throttle-debounce/debounce');
-			const throttle = require('throttle-debounce/throttle');
+			//const debounce = require('throttle-debounce/debounce');
+			//const throttle = require('throttle-debounce/throttle');
 
 			$('.column-search-result').on('DOMNodeInserted', throttle(300, function ()
 			{
@@ -183,14 +202,14 @@ module.exports = {
 		else if (_url_obj.path.match(/bookmark_add\.php/))
 		{
 			$(window)
-				.on('load', (function ()
+				.on('load', debounce(3000, function ()
 				{
 					if (!$('.user-recommendation-items .user-recommendation-item').length && $(
 							'#wrapper .user-recommendation-unit ._no-item:visible').length)
 					{
 						window.close();
 					}
-				}).debounce(3000))
+				}))
 			;
 
 			let _follow_area = $('.user-recommendation-items._loading');

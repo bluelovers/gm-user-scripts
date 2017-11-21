@@ -183,6 +183,7 @@ module.exports.metadata.include = [
 	"http*://www.epinv.com/*",
 	"http*://*.deviantart.com/*",
 	"http*://*.pixiv.net/*",
+	"http*://www.pixiv.net/search*",
 	"http*://www.ptt.cc/*",
 	"http*://blog.xuite.net/*",
 	"http*://dulfy.net/*",
