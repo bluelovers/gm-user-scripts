@@ -229,7 +229,7 @@ gulp.task("webpack:before", async function (callback)
 
 					if (_break && test !== 2)
 					{
-						console.debug(name_id, 'break:test', test);
+						console.info(name_id, 'break:test', test);
 
 						break CHK;
 					}
