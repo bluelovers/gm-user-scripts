@@ -28,7 +28,7 @@ module.exports = {
 		const keycodes = require('keycodes');
 		const _uf_done = require('root/lib/event/done');
 		const comic_style = require('root/lib/comic/style');
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/index');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('#content .gallery a')
