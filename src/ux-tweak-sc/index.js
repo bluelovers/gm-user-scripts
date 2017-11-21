@@ -7,7 +7,6 @@ module.exports.list = [
 	"acg/3dmgame.js",
 	"acg/blog.reimu.net.js",
 	"acg/dlsite.js",
-	"acg/dmm.js",
 	"acg/gamer.com.tw.js",
 	"acg/gamme.js",
 	"acg/getchu.js",
@@ -38,6 +37,7 @@ module.exports.list = [
 	"code/stackoverflow.js",
 	"comic/999comic.js",
 	"comic/alphapolis.co.jp.js",
+	"comic/book.dmm.co.jp.js",
 	"comic/comic-walker.js",
 	"comic/comico.js",
 	"comic/dm5.js",
@@ -73,6 +73,7 @@ module.exports.list = [
 ];
 
 module.exports.list_disable = [
+	"acg/dmm.js",
 	"acg/guildwars2/forum.js",
 	"google/drive.js"
 ];
@@ -84,7 +85,6 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/acg/3dmgame.js');
 	require('root/src/ux-tweak-sc/acg/blog.reimu.net.js');
 	require('root/src/ux-tweak-sc/acg/dlsite.js');
-	require('root/src/ux-tweak-sc/acg/dmm.js');
 	require('root/src/ux-tweak-sc/acg/gamer.com.tw.js');
 	require('root/src/ux-tweak-sc/acg/gamme.js');
 	require('root/src/ux-tweak-sc/acg/getchu.js');
@@ -115,6 +115,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/code/stackoverflow.js');
 	require('root/src/ux-tweak-sc/comic/999comic.js');
 	require('root/src/ux-tweak-sc/comic/alphapolis.co.jp.js');
+	require('root/src/ux-tweak-sc/comic/book.dmm.co.jp.js');
 	require('root/src/ux-tweak-sc/comic/comic-walker.js');
 	require('root/src/ux-tweak-sc/comic/comico.js');
 	require('root/src/ux-tweak-sc/comic/dm5.js');
@@ -156,7 +157,6 @@ module.exports.metadata.include = [
 	"http*://bbs.3dmgame.com/*",
 	"http*://blog.reimu.net/*",
 	"http*://www.dlsite.com/*",
-	"http*://www.dmm.co.jp/netgame/*",
 	"http*://www.gamer.com.tw/*",
 	"http*://www.gamer.com.tw/index*.php*",
 	"http*://acg.gamer.com.tw/acgDetail.php?s=*",
@@ -200,6 +200,7 @@ module.exports.metadata.include = [
 	"http*://www.999comic.com/*",
 	"http://t.168girl.com/*",
 	"http*://www.alphapolis.co.jp/*",
+	"http*://book.dmm.co.jp/*",
 	"https://comic-walker.com/*",
 	"http*://www.comico.com.tw/*",
 	"http*://www.dm5.com/*",
