@@ -37,6 +37,8 @@ export interface IMetadata
 {
 	match?: string[];
 	exclude?: string[];
+
+	nomatch?: string[];
 }
 
 export function create(data = {})
