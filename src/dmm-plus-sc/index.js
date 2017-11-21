@@ -96,7 +96,7 @@ module.exports.main = async function (list, options = {})
 
 					if (_break && test !== 2)
 					{
-						console.debug(name_id, 'break:test', test);
+						console.info(name_id, 'break:test', test);
 
 						break CHK;
 					}

@@ -2,31 +2,27 @@
  * Created by user on 2017/7/14/014.
  */
 
-module.exports = {
+export function GM_addStyle(css: string, head?)
+{
+	head = head || document.getElementsByTagName('head')[0];
 
-	GM_addStyle(css, head)
+	if (!head)
 	{
-		head = head || document.getElementsByTagName('head')[0];
+		return;
+	}
 
-		if (!head)
-		{
-			return;
-		}
+	let style = document.createElement('style');
+	style.type = 'text/css';
 
-		let style = document.createElement('style');
-		style.type = 'text/css';
+	try
+	{
+		style.innerHTML = css
+	}
+	catch (e)
+	{
+		style.innerText = css
+	}
+	head.appendChild(style);
 
-		try
-		{
-			style.innerHTML = css
-		}
-		catch (e)
-		{
-			style.innerText = css
-		}
-		head.appendChild(style);
-
-		return style;
-	},
-
-};
+	return style;
+}

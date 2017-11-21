@@ -4,66 +4,64 @@
 
 'use strict';
 
-const minimatch = require("minimatch");
+import { IDemo } from 'root/lib/core/demo';
+import * as minimatch from 'minimatch';
+
 const Minimatch = minimatch.Minimatch;
 
-module.exports = {
+export function match(list, pattern: string[], options = {})
+{
+	let ret = false;
 
-	match(list, pattern, options = {})
+	for (let m of pattern)
 	{
-		let ret = false;
+		m = m.replace(/\*/g, '**');
 
-		for (let m of pattern)
+		if (ret = minimatch(list, m, options))
 		{
-			m = m.replace(/\*/g, '**');
-
-			if (ret = minimatch(list, m, options))
-			{
-				break;
-			}
+			break;
 		}
-
-		//console.debug(999, ret, list, pattern);
-
-		return ret;
-	},
-
-	/**
-	 * require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports)
-	 *
-	 * @param url
-	 * @param self
-	 * @param options
-	 * @returns {boolean}
-	 */
-	auto(url, self, options = {})
-	{
-		options = Object.assign({}, {
-			nocase: true,
-			//noglobstar: true,
-			dot: true,
-			//debug: true,
-		}, options);
-
-		let ret = false;
-
-		//console.debug(url, self.metadata.exclude, self.metadata.match);
-
-		if (self.metadata.exclude && self.metadata.exclude.length && module.exports.match(url, self.metadata.exclude, options))
-		{
-			return false;
-		}
-
-		if (self.metadata.match && self.metadata.match.length)
-		{
-			ret = module.exports.match(url, self.metadata.match, options);
-		}
-		else
-		{
-			ret = false;
-		}
-
-		return ret;
 	}
 
-};
+	//console.debug(999, ret, list, pattern);
+
+	return ret;
+}
+
+/**
+ * require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports)
+ *
+ * @param url
+ * @param self
+ * @param options
+ * @returns {boolean}
+ */
+export function auto(url: string, self: IDemo, options = {})
+{
+	options = Object.assign({}, {
+		nocase: true,
+		//noglobstar: true,
+		dot: true,
+		//debug: true,
+	}, options);
+
+	let ret = false;
+
+	//console.debug(url, self.metadata.exclude, self.metadata.match);
+
+	if (self.metadata.exclude && self.metadata.exclude.length && match(url, self.metadata.exclude, options))
+	{
+		return false;
+	}
+
+	if (self.metadata.match && self.metadata.match.length)
+	{
+		ret = match(url, self.metadata.match, options);
+	}
+	else
+	{
+		ret = false;
+	}
+
+	return ret;
+}
