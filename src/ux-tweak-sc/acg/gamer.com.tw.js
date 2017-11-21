@@ -47,22 +47,26 @@ module.exports = {
 		const keycodes = require('keycodes');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
-		let _a = _uf_dom_filter_link([
-				'.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a, .ACG-mster_box4 a',
-				'.newanime a, a.animelook, a.newanime__content',
-				'.BH-rbox a[data-gtm]',
-				'.HOME-mainbox1 a',
-			].join())
+		_uf_dom_filter_link([
+			'.FM-blist .FM-blist3 a, .GN-lbox2B a, .b-list .b-list__main a, #headnews a, .BH-lbox.GN-lbox9 a, .ACG-maintitle a, .ACG-mster_box4 a',
+			'.newanime a, a.animelook, a.newanime__content',
+			'.BH-rbox a[data-gtm]',
+			'.HOME-mainbox1 a',
+			'a.newanime_img, a.newanime_text',
+		].join())
 			.prop('target', '_blank')
 		;
 
 		const comic_style = require('root/lib/comic/style');
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/index');
 
 		module.exports.adblock(_url_obj);
 
 		if (_url_obj.path.match(/animeVideo/))
 		{
+			const debounce = require('throttle-debounce/debounce');
+			const throttle = require('throttle-debounce/throttle');
+
 			greasemonkey.GM_addStyle([
 				`body, #BH_background, .BH_background, .sky, .bullet-send, .bullet-send .bullet-send-setting, .bullet-send .bullet-send-submit, .bullet-send .bullet-send-msg input, .anime-title { background: ${comic_style.bg_dark.background}; }`,
 				`.sky ul.member a:hover, .bullet-send, .bullet-send .bullet-send-setting, .bullet-send .bullet-send-submit, .bullet-send .bullet-send-msg input, .anime-title, .season a { color: ${comic_style.bg_dark_text.color}; }`,
@@ -80,76 +84,164 @@ module.exports = {
 
 			const waitUntil = require('root/lib/promise/wait').jquery;
 
-			$(window)
-				.on('load.animeVideo', function ()
+			const PromiseInterval = require('root/lib/promise').PromiseInterval;
+
+			let p_ncc = PromiseInterval(function (defer)
+			{
+				let _a = $('#video-container #adult');
+
+				console.log(defer.count, _a);
+
+				if (_a.length)
 				{
-					let video_container = $('#video-container');
-
-					let _a = $('.ncc > .choose:visible > a:eq(0)', video_container);
-
-					if (_a.length)
+					if (_a.is(':visible'))
 					{
 						console.log('自動略過警告');
-
-						_a.click();
+						_a[0].click();
+					}
+					else
+					{
+						console.log($('#ani_video').attr('class'));
 					}
 
-					waitUntil(function (deferred, count)
+					return true;
+				}
+				else if ($('#ani_video.vjs-ad-playing').length)
+				{
+					return false;
+				}
+
+			}, 1000);
+
+			p_ncc
+				.promise
+				.delay(2000)
+				.then(function ()
+				{
+					console.log($('#ani_video').attr('class'));
+
+					let p = PromiseInterval(function (defer)
 					{
-						_a = $('.vast-skip-button:visible', video_container);
+						let _a = $('#video-container .vast-skip-button:visible');
+
+						console.log(defer.count, _a);
 
 						if (_a.length)
 						{
-							deferred.resolveWith(_a, [_a, count]);
-						}
-						else if (count < 50)
-						{
-							return true;
-						}
+							let text = _a.text();
 
-						return _a;
-					})
-						.done(function (_a, count)
-						{
-							console.log('等待允許略過廣告時間');
-
-							return waitUntil(function (deferred, count)
+							if (text == '點此跳過廣告' || text && !/(\d+)/g.test(text))
 							{
-								let text = _a.text();
+								console.log('開始播放', text);
+								_a[0].click();
 
-								if (text == '點此跳過廣告' || text && !/\d+/g.test(text))
-								{
-									deferred.resolveWith(_a, [_a, count]);
-								}
-								else if (count < 400)
-								{
-									return true;
-								}
-								else
-								{
-									console.log('等待超時 網頁可能已出錯 或 請手動點取');
-								}
+								return true;
+							}
+							else if (/(\d+)/g.test(text))
+							{
+								console.log('等待播放', `${RegExp.$1}s`);
+							}
+						}
+						else if ($('#ani_video.vjs-waiting').length)
+						{
 
-								return _a;
-							});
-						})
-						.then(function (_a, count)
+						}
+						else if (!$('#ani_video.vjs-ad-playing').length)
 						{
-							console.log('開始播放', _a.text());
-							_a.click();
-						})
-						.fail(function (_a, count)
+							console.log('似乎已經略過廣告', $('#ani_video').attr('class'));
+
+							return false;
+						}
+
+					}, 1500);
+
+					return p
+						.promise
+						.timeout(35000)
+						.catch(function ()
 						{
-							console.error(this, _a, count);
+							return false;
 						})
-					;
+						;
 				})
 			;
 
-			setTimeout(function ()
+			$(window)
+				.one('load.animeVideo', debounce(1500, function ()
+				{
+					if (p_ncc.promise.isPending() && $('#ani_video:not(.vjs-waiting)').length)
+					{
+						//p_ncc.fn();
+						//p_ncc.resolve(false);
+						p_ncc.fn(true);
+					}
+				}))
+			/*
+			.on('load.animeVideo', debounce(500, function ()
 			{
-				$(window).triggerHandler('load.animeVideo');
-			}, 3000);
+				let video_container = $('#video-container');
+
+				let _a = $('.ncc > .choose:visible > a:eq(0)', video_container);
+
+				if (_a.length)
+				{
+					console.log('自動略過警告');
+
+					_a[0].click();
+				}
+
+				waitUntil(function (deferred, count)
+				{
+					_a = $('.vast-skip-button:visible', video_container);
+
+					if (_a.length)
+					{
+						deferred.resolveWith(_a, [_a, count]);
+					}
+					else if (count < 50)
+					{
+						return true;
+					}
+
+					return _a;
+				})
+					.done(function (_a, count)
+					{
+						console.log('等待允許略過廣告時間');
+
+						return waitUntil(function (deferred, count)
+						{
+							let text = _a.text();
+
+							if (text == '點此跳過廣告' || text && !/\d+/g.test(text))
+							{
+								deferred.resolveWith(_a, [_a, count]);
+							}
+							else if (count < 400)
+							{
+								return true;
+							}
+							else
+							{
+								console.log('等待超時 網頁可能已出錯 或 請手動點取');
+							}
+
+							return _a;
+						});
+					})
+					.then(function (_a, count)
+					{
+						console.log('開始播放', _a.text());
+						_a.click();
+					})
+					.fail(function (_a, count)
+					{
+						console.error(this, _a, count);
+					})
+				;
+			}))
+			*/
+			;
 		}
 		else if (_url_obj.host.match(/www\.gamer\.com\.tw/))
 		{
@@ -283,7 +375,7 @@ module.exports = {
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/index');
 
 		let _dom = $(_dom_list);
 
