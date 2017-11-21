@@ -4,7 +4,9 @@
 
 import * as greasemonkey from './index';
 
-export function GM_addStyle(css, head?)
+Object.assign(exports, greasemonkey);
+
+export function GM_addStyle(css: string | string[], head?)
 {
 	if (Array.isArray(css))
 	{
@@ -24,12 +26,17 @@ export function GM_addStyle(css, head?)
 	return greasemonkey.GM_addStyle(css.toString(), head);
 }
 
-export function debug(...argv)
+export function debug(any: any, ...argv)
 {
-	return console.debug(...argv);
+	return console.info(`%c[${global.userScript.id}][debug]`, 'color: #4B90C2;', any, ...argv);
 }
 
-export function log(...argv)
+export function info(any: any, ...argv)
 {
-	return console.log(...argv);
+	return console.info(`%c[${global.userScript.id}][info]`, 'color: #ccc;', any, ...argv);
+}
+
+export function log(any: any, ...argv)
+{
+	return console.log(any, ...argv);
 }
