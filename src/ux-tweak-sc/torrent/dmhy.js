@@ -27,7 +27,7 @@ module.exports = {
 
 	main()
 	{
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/index');
 		const _uf_done = require('root/lib/event/done');
 		let jquery_stylesheet = require('jquery-stylesheet');
 		jquery_stylesheet($);
