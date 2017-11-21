@@ -39,7 +39,7 @@ module.exports = {
 
 		const comic_style = require('root/lib/comic/style');
 
-		const greasemonkey = require('root/lib/greasemonkey');
+		const greasemonkey = require('root/lib/greasemonkey/index');
 		greasemonkey.GM_addStyle([
 			`html, body, #main-ntg, iframe, .dmm-ntgnavi { margin: auto; padding: 0; min-width: auto; min-height: auto; }`,
 		].join(''));
