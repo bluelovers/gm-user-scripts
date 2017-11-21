@@ -22,7 +22,7 @@ let o = {
 
 		let s = [];
 
-		s.push(t.attr('style'));
+		s.push((t.attr('style') || ''));
 
 		t.removeAttr('style');
 
@@ -38,7 +38,7 @@ let o = {
 			t.css(css_important);
 		}
 
-		s.push(t.attr('style').replace(/;/g, ' !important;'));
+		s.push((t.attr('style') || '').replace(/;/g, ' !important;'));
 
 		t.remove();
 
