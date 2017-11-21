@@ -348,13 +348,8 @@ module.exports = {
 							break;
 					}
 				}))
-				.triggerHandler('resize')
+				.triggerHandler('resize.once')
 			;
-
-			setTimeout(function ()
-			{
-				$(window).triggerHandler('resize');
-			}, 500);
 		}
 		else
 		{
