@@ -23,3 +23,13 @@ export function GM_addStyle(css, head?)
 
 	return greasemonkey.GM_addStyle(css.toString(), head);
 }
+
+export function debug(...argv)
+{
+	return console.debug(...argv);
+}
+
+export function log(...argv)
+{
+	return console.log(...argv);
+}
