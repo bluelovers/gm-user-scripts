@@ -63,7 +63,15 @@ export function registerMenuCommand(options: string | IRegisterMenuCommandOption
 		console.timeEnd(label);
 	};
 
-	GM_registerMenuCommand(label, fn);
+	if (typeof GM_registerMenuCommand == 'function')
+	{
+		GM_registerMenuCommand(label, fn);
+	}
+	else
+	{
+		console.warn('GM_registerMenuCommand not a function.');
+	}
+
 	Map_registerMenuCommand.set(label, fn);
 
 	return label;
