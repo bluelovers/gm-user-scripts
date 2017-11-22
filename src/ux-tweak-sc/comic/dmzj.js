@@ -33,7 +33,7 @@ module.exports = {
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
 			'.cartoon_online_border a, #type_comics a, .anim-main_list a',
-			'#author_comics a',
+			'#author_comics a, .comic_deCon .beread_btn, .zj_list .list_con_li a',
 		].join(','))
 			.prop('target', '_blank')
 		;
