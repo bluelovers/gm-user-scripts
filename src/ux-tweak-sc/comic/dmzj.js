@@ -289,7 +289,15 @@ module.exports = {
 
 	adblock()
 	{
-		$('.header-box + div').css('height', 'auto');
+		$('.header-box + div')
+			.css('height', 'auto')
+		;
+
+		$([
+			'div[id^="BAIDU_SSP"]',
+		].join(','))
+			.remove()
+		;
 	},
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
