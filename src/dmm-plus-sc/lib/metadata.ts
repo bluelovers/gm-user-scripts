@@ -2,6 +2,8 @@
  * Created by user on 2017/8/6/006.
  */
 
+export const desc = 'dmm games layout tweak';
+
 export const metadata = `// ==UserScript==
 // @name		<%= index.name %>
 // @namespace	bluelovers
