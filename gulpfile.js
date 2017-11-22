@@ -295,9 +295,14 @@ gulp.task("webpack:before", async function (callback)
 			console.timeEnd(module.exports.name);
 		};
 
+		let metadata = require(path.join(cwd_src, name, 'lib/metadata'));
+
 		let text = `
 module.exports.id = '${name}';
 module.exports.name = '${name}';
+
+module.exports.desc = '${metadata.desc || ""}';
+module.exports.icon = '${metadata.icon || ""}';
 
 module.exports.list = ${JSON.stringify(ls.list, null, "\t")};
 

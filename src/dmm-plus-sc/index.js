@@ -2,6 +2,9 @@
 module.exports.id = 'dmm-plus-sc';
 module.exports.name = 'dmm-plus-sc';
 
+module.exports.desc = 'dmm games layout tweak';
+module.exports.icon = '';
+
 module.exports.list = [
 	"dmm/games.js",
 	"games/gadgets.js",

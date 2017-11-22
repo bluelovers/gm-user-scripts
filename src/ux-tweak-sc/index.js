@@ -2,6 +2,9 @@
 module.exports.id = 'ux-tweak-sc';
 module.exports.name = 'ux-tweak-sc';
 
+module.exports.desc = '';
+module.exports.icon = '';
+
 module.exports.list = [
 	"acg/2dfan.js",
 	"acg/3dmgame.js",
