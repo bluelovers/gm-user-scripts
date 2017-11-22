@@ -185,5 +185,5 @@ function dmm_area_cookies()
 		}
 	}
 
-	dmm_area_cookies.done = true;
+	(dmm_area_cookies as any).done = true;
 }
