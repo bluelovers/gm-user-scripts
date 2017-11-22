@@ -173,6 +173,8 @@ module.exports.metadata.include = [
 	"http*://wiki.guildwars2.com/*",
 	"http*://www.gw2bltc.com/*",
 	"http*://tw.movies.yahoo.com/*",
+	"http*://movies.yahoo.com.tw/*",
+	"http*://movies.yahoo.com.tw/movie_*.html",
 	"http*://*.qoo-app.com/*",
 	"http*://qtfy.eu/*",
 	"http*://www.reddit.com/r/*",
