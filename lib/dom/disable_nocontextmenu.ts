@@ -2,9 +2,9 @@
  * Created by user on 2017/7/14/014.
  */
 
-const greasemonkey = require('root/lib/greasemonkey/index');
+import greasemonkey from 'root/lib/greasemonkey/index';
 
-module.exports._uf_disable_nocontextmenu2 = function (mode, elem, options = {})
+export function _uf_disable_nocontextmenu2(mode, elem, options = {})
 {
 	let _fn_event = ['dragstart', 'contextmenu', 'selectstart', 'mousedown', 'mouseup', 'source', 'copy'];
 	let _fn_off = ['unbind', 'die', 'off'];
@@ -87,9 +87,9 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem, options = {})
 			});
 		}
 	});
-};
+}
 
-module.exports._uf_disable_nocontextmenu = function _uf_disable_nocontextmenu(mode, elem)
+export function _uf_disable_nocontextmenu(mode, elem)
 {
 	var _jquery_array = [$];
 	var _unsafeJquery;
@@ -192,3 +192,5 @@ module.exports._uf_disable_nocontextmenu = function _uf_disable_nocontextmenu(mo
 
 	});
 }
+
+export default _uf_disable_nocontextmenu2;
