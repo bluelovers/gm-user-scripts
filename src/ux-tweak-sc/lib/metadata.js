@@ -15,6 +15,8 @@ module.exports.metadata = `// ==UserScript==
 // grant		GM_addStyle
 // grant		none
 //
+// @icon		<%= index.icon %>
+//
 // @noframes
 // @encoding	utf-8
 //
