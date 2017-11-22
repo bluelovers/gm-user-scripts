@@ -11,8 +11,8 @@
 /lib/core/demo.js
 /src/dmm-plus-sc/dmm.co.jp.js
 /src/dmm-plus-sc/_fake.js
-/src/dmm-plus-sc/game/canvas.js
-/src/dmm-plus-sc/dmm/co/jp/games.js
+/dmm-plus-sc/games/canvas.js
+/dmm-plus-sc/dmm/games.js
 /src/dmm-plus-sc/global/pc-play.js
 /src/dmm-plus-sc/*.js
 /src/dmm-plus-sc/**/*.js
@@ -28,3 +28,4 @@
 /lib/greasemonkey/match.js
 /lib/greasemonkey/index.js
 /src/ux-tweak-sc/comic/book.dmm.co.jp.js
+/src/dmm-plus-sc/global/iframe.js
