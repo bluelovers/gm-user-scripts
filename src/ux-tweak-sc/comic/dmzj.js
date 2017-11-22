@@ -39,7 +39,7 @@ module.exports = {
 		;
 
 		const comic_style = require('root/lib/comic/style');
-		const greasemonkey = require('root/lib/greasemonkey/index');
+		const greasemonkey = require('root/lib/greasemonkey/uf');
 
 		module.exports.adblock();
 
@@ -50,6 +50,12 @@ module.exports = {
 		{
 			require('root/lib/dom/disable_nocontextmenu')
 				._uf_disable_nocontextmenu2(2)
+			;
+
+			greasemonkey
+				.GM_addStyle([
+					`#center_box img { ${comic_style.toCss(comic_style.photo)}; max-height: 100%; }`,
+				])
 			;
 
 			let _img_selector = '#center_box img, .comic_wraCon img';
@@ -64,10 +70,16 @@ module.exports = {
 				.appendTo('body')
 			;
 
+			const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
+
 			$(window)
-				.on('resize', function ()
+				.on('load', throttle(100, function ()
 				{
-					const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
+					$(window).triggerHandler('resize.scroll');
+				}))
+				.on('resize', throttle(100, function ()
+				{
+					_img = $(_img_selector);
 
 					let _this = _uf_fixsize2(_img, window, 1, {
 						width: 'auto',
@@ -101,12 +113,15 @@ module.exports = {
 					;
 
 					$.scrollTo(_img);
-
-					setTimeout(() =>
-					{
-						$.scrollTo(_img);
-					}, 500);
-				})
+				}))
+				.on('resize.scroll', throttle(500, function ()
+				{
+					$(window).scrollTo(_img);
+				}))
+				.on('resize.scroll', debounce(500, function ()
+				{
+					$(window).scrollTo(_img);
+				}))
 				.on('load.imagesLoaded', function (event)
 				{
 					_fn_img();
@@ -166,19 +181,32 @@ module.exports = {
 
 			_fn_img();
 
-			$('.img_land_prev, .img_land_next')
-				.on('click', function (event)
+			$(window)
+				.on('keydown.page', throttle(100, function ()
 				{
-					setTimeout(_fn_img, 100);
-				})
+					_fn_img();
+
+					$(window).triggerHandler('resize');
+				}))
+			;
+
+			$('.img_land_prev, .img_land_next')
+				.on('click', debounce(200, function()
+				{
+					_fn_img();
+				}))
+				.on('click', throttle(200, function ()
+				{
+					$(window).triggerHandler('resize');
+				}))
 				.hide()
 			;
 
 			$('#center_box')
-				.on('DOMNodeInserted', function (event)
+				.on('DOMNodeInserted', debounce(100, function()
 				{
-					setTimeout(_fn_img, 100);
-				})
+					_fn_img();
+				}))
 			;
 		}
 		else if (_url_obj.host.match(/i\.dmzj\.com/))
@@ -222,6 +250,7 @@ module.exports = {
 							{
 								_uf_done(event);
 								_a[0].click();
+								//_a.eq(0).triggerHandler('click');
 							}
 						}
 
@@ -242,6 +271,7 @@ module.exports = {
 						{
 							_uf_done(event);
 							_a[0].click();
+							//_a.eq(0).triggerHandler('click');
 						}
 
 						break;
@@ -258,6 +288,7 @@ module.exports = {
 							{
 								_uf_done(event);
 								_a[0].click();
+								//_a.eq(0).triggerHandler('click');
 							}
 						}
 
@@ -278,6 +309,7 @@ module.exports = {
 						{
 							_uf_done(event);
 							_a[0].click();
+							//_a.eq(0).triggerHandler('click');
 						}
 
 						break;
