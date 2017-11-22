@@ -26,3 +26,5 @@ export function GM_addStyle(css: string, head?)
 
 	return style;
 }
+
+export default exports;
