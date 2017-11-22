@@ -40,3 +40,5 @@ export function log(any: any, ...argv)
 {
 	return console.log(any, ...argv);
 }
+
+export default exports;
