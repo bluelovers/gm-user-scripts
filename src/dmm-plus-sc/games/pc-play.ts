@@ -74,6 +74,7 @@ let o: IDemo = {
 			})
 			.triggerHandler('load.ready')
 		;
+
 	},
 
 	adblock(_url_obj = global._url_obj)

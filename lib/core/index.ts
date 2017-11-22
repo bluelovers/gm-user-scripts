@@ -37,15 +37,15 @@ export function run(uxid: string, $: JQueryStatic, cb?: Function)
 
 			await index.main(index.list);
 
-			console.info('index.current', index.current);
+			console.info(uxid,'index.current', index.current);
 		}
 		catch (e)
 		{
-			console.error(e.message, e.stack);
+			console.error(uxid, e.message, e.stack);
 		}
 		finally
 		{
-			console.info([global._url, global._url_obj, global.unsafeWindow]);
+			console.info(uxid,[global._url, global._url_obj, global.unsafeWindow]);
 		}
 	};
 

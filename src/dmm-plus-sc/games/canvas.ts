@@ -10,11 +10,14 @@ let o: IDemo = {
 
 	//script: true,
 
+	priority: 400,
+
 	metadata: {
 		match: [
 			'http*://web.killdoya.jp/*',
 			'http*://dmm-*.iolite.link/*',
 			'http*://*/product/dmm_pc.php/*',
+			'http*://assets.millennium-war.net/*/*',
 		],
 		exclude: [],
 	},
@@ -48,15 +51,9 @@ let o: IDemo = {
 			], 'body')
 		;
 
-		let gameCanvas = $('#gameCanvas');
+		let gameCanvas = $('#gameCanvas, .emscripten').filter('canvas');
 
 		let game_width = (gameCanvas.length) ? gameCanvas.width() : 960;
-
-		greasemonkey
-			.GM_addStyle([
-				//
-			], 'body')
-		;
 
 		let $win = $(window);
 

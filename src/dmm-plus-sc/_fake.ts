@@ -13,8 +13,11 @@ let o: IDemo = {
 	metadata: {
 		match: [
 			'http*://*.dmm.co*/*',
+			'http*://*games.dmm.co*/*',
 		],
-		exclude: [],
+		exclude: [
+			'http*://www.dmm.co*/digital*',
+		],
 	},
 
 	test(_url_obj = global._url_obj)

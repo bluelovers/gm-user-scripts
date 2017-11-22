@@ -6,7 +6,8 @@ module.exports.list = [
 	"dmm/co/jp/games.js",
 	"game/canvas.js",
 	"game/gadgets.js",
-	"global/pc-play.js",
+	"game/pc-play.js",
+	"global/iframe.js",
 	"global/script.js",
 	"_fake.js"
 ];
@@ -19,7 +20,8 @@ module.exports._lib = () =>
 	require('root/src/dmm-plus-sc/dmm/co/jp/games.js');
 	require('root/src/dmm-plus-sc/game/canvas.js');
 	require('root/src/dmm-plus-sc/game/gadgets.js');
-	require('root/src/dmm-plus-sc/global/pc-play.js');
+	require('root/src/dmm-plus-sc/game/pc-play.js');
+	require('root/src/dmm-plus-sc/global/iframe.js');
 	require('root/src/dmm-plus-sc/global/script.js');
 	require('root/src/dmm-plus-sc/_fake.js');
 };
@@ -39,10 +41,27 @@ module.exports.metadata.include = [
 	"http*://*/product/dmm_pc.php/*",
 	"http*://osapi.dmm.com/gadgets/*",
 	"http*://pc-play.games.dmm.co.jp/play/*",
+	"http*://*",
+	"http*://pc-x.phantom-greed.com/top*",
+	"http*://pc-x.phantom-greed.com/start*",
 	"http*://*.dmm.co*/*"
 ];
 module.exports.metadata.exclude = [
-	"http://pc-play.games.dmm.co.jp/headnavi/*"
+	"http://pc-play.games.dmm.co.jp/headnavi/*",
+	"http*://pc-x.phantom-greed.com/*frame*",
+	"http*://spdmg-backend2.i-mobile.co.jp/*",
+	"http*://tg.socdm.com/*",
+	"http://*.microad.jp/*",
+	"http://*.youtube.*/*",
+	"http://*.google.*/*",
+	"http://*facebook.*/*",
+	"http://*twitter.*/*",
+	"http://*wiki.*/*",
+	"http://*.tw/*",
+	"http://*.cn/*",
+	"http://*.org/*",
+	"http://*.tv/*",
+	"http://*.eu/*"
 ];
 
 module.exports.main = async function (list, options = {})
@@ -76,7 +95,7 @@ module.exports.main = async function (list, options = {})
 				}
 				else if (lib.disable)
 				{
-					console.warn(name_id, 'disable, skip this');
+					console.warn(module.exports.id, name_id, 'disable, skip this');
 					continue;
 				}
 
@@ -92,11 +111,11 @@ module.exports.main = async function (list, options = {})
 				{
 					test = await lib.test(global._url_obj);
 
-					console.info(name_id, 'test', test);
+					console.info(module.exports.id, name_id, 'test', test);
 
 					if (_break && test !== 2)
 					{
-						console.info(name_id, 'break:test', test);
+						console.info(module.exports.id, name_id, 'break:test', test);
 
 						break CHK;
 					}
@@ -109,11 +128,11 @@ module.exports.main = async function (list, options = {})
 						{
 							ret_main = true;
 
-							console.info(name_id, 'matched', ret_main, ret);
+							console.info(module.exports.id, name_id, 'matched', ret_main, ret);
 						}
 						else
 						{
-							console.debug(name_id, 'main', ret_main);
+							console.debug(module.exports.id, name_id, 'main', ret_main);
 						}
 
 						//test = false;
@@ -128,13 +147,13 @@ module.exports.main = async function (list, options = {})
 								ret = true;
 							}
 
-							console.debug(name_id, 'chk', ret_main, ret, test);
+							console.debug(module.exports.id, name_id, 'chk', ret_main, ret, test);
 						}
 					}
 
 					if (!ret || test)
 					{
-						console.debug(name_id, 'current:push', ret_main, ret, test);
+						console.debug(module.exports.id, name_id, 'current:push', ret_main, ret, test);
 
 						module.exports.current.push({
 							name: name,
@@ -150,7 +169,7 @@ module.exports.main = async function (list, options = {})
 
 				if (!_break && !ret)
 				{
-					console.debug(name_id, 'break', ret_main, ret, test);
+					console.debug(module.exports.id, name_id, 'break', ret_main, ret, test);
 
 					_break = true;
 

@@ -287,7 +287,7 @@ module.exports.main = async function (list, options = {})
 				}
 				else if (lib.disable)
 				{
-					console.warn(name_id, 'disable, skip this');
+					console.warn(module.exports.id, name_id, 'disable, skip this');
 					continue;
 				}
 
@@ -303,11 +303,11 @@ module.exports.main = async function (list, options = {})
 				{
 					test = await lib.test(global._url_obj);
 
-					console.info(name_id, 'test', test);
+					console.info(module.exports.id, name_id, 'test', test);
 
 					if (_break && test !== 2)
 					{
-						console.info(name_id, 'break:test', test);
+						console.info(module.exports.id, name_id, 'break:test', test);
 
 						break CHK;
 					}
@@ -320,11 +320,11 @@ module.exports.main = async function (list, options = {})
 						{
 							ret_main = true;
 
-							console.info(name_id, 'matched', ret_main, ret);
+							console.info(module.exports.id, name_id, 'matched', ret_main, ret);
 						}
 						else
 						{
-							console.debug(name_id, 'main', ret_main);
+							console.debug(module.exports.id, name_id, 'main', ret_main);
 						}
 
 						//test = false;
@@ -339,13 +339,13 @@ module.exports.main = async function (list, options = {})
 								ret = true;
 							}
 
-							console.debug(name_id, 'chk', ret_main, ret, test);
+							console.debug(module.exports.id, name_id, 'chk', ret_main, ret, test);
 						}
 					}
 
 					if (!ret || test)
 					{
-						console.debug(name_id, 'current:push', ret_main, ret, test);
+						console.debug(module.exports.id, name_id, 'current:push', ret_main, ret, test);
 
 						module.exports.current.push({
 							name: name,
@@ -361,7 +361,7 @@ module.exports.main = async function (list, options = {})
 
 				if (!_break && !ret)
 				{
-					console.debug(name_id, 'break', ret_main, ret, test);
+					console.debug(module.exports.id, name_id, 'break', ret_main, ret, test);
 
 					_break = true;
 

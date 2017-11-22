@@ -40,6 +40,13 @@ let o: IDemo = {
 			], 'body')
 		;
 
+		window.addEventListener("message", receiveMessage, false);
+
+		function receiveMessage(event)
+		{
+			event.source.postMessage(window.location.href.toString(), event.origin);
+		}
+
 		let $win = $(window);
 
 		$win
@@ -54,7 +61,7 @@ let o: IDemo = {
 					'text-align': 'left',
 				});
 			})
-			.on('abort', function()
+			.on('abort', function ()
 			{
 				$win.triggerHandler('load.ready');
 			})

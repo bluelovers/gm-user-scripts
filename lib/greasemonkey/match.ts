@@ -11,6 +11,8 @@ const Minimatch = minimatch.Minimatch;
 
 export function match(list, pattern: string[], options = {})
 {
+	options = option(options);
+
 	let ret = false;
 
 	for (let m of pattern)
@@ -28,6 +30,16 @@ export function match(list, pattern: string[], options = {})
 	return ret;
 }
 
+export function option(options)
+{
+	return Object.assign({}, {
+		nocase: true,
+		//noglobstar: true,
+		dot: true,
+		//debug: true,
+	}, options);
+}
+
 /**
  * require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports)
  *
@@ -38,12 +50,7 @@ export function match(list, pattern: string[], options = {})
  */
 export function auto(url: string, self: IDemo, options = {})
 {
-	options = Object.assign({}, {
-		nocase: true,
-		//noglobstar: true,
-		dot: true,
-		//debug: true,
-	}, options);
+	options = option(options);
 
 	let ret = false;
 
