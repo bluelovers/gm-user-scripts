@@ -538,6 +538,9 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 							id: index.id,
 							name: index.name,
 
+							icon: index.icon || 'https://wiki.greasespot.net/favicon.ico',
+							desc: index.desc || '',
+
 							include: index.metadata.include.join("\n// @include		"),
 							match: meta_match(index.metadata.include).join("\n// @match		"),
 
