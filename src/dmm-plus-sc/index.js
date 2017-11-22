@@ -3,10 +3,10 @@ module.exports.id = 'dmm-plus-sc';
 module.exports.name = 'dmm-plus-sc';
 
 module.exports.list = [
-	"dmm/co/jp/games.js",
-	"game/canvas.js",
-	"game/gadgets.js",
-	"game/pc-play.js",
+	"dmm/games.js",
+	"games/gadgets.js",
+	"games/pc-play.js",
+	"games/canvas.js",
 	"global/iframe.js",
 	"global/script.js",
 	"_fake.js"
@@ -17,10 +17,10 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('root/src/dmm-plus-sc/dmm/co/jp/games.js');
-	require('root/src/dmm-plus-sc/game/canvas.js');
-	require('root/src/dmm-plus-sc/game/gadgets.js');
-	require('root/src/dmm-plus-sc/game/pc-play.js');
+	require('root/src/dmm-plus-sc/dmm/games.js');
+	require('root/src/dmm-plus-sc/games/gadgets.js');
+	require('root/src/dmm-plus-sc/games/pc-play.js');
+	require('root/src/dmm-plus-sc/games/canvas.js');
 	require('root/src/dmm-plus-sc/global/iframe.js');
 	require('root/src/dmm-plus-sc/global/script.js');
 	require('root/src/dmm-plus-sc/_fake.js');
@@ -36,11 +36,12 @@ module.exports.metadata.include = [
 	"http*://games.dmm.com/detail/*",
 	"http*://www.dmm.com/netgame/*",
 	"http*://personal.games.dmm.com/my-games/*",
+	"http*://osapi.dmm.com/gadgets/*",
+	"http*://pc-play.games.dmm.co.jp/play/*",
 	"http*://web.killdoya.jp/*",
 	"http*://dmm-*.iolite.link/*",
 	"http*://*/product/dmm_pc.php/*",
-	"http*://osapi.dmm.com/gadgets/*",
-	"http*://pc-play.games.dmm.co.jp/play/*",
+	"http*://assets.millennium-war.net/*/*",
 	"http*://*",
 	"http*://pc-x.phantom-greed.com/top*",
 	"http*://pc-x.phantom-greed.com/start*",
@@ -52,16 +53,16 @@ module.exports.metadata.exclude = [
 	"http*://spdmg-backend2.i-mobile.co.jp/*",
 	"http*://tg.socdm.com/*",
 	"http://*.microad.jp/*",
-	"http://*.youtube.*/*",
-	"http://*.google.*/*",
-	"http://*facebook.*/*",
-	"http://*twitter.*/*",
-	"http://*wiki.*/*",
-	"http://*.tw/*",
-	"http://*.cn/*",
-	"http://*.org/*",
-	"http://*.tv/*",
-	"http://*.eu/*"
+	"*.youtube.*",
+	"*.google.*",
+	"*facebook.*",
+	"*twitter.*",
+	"*wiki.*/*",
+	"*.tw/*",
+	"*.cn/*",
+	"*.org/*",
+	"*.tv/*",
+	"*.eu/*"
 ];
 
 module.exports.main = async function (list, options = {})

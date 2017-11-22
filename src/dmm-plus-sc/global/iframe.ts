@@ -26,18 +26,18 @@ let o: IDemo = {
 			'http*://tg.socdm.com/*',
 			'http://*.microad.jp/*',
 
-			'http://*.youtube.*/*',
-			'http://*.google.*/*',
-			'http://*facebook.*/*',
-			'http://*twitter.*/*',
+			'*.youtube.*',
+			'*.google.*',
+			'*facebook.*',
+			'*twitter.*',
 
-			'http://*wiki.*/*',
+			'*wiki.*/*',
 
-			'http://*.tw/*',
-			'http://*.cn/*',
-			'http://*.org/*',
-			'http://*.tv/*',
-			'http://*.eu/*',
+			'*.tw/*',
+			'*.cn/*',
+			'*.org/*',
+			'*.tv/*',
+			'*.eu/*',
 
 		],
 	},
