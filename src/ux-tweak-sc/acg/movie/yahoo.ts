@@ -18,6 +18,8 @@ let o: IDemo = {
 	metadata: {
 		match: [
 			'http*://tw.movies.yahoo.com/*',
+			'http*://movies.yahoo.com.tw/*',
+			'http*://movies.yahoo.com.tw/movie_*.html',
 		],
 		exclude: [],
 	},
@@ -38,9 +40,54 @@ let o: IDemo = {
 	{
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
-			'.release_list a',
+			'.release_list a, .area_timebox a, a.btn_s_time, .ranking_inner_r a',
 		].join())
 			.prop('target', '_blank')
+		;
+
+		$(window)
+			.on('load.ready', function ()
+			{
+				$(window).scrollTo('#container, .maincontent');
+			})
+			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
+			{
+				const keycodes = require('keycodes');
+				const _uf_done = require('root/lib/event/done');
+
+				switch (event.which)
+				{
+					case keycodes('pageup'):
+					case keycodes('left'):
+
+						var _a = $('.page_numbox .prevtxt a');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+
+							$(window).triggerHandler('load.ready');
+						}
+
+						break;
+					case keycodes('pagedown'):
+					case keycodes('right'):
+
+						var _a = $('.page_numbox .nexttxt a');
+
+						if (_a.length)
+						{
+							_uf_done(event);
+							_a[0].click();
+
+							$(window).triggerHandler('load.ready');
+						}
+
+						break;
+				}
+			}))
+			.triggerHandler('load.ready')
 		;
 	},
 
