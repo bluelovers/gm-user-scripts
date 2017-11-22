@@ -57,10 +57,10 @@
 // @exclude		*.tv/*
 // @exclude		*.eu/*
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511355523549
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511355523549
+// require		https://code.jquery.com/jquery-3.2.1.js?1511356587219
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511356587219
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511355523549
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511356587219
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
