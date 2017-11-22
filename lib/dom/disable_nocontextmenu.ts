@@ -2,7 +2,7 @@
  * Created by user on 2017/7/14/014.
  */
 
-const greasemonkey = require('../greasemonkey/index');
+const greasemonkey = require('root/lib/greasemonkey/index');
 
 module.exports._uf_disable_nocontextmenu2 = function (mode, elem, options = {})
 {
@@ -49,7 +49,7 @@ module.exports._uf_disable_nocontextmenu2 = function (mode, elem, options = {})
 		.add(unsafeWindow.document)
 	;
 
-	console.log(jq, arr, arr2);
+	//console.log(jq, arr, arr2);
 
 	arr2
 		.css({
