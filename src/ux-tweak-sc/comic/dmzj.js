@@ -26,9 +26,7 @@ module.exports = {
 
 	main()
 	{
-
-
-
+		const _uf_done = require('root/lib/event/done');
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
 
