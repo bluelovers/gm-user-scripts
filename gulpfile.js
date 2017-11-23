@@ -300,8 +300,10 @@ gulp.task("webpack:before", async function (callback)
 		let text = `
 module.exports.id = '${name}';
 module.exports.name = '${name}';
+module.exports.name_en = '${metadata.name_en || name}';
 
 module.exports.desc = '${metadata.desc || ""}';
+module.exports.desc_en = '${metadata.desc_en || metadata.desc || ""}';
 module.exports.icon = '${metadata.icon || ""}';
 
 module.exports.list = ${JSON.stringify(ls.list, null, "\t")};
@@ -542,9 +544,11 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 						index: {
 							id: index.id,
 							name: index.name,
+							name_en: index.name_en || index.name,
 
 							icon: index.icon || 'https://wiki.greasespot.net/favicon.ico',
 							desc: index.desc || '',
+							desc_en: index.desc_en || index.desc || '',
 
 							include: index.metadata.include.join("\n// @include		"),
 							match: meta_match(index.metadata.include).join("\n// @match		"),
