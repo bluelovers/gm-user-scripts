@@ -135,15 +135,27 @@ function dailog_share(_a, cb?)
 	let id;
 	let _form;
 
+	let query = {
+		p: [],
+	};
+
+	let _area = _a
+		.parents('div.userContentWrapper:eq(0)').eq(0)
+	;
+
 	if (!id)
 	{
-		_form = _a
-			.parents('div.userContentWrapper:eq(0)').eq(0)
-			.find('h5:eq(0) .fcg:eq(0) .profileLink:eq(-1)')
+		_form = _area
+			.find('h5:eq(0) .fcg')
+			.find('.profileLink:eq(-1), a')
 		;
+
+		//console.log(_form);
 
 		if (_form.length)
 		{
+			_form = _form.eq(-1);
+
 			//let _m = _form.attr('href').match(/facebook\.com\/[^\/]+\/[^\/]+\/((?:\d+|[^\/]+\/[^\/]+))(?:\/|$|[^\d])/);
 			let _m;
 
@@ -161,22 +173,33 @@ function dailog_share(_a, cb?)
 			}
 			*/
 
-			if (!id)
+			id = get_post_id(_form.attr('href'));
+
+			query.p.push(id);
+
+			console.log(_m, id);
+
+			_form = _area
+				.find('.mtm div[id*="feed_subtitle"] .fcg a[rel="theater"]')
+			;
+
+			if (_form.length)
 			{
-				const parse_url = require('root/lib/func/parse_url').parse_url;
+				let v = get_post_id(_form.attr('href'));
 
-				_m = parse_url(_form.attr('href'));
+				if (v)
+				{
+					id = v;
+				}
 
-				_m = _m.path.replace(/[\/\?&\s]+$/, '').split('/');
-
-				id = _m[_m.length - 1];
+				console.log([v, id], _form.attr('href'));
 			}
 
 			//console.log(1, id, RegExp.$1, _m, _form.attr('href'));
 		}
 	}
 
-	if (!id)
+	if (!id && 0)
 	{
 		_form = _a.parents('form.commentable_item:eq(0)').eq(0);
 
@@ -190,12 +213,40 @@ function dailog_share(_a, cb?)
 
 	if (!id)
 	{
+		console.error('id=', id);
+
 		return;
 	}
 
 	let timestamp = Date.now();
 
-	let url = `/ajax/sharer/?s=2&id=${id}&p[0]=${id}&sharer_type=all_modes`;
+	query.appid = 25554907596;
+	query.s = 22;
+
+	let query_str = Object.keys(query)
+		.reduce(function (a, b)
+		{
+			if (query[b])
+			{
+				if (Array.isArray(query[b]) && query[b].length)
+				{
+					for (let i in query[b])
+					{
+						a.push(`${b}[${i}]=${query[b][i]}`);
+					}
+				}
+				else
+				{
+					a.push(`${b}=${query[b]}`);
+				}
+			}
+
+			return a;
+		}, [])
+		.join('&')
+	;
+
+	let url = `/ajax/sharer/?${query_str}&id=${id}&sharer_type=all_modes`;
 
 	_a
 		.attr('href', url)
@@ -210,5 +261,19 @@ function dailog_share(_a, cb?)
 	if (cb)
 	{
 		cb();
+	}
+}
+
+function get_post_id(href: string): string
+{
+	const parse_url = require('root/lib/func/parse_url').parse_url;
+
+	let _m = parse_url(href);
+
+	if (_m)
+	{
+		_m = _m.path.replace(/[\/\?&\s]+$/, '').split('/');
+
+		return _m[_m.length - 1];
 	}
 }
