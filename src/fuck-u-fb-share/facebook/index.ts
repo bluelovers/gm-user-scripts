@@ -132,7 +132,7 @@ function dailog_share(_a, cb?)
 		return;
 	}
 
-	let id;
+	let id: string;
 	let _form;
 
 	let query = {
@@ -260,9 +260,9 @@ function dailog_share(_a, cb?)
 	}
 }
 
-function chk_id(id)
+function chk_id(id: string)
 {
-	return /^\d+$/.test(id.toString()) ? id.toString() : void(0);
+	return (id && /^\d+$/.test(id.toString())) ? id.toString() : void(0);
 }
 
 function get_post_id(href: string): string
