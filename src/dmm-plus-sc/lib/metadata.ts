@@ -2,14 +2,19 @@
  * Created by user on 2017/8/6/006.
  */
 
-export const desc = 'dmm games layout tweak';
+export const desc = 'DMM Games 介面調整以及更適合遊戲直播';
+export const desc_en = 'dmm games layout tweak';
 
 export const metadata = `// ==UserScript==
 // @name		<%= index.name %>
+// @name:en		<%= index.name_en %>
+// @name:zh		<%= index.name %>
 // @namespace	bluelovers
 // @author		bluelovers
 //
-// @description	<%= index.desc %>
+// @description		<%= index.desc %>
+// @description:en	<%= index.desc_en %>
+// @description:zh	<%= index.desc %>
 //
 // @version		<%= pkg.version %>
 //
