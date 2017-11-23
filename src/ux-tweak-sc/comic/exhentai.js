@@ -215,7 +215,7 @@ module.exports = {
 			}
 
 			$.scrollTo([
-				((_url_obj.query.match(/p=(\d+)/) && RegExp.$1 > 0) ? '#gdt' : null),
+				((_url_obj.query && _url_obj.query.match(/p=(\d+)/) && RegExp.$1 > 0) ? '#gdt' : null),
 				'div.gm',
 			]);
 		}
