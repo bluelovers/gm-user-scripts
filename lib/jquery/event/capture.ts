@@ -28,7 +28,7 @@ export function onCapture(who, originalType: string, listener: EventListener, ..
 
 				if (!selector || selector && $(event.target).is(selector))
 				{
-					console.debug('onCapture', event);
+					//console.debug('onCapture', event);
 
 					listener.call(event.target, event);
 				}
