@@ -16,6 +16,7 @@
 /src/dmm-plus-sc/global/pc-play.js
 /src/dmm-plus-sc/*.js
 /src/dmm-plus-sc/**/*.js
+/src/fuck-u-fb-share/**/*.js
 !/src/dmm-plus-sc/index.js
 /lib/dom/iframe.js
 /test/
@@ -32,3 +33,4 @@
 /lib/dom/disable_nocontextmenu.js
 /lib/core/*.js
 /lib/core/**/*.js
+!/src/fuck-u-fb-share/index.js
