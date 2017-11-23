@@ -16,6 +16,6 @@
 
 #### fuck-u-fb-share
 
-然後點擊此處安裝腳本 [ux-tweak-sc.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/fuck-u-fb-share.user.js)
+然後點擊此處安裝腳本 [fuck-u-fb-share.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/fuck-u-fb-share.user.js)
 
 ![fuck-u-fb-share](fuck-u-fb-share.png)
