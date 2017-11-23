@@ -156,7 +156,7 @@ function dailog_share(_a, cb?)
 	{
 		_form = _area
 			.find('h5:eq(0) .fcg, h6:eq(0) > .fcg')
-			.find('.profileLink:eq(-1), a')
+			.find('.profileLink:eq(-1), a:not(.profileLink)')
 		;
 
 		//console.log(_form);
