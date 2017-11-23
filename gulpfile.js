@@ -140,9 +140,15 @@ gulp.task("webpack:before", async function (callback)
 			{
 				let lib = require(path.join(cwd_src, name, b));
 
-				if (lib.disable)
+				if (lib.disable === true)
 				{
 					a.list_disable.push(b);
+
+					return a;
+				}
+				else if (lib.disable)
+				{
+					a.list_lib.push(b);
 
 					return a;
 				}
@@ -174,6 +180,7 @@ gulp.task("webpack:before", async function (callback)
 				},
 
 				list_script: [],
+				list_lib: [],
 			});
 
 		//console.debug(ls);
@@ -327,6 +334,8 @@ module.exports.main = ${main.toString()};
 module.exports.list_script = ${JSON.stringify(ls.list_script, null, "\t")};
 
 module.exports.current = [];
+
+module.exports.default = module.exports;
 
 `;
 
