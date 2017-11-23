@@ -30,3 +30,5 @@
 /src/ux-tweak-sc/comic/book.dmm.co.jp.js
 /src/dmm-plus-sc/global/iframe.js
 /lib/dom/disable_nocontextmenu.js
+/lib/core/*.js
+/lib/core/**/*.js

@@ -1,10 +1,12 @@
 
 module.exports.id = 'ux-tweak-sc';
+
 module.exports.name = 'ux-tweak-sc';
 module.exports.name_en = 'ux-tweak-sc';
 
 module.exports.desc = '';
 module.exports.desc_en = '';
+
 module.exports.icon = '';
 
 module.exports.list = [
