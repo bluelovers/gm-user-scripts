@@ -6,6 +6,14 @@ import * as greasemonkey from './index';
 
 Object.assign(exports, greasemonkey);
 
+export interface IGreasemonkey
+{
+	GM_addStyle(css: string | string[], head?);
+	debug(any: any, ...argv);
+	info(any: any, ...argv);
+	log(any: any, ...argv);
+}
+
 export function GM_addStyle(css: string | string[], head?)
 {
 	if (Array.isArray(css))
