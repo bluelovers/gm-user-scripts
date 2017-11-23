@@ -125,16 +125,6 @@ export = o;
 
 function dailog_share(_a, cb?)
 {
-	/*
-	/ajax/sharer/?s=2&appid=2305272732&id=170418016895538&p[0]=170418016895538&sharer_type=all_modes&av=1349835897&feedback_referrer=%2Fbluelovers.ka&feedback_source=17
-
-	https://www.facebook.com/cako.taipei/photos/a.131971664073507.1073741829.130538254216848/170418016895538/?type=3&theater
-
-
-	/ajax/sharer/?s=2&appid=2305272732&id=10210609936588504&p[0]=10210609936588504&sharer_type=all_modes&av=1349835897&feedback_referrer=%2Fbluelovers.ka&feedback_source=17
-
-	*/
-
 	_a = _a.filter('a');
 
 	if (!_a.length || require('root/lib/dom/filter/link')(_a).length)
@@ -154,10 +144,6 @@ function dailog_share(_a, cb?)
 
 		if (_form.length)
 		{
-			/*
-			https://www.facebook.com/cako.taipei/photos/a.131971664073507.1073741829.130538254216848/170418016895538/?type=3&hc_ref=ARTfXWRukmDJUM5rLOCy6vz4YXpwGgnje5P6qSO_xPKot9-JO1b0RcTTIxgPZ_I0HO8
-			*/
-
 			//let _m = _form.attr('href').match(/facebook\.com\/[^\/]+\/[^\/]+\/((?:\d+|[^\/]+\/[^\/]+))(?:\/|$|[^\d])/);
 			let _m;
 
