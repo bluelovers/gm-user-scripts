@@ -18,7 +18,7 @@ export const metadata = `// ==UserScript==
 //
 // @version		<%= pkg.version %>
 //
-// @grant		GM_registerMenuCommand
+// grant		GM_registerMenuCommand
 // @grant		unsafeWindow
 // grant		GM_addStyle
 // grant		none
