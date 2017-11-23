@@ -43,18 +43,26 @@ let o: IDemo = {
 
 		const _uf_done = require('root/lib/event/done')._uf_done2;
 		//const onCapture = require('root/lib/jquery/event/capture').onCapture;
+		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
 		let _a_selector = 'a.share_action_link';
 
 		$('body')
 			.on('click mousedown', `span[aria-haspopup="true"]:has(> ${_a_selector})`, function (event)
 			{
-				_uf_done(event);
+				if (_uf_dom_filter_link($(this).find(_a_selector)).length)
+				{
+					_uf_done(event);
+				}
 			})
 			.on('mouseover', `span:has(> ${_a_selector}), ${_a_selector}`, function (event)
 			{
-				_uf_done(event);
-				dailog_share($(this).find(_a_selector).addBack().filter('a'));
+				let ret = dailog_share($(this).find(_a_selector).addBack().filter('a'));
+
+				if (!ret)
+				{
+					_uf_done(event);
+				}
 			})
 			.on('click.share', _a_selector, function (event)
 			{
@@ -140,13 +148,14 @@ function dailog_share(_a, cb?)
 	};
 
 	let _area = _a
-		.parents('div.userContentWrapper:eq(0)').eq(0)
+		.parents('div.userContentWrapper:eq(0), div[role="article"]:eq(0) .uiPopover + .clearfix, div[role="feed"] div[role="article"]:eq(0) .uiPopover + h5:eq(0)')
+		.eq(0)
 	;
 
 	if (!id)
 	{
 		_form = _area
-			.find('h5:eq(0) .fcg')
+			.find('h5:eq(0) .fcg, h6:eq(0) > .fcg')
 			.find('.profileLink:eq(-1), a')
 		;
 
@@ -178,6 +187,14 @@ function dailog_share(_a, cb?)
 				.find('.fcg')
 				.find('a:has(.timestamp), a:has(.timestampContent)')
 			;
+
+			if (!_form.length)
+			{
+				_form = _area
+					.find('._5pcq')
+					.find('a:has(.timestamp), a:has(.timestampContent)')
+				;
+			}
 
 			if (_form.length)
 			{
@@ -259,6 +276,8 @@ function dailog_share(_a, cb?)
 	{
 		cb();
 	}
+
+	return true;
 }
 
 function chk_id(id: string)
