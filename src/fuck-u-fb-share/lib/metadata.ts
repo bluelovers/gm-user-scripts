@@ -2,8 +2,7 @@
  * Created by user on 2017/8/6/006.
  */
 
-export const desc = 'DMM Games 介面調整以及更適合遊戲直播';
-export const desc_en = 'dmm games layout tweak';
+export const desc = '此腳本試圖解決智障 FB 新分享機制導致的困擾';
 
 export const metadata = `// ==UserScript==
 // @name		<%= index.name %>
@@ -25,7 +24,7 @@ export const metadata = `// ==UserScript==
 //
 // @icon		<%= index.icon %>
 //
-// noframes
+// @noframes
 // @encoding	utf-8
 //
 // @homepageURL	https://github.com/bluelovers/gm-user-scripts
