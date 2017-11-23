@@ -174,7 +174,8 @@ function dailog_share(_a, cb?)
 		if (!id)
 		{
 			_form = _area
-				.find('h5:eq(0) + div[id*="feed_subtitle"] .fcg')
+				.find('h5:eq(0) + div[id*="feed_subtitle"], h6:eq(0) + div[id*="feed_subtitle"]')
+				.find('.fcg')
 				.find('a:has(.timestamp), a:has(.timestampContent)')
 			;
 
