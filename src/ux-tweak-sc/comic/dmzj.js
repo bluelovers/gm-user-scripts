@@ -55,6 +55,7 @@ module.exports = {
 			greasemonkey
 				.GM_addStyle([
 					`#center_box img { ${comic_style.toCss(comic_style.photo)}; max-height: 100%; }`,
+					`body { ${comic_style.toCss(comic_style.body)}; ${comic_style.toCss(comic_style.bg_dark)}; }`,
 				])
 			;
 
