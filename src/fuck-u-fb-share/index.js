@@ -23,7 +23,8 @@ module.exports._lib = () =>
 
 module.exports.metadata = {};
 module.exports.metadata.include = [
-	"http*://www.facebook.com/*"
+	"http*://www.facebook.com/*",
+	"http*://facebook.com/*"
 ];
 module.exports.metadata.exclude = [];
 

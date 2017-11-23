@@ -18,7 +18,7 @@ export interface IUrlObject
 	fragment?: string;
 }
 
-export function parse_url(str: string, component): IUrlObject
+export function parse_url(str: string, component?): IUrlObject
 {
 	// eslint-disable-line camelcase
 	//       discuss at: http://locutus.io/php/parse_url/
