@@ -34,3 +34,5 @@
 /lib/core/*.js
 /lib/core/**/*.js
 !/src/fuck-u-fb-share/index.js
+/lib/jquery/event/capture.js
+/@types/global.js
