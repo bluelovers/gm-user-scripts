@@ -159,7 +159,7 @@ function dailog_share(_a, cb?)
 			.find('.profileLink:eq(-1), a:not(.profileLink)')
 		;
 
-		console.log(55, _form, _area);
+		//console.log(55, _form, _area);
 
 		if (_form.length >= 2)
 		{
