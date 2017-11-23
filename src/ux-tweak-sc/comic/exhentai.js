@@ -35,7 +35,7 @@ module.exports = {
 		const comic_style = require('root/lib/comic/style');
 		const greasemonkey = require('root/lib/greasemonkey/index');
 
-		_uf_dom_filter_link('.itg a, #gdt a')
+		_uf_dom_filter_link('.itg a, #gdt a, #cdiv .c6 a')
 			.attr('target', '_blank')
 		;
 
@@ -213,6 +213,11 @@ module.exports = {
 					.appendTo($('#gn'))
 				;
 			}
+
+			$.scrollTo([
+				((_url_obj.query.match(/p=(\d+)/) && RegExp.$1 > 0) ? '#gdt' : null),
+				'div.gm',
+			]);
 		}
 		else
 		{
