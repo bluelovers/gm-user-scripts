@@ -152,20 +152,30 @@ function dailog_share(_a, cb?)
 
 		//console.log(_form);
 
-		if (_form.length)
+		if (_form.length >= 2)
 		{
 			_form = _form.eq(-1);
 
 			let _m;
 
-			id = get_post_id(_form.attr('href'));
+			let v = get_post_id(_form.attr('href'));
 
-			query.p.push(id);
+			if (v)
+			{
+				id = v;
+				query.p.push(v);
+			}
 
 			//console.log(_m, id);
 
+			//console.log(1, id, RegExp.$1, _m, _form.attr('href'));
+		}
+
+		if (!id)
+		{
 			_form = _area
-				.find('.mtm div[id*="feed_subtitle"] .fcg a[rel="theater"]')
+				.find('h5:eq(0) + div[id*="feed_subtitle"] .fcg')
+				.find('a:has(.timestamp), a:has(.timestampContent)')
 			;
 
 			if (_form.length)
@@ -175,16 +185,29 @@ function dailog_share(_a, cb?)
 				if (v)
 				{
 					id = v;
+					query.p.push(v);
 				}
+			}
+		}
 
-				//console.log([v, id], _form.attr('href'));
+		_form = _area
+			.find('.mtm div[id*="feed_subtitle"] .fcg a[rel="theater"]')
+		;
+
+		if (_form.length)
+		{
+			let v = get_post_id(_form.attr('href'));
+
+			if (v)
+			{
+				id = v;
 			}
 
-			//console.log(1, id, RegExp.$1, _m, _form.attr('href'));
+			//console.log([v, id], _form.attr('href'));
 		}
 	}
 
-	if (!id)
+	if (!chk_id(id))
 	{
 		console.error('id=', id);
 
@@ -237,16 +260,42 @@ function dailog_share(_a, cb?)
 	}
 }
 
+function chk_id(id)
+{
+	return /^\d+$/.test(id.toString()) ? id.toString() : void(0);
+}
+
 function get_post_id(href: string): string
 {
 	const parse_url = require('root/lib/func/parse_url').parse_url;
 
-	let _m = parse_url(href);
+	let _url = parse_url(href);
+	let id;
+	let _m;
 
-	if (_m)
+	if (_url.query && (_m = _url.query.match(/fbid=([^#&]+)/)))
 	{
-		_m = _m.path.replace(/[\/\?&\s]+$/, '').split('/');
-
-		return _m[_m.length - 1];
+		if (chk_id(_m[1]))
+		{
+			id = _m[1];
+		}
 	}
+
+	//console.log(_m);
+
+	if (!id && _url.path)
+	{
+		let _a = _url.path.replace(/[\/\?&\s]+$/, '').split('/');
+
+		_m = _a[_a.length - 1];
+
+		if (chk_id(_m))
+		{
+			id = _m;
+		}
+	}
+
+	//console.log(id, _url, href);
+
+	return id;
 }
