@@ -156,28 +156,13 @@ function dailog_share(_a, cb?)
 		{
 			_form = _form.eq(-1);
 
-			//let _m = _form.attr('href').match(/facebook\.com\/[^\/]+\/[^\/]+\/((?:\d+|[^\/]+\/[^\/]+))(?:\/|$|[^\d])/);
 			let _m;
-
-			/*
-			_m = _form
-				.attr('href').toString()
-				.match(/facebook\.com\/[^\/]+\/[^\/]+\/(\d+|[^\/]+(?:\/[^\/]+)?)(?:\/|$|[\?&])/)
-			;
-
-			let parse_url = require('root/lib/func/parse_url').parse_url;
-
-			if (_m)
-			{
-				id = _m[1].split('/').pop();
-			}
-			*/
 
 			id = get_post_id(_form.attr('href'));
 
 			query.p.push(id);
 
-			console.log(_m, id);
+			//console.log(_m, id);
 
 			_form = _area
 				.find('.mtm div[id*="feed_subtitle"] .fcg a[rel="theater"]')
@@ -192,22 +177,10 @@ function dailog_share(_a, cb?)
 					id = v;
 				}
 
-				console.log([v, id], _form.attr('href'));
+				//console.log([v, id], _form.attr('href'));
 			}
 
 			//console.log(1, id, RegExp.$1, _m, _form.attr('href'));
-		}
-	}
-
-	if (!id && 0)
-	{
-		_form = _a.parents('form.commentable_item:eq(0)').eq(0);
-
-		if (_form.length)
-		{
-			id = _form.find(':input[name="ft_ent_identifier"]').val();
-
-			console.log(2, id);
 		}
 	}
 
