@@ -394,3 +394,5 @@ module.exports.list_script = [
 
 module.exports.current = [];
 
+module.exports.default = module.exports;
+
