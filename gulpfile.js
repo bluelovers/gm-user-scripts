@@ -498,6 +498,12 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 							}),
 
 							new webpack.IgnorePlugin(/\.(txt|ts)$/),
+
+							/*
+							new webpack.optimize.UglifyJsPlugin({
+								//comments: false,
+							}),
+							*/
 						];
 
 						let myIgnorePlugin = new webpack.IgnorePlugin(/\.\/dmm-plus-sc|\.js$/, /ux-tweak-sc[\/\\]+src/);
