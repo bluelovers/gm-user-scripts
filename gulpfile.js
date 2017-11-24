@@ -306,6 +306,7 @@ gulp.task("webpack:before", async function (callback)
 
 		let text = `
 module.exports.id = '${name}';
+module.exports.version = '${metadata.version || ''}';
 
 module.exports.name = '${metadata.name || name}';
 module.exports.name_en = '${metadata.name_en || metadata.name || name}';
@@ -376,6 +377,8 @@ gulp.task("gm_scripts:config", ["webpack"], async function (callback)
 
 	let ls = await get_userscript_list();
 
+	const pkg = require('./package.json');
+
 	for (let name of ls)
 	{
 		let index = require(path.join(cwd_src, name, 'index.js'));
@@ -388,6 +391,8 @@ gulp.task("gm_scripts:config", ["webpack"], async function (callback)
 		}
 
 		console.log(name);
+
+		script.attr('version', index.version || pkg.version);
 
 		script.find('Exclude, Include').remove();
 
