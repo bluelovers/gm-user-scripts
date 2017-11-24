@@ -131,6 +131,17 @@ let o: IDemo = {
 
 export = o;
 
+export type vShare = string | number;
+
+export interface IShare
+{
+	s?: vShare;
+	appid?: vShare;
+	id?: vShare;
+	p?: vShare[];
+	sharer_type?: string;
+}
+
 function dailog_share(_a, cb?)
 {
 	_a = _a.filter('a');
@@ -145,7 +156,7 @@ function dailog_share(_a, cb?)
 
 	let query = {
 		p: [],
-	};
+	} as IShare;
 
 	let _area = _a
 		.parents('div.userContentWrapper:eq(0), div[role="article"]:eq(0) .uiPopover + .clearfix, div[role="feed"] div[role="article"]:eq(0) .uiPopover + h5:eq(0)')
@@ -292,12 +303,12 @@ function dailog_share(_a, cb?)
 	return true;
 }
 
-function chk_id(id: string)
+function chk_id(id: vShare)
 {
 	return (id && /^\d+$/.test(id.toString())) ? id.toString() : void(0);
 }
 
-function get_post_id(href: string): string
+function get_post_id(href: string): vShare
 {
 	const parse_url = require('root/lib/func/parse_url').parse_url;
 
