@@ -1,5 +1,6 @@
 
 module.exports.id = 'ux-tweak-sc';
+module.exports.version = '';
 
 module.exports.name = 'ux-tweak-sc';
 module.exports.name_en = 'ux-tweak-sc';
