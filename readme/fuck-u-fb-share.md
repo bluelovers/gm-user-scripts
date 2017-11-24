@@ -30,10 +30,19 @@
 
 ### FAQ
 
-1. 很抱歉，這則貼文的隱私設定表示你無法分享它。
+1. 很抱歉，這則貼文的**隱私設定**表示你無法分享它。
 
 > 這問題並非此腳本所造成而是目前 FB 本身自己的 BUG
 > 點擊貼文時間可以取得該篇貼文的網址
 > 透過另外開啟貼文之後 再進行分享
 
 ![fb bug](images/2017-11-24-16-11-30-2.jpg)
+
+
+## 其他腳本
+
+* [ux-tweak-sc.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js)
+* [facebook-sc](https://userstyles.org/styles/113811/facebook-sc)
+* [stylish-adblock-for-mobile](http://pics.ee/hcbu)
+* [dmm-plus-sc.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/dmm-plus-sc.user.js)
+

@@ -223,7 +223,8 @@ function dailog_share(_a, cb?)
 		}
 
 		_form = _area
-			.find('.mtm div[id*="feed_subtitle"] .fcg a[rel="theater"]')
+			.find('.mtm div[id*="feed_subtitle"] .fcg')
+			.find('a[rel="theater"], a:has(.timestamp), a:has(.timestampContent)')
 		;
 
 		if (_form.length)
