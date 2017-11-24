@@ -10,13 +10,16 @@ module.exports = {
 		match: [
 			'http*://*.dmzj.com/*',
 			'https://i.dmzj.com/*',
+			'http*://manhua.dmzj.com/*',
 		],
 		exclude: [],
 	},
 
-	test(_url_obj)
+	test(_url_obj = global._url_obj)
 	{
-		if (_url_obj.host.match(/dmzj\.com/))
+		let ret;
+
+		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
 		{
 			return true;
 		}
