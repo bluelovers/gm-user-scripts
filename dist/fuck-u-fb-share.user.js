@@ -9,7 +9,7 @@
 // @description:en	this script try kill facebook new share (2017-11)
 // @description:zh	此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)
 //
-// @version		2.0.0
+// @version		2.0.1
 //
 // grant		GM_registerMenuCommand
 // @grant		unsafeWindow
@@ -31,10 +31,10 @@
 //
 // @exclude		
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511507188346
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511507188346
+// require		https://code.jquery.com/jquery-3.2.1.js?1511507238905
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511507238905
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511507188346
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511507238905
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
