@@ -1,5 +1,6 @@
 
 module.exports.id = 'dmm-plus-sc';
+module.exports.version = '';
 
 module.exports.name = 'dmm-plus-sc';
 module.exports.name_en = 'dmm-plus-sc';
