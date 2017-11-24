@@ -151,12 +151,15 @@ function dailog_share(_a, cb?)
 		return;
 	}
 
-	let id: string;
+	let id: vShare;
 	let _form;
 
 	let query = {
 		p: [],
 	} as IShare;
+
+	query.appid = 25554907596;
+	query.s = 22;
 
 	let _area = _a
 		.parents('div.userContentWrapper:eq(0), div[role="article"]:eq(0) .uiPopover + .clearfix, div[role="feed"] div[role="article"]:eq(0) .uiPopover + h5:eq(0)')
@@ -245,9 +248,6 @@ function dailog_share(_a, cb?)
 
 	let timestamp = Date.now();
 
-	query.appid = 25554907596;
-	query.s = 22;
-
 	{
 		let _area = _a
 			.parents('div.userContentWrapper:eq(0) > div > div .fwb')
@@ -256,7 +256,7 @@ function dailog_share(_a, cb?)
 
 		if (_area.length)
 		{
-			query.s = 2;
+			//query.s = 2;
 		}
 	}
 
