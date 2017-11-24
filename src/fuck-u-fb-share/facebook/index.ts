@@ -237,6 +237,18 @@ function dailog_share(_a, cb?)
 	query.appid = 25554907596;
 	query.s = 22;
 
+	{
+		let _area = _a
+			.parents('div.userContentWrapper:eq(0) > div > div .fwb')
+			.find('a[href*="/media/set/"]')
+		;
+
+		if (_area.length)
+		{
+			query.s = 2;
+		}
+	}
+
 	let query_str = Object.keys(query)
 		.reduce(function (a, b)
 		{
