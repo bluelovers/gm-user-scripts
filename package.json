@@ -29,6 +29,7 @@
     "stonejs": "^2.3.0",
     "stream-to-promise": "^2.2.0",
     "throttle-debounce": "^1.0.1",
+    "uglify-js": "^3.1.10",
     "zh2cht": "0.0.2"
   },
   "devDependencies": {
