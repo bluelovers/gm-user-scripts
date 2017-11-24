@@ -53,7 +53,8 @@ module.exports.metadata.include = [
 	"http*://*",
 	"http*://pc-x.phantom-greed.com/top*",
 	"http*://pc-x.phantom-greed.com/start*",
-	"http*://*.dmm.co*/*"
+	"http*://*.dmm.co*/*",
+	"http*://*games.dmm.co*/*"
 ];
 module.exports.metadata.exclude = [
 	"http://pc-play.games.dmm.co.jp/headnavi/*",
@@ -70,7 +71,8 @@ module.exports.metadata.exclude = [
 	"*.cn/*",
 	"*.org/*",
 	"*.tv/*",
-	"*.eu/*"
+	"*.eu/*",
+	"http*://www.dmm.co*/digital*"
 ];
 
 module.exports.main = async function (list, options = {})
