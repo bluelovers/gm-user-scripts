@@ -60,7 +60,7 @@ module.exports = {
 			greasemonkey: 'root/lib/greasemonkey/uf',
 		}),
 
-		new webpack.optimize.UglifyJsPlugin(),
+		//new webpack.optimize.UglifyJsPlugin(),
 
 	],
 };
