@@ -4,7 +4,7 @@
 //
 // @description	各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作 並且適合搭配 Scrapbook 擷取內容
 //
-// @version		2.0.3
+// @version		2.0.4
 //
 // @grant		GM_registerMenuCommand
 // @grant		unsafeWindow
@@ -126,10 +126,10 @@
 // @exclude		http*://platform.twitter.com/widgets*
 // @exclude		http*://apis.google.com/*
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511511646815
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511511646815
+// require		https://code.jquery.com/jquery-3.2.1.js?1511513841347
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511513841347
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511511646815
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511513841347
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
