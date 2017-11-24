@@ -25,8 +25,10 @@ module.exports = {
 		return false;
 	},
 
-	main()
+	async main()
 	{
+		//const Promise = require("bluebird");
+
 		const greasemonkey = require('root/lib/greasemonkey/index');
 		const _uf_done = require('root/lib/event/done');
 		let jquery_stylesheet = require('jquery-stylesheet');
@@ -63,60 +65,78 @@ module.exports = {
 		$(window).scrollTo($('.topic-main').push('.menu'));
 
 		{
+			const debounce = require('throttle-debounce/debounce');
+			const throttle = require('throttle-debounce/throttle');
+
 			let data = mini_jmd();
 
 			if (data)
 			{
 				let style_css = '';
+				let done = false;
 
 				topic_list_kw(data);
 
-				$('#AdvSearch')
-					.one('DOMNodeInserted', function ()
-					{
-						setTimeout(function ()
-						{
-							team_id_list(data);
+				let AdvSearch = $('#AdvSearch');
 
-							style_css = `
+				AdvSearch
+					.on('DOMNodeInserted', debounce(200, function ()
+					{
+						if (done || !team_id_list(data))
+						{
+							return;
+						}
+
+						done = true;
+
+						style_css = `
 .jmd a[data-tag] \{ opacity: 0.4; padding: 1px 3px 0px; white-space: nowrap; word-break: keep-all; display: inline-block; \}
 .title span[data-tag] \{ background-color: rgb(255, 255, 102); \}
 `;
-							{
-								let c = [];
+						{
+							let c = [];
 
-								let css = Object.keys(data.kw_found)
-									.reduce(function (a, b)
-									{
-										a.push(`.jmd a[data-tag="${b}"]`);
-										c.push(`.jmd a[data-tag="${b}"]:hover`);
+							let css = Object.keys(data.kw_found)
+								.reduce(function (a, b)
+								{
+									a.push(`.jmd a[data-tag="${b}"]`);
+									c.push(`.jmd a[data-tag="${b}"]:hover`);
 
-										return a;
-									}, [])
-									.join()
-								;
+									return a;
+								}, [])
+								.join()
+							;
 
-								style_css += `${css} \{ opacity: 0.85; \} ${c.join()} \{ opacity: 1; \}`;
-							}
+							style_css += `${css} \{ opacity: 0.85; \} ${c.join()} \{ opacity: 1; \}`;
+						}
 
-							greasemonkey.GM_addStyle([
-								'.bg { min-width: auto; }',
-								'#topic_list .title > a:visited { color: rgb(111, 111, 111); opacity: 0.5; }',
-								style_css,
-								'#topic_list tr:hover span[data-tag], #topic_list tr:hover .tag[data-team-id], #topic_list tr:hover .title > a, #topic_list tr:hover .title > a:visited { opacity: 1 !important; }',
-								jmd_color(data),
-							].join(''));
+						greasemonkey.GM_addStyle([
+							'.bg { min-width: auto; }',
+							'#topic_list .title > a:visited { color: rgb(111, 111, 111); opacity: 0.5; }',
+							style_css,
+							'#topic_list tr:hover span[data-tag], #topic_list tr:hover .tag[data-team-id], #topic_list tr:hover .title > a, #topic_list tr:hover .title > a:visited { opacity: 1 !important; }',
+							jmd_color(data),
+						].join(''));
 
-						}, 200);
-					})
+					}))
 				;
-
-				let AdvSearch = $('#AdvSearch');
 
 				if (!AdvSearch.children().length && $('#keyword').val())
 				{
 					unsafeWindow.showHideAdvSearch();
 				}
+
+				setTimeout(function ()
+				{
+					AdvSearch.triggerHandler('DOMNodeInserted');
+				}, 500);
+
+				$(window)
+					.on('load', function ()
+					{
+						AdvSearch.triggerHandler('DOMNodeInserted');
+					})
+				;
 			}
 
 			console.log(data);
@@ -366,6 +386,8 @@ function team_id_list(data)
 			return $(this).val();
 		})
 	;
+
+	return true;
 }
 
 function jmd_color(data)
