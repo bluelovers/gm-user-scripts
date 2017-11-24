@@ -223,7 +223,10 @@ module.exports = {
 		{
 			greasemonkey.GM_addStyle(`.id1._zh { border-color: rgb(54, 176, 197); } .id1._other { opacity: 0.25; } .id1:hover { opacity: 1; }`);
 
-			$.scrollTo('#toppane, #gd2');
+			$.scrollTo([
+				((_url_obj.query && _url_obj.query.match(/p(?:age)?=(\d+)/) && RegExp.$1 > 0) ? '.itg' : null),
+				'#toppane, #gd2',
+			]);
 
 			$('.itg .id2')
 				.each(function ()
