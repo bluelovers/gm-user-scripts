@@ -9,7 +9,7 @@
 // @description:en	dmm games layout tweak
 // @description:zh	DMM Games 介面調整以及更適合遊戲直播
 //
-// @version		2.0.1
+// @version		2.0.2
 //
 // grant		GM_registerMenuCommand
 // @grant		unsafeWindow
@@ -63,10 +63,10 @@
 // @exclude		*.eu/*
 // @exclude		http*://www.dmm.co*/digital*
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511509613677
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511509613677
+// require		https://code.jquery.com/jquery-3.2.1.js?1511510124474
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511510124474
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511509613677
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511510124474
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
