@@ -2,7 +2,8 @@
  * Created by user on 2017/8/6/006.
  */
 
-export const desc = '此腳本試圖解決智障 FB 新分享機制導致的困擾';
+export const desc = '此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)';
+export const desc_en = 'this script try kill facebook new share (2017-11)';
 
 export const metadata = `// ==UserScript==
 // @name		<%= index.name %>
