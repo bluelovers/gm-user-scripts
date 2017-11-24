@@ -216,6 +216,7 @@ module.exports.metadata.include = [
 	"http*://www.dm5.com/*",
 	"http*://*.dmzj.com/*",
 	"https://i.dmzj.com/*",
+	"http*://manhua.dmzj.com/*",
 	"http*://exhentai.org/*",
 	"http*://g.e-hentai.org/*",
 	"http*://e-hentai.org/*",
