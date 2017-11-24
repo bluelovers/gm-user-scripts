@@ -1,5 +1,6 @@
 
 module.exports.id = 'fuck-u-fb-share';
+module.exports.version = '';
 
 module.exports.name = 'fuck-u-fb-share';
 module.exports.name_en = 'fuck-u-fb-share';
