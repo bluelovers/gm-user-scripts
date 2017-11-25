@@ -11,7 +11,7 @@ module.exports.desc_en = 'this script try kill facebook new share (2017-11)';
 module.exports.icon = '';
 
 module.exports.list = [
-	"facebook/index.js"
+	"facebook/2017.11.js"
 ];
 
 module.exports.list_disable = [];
@@ -19,7 +19,7 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('root/src/fuck-u-fb-share/facebook/index.js');
+	require('root/src/fuck-u-fb-share/facebook/2017.11.js');
 };
 
 module.exports.metadata = {};
