@@ -1,11 +1,9 @@
 {
   "name": "ux-tweak-sc",
-  "version": "2.0.4",
-  "description": "",
-  "main": "index.js",
+  "version": "3.0.0",
+  "description": "各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作",
+  "main": "gulpfile.js",
   "scripts": {
-    "testcafe": "testcafe chrome test/testcafe.js",
-    "phantomjs": "cd test && node phantomjs.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -4,7 +4,12 @@
 
 import greasemonkey from 'root/lib/greasemonkey/index';
 
-export function _uf_disable_nocontextmenu2(mode, elem, options = {})
+export interface IOptions
+{
+	types?
+}
+
+export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 {
 	let _fn_event = ['dragstart', 'contextmenu', 'selectstart', 'mousedown', 'mouseup', 'source', 'copy'];
 	let _fn_off = ['unbind', 'die', 'off'];
@@ -89,7 +94,7 @@ export function _uf_disable_nocontextmenu2(mode, elem, options = {})
 	});
 }
 
-export function _uf_disable_nocontextmenu(mode, elem)
+export function _uf_disable_nocontextmenu(mode, elem?)
 {
 	var _jquery_array = [$];
 	var _unsafeJquery;
@@ -170,8 +175,8 @@ export function _uf_disable_nocontextmenu(mode, elem)
 				})
 			;
 
-			_fn_jq_call(_jquery, arr, 'unbind', _fn_event);
-			_fn_jq_call(_jquery, arr, 'die', _fn_event);
+			(_jquery.fn.unbind) && _fn_jq_call(_jquery, arr, 'unbind', _fn_event);
+			(_jquery.fn.die) && _fn_jq_call(_jquery, arr, 'die', _fn_event);
 
 			if (_jquery.fn.off)
 			{

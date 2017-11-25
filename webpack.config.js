@@ -63,4 +63,7 @@ module.exports = {
 		//new webpack.optimize.UglifyJsPlugin(),
 
 	],
+
+	//cache: false,
+
 };
