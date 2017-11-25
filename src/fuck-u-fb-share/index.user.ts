@@ -10,4 +10,4 @@ import index from './index';
 module.exports.id = 'fuck-u-fb-share';
 module.exports.name = module.exports.id;
 
-userScriptCore.run(module.exports.id, module.exports);
+userScriptCore.run(module.exports.id, module.exports, jQuery);
