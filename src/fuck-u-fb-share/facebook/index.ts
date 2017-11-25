@@ -2,9 +2,11 @@
  * Created by user on 2017/11/22/022.
  */
 
-import { IDemo } from 'root/lib/core/demo';
+import { IDemo, IGlobal } from 'root/lib/core/demo';
 import * as Promise from 'bluebird';
 //import { parse_url } from 'root/lib/func/parse_url';
+
+declare const global: IGlobal;
 
 'use strict';
 
@@ -131,9 +133,9 @@ let o: IDemo = {
 
 export = o;
 
-export type vShare = string | number;
+type vShare = string | number;
 
-export interface IShare
+interface IShare
 {
 	s?: vShare;
 	appid?: vShare;
@@ -183,7 +185,7 @@ function dailog_share(_a, cb?)
 		{
 			_form = _form.eq(-1);
 
-			if (!_form.is('.profileLink') && !_form.prevAll('.accessible_elem').length)
+			if (!_form.is('.profileLink, [data-hover="tooltip"]') && !_form.prevAll('.accessible_elem').length)
 			{
 				let _m;
 
