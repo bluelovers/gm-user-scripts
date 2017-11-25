@@ -3,6 +3,11 @@
  */
 
 import { IUrlObject } from 'root/lib/func/parse_url';
+import { IGlobal } from 'root/lib/core';
+
+export { IGlobal };
+
+declare const global: IGlobal;
 
 export interface IDemo
 {
