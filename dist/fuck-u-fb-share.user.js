@@ -31,10 +31,10 @@
 //
 // @exclude		
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511610711666
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511610711666
+// require		https://code.jquery.com/jquery-3.2.1.js?1511614161821
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511614161821
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511610711666
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511614161821
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
@@ -157,7 +157,7 @@ eval("\nmodule.exports.id = 'fuck-u-fb-share';\nmodule.exports.version = '';\n\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/**\n * Created by user on 2017/11/17/017.\n */\n\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst userScriptCore = __webpack_require__(/*! root/lib/core */ 9);\nmodule.exports.id = 'fuck-u-fb-share';\nmodule.exports.name = module.exports.id;\nuserScriptCore.run(module.exports.id, module.exports);\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXgudXNlci5qcyIsInNvdXJjZVJvb3QiOiJEOi9Vc2Vycy9Eb2N1bWVudHMvVGhlIFByb2plY3QvZ21fc2NyaXB0c19yZXBvL3V4LXR3ZWFrLXNjLyIsInNvdXJjZXMiOlsic3JjL2Z1Y2stdS1mYi1zaGFyZS9pbmRleC51c2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsWUFBWSxDQUFDOztBQUViLGdEQUFnRDtBQUdoRCxNQUFNLENBQUMsT0FBTyxDQUFDLEVBQUUsR0FBRyxpQkFBaUIsQ0FBQztBQUN0QyxNQUFNLENBQUMsT0FBTyxDQUFDLElBQUksR0FBRyxNQUFNLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQztBQUV4QyxjQUFjLENBQUMsR0FBRyxDQUFDLE1BQU0sQ0FBQyxPQUFPLENBQUMsRUFBRSxFQUFFLE1BQU0sQ0FBQyxPQUFPLENBQUMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQ3JlYXRlZCBieSB1c2VyIG9uIDIwMTcvMTEvMTcvMDE3LlxuICovXG5cbid1c2Ugc3RyaWN0JztcblxuaW1wb3J0ICogYXMgdXNlclNjcmlwdENvcmUgZnJvbSAncm9vdC9saWIvY29yZSc7XG5pbXBvcnQgaW5kZXggZnJvbSAnLi9pbmRleCc7XG5cbm1vZHVsZS5leHBvcnRzLmlkID0gJ2Z1Y2stdS1mYi1zaGFyZSc7XG5tb2R1bGUuZXhwb3J0cy5uYW1lID0gbW9kdWxlLmV4cG9ydHMuaWQ7XG5cbnVzZXJTY3JpcHRDb3JlLnJ1bihtb2R1bGUuZXhwb3J0cy5pZCwgbW9kdWxlLmV4cG9ydHMpO1xuIl19\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/fuck-u-fb-share/index.user.js\n// module id = 4\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/fuck-u-fb-share/index.user.js?");
+eval("/**\n * Created by user on 2017/11/17/017.\n */\n\nObject.defineProperty(exports, \"__esModule\", { value: true });\nconst userScriptCore = __webpack_require__(/*! root/lib/core */ 9);\nmodule.exports.id = 'fuck-u-fb-share';\nmodule.exports.name = module.exports.id;\nuserScriptCore.run(module.exports.id, module.exports);\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXgudXNlci5qcyIsInNvdXJjZVJvb3QiOiJEOi9Vc2Vycy9Eb2N1bWVudHMvVGhlIFByb2plY3QvZ21fc2NyaXB0c19yZXBvL3V4LXR3ZWFrLXNjLyIsInNvdXJjZXMiOlsic3JjL2Z1Y2stdS1mYi1zaGFyZS9pbmRleC51c2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsWUFBWSxDQUFDOztBQUViLGdEQUFnRDtBQUdoRCxNQUFNLENBQUMsT0FBTyxDQUFDLEVBQUUsR0FBRyxpQkFBaUIsQ0FBQztBQUN0QyxNQUFNLENBQUMsT0FBTyxDQUFDLElBQUksR0FBRyxNQUFNLENBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQztBQUV4QyxjQUFjLENBQUMsR0FBRyxDQUFDLE1BQU0sQ0FBQyxPQUFPLENBQUMsRUFBRSxFQUFFLE1BQU0sQ0FBQyxPQUFPLENBQUMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxyXG4gKiBDcmVhdGVkIGJ5IHVzZXIgb24gMjAxNy8xMS8xNy8wMTcuXHJcbiAqL1xyXG5cclxuJ3VzZSBzdHJpY3QnO1xyXG5cclxuaW1wb3J0ICogYXMgdXNlclNjcmlwdENvcmUgZnJvbSAncm9vdC9saWIvY29yZSc7XHJcbmltcG9ydCBpbmRleCBmcm9tICcuL2luZGV4JztcclxuXHJcbm1vZHVsZS5leHBvcnRzLmlkID0gJ2Z1Y2stdS1mYi1zaGFyZSc7XHJcbm1vZHVsZS5leHBvcnRzLm5hbWUgPSBtb2R1bGUuZXhwb3J0cy5pZDtcclxuXHJcbnVzZXJTY3JpcHRDb3JlLnJ1bihtb2R1bGUuZXhwb3J0cy5pZCwgbW9kdWxlLmV4cG9ydHMpO1xyXG4iXX0=\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/fuck-u-fb-share/index.user.js\n// module id = 4\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/fuck-u-fb-share/index.user.js?");
 
 /***/ }),
 /* 5 */
