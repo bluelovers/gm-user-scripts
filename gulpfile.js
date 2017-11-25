@@ -330,8 +330,6 @@ module.exports.metadata = {};
 module.exports.metadata.include = ${JSON.stringify(ls.metadata.include, null, "\t")};
 module.exports.metadata.exclude = ${JSON.stringify(ls.metadata.exclude, null, "\t")};
 
-module.exports.main = ${main.toString()};
-
 module.exports.list_script = ${JSON.stringify(ls.list_script, null, "\t")};
 
 module.exports.current = [];
@@ -339,6 +337,8 @@ module.exports.current = [];
 module.exports.default = module.exports;
 
 `;
+
+		//module.exports.main = ${main.toString()};
 
 		await fs.writeFileAsync(path.join(cwd_src, name, 'index.js'), text);
 	}
