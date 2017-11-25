@@ -126,10 +126,10 @@
 // @exclude		http*://platform.twitter.com/widgets*
 // @exclude		http*://apis.google.com/*
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511620210311
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511620210311
+// require		https://code.jquery.com/jquery-3.2.1.js?1511621375291
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511621375291
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511620210311
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511621375291
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
