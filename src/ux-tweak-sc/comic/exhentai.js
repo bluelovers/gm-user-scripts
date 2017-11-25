@@ -35,8 +35,8 @@ module.exports = {
 		const comic_style = require('root/lib/comic/style');
 		const greasemonkey = require('root/lib/greasemonkey/index');
 
-		_uf_dom_filter_link('.itg a, #gdt a, #cdiv .c6 a')
-			.attr('target', '_blank')
+		_uf_dom_filter_link('.itg a, #gdt a, #cdiv .c6 a, #pp a')
+			.prop('target', '_blank')
 		;
 
 		if (_url_obj.path.match(/\/s\//))
