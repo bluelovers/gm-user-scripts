@@ -38,5 +38,5 @@
 /global.js
 /src/gamer-auto-signin/**/*.js
 /lib/greasemonkey/**/*.js
-/lib/acg/gamer/signin.js
+/lib/site/gamer/signin.js
 !/src/**/index.js

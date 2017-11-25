@@ -21,7 +21,7 @@ userScriptCore.run(module.exports.id, module.exports, null, function (uxid, expo
 		key: 'gamer signin',
 	}, async (options) =>
 	{
-		const signin = require('root/lib/acg/gamer/signin').default;
+		const signin = require('root/lib/site/gamer/signin').default;
 
 		await signin(true)
 			.catch(err => console.error('[簽到錯誤]', err))
