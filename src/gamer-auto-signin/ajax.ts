@@ -38,7 +38,7 @@ let o: IDemo = {
 
 	async main(_url_obj = global._url_obj)
 	{
-		const signin = require('root/lib/acg/gamer/signin').default;
+		const signin = require('root/lib/site/gamer/signin').default;
 
 		await signin()
 			.catch(err => console.error('[簽到錯誤]', err))
