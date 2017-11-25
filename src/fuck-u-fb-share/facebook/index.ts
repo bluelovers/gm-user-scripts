@@ -162,7 +162,11 @@ function dailog_share(_a, cb?)
 	query.s = 22;
 
 	let _area = _a
-		.parents('div.userContentWrapper:eq(0), div[role="article"]:eq(0) .uiPopover + .clearfix, div[role="feed"] div[role="article"]:eq(0) .uiPopover + h5:eq(0)')
+		.parents([
+			'div.userContentWrapper:eq(0)',
+			'div[role="article"]:eq(0) .uiPopover + .clearfix',
+			'div[role="feed"] div[role="article"]:eq(0) .uiPopover + h5:eq(0)',
+		].join(','))
 		.eq(0)
 	;
 
@@ -170,7 +174,7 @@ function dailog_share(_a, cb?)
 	{
 		_form = _area
 			.find('h5:eq(0) .fcg, h6:eq(0) > .fcg')
-			.find('.profileLink:eq(-1), .profileLink:eq(-2), a')
+			.find('.profileLink:eq(-1), .profileLink:eq(-2), a:not(.profileLink)')
 		;
 
 		//console.log(55, _form, _area);
@@ -179,14 +183,17 @@ function dailog_share(_a, cb?)
 		{
 			_form = _form.eq(-1);
 
-			let _m;
-
-			let v = get_post_id(_form.attr('href'));
-
-			if (v)
+			if (!_form.is('.profileLink'))
 			{
-				id = v;
-				query.p.push(v);
+				let _m;
+
+				let v = get_post_id(_form.attr('href'));
+
+				if (v)
+				{
+					id = v;
+					query.p.push(v);
+				}
 			}
 
 			//console.log(_m, id);
