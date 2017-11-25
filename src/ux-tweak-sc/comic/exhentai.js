@@ -293,6 +293,17 @@ module.exports = {
 			.filter('[src*=adserver], [src*=adspaces]')
 			.remove()
 		;
+
+		require('root/lib/dom/disable_nocontextmenu')
+			._uf_disable_nocontextmenu2(1, '.gdtm a, .itg a')
+		;
+
+		try
+		{
+			unsafeWindow.adsbyjuicy = null;
+		}
+		catch(e)
+		{}
 	},
 
 };
