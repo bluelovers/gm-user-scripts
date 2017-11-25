@@ -26,7 +26,8 @@
 
 可以在此回報 BUG [issues](https://github.com/bluelovers/gm-user-scripts/issues)
 
-> 回報時請盡量附上貼文網址 以及 截圖
+> 回報時請盡量附上貼文網址 以及 截圖<br/>
+> 不定期更新 請記得安裝新版
 
 ### FAQ
 
