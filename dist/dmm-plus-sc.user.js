@@ -63,10 +63,10 @@
 // @exclude		*.eu/*
 // @exclude		http*://www.dmm.co*/digital*
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511614161406
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511614161406
+// require		https://code.jquery.com/jquery-3.2.1.js?1511620209610
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511620209610
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511614161406
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511620209610
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
