@@ -18,6 +18,7 @@
     "jquery": "^3.2.1",
     "jquery-stylesheet": "^0.3.7",
     "keycodes": "^0.2.5",
+    "lets-fetch": "^2.1.0",
     "lodash": "^4.17.4",
     "lodash.clone": "^4.5.0",
     "lodash.sortby": "^4.7.0",

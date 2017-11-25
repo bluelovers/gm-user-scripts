@@ -69,7 +69,7 @@ export interface IGetListScript
 
 export function run(uxid: string, exports: IExports, $jq?: JQueryStatic, cb?: IMainCallback)
 {
-	$jq = $jq || $;
+	//$jq = $jq || $;
 
 	let _dummy = async () =>
 	{
@@ -133,7 +133,13 @@ export function url(_url: string, domain: IGlobal | IExports = global, cb?: IUrl
 	}
 }
 
-export function init(uxid: string, exports: IExports, global: IGlobal, window: Window, $jq?: JQueryStatic, _url?: string)
+export function init(uxid: string,
+	exports: IExports,
+	global: IGlobal,
+	window: Window,
+	$jq?: JQueryStatic,
+	_url?: string
+)
 {
 	{
 		_url = _url || window.location.href;
@@ -142,8 +148,10 @@ export function init(uxid: string, exports: IExports, global: IGlobal, window: W
 		_parse_url(_url, global);
 	}
 
-	global.$ = $jq || global.$ || $;
-	global.jQuery = $jq || global.jQuery || jQuery;
+	//global.$ = $jq || global.$ || $;
+	//global.jQuery = $jq || global.jQuery || jQuery;
+
+	global.$ = global.jQuery = $jq;
 
 	global.userScript = exports;
 }

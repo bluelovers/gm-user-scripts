@@ -39,6 +39,11 @@ export function debug(any: any, ...argv)
 	return console.info(`%c[${global.userScript.id}][debug]`, 'color: #4B90C2;', any, ...argv);
 }
 
+export function error(any: any, ...argv)
+{
+	return console.error(`%c[${global.userScript.id}][error]`, 'color: red;', any, ...argv);
+}
+
 export function info(any: any, ...argv)
 {
 	return console.info(`%c[${global.userScript.id}][info]`, 'color: #ccc;', any, ...argv);

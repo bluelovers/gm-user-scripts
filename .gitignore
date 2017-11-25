@@ -35,4 +35,8 @@
 /lib/core/**/*.js
 !/src/fuck-u-fb-share/index.js
 /lib/jquery/event/capture.js
-/@types/global.js
+/global.js
+/src/gamer-auto-signin/**/*.js
+/lib/greasemonkey/**/*.js
+/lib/acg/gamer/signin.js
+!/src/**/index.js

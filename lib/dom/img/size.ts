@@ -4,6 +4,12 @@
 
 'use strict';
 
+export interface IHTMLElement extends HTMLElement
+{
+	naturalWidth?: number;
+	naturalHeight?: number;
+}
+
 export function _uf_fixsize2(who, area, force, scrollsize)
 {
 	let _elem = $(who);
@@ -59,8 +65,8 @@ export function _uf_fixsize2(who, area, force, scrollsize)
 		let _this = $(this);
 		let _area = $(_ok === true ? this : _ok);
 
-		let _w = _this[0].naturalWidth;
-		let _h = _this[0].naturalHeight;
+		let _w = (_this[0] as IHTMLElement).naturalWidth;
+		let _h = (_this[0] as IHTMLElement).naturalHeight;
 
 		if (!_w || !_h)
 		{

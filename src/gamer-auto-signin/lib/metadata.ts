@@ -2,17 +2,24 @@
  * Created by user on 2017/8/6/006.
  */
 
-module.exports.metadata = `// ==UserScript==
-// @name		<%= pkg.name %>
+export const desc = '巴哈姆特自動簽到';
+
+export const metadata = `// ==UserScript==
+// @name		<%= index.name %>
+// @name:en		<%= index.name_en %>
+// @name:zh		<%= index.name %>
 // @namespace	bluelovers
+// @author		bluelovers
 //
-// @description	各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作 並且適合搭配 Scrapbook 擷取內容
+// @description		<%= index.desc %>
+// @description:en	<%= index.desc_en %>
+// @description:zh	<%= index.desc %>
 //
 // @version		<%= pkg.version %>
 //
 // @grant		GM_registerMenuCommand
 // @grant		GM_xmlhttpRequest
-// @grant		unsafeWindow
+// grant		unsafeWindow
 // grant		GM_addStyle
 // grant		none
 //
@@ -23,8 +30,8 @@ module.exports.metadata = `// ==UserScript==
 //
 // @homepageURL	https://github.com/bluelovers/gm-user-scripts
 // @supportURL	https://github.com/bluelovers/gm-user-scripts/issues
-// @downloadURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js
-// @updateURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js
+// @downloadURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js
+// @updateURL	https://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js
 //
 // @include		<%= index.include %>
 //
@@ -37,3 +44,5 @@ module.exports.metadata = `// ==UserScript==
 //
 // ==/UserScript==
 `;
+
+export default metadata;
