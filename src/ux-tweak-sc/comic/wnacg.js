@@ -187,6 +187,11 @@ module.exports = {
 					;
 			};
 
+			_div_page.on('click', function ()
+			{
+				window.open(window.location.href.replace(/photos-slide-aid/, 'photos-index-aid'), '_blank');
+			});
+
 			_img_area
 				.on('DOMNodeInserted', function (event)
 				{
@@ -404,7 +409,7 @@ module.exports = {
 	adblock()
 	{
 		require('root/lib/dom/disable_nocontextmenu')
-			._uf_disable_nocontextmenu2(1)
+			._uf_disable_nocontextmenu2(1, '.gallary_wrap a, body, #bodywrap')
 		;
 	},
 };
