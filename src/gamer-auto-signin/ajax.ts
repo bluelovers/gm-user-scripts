@@ -16,6 +16,9 @@ let o: IDemo = {
 		match: [
 			'http*://www.gamer.com.tw/*',
 			'http*://forum.gamer.com.tw/*',
+			'http*://home.gamer.com.tw/creationDetail.php*',
+			'http*://gnn.gamer.com.tw/*',
+			'http*://ani.gamer.com.tw/*',
 		],
 		nomatch: [],
 		exclude: [],
