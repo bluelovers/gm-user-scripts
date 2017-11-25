@@ -3,6 +3,8 @@
 module.exports.id = 'ux-tweak-sc';
 module.exports.name = module.exports.id;
 
+const userScriptCore = require("root/lib/core");
+
 //let jQuery = require('jquery')
 //global.jQuery = this.$ = this.jQuery = (jQuery || window.jQuery).noConflict();
 //global.Promise = require('bluebird');
@@ -41,9 +43,9 @@ module.exports.name = module.exports.id;
 })(jQuery);
 */
 
-require('root/lib/core/index').run(module.exports.id, jQuery, _init);
+userScriptCore.run(module.exports.id, module.exports, jQuery, _init);
 
-function _init()
+function _init(uxid, exports, global, window, $jq, _url)
 {
 	/*
 	const parse_url = require('root/lib/func/parse_url').parse_url;
@@ -55,13 +57,13 @@ function _init()
 	global._url_obj._source = global._url_obj_._source = global._url;
 	*/
 
-	require('root/lib/core/index').init(module.exports, global, window, window.location.href);
+	userScriptCore.init(uxid, exports, global, window, $jq, _url);
 
 	let imagesLoaded = require('imagesloaded');
-	imagesLoaded.makeJQueryPlugin(jQuery);
+	imagesLoaded.makeJQueryPlugin($jq);
 
-	require('root/lib/jquery/scrollTo').makeJQueryPlugin(jQuery);
-	require('root/lib/jquery/push').makeJQueryPlugin(jQuery);
+	require('root/lib/jquery/scrollTo').makeJQueryPlugin($jq);
+	require('root/lib/jquery/push').makeJQueryPlugin($jq);
 
 	_init_gm();
 }
