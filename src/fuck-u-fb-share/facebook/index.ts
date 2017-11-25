@@ -183,7 +183,7 @@ function dailog_share(_a, cb?)
 		{
 			_form = _form.eq(-1);
 
-			if (!_form.is('.profileLink'))
+			if (!_form.is('.profileLink') && !_form.prevAll('.accessible_elem').length)
 			{
 				let _m;
 
