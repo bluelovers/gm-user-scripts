@@ -11,6 +11,7 @@ module.exports.metadata = `// ==UserScript==
 // @version		<%= pkg.version %>
 //
 // @grant		GM_registerMenuCommand
+// @grant		GM_xmlhttpRequest
 // @grant		unsafeWindow
 // grant		GM_addStyle
 // grant		none
