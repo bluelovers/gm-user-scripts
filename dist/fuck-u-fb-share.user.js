@@ -31,10 +31,10 @@
 //
 // @exclude		
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511620209974
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511620209974
+// require		https://code.jquery.com/jquery-3.2.1.js?1511621374955
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511621374955
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511620209974
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511621374955
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
