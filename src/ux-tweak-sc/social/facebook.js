@@ -28,26 +28,22 @@ module.exports = {
 		return false;
 	},
 
-	main()
+	main(_url_obj = global._url_obj)
 	{
 		const _uf_done = require('root/lib/event/done');
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
-
 		const parse_url = require('root/lib/func/parse_url').parse_url;
-
 		const debounce = require('throttle-debounce/debounce');
+		const userScriptCore = require('root/lib/core');
 
 		let _ready = debounce(1500, function ()
 		{
-			if (global._url != window.location.href)
-			{
-				let old = global._url_obj;
-
-				global._url = window.location.href;
-				global._url_obj = parse_url(global._url);
-
-				console.log('location', window.location.href, global._url_obj, old);
-			}
+			userScriptCore
+				.url(window.location.href, global, function (_url, domain, old)
+				{
+					userScriptCore.greasemonkey.debug('location', _url, domain._url_obj, old);
+				})
+			;
 
 			let _a = $('#appsNav > ul > li > a[data-testid="left_nav_item_建立特效框"]:eq(0)')
 				.not('[data-uf]')
@@ -84,6 +80,13 @@ module.exports = {
 				.prop('target', '_blank')
 			;
 
+			$('#fbTimelineHeadline ul[data-referrer="timeline_light_nav_top"] a[data-tab-key="photos"], #appsNav .sideNavItem a[href*="photos"]')
+				.attr('href', function (i, old)
+				{
+					return old.replace(/\/photos\?/, '/photos_albums?')
+				})
+			;
+
 			module.exports.adblock(_url_obj);
 
 			//console.log(_link);
@@ -92,13 +95,13 @@ module.exports = {
 		$('body')
 			.on('click', 'a[href]:not([rel="ignore"] or [role] or [href="#"])', _ready)
 			.on('DOMNodeInserted', '#content ._5wci._5wch._2pjv, #content #appsNav', _ready)
-			.on('DOMAttrModified', function (event)
+			.on('DOMAttrModified', 'body', function (event)
 			{
 				let _this = $(event.target);
 
 				if (_this.is('body') && event.originalEvent.attrName == 'class')
 				{
-					console.log(888, [_this, event.originalEvent.attrName, event]);
+					//console.log(888, [_this, event.originalEvent.attrName, event]);
 
 					_ready();
 				}
