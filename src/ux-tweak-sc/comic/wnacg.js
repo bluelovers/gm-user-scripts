@@ -409,7 +409,16 @@ module.exports = {
 	adblock()
 	{
 		require('root/lib/dom/disable_nocontextmenu')
-			._uf_disable_nocontextmenu2(1, '.gallary_wrap a, body, #bodywrap')
+			._uf_disable_nocontextmenu2(2, '.gallary_wrap a, body, #bodywrap, a, img, input')
 		;
+
+		try
+		{
+			unsafeWindow.Advisor = null;
+		}
+		catch (e)
+		{
+
+		}
 	},
 };
