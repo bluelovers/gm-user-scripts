@@ -499,7 +499,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 						config.plugins = [
 							new webpack.ProvidePlugin({
 								$: 'jquery',
-								jQuery: 'jquery'
+								jQuery: 'jquery',
+								greasemonkey: 'root/lib/greasemonkey/uf',
 							}),
 
 							new webpack.IgnorePlugin(/\.(txt|ts)$/),

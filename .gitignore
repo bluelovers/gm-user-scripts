@@ -39,5 +39,6 @@
 /src/gamer-auto-signin/**/*.js
 /lib/greasemonkey/**/*.js
 /lib/site/gamer/signin.js
-!/src/**/index.js
 /lib/func/array/unique.js
+/src/esunbank/**/*.js
+!/src/**/index.js

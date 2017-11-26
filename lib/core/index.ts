@@ -4,6 +4,7 @@
 
 import { parse_url, IUrlObject } from 'root/lib/func/parse_url';
 import greasemonkey from 'root/lib/greasemonkey/uf';
+import { IDemo } from 'root/lib/core/demo';
 
 export { greasemonkey };
 
@@ -58,6 +59,8 @@ export interface IIndex
 
 	list_script: string[];
 	current?: any[];
+
+	list: string[];
 }
 
 export interface IGetListScript
@@ -85,7 +88,7 @@ export function run(uxid: string, exports: IExports, $jq?: JQueryStatic, cb?: IM
 			}
 
 			//let index = require(`root/src/${uxid}`);
-			const index = requireScript(uxid, 'index');
+			const index = requireScript(uxid, 'index') as IIndex;
 
 			//await index.main(index.list);
 			await main(uxid, index, index.list);
@@ -167,7 +170,7 @@ function _parse_url(_url: string, domain: IDomain)
 	return obj;
 }
 
-export function requireScript(uxid: string, name: string)
+export function requireScript(uxid: string, name: string): IDemo
 {
 	return require(`root/src/${uxid}/${name}`);
 }
@@ -216,6 +219,8 @@ export async function main(uxid: string, index: IIndex, list, options = {})
 		//console.log(888, name);
 
 		const lib = requireScript(uxid, name);
+
+		lib.file = name;
 
 		let name_id = name;
 
