@@ -226,6 +226,9 @@ export async function main(uxid: string, index: IIndex, list, options = {})
 
 		name_id = `[${name_id}]`;
 
+		lib.name = lib.name || name;
+		lib.name_id = name_id || lib.name_id || lib.name;
+
 		//console.log(999, name_id);
 
 		if (_break && !lib.script)

@@ -16,6 +16,11 @@ module.exports.metadata = `// ==UserScript==
 // grant		GM_addStyle
 // grant		none
 //
+// @grant		GM_deleteValue
+// @grant		GM_getValue
+// @grant		GM_listValues
+// @grant		GM_setValue
+//
 // @icon		<%= index.icon %>
 //
 // @noframes
