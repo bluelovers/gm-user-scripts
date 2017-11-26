@@ -177,10 +177,12 @@ function dailog_share(_a, cb?)
 	*/
 	//query.st = 'all_modes';
 	//query.type = 99;
-	//query.dpr = 1;
-	//query.feedback_source = 2;
+	query.dpr = 1;
+	query.feedback_source = 2;
 
-	//query[`internalextra[feedback_source]`] = 1;
+	query[`internalextra[feedback_source]`] = 2;
+
+	query.is_forced_reshare_of_post = 1;
 
 	let _area = _a
 		.parents([
@@ -485,7 +487,12 @@ function post_is_link(_area)
 	let _a2 = _area2
 		.find('a[rel*="nofollow"][target="_blank"]')
 		.filter('[data-lynx-uri], [data-lynx-mode]')
-		.not('.see_more_link, .text_exposed_root a, .text_exposed_link a, .text_exposed_show a, .profileLink')
+		.not([
+			'.see_more_link',
+			'.text_exposed_root a, .text_exposed_link a, .text_exposed_show a',
+			'.profileLink',
+			'.mtm > p > a',
+		].join(','))
 	;
 
 	console.log('post_is_link', 1, _area, _area2, _a2);
