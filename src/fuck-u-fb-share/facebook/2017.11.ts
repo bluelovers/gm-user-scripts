@@ -19,12 +19,8 @@ let o: IDemo = {
 			'http*://www.facebook.com/*',
 			'http*://facebook.com/*',
 		],
-		nomatch: [
-
-		],
-		exclude: [
-
-		],
+		nomatch: [],
+		exclude: [],
 	},
 
 	test(_url_obj = global._url_obj)
@@ -47,7 +43,7 @@ let o: IDemo = {
 		//const onCapture = require('root/lib/jquery/event/capture').onCapture;
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
-		let _a_selector = 'a.share_action_link';
+		let _a_selector = 'a.share_action_link:not([data-is-link=2])';
 
 		$('body')
 			.on('click mousedown', `span[aria-haspopup="true"]:has(> ${_a_selector})`, function (event)
@@ -141,7 +137,13 @@ interface IShare
 	appid?: vShare;
 	id?: vShare;
 	p?: vShare[];
-	sharer_type?: string;
+	sharer_type?: vShare;
+	share_type?: vShare;
+
+	parent_fbid?: vShare;
+	share_source_type: string;
+
+	dpr?: number;
 }
 
 function dailog_share(_a, cb?)
@@ -158,10 +160,27 @@ function dailog_share(_a, cb?)
 
 	let query = {
 		p: [],
+		share_type: 'all_modes',
+		share_source_type: 'unknown',
 	} as IShare;
+
+	let _cache = {} as any;
 
 	query.appid = 25554907596;
 	query.s = 22;
+	//query.s = 2;
+	//query.s = 99;
+
+	/*
+	// not work
+	query.appid = 2309869772;
+	*/
+	//query.st = 'all_modes';
+	//query.type = 99;
+	//query.dpr = 1;
+	//query.feedback_source = 2;
+
+	//query[`internalextra[feedback_source]`] = 1;
 
 	let _area = _a
 		.parents([
@@ -171,6 +190,8 @@ function dailog_share(_a, cb?)
 		].join(','))
 		.eq(0)
 	;
+
+	_cache.is_link = post_is_link(_area);
 
 	if (!id)
 	{
@@ -195,6 +216,11 @@ function dailog_share(_a, cb?)
 				{
 					id = v;
 					query.p.push(v);
+
+					if (v = get_post_owner(_form.attr('href')))
+					{
+						//query.p.unshift(v);
+					}
 				}
 			}
 
@@ -227,6 +253,11 @@ function dailog_share(_a, cb?)
 				{
 					id = v;
 					query.p.push(v);
+
+					if (v = get_post_owner(_form.attr('href')))
+					{
+						//query.p.unshift(v);
+					}
 				}
 			}
 		}
@@ -243,6 +274,11 @@ function dailog_share(_a, cb?)
 			if (v)
 			{
 				id = v;
+
+				if (v = get_post_owner(_form.attr('href')))
+				{
+					//query.p.unshift(v);
+				}
 			}
 
 			//console.log([v, id], _form.attr('href'));
@@ -270,21 +306,48 @@ function dailog_share(_a, cb?)
 		}
 	}
 
+	// @todo 需要能夠找出如何分享具有連結的貼文時保留原始貼文內容
+	if (_cache.is_link)
+	{
+		_a
+			.attr('data-is-link', _cache.is_link)
+			.css('color', 'rgb(147,0,68)')
+		;
+
+		// 只忽略具有訊息內容的分享連結
+		if (_cache.is_link > 1)
+		{
+			return;
+		}
+	}
+
+	query.st = query.sharer_type = query.share_type;
+	query.type = query.s;
+
+	query.p = require('root/lib/func/array/unique').array_unique(query.p);
+
+	//query.share_params = '[%22' + query.p.join('%22%2C%22') + '%22]';
+	query.share_params = array2params(query.p, 1);
+
 	let query_str = Object.keys(query)
 		.reduce(function (a, b)
 		{
-			if (query[b])
+			if (query[b] || query[b] === 0 || query[b] === '0')
 			{
 				if (Array.isArray(query[b]) && query[b].length)
 				{
+					/*
 					for (let i in query[b])
 					{
-						a.push(`${b}[${i}]=${query[b][i]}`);
+						a.push(`${b}[${i}]=${query[b][i].toString()}`);
 					}
+					*/
+
+					a.push(array2params(query.p, 0, b));
 				}
 				else
 				{
-					a.push(`${b}=${query[b]}`);
+					a.push(`${b}=${query[b].toString()}`);
 				}
 			}
 
@@ -293,7 +356,8 @@ function dailog_share(_a, cb?)
 		.join('&')
 	;
 
-	let url = `/ajax/sharer/?${query_str}&id=${id}&sharer_type=all_modes`;
+	let url = `/ajax/sharer/?${query_str}&id=${id}`;
+	//let url = `/share/dialog/?${query_str}&id=${id}`;
 
 	_a
 		.attr('href', url)
@@ -313,9 +377,54 @@ function dailog_share(_a, cb?)
 	return true;
 }
 
+function array2params(arr: any[], mode = 0, prefix?: string)
+{
+	if (!arr || !arr.length)
+	{
+		return null;
+	}
+
+	let arr2 = arr.slice().map(function (value, index, array)
+	{
+		return value.toString();
+	});
+
+	if (mode == 1)
+	{
+		return '[%22' + arr.join('%22%2C%22') + '%22]';
+	}
+
+	return arr2
+		.map(function (value, index, array)
+		{
+			return `${prefix}[${index}]=${value}`;
+		})
+		.join('&')
+		;
+}
+
 function chk_id(id: vShare)
 {
 	return (id && /^\d+$/.test(id.toString())) ? id.toString() : void(0);
+}
+
+function get_post_owner(href: string): vShare
+{
+	const parse_url = require('root/lib/func/parse_url').parse_url;
+
+	let _url = parse_url(href);
+	let id;
+	let _m;
+
+	if (_url.query && (_m = _url.query.match(/fbid=.+&id=([^#&]+)/)))
+	{
+		if (chk_id(_m[1]))
+		{
+			id = _m[1];
+		}
+	}
+
+	return id;
 }
 
 function get_post_id(href: string): vShare
@@ -351,4 +460,70 @@ function get_post_id(href: string): vShare
 	//console.log(id, _url, href);
 
 	return id;
+}
+
+/**
+ * 檢測貼文是否為連結 並且 是否具有訊息內容
+ *
+ * @param _area
+ * @returns {number}
+ */
+function post_is_link(_area)
+{
+	// @todo 完善 selector
+	let _area2 = (_area.is('.mtm') ? _area : _area.find('.mtm:eq(0)')).eq(0);
+
+	{
+		let _t = _area.parents('.stat_elem:has(.uiList), .uiList').prev('div').find('.mtm:eq(0)');
+
+		if (_t.length)
+		{
+			_area2 = _area2.add(_t);
+		}
+	}
+
+	let _a2 = _area2
+		.find('a[rel*="nofollow"][target="_blank"]')
+		.filter('[data-lynx-uri], [data-lynx-mode]')
+		.not('.see_more_link, .text_exposed_root a, .text_exposed_link a, .text_exposed_show a, .profileLink')
+	;
+
+	console.log('post_is_link', 1, _area, _area2, _a2);
+
+	if (_a2.length)
+	{
+		let _area3 = (_area.is('.userContentWrapper') ? _area : _area.parents('.userContentWrapper:eq(0)')).eq(0);
+
+		let _a3 = _area3
+			.find([
+				'.userContent',
+
+				// https://www.facebook.com/MingSainChang/posts/10214812744983076
+				'.userContent + div .mtm .mtm .mtm[data-ft=\'{"tn":"K"}\']',
+
+				// https://www.facebook.com/libibo2/posts/1502765023123726
+				'.userContentWrapper',
+			].join(','))
+			.eq(-1)
+		;
+
+		console.log('post_is_link', 2, _area3, _a3);
+
+		if (_a3.text())
+		{
+			return 2;
+		}
+
+		return 1;
+	}
+
+	return 0;
+}
+
+function array_unique(array)
+{
+	return array.filter(function (el, index, arr)
+	{
+		return index == arr.indexOf(el);
+	});
 }
