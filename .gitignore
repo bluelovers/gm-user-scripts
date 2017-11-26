@@ -40,3 +40,4 @@
 /lib/greasemonkey/**/*.js
 /lib/site/gamer/signin.js
 !/src/**/index.js
+/lib/func/array/unique.js
