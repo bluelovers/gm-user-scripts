@@ -35,6 +35,55 @@ module.exports = {
 		const parse_url = require('root/lib/func/parse_url').parse_url;
 		const debounce = require('throttle-debounce/debounce');
 		const userScriptCore = require('root/lib/core');
+		//const Cookies = require('js-cookie');
+		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
+
+		let _fb_cache = {
+			sk: null,
+		};
+
+		function _fb_cache_update()
+		{
+			if (_url_obj.query && _url_obj.query.match(/sk=(h_chr|h_nor)/))
+			{
+				_fb_cache.sk = RegExp.$1;
+
+				/*
+				Cookies.set('sk', _fb_cache.sk, {
+					expires: 30,
+					'max-age': 60 * 60 * 24 * 30,
+				});
+				*/
+
+				GMApi.callSafe('GM_setValue')('facebook.sk', _fb_cache.sk);
+			}
+			else if (!_fb_cache.sk)
+			{
+				let sk;
+				//sk = Cookies.get('sk');
+				sk = sk || GMApi.callSafe('GM_getValue')('facebook.sk');
+
+				if (sk)
+				{
+					_fb_cache.sk = sk;
+				}
+			}
+
+			//userScriptCore.greasemonkey.debug(GMApi.callSafe('GM_listValues')());
+			//userScriptCore.greasemonkey.debug(_fb_cache, Cookies.get(), document.cookie);
+		}
+
+		_fb_cache_update();
+
+		if (_fb_cache.sk && (_fb_cache.sk == 'h_chr') && window.location.href.match(/\/\/(?:www\.)?facebook\.com\/?\??(?:#.+)?$/))
+		{
+			window.location.href = window.location.href +
+				(window.location.href.indexOf('?') !== -1 ? '&' : '?') +
+				'sk=' + _fb_cache.sk
+			;
+
+			return;
+		}
 
 		let _ready = debounce(1500, function ()
 		{
@@ -42,6 +91,10 @@ module.exports = {
 				.url(window.location.href, global, function (_url, domain, old)
 				{
 					userScriptCore.greasemonkey.debug('location', _url, domain._url_obj, old);
+
+					_url_obj = domain._url_obj;
+
+					_fb_cache_update();
 				})
 			;
 
@@ -86,6 +139,20 @@ module.exports = {
 					return old.replace(/\/photos\?/, '/photos_albums?')
 				})
 			;
+
+			if (_fb_cache.sk == 'h_chr')
+			{
+				$('#bluebarRoot h1[data-click="bluebar_logo"] a')
+					.attr('href', function (i, old)
+					{
+						return old
+							.replace(/&?sk=(h_chr|h_nor)/, '')
+							.trim('&')
+							.concat((old.indexOf('?') !== -1 ? '&' : '?') + 'sk=' + _fb_cache.sk)
+							;
+					})
+				;
+			}
 
 			module.exports.adblock(_url_obj);
 
