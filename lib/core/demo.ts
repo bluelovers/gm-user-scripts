@@ -4,10 +4,12 @@
 
 import { IUrlObject } from 'root/lib/func/parse_url';
 import { IGlobal } from 'root/lib/core';
+import { IGreasemonkey } from 'root/lib/greasemonkey/uf';
 
-export { IGlobal };
+export { IGlobal, IGreasemonkey };
 
-declare const global: IGlobal;
+export declare const global: IGlobal;
+export declare const greasemonkey: IGreasemonkey;
 
 export interface IDemo
 {
