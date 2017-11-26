@@ -12,6 +12,9 @@ export interface IGreasemonkey
 	debug(any: any, ...argv);
 	info(any: any, ...argv);
 	log(any: any, ...argv);
+	error(any: any, ...argv);
+
+	default: IGreasemonkey;
 }
 
 export function GM_addStyle(css: string | string[], head?)
