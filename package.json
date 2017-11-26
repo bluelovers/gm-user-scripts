@@ -17,6 +17,7 @@
     "imagesloaded": "^4.1.3",
     "jquery": "^3.2.1",
     "jquery-stylesheet": "^0.3.7",
+    "js-cookie": "^2.2.0",
     "keycodes": "^0.2.5",
     "lets-fetch": "^2.1.0",
     "lodash": "^4.17.4",
