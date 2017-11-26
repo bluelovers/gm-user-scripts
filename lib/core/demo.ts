@@ -13,6 +13,11 @@ export declare const greasemonkey: IGreasemonkey;
 
 export interface IDemo
 {
+	name?: string;
+	name_id?: string;
+
+	file?: string;
+
 	disable?: boolean;
 	priority?: number;
 	script?: boolean;
