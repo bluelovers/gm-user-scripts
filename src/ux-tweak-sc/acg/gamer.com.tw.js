@@ -53,6 +53,7 @@ module.exports = {
 			'.BH-rbox a[data-gtm]',
 			'.HOME-mainbox1 a',
 			'a.newanime_img, a.newanime_text',
+			'.index_season[name="newanimeul"] a, .anime_list a',
 		].join())
 			.prop('target', '_blank')
 		;
