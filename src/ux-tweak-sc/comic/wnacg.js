@@ -3,6 +3,7 @@
  */
 
 'use strict';
+//import { _url_obj } from 'core/index';
 
 module.exports = {
 
@@ -24,7 +25,7 @@ module.exports = {
 		return false;
 	},
 
-	main()
+	main(_url_obj)
 	{
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('.gallary_item a')
@@ -38,6 +39,8 @@ module.exports = {
 		const comic_style = require('root/lib/comic/style');
 		const greasemonkey = require('root/lib/greasemonkey/uf');
 		const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
+		const debounce = require('throttle-debounce/debounce');
+		const throttle = require('throttle-debounce/throttle');
 
 		if ($('#photo_body').length)
 		{
@@ -150,6 +153,25 @@ module.exports = {
 			require('root/lib/jquery/onscreen');
 			require('jquery-stylesheet')($);
 
+			const _img_selector = '#img_list img';
+			let _img = $(_img_selector);
+
+			if (_url_obj.query && _url_obj.query.match(/page=(\d+)/))
+			{
+				let page = RegExp.$1;
+
+				$(window)
+					.one('resize.once', debounce(1000, function ()
+					{
+						_img = $(_img_selector);
+
+						let _to = _img_area.add($(_img_selector).eq(page - 1)).eq(-1);
+
+						$(window).scrollTo(_to.add(_to.parent('div:not([id])')));
+					}))
+				;
+			}
+
 			greasemonkey
 				.GM_addStyle([
 					'#img_list img { vertical-align: middle; display: inline-block; }',
@@ -162,9 +184,6 @@ module.exports = {
 				.css(comic_style.body)
 				.css(comic_style.bg_dark)
 			;
-
-			const _img_selector = '#img_list img';
-			let _img = $(_img_selector);
 
 			let _div_page = $('<div/>')
 				.css(comic_style.page)
@@ -230,9 +249,6 @@ module.exports = {
 					;
 				})
 			;
-
-			const debounce = require('throttle-debounce/debounce');
-			const throttle = require('throttle-debounce/throttle');
 
 			let _fn_page = function (_to)
 			{
@@ -358,14 +374,26 @@ module.exports = {
 		}
 		else
 		{
-			if (_url_obj.path.match(/photos-index-aid-/))
+			if (_url_obj.path && _url_obj.path.match(/photos-index(?:-page-\d+)?-aid-(\d+)/))
 			{
-				if ($('.paginator .thispage').text() == 1)
+				let aid = RegExp.$1;
+
+				//console.log(aid);
+
+				if (1 || $('.paginator .thispage').text() == 1)
 				{
 					$('.gallary_wrap .gallary_item:eq(0) a')
-						.attr('href', function ()
+						.attr('href', function (i, old)
 						{
-							return _url_obj.path.replace(/photos-index-aid-/, 'photos-slide-aid-');
+							//let _m = old.match(/photos-view-id-(\d+)/);
+							let _m = parseInt($(this).parents('.gallary_item').find('.info .title .name').text());
+
+							//console.log(i, old);
+
+							return _url_obj.path
+								.replace(/photos-index(?:-page-\d+)?-aid-/, 'photos-slide-aid-')
+								.concat((_m) ? '?page=' + _m : '')
+								;
 						})
 					;
 				}
@@ -374,6 +402,10 @@ module.exports = {
 			$(window).scrollTo('.gallary_wrap');
 
 			$(window)
+				.on('load', debounce(500, function ()
+				{
+					module.exports.adblock();
+				}))
 				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					switch (event.which)
@@ -402,11 +434,12 @@ module.exports = {
 							break;
 					}
 				}))
+				.triggerHandler('load')
 			;
 		}
 	},
 
-	adblock()
+	adblock(_url_obj)
 	{
 		require('root/lib/dom/disable_nocontextmenu')
 			._uf_disable_nocontextmenu2(2, '.gallary_wrap a, body, #bodywrap, a, img, input')
