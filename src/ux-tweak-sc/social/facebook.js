@@ -127,7 +127,10 @@ module.exports = {
 				;
 			}
 
-			let _link = _uf_dom_filter_link('#content ._5wcf a._24-t')
+			let _link = _uf_dom_filter_link([
+					'#content ._5wcf a._24-t',
+					'#saveContentFragment .fcg a',
+				].join(','))
 				.not('[data-done]')
 				.attr('data-done', true)
 				.prop('target', '_blank')
