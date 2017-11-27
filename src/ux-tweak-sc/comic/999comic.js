@@ -18,7 +18,7 @@ module.exports = {
 	{
 		let ret;
 
-		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports))
+		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj.source, module.exports))
 		{
 			return true;
 		}

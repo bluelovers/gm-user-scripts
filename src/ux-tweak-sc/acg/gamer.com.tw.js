@@ -45,6 +45,8 @@ module.exports = {
 
 		const _uf_done = require('root/lib/event/done');
 		const keycodes = require('keycodes');
+		const debounce = require('throttle-debounce/debounce');
+		const throttle = require('throttle-debounce/throttle');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
@@ -54,9 +56,19 @@ module.exports = {
 			'.HOME-mainbox1 a',
 			'a.newanime_img, a.newanime_text',
 			'.index_season[name="newanimeul"] a, .anime_list a',
+			'#topBarMsgList_forum a',
 		].join())
 			.prop('target', '_blank')
 		;
+
+		$('#topBar_forum').on('click', debounce(200, function ()
+		{
+			_uf_dom_filter_link([
+				'#topBarMsgList_forum a',
+			].join())
+				.prop('target', '_blank')
+			;
+		}));
 
 		const comic_style = require('root/lib/comic/style');
 		const greasemonkey = require('root/lib/greasemonkey/uf');

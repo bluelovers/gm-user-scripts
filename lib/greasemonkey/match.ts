@@ -41,7 +41,7 @@ export function option(options)
 }
 
 /**
- * require('root/lib/greasemonkey/match').auto(_url_obj._source, module.exports)
+ * require('root/lib/greasemonkey/match').auto(_url_obj.source, module.exports)
  *
  * @param url
  * @param self

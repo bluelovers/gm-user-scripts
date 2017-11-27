@@ -31,6 +31,11 @@ module.exports = {
 		;
 
 		module.exports.adblock(_url_obj);
+
+		$('img.media-object[data-normal]').attr('src', function ()
+		{
+			return $(this).attr('data-normal');
+		});
 	},
 
 	adblock(_url_obj = global._url_obj)

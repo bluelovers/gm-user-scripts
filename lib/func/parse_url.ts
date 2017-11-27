@@ -9,13 +9,27 @@ export interface IUrlObject
 	authority?: string;
 	userInfo?: string;
 	host?: string;
-	port?: string|number;
+	port?: string | number;
 	relative?: string;
 	path?: string;
 	directory?: string;
 	file?: string;
 	query?: string;
 	fragment?: string;
+}
+
+export function parse_url2(str: string, component?)
+{
+	let _url_obj = parse_url(str, component);
+
+	return Object.assign({
+		source: str,
+		scheme: '',
+		host: '',
+		path: '',
+		query: '',
+		fragment: '',
+	}, _url_obj);
 }
 
 export function parse_url(str: string, component?): IUrlObject

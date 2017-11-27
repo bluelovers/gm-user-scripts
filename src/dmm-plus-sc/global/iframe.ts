@@ -48,7 +48,7 @@ let o: IDemo = {
 
 		if (window.self != window.top
 			&& window.top != window.parent
-			&& !require('root/lib/greasemonkey/match').match(_url_obj._source, [].concat(module.exports.metadata.nomatch, module.exports.metadata.exclude))
+			&& !require('root/lib/greasemonkey/match').match(_url_obj.source, [].concat(module.exports.metadata.nomatch, module.exports.metadata.exclude))
 		)
 		{
 			return true;

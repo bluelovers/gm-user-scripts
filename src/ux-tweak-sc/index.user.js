@@ -47,16 +47,6 @@ userScriptCore.run(module.exports.id, module.exports, jQuery, _init);
 
 function _init(uxid, exports, global, window, $jq, _url)
 {
-	/*
-	const parse_url = require('root/lib/func/parse_url').parse_url;
-
-	module.exports._url = global._url = window.location.href;
-	module.exports._url_obj = module.exports._url_obj_ = parse_url(global._url);
-	global._url_obj = global._url_obj_ = parse_url(global._url);
-
-	global._url_obj._source = global._url_obj_._source = global._url;
-	*/
-
 	userScriptCore.init(uxid, exports, global, window, $jq, _url);
 
 	let imagesLoaded = require('imagesloaded');

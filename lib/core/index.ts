@@ -2,7 +2,7 @@
  * Created by user on 2017/11/17/017.
  */
 
-import { parse_url, IUrlObject } from 'root/lib/func/parse_url';
+import { parse_url, parse_url2, IUrlObject } from 'root/lib/func/parse_url';
 import greasemonkey from 'root/lib/greasemonkey/uf';
 import { IDemo } from 'root/lib/core/demo';
 
@@ -125,7 +125,7 @@ export function url(_url: string, domain: IGlobal | IExports = global, cb?: IUrl
 		domain._url_old = old;
 
 		domain._url = _url.toString();
-		domain._url_obj = parse_url(domain._url) as IUrlObject2;
+		domain._url_obj = parse_url2(domain._url) as IUrlObject2;
 
 		if (typeof cb === 'function')
 		{
@@ -163,7 +163,7 @@ function _parse_url(_url: string, domain: IDomain)
 {
 	let obj = url(_url, domain, function (_url, domain, old)
 	{
-		domain._url_obj._source = _url;
+		domain._url_obj.source = domain._url_obj._source = _url;
 		domain._url_obj_ = Object.assign({}, domain._url_obj);
 	}, true);
 
