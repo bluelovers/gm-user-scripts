@@ -42,3 +42,6 @@
 /lib/func/array/unique.js
 /src/esunbank/**/*.js
 !/src/**/index.js
+/global.ts
+/@types/global.ts
+/@types/global.js
