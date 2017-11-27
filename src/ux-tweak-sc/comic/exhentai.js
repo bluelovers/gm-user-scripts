@@ -39,6 +39,8 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
+		console.log(_url_obj);
+
 		if (_url_obj.path.match(/\/s\//))
 		{
 			let _img = $('#img');
