@@ -14,6 +14,7 @@
     "bluebird": "^3.5.1",
     "cheerio": "^1.0.0-rc.2",
     "file-saver": "^1.3.3",
+    "gulp-add-tasks2": "^2.0.8",
     "imagesloaded": "^4.1.3",
     "jquery": "^3.2.1",
     "jquery-stylesheet": "^0.3.7",

@@ -25,6 +25,7 @@ const sortBy = require('lodash.sortby');
 const cheerio = require('cheerio');
 
 const cwd_src = path.join(__dirname, 'src');
+const cwd_dist = path.join(__dirname, 'dist');
 
 const prettifyXml = require('prettify-xml');
 const pd = require('pretty-data').pd;
@@ -32,6 +33,10 @@ const pd = require('pretty-data').pd;
 const streamToPromise = require('stream-to-promise');
 const clone = require('lodash.clone');
 const lodash = require('lodash');
+
+const addTasks = require('gulp-add-tasks2').init(gulp);
+
+const parseMetadata = require('./lib/greasemonkey/metadata').parseMetadata;
 
 //var closureCompiler = require('google-closure-compiler').gulp();
 
@@ -346,7 +351,7 @@ module.exports.default = module.exports;
 	//console.log(data);
 });
 
-gulp.task("gm_scripts:config", ["webpack"], async function (callback)
+gulp.task("gm_scripts:config", async function (callback)
 {
 	const config_path = 'D:\\Users\\Documents\\The Project\\gm_scripts_repo\\gm_scripts\\config.xml';
 
@@ -404,6 +409,35 @@ gulp.task("gm_scripts:config", ["webpack"], async function (callback)
 		for (let row of index.metadata.include)
 		{
 			script.append(`<Include>${row}</Include>`);
+		}
+
+		{
+			let s = await fs.readFileSync(path.join(cwd_dist, `${name}.user.js`));
+
+			let meta = parseMetadata(s.toString());
+
+			script.find('Grant').remove();
+
+			if (meta['grant'].length)
+			{
+				for (let row of meta['grant'])
+				{
+					if (!row)
+					{
+						continue;
+					}
+
+					script.append(`<Grant>${row}</Grant>`);
+				}
+
+				console.log(meta['grant']);
+			}
+			else
+			{
+				let row = 'none';
+
+				script.append(`<Grant>${row}</Grant>`);
+			}
 		}
 
 	}
@@ -596,8 +630,22 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 		;
 });
 
-gulp.task("default", ["webpack", "gm_scripts:config"], function (callback)
-{
+addTasks({
+
+	default: {
+
+		deps: [
+			'webpack',
+
+		],
+
+		tasks: [
+			[
+				'gm_scripts:config',
+			],
+		],
+
+	}
 
 });
 

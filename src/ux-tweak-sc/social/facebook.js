@@ -63,6 +63,8 @@ module.exports = {
 				//sk = Cookies.get('sk');
 				sk = sk || GMApi.callSafe('GM_getValue')('facebook.sk');
 
+				//console.log(sk);
+
 				if (sk)
 				{
 					_fb_cache.sk = sk;
@@ -93,6 +95,8 @@ module.exports = {
 					userScriptCore.greasemonkey.debug('location', _url, domain._url_obj, old);
 
 					_url_obj = domain._url_obj;
+
+					//console.log(_url_obj);
 
 					_fb_cache_update();
 				})
