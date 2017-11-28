@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://mall.pchome.com.tw/*',
 		],
 		exclude: [],
