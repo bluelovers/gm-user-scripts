@@ -265,7 +265,12 @@ function dailog_share(_a, cb?)
 		}
 
 		_form = _area
-			.find('.mtm div[id*="feed_subtitle"] .fcg')
+			.find([
+				'.mtm div[id*="feed_subtitle"] .fcg',
+
+				// https://www.facebook.com/permalink.php?story_fbid=190642451511239&id=100016964557074
+				'.userContent + div .mtm .mtm div[id*="feed_subtitle"] .fcg',
+			].join(','))
 			.find('a[rel="theater"], a:has(.timestamp), a:has(.timestampContent)')
 		;
 
@@ -275,6 +280,8 @@ function dailog_share(_a, cb?)
 
 			if (v)
 			{
+				query.s = 2;
+
 				id = v;
 
 				if (v = get_post_owner(_form.attr('href')))
@@ -534,3 +541,7 @@ function array_unique(array)
 		return index == arr.indexOf(el);
 	});
 }
+
+/*
+<div class="uiContextualLayerParent _6a"><a role="button" href="#"><div class="uiContextualLayerParent" style="display: inline-block;"><span data-testid="testid-ALBUM" tooltip="挑選相簿" data-tooltip-content="挑選相簿" class="_3xem" href="#" role="button" display="inline" data-hover="tooltip" id="js_3j"><span class="accessible_elem">在相簿中新增貼文</span><div class="_2vwi _3c57"></div></span></div></a></div>
+ */
