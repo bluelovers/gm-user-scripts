@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://www.gw2bltc.com/*',
 		],
 		exclude: [],
