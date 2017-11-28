@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://*.pixiv.net/*',
 			'http*://www.pixiv.net/search*',
 		],
