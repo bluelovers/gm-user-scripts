@@ -31,10 +31,10 @@
 //
 // @exclude		
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511878674903
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511878674903
+// require		https://code.jquery.com/jquery-3.2.1.js?1511878960714
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511878960714
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511878674903
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511878960714
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
@@ -133,7 +133,7 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("\nmodule.exports.id = 'fuck-u-fb-share';\nmodule.exports.version = '';\n\nmodule.exports.name = 'fuck-u-fb-share';\nmodule.exports.name_en = 'fuck-u-fb-share';\n\nmodule.exports.desc = '此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)';\nmodule.exports.desc_en = 'this script try kill facebook new share (2017-11)';\n\nmodule.exports.icon = '';\n\nmodule.exports.list = [\n\t\"facebook/2017.11.js\"\n];\n\nmodule.exports.list_disable = [];\n\n// for webpack, don't use this method\nmodule.exports._lib = () =>\n{\n\t__webpack_require__(/*! root/src/fuck-u-fb-share/facebook/2017.11.js */ 5);\n};\n\nmodule.exports.metadata = {};\nmodule.exports.metadata.include = [\n\t\"http*://www.facebook.com/*\",\n\t\"http*://facebook.com/*\"\n];\nmodule.exports.metadata.exclude = [];\nmodule.exports.metadata.grant = [];\n\nmodule.exports.list_script = [];\n\nmodule.exports.current = [];\n\nmodule.exports.default = module.exports;\n\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/fuck-u-fb-share/index.js\n// module id = 2\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/fuck-u-fb-share/index.js?");
+eval("\nmodule.exports.id = 'fuck-u-fb-share';\nmodule.exports.version = '';\n\nmodule.exports.name = 'fuck-u-fb-share';\nmodule.exports.name_en = 'fuck-u-fb-share';\n\nmodule.exports.desc = '此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)';\nmodule.exports.desc_en = 'this script try kill facebook new share (2017-11)';\n\nmodule.exports.icon = '';\n\nmodule.exports.list = [\n\t\"facebook/2017.11.js\"\n];\n\nmodule.exports.list_disable = [];\n\n// for webpack, don't use this method\nmodule.exports._lib = () =>\n{\n\t__webpack_require__(/*! root/src/fuck-u-fb-share/facebook/2017.11.js */ 5);\n};\n\nmodule.exports.metadata = {};\nmodule.exports.metadata.include = [\n\t\"http*://www.facebook.com/*\",\n\t\"http*://facebook.com/*\"\n];\nmodule.exports.metadata.match = [];\nmodule.exports.metadata.exclude = [];\nmodule.exports.metadata.grant = [];\n\nmodule.exports.list_script = [];\n\nmodule.exports.current = [];\n\nmodule.exports.default = module.exports;\n\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/fuck-u-fb-share/index.js\n// module id = 2\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/fuck-u-fb-share/index.js?");
 
 /***/ }),
 /* 3 */
