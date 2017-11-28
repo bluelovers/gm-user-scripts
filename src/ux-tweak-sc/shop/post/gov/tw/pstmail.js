@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http://postserv.post.gov.tw/pstmail/main_mail.html*',
 		],
 		exclude: [],
