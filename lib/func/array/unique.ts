@@ -10,4 +10,4 @@ export function array_unique(array: any[])
 	});
 }
 
-export default exports;
+export default array_unique;
