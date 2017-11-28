@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://www.999comic.com/*',
 			'http://t.168girl.com/*',
 		],
