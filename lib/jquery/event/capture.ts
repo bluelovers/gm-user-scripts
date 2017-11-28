@@ -36,6 +36,8 @@ export function onCapture(who, originalType: string, listener: EventListener, ..
 			}, true);
 		})
 	;
+
+	return o;
 }
 
 export default exports;
