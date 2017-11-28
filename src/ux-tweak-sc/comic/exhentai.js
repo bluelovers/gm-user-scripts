@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://exhentai.org/*',
 			'http*://g.e-hentai.org/*',
 			'http*://e-hentai.org/*',
