@@ -6,10 +6,12 @@
  * Created by user on 2017/11/26/026.
  */
 
-import { IDemo, IGlobal, IGreasemonkey } from 'root/lib/core/demo';
+import { IDemo, IGlobal, IGreasemonkey, IWindow } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
 declare const greasemonkey: IGreasemonkey;
+declare const window: IWindow;
+declare const unsafeWindow: IWindow;
 
 'use strict';
 
@@ -57,7 +59,7 @@ let o: IDemo = {
 			{
 				try
 				{
-					unsafeWindow.$.iloginchecker().keepSession();
+					(unsafeWindow.$ as any).iloginchecker().keepSession();
 				}
 				catch (e)
 				{
