@@ -16,7 +16,7 @@ let o: IDemo = {
 	//script: true,
 
 	metadata: {
-		match: [
+		include: [
 			'http*://tw.movies.yahoo.com/*',
 			'http*://movies.yahoo.com.tw/*',
 			'http*://movies.yahoo.com.tw/movie_*.html',
