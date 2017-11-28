@@ -5,7 +5,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://www.dm5.com/*',
 		],
 		exclude: [],
