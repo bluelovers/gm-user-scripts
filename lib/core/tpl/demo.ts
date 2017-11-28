@@ -6,12 +6,14 @@
  * Created by user on 2017/11/26/026.
  */
 
-import { IDemo, IGlobal, IGreasemonkey, IWindow } from 'root/lib/core/demo';
+import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
 declare const greasemonkey: IGreasemonkey;
 declare const window: IWindow;
 declare const unsafeWindow: IWindow;
+declare const $: IJQueryStatic;
+declare const jQuery: IJQueryStatic;
 
 'use strict';
 
@@ -20,9 +22,10 @@ let o: IDemo = {
 	//priority: 100,
 
 	metadata: {
-		match: [
+		include: [
 			//'http*://www.gamer.com.tw/*',
 		],
+		match: [],
 		nomatch: [],
 		exclude: [],
 	},
@@ -71,5 +74,4 @@ let o: IDemo = {
 
 };
 
-export = o;
-
+export = o as IDemo;
