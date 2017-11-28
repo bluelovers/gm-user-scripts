@@ -21,6 +21,7 @@ module.exports.list = [
 	"acg/guildwars2/forum.2017.js",
 	"acg/guildwars2/wiki.js",
 	"acg/gw2bltc.js",
+	"acg/movie/u2mtv.js",
 	"acg/movie/yahoo.js",
 	"acg/qoo-app.js",
 	"acg/qtfy.eu.js",
@@ -99,6 +100,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/acg/guildwars2/forum.2017.js');
 	require('root/src/ux-tweak-sc/acg/guildwars2/wiki.js');
 	require('root/src/ux-tweak-sc/acg/gw2bltc.js');
+	require('root/src/ux-tweak-sc/acg/movie/u2mtv.js');
 	require('root/src/ux-tweak-sc/acg/movie/yahoo.js');
 	require('root/src/ux-tweak-sc/acg/qoo-app.js');
 	require('root/src/ux-tweak-sc/acg/qtfy.eu.js');
@@ -180,6 +182,7 @@ module.exports.metadata.include = [
 	"http*://*-forum.guildwars2.com/*",
 	"http*://wiki.guildwars2.com/*",
 	"http*://www.gw2bltc.com/*",
+	"http*://www.u2mtv.com/movie/*",
 	"http*://tw.movies.yahoo.com/*",
 	"http*://movies.yahoo.com.tw/*",
 	"http*://movies.yahoo.com.tw/movie_*.html",
@@ -255,7 +258,9 @@ module.exports.metadata.include = [
 	"http*://*.google.*/search*",
 	"http*://*.google.*/imgres*"
 ];
-module.exports.metadata.match = [];
+module.exports.metadata.match = [
+	"*://www.u2mtv.com/*"
+];
 module.exports.metadata.exclude = [
 	"http*://gc.bahamut.com.tw/*",
 	"http*://*.bahamut.com.tw/*",
