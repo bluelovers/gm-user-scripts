@@ -27,6 +27,7 @@ module.exports.metadata.include = [
 	"http*://ebank.esunbank.com.tw/fcm/*",
 	"http*://ebank.esunbank.com.tw/fco/*"
 ];
+module.exports.metadata.match = [];
 module.exports.metadata.exclude = [];
 module.exports.metadata.grant = [];
 
