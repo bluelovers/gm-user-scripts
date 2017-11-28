@@ -9,7 +9,7 @@
 // @description:en	巴哈姆特自動簽到
 // @description:zh	巴哈姆特自動簽到
 //
-// @version		4.0.0
+// @version		4.1.0
 //
 // @grant		GM.registerMenuCommand
 // @grant		GM.xmlhttpRequest
