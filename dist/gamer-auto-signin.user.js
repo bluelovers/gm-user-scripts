@@ -33,10 +33,10 @@
 //
 // @exclude		
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511878675215
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511878675215
+// require		https://code.jquery.com/jquery-3.2.1.js?1511878961032
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511878961032
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511878675215
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511878961032
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
@@ -113,7 +113,7 @@
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("\nmodule.exports.id = 'gamer-auto-signin';\nmodule.exports.version = '';\n\nmodule.exports.name = 'gamer-auto-signin';\nmodule.exports.name_en = 'gamer-auto-signin';\n\nmodule.exports.desc = '巴哈姆特自動簽到';\nmodule.exports.desc_en = '巴哈姆特自動簽到';\n\nmodule.exports.icon = '';\n\nmodule.exports.list = [\n\t\"ajax.js\"\n];\n\nmodule.exports.list_disable = [];\n\n// for webpack, don't use this method\nmodule.exports._lib = () =>\n{\n\t__webpack_require__(/*! root/src/gamer-auto-signin/ajax.js */ 4);\n};\n\nmodule.exports.metadata = {};\nmodule.exports.metadata.include = [\n\t\"http*://www.gamer.com.tw/*\",\n\t\"http*://forum.gamer.com.tw/*\",\n\t\"http*://home.gamer.com.tw/creationDetail.php*\",\n\t\"http*://gnn.gamer.com.tw/*\",\n\t\"http*://ani.gamer.com.tw/*\"\n];\nmodule.exports.metadata.exclude = [];\nmodule.exports.metadata.grant = [\n\t\"GM_registerMenuCommand\",\n\t\"GM_xmlhttpRequest\"\n];\n\nmodule.exports.list_script = [];\n\nmodule.exports.current = [];\n\nmodule.exports.default = module.exports;\n\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/gamer-auto-signin/index.js\n// module id = 0\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/gamer-auto-signin/index.js?");
+eval("\nmodule.exports.id = 'gamer-auto-signin';\nmodule.exports.version = '';\n\nmodule.exports.name = 'gamer-auto-signin';\nmodule.exports.name_en = 'gamer-auto-signin';\n\nmodule.exports.desc = '巴哈姆特自動簽到';\nmodule.exports.desc_en = '巴哈姆特自動簽到';\n\nmodule.exports.icon = '';\n\nmodule.exports.list = [\n\t\"ajax.js\"\n];\n\nmodule.exports.list_disable = [];\n\n// for webpack, don't use this method\nmodule.exports._lib = () =>\n{\n\t__webpack_require__(/*! root/src/gamer-auto-signin/ajax.js */ 4);\n};\n\nmodule.exports.metadata = {};\nmodule.exports.metadata.include = [\n\t\"http*://www.gamer.com.tw/*\",\n\t\"http*://forum.gamer.com.tw/*\",\n\t\"http*://home.gamer.com.tw/creationDetail.php*\",\n\t\"http*://gnn.gamer.com.tw/*\",\n\t\"http*://ani.gamer.com.tw/*\"\n];\nmodule.exports.metadata.match = [];\nmodule.exports.metadata.exclude = [];\nmodule.exports.metadata.grant = [\n\t\"GM_registerMenuCommand\",\n\t\"GM_xmlhttpRequest\"\n];\n\nmodule.exports.list_script = [];\n\nmodule.exports.current = [];\n\nmodule.exports.default = module.exports;\n\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/gamer-auto-signin/index.js\n// module id = 0\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/gamer-auto-signin/index.js?");
 
 /***/ }),
 /* 1 */
