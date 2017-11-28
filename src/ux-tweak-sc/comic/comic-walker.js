@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'https://comic-walker.com/*',
 		],
 		exclude: [],

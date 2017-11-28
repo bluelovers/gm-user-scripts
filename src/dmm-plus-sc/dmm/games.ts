@@ -9,7 +9,7 @@ import { IDemo } from 'root/lib/core/demo';
 let o: IDemo = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://games.dmm.co.jp/*',
 			'http*://games.dmm.co.jp/detail/*',
 			'http*://www.dmm.co.jp/netgame/*',

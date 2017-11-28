@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'https://www.npmjs.com/search?q=*',
 			'https://www.npmjs.com/~*',
 		],

@@ -13,7 +13,7 @@ let o: IDemo = {
 	script: true,
 
 	metadata: {
-		match: [
+		include: [
 			//'http*://*.dmm.co*/*',
 		],
 		exclude: [],

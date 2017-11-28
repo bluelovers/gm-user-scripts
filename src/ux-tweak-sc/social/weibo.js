@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://www.weibo.com/*',
 			'http*://m.weibo.cn/*',
 			//'about:neterror*',

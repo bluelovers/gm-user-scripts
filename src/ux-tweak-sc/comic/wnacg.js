@@ -8,7 +8,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://*.wnacg.com/*',
 			'http*://*.wnacg.org/*',
 		],

@@ -31,6 +31,10 @@ module.exports.metadata.include = [
 	"http*://ani.gamer.com.tw/*"
 ];
 module.exports.metadata.exclude = [];
+module.exports.metadata.grant = [
+	"GM_registerMenuCommand",
+	"GM_xmlhttpRequest"
+];
 
 module.exports.list_script = [];
 

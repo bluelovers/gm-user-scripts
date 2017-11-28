@@ -12,6 +12,8 @@ export interface IMetadata
 
 	icon?: string;
 
+	grant?: string[];
+
 	metadata?: string;
 }
 

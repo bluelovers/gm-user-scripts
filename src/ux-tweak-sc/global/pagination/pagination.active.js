@@ -11,7 +11,7 @@ module.exports = {
 	script: true,
 
 	metadata: {
-		match: [
+		include: [
 		],
 		exclude: [],
 	},

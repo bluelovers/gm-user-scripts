@@ -13,7 +13,7 @@ let o: IDemo = {
 	priority: 400,
 
 	metadata: {
-		match: [
+		include: [
 			'http*://web.killdoya.jp/*',
 			'http*://dmm-*.iolite.link/*',
 			'http*://*/product/dmm_pc.php/*',

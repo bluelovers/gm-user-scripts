@@ -8,16 +8,22 @@ import { IDemo } from 'root/lib/core/demo';
 
 export { greasemonkey };
 
+export interface IJQueryStatic extends JQueryStatic
+{
+	scrollTo?: JQuery<HTMLElement>;
+	[index: string]: any;
+}
+
 export interface IWindow extends Window, IDomain
 {
-	$: JQueryStatic;
-	jQuery: JQueryStatic;
+	$: IJQueryStatic;
+	jQuery: IJQueryStatic;
 }
 
 export interface IGlobal extends NodeJS.Global, IDomain
 {
-	$: JQueryStatic;
-	jQuery: JQueryStatic;
+	$: IJQueryStatic;
+	jQuery: IJQueryStatic;
 
 	userScript: IExports;
 

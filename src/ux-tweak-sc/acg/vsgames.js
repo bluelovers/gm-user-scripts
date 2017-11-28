@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://gw2.vsgames.cn/*',
 			'http*://*.vsgames.cn/*',
 		],

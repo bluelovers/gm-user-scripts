@@ -11,7 +11,7 @@ let o: IDemo = {
 	//script: true,
 
 	metadata: {
-		match: [
+		include: [
 			'http*://pc-play.games.dmm.co.jp/play/*',
 		],
 		exclude: [

@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://tw.buy.yahoo.com/*',
 			'http*://tw.buy.yahoo.com/bestbuy/*',
 			'http*://tw.buy.yahoo.com/activity/*',

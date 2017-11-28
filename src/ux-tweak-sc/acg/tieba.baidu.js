@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://tieba.baidu.com/*',
 		],
 		exclude: [],

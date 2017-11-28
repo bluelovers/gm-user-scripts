@@ -28,6 +28,7 @@ module.exports.metadata.include = [
 	"http*://ebank.esunbank.com.tw/fco/*"
 ];
 module.exports.metadata.exclude = [];
+module.exports.metadata.grant = [];
 
 module.exports.list_script = [];
 

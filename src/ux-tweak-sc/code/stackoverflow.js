@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://stackoverflow.com/*',
 			'http*://superuser.com/*',
 		],

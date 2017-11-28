@@ -17,12 +17,8 @@ declare const unsafeWindow: IWindow;
 
 let o: IDemo = {
 
-	//priority: 100,
-
 	metadata: {
-		match: [
-			//'http*://ebank.esunbank.com.tw/*',
-			//'http*://ebank.esunbank.com.tw/index.jsp*',
+		include: [
 			'http*://ebank.esunbank.com.tw/fcm/*',
 			'http*://ebank.esunbank.com.tw/fco/*',
 		],

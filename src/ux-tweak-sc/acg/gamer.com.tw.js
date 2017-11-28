@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://www.gamer.com.tw/*',
 			'http*://www.gamer.com.tw/index*.php*',
 			'http*://acg.gamer.com.tw/acgDetail.php?s=*',

@@ -9,7 +9,7 @@ module.exports = {
 	priority: -1,
 
 	metadata: {
-		match: [
+		include: [
 
 		],
 		exclude: [

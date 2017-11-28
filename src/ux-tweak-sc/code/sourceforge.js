@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			//'http*://sourceforge.net/*',
 			'http*://sourceforge.net/projects/*/files/*',
 		],

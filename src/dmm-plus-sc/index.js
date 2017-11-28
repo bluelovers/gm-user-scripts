@@ -74,6 +74,7 @@ module.exports.metadata.exclude = [
 	"*.eu/*",
 	"http*://www.dmm.co*/digital*"
 ];
+module.exports.metadata.grant = [];
 
 module.exports.list_script = [
 	"global/script.js"

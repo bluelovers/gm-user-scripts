@@ -11,7 +11,7 @@ module.exports = {
 	priority: 200,
 
 	metadata: {
-		match: [
+		include: [
 			//'http*://*.google.*/*',
 			'http*://encrypted.google.com/*',
 			'http*://www.google.co.jp/*',

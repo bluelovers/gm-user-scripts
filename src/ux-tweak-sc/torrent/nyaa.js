@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://sukebei.nyaa.si/*',
 		],
 		exclude: [],

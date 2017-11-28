@@ -10,7 +10,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://*-forum.guildwars2.com/*',
 		],
 		exclude: [],

@@ -11,7 +11,7 @@ let o: IDemo = {
 	priority: 100,
 
 	metadata: {
-		match: [
+		include: [
 			'http*://*',
 			'http*://pc-x.phantom-greed.com/top*',
 			'http*://pc-x.phantom-greed.com/start*',

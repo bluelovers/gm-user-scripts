@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://*.dmzj.com/*',
 			'https://i.dmzj.com/*',
 			'http*://manhua.dmzj.com/*',
