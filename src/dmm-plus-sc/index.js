@@ -8,6 +8,8 @@ module.exports.name_en = 'dmm-plus-sc';
 module.exports.desc = 'DMM Games 介面調整以及更適合遊戲直播';
 module.exports.desc_en = 'dmm games layout tweak';
 
+module.exports.author = '';
+
 module.exports.icon = '';
 
 module.exports.list = [
@@ -75,7 +77,9 @@ module.exports.metadata.exclude = [
 	"*.eu/*",
 	"http*://www.dmm.co*/digital*"
 ];
-module.exports.metadata.grant = [];
+module.exports.metadata.grant = [
+	"unsafeWindow"
+];
 
 module.exports.list_script = [
 	"global/script.js"
