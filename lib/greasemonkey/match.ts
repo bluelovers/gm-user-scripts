@@ -70,15 +70,50 @@ export function auto(url: string, self: IDemo, options = {})
 	{
 		ret = match(url, self.metadata.include, options);
 	}
-	else
-	{
-		ret = false;
-	}
 
 	if (!ret && (self.metadata.match && self.metadata.match.length))
 	{
-		ret = match(url, self.metadata.match, options);
+		ret = matchChrome(url, self.metadata.match);
 	}
 
 	return ret;
+}
+
+export function matchChrome(url: string, pattern: string | string[])
+{
+	if (Array.isArray(pattern))
+	{
+		for (let p of pattern)
+		{
+			let r = matchChrome(url, p);
+
+			if (r)
+			{
+				return r;
+			}
+		}
+
+		return false;
+	}
+
+	let _m = (pattern as string).match(/^((?:[^\/]+):\/\/)?([^\/]+)?(\/.+)$/);
+
+	if (_m)
+	{
+		let _m2 = new RegExp('^((?:https?):\\/\\/)'
+			+ '('
+			+ _m[2]
+				.replace(/\*/g, '[^\\/]+')
+				.replace(/\./g, '\\.')
+			+ ')'
+			+ '(' + _m[3].replace(/\*/g, '.+') + ')'
+		);
+
+		if (_m2.exec(url))
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
