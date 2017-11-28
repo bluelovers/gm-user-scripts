@@ -28,6 +28,8 @@ let o: IDemo = {
 		match: [],
 		nomatch: [],
 		exclude: [],
+
+		grant: [],
 	},
 
 	test(_url_obj = global._url_obj)
