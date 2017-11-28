@@ -13,7 +13,7 @@ let o: IDemo = {
 	//priority: 100,
 
 	metadata: {
-		match: [
+		include: [
 			'http*://www.gamer.com.tw/*',
 			'http*://forum.gamer.com.tw/*',
 			'http*://home.gamer.com.tw/creationDetail.php*',
