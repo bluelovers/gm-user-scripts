@@ -59,6 +59,7 @@ export function registerMenuCommand(options: string | IRegisterMenuCommandOption
 			console.error(e);
 		}
 
+		// @ts-ignore
 		console.groupEnd(label);
 		console.timeEnd(label);
 	};

@@ -416,6 +416,8 @@ gulp.task("gm_scripts:config", async function (callback)
 
 			let meta = parseMetadata(s.toString());
 
+			//console.log(meta);
+
 			script.find('Grant').remove();
 
 			if (meta['grant'].length)
@@ -430,7 +432,7 @@ gulp.task("gm_scripts:config", async function (callback)
 					script.append(`<Grant>${row}</Grant>`);
 				}
 
-				console.log(meta['grant']);
+				//console.log(meta['grant']);
 			}
 			else
 			{
@@ -438,6 +440,8 @@ gulp.task("gm_scripts:config", async function (callback)
 
 				script.append(`<Grant>${row}</Grant>`);
 			}
+
+			script.attr('noframes', !!meta.noframes.length);
 		}
 
 	}

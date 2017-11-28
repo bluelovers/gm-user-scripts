@@ -88,7 +88,7 @@ export function run(uxid: string, exports: IExports, $jq?: JQueryStatic, cb?: IM
 			}
 
 			//let index = require(`root/src/${uxid}`);
-			const index = requireScript(uxid, 'index') as IIndex;
+			const index = requireScript<IIndex>(uxid, 'index');
 
 			//await index.main(index.list);
 			await main(uxid, index, index.list);
@@ -170,7 +170,7 @@ function _parse_url(_url: string, domain: IDomain)
 	return obj;
 }
 
-export function requireScript(uxid: string, name: string): IDemo
+export function requireScript<T = IDemo>(uxid: string, name: string): T
 {
 	return require(`root/src/${uxid}/${name}`);
 }
@@ -312,6 +312,7 @@ export async function main(uxid: string, index: IIndex, list, options = {})
 			}
 		}
 
+		// @ts-ignore
 		console.groupEnd(name);
 		console.timeEnd(name);
 
@@ -325,6 +326,7 @@ export async function main(uxid: string, index: IIndex, list, options = {})
 		}
 	}
 
+	// @ts-ignore
 	console.groupEnd(index.name);
 	console.timeEnd(index.name);
 }

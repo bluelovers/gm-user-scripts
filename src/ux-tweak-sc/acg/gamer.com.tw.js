@@ -470,12 +470,15 @@ function daily_signin(_url_obj)
 {
 	if (_url_obj.host.match(/www\.gamer\.com\.tw/))
 	{
-		let _a = $('.BA-left #signin-btn[onclick]');
-
-		if (_a.length)
+		setTimeout(function ()
 		{
-			_a[0].click();
-		}
+			let _a = $('.BA-left #signin-btn[onclick]');
+
+			if (_a.length)
+			{
+				_a[0].click();
+			}
+		}, 1000);
 	}
 }
 

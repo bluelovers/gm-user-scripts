@@ -19,7 +19,7 @@ export interface IGM
 
 	getResourceUrl(resourceName: string): string;
 
-	openInTab(url: string): Window;
+	openInTab(url: string, open_in_background?: boolean): Window;
 
 	setClipboard(text: string);
 
@@ -33,6 +33,8 @@ export interface IGM
 
 	registerMenuCommand(caption: string, commandFunc: Function, accessKey?: string);
 }
+
+declare const GM: IGM;
 
 export interface IApi extends IGM
 {
@@ -48,9 +50,9 @@ export interface IApi extends IGM
 
 	GM_setValue<T, U>(name: string, value: U);
 
-	GM_getResourceUrl(resourceName: string): string;;
+	GM_getResourceUrl(resourceName: string): string;
 
-	GM_openInTab(url: string): Window;
+	GM_openInTab(url: string, open_in_background?: boolean): Window;
 
 	GM_setClipboard(text: string);
 
@@ -70,6 +72,7 @@ export interface IApi extends IGM
 export interface IApi
 {
 	GMApi: IApi;
+	default: IApi;
 
 	_list: string[];
 
@@ -101,6 +104,8 @@ export interface IInfo
 
 namespace _GMApi
 {
+	declare const _GMApi: IApi;
+
 	if (typeof GM !== 'undefined')
 	{
 		Object.keys(GM)
@@ -134,7 +139,12 @@ namespace _GMApi
 		_GMApi.getValue = typeof GM_getValue !== 'undefined' ? GM_getValue : void(0);
 		_GMApi.listValues = typeof GM_listValues !== 'undefined' ? GM_listValues : void(0);
 		_GMApi.setValue = typeof GM_setValue !== 'undefined' ? GM_setValue : void(0);
-		_GMApi.getResourceUrl = typeof GM_getResourceUrl !== 'undefined' ? GM_getResourceUrl : void(0);
+		_GMApi.getResourceUrl = (
+			// @ts-ignore
+			typeof GM_getResourceUrl !== 'undefined' ? GM_getResourceUrl : (
+				typeof GM_getResourceURL !== 'undefined' ? GM_getResourceURL : void(0)
+			))
+		;
 		_GMApi.openInTab = typeof GM_openInTab !== 'undefined' ? GM_openInTab : void(0);
 		_GMApi.setClipboard = typeof GM_setClipboard !== 'undefined' ? GM_setClipboard : void(0);
 		_GMApi.xmlhttpRequest = typeof GM_xmlhttpRequest !== 'undefined' ? GM_xmlhttpRequest : void(0);
@@ -150,7 +160,7 @@ namespace _GMApi
 
 	let _t_keys = Object.keys(_GMApi);
 
-	_GMApi.GM = typeof GM !== 'undefined' ? GM : {};
+	_GMApi.GM = typeof GM !== 'undefined' ? GM : {} as IGM;
 
 	_t_keys
 		.forEach(function (value, index, array)
@@ -207,7 +217,7 @@ _GMApi._list.forEach(function (value, index, array)
 	}
 });
 
-_GMApi.default = _GMApi.GMApi = _GMApi as IApi;
+(_GMApi as IApi).default = (_GMApi as IApi).GMApi = _GMApi as IApi;
 
 export const GMApi: IApi = _GMApi as IApi;
 

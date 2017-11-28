@@ -9,6 +9,8 @@ export interface IParseMetadata
 	'include': any[];
 	'exclude': any[];
 
+	'noframes': any[];
+
 	[index: string]: any[];
 }
 
@@ -68,6 +70,8 @@ export function parseMetadata(script: string): IParseMetadata
 			'grant': [],
 			'include': [],
 			'exclude': [],
+
+			'noframes': [],
 		}, _arr);
 
 		_arr.grant = meta_filter(_arr.grant);
