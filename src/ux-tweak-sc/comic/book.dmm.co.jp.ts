@@ -12,7 +12,7 @@ let o: IDemo = {
 	//script: true,
 
 	metadata: {
-		match: [
+		include: [
 			'http*://book.dmm.co.jp/*',
 		],
 		exclude: [],
