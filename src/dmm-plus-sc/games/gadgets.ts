@@ -11,7 +11,7 @@ let o: IDemo = {
 	//script: true,
 
 	metadata: {
-		match: [
+		include: [
 			'http*://osapi.dmm.com/gadgets/*',
 		],
 		exclude: [],
