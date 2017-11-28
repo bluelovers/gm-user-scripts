@@ -220,6 +220,7 @@ module.exports._lib = () =>
 
 module.exports.metadata = {};
 module.exports.metadata.include = ${JSON.stringify(ls.metadata.include, null, "\t")};
+module.exports.metadata.match = ${JSON.stringify(ls.metadata.match, null, "\\t")};
 module.exports.metadata.exclude = ${JSON.stringify(ls.metadata.exclude, null, "\t")};
 module.exports.metadata.grant = ${JSON.stringify(ls.metadata.grant.concat(metadata.grant || []), null, "\t")};
 

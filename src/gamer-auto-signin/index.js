@@ -30,6 +30,7 @@ module.exports.metadata.include = [
 	"http*://gnn.gamer.com.tw/*",
 	"http*://ani.gamer.com.tw/*"
 ];
+module.exports.metadata.match = [];
 module.exports.metadata.exclude = [];
 module.exports.metadata.grant = [
 	"GM_registerMenuCommand",

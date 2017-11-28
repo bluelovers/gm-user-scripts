@@ -56,6 +56,7 @@ module.exports.metadata.include = [
 	"http*://*.dmm.co*/*",
 	"http*://*games.dmm.co*/*"
 ];
+module.exports.metadata.match = [];
 module.exports.metadata.exclude = [
 	"http://pc-play.games.dmm.co.jp/headnavi/*",
 	"http*://pc-x.phantom-greed.com/*frame*",

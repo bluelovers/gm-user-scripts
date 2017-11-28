@@ -255,6 +255,7 @@ module.exports.metadata.include = [
 	"http*://*.google.*/search*",
 	"http*://*.google.*/imgres*"
 ];
+module.exports.metadata.match = [];
 module.exports.metadata.exclude = [
 	"http*://gc.bahamut.com.tw/*",
 	"http*://*.bahamut.com.tw/*",
