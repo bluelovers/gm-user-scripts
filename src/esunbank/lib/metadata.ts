@@ -4,6 +4,12 @@
 
 export const desc = '玉山銀行';
 
+export const grant = [
+	//'GM_registerMenuCommand',
+	//'GM_xmlhttpRequest',
+	'unsafeWindow',
+];
+
 export const metadata = `// ==UserScript==
 // @name		<%= index.name %>
 // @name:en		<%= index.name_en %>
@@ -17,10 +23,7 @@ export const metadata = `// ==UserScript==
 //
 // @version		<%= pkg.version %>
 //
-// @grant		GM_registerMenuCommand
-// @grant		GM_xmlhttpRequest
-// @grant		unsafeWindow
-// grant		GM_addStyle
+// @grant		<%= index.grant %>
 // grant		none
 //
 // @icon		<%= index.icon %>

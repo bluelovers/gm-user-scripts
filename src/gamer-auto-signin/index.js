@@ -8,6 +8,8 @@ module.exports.name_en = 'gamer-auto-signin';
 module.exports.desc = '巴哈姆特自動簽到';
 module.exports.desc_en = '巴哈姆特自動簽到';
 
+module.exports.author = '';
+
 module.exports.icon = '';
 
 module.exports.list = [
@@ -33,6 +35,8 @@ module.exports.metadata.include = [
 module.exports.metadata.match = [];
 module.exports.metadata.exclude = [];
 module.exports.metadata.grant = [
+	"GM.registerMenuCommand",
+	"GM.xmlhttpRequest",
 	"GM_registerMenuCommand",
 	"GM_xmlhttpRequest"
 ];

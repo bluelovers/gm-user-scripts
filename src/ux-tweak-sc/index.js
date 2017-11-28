@@ -8,6 +8,8 @@ module.exports.name_en = 'ux-tweak-sc';
 module.exports.desc = '';
 module.exports.desc_en = '';
 
+module.exports.author = '';
+
 module.exports.icon = '';
 
 module.exports.list = [
@@ -272,7 +274,21 @@ module.exports.metadata.exclude = [
 	"http*://platform.twitter.com/widgets*",
 	"http*://apis.google.com/*"
 ];
-module.exports.metadata.grant = [];
+module.exports.metadata.grant = [
+	"GM.deleteValue",
+	"GM.getValue",
+	"GM.listValues",
+	"GM.registerMenuCommand",
+	"GM.setValue",
+	"GM.xmlhttpRequest",
+	"GM_deleteValue",
+	"GM_getValue",
+	"GM_listValues",
+	"GM_registerMenuCommand",
+	"GM_setValue",
+	"GM_xmlhttpRequest",
+	"unsafeWindow"
+];
 
 module.exports.list_script = [
 	"global/discuz.js",

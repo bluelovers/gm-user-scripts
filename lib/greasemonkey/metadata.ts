@@ -2,12 +2,15 @@
  * Created by user on 2017/11/27/027.
  */
 
+import { array_unique } from '../func/array/unique';
+
 export interface IParseMetadata
 {
 	'name': any[];
 	'grant': any[];
 	'include': any[];
 	'exclude': any[];
+	'match': any[];
 
 	'noframes': any[];
 
@@ -74,16 +77,111 @@ export function parseMetadata(script: string): IParseMetadata
 			'noframes': [],
 		}, _arr);
 
-		_arr.grant = meta_filter(_arr.grant);
-
-		_arr.include = meta_filter(_arr.include);
-
-		_arr.exclude = meta_filter(_arr.exclude);
+		[
+			'include',
+			'match',
+			'exclude',
+			'grant',
+		].forEach(function (value)
+		{
+			if (_arr[value])
+			{
+				_arr[value] = (_arr[value].length) ? meta_filter(array_unique(_arr[value])) : [];
+			}
+		});
 
 		_arr.grant.sort();
 
 		return _arr as IParseMetadata;
 	}
+}
+
+export function lazyMetaFix(meta: IParseMetadata): IParseMetadata
+{
+	if (meta.noframes && meta.noframes.length && meta.noframes[0] == 'no')
+	{
+		meta.noframes = [];
+	}
+
+	if (meta.grant && meta.grant.length)
+	{
+		meta.grant.forEach(function (value, index, array)
+		{
+			let _m;
+			if (_m = /^GM[\.\_](.+)$/.exec(value))
+			{
+				meta.grant.push('GM.' + _m[1]);
+				meta.grant.push('GM_' + _m[1]);
+
+				//console.log(_m);
+			}
+		});
+
+		[
+			[
+				'getValue',
+				'setValue',
+				'deleteValue',
+				'listValues',
+			],
+			[
+				'getResourceUrl',
+				'getResourceURL',
+			],
+			/*
+			'info',
+			'openInTab',
+			'setClipboard',
+			'xmlhttpRequest',
+			'getResourceText',
+			'log',
+			'addStyle',
+			'registerMenuCommand',
+			*/
+		].forEach(function (_a)
+		{
+			_a = Array.isArray(_a) ? _a : [_a];
+
+			for (let value of _a)
+			{
+				if (meta.grant.includes('GM.' + value) || meta.grant.includes('GM_' + value))
+				{
+					meta.grant = meta.grant
+						.concat(_a.map(function (value)
+						{
+							return 'GM.' + value;
+						}))
+						.concat(_a.map(function (value)
+						{
+							return 'GM_' + value;
+						}))
+					;
+
+					break;
+				}
+			}
+		});
+	}
+
+	[
+		'include',
+		'match',
+		'exclude',
+		'grant',
+	].forEach(function (value)
+	{
+		if (meta[value])
+		{
+			meta[value] = (meta[value].length) ? meta_filter(array_unique(meta[value])) : [];
+		}
+	});
+
+	if (meta.grant && meta.grant.length)
+	{
+		meta.grant.sort();
+	}
+
+	return meta;
 }
 
 export function makeMetaRow(key: string, data, addFirst = false, pad = "\t\t", margin = "// ", LF = "\n")

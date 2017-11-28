@@ -196,6 +196,9 @@ gulp.task("webpack:before", async function (callback)
 
 		let metadata = require(path.join(cwd_src, name, 'lib/metadata'));
 
+		ls.metadata.grant = ls.metadata.grant.concat(metadata.grant || []);
+		ls.metadata = gmMetadata.lazyMetaFix(ls.metadata);
+
 		let text = `
 module.exports.id = '${name}';
 module.exports.version = '${metadata.version || ''}';
@@ -205,6 +208,8 @@ module.exports.name_en = '${metadata.name_en || metadata.name || name}';
 
 module.exports.desc = '${metadata.desc || ""}';
 module.exports.desc_en = '${metadata.desc_en || metadata.desc || ""}';
+
+module.exports.author = '${metadata.author || ''}';
 
 module.exports.icon = '${metadata.icon || ""}';
 
@@ -222,7 +227,7 @@ module.exports.metadata = {};
 module.exports.metadata.include = ${JSON.stringify(ls.metadata.include, null, "\t")};
 module.exports.metadata.match = ${JSON.stringify(ls.metadata.match, null, "\t")};
 module.exports.metadata.exclude = ${JSON.stringify(ls.metadata.exclude, null, "\t")};
-module.exports.metadata.grant = ${JSON.stringify(ls.metadata.grant.concat(metadata.grant || []), null, "\t")};
+module.exports.metadata.grant = ${JSON.stringify(ls.metadata.grant, null, "\t")};
 
 module.exports.list_script = ${JSON.stringify(ls.list_script, null, "\t")};
 
@@ -309,6 +314,8 @@ gulp.task("gm_scripts:config", async function (callback)
 			let s = await fs.readFileSync(path.join(cwd_dist, `${name}.user.js`));
 
 			let meta = gmMetadata.parseMetadata(s.toString());
+
+			meta = gmMetadata.lazyMetaFix(meta);
 
 			//console.log(meta);
 
@@ -501,6 +508,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 							name: index.name,
 							name_en: index.name_en || index.name,
+
+							author: index.author || pkg.author || '',
 
 							icon: index.icon || 'https://wiki.greasespot.net/favicon.ico',
 
