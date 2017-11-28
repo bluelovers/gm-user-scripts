@@ -132,11 +132,6 @@
 // @exclude		http*://platform.twitter.com/widgets*
 // @exclude		http*://apis.google.com/*
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511879131711
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511879131711
-//
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511879131711
-//
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -1399,7 +1394,7 @@ eval("/* WEBPACK VAR INJECTION */(function(global, $) {/**\r\n * Created by user
 /*! all exports used */
 /***/ (function(module, exports) {
 
-eval("/**\r\n * Created by user on 2017/8/6/006.\r\n */\r\n\r\nmodule.exports.metadata = `// ==UserScript==\r\n// @name\t\t<%= pkg.name %>\r\n// @namespace\tbluelovers\r\n//\r\n// @description\t各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作 並且適合搭配 Scrapbook 擷取內容\r\n//\r\n// @version\t\t<%= pkg.version %>\r\n//\r\n// @grant\t\tGM_registerMenuCommand\r\n// @grant\t\tGM_xmlhttpRequest\r\n// @grant\t\tunsafeWindow\r\n// grant\t\tGM_addStyle\r\n// grant\t\tnone\r\n//\r\n// @grant\t\tGM_deleteValue\r\n// @grant\t\tGM_getValue\r\n// @grant\t\tGM_listValues\r\n// @grant\t\tGM_setValue\r\n//\r\n// @icon\t\t<%= index.icon %>\r\n//\r\n// @noframes\r\n// @encoding\tutf-8\r\n//\r\n// @homepageURL\thttps://github.com/bluelovers/gm-user-scripts\r\n// @supportURL\thttps://github.com/bluelovers/gm-user-scripts/issues\r\n// @downloadURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js\r\n// @updateURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js\r\n//\r\n// @include\t\t<%= index.include %>\r\n//\r\n// @exclude\t\t<%= index.exclude %>\r\n//\r\n// require\t\thttps://code.jquery.com/jquery-3.2.1.js?<%= token %>\r\n// require\t\thttps://code.jquery.com/jquery-migrate-3.0.0.js?<%= token %>\r\n//\r\n// require\t\thttps://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?<%= token %>\r\n//\r\n// ==/UserScript==\r\n`;\r\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ux-tweak-sc/lib/metadata.js\n// module id = 100\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/ux-tweak-sc/lib/metadata.js?");
+eval("/**\r\n * Created by user on 2017/8/6/006.\r\n */\r\n\r\nmodule.exports.metadata = `// ==UserScript==\r\n// @name\t\t<%= pkg.name %>\r\n// @namespace\tbluelovers\r\n//\r\n// @description\t各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作 並且適合搭配 Scrapbook 擷取內容\r\n//\r\n// @version\t\t<%= pkg.version %>\r\n//\r\n// @grant\t\tGM_registerMenuCommand\r\n// @grant\t\tGM_xmlhttpRequest\r\n// @grant\t\tunsafeWindow\r\n// grant\t\tGM_addStyle\r\n// grant\t\tnone\r\n//\r\n// @grant\t\tGM_deleteValue\r\n// @grant\t\tGM_getValue\r\n// @grant\t\tGM_listValues\r\n// @grant\t\tGM_setValue\r\n//\r\n// @icon\t\t<%= index.icon %>\r\n//\r\n// @noframes\r\n// @encoding\tutf-8\r\n//\r\n// @homepageURL\thttps://github.com/bluelovers/gm-user-scripts\r\n// @supportURL\thttps://github.com/bluelovers/gm-user-scripts/issues\r\n// @downloadURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js\r\n// @updateURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js\r\n//\r\n// @include\t\t<%= index.include %>\r\n//\r\n// @exclude\t\t<%= index.exclude %>\r\n//\r\n// ==/UserScript==\r\n`;\r\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/ux-tweak-sc/lib/metadata.js\n// module id = 100\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/ux-tweak-sc/lib/metadata.js?");
 
 /***/ }),
 /* 101 */

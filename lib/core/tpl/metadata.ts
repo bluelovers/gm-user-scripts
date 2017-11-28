@@ -11,6 +11,11 @@ export const grant = [
 	//
 ];
 
+/**
+ * <%= token %>
+ *
+ * @type {string}
+ */
 export const metadata = `// ==UserScript==
 // @name		<%= index.id %>
 // @name:en		<%= index.name_en %>
@@ -42,8 +47,6 @@ export const metadata = `// ==UserScript==
 // @match		<%= index.match %>
 //
 // @exclude		<%= index.exclude %>
-//
-// require		<%= token %>
 //
 // ==/UserScript==
 `;
