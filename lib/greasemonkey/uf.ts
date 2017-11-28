@@ -57,4 +57,16 @@ export function log(any: any, ...argv)
 	return console.log(any, ...argv);
 }
 
+export function openInTabBackground(url: string)
+{
+	let win = window.open(url, '_blank');
+
+	setTimeout(function ()
+	{
+		window.focus();
+	}, 300);
+
+	return win;
+}
+
 export default exports;
