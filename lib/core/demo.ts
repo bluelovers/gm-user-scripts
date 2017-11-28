@@ -3,10 +3,10 @@
  */
 
 import { IUrlObject } from 'root/lib/func/parse_url';
-import { IGlobal } from 'root/lib/core';
+import { IGlobal, IWindow } from 'root/lib/core';
 import { IGreasemonkey } from 'root/lib/greasemonkey/uf';
 
-export { IGlobal, IGreasemonkey };
+export { IGlobal, IGreasemonkey, IWindow };
 
 export declare const global: IGlobal;
 export declare const greasemonkey: IGreasemonkey;
@@ -28,6 +28,10 @@ export interface IDemo
 	main?: IMethod;
 	adblock?: IMethod;
 	clearly?: IMethodClearly;
+
+	script_method?: {
+		clearly?,
+	};
 }
 
 export interface IMethod extends Function
