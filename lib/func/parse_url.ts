@@ -113,8 +113,8 @@ export function parse_url(str: string, component?): IUrlObject
 	}
 	if (mode !== 'php')
 	{
-		var name = 'queryKey';
-		parser = /(?:^|&)([^&=]*)=?([^&]*)/g;
+		let name = 'queryKey';
+		let parser = /(?:^|&)([^&=]*)=?([^&]*)/g;
 		uri[name] = {};
 		query = uri[key[12]] || '';
 		query.replace(parser, function ($0, $1, $2)
