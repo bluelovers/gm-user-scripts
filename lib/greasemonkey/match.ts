@@ -66,13 +66,18 @@ export function auto(url: string, self: IDemo, options = {})
 		return false;
 	}
 
-	if (self.metadata.match && self.metadata.match.length)
+	if (self.metadata.include && self.metadata.include.length)
 	{
-		ret = match(url, self.metadata.match, options);
+		ret = match(url, self.metadata.include, options);
 	}
 	else
 	{
 		ret = false;
+	}
+
+	if (!ret && (self.metadata.match && self.metadata.match.length))
+	{
+		ret = match(url, self.metadata.match, options);
 	}
 
 	return ret;
