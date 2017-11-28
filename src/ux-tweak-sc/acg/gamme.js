@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://news.gamme.com.tw/*',
 		],
 		exclude: [],
