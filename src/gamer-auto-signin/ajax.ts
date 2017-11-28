@@ -38,11 +38,35 @@ let o: IDemo = {
 
 	async main(_url_obj = global._url_obj)
 	{
-		const signin = require('root/lib/site/gamer/signin').default;
+		await (new Promise(function (resolve, reject)
+		{
+			setTimeout(function ()
+			{
+				resolve();
+			}, 1000);
+		}));
 
-		await signin()
-			.catch(err => console.error('[簽到錯誤]', err))
-		;
+		let _a;
+
+		if (_url_obj.host.match(/www\.gamer\.com\.tw/) && (_a = $('.BA-left #signin-btn[onclick]'), _a.length))
+		{
+			_a[0].click();
+		}
+		else if (_a && _a.length)
+		{
+			console.log('已經簽到過', _a);
+		}
+		else
+		{
+			const signin = require('root/lib/site/gamer/signin').default;
+
+			await signin()
+				.catch((err) =>
+				{
+					console.error('[簽到錯誤]', err);
+				})
+			;
+		}
 	},
 
 	adblock(_url_obj = global._url_obj)
