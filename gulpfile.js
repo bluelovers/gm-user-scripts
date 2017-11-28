@@ -220,7 +220,7 @@ module.exports._lib = () =>
 
 module.exports.metadata = {};
 module.exports.metadata.include = ${JSON.stringify(ls.metadata.include, null, "\t")};
-module.exports.metadata.match = ${JSON.stringify(ls.metadata.match, null, "\\t")};
+module.exports.metadata.match = ${JSON.stringify(ls.metadata.match, null, "\t")};
 module.exports.metadata.exclude = ${JSON.stringify(ls.metadata.exclude, null, "\t")};
 module.exports.metadata.grant = ${JSON.stringify(ls.metadata.grant.concat(metadata.grant || []), null, "\t")};
 
@@ -288,7 +288,7 @@ gulp.task("gm_scripts:config", async function (callback)
 
 		script.attr('version', index.version || pkg.version);
 
-		script.find('Exclude, Include').remove();
+		script.find('Exclude, Include, Match').remove();
 
 		for (let row of index.metadata.exclude)
 		{
@@ -298,6 +298,11 @@ gulp.task("gm_scripts:config", async function (callback)
 		for (let row of index.metadata.include)
 		{
 			script.append(`<Include>${row}</Include>`);
+		}
+
+		for (let row of index.metadata.match)
+		{
+			script.append(`<Match>${row}</Match>`);
 		}
 
 		{
