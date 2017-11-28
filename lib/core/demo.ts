@@ -56,6 +56,8 @@ export interface IMetadata
 
 	match?: string[];
 	nomatch?: string[];
+
+	grant?: string[];
 }
 
 export function create(data = {})
