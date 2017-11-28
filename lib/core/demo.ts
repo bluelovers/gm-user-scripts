@@ -3,10 +3,10 @@
  */
 
 import { IUrlObject } from 'root/lib/func/parse_url';
-import { IGlobal, IWindow } from 'root/lib/core';
+import { IGlobal, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core';
 import { IGreasemonkey } from 'root/lib/greasemonkey/uf';
 
-export { IGlobal, IGreasemonkey, IWindow };
+export { IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 };
 
 export declare const global: IGlobal;
 export declare const greasemonkey: IGreasemonkey;
@@ -46,14 +46,15 @@ export interface IMethodTest extends IMethod
 
 export interface IMethodClearly extends IMethod
 {
-	(_url_obj: IUrlObject, _dom_list?);
+	(_url_obj: IUrlObject, _dom_list?): void | JQuery<HTMLElement>;
 }
 
 export interface IMetadata
 {
-	match?: string[];
+	include?: string[];
 	exclude?: string[];
 
+	match?: string[];
 	nomatch?: string[];
 }
 
