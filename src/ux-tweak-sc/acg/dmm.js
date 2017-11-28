@@ -9,7 +9,7 @@ module.exports = {
 	disable: true,
 
 	metadata: {
-		match: [
+		include: [
 			'http*://www.dmm.co.jp/netgame/*',
 		],
 		exclude: [],
