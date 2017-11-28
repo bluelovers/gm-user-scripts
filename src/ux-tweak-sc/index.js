@@ -266,6 +266,7 @@ module.exports.metadata.exclude = [
 	"http*://platform.twitter.com/widgets*",
 	"http*://apis.google.com/*"
 ];
+module.exports.metadata.grant = [];
 
 module.exports.list_script = [
 	"global/discuz.js",
