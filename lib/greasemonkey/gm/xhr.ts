@@ -2,7 +2,9 @@
  * Created by user on 2017/11/26/026.
  */
 
-export const GM_XHR = GM_xmlhttpRequest;
+import GMApi from './api';
+
+export const GM_XHR = GMApi.xmlhttpRequest;
 
 export interface IXMLHttpRequestOptions extends GMXMLHttpRequestOptions
 {
@@ -14,6 +16,7 @@ export interface IXMLHttpRequestResponse extends GMXMLHttpRequestResponse
 {
 	response?;
 	responseType?: string;
+	responseOriginal?;
 }
 
 export function makeOptions(options): IXMLHttpRequestOptions
@@ -55,6 +58,7 @@ export function ajax(url, options?: IXMLHttpRequestOptions): Promise<IXMLHttpReq
 		{
 			if (options.dataType == 'json')
 			{
+				res.responseOriginal = res.response;
 				res.response = JSON.parse(res.responseText);
 			}
 

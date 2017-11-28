@@ -4,6 +4,8 @@
 
 'use strict';
 
+import GMApi from './gm/api';
+
 const Map_registerMenuCommand = new Map();
 
 export interface IRegisterMenuCommandOptions
@@ -64,9 +66,9 @@ export function registerMenuCommand(options: string | IRegisterMenuCommandOption
 		console.timeEnd(label);
 	};
 
-	if (typeof GM_registerMenuCommand == 'function')
+	if (typeof GMApi.registerMenuCommand == 'function')
 	{
-		GM_registerMenuCommand(label, fn);
+		GMApi.registerMenuCommand(label, fn);
 	}
 	else
 	{

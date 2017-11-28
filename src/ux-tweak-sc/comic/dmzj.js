@@ -12,6 +12,9 @@ module.exports = {
 			'https://i.dmzj.com/*',
 			'http*://manhua.dmzj.com/*',
 		],
+		nomatch: [
+			'http*://q.dmzj.com/*',
+		],
 		exclude: [],
 	},
 
