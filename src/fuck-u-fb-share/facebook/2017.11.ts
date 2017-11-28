@@ -12,10 +12,8 @@ declare const global: IGlobal;
 
 let o: IDemo = {
 
-	//priority: 100,
-
 	metadata: {
-		match: [
+		include: [
 			'http*://www.facebook.com/*',
 			'http*://facebook.com/*',
 		],
