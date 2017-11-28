@@ -5,6 +5,10 @@
 export const desc = '此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)';
 export const desc_en = 'this script try kill facebook new share (2017-11)';
 
+export const grant = [
+	'unsafeWindow',
+];
+
 export const metadata = `// ==UserScript==
 // @name		<%= index.name %>
 // @name:en		<%= index.name_en %>
@@ -18,9 +22,7 @@ export const metadata = `// ==UserScript==
 //
 // @version		<%= pkg.version %>
 //
-// grant		GM_registerMenuCommand
-// @grant		unsafeWindow
-// grant		GM_addStyle
+// @grant		<%= index.grant %>
 // grant		none
 //
 // @icon		<%= index.icon %>
