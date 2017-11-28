@@ -8,6 +8,8 @@ module.exports.name_en = 'esunbank';
 module.exports.desc = '玉山銀行';
 module.exports.desc_en = '玉山銀行';
 
+module.exports.author = '';
+
 module.exports.icon = '';
 
 module.exports.list = [
@@ -29,7 +31,9 @@ module.exports.metadata.include = [
 ];
 module.exports.metadata.match = [];
 module.exports.metadata.exclude = [];
-module.exports.metadata.grant = [];
+module.exports.metadata.grant = [
+	"unsafeWindow"
+];
 
 module.exports.list_script = [];
 
