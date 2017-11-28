@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://www.facebook.com/*',
 			'http*://www.facebook.com/saved/*',
 		],
