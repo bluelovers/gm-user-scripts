@@ -32,10 +32,10 @@
 //
 // @exclude		
 //
-// require		https://code.jquery.com/jquery-3.2.1.js?1511878674666
-// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511878674666
+// require		https://code.jquery.com/jquery-3.2.1.js?1511878960485
+// require		https://code.jquery.com/jquery-migrate-3.0.0.js?1511878960485
 //
-// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511878674666
+// require		https://raw.githubusercontent.com/bluelovers/jquery-color/develop/jquery.color.js?1511878960485
 //
 // ==/UserScript==
 /******/ (function(modules) { // webpackBootstrap
@@ -112,7 +112,7 @@
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("\nmodule.exports.id = 'esunbank';\nmodule.exports.version = '';\n\nmodule.exports.name = 'esunbank';\nmodule.exports.name_en = 'esunbank';\n\nmodule.exports.desc = '玉山銀行';\nmodule.exports.desc_en = '玉山銀行';\n\nmodule.exports.icon = '';\n\nmodule.exports.list = [\n\t\"esunbank/ebank.js\"\n];\n\nmodule.exports.list_disable = [];\n\n// for webpack, don't use this method\nmodule.exports._lib = () =>\n{\n\t__webpack_require__(/*! root/src/esunbank/esunbank/ebank.js */ 4);\n};\n\nmodule.exports.metadata = {};\nmodule.exports.metadata.include = [\n\t\"http*://ebank.esunbank.com.tw/fcm/*\",\n\t\"http*://ebank.esunbank.com.tw/fco/*\"\n];\nmodule.exports.metadata.exclude = [];\nmodule.exports.metadata.grant = [];\n\nmodule.exports.list_script = [];\n\nmodule.exports.current = [];\n\nmodule.exports.default = module.exports;\n\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/esunbank/index.js\n// module id = 0\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/esunbank/index.js?");
+eval("\nmodule.exports.id = 'esunbank';\nmodule.exports.version = '';\n\nmodule.exports.name = 'esunbank';\nmodule.exports.name_en = 'esunbank';\n\nmodule.exports.desc = '玉山銀行';\nmodule.exports.desc_en = '玉山銀行';\n\nmodule.exports.icon = '';\n\nmodule.exports.list = [\n\t\"esunbank/ebank.js\"\n];\n\nmodule.exports.list_disable = [];\n\n// for webpack, don't use this method\nmodule.exports._lib = () =>\n{\n\t__webpack_require__(/*! root/src/esunbank/esunbank/ebank.js */ 4);\n};\n\nmodule.exports.metadata = {};\nmodule.exports.metadata.include = [\n\t\"http*://ebank.esunbank.com.tw/fcm/*\",\n\t\"http*://ebank.esunbank.com.tw/fco/*\"\n];\nmodule.exports.metadata.match = [];\nmodule.exports.metadata.exclude = [];\nmodule.exports.metadata.grant = [];\n\nmodule.exports.list_script = [];\n\nmodule.exports.current = [];\n\nmodule.exports.default = module.exports;\n\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/esunbank/index.js\n// module id = 0\n// module chunks = 0\n\n//# sourceURL=webpack:///./src/esunbank/index.js?");
 
 /***/ }),
 /* 1 */
