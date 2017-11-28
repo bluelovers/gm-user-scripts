@@ -9,7 +9,7 @@ module.exports = {
 	//disable: true,
 
 	metadata: {
-		match: [
+		include: [
 			'http*://share.dmhy.org/*',
 		],
 		exclude: [],
