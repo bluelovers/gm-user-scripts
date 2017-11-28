@@ -86,6 +86,28 @@ export function parseMetadata(script: string): IParseMetadata
 	}
 }
 
+export function makeMetaRow(key: string, data, addFirst = false, pad = "\t\t", margin = "// ", LF = "\n")
+{
+	let ret: string = '';
+	let s = `${margin}@${key}${pad}`;
+
+	if (Array.isArray(data))
+	{
+		ret = data.join(`${LF}${s}`);
+	}
+	else if (typeof data !== 'undefined')
+	{
+		ret = data.toString();
+	}
+
+	if (addFirst)
+	{
+		ret = s + ret;
+	}
+
+	return ret;
+}
+
 export function meta_filter(arr: any[])
 {
 	return arr.filter(function (value, index, array)
