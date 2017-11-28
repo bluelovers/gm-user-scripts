@@ -27,6 +27,7 @@ module.exports.metadata.include = [
 	"http*://www.facebook.com/*",
 	"http*://facebook.com/*"
 ];
+module.exports.metadata.match = [];
 module.exports.metadata.exclude = [];
 module.exports.metadata.grant = [];
 
