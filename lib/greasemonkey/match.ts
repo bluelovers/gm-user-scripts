@@ -79,6 +79,13 @@ export function auto(url: string, self: IDemo, options = {})
 	return ret;
 }
 
+/**
+ * https://developer.chrome.com/apps/match_patterns
+ *
+ * @param {string} url
+ * @param {string | string[]} pattern
+ * @returns {any}
+ */
 export function matchChrome(url: string, pattern: string | string[])
 {
 	if (Array.isArray(pattern))
