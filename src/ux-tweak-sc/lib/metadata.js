@@ -2,6 +2,16 @@
  * Created by user on 2017/8/6/006.
  */
 
+module.exports.grant = [
+	'GM_registerMenuCommand',
+	'GM_xmlhttpRequest',
+	'unsafeWindow',
+	'GM_deleteValue',
+	'GM_getValue',
+	'GM_listValues',
+	'GM_setValue',
+];
+
 module.exports.metadata = `// ==UserScript==
 // @name		<%= pkg.name %>
 // @namespace	bluelovers
@@ -10,16 +20,8 @@ module.exports.metadata = `// ==UserScript==
 //
 // @version		<%= pkg.version %>
 //
-// @grant		GM_registerMenuCommand
-// @grant		GM_xmlhttpRequest
-// @grant		unsafeWindow
-// grant		GM_addStyle
+// @grant		<%= index.grant %>
 // grant		none
-//
-// @grant		GM_deleteValue
-// @grant		GM_getValue
-// @grant		GM_listValues
-// @grant		GM_setValue
 //
 // @icon		<%= index.icon %>
 //
