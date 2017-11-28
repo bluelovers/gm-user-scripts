@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://*.qoo-app.com/*',
 		],
 		exclude: [],
