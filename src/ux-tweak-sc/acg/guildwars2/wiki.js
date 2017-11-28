@@ -7,7 +7,7 @@
 module.exports = {
 
 	metadata: {
-		match: [
+		include: [
 			'http*://wiki.guildwars2.com/*',
 		],
 		exclude: [],
