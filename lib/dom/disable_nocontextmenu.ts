@@ -22,6 +22,7 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 		jq = unsafeWindow.jQuery;
 		arr = unsafeWindow.jQuery(elem).add('body, html')
 			.add(unsafeWindow.document)
+			.add(unsafeWindow)
 		;
 
 		//console.log(jq, arr);
@@ -31,6 +32,7 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 		jq = window.jQuery;
 		arr = window.jQuery(elem).add('body, html')
 			.add(window.document)
+			.add(window)
 		;
 	}
 
@@ -52,6 +54,7 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 		.add('body, html')
 		// http://ftp.ezla.com.tw/files/article/html/54/54491/217056.html
 		.add(unsafeWindow.document)
+		.add(unsafeWindow)
 	;
 
 	//console.log(jq, arr, arr2);
@@ -125,7 +128,14 @@ export function _uf_disable_nocontextmenu(mode, elem?)
 		{
 			$.each(event, function (i, v)
 			{
-				arr[fn](v);
+				try
+				{
+					arr[fn](v);
+				}
+				catch (e)
+				{
+					console.error(e);
+				}
 
 				//_uf_log(arr, fn, v);
 			});
@@ -149,29 +159,43 @@ export function _uf_disable_nocontextmenu(mode, elem?)
 
 //			_uf_log('_uf_disable_nocontextmenu', mode, elem, _jquery_array, _jquery, _jquery.fn.jquery, arr);
 
-		arr
-			.removeAttr('ondragstart')
-			.removeAttr('oncontextmenu')
-			.removeAttr('onselectstart')
-			.removeAttr('onmousedown')
-			.removeAttr('onmouseup')
-			.removeAttr('onsource')
+		try
+		{
+			arr
+				.removeAttr('ondragstart')
+				.removeAttr('oncontextmenu')
+				.removeAttr('onselectstart')
+				.removeAttr('onmousedown')
+				.removeAttr('onmouseup')
+				.removeAttr('onsource')
 
-			.css({
-				'-moz-user-select': 'auto',
-				'-webkit-user-select': 'auto',
-				'-ms-user-select': 'auto',
-				'user-select': 'auto',
-			})
-		;
+				.css({
+					'-moz-user-select': 'auto',
+					'-webkit-user-select': 'auto',
+					'-ms-user-select': 'auto',
+					'user-select': 'auto',
+				})
+			;
+		}
+		catch (e)
+		{
+			console.error(e);
+		}
 
 		if (mode)
 		{
 			arr
 				.each(function ()
 				{
-					this.oncontextmenu = this.ondragstart = this.onselectstart = this.onmousedown = this.onmouseup
-						= this.onsource = null;
+					try
+					{
+						this.oncontextmenu = this.ondragstart = this.onselectstart = this.onmousedown = this.onmouseup
+							= this.onsource = null;
+					}
+					catch (e)
+					{
+						console.error(e);
+					}
 				})
 			;
 
