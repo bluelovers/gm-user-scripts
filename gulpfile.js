@@ -36,7 +36,7 @@ const lodash = require('lodash');
 
 const addTasks = require('gulp-add-tasks2').init(gulp);
 
-const parseMetadata = require('./lib/greasemonkey/metadata').parseMetadata;
+const gmMetadata = require('./lib/greasemonkey/metadata');
 
 //var closureCompiler = require('google-closure-compiler').gulp();
 
@@ -163,8 +163,10 @@ gulp.task("webpack:before", async function (callback)
 				//a._lib.push(`require('./${b}');`);
 				a._lib.push(`require('root/src/${name}/${b}');`);
 
-				a.metadata.include = a.metadata.include.concat(lib.metadata.match);
-				a.metadata.exclude = a.metadata.exclude.concat(lib.metadata.exclude);
+				a.metadata.include = a.metadata.include.concat(lib.metadata.include || []);
+				a.metadata.exclude = a.metadata.exclude.concat(lib.metadata.exclude || []);
+				a.metadata.match = a.metadata.match.concat(lib.metadata.match || []);
+				a.metadata.grant = a.metadata.grant.concat(lib.metadata.grant || []);
 
 				if (lib.script)
 				{
@@ -182,6 +184,8 @@ gulp.task("webpack:before", async function (callback)
 				metadata: {
 					include: [],
 					exclude: [],
+					match: [],
+					grant: [],
 				},
 
 				list_script: [],
@@ -189,123 +193,6 @@ gulp.task("webpack:before", async function (callback)
 			});
 
 		//console.debug(ls);
-
-		let main = async function (list, options = {})
-		{
-			console.time(module.exports.name);
-			console.group(module.exports.name);
-
-			let _break;
-
-			for (let name of list)
-			{
-				//console.log(888, name);
-
-				let lib = require('./' + name);
-
-				let name_id = name;
-
-				if (lib.name && lib.name != name_id)
-				{
-					name_id = `${lib.name} - ${name_id}`;
-				}
-
-				name_id = `[${name_id}]`;
-
-				//console.log(999, name_id);
-
-				if (_break && !lib.script)
-				{
-					//console.debug(name_id, 'break:script', lib.script);
-					continue;
-				}
-				else if (lib.disable)
-				{
-					console.warn(module.exports.id, name_id, 'disable, skip this');
-					continue;
-				}
-
-				let ret = true;
-
-				console.time(name);
-				console.group(name);
-
-				let test;
-				let ret_main;
-
-				CHK:
-				{
-					test = await lib.test(global._url_obj);
-
-					console.info(module.exports.id, name_id, 'test', test);
-
-					if (_break && test !== 2)
-					{
-						console.info(module.exports.id, name_id, 'break:test', test);
-
-						break CHK;
-					}
-
-					if (test)
-					{
-						ret_main = await lib.main(global._url_obj);
-
-						if (ret_main == true || ret_main === undefined)
-						{
-							ret_main = true;
-
-							console.info(module.exports.id, name_id, 'matched', ret_main, ret);
-						}
-						else
-						{
-							console.debug(module.exports.id, name_id, 'main', ret_main);
-						}
-
-						//test = false;
-
-						if (ret_main)
-						{
-							ret = false;
-
-							if (test && test !== true)
-							{
-								//test = true;
-								ret = true;
-							}
-
-							console.debug(module.exports.id, name_id, 'chk', ret_main, ret, test);
-						}
-					}
-
-					if (!ret || test)
-					{
-						console.debug(module.exports.id, name_id, 'current:push', ret_main, ret, test);
-
-						module.exports.current.push({
-							name: name,
-							name_id: name_id,
-
-							lib: lib,
-						});
-					}
-				}
-
-				console.groupEnd(name);
-				console.timeEnd(name);
-
-				if (!_break && !ret)
-				{
-					console.debug(module.exports.id, name_id, 'break', ret_main, ret, test);
-
-					_break = true;
-
-					//break;
-				}
-			}
-
-			console.groupEnd(module.exports.name);
-			console.timeEnd(module.exports.name);
-		};
 
 		let metadata = require(path.join(cwd_src, name, 'lib/metadata'));
 
@@ -334,6 +221,7 @@ module.exports._lib = () =>
 module.exports.metadata = {};
 module.exports.metadata.include = ${JSON.stringify(ls.metadata.include, null, "\t")};
 module.exports.metadata.exclude = ${JSON.stringify(ls.metadata.exclude, null, "\t")};
+module.exports.metadata.grant = ${JSON.stringify(ls.metadata.grant.concat(metadata.grant || []), null, "\t")};
 
 module.exports.list_script = ${JSON.stringify(ls.list_script, null, "\t")};
 
@@ -414,7 +302,7 @@ gulp.task("gm_scripts:config", async function (callback)
 		{
 			let s = await fs.readFileSync(path.join(cwd_dist, `${name}.user.js`));
 
-			let meta = parseMetadata(s.toString());
+			let meta = gmMetadata.parseMetadata(s.toString());
 
 			//console.log(meta);
 
@@ -610,13 +498,17 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 							icon: index.icon || 'https://wiki.greasespot.net/favicon.ico',
 
-							desc: index.desc || '',
-							desc_en: index.desc_en || index.desc || '',
+							desc: index.desc || index.id || '',
+							desc_en: index.desc_en || index.desc || index.id || '',
 
-							include: index.metadata.include.join("\n// @include		"),
-							match: meta_match(index.metadata.include).join("\n// @match		"),
+							include: gmMetadata.makeMetaRow('include', index.metadata.include || []),
+							//match: meta_match(index.metadata.include).join("\n// @match		"),
+							//match: gmMetadata.makeMetaRow('match', meta_match(index.metadata.include) || []),
+							match: gmMetadata.makeMetaRow('match', index.metadata.match || []),
 
-							exclude: index.metadata.exclude.join("\n// @exclude		"),
+							exclude: gmMetadata.makeMetaRow('exclude', index.metadata.exclude || []),
+
+							grant: gmMetadata.makeMetaRow('grant', index.metadata.grant),
 						},
 
 						token: Date.now()
