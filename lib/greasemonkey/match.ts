@@ -79,20 +79,33 @@ export function auto(url: string, self: IDemo, options = {})
 	return ret;
 }
 
+export interface IMatchChrome
+{
+	scheme: string;
+	host: string;
+	path: string;
+
+	source?: string;
+	regexp?: RegExp;
+}
+
 /**
  * https://developer.chrome.com/apps/match_patterns
+ */
+
+/**
  *
  * @param {string} url
  * @param {string | string[]} pattern
  * @returns {any}
  */
-export function matchChrome(url: string, pattern: string | string[])
+export function matchChrome(url: string, pattern: string | string[], skipquery?: boolean): IMatchChrome
 {
 	if (Array.isArray(pattern))
 	{
 		for (let p of pattern)
 		{
-			let r = matchChrome(url, p);
+			let r = matchChrome(url, p, skipquery);
 
 			if (r)
 			{
@@ -100,27 +113,55 @@ export function matchChrome(url: string, pattern: string | string[])
 			}
 		}
 
-		return false;
+		return null;
 	}
 
-	let _m = (pattern as string).match(/^((?:[^\/]+):\/\/)?([^\/]+)?(\/.+)$/);
+	let _m = (pattern as string).match(/^((?:[^\/]+):\/\/)?([^\/]+)?(\/.*)?$/);
 
 	if (_m)
 	{
-		let _m2 = new RegExp('^((?:https?):\\/\\/)'
+		//console.log(_m);
+
+		let _m2 = new RegExp('^(?:(https?|file|ftp):\\/\\/)?'
 			+ '('
-			+ _m[2]
+			+ (!isempty(_m[2]) ? _m[2] : '')
 				.replace(/\*/g, '[^\\/]+')
 				.replace(/\./g, '\\.')
 			+ ')'
-			+ '(' + _m[3].replace(/\*/g, '.+') + ')'
+			+ '('
+			+ (!isempty(_m[3]) ? _m[3] : '/')
+				.replace(/^(\/)$/, '$1?')
+				.replace(/^(\/)(\*)$/, '(?:$1?|$1$2)')
+				.replace(/\*/g, '.*')
+			+ ')'
+			+ (skipquery ? '(?:\\?.*)?' : '')
+			+ '(?:#.*)?'
+			+ '$'
 		);
 
-		if (_m2.exec(url))
+		//console.log(_m2);
+
+		if (_m = _m2.exec(url))
 		{
-			return true;
+			//console.log(1, _m);
+
+			return {
+				scheme: _m[1],
+				host: _m[2],
+				path: _m[3],
+
+				source: url,
+				regexp: _m2,
+			};
 		}
+
+		//console.log(2, _m);
 	}
 
-	return false;
+	return null;
+}
+
+function isempty(v)
+{
+	return typeof v === 'undefined';
 }
