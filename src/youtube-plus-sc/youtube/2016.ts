@@ -22,7 +22,7 @@ let o: IDemo = {
 			//'http*://www.gamer.com.tw/*',
 		],
 		match: [
-			'*://*.youtube.com/*',
+			'*://www.youtube.com/*',
 			'*://youtube.com/*',
 		],
 		nomatch: [
