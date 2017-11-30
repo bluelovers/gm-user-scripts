@@ -49,3 +49,4 @@
 /src/ux-tweak-sc/novel/syosetu.js
 !/test/**/*.test.ts
 /src/ux-tweak-sc/shop/post/kerrytj.js
+!/test/_local-dev.ts
