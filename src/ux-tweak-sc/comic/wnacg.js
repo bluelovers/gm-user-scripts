@@ -476,6 +476,8 @@ module.exports = {
 			})
 		;
 
+		$('iframe').remove();
+
 		try
 		{
 			unsafeWindow.Advisor = null;
