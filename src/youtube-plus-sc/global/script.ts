@@ -44,6 +44,7 @@ let o: IDemo = {
 
 	async main(_url_obj = global._url_obj)
 	{
+		const debounce = require('throttle-debounce/debounce');
 		const YU = require('root/lib/site/youtube');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
@@ -67,8 +68,24 @@ let o: IDemo = {
 		{
 			// 2016
 			$('#masthead-positioner #yt-masthead-user').prepend(
-				'<a href="/my_videos?o=U" class="yt-uix-button yt-uix-button-default yt-uix-button-size-default" style="margin-right: 15px;"><span class="yt-uix-button-content">影片管理員</span></a>'
+				'<a href="/my_videos?o=U" id="my_videos" class="yt-uix-button yt-uix-button-default yt-uix-button-size-default" style="margin-right: 15px;"><span class="yt-uix-button-content">影片管理員</span></a>'
 			);
+
+			$('#appbar-guide-menu')
+				.on('DOMNodeInserted', debounce(100, function ()
+				{
+					//
+				}))
+			;
+		}
+
+		if (_url_obj.path.match(/\/upload/))
+		{
+			_uf_dom_filter_link([
+				'a#my_videos',
+			].join(','))
+				.prop('target', '_blank')
+			;
 		}
 	},
 
