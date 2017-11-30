@@ -20,8 +20,8 @@ export const metadata = `// ==UserScript==
 // @name		<%= index.id %>
 // @name:en		<%= index.name_en %>
 // @name:zh		<%= index.name %>
-// @namespace	bluelovers
-// @author		bluelovers
+// @namespace	<%= index.namespace %>
+// @author		<%= index.author %>
 //
 // @description		<%= index.desc %>
 // @description:en	<%= index.desc_en %>
