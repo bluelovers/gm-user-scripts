@@ -11,7 +11,7 @@ declare const unsafeWindow: IWindow;
 declare const $: IJQueryStatic;
 declare const jQuery: IJQueryStatic;
 
-'use strict';
+"use strict";
 
 let o: IDemo = {
 
@@ -181,7 +181,7 @@ let o: IDemo = {
 																	return;
 																}
 
-																let data = await YU.ajaxSetTitle(_video_id, _title, yt_token());
+																let data = await YU.ajaxSetTitle(_video_id, _title, YU.yt_token());
 
 																let _html = $('<div/>').append(data.html.title);
 
@@ -238,17 +238,9 @@ let o: IDemo = {
 			].join())
 		;
 
-		//_dom.remove();
-
 		return _dom;
 	},
 
 };
 
 export = o as IDemo;
-
-function yt_token(): string
-{
-	// @ts-ignore
-	return unsafeWindow.yt.config_.XSRF_TOKEN;
-}
