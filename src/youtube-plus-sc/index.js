@@ -15,7 +15,8 @@ module.exports.icon = '';
 
 module.exports.list = [
 	"youtube/2016/my_video.js",
-	"youtube/2016.js"
+	"youtube/2016.js",
+	"global/script.js"
 ];
 
 module.exports.list_disable = [];
@@ -25,6 +26,7 @@ module.exports._lib = () =>
 {
 	require('root/src/youtube-plus-sc/youtube/2016/my_video.js');
 	require('root/src/youtube-plus-sc/youtube/2016.js');
+	require('root/src/youtube-plus-sc/global/script.js');
 };
 
 module.exports.metadata = {};
@@ -44,7 +46,9 @@ module.exports.metadata.grant = [
 	"GM_xmlhttpRequest"
 ];
 
-module.exports.list_script = [];
+module.exports.list_script = [
+	"global/script.js"
+];
 
 module.exports.current = [];
 
