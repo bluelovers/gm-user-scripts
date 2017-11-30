@@ -11,6 +11,12 @@ export { IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 };
 export declare const global: IGlobal;
 export declare const greasemonkey: IGreasemonkey;
 
+/**
+ * 1 = lib
+ * 2 = metadata
+ */
+export type vDisable = boolean | 1 | 2;
+
 export interface IDemo
 {
 	name?: string;
@@ -18,7 +24,7 @@ export interface IDemo
 
 	file?: string;
 
-	disable?: boolean;
+	disable?: vDisable;
 	priority?: number;
 	script?: boolean;
 
