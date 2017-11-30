@@ -2,9 +2,7 @@
  * Created by user on 2017/11/26/026.
  */
 
-/**
- * Created by user on 2017/11/26/026.
- */
+"use strict";
 
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
@@ -14,8 +12,6 @@ declare const window: IWindow;
 declare const unsafeWindow: IWindow;
 declare const $: IJQueryStatic;
 declare const jQuery: IJQueryStatic;
-
-"use strict";
 
 let o: IDemo = {
 
@@ -68,8 +64,6 @@ let o: IDemo = {
 				//
 			].join())
 		;
-
-		//_dom.remove();
 
 		return _dom;
 	},
