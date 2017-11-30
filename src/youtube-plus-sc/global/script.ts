@@ -55,6 +55,9 @@ let o: IDemo = {
 			'a[is="yt-endpoint"], .yt-simple-endpoint',
 
 			'#meta-contents a[is="yt-endpoint"], #meta-contents .yt-simple-endpoint',
+
+			'#watch7-creator-bar a',
+			'#watch-description-extras a',
 		].join(','))
 			.prop('target', '_blank')
 		;
