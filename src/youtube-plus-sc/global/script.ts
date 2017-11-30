@@ -50,6 +50,9 @@ let o: IDemo = {
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
 			'.creator-sidebar-item-link a[href*="view_all_playlists"], a.vm-playlist-edit-button, .guide-channel a:has(.guide-my-channel-icon), .vm-playlist-edit-video',
+
+			'#channel-info',
+			'a[is="yt-endpoint"], .yt-simple-endpoint',
 		].join(','))
 			.prop('target', '_blank')
 		;
