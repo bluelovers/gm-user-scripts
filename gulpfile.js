@@ -120,7 +120,7 @@ gulp.task("webpack:before", async function (callback)
 			{
 				let o = data[name][b];
 
-				o.priority = typeof o.priority == 'undefined' ? 500 : o.priority;
+				o.priority = (typeof o.priority == 'undefined' || o.priority === null) ? 500 : o.priority;
 				o.name = b;
 
 				a.push(o);
@@ -145,15 +145,24 @@ gulp.task("webpack:before", async function (callback)
 			{
 				let lib = require(path.join(cwd_src, name, b));
 
-				if (lib.disable === true)
+				if (lib.disable === 2)
 				{
-					a.list_disable.push(b);
+					a.metadata.include = a.metadata.include.concat(lib.metadata.include || []);
+					a.metadata.exclude = a.metadata.exclude.concat(lib.metadata.exclude || []);
+					a.metadata.match = a.metadata.match.concat(lib.metadata.match || []);
+					a.metadata.grant = a.metadata.grant.concat(lib.metadata.grant || []);
+
+					return a;
+				}
+				else if (lib.disable === 1)
+				{
+					a.list_lib.push(b);
 
 					return a;
 				}
 				else if (lib.disable)
 				{
-					a.list_lib.push(b);
+					a.list_disable.push(b);
 
 					return a;
 				}
@@ -209,6 +218,7 @@ module.exports.name_en = '${metadata.name_en || metadata.name || name}';
 module.exports.desc = '${metadata.desc || ""}';
 module.exports.desc_en = '${metadata.desc_en || metadata.desc || ""}';
 
+module.exports.namespace = '${metadata.namespace || ''}';
 module.exports.author = '${metadata.author || ''}';
 
 module.exports.icon = '${metadata.icon || ""}';
@@ -509,6 +519,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 							name: index.name,
 							name_en: index.name_en || index.name,
 
+							namespace: index.namespace || pkg.author || '',
 							author: index.author || pkg.author || '',
 
 							icon: index.icon || 'https://wiki.greasespot.net/favicon.ico',

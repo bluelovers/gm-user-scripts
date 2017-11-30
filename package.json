@@ -42,5 +42,17 @@
     "webpack": "^3.8.1",
     "webpack-closure-compiler": "^2.1.5",
     "webpack-stream": "^3.2.0"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/gm-user-scripts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bluelovers/gm-user-scripts/issues"
+  },
+  "homepage": "https://github.com/bluelovers/gm-user-scripts#readme"
 }
