@@ -5,7 +5,7 @@
  *
  */
 
-const yt_url = 'https://www.youtube.com';
+export const yt_url = 'https://www.youtube.com';
 
 export function ajaxSetTitle(video_id, new_title, session_token)
 {
@@ -26,12 +26,26 @@ export function ajaxSetTitle(video_id, new_title, session_token)
 		{
 			if (!data || data.errors && data.errors.length)
 			{
+				// @ts-ignore
 				return Promise.reject(data);
 			}
 
 			return data;
 		})
 		;
+}
+
+/**
+ * 2017
+ *
+ * @returns {boolean}
+ */
+export function isMaterial()
+{
+	if ($('style[scope="ytd-app"], ytd-app').length)
+	{
+		return true;
+	}
 }
 
 export default exports;
