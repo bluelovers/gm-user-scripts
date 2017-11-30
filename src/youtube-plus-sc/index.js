@@ -15,6 +15,8 @@ module.exports.icon = '';
 
 module.exports.list = [
 	"youtube/2016/my_video.js",
+	"youtube/2016/upload.js",
+	"youtube/2016/watch.js",
 	"youtube/2016.js",
 	"global/script.js"
 ];
@@ -25,13 +27,17 @@ module.exports.list_disable = [];
 module.exports._lib = () =>
 {
 	require('root/src/youtube-plus-sc/youtube/2016/my_video.js');
+	require('root/src/youtube-plus-sc/youtube/2016/upload.js');
+	require('root/src/youtube-plus-sc/youtube/2016/watch.js');
 	require('root/src/youtube-plus-sc/youtube/2016.js');
 	require('root/src/youtube-plus-sc/global/script.js');
 };
 
 module.exports.metadata = {};
 module.exports.metadata.include = [
-	"https://www.youtube.com/my_videos*"
+	"https://www.youtube.com/my_videos*",
+	"http*://www.youtube.com/upload*",
+	"http*://www.youtube.com/watch*"
 ];
 module.exports.metadata.match = [
 	"*://*.youtube.com/*",
@@ -43,7 +49,8 @@ module.exports.metadata.exclude = [
 ];
 module.exports.metadata.grant = [
 	"GM.xmlhttpRequest",
-	"GM_xmlhttpRequest"
+	"GM_xmlhttpRequest",
+	"unsafeWindow"
 ];
 
 module.exports.list_script = [

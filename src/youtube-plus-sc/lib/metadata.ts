@@ -7,7 +7,7 @@ export const desc = '';
 export const grant = [
 	//'GM_registerMenuCommand',
 	'GM_xmlhttpRequest',
-	//'unsafeWindow',
+	'unsafeWindow',
 ];
 
 export const metadata = `// ==UserScript==
