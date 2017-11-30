@@ -48,4 +48,10 @@ export function isMaterial()
 	}
 }
 
+export function yt_token(): string
+{
+	// @ts-ignore
+	return (typeof unsafeWindow !== 'undefined' ? unsafeWindow : window).yt.config_.XSRF_TOKEN;
+}
+
 export default exports;
