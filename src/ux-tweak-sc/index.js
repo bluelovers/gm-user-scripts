@@ -8,6 +8,7 @@ module.exports.name_en = 'ux-tweak-sc';
 module.exports.desc = '';
 module.exports.desc_en = '';
 
+module.exports.namespace = '';
 module.exports.author = '';
 
 module.exports.icon = '';
