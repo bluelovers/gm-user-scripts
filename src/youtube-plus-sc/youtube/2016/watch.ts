@@ -2,6 +2,8 @@
  * Created by user on 2017/12/1/001.
  */
 
+'use strict';
+
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
@@ -11,13 +13,9 @@ declare const unsafeWindow: IWindow;
 declare const $: IJQueryStatic;
 declare const jQuery: IJQueryStatic;
 
-'use strict';
-
 let o: IDemo = {
 
-	//priority: 100,
-
-	//script: true,
+	disable: true,
 
 	metadata: {
 		include: [
