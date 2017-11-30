@@ -21,13 +21,17 @@ let o: IDemo = {
 
 	metadata: {
 		include: [
-			//'http*://www.gamer.com.tw/*',
+			'*://www.youtube.com/*',
+			'*://youtube.com/*',
 		],
 		match: [],
 		nomatch: [],
 		exclude: [
 			'http*://*.youtube.com/embed/*',
 			'http*://*.youtube.com/v/*',
+			'http*://creatoracademy.youtube.com/*',
+			'http*://artists.youtube.com/*',
+			'http*://kids.youtube.com/*',
 		],
 
 		grant: [],
