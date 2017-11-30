@@ -90,7 +90,23 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 			{
 				if (jq.fn[fn])
 				{
-					arr[fn](event);
+					try
+					{
+						arr2[fn](event);
+					}
+					catch (e)
+					{
+						console.error(e);
+					}
+
+					try
+					{
+						arr[fn](event);
+					}
+					catch (e)
+					{
+						console.error(e);
+					}
 				}
 			});
 		}
