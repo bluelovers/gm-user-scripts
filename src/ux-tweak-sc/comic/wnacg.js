@@ -306,7 +306,7 @@ module.exports = {
 				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
 					_img = $(_img_selector)
-						//.parent('div')
+					//.parent('div')
 					;
 
 					let _i = 0;
@@ -374,6 +374,11 @@ module.exports = {
 		}
 		else
 		{
+			$(window).add('body, a, img').on('click', function (event)
+			{
+				event.stopImmediatePropagation();
+			});
+
 			if (_url_obj.path && _url_obj.path.match(/photos-index(?:-page-\d+)?-aid-(\d+)/))
 			{
 				let aid = RegExp.$1;
