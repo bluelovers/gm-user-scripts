@@ -8,6 +8,7 @@ module.exports.name_en = 'esunbank';
 module.exports.desc = '玉山銀行';
 module.exports.desc_en = '玉山銀行';
 
+module.exports.namespace = '';
 module.exports.author = '';
 
 module.exports.icon = '';
