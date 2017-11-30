@@ -32,7 +32,7 @@ module.exports = {
 			.attr('target', '_blank')
 		;
 
-		module.exports.adblock();
+		module.exports.adblock(_url_obj, true);
 
 		const keycodes = require('keycodes');
 		const _uf_done = require('root/lib/event/done');
@@ -446,8 +446,28 @@ module.exports = {
 		}
 	},
 
-	adblock(_url_obj)
+	adblock(_url_obj, bool)
 	{
+		if (bool)
+		{
+			try
+			{
+				unsafeWindow.open = function (url, ...argv)
+				{
+					console.log('window.open', url, ...argv);
+
+					if (url.toString().match(/wnacg/))
+					{
+						return window.open(url, ...argv);
+					}
+				};
+			}
+			catch (e)
+			{
+				console.error(e);
+			}
+		}
+
 		require('root/lib/dom/disable_nocontextmenu')
 			._uf_disable_nocontextmenu2(2, '.gallary_wrap a, body, #bodywrap, a, img, input', {
 				types: [
