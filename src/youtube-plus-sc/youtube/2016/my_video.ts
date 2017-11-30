@@ -249,5 +249,6 @@ export = o as IDemo;
 
 function yt_token(): string
 {
+	// @ts-ignore
 	return unsafeWindow.yt.config_.XSRF_TOKEN;
 }
