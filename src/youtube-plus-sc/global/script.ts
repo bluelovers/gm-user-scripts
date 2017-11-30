@@ -53,6 +53,8 @@ let o: IDemo = {
 
 			'#channel-info',
 			'a[is="yt-endpoint"], .yt-simple-endpoint',
+
+			'#meta-contents a[is="yt-endpoint"], #meta-contents .yt-simple-endpoint',
 		].join(','))
 			.prop('target', '_blank')
 		;
@@ -81,14 +83,13 @@ let o: IDemo = {
 				}))
 			;
 		}
-
-		if (_url_obj.path.match(/\/upload/))
+		else
 		{
-			_uf_dom_filter_link([
-				'a#my_videos',
-			].join(','))
-				.prop('target', '_blank')
-			;
+			// 2017 Material
+
+			$('#masthead-container #end #buttons').prepend(
+				`<a href="/my_videos?o=U" id="my_videos"><button is="paper-icon-button-light" class="style-scope ytd-masthead" aria-label="影片管理員" style="	width: auto;">影片管理員</button></a>`
+			);
 		}
 	},
 
