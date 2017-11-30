@@ -213,7 +213,7 @@ export function get_list_script(uxid: string, index: IIndex, _url_obj: IUrlObjec
 	return list_script;
 }
 
-export async function main(uxid: string, index: IIndex, list, options = {})
+export async function main(uxid: string, index: IIndex, list: string[], options = {})
 {
 	console.time(index.name);
 	console.group(index.name);
@@ -245,6 +245,11 @@ export async function main(uxid: string, index: IIndex, list, options = {})
 		if (_break && !lib.script)
 		{
 			//console.debug(name_id, 'break:script', lib.script);
+			continue;
+		}
+		else if (lib.disable && lib.disable !== true)
+		{
+			console.info(index.id, name_id, `disable = ${lib.disable}, skip this`);
 			continue;
 		}
 		else if (lib.disable)
@@ -335,4 +340,51 @@ export async function main(uxid: string, index: IIndex, list, options = {})
 	// @ts-ignore
 	console.groupEnd(index.name);
 	console.timeEnd(index.name);
+}
+
+export async function main_list(index: IIndex, list: string[], options = {})
+{
+	const uxid = index.id;
+
+	let _break;
+
+	for (let name of list)
+	{
+		const lib = requireScript(uxid, name);
+
+		lib.file = name;
+
+		let name_id = name;
+
+		if (lib.name && lib.name != name_id)
+		{
+			name_id = `${lib.name} - ${name_id}`;
+		}
+
+		name_id = `[${name_id}]`;
+
+		lib.name = lib.name || name;
+		lib.name_id = name_id || lib.name_id || lib.name;
+
+		let ret = true;
+
+		let test;
+		let ret_main;
+
+		CHK:
+		{
+			test = await lib.test(global._url_obj);
+
+			greasemonkey.info(index.id, name_id, 'test', test);
+
+			if (test)
+			{
+				ret_main = await lib.main(global._url_obj);
+
+				greasemonkey.debug(index.id, name_id, 'main', ret_main);
+
+				return lib;
+			}
+		}
+	}
 }
