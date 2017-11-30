@@ -8,6 +8,7 @@ module.exports.name_en = 'gamer-auto-signin';
 module.exports.desc = '巴哈姆特自動簽到';
 module.exports.desc_en = '巴哈姆特自動簽到';
 
+module.exports.namespace = '';
 module.exports.author = '';
 
 module.exports.icon = '';
