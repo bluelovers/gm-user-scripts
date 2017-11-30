@@ -15,7 +15,7 @@ declare const unsafeWindow: IWindow;
 declare const $: IJQueryStatic;
 declare const jQuery: IJQueryStatic;
 
-'use strict';
+"use strict";
 
 let o: IDemo = {
 
