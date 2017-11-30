@@ -62,7 +62,8 @@ module.exports.list = [
 	"content/farm/fun01.cc.js",
 	"novel/syosetu.js",
 	"shop/pchome.js",
-	"shop/post/gov/tw/pstmail.js",
+	"shop/post/kerrytj.js",
+	"shop/post/post/gov/tw/pstmail.js",
 	"shop/yahoo/buy.js",
 	"shop/yahoo/mall.js",
 	"social/facebook.js",
@@ -141,7 +142,8 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc.js');
 	require('root/src/ux-tweak-sc/novel/syosetu.js');
 	require('root/src/ux-tweak-sc/shop/pchome.js');
-	require('root/src/ux-tweak-sc/shop/post/gov/tw/pstmail.js');
+	require('root/src/ux-tweak-sc/shop/post/kerrytj.js');
+	require('root/src/ux-tweak-sc/shop/post/post/gov/tw/pstmail.js');
 	require('root/src/ux-tweak-sc/shop/yahoo/buy.js');
 	require('root/src/ux-tweak-sc/shop/yahoo/mall.js');
 	require('root/src/ux-tweak-sc/social/facebook.js');
@@ -237,6 +239,7 @@ module.exports.metadata.include = [
 	"http*://syosetu.com/*",
 	"http*://ncode.syosetu.com/*",
 	"http*://mall.pchome.com.tw/*",
+	"http://www.kerrytj.com/zh/search/search_track.aspx*",
 	"http://postserv.post.gov.tw/pstmail/main_mail.html*",
 	"http*://tw.buy.yahoo.com/*",
 	"http*://tw.buy.yahoo.com/bestbuy/*",

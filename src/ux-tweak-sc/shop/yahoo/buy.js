@@ -279,10 +279,17 @@ function proctip_post_gov(_url_obj = global._url_obj)
 		.each(function (i, elem)
 		{
 			let _this = $(this);
+			let _href = _this.attr('href');
 
-			if (_this.attr('href').match(/postserv\.post\.gov\.tw\/webpost\/CSController.+(?:MAILNO=(\d+))/))
+			if (_href.match(/postserv\.post\.gov\.tw\/webpost\/CSController.+(?:MAILNO=(\d+))/))
 			{
 				_this.attr('href', `http://postserv.post.gov.tw/pstmail/main_mail.html?MAILNO=${RegExp.$1}`);
+			}
+			else if (_href.match(/www\.tjoin\.com\/search\/stocksearch\.asp/))
+			{
+				_this.text().match(/(\d+)/);
+
+				_this.attr('href', `http://www.kerrytj.com/zh/search/search_track.aspx?trackNo=${RegExp.$1}`);
 			}
 		})
 	;

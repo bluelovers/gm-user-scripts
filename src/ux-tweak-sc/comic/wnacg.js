@@ -206,9 +206,11 @@ module.exports = {
 					;
 			};
 
-			_div_page.on('click', function ()
+			_div_page.on('click', function (event)
 			{
 				window.open(window.location.href.replace(/photos-slide-aid/, 'photos-index-aid'), '_blank');
+
+				_uf_done._uf_done2(event);
 			});
 
 			_img_area
