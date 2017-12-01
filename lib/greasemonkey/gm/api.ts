@@ -3,7 +3,7 @@
  */
 
 /**
- * https://wiki.greasespot.net/Greasemonkey_Manual:API
+ * @see https://wiki.greasespot.net/Greasemonkey_Manual:API
  */
 export interface IGM
 {
@@ -69,10 +69,62 @@ export interface IApi extends IGM
 	unsafeWindow: Window;
 }
 
+export interface ITampermonkeyGM
+{
+	info: ITampermonkeyInfo;
+
+	notification?,
+
+	getTab?,
+	saveTab?,
+	getTabs?,
+
+	download?,
+
+	unregisterMenuCommand?,
+
+	addValueChangeListener?,
+	removeValueChangeListener?,
+}
+
+/**
+ * @see http://tampermonkey.net/documentation.php
+ */
+export interface ITampermonkey
+{
+	GM_info: ITampermonkeyInfo;
+
+	GM_notification?,
+
+	GM_getTab?,
+	GM_saveTab?,
+	GM_getTabs?,
+
+	GM_download?,
+
+	GM_unregisterMenuCommand?,
+
+	GM_addValueChangeListener?,
+	GM_removeValueChangeListener?,
+}
+
+export interface ITampermonkeyInfo extends IInfo
+{
+
+}
+
+export interface IApi extends ITampermonkey, ITampermonkeyGM
+{
+
+}
+
 export interface IApi
 {
 	GMApi: IApi;
 	default: IApi;
+
+	isTampermonkey: boolean;
+	hasGM: boolean;
 
 	_list: string[];
 
@@ -100,13 +152,17 @@ export interface IInfo
 	version?: string;
 
 	[index: string]: any;
+
+	scriptHandler?: string;
 }
 
 namespace _GMApi
 {
 	declare const _GMApi: IApi;
 
-	if (typeof GM !== 'undefined')
+	let _hasGM = typeof GM !== 'undefined';
+
+	if (_hasGM)
 	{
 		Object.keys(GM)
 			.concat([
@@ -156,11 +212,63 @@ namespace _GMApi
 		_GMApi.registerMenuCommand = typeof GM_registerMenuCommand !== 'undefined' ? GM_registerMenuCommand : void(0);
 	}
 
+	let _isTampermonkey = null;
+
+	if (_GMApi.info)
+	{
+		if (!_GMApi.info.scriptHandler)
+		{
+			_isTampermonkey = false;
+		}
+		else if (_GMApi.info.scriptHandler == 'Tampermonkey')
+		{
+			_isTampermonkey = true;
+		}
+		else if (_GMApi.info.scriptHandler == 'Greasemonkey')
+		{
+			_isTampermonkey = false;
+		}
+	}
+	else if (_hasGM)
+	{
+		_isTampermonkey = false;
+	}
+
+	if (!_hasGM)
+	{
+		try
+		{
+			let _a = {
+				GM_notification: GM_notification,
+
+				GM_getTab: GM_getTab,
+				GM_saveTab: GM_saveTab,
+				GM_getTabs: GM_getTabs,
+
+				GM_download: GM_download,
+
+				GM_unregisterMenuCommand: GM_unregisterMenuCommand,
+
+				GM_addValueChangeListener: GM_addValueChangeListener,
+				GM_removeValueChangeListener: GM_removeValueChangeListener,
+			};
+
+			for (let name in _a)
+			{
+				_GMApi[name.replace(/^GM_/, '')] = typeof _a[name] !== 'undefined' ? _a[name] : void(0);
+			}
+		}
+		catch (e)
+		{
+			console.error(e);
+		}
+	}
+
 	let _t_list = [];
 
 	let _t_keys = Object.keys(_GMApi);
 
-	_GMApi.GM = typeof GM !== 'undefined' ? GM : {} as IGM;
+	_GMApi.GM = _hasGM ? GM : {} as IGM;
 
 	_t_keys
 		.forEach(function (value, index, array)
@@ -178,6 +286,8 @@ namespace _GMApi
 	;
 
 	export const _list: string[] = _t_list;
+	export const isTampermonkey = _isTampermonkey;
+	export const hasGM = _hasGM;
 
 	_GMApi.unsafeWindow = typeof unsafeWindow !== 'undefined' ? unsafeWindow : (typeof window !== 'undefined'
 		? window
