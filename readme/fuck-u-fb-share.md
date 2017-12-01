@@ -11,7 +11,7 @@
 請先安裝此瀏覽器附加元件
 
 - Chrome: [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-- Firefox: [Greasemonkey](https://addons.mozilla.org/firefox/addon/greasemonkey/)
+- Firefox: [Greasemonkey](https://addons.mozilla.org/firefox/addon/greasemonkey/) / [Tampermonkey](https://addons.mozilla.org/zh-TW/firefox/addon/tampermonkey/)
 - Firefox mobile: [usi (User|Unified Script Injector)](https://addons.mozilla.org/firefox/addon/userunified-script-injector/)
 
 ### 腳本
@@ -49,6 +49,11 @@
 
 > 目前的解決方式是遇到貼文類型為連結並且有原始文字的貼文<br/>
 > 會使用新版分享方式<br/>
+
+3. 部分使用者使用 Firefox 57 以上版本時可能會發生腳本無法安裝的狀況
+
+> 目前這應該是屬於 Greasemonkey 的 BUG 雖然官方聲稱是火狐的BUG<br/>
+> 但使用 Tampermonkey 的話反而就可以正常安裝腳本
 
 ## 其他腳本
 
