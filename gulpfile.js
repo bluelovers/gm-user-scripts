@@ -524,8 +524,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 							icon: index.icon || 'https://wiki.greasespot.net/favicon.ico',
 
-							desc: index.desc || index.id || '',
-							desc_en: index.desc_en || index.desc || index.id || '',
+							desc: index.desc || index.id + ' ' + (index.author || pkg.author) || '',
+							desc_en: index.desc_en || index.desc || index.id + ' ' + (index.author || pkg.author) || '',
 
 							include: gmMetadata.makeMetaRow('include', index.metadata.include || []),
 							//match: meta_match(index.metadata.include).join("\n// @match		"),
