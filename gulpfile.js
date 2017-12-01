@@ -623,7 +623,7 @@ function webpack_runtime(options, cb)
 		}
 	}
 
-	console.log(config);
+	//console.log(config);
 
 	return config;
 }
