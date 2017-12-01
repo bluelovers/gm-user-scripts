@@ -62,7 +62,7 @@ export interface IApi extends IGM
 
 	GM_log<T>(message: T);
 
-	GM_addStyle(css: string)
+	GM_addStyle(css: string);
 
 	GM_registerMenuCommand(caption: string, commandFunc: Function, accessKey?: string);
 
@@ -94,18 +94,43 @@ export interface ITampermonkey
 {
 	GM_info: ITampermonkeyInfo;
 
-	GM_notification?,
+	GM_openInTab(url: string, loadInBackground?: boolean);
+	GM_openInTab(url: string, options?: any);
 
-	GM_getTab?,
-	GM_saveTab?,
-	GM_getTabs?,
+	GM_notification(text: string, title?: string, image?: string, onclick?);
+	GM_notification(details: {
+		text?: string,
+		title?: string,
+		image?: string,
+		highlight?: boolean,
+		timeout?: number,
+		ondone?,
+		onclick?,
+	}, ondone?);
 
-	GM_download?,
+	GM_getTab(cb);
+	GM_saveTab(tab);
+	GM_getTabs(cb);
 
-	GM_unregisterMenuCommand?,
+	GM_download(url: string, name?: string);
+	GM_download(details: {
+		url: string,
+		name?: string,
+		headers?,
+		saveAs?: boolean,
+		onload?,
+		onerror?,
+	});
 
-	GM_addValueChangeListener?,
-	GM_removeValueChangeListener?,
+	GM_unregisterMenuCommand(menuCmdId);
+
+	GM_addValueChangeListener(name, cb: IGM_addValueChangeListenerFn);
+	GM_removeValueChangeListener(listener_id);
+}
+
+export interface IGM_addValueChangeListenerFn extends Function
+{
+	(name: string, old_value, new_value, remote: boolean);
 }
 
 export interface ITampermonkeyInfo extends IInfo
