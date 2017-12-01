@@ -38,6 +38,8 @@ const addTasks = require('gulp-add-tasks2').init(gulp);
 
 const gmMetadata = require('./lib/greasemonkey/metadata');
 
+const webpackMerge = require('webpack-merge');
+
 //var closureCompiler = require('google-closure-compiler').gulp();
 
 gulp.task("webpack:before", async function (callback)
@@ -389,9 +391,10 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 				let banner = require(path.join(cwd_src, k, 'lib/metadata')).metadata;
 
 				let s = gulp.src(`src/${k}/index.user.js`)
-					.pipe(gulpWebpack(webpack_runtime({}, function (config, options, webpack_config)
-					{
+					.pipe(gulpWebpack(webpack_runtime({
 
+					}, function (config, options, webpack_config)
+					{
 						config.entry = {};
 						config.entry[`${k}.user`] = `./src/${k}/index.user.js`;
 
@@ -445,23 +448,27 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 							return false;
 						};
 
-						config.plugins = [
-							new webpack.ProvidePlugin({
-								$: 'jquery',
-								jQuery: 'jquery',
-								greasemonkey: 'root/lib/greasemonkey/uf',
-							}),
+						if (0)
+						{
+							config.plugins = [
+								new webpack.ProvidePlugin({
+									$: 'jquery',
+									jQuery: 'jquery',
+									greasemonkey: 'root/lib/greasemonkey/uf',
+								}),
 
-							new webpack.IgnorePlugin(/\.(txt|ts)$/),
+								new webpack.IgnorePlugin(/\.(txt|ts)$/),
 
-							/*
-							new webpack.optimize.UglifyJsPlugin({
-								//comments: false,
-							}),
-							*/
-						];
+								/*
+								new webpack.optimize.UglifyJsPlugin({
+									//comments: false,
+								}),
+								*/
+							];
+						}
 
-						let myIgnorePlugin = new webpack.IgnorePlugin(/\.\/dmm-plus-sc|\.js$/, /ux-tweak-sc[\/\\]+src/);
+						//let myIgnorePlugin = new webpack.IgnorePlugin(/\.\/dmm-plus-sc|\.js$/, /ux-tweak-sc[\/\\]+src/);
+						let myIgnorePlugin = new webpack.IgnorePlugin(new RegExp(`(\\.|src)\\/${k}`), /ux-tweak-sc[\/\\]+src/);
 
 						myIgnorePlugin.checkResource = function (resource)
 						{
@@ -500,7 +507,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 							return bool;
 						};
 
-						myIgnorePlugin.resourceRegExp = new RegExp(`(\\.|src)\\/${k}`);
+						//myIgnorePlugin.resourceRegExp = new RegExp(`(\\.|src)\\/${k}`);
 						config.plugins.push(myIgnorePlugin);
 
 					}), webpack, function (err, stats)
@@ -595,11 +602,16 @@ function meta_inlude_match(includes, matchs)
 	let a2 = [];
 }
 
-let webpack_config = Object.assign({}, clone(require('./webpack.config'), true));
+//let webpack_config = Object.assign({}, clone(require('./webpack.config'), true));
 
 function webpack_runtime(options, cb)
 {
-	let config = Object.assign({}, webpack_config, options);
+	let webpack_config = requireAgain('./webpack.config');
+
+	//let config = Object.assign({}, webpack_config, options);
+	let config = webpackMerge(webpack_config, options);
+
+	//console.log(config);
 
 	if (cb)
 	{
@@ -611,7 +623,7 @@ function webpack_runtime(options, cb)
 		}
 	}
 
-	//console.log(config);
+	console.log(config);
 
 	return config;
 }
@@ -635,4 +647,16 @@ async function get_userscript_list()
 	//console.log(ls);
 
 	return ls;
+}
+
+function requireAgain(name)
+{
+	let path = require.resolve(name);
+
+	if (path in require.cache)
+	{
+		delete require.cache[path];
+	}
+
+	return require(path);
 }
