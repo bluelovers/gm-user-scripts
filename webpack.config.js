@@ -9,8 +9,8 @@ const path = require('path');
 
 module.exports = {
 	entry: {
-		"ux-tweak-sc.user": './src/ux-tweak-sc.user.js',
-		"dmm-plus-sc.user": './src/dmm-plus-sc.user.js',
+		//"ux-tweak-sc.user": './src/ux-tweak-sc.user.js',
+		//"dmm-plus-sc.user": './src/dmm-plus-sc.user.js',
 	},
 	output: {
 		pathinfo: true,
@@ -59,6 +59,8 @@ module.exports = {
 			jQuery: 'jquery',
 			greasemonkey: 'root/lib/greasemonkey/uf',
 		}),
+
+		new webpack.IgnorePlugin(/\.(txt|ts)$/),
 
 		//new webpack.optimize.UglifyJsPlugin(),
 
