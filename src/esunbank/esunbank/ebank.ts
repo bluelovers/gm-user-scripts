@@ -122,9 +122,9 @@ let o: IDemo = {
 					}
 					else if (_text)
 					{
-						_do = true;
+						//_do = true;
 
-						_cache_.total_will_pay += parseInt(_text);
+						//_cache_.total_will_pay += parseInt(_text);
 					}
 					else if (_m = _lt.text().match(/未到期金額(\d+)元/))
 					{
@@ -144,7 +144,7 @@ let o: IDemo = {
 					return $('<table/>')
 						.addClass('mb5')
 						.css('width', $(this).css('width'))
-						.append(`<td class="_uf_fcm" width="25%">下期估算應付帳款<br/>${_cache_.next_pay}</td>`)
+						.append(`<td class="_uf_fcm" width="25%">下期起始應付帳款<br/>${_cache_.next_pay}</td>`)
 						.append(`<td class="_uf_fcm_red" width="25%">總估算（含分期）<br/>${_cache_.total_will_pay}</td>`)
 						.append(`<td width="75%"></td>`)
 						;
