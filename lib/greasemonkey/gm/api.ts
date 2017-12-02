@@ -95,9 +95,11 @@ export interface ITampermonkey
 	GM_info: ITampermonkeyInfo;
 
 	GM_openInTab(url: string, loadInBackground?: boolean);
+
 	GM_openInTab(url: string, options?: any);
 
 	GM_notification(text: string, title?: string, image?: string, onclick?);
+
 	GM_notification(details: {
 		text?: string,
 		title?: string,
@@ -109,10 +111,13 @@ export interface ITampermonkey
 	}, ondone?);
 
 	GM_getTab(cb);
+
 	GM_saveTab(tab);
+
 	GM_getTabs(cb);
 
 	GM_download(url: string, name?: string);
+
 	GM_download(details: {
 		url: string,
 		name?: string,
@@ -125,6 +130,7 @@ export interface ITampermonkey
 	GM_unregisterMenuCommand(menuCmdId);
 
 	GM_addValueChangeListener(name, cb: IGM_addValueChangeListenerFn);
+
 	GM_removeValueChangeListener(listener_id);
 }
 
@@ -215,26 +221,55 @@ namespace _GMApi
 	}
 	else
 	{
-		_GMApi.info = typeof GM_info !== 'undefined' ? GM_info : void(0);
-		_GMApi.deleteValue = typeof GM_deleteValue !== 'undefined' ? GM_deleteValue : void(0);
-		_GMApi.getValue = typeof GM_getValue !== 'undefined' ? GM_getValue : void(0);
-		_GMApi.listValues = typeof GM_listValues !== 'undefined' ? GM_listValues : void(0);
-		_GMApi.setValue = typeof GM_setValue !== 'undefined' ? GM_setValue : void(0);
+		let _a = [
+			'GM_info',
+
+			'GM_deleteValue',
+			'GM_getValue',
+			'GM_listValues',
+
+			'GM_openInTab',
+
+			'GM_setClipboard',
+
+			'GM_xmlhttpRequest',
+			'GM_getResourceText',
+
+			'GM_log',
+
+			'GM_addStyle',
+			'GM_registerMenuCommand',
+		];
+
+		for (let name of _a)
+		{
+			let fn = eval(`(typeof ${name} !== 'undefined') ? ${name} : void(0)`);
+
+			_GMApi[name.replace(/^GM_/, '')] = fn;
+
+			//console.log(name, fn);
+		}
+
+		//_GMApi.info = typeof GM_info !== 'undefined' ? GM_info : void(0);
+		//_GMApi.deleteValue = typeof GM_deleteValue !== 'undefined' ? GM_deleteValue : void(0);
+		//_GMApi.getValue = typeof GM_getValue !== 'undefined' ? GM_getValue : void(0);
+		//_GMApi.listValues = typeof GM_listValues !== 'undefined' ? GM_listValues : void(0);
+		//_GMApi.setValue = typeof GM_setValue !== 'undefined' ? GM_setValue : void(0);
 		_GMApi.getResourceUrl = (
 			// @ts-ignore
 			typeof GM_getResourceUrl !== 'undefined' ? GM_getResourceUrl : (
 				typeof GM_getResourceURL !== 'undefined' ? GM_getResourceURL : void(0)
 			))
 		;
-		_GMApi.openInTab = typeof GM_openInTab !== 'undefined' ? GM_openInTab : void(0);
-		_GMApi.setClipboard = typeof GM_setClipboard !== 'undefined' ? GM_setClipboard : void(0);
-		_GMApi.xmlhttpRequest = typeof GM_xmlhttpRequest !== 'undefined' ? GM_xmlhttpRequest : void(0);
+		//_GMApi.openInTab = typeof GM_openInTab !== 'undefined' ? GM_openInTab : void(0);
+		//_GMApi.setClipboard = typeof GM_setClipboard !== 'undefined' ? GM_setClipboard : void(0);
+		//_GMApi.xmlhttpRequest = typeof GM_xmlhttpRequest !== 'undefined' ? GM_xmlhttpRequest : void(0);
 
-		_GMApi.getResourceText = typeof GM_getResourceText !== 'undefined' ? GM_getResourceText : void(0);
-		_GMApi.log = typeof GM_log !== 'undefined' ? GM_log : void(0);
-		_GMApi.addStyle = typeof GM_addStyle !== 'undefined' ? GM_addStyle : void(0);
+		//_GMApi.getResourceText = typeof GM_getResourceText !== 'undefined' ? GM_getResourceText : void(0);
+		//_GMApi.log = typeof GM_log !== 'undefined' ? GM_log : void(0);
+		//_GMApi.addStyle = typeof GM_addStyle !== 'undefined' ? GM_addStyle : void(0);
 
-		_GMApi.registerMenuCommand = typeof GM_registerMenuCommand !== 'undefined' ? GM_registerMenuCommand : void(0);
+		//_GMApi.registerMenuCommand = typeof GM_registerMenuCommand !== 'undefined' ? GM_registerMenuCommand : void(0);
 	}
 
 	let _isTampermonkey = null;
@@ -263,24 +298,28 @@ namespace _GMApi
 	{
 		try
 		{
-			let _a = {
-				GM_notification: GM_notification,
+			let _a = [
+				'GM_notification',
 
-				GM_getTab: GM_getTab,
-				GM_saveTab: GM_saveTab,
-				GM_getTabs: GM_getTabs,
+				'GM_getTab',
+				'GM_saveTab',
+				'GM_getTabs',
 
-				GM_download: GM_download,
+				'GM_download',
 
-				GM_unregisterMenuCommand: GM_unregisterMenuCommand,
+				'GM_unregisterMenuCommand',
 
-				GM_addValueChangeListener: GM_addValueChangeListener,
-				GM_removeValueChangeListener: GM_removeValueChangeListener,
-			};
+				'GM_addValueChangeListener',
+				'GM_removeValueChangeListener',
+			];
 
-			for (let name in _a)
+			for (let name of _a)
 			{
-				_GMApi[name.replace(/^GM_/, '')] = typeof _a[name] !== 'undefined' ? _a[name] : void(0);
+				let fn = eval(`(typeof ${name} !== 'undefined') ? ${name} : void(0)`);
+
+				_GMApi[name.replace(/^GM_/, '')] = fn;
+
+				//console.log(name, fn);
 			}
 		}
 		catch (e)

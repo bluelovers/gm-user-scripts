@@ -284,12 +284,14 @@ module.exports.metadata.grant = [
 	"GM.listValues",
 	"GM.registerMenuCommand",
 	"GM.setValue",
+	"GM.unregisterMenuCommand",
 	"GM.xmlhttpRequest",
 	"GM_deleteValue",
 	"GM_getValue",
 	"GM_listValues",
 	"GM_registerMenuCommand",
 	"GM_setValue",
+	"GM_unregisterMenuCommand",
 	"GM_xmlhttpRequest",
 	"unsafeWindow"
 ];

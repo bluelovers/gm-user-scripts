@@ -10,8 +10,6 @@ declare const global: IGlobal;
 
 let o: IDemo = {
 
-	//priority: 100,
-
 	metadata: {
 		include: [
 			'http*://www.gamer.com.tw/*',
@@ -22,6 +20,12 @@ let o: IDemo = {
 		],
 		nomatch: [],
 		exclude: [],
+
+		grant: [
+			'GM_xmlhttpRequest',
+			'GM_getValue',
+			'GM_setValue',
+		],
 	},
 
 	test(_url_obj = global._url_obj)
@@ -46,26 +50,53 @@ let o: IDemo = {
 			}, 1000);
 		}));
 
+		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
+
 		let _a;
+
+		let _ok = false;
 
 		if (_url_obj.host.match(/www\.gamer\.com\.tw/) && (_a = $('.BA-left #signin-btn[onclick]'), _a.length))
 		{
 			_a[0].click();
+
+			GMApi.setValue('timestamp', Date.now());
 		}
 		else if (_a && _a.length)
 		{
 			console.log('已經簽到過', _a);
+
+			GMApi.setValue('timestamp', Date.now());
 		}
 		else
 		{
-			const signin = require('root/lib/site/gamer/signin').default;
+			let t = GMApi.getValue('timestamp', 0);
+			let _do = false;
 
-			await signin()
-				.catch((err) =>
-				{
-					console.error('[簽到錯誤]', err);
-				})
-			;
+			if ((Date.now() - t) >= (10 * 60 * 1000))
+			{
+				_do = true;
+			}
+			else
+			{
+				console.info('[距離上次簽到]', (Date.now() - t) / 1000);
+			}
+
+			if (_do)
+			{
+				const signin = require('root/lib/site/gamer/signin').default;
+
+				await signin()
+					.catch((err) =>
+					{
+						console.error('[簽到錯誤]', err);
+					})
+					.then(function ()
+					{
+						GMApi.setValue('timestamp', Date.now());
+					})
+				;
+			}
 		}
 	},
 
@@ -83,8 +114,6 @@ let o: IDemo = {
 				//
 			].join())
 		;
-
-		//_dom.remove();
 
 		return _dom;
 	},
