@@ -226,6 +226,7 @@ namespace _GMApi
 
 			'GM_deleteValue',
 			'GM_getValue',
+			'GM_setValue',
 			'GM_listValues',
 
 			'GM_openInTab',
