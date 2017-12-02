@@ -128,6 +128,19 @@ export function lazyMetaFix(meta: IParseMetadata): IParseMetadata
 				'getResourceUrl',
 				'getResourceURL',
 			],
+			[
+				'getTab',
+				'saveTab',
+				'getTabs',
+			],
+			[
+				'addValueChangeListener',
+				'removeValueChangeListener',
+			],
+			[
+				'registerMenuCommand',
+				'unregisterMenuCommand',
+			],
 			/*
 			'info',
 			'openInTab',
@@ -136,7 +149,6 @@ export function lazyMetaFix(meta: IParseMetadata): IParseMetadata
 			'getResourceText',
 			'log',
 			'addStyle',
-			'registerMenuCommand',
 			*/
 		].forEach(function (_a)
 		{
