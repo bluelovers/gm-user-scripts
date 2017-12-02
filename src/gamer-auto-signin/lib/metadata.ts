@@ -7,6 +7,7 @@ export const desc = '巴哈姆特自動簽到';
 export const grant = [
 	'GM_registerMenuCommand',
 	'GM_xmlhttpRequest',
+	'GM_getValue',
 ];
 
 export const metadata = `// ==UserScript==
