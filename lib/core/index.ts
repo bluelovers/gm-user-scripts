@@ -371,6 +371,7 @@ export async function main_list(index: IIndex, list: string[], options = {})
 		let test;
 		let ret_main;
 
+		// @ts-ignore
 		CHK:
 		{
 			test = await lib.test(global._url_obj);
