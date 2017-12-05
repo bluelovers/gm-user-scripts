@@ -44,7 +44,7 @@ let o: IDemo = {
 	{
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
-			//
+			'#sort_div_p a',
 		].join(','))
 			.prop('target', '_blank')
 		;
@@ -81,7 +81,7 @@ let o: IDemo = {
 			, BACKGROUND_COLOR: '#D3D3D3'
 			, TOOLBAR_VISIBLE: true
 			, AUTO_VERTICAL_WRITING: true
-		}
+		};
 
 		let novelConfig = {
 			line: 31,
@@ -98,10 +98,7 @@ let o: IDemo = {
 
 		if (chapter_contents_first.length)
 		{
-			$(`
-<link rel="stylesheet" _href="//fonts.googleapis.com/earlyaccess/cwtexyen.css"/>
-<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanssc.css"/>
-`)
+			$(`<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanssc.css"/>`)
 				.appendTo('body')
 			;
 
@@ -147,13 +144,9 @@ let o: IDemo = {
 			// @ts-ignore
 			let pages_count = unsafeWindow.g_chapter_pages_count;
 
-			console.log(pages_count);
+			//console.log(pages_count);
 
-			$('<div id="full_contents"/>').insertBefore(chapter_contents_first);
-
-			let full_contents = $('#full_contents');
-
-			full_contents.wrap('<div id="full_contents_wrap"/>');
+			let full_contents = $('<div id="full_contents"/>');
 
 			if (pages_count > 1)
 			{
@@ -162,7 +155,7 @@ let o: IDemo = {
 
 				let pa = [];
 
-				pa.push(Promise.resolve($('#chapter_contents_first').html()));
+				pa.push(Promise.resolve(chapter_contents_first.html()));
 
 				// @ts-ignore
 				for (let i in unsafeWindow.g_chapter_pages_url)
@@ -206,6 +199,85 @@ let o: IDemo = {
 				full_contents.html(chapter_contents_first.html())
 			}
 
+			if (!full_contents.text().replace(/[\s\r\n　]+/ig, ''))
+			{
+				if (full_contents.find('img').length > 0)
+				{
+					chapter_contents_first.html(full_contents.html());
+				}
+
+				return;
+			}
+
+			full_contents
+				.insertBefore(chapter_contents_first)
+				.wrap('<div id="full_contents_wrap"/>')
+			;
+
+			{
+				let novelText = require('root/lib/novel/text').enspace.create();
+
+				let _elem = full_contents
+					.find('*')
+				;
+
+				full_contents
+					.add(_elem)
+					.contents()
+					.filter(function ()
+					{
+						return this.nodeType === 3 && this.nodeValue && this.nodeValue.replace(/[\s\r\n　]+/ig, '');
+					})
+					.each(function (index, elem)
+					{
+						let _this = $(this);
+
+						let _t = novelText.replace(_this.text(), {
+							words: true,
+						});
+
+						if (this.nodeValue != _t)
+						{
+							//console.debug(this, _t);
+
+							this.nodeValue = _t;
+						}
+					})
+				;
+
+				if (_elem.length == 1)
+				{
+					console.log('將純文字內容修正為 HTML');
+
+					full_contents.children().html(function (i, old)
+					{
+						return novelText
+							.clearLF(old)
+							.replace(/\n/g, '<br/>')
+						;
+					});
+				}
+				else
+				{
+					full_contents.find('p').html(function (i, old)
+					{
+						return old
+							.replace(/^\n(.)/g, '$1')
+							.replace(/^\s*(&nbsp;)+\s*/g, '')
+							;
+					});
+
+					full_contents.html(function (i, old)
+					{
+						return old
+							.replace(/<\/p>(\s*<p>\s*<\/p>\s*)+<p>/g, '</p><p></p><p>')
+							;
+					});
+				}
+
+				console.debug(novelText._cache_);
+			}
+
 			$('#full_contents_wrap').siblings().not('.tit, h1, #full_contents_wrap, #full_contents').hide();
 
 			const comic_style = require('root/lib/comic/style');
@@ -229,7 +301,7 @@ let o: IDemo = {
 
 			p_all = Math.ceil(full_contents[0].scrollHeight / p_h);
 
-			console.log(p_all, full_contents[0].scrollHeight, full_contents[0].scrollHeight / p_h);
+			//console.log(p_all, full_contents[0].scrollHeight, full_contents[0].scrollHeight / p_h);
 
 			//let h = Math.floor((p_all * full_contents.height()) - full_contents[0].scrollHeight - 1);
 			let h = (novelConfig.lineHeight * novelConfig.line * p_all) - full_contents[0].scrollHeight;
@@ -323,11 +395,11 @@ let o: IDemo = {
 
 							_uf_done(event);
 
-							console.log(p_now);
+							//console.log(p_now);
 
 							p_now = p_now + 1;
 
-							console.log(p_now, full_contents.scrollTop());
+							//console.log(p_now, full_contents.scrollTop());
 
 							full_contents
 								.scrollTop((p_now * p_h))
