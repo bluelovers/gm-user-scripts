@@ -43,6 +43,7 @@ module.exports = {
 
 	//devtool: "inline-source-map",
 	devtool: "eval",
+	//devtool: false,
 
 	plugins: [
 //		new ClosureCompilerPlugin({
@@ -62,7 +63,8 @@ module.exports = {
 
 		new webpack.IgnorePlugin(/\.(txt|ts)$/),
 
-		//new webpack.optimize.UglifyJsPlugin(),
+		//new webpack.optimize.ModuleConcatenationPlugin(),
+		new webpack.optimize.UglifyJsPlugin(),
 
 	],
 
