@@ -52,4 +52,6 @@
 !/test/**/*.test.ts
 /src/ux-tweak-sc/shop/post/kerrytj.js
 !/test/_local-dev.ts
-/lib/site/youtube/index.js
+/lib/site/youtube/*.js
+/lib/novel/*.js
+/lib/comic/*.js
