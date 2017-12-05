@@ -73,7 +73,7 @@ export function auto(url: string, self: IDemo, options = {})
 
 	if (!ret && (self.metadata.match && self.metadata.match.length))
 	{
-		ret = matchChrome(url, self.metadata.match);
+		ret = !!matchChrome(url, self.metadata.match);
 	}
 
 	return ret;
