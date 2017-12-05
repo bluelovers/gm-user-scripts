@@ -42,6 +42,7 @@
 /lib/func/array/unique.js
 /src/esunbank/**/*.js
 /src/youtube-plus-sc/**/*.js
+/src/novel-plus-sc/**/*.js
 !/src/**/index.js
 /global.ts
 /@types/global.ts
