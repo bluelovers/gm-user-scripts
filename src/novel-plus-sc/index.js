@@ -14,7 +14,8 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
-	"site/dmzj.js"
+	"site/dmzj.js",
+	"site/syosetu.js"
 ];
 
 module.exports.list_disable = [];
@@ -23,6 +24,7 @@ module.exports.list_disable = [];
 module.exports._lib = () =>
 {
 	require('root/src/novel-plus-sc/site/dmzj.js');
+	require('root/src/novel-plus-sc/site/syosetu.js');
 };
 
 module.exports.metadata = {};
@@ -30,7 +32,8 @@ module.exports.metadata.include = [
 	"http*://q.dmzj.com/*"
 ];
 module.exports.metadata.match = [
-	"*://q.dmzj.com/*"
+	"*://q.dmzj.com/*",
+	"*://*.syosetu.com/*"
 ];
 module.exports.metadata.exclude = [];
 module.exports.metadata.grant = [
