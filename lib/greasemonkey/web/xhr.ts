@@ -75,7 +75,7 @@ export class GMXMLHttpRequest implements IGMXMLHttpRequest
 
 			if (!(key in t))
 			{
-				if (this[key] instanceof Function)
+				if (typeof this[key] == 'function')
 				{
 					t[key] = function (xhr)
 					{
@@ -89,7 +89,7 @@ export class GMXMLHttpRequest implements IGMXMLHttpRequest
 			}
 		}
 
-		console.log(t);
+		//console.log(t);
 
 		this._xhr = GM_xmlhttpRequest(t as GMXMLHttpRequestOptions);
 	}
