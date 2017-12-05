@@ -5,6 +5,7 @@
 'use strict';
 
 import * as userScriptCore from 'root/lib/core';
+// @ts-ignore
 import * as index from './index';
 
 module.exports.id = index.id;
