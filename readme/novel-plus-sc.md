@@ -25,7 +25,7 @@
 
 3. 修正字詞
 
-目前修正的字詞內容請參考 [..\lib\novel\text.ts](..\lib\novel\text.ts)
+目前修正的字詞內容請參考 [text.ts](https://github.com/bluelovers/gm-user-scripts/blob/master/lib/novel/text.ts)
 
 歡迎補充更多字詞判定 [issues](https://github.com/bluelovers/gm-user-scripts/issues)
 
