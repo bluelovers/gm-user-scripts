@@ -16,6 +16,7 @@ module.exports.icon = '';
 module.exports.list = [
 	"site/baidu/tieba.js",
 	"site/dmzj.js",
+	"site/gamer/home.js",
 	"site/syosetu.js"
 ];
 
@@ -26,6 +27,7 @@ module.exports._lib = () =>
 {
 	require('root/src/novel-plus-sc/site/baidu/tieba.js');
 	require('root/src/novel-plus-sc/site/dmzj.js');
+	require('root/src/novel-plus-sc/site/gamer/home.js');
 	require('root/src/novel-plus-sc/site/syosetu.js');
 };
 
@@ -36,6 +38,7 @@ module.exports.metadata.include = [
 module.exports.metadata.match = [
 	"*://tieba.baidu.com/*",
 	"*://q.dmzj.com/*",
+	"*://home.gamer.com.tw/creationDetail.php*",
 	"*://*.syosetu.com/*"
 ];
 module.exports.metadata.exclude = [];
