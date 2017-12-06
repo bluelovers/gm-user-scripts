@@ -1,5 +1,5 @@
 /**
- * Created by user on 2017/12/5/005.
+ * Created by user on 2017/12/6/006.
  */
 
 "use strict";
@@ -16,11 +16,9 @@ declare const jQuery: IJQueryStatic;
 let o: IDemo = {
 
 	metadata: {
-		include: [
-
-		],
+		include: [],
 		match: [
-			'*://tieba.baidu.com/*',
+			'*://book.sfacg.com/Novel/*',
 		],
 		nomatch: [],
 		exclude: [],
@@ -53,50 +51,12 @@ let o: IDemo = {
 
 		greasemonkey
 			.GM_addStyle([
-				`.d_post_content, .core_title_txt, .threadlist_title { 
+				`#ChapterBody { 
 				font-family: Consolas, Noto Sans SC, Microsoft Yahei UI, sans-serif; 
-				text-shadow: 0 0.5px 0 rgba(228, 228, 228, 0.8), 0 0 1px rgba(0, 0, 0, 0.75); 
+				text-shadow: 0 0.5px 0 rgba(228, 228, 228, 0.8), 0 0 1px rgba(0, 0, 0, 0.75);
 				}`,
-				`.d_post_content { line-height: 1.4em; }`,
-			])
-		;
-
-		let novelText = require('root/lib/novel/text').enspace.create();
-
-		$('.d_post_content')
-			.each(function ()
-			{
-				let _this = $(this);
-
-				if (_this.find('br').length >= 10 && !_this.html().match(/<br\/?>\s*<br\/?>/i))
-				{
-					_this.find('br').after('<br/>');
-				}
-
-				_this
-					.find('*')
-					.addBack()
-					.contents()
-					// @ts-ignore
-					.filter(function ()
-					{
-						return this.nodeType === 3 && this.nodeValue && this.nodeValue.replace(/[\s\r\n　]+/ig, '');
-					})
-					.each(function (index, elem)
-					{
-						let _this = $(this);
-
-						let _t = novelText.replace(_this.text(), {
-							words: true,
-						});
-
-						if (this.nodeValue != _t)
-						{
-							this.nodeValue = _t;
-						}
-					})
-				;
-			})
+				//`#ChapterBody, .article-wrap .article-content p { line-height: 1.25em; }`,
+			], 'body')
 		;
 	},
 
