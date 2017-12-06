@@ -1,23 +1,17 @@
 # gm-user-scripts
 
-各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
+> 各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
 
 ## install
 
-### 腳本管理器
-
-- Chrome: [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-- Firefox: [Greasemonkey](https://addons.mozilla.org/firefox/addon/greasemonkey/)
-- Firefox mobile: [usi (User|Unified Script Injector)](https://addons.mozilla.org/firefox/addon/userunified-script-injector/) 
+1. 請參閱 [安裝需求](userscript.md)
 
 ### 腳本
 
-#### ux-tweak-sc
+* [ux-tweak-sc](reademe/ux-tweak-sc.md)
 
-安裝連結 [ux-tweak-sc.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/ux-tweak-sc.user.js)
+* [novel-plus-sc](reademe/novel-plus-sc.md)
 
-![https://share.dmhy.org](readme/dmhy001.jpg)
+* [fuck-u-fb-share](reademe/fuck-u-fb-share.md)
 
-![https://share.dmhy.org](readme/dmhy002.jpg)
-
-old version: https://gist.github.com/bluelovers/5186199
+* [其他](dist/)
