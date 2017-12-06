@@ -14,6 +14,8 @@ export interface IGreasemonkey
 	log(any: any, ...argv);
 	error(any: any, ...argv);
 
+	addStylesheet(url, head?);
+
 	default: IGreasemonkey;
 }
 
@@ -35,6 +37,18 @@ export function GM_addStyle(css: string | string[], head?)
 	}
 
 	return greasemonkey.GM_addStyle(css.toString(), head);
+}
+
+export function addStylesheet(url, head?)
+{
+	if (typeof url === 'object' && url.webfont)
+	{
+		url = url.webfont;
+	}
+
+	return $(`<link rel="stylesheet" href="${url.toString()}"/>`)
+		.appendTo(head || $('header, body').eq(0))
+	;
 }
 
 export function debug(any: any, ...argv)
