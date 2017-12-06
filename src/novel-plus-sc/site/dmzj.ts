@@ -267,6 +267,7 @@ let o: IDemo = {
 				full_contents
 					.add(_elem)
 					.contents()
+					// @ts-ignore
 					.filter(function ()
 					{
 						return this.nodeType === 3 && this.nodeValue && this.nodeValue.replace(/[\s\r\n　]+/ig, '');
@@ -318,10 +319,10 @@ let o: IDemo = {
 					});
 				}
 
-				console.debug(novelText._cache_);
+				console.debug(novelText._data_.words, novelText._cache_);
 			}
 
-			$('#full_contents_wrap').siblings().not('.tit, h1, #full_contents_wrap, #full_contents').hide();
+			$('#full_contents_wrap, #full_contents').siblings().not('.tit, h1, #full_contents_wrap, #full_contents').hide();
 
 			const comic_style = require('root/lib/comic/style');
 
