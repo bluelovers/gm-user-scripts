@@ -32,7 +32,7 @@ let o = {
 
 	font_style: {
 		fontSize: 14,
-		fontFamily: `Consolas, ${font.NotoSansSC.name}, Microsoft Yahei UI, sans-serif`,
+		fontFamily: `Consolas, ${font.NotoSansSC.name}, ${font.NotoSansTC.name}, Microsoft Yahei UI, sans-serif`,
 		'text-shadow': '0 0.5px 0 rgba(228, 228, 228, 0.8), 0 0 1px rgba(0, 0, 0, 0.75)',
 	},
 
