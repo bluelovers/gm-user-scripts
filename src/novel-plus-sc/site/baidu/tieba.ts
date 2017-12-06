@@ -42,14 +42,9 @@ let o: IDemo = {
 
 	async main(_url_obj = global._url_obj)
 	{
-		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
-		_uf_dom_filter_link([
-			//
-		].join(','))
-			.prop('target', '_blank')
-		;
-
 		greasemonkey.addStylesheet(require('root/lib/comic/font').font.NotoSansSC);
+		//greasemonkey.addStylesheet(require('root/lib/comic/font').font.NotoSansTC);
+
 		greasemonkey
 			.GM_addStyle([
 				`.d_post_content, .core_title_txt, .threadlist_title { 
