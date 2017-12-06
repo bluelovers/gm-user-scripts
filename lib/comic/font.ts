@@ -6,6 +6,16 @@ export const font = {
 
 	NotoSansSC: {
 		name: 'Noto Sans SC',
+		webfont: '//fonts.googleapis.com/earlyaccess/notosanssc.css',
+	},
+
+	NotoSansTC: {
+		name: 'Noto Sans TC',
+		webfont: '//fonts.googleapis.com/earlyaccess/notosanstc.css',
+	},
+
+	cwtexyen: {
+		name: 'cwtexyen',
 		webfont: '//fonts.googleapis.com/earlyaccess/cwtexyen.css',
 	},
 
