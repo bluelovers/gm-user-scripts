@@ -2,7 +2,7 @@
  * Created by user on 2017/8/6/006.
  */
 
-export const desc = 'novel';
+export const desc = '部分小說網站重新排版、修正文字，改變閱讀樣式';
 
 export const grant = [
 	//'GM_registerMenuCommand',
