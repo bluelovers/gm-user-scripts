@@ -98,9 +98,13 @@ let o: IDemo = {
 
 		if (chapter_contents_first.length)
 		{
+			/*
 			$(`<link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosanssc.css"/>`)
 				.appendTo('body')
 			;
+			*/
+
+			greasemonkey.addStylesheet(require('root/lib/comic/font').font.NotoSansSC);
 
 			greasemonkey.GM_addStyle([
 				//`@import url(//fonts.googleapis.com/earlyaccess/cwtexyen.css);`,
@@ -139,6 +143,17 @@ let o: IDemo = {
 				}`,
 				`body, body.light_on { background-color: #e6d7bd !important; color: #131d24; }`,
 				`body.light_off { background-color: #4f535b !important; color: rgb(221, 221, 221); }`,
+				`.vertical-container, .divimage {
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}`,
+				`.divimage { width: 100%; height: 100%; }`,
+
+				`#page_contents img, .divimage, .divimage * { margin: 0 !important; padding: 0 !important; border-width: 0; outline-width: 0; }`,
 			]);
 
 			// @ts-ignore
@@ -197,6 +212,34 @@ let o: IDemo = {
 			else
 			{
 				full_contents.html(chapter_contents_first.html())
+			}
+
+			let _img = full_contents.find('img');
+
+			if (_img.length)
+			{
+				chapter_contents_first
+					.find('img')
+					.add(_img)
+					.each(function (index, elem)
+					{
+						let _this = $(elem);
+
+						if (!_this.parents('.divimage').length)
+						{
+							if (_this.parent().is('a'))
+							{
+								_this.parent().wrap('<div class="divimage"></div>');
+							}
+							else
+							{
+								_this.wrap(`<div class="divimage"><a href="${_this.attr('src')}" target="_blank"/></div>`);
+							}
+						}
+					})
+				;
+
+				$('.divimage a').attr('target', '_blank');
 			}
 
 			if (!full_contents.text().replace(/[\s\r\n　]+/ig, ''))
@@ -296,7 +339,6 @@ let o: IDemo = {
 			let p_h = novelConfig.lineHeight * novelConfig.line;
 
 			let _div_padding = $('<div/>')
-				.appendTo(full_contents)
 			;
 
 			p_all = Math.ceil(full_contents[0].scrollHeight / p_h);
@@ -309,6 +351,15 @@ let o: IDemo = {
 			_div_padding
 				.height(h)
 			;
+
+			if (full_contents.find('.divimage, img').length)
+			{
+				_div_padding.insertBefore(_img.add('.divimage').eq(0));
+			}
+			else
+			{
+				_div_padding.appendTo(full_contents);
+			}
 
 			const throttle = require('throttle-debounce/throttle');
 
