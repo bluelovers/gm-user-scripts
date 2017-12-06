@@ -65,7 +65,7 @@ export class enspace
 	{
 		let _self = this;
 
-		let r = '(?:\@|（·）|\-|\/|\\\(\\\)|%|￥)';
+		let r = '(?:\@|（·）|\-|\/|\\\(\\\)|%|￥|_)';
 
 		[
 			'怀@孕',
@@ -84,6 +84,7 @@ export class enspace
 			'麻@痹',
 			'绝@望',
 			'魔@手',
+			'代@价',
 		]
 			.concat(options && options.words_block ? options.words_block : null)
 			.filter(function (el, index, arr)
