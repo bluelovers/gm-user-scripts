@@ -35,23 +35,44 @@ export class enspace
 
 				no_regex: true,
 			},
+			{
+				s: '果#_@_#体',
+				r: '裸体',
+			},
+			{
+				s: '绝@望#的￥魔%手',
+				r: '绝望的魔手',
+
+				no_regex: true,
+			},
+			{
+				s: /\?([一二三四五六七八九十零]式)/g,
+				r: '·$1',
+			},
+			{
+				s: '，”',
+				r: '”',
+
+				no_regex: true,
+			},
+
 		]
 
 	};
 	public options = {};
 
-	constructor()
+	constructor(options?)
 	{
 		let _self = this;
 
-		let r = '(?:\@|（·）)';
+		let r = '(?:\@|（·）|\-|\/|\\\(\\\)|%|￥)';
 
 		[
 			'怀@孕',
 			'傻@瓜',
 			'禁@书',
 			'妊@娠',
-			'肉@身',
+			'肉@(?:身|体)',
 			'呻@吟',
 			'翻@弄',
 			'做@爱',
@@ -60,15 +81,25 @@ export class enspace
 			'骨@悚',
 			'悚@然',
 			'艳@丽',
-		].forEach(function (value)
-		{
-			let a = value.split('@');
+			'麻@痹',
+			'绝@望',
+			'魔@手',
+		]
+			.concat(options && options.words_block ? options.words_block : null)
+			.filter(function (el, index, arr)
+			{
+				return el && (index == arr.indexOf(el));
+			})
+			.forEach(function (value)
+			{
+				let a = value.split('@');
 
-			_self._data_.words.push({
-				s: new RegExp(`(${a[0]})${r}(${a[1]})`, 'g'),
-				r: '$1$2',
-			});
-		});
+				_self._data_.words.push({
+					s: new RegExp(`(${a[0]})${r}(${a[1]})`, 'g'),
+					r: '$1$2',
+				});
+			})
+		;
 
 		this._data_.words.map(function (value, index, array)
 		{
@@ -197,7 +228,7 @@ export class enspace
 			.replace(/[ 　]+\n/g, '\n')
 			.replace(/\n{4,}/g, '\n\n')
 			.replace(/\n{3,}/g, '\n\n')
-		;
+			;
 	}
 }
 

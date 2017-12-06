@@ -45,7 +45,7 @@ module.exports = {
 					case keycodes('pageup'):
 					case keycodes('left'):
 
-						var _a = $('.pagination-default a.prev');
+						var _a = $('.pagination-default a.prev, .pagination-default a.pre');
 
 						if (_a.length)
 						{
@@ -130,12 +130,18 @@ module.exports = {
 	},
 };
 
-function sign(_url_obj = global._url_obj)
+async function sign(_url_obj = global._url_obj)
 {
+	const Promise = require('bluebird');
+
+	await Promise.delay(1000);
+
 	let a = $('#sign_mod #signstar_wrapper a.j_cansign');
 
 	if (a.length)
 	{
+		a[0].click();
+		await Promise.delay(500);
 		a[0].click();
 
 		return true;
