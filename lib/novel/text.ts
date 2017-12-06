@@ -10,23 +10,92 @@ export class enspace
 	};
 	public _data_ = {
 		m0: /([^a-z0-9\-\.\s])?([a-z0-9\-\.]+(?:[a-z0-9\-\.\s]+[a-z0-9\-\.]+)?)([^a-z0-9\-\.\s])?/uig,
-		r1: /[「」\'\":\-\+（）\(\)\[\]【】《》～“”‘’:：：，*＊@。ω・、。`　─一\d『』◆~、？！\?\!×\.\<\>=…]/i,
+		r1: /[「」①→\'\":\-\+（）\(\)\[\]■【】《》～“”‘’:：：，*＊@。ω・、。`　─一\d『』◆~、？！\?\!×\.\<\>=…]/i,
 
 		rtrim: /[ 　]+$/,
 
 		words: [
+			/*
 			{
 				s: '（·）',
 				r: '',
 			},
+			*/
 			{
 				s: /\.{3}/g,
 				r: '…',
+			},
+			{
+				s: '(.)（·）(.)',
+				r: '$1$2',
+			},
+			{
+				s: '毛@骨@悚@然',
+				r: '毛骨悚然',
+
+				no_regex: true,
 			},
 		]
 
 	};
 	public options = {};
+
+	constructor()
+	{
+		let _self = this;
+
+		let r = '(?:\@|（·）)';
+
+		[
+			'怀@孕',
+			'傻@瓜',
+			'禁@书',
+			'妊@娠',
+			'肉@身',
+			'呻@吟',
+			'翻@弄',
+			'做@爱',
+			'射@出',
+			'毛@骨',
+			'骨@悚',
+			'悚@然',
+			'艳@丽',
+		].forEach(function (value)
+		{
+			let a = value.split('@');
+
+			_self._data_.words.push({
+				s: new RegExp(`(${a[0]})${r}(${a[1]})`, 'g'),
+				r: '$1$2',
+			});
+		});
+
+		this._data_.words.map(function (value, index, array)
+		{
+			// @ts-ignore
+			if (value.no_regex)
+			{
+				return value;
+			}
+
+			if (typeof value.s == 'string' && (value.s as string).match(/^(.+)#_@_#(.+)$/))
+			{
+				// @ts-ignore
+				value._source = value.s;
+
+				value.s = new RegExp((RegExp.$1 + r + RegExp.$2), 'g');
+			}
+			else if (typeof value.s == 'string')
+			{
+				// @ts-ignore
+				value._source = value.s;
+
+				value.s = new RegExp(value.s, 'g');
+			}
+
+			return value;
+		});
+	}
 
 	static create(...argv)
 	{
@@ -74,7 +143,7 @@ export class enspace
 						//console.debug([old, argv[2]], argv);
 					}
 
-					return (argv[1] || '') + argv[2] + (argv[3] || '');
+					return (argv[1] || '') + argv[2].replace(/( ){2,}/g, '$1') + (argv[3] || '');
 				}
 
 				return argv[0];
@@ -82,11 +151,12 @@ export class enspace
 			.replace(_self._data_.rtrim, '')
 		;
 
+		// @ts-ignore
 		if (options.words)
 		{
 			for (let i in _self._data_.words)
 			{
-				let _r = (_self._data_.words[i].s instanceof RegExp) ? _self._data_.words[i].s : new RegExp(_self._data_.words[i].s, 'g');
+				let _r = _self._data_.words[i].s;
 
 				let _new = _ret.replace(_r, _self._data_.words[i].r);
 
