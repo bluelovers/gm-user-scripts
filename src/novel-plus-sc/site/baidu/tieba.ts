@@ -68,13 +68,21 @@ let o: IDemo = {
 
 				if (_this.find('br').length >= 10)
 				{
-					//console.log(_this.find('br'));
-
 					let html = _this.html();
 
 					if (!html.match(/<br\/?>\s*<br\/?>/i))
 					{
 						_this.find('br').after('<br/>');
+					}
+					else if (html.split(/(<br\s*\/?>\s*<br\s*\/?>\s*)/ig).length <= 3)
+					{
+						_this.find('br').after('<br/>');
+
+						html = _this.html()
+							.replace(/(<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>(?:\s*<br\s*\/?>)*)/ig, '<br><br><br>')
+						;
+
+						_this.html(html);
 					}
 					else if (html.split(/(<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>)/ig).length >= 10)
 					{
