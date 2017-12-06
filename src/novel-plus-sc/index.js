@@ -14,6 +14,7 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
+	"site/baidu/tieba.js",
 	"site/dmzj.js",
 	"site/syosetu.js"
 ];
@@ -23,6 +24,7 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
+	require('root/src/novel-plus-sc/site/baidu/tieba.js');
 	require('root/src/novel-plus-sc/site/dmzj.js');
 	require('root/src/novel-plus-sc/site/syosetu.js');
 };
@@ -32,6 +34,7 @@ module.exports.metadata.include = [
 	"http*://q.dmzj.com/*"
 ];
 module.exports.metadata.match = [
+	"*://tieba.baidu.com/*",
 	"*://q.dmzj.com/*",
 	"*://*.syosetu.com/*"
 ];
