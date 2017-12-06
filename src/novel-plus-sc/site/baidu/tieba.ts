@@ -57,7 +57,7 @@ let o: IDemo = {
 				font-family: Consolas, Noto Sans SC, Microsoft Yahei UI, sans-serif; 
 				text-shadow: 0 0.5px 0 rgba(228, 228, 228, 0.8), 0 0 1px rgba(0, 0, 0, 0.75); 
 				}`,
-				`.d_post_content { line-height: 1.25em; }`,
+				`.d_post_content { line-height: 1.4em; }`,
 			])
 		;
 
