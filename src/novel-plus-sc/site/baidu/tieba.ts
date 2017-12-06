@@ -50,32 +50,51 @@ let o: IDemo = {
 		;
 
 		greasemonkey.addStylesheet(require('root/lib/comic/font').font.NotoSansSC);
-
 		greasemonkey
 			.GM_addStyle([
 				`.d_post_content, .core_title_txt, .threadlist_title { 
 				font-family: Consolas, Noto Sans SC, Microsoft Yahei UI, sans-serif; 
 				text-shadow: 0 0.5px 0 rgba(228, 228, 228, 0.8), 0 0 1px rgba(0, 0, 0, 0.75); 
 				}`,
-				`.d_post_content { line-height: 1.4em; }`,
+				`.d_post_content { line-height: 1.45em; }`,
 			])
 		;
+
+		const Promise = require('bluebird');
+		await Promise.delay(500);
 
 		let novelText = require('root/lib/novel/text').enspace.create();
 
 		$('.d_post_content')
+			.add('h3.core_title_txt')
 			.each(function ()
 			{
 				let _this = $(this);
 
-				if (_this.find('br').length >= 10 && !_this.html().match(/<br\/?>\s*<br\/?>/i))
+				if (_this.find('br').length >= 10)
 				{
-					_this.find('br').after('<br/>');
+					//console.log(_this.find('br'));
+
+					let html = _this.html();
+
+					if (!html.match(/<br\/?>\s*<br\/?>/i))
+					{
+						_this.find('br').after('<br/>');
+					}
+					else if (html.split(/(<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>)/ig).length >= 10)
+					{
+						html = html
+							.replace(/(<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>)/ig, '<br><br>')
+						;
+
+						_this.html(html);
+					}
 				}
 
 				_this
 					.find('*')
 					.addBack()
+					.not('.core_title_txt a')
 					.contents()
 					// @ts-ignore
 					.filter(function ()
@@ -98,6 +117,8 @@ let o: IDemo = {
 				;
 			})
 		;
+
+		console.debug(novelText._data_.words, novelText._cache_);
 	},
 
 	adblock(_url_obj = global._url_obj)
@@ -111,7 +132,6 @@ let o: IDemo = {
 
 		_dom = _dom
 			.add([
-				//
 			].join())
 		;
 
