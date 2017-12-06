@@ -17,6 +17,7 @@ module.exports.list = [
 	"site/baidu/tieba.js",
 	"site/dmzj.js",
 	"site/gamer/home.js",
+	"site/sfacg/book.js",
 	"site/syosetu.js"
 ];
 
@@ -28,6 +29,7 @@ module.exports._lib = () =>
 	require('root/src/novel-plus-sc/site/baidu/tieba.js');
 	require('root/src/novel-plus-sc/site/dmzj.js');
 	require('root/src/novel-plus-sc/site/gamer/home.js');
+	require('root/src/novel-plus-sc/site/sfacg/book.js');
 	require('root/src/novel-plus-sc/site/syosetu.js');
 };
 
@@ -39,6 +41,7 @@ module.exports.metadata.match = [
 	"*://tieba.baidu.com/*",
 	"*://q.dmzj.com/*",
 	"*://home.gamer.com.tw/creationDetail.php*",
+	"*://book.sfacg.com/Novel/*",
 	"*://*.syosetu.com/*"
 ];
 module.exports.metadata.exclude = [];
