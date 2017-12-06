@@ -27,6 +27,6 @@
 
 目前修正的字詞內容請參考 [..\lib\novel\text.ts](..\lib\novel\text.ts)
 
-歡迎補充更多字詞判定
+歡迎補充更多字詞判定 [issues](https://github.com/bluelovers/gm-user-scripts/issues)
 
 4. 中英文之間追加空格
