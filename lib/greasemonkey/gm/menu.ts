@@ -4,7 +4,7 @@
 
 'use strict';
 
-import GMApi from './gm/api';
+import GMApi from './api';
 
 const Map_registerMenuCommand = new Map();
 
