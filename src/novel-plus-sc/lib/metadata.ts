@@ -5,9 +5,10 @@
 export const desc = '部分小說網站重新排版、修正文字，改變閱讀樣式';
 
 export const grant = [
-	//'GM_registerMenuCommand',
+	'GM_registerMenuCommand',
 	'GM_xmlhttpRequest',
 	'unsafeWindow',
+	'GM_getValue',
 ];
 
 export const metadata = `// ==UserScript==
