@@ -2,6 +2,10 @@
  * Created by user on 2017/12/5/005.
  */
 
+import * as AFHConvert from 'ascii-fullwidth-halfwidth-convert';
+
+export const AFH = new AFHConvert();
+
 export class enspace
 {
 	public _cache_ = {
@@ -59,6 +63,7 @@ export class enspace
 
 				no_regex: true,
 			},
+			/*
 			{
 				s: /(第)(?:[\_\t\uFEFF\xA0　]+)(\d+)(?:[\_\t\uFEFF\xA0　]+)(话|頁|夜|章)/g,
 				r: '$1 $2 $3',
@@ -70,6 +75,29 @@ export class enspace
 			{
 				s: /(第)(?:[\_\t\uFEFF\xA0　]+)(\d+)(?:[\_\t\uFEFF\xA0　]+)?(话|頁|夜|章)/g,
 				r: '$1 $2 $3',
+			},
+			*/
+			{
+				s: /(第)([\_\t\uFEFF\xA0　 \d０１２３４５６７８９]+)(话|頁|夜|章|集)/g,
+				r: function ($0, $1, $2, $3)
+				{
+					$2 = AFH.toHalfWidth($2);
+
+					let m;
+					if (m = $2.match(/^(\D+)?(.+)(\D+)?$/))
+					{
+						let s = ((m[1] || m[3]) ? ' ' : '');
+						let $2 = m[2].replace(/[^\d]+/ig, '');
+
+						if ($2)
+						{
+							$2 = s + $2 + s;
+							return $1 + $2 + $3;
+						}
+					}
+
+					return $0;
+				},
 			},
 			{
 				s: /(话|日|章)[\_\t\uFEFF\xA0]+/ig,
@@ -87,6 +115,18 @@ export class enspace
 				s: '$1',
 			},
 			*/
+			{
+				s: /(\?\?)[ \t　]+(\?\?)/ig,
+				r: '$1$2',
+			},
+			{
+				s: /「([^「『』」]+)?『([^\n』]+)」([^「『』」]+)?』/,
+				r: '「$1『$2』$3」',
+			},
+			{
+				s: /『([^「『』」]+)?「([^\n」]+)』([^「『』」]+)?」/,
+				r: '『$1「$2」$3』',
+			},
 		]
 
 	};
