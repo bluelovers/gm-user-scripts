@@ -14,7 +14,7 @@ export class enspace
 	};
 	public _data_ = {
 		m0: /([^a-z0-9\-\.\s])?([a-z0-9\-\.]+(?:[a-z0-9\-\.\s]+[a-z0-9\-\.]+)?)([^a-z0-9\-\.\s])?/uig,
-		r1: /[「」①→\'\":\-\+（）╮（╯＿╰）╭\(\)\[\]■【】《》~～“”‘’:：：，*＊@。ω・、。`　─一\d『』◆~、？！\?\!×\.\<\>=…]/i,
+		r1: /[「」①→\'\":\-\+（）╮（╯＿╰）╭\(\)\[\]■【】《》~～“”‘’:：：，*＊@。ω・、。`　─一\d『』◆~、？！\?\!×\.\<\>=…・]/i,
 
 		rtrim: /[ \t\uFEFF\xA0　]+$/,
 
@@ -38,31 +38,34 @@ export class enspace
 				r: '$1$2',
 			},
 			{
-				s: '毛@骨@悚@然',
-				r: '毛骨悚然',
-
-				no_regex: true,
-			},
-			{
 				s: '果#_@_#体',
 				r: '裸体',
 			},
 			{
-				s: '绝@望#的￥魔%手',
-				r: '绝望的魔手',
+				s: /，([”』」])/,
+				r: '$1',
 
-				no_regex: true,
+				//no_regex: true,
 			},
 			{
-				s: /\?([一二三四五六七八九十零]式)/g,
-				r: '·$1',
+				s: '·',
+				r: '・',
+
+				//no_regex: true,
 			},
 			{
-				s: '，”',
-				r: '”',
+				s: /零·年/ig,
+				r: '零・年',
 
-				no_regex: true,
+				//no_regex: true,
 			},
+			{
+				s: /[·\?]([一二三四五六七八九十][式年型])/ig,
+				r: '・$1',
+
+				//no_regex: true,
+			},
+
 			/*
 			{
 				s: /(第)(?:[\_\t\uFEFF\xA0　]+)(\d+)(?:[\_\t\uFEFF\xA0　]+)(话|頁|夜|章)/g,
@@ -107,7 +110,7 @@ export class enspace
 				s: '！　',
 				r: '！',
 
-				no_regex: true,
+				no_regex: false,
 			},
 			/*
 			{
@@ -127,6 +130,14 @@ export class enspace
 				s: /『([^「『』」]+)?「([^\n」]+)』([^「『』」]+)?」/,
 				r: '『$1「$2」$3』',
 			},
+			{
+				s: /情\s*se\s*小说/ig,
+				r: '情色小说',
+			},
+			{
+				s: /^([^「『“”』」]+)?(“)([^「『“”』」]+)[』」]([^”]+)?$/m,
+				r: '$1$2$3”$4',
+			},
 		]
 
 	};
@@ -136,10 +147,11 @@ export class enspace
 	{
 		let _self = this;
 
-		let r = '(?:\@|（·）|\-|\/|\\\(\\\)|%|￥|_|\\\?|\\\||#)';
+		let r = '(?:\@|（·）|\-|\/|\\\(\\\)|%|￥|_|\\\?|\\\||#|\\\$)';
 
 		[
 			'绝@望@的@魔@手',
+			'毛@骨@悚@然',
 			'怀@孕',
 			'傻@瓜',
 			'禁@书',
@@ -157,7 +169,7 @@ export class enspace
 			'绝@望',
 			'魔@手',
 			'代@价',
-			'零@年',
+			'防@卫@战',
 		]
 			.concat(options && options.words_block ? options.words_block : null)
 			.filter(function (el, index, arr)
@@ -230,41 +242,6 @@ export class enspace
 
 		let _ret = text
 			.toString()
-			.replace(_self._data_.m0, function (...argv)
-			{
-				if (argv[2])
-				{
-					let old = argv[2];
-
-					if (argv[2].length > 1 && argv[1] && !_self._data_.r1.test(argv[1]))
-					{
-						argv[2] = ' ' + argv[2];
-					}
-
-					if (argv[3] && !_self._data_.r1.test(argv[3]))
-					{
-						argv[2] = argv[2] + ' ';
-					}
-
-					if (old != argv[2])
-					{
-						_self._cache_.replace.push({
-							old: old,
-							new: argv[2],
-
-							data: argv,
-						});
-					}
-					else
-					{
-						//console.debug([old, argv[2]], argv);
-					}
-
-					return (argv[1] || '') + argv[2].replace(/( ){2,}/g, '$1') + (argv[3] || '');
-				}
-
-				return argv[0];
-			})
 			.replace(_self._data_.rtrim, '')
 		;
 
@@ -303,7 +280,52 @@ export class enspace
 			}
 		}
 
+		_ret = this.paddingEng(_ret);
+
 		return _ret;
+	}
+
+	paddingEng(text: string)
+	{
+		let _self = this;
+
+		return text
+			.replace(_self._data_.m0, function (...argv)
+			{
+				if (argv[2])
+				{
+					let old = argv[2];
+
+					if (argv[2].length > 1 && argv[1] && !_self._data_.r1.test(argv[1]))
+					{
+						argv[2] = ' ' + argv[2];
+					}
+
+					if (argv[3] && !_self._data_.r1.test(argv[3]))
+					{
+						argv[2] = argv[2] + ' ';
+					}
+
+					if (old != argv[2])
+					{
+						_self._cache_.replace.push({
+							old: old,
+							new: argv[2],
+
+							data: argv,
+						});
+					}
+					else
+					{
+						//console.debug([old, argv[2]], argv);
+					}
+
+					return (argv[1] || '') + argv[2].replace(/( ){2,}/g, '$1') + (argv[3] || '');
+				}
+
+				return argv[0];
+			})
+		;
 	}
 
 	clearLF(text: string)
