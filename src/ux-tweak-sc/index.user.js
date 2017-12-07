@@ -60,7 +60,7 @@ function _init(uxid, exports, global, window, $jq, _url)
 
 function _init_gm()
 {
-	const UF = require('root/lib/greasemonkey/gm');
+	const UF = require('root/lib/greasemonkey/gm/menu');
 
 	UF.registerMenuCommand({
 		id: module.exports.name,

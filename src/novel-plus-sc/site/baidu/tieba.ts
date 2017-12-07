@@ -16,9 +16,7 @@ declare const jQuery: IJQueryStatic;
 let o: IDemo = {
 
 	metadata: {
-		include: [
-
-		],
+		include: [],
 		match: [
 			'*://tieba.baidu.com/*',
 		],
@@ -58,6 +56,12 @@ let o: IDemo = {
 		const Promise = require('bluebird');
 		await Promise.delay(500);
 
+		await module.exports.adblock(_url_obj);
+
+	},
+
+	adblock(_url_obj = global._url_obj)
+	{
 		let novelText = require('root/lib/novel/text').enspace.create();
 
 		$('.d_post_content')
@@ -65,29 +69,56 @@ let o: IDemo = {
 			.each(function ()
 			{
 				let _this = $(this);
+				let _br = _this.find('br');
 
-				if (_this.find('br').length >= 10)
+				let html = _this.html();
+
+				if (_br.length >= 10 || (_br.length == 0 && html.match(/\n/)))
 				{
-					let html = _this.html();
+					html = trimHtml(html);
 
-					if (!html.match(/<br\/?>\s*<br\/?>/i))
+					if (!html.match(/<br>/) && html.match(/\n/))
 					{
-						_this.find('br').after('<br/>');
-					}
-					else if (html.split(/(<br\s*\/?>\s*<br\s*\/?>\s*)/ig).length <= 3)
-					{
-						_this.find('br').after('<br/>');
+						// 隱藏功能: 將純文字內容轉為HTML
 
-						html = _this.html()
-							.replace(/(<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>(?:\s*<br\s*\/?>)*)/ig, '<br><br><br>')
+						html = html
+							.replace(/[ \t　\r]+(\n)/ig, '$1')
+							.replace(/([^「」【】《》『』（）])\n([「」【】《》『』（）])/ig, '$1\n\n$2')
+							.replace(/([「」【】《》『』（）―])\n([^「」【】《》（）『』])/ig, '$1\n\n$2')
+							.replace(/([^「」【】《》『』（）])\n([「」（）【】《》『』])/ig, '$1\n\n$2')
+							.replace(/(）)\n([「」【】《》『』])/ig, '$1\n\n$2')
+							.replace(/\n{3,}/ig, "\n\n")
+							.replace(/\n/g, '<br>')
+							.replace(/\n/g, '<br>')
 						;
 
 						_this.html(html);
 					}
-					else if (html.split(/(<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>)/ig).length >= 10)
+
+					if (!html.match(/<br><br>/i))
 					{
+						// 修正無段落
+						_this.find('br').after('<br>');
+					}
+					else if (_br.length >= (2 * 4 * 3) && html.split(/(?:<br><br>)/ig).length <= 4)
+					{
+						// 增加分行
+						_this.find('br').after('<br>');
+
+						html = _this.html();
+						html = trimHtml(html);
+
 						html = html
-							.replace(/(<br\s*\/?>\s*<br\s*\/?>\s*<br\s*\/?>)/ig, '<br><br>')
+							.replace(/(<br>\s*<br\s*\/?>\s*(?:<br\s*\/?>\s*)+)/ig, '<br><br><br>')
+						;
+
+						_this.html(html);
+					}
+					else if (html.split(/(<br><br><br>)/ig).length >= (1 || 10))
+					{
+						// 減少分行
+						html = html
+							.replace(/(<br><br><br>)/ig, '<br><br>')
 						;
 
 						_this.html(html);
@@ -124,18 +155,12 @@ let o: IDemo = {
 		console.debug(novelText._data_.words, novelText._cache_);
 	},
 
-	adblock(_url_obj = global._url_obj)
-	{
-
-	},
-
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
 		let _dom = $(_dom_list);
 
 		_dom = _dom
-			.add([
-			].join())
+			.add([].join())
 		;
 
 		return _dom;
@@ -145,3 +170,15 @@ let o: IDemo = {
 
 export = o as IDemo;
 
+function trimHtml(html): string
+{
+	return html
+		.toString()
+		.replace(/^\s+/, '')
+		.replace(/<br(?:\s+\/?|\s*\/)>/ig, '<br>')
+		.replace(/<br>\s*<br>/ig, '<br><br>')
+		.replace(/<br>\s*<br>/ig, '<br><br>')
+		.replace(/\s*(?:\<br\>)+\s*$/ig, '')
+		.replace(/\s*(?:\<br\>)+\s*$/ig, '')
+		;
+}

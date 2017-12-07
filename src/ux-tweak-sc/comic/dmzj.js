@@ -264,7 +264,7 @@ module.exports = {
 						break;
 					case keycodes('pageup'):
 					//case keycodes('left'):
-						var _a = $('#center_box .img_land_prev, .wrap .pages > a:eq(1), .comic_wraCon .img_land_prev, #page_id .next');
+						var _a = $('#center_box .img_land_prev, .wrap .pages > a:eq(1), .comic_wraCon .img_land_prev, #page_id .prev');
 
 						if (_page_select.length
 							&& _page_select.val() == _page_select.find('option').eq(0).val()
