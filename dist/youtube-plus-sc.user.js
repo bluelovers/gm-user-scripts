@@ -9,7 +9,7 @@
 // @description:en	youtube-plus-sc bluelovers
 // @description:zh	youtube-plus-sc bluelovers
 //
-// @version		4.1.6
+// @version		4.1.7
 //
 // @grant		GM.xmlhttpRequest
 // @grant		GM_xmlhttpRequest
