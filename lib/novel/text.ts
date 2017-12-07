@@ -12,7 +12,7 @@ export class enspace
 		m0: /([^a-z0-9\-\.\s])?([a-z0-9\-\.]+(?:[a-z0-9\-\.\s]+[a-z0-9\-\.]+)?)([^a-z0-9\-\.\s])?/uig,
 		r1: /[「」①→\'\":\-\+（）╮（╯＿╰）╭\(\)\[\]■【】《》~～“”‘’:：：，*＊@。ω・、。`　─一\d『』◆~、？！\?\!×\.\<\>=…]/i,
 
-		rtrim: /[ 　]+$/,
+		rtrim: /[ \t\uFEFF\xA0　]+$/,
 
 		words: [
 			/*
@@ -24,6 +24,10 @@ export class enspace
 			{
 				s: /\.{3}/g,
 				r: '…',
+			},
+			{
+				s: /…\.{1,2}/g,
+				r: '……',
 			},
 			{
 				s: '(.)（·）(.)',
@@ -55,7 +59,34 @@ export class enspace
 
 				no_regex: true,
 			},
+			{
+				s: /(第)(?:[\_\t\uFEFF\xA0　]+)(\d+)(?:[\_\t\uFEFF\xA0　]+)(话|頁|夜|章)/g,
+				r: '$1 $2 $3',
+			},
+			{
+				s: /(第)(?:[\_\t\uFEFF\xA0　]+)?(\d+)(?:[\_\t\uFEFF\xA0　]+)(话|頁|夜|章)/g,
+				r: '$1 $2 $3',
+			},
+			{
+				s: /(第)(?:[\_\t\uFEFF\xA0　]+)(\d+)(?:[\_\t\uFEFF\xA0　]+)?(话|頁|夜|章)/g,
+				r: '$1 $2 $3',
+			},
+			{
+				s: /(话|日|章)[\_\t\uFEFF\xA0]+/ig,
+				r: '$1 ',
+			},
+			{
+				s: '！　',
+				r: '！',
 
+				no_regex: true,
+			},
+			/*
+			{
+				r: /([「」【】《》『』（）])/ig,
+				s: '$1',
+			},
+			*/
 		]
 
 	};
@@ -65,9 +96,10 @@ export class enspace
 	{
 		let _self = this;
 
-		let r = '(?:\@|（·）|\-|\/|\\\(\\\)|%|￥|_)';
+		let r = '(?:\@|（·）|\-|\/|\\\(\\\)|%|￥|_|\\\?|\\\||#)';
 
 		[
+			'绝@望@的@魔@手',
 			'怀@孕',
 			'傻@瓜',
 			'禁@书',
@@ -85,6 +117,7 @@ export class enspace
 			'绝@望',
 			'魔@手',
 			'代@价',
+			'零@年',
 		]
 			.concat(options && options.words_block ? options.words_block : null)
 			.filter(function (el, index, arr)
@@ -95,9 +128,21 @@ export class enspace
 			{
 				let a = value.split('@');
 
+				/*
 				_self._data_.words.push({
 					s: new RegExp(`(${a[0]})${r}(${a[1]})`, 'g'),
 					r: '$1$2',
+				});
+				*/
+
+				let s = a.join(`)${r}(`);
+
+				_self._data_.words.push({
+					s: new RegExp(`(${s})`, 'g'),
+					r: a.map(function (value, index, array)
+					{
+						return '$' + (index + 1);
+					}).join(''),
 				});
 			})
 		;
