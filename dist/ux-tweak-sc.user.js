@@ -4,7 +4,7 @@
 //
 // @description	各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作 並且適合搭配 Scrapbook 擷取內容
 //
-// @version		4.1.4
+// @version		4.1.6
 //
 // @grant		GM.deleteValue
 // @grant		GM.getValue
