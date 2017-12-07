@@ -46,12 +46,24 @@ let o: IDemo = {
 		greasemonkey
 			.GM_addStyle([
 				`.d_post_content, .core_title_txt, .threadlist_title { 
-				font-family: Consolas, Noto Sans SC, Microsoft Yahei UI, sans-serif; 
+				font-family: Consolas, Noto Sans SC, Noto Sans CJK SC, Noto Sans CJK, Microsoft Yahei UI, sans-serif; 
 				text-shadow: 0 0.5px 0 rgba(228, 228, 228, 0.8), 0 0 1px rgba(0, 0, 0, 0.75); 
 				}`,
 				`.d_post_content { line-height: 1.45em; }`,
+				`.d_post_content { color: #131d24; }`,
 			])
 		;
+
+		if ($('.p_postlist').length)
+		{
+			greasemonkey
+				.GM_addStyle([
+					`.l_post_bright, .skin_normal .wrap1, .pb_content { background: #e6d7bd; }`,
+					`.d_post_content_main { background: transparent; }`,
+					`.core_title_wrap_bright { background: #fff9; }`,
+				])
+			;
+		}
 
 		const Promise = require('bluebird');
 		await Promise.delay(500);
@@ -85,31 +97,95 @@ let o: IDemo = {
 
 						html = html
 							.replace(/[ \t　\r]+(\n)/ig, '$1')
+							/*
 							.replace(/([^「」【】《》『』（）“”])\n([“”「」【】《》『』（）])/ig, '$1\n\n$2')
 							.replace(/([「」【】《》『』（）“”―])\n([^“”「」【】《》（）『』])/ig, '$1\n\n$2')
 							.replace(/([^「」【】《》『』（）“”])\n([“”「」（）【】《》『』])/ig, '$1\n\n$2')
 							.replace(/(）)\n([「」【】“”《》『』])/ig, '$1\n\n$2')
 							.replace(/\n{3,}/ig, "\n\n")
 							.replace(/\n/g, '<br>')
+							*/
 							.replace(/\n/g, '<br>')
 						;
 
 						_this.html(html);
+						_br = _this.find('br');
 					}
 
-					if (!html.match(/<br><br>/i))
+					if (1 || !html.match(/<br><br>/i))
 					{
 						// 修正無段落
 						//_this.find('br').after('<br>');
 
-						html = html.replace(/([^「」【】《》“”『』（）])<br>([「」“”【】《》『』（）])/ig, '$1<br><br>$2')
-							.replace(/([「」【】《》“”『』（）―])<br>([^「」“”【】《》（）『』])/ig, '$1<br><br>$2')
-							.replace(/([^「」“”【】《》『』（）])<br>([“”「」（）【】《》『』])/ig, '$1<br><br>$2')
-							.replace(/(）)<br>([「」【】《》『』“”])/ig, '$1<br><br>$2')
-							.replace(/(<br>){3,}/ig, "<br><br>")
+						// 修正段落
+						html = html
+							.replace(/\r\n|\r|\n/g, '')
+							.replace(/<br>/ig, "\n")
+							.replace(/[ 　\t]+\n/g, "\n")
+							.replace(/^[\s]+|[\s　]+$/g, '')
+							.replace(/\n{4,}/g, "\n\n\n\n")
+						;
+
+						if (!html.match(/[^\n]\n[^\n]/g))
+						{
+							let len = 1;
+
+							//console.log(html);
+
+							if (/\n\n\n/g.test(html))
+							{
+								//console.log(777);
+
+								if (/[^\n]\n\n[^\n]/g.test(html))
+								{
+									//console.log(888);
+								}
+								else
+								{
+									//console.log(999);
+
+									html = html
+										.replace(/\n{2}/g, "")
+									;
+								}
+
+								html = html
+									.replace(/\n{3,}/g, "\n\n\n")
+									.replace(/\n{2}/g, "\n")
+								;
+							}
+							else
+							{
+								//console.log(666);
+
+								html = html
+									.replace(/\n{3,}/g, "\n\n\n")
+									.replace(/\n\n/g, "\n")
+								;
+							}
+
+							//console.log(html);
+						}
+
+						html = html
+							.replace(/([^\n「」【】《》“”『』（）])\n([「」“”【】《》『』（）])/ug, "$1\n\n$2")
+
+							.replace(/([「」【】《》“”『』（）―])\n([^\n「」“”【】《》（）『』])/ug, "$1\n\n$2")
+							.replace(/([^\n「」【】《》“”『』（）])\n([「」“”（）【】《》『』])/ug, "$1\n\n$2")
+
+							.replace(/([「」【】《》“”『』（）―])\n([^\n「」“”【】《》（）『』])/ug, "$1\n\n$2")
+
+							.replace(/(）)\n([「」【】《》『』“”])/ug, "$1\n\n$2")
+						;
+
+						html = html
+							.replace(/(\n){4,}/g, "\n\n\n\n")
+							.replace(/(\n){3}/g, "\n\n")
+							.replace(/\n/g, '<br>')
 						;
 
 						_this.html(html);
+						_br = _this.find('br');
 					}
 					else if (_br.length >= (2 * 4 * 3) && html.split(/(?:<br><br>)/ig).length <= 4)
 					{
