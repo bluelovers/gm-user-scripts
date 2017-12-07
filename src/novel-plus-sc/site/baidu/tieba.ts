@@ -73,6 +73,8 @@ let o: IDemo = {
 
 				let html = _this.html();
 
+				_this.data('html-source', html);
+
 				if (_br.length >= 10 || (_br.length == 0 && html.match(/\n/)))
 				{
 					html = trimHtml(html);
@@ -83,10 +85,10 @@ let o: IDemo = {
 
 						html = html
 							.replace(/[ \t　\r]+(\n)/ig, '$1')
-							.replace(/([^「」【】《》『』（）])\n([「」【】《》『』（）])/ig, '$1\n\n$2')
-							.replace(/([「」【】《》『』（）―])\n([^「」【】《》（）『』])/ig, '$1\n\n$2')
-							.replace(/([^「」【】《》『』（）])\n([「」（）【】《》『』])/ig, '$1\n\n$2')
-							.replace(/(）)\n([「」【】《》『』])/ig, '$1\n\n$2')
+							.replace(/([^「」【】《》『』（）“”])\n([“”「」【】《》『』（）])/ig, '$1\n\n$2')
+							.replace(/([「」【】《》『』（）“”―])\n([^“”「」【】《》（）『』])/ig, '$1\n\n$2')
+							.replace(/([^「」【】《》『』（）“”])\n([“”「」（）【】《》『』])/ig, '$1\n\n$2')
+							.replace(/(）)\n([「」【】“”《》『』])/ig, '$1\n\n$2')
 							.replace(/\n{3,}/ig, "\n\n")
 							.replace(/\n/g, '<br>')
 							.replace(/\n/g, '<br>')
@@ -98,7 +100,16 @@ let o: IDemo = {
 					if (!html.match(/<br><br>/i))
 					{
 						// 修正無段落
-						_this.find('br').after('<br>');
+						//_this.find('br').after('<br>');
+
+						html = html.replace(/([^「」【】《》“”『』（）])<br>([「」“”【】《》『』（）])/ig, '$1<br><br>$2')
+							.replace(/([「」【】《》“”『』（）―])<br>([^「」“”【】《》（）『』])/ig, '$1<br><br>$2')
+							.replace(/([^「」“”【】《》『』（）])<br>([“”「」（）【】《》『』])/ig, '$1<br><br>$2')
+							.replace(/(）)<br>([「」【】《》『』“”])/ig, '$1<br><br>$2')
+							.replace(/(<br>){3,}/ig, "<br><br>")
+						;
+
+						_this.html(html);
 					}
 					else if (_br.length >= (2 * 4 * 3) && html.split(/(?:<br><br>)/ig).length <= 4)
 					{
@@ -149,6 +160,8 @@ let o: IDemo = {
 						}
 					})
 				;
+
+				_this.data('html-new', html);
 			})
 		;
 
