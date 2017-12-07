@@ -4,7 +4,7 @@
 /lib/core/index.js
 /lib/save.js
 /lib/event/done.js
-/lib/greasemonkey/gm.js
+/greasemonkey/gm/gm.js
 /lib/greasemonkey/uf.js
 /src/dmm-plus-sc/lib/metadata.js
 /src/dmm-plus-sc/index.user.js
