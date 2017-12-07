@@ -9,7 +9,7 @@
 // @description:en	this script try kill facebook new share (2017-11)
 // @description:zh	此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)
 //
-// @version		4.1.6
+// @version		4.1.7
 //
 // @grant		unsafeWindow
 // grant		none
