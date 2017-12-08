@@ -70,15 +70,27 @@ let o: IDemo = {
 		}
 		else
 		{
-			let t = GMApi.getValue('timestamp', 0);
-			let _do = false;
+			// @ts-ignore
+			let username = unsafeWindow.BAHAID || unsafeWindow.MB_BAHAID;
 
-			if ((Date.now() - t) >= (10 * 60 * 1000))
+			let t = GMApi.getValue('timestamp', 0);
+			let u = GMApi.getValue('username');
+			let _do = null;
+
+			//console.log(username, u);
+
+			if (!username)
+			{
+				//_do = false;
+			}
+			else if ((username && username != u) || (Date.now() - t) >= (10 * 60 * 1000))
 			{
 				_do = true;
 			}
 			else
 			{
+				_do = false;
+
 				console.info('[距離上次簽到]', (Date.now() - t) / 1000);
 			}
 
@@ -93,6 +105,7 @@ let o: IDemo = {
 					})
 					.then(function ()
 					{
+						GMApi.setValue('username', username);
 						GMApi.setValue('timestamp', Date.now());
 					})
 				;
