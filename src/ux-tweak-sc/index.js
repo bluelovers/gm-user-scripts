@@ -72,6 +72,7 @@ module.exports.list = [
 	"torrent/dmhy.js",
 	"torrent/jandown.js",
 	"torrent/nyaa.js",
+	"wiki/moegirl.js",
 	"wiki/wikipedia.js",
 	"google/search.js",
 	"global/discuz.js",
@@ -152,6 +153,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/torrent/dmhy.js');
 	require('root/src/ux-tweak-sc/torrent/jandown.js');
 	require('root/src/ux-tweak-sc/torrent/nyaa.js');
+	require('root/src/ux-tweak-sc/wiki/moegirl.js');
 	require('root/src/ux-tweak-sc/wiki/wikipedia.js');
 	require('root/src/ux-tweak-sc/google/search.js');
 	require('root/src/ux-tweak-sc/global/discuz.js');
@@ -265,7 +267,8 @@ module.exports.metadata.include = [
 	"http*://*.google.*/imgres*"
 ];
 module.exports.metadata.match = [
-	"*://www.u2mtv.com/*"
+	"*://www.u2mtv.com/*",
+	"*://*.moegirl.org/*"
 ];
 module.exports.metadata.exclude = [
 	"http*://gc.bahamut.com.tw/*",

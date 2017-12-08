@@ -61,6 +61,33 @@ let o: IDemo = {
 					`.l_post_bright, .skin_normal .wrap1, .pb_content { background: #e6d7bd; }`,
 					`.d_post_content_main { background: transparent; }`,
 					`.core_title_wrap_bright { background: #fff9; }`,
+
+					`.tbui_aside_float_bar { opacity: 0.5; } 
+					.tbui_aside_float_bar:hover { opacity: 0.8; }`,
+
+					`@media only screen and (max-width: 1000px)
+					{
+					
+					.right_section { display: none; }
+					.left_section { float: none; margin: auto; }
+					
+					.search_bright .search_ipt, .l_container, .content, .pb_content, .thread_theme_5, .pb_footer, .pb_footer .p_thread, .tb_rich_poster_container, .search_bright .search_form, .nav_list { width: auto; }
+					
+					}`,
+
+					`@media only screen and (max-width: 800px)
+					{
+					
+					.core_title_wrap_bright { width: 100%; }
+					
+					.d_post_content_main { padding-left: 0px; }
+					.d_author, .d_author_anonym { display: none; }
+					.p_content { padding-right: 0px; }
+					
+					.d_post_content_main { float: none;margin: auto; }
+					
+					}`,
+
 				])
 			;
 		}
@@ -177,6 +204,15 @@ let o: IDemo = {
 							.replace(/([「」【】《》“”『』（）―](?:[！？?!]*)?)\n([^\n「」“”【】《》（）『』])/ug, "$1\n\n$2")
 
 							.replace(/(）(?:[！？?!]*)?)\n([「」【】《》『』“”])/ug, "$1\n\n$2")
+
+							/**
+							 * https://tieba.baidu.com/p/5400503864
+							 *
+							 * 「第三试炼也，多亏了妮露而通过了吗……」
+							 『心神守护的白羽毛』，这个从妮露那里收到的护身符，确实地守护了我的心。
+
+							 */
+							.replace(/([「」【】《》“”『』（）―](?:[！？?!]*)?)\n((?:[「」“”【】《》（）『』])(?:[^\n]+)([^「」【】《》“”『』（）―](?:[！？?!]*)?)\n)/ug, "$1\n$2\n")
 						;
 
 						html = html

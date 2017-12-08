@@ -30,11 +30,13 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
+		const throttle = require('throttle-debounce/throttle');
+
 		$(window)
-			.on('load.sign', function ()
+			.on('load.sign', throttle(1000, function ()
 			{
 				sign(_url_obj);
-			})
+			}))
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
@@ -88,6 +90,7 @@ module.exports = {
 			{
 				console.log(event);
 			})
+			.triggerHandler('load')
 		;
 
 		$('#frs_list_pager')
@@ -134,7 +137,7 @@ async function sign(_url_obj = global._url_obj)
 {
 	const Promise = require('bluebird');
 
-	await Promise.delay(1000);
+	await Promise.delay(500);
 
 	let a = $('#sign_mod #signstar_wrapper a.j_cansign');
 
@@ -143,6 +146,8 @@ async function sign(_url_obj = global._url_obj)
 		a[0].click();
 		await Promise.delay(500);
 		a[0].click();
+		await Promise.delay(500);
+		$('.j_succ_info.sign_succ1').hide();
 
 		return true;
 	}
