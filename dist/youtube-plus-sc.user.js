@@ -5,11 +5,11 @@
 // @namespace	bluelovers
 // @author		bluelovers
 //
-// @description		youtube-plus-sc bluelovers
-// @description:en	youtube-plus-sc bluelovers
-// @description:zh	youtube-plus-sc bluelovers
+// @description		youtube-plus-sc 各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
+// @description:en	youtube-plus-sc 各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
+// @description:zh	youtube-plus-sc 各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
 //
-// @version		4.1.7
+// @version		4.1.8
 //
 // @grant		GM.xmlhttpRequest
 // @grant		GM_xmlhttpRequest
