@@ -175,6 +175,11 @@ export function lazyMetaFix(meta: IParseMetadata): IParseMetadata
 		});
 	}
 
+	if (meta.match)
+	{
+		meta.match = meta_match(meta.match);
+	}
+
 	[
 		'include',
 		'match',
@@ -194,6 +199,14 @@ export function lazyMetaFix(meta: IParseMetadata): IParseMetadata
 	}
 
 	return meta;
+}
+
+export function meta_match(arr: string[])
+{
+	return arr.map(function (value, index, array)
+	{
+		return value.replace(/^.*(\:\/\/)/, '\*$1')
+	})
 }
 
 export function makeMetaRow(key: string, data, addFirst = false, pad = "\t\t", margin = "// ", LF = "\n")

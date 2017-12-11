@@ -11,6 +11,8 @@ module.exports = {
 		include: [
 			'http*://*.wnacg.com/*',
 			'http*://*.wnacg.org/*',
+			'http*://wnacg.com/*',
+			'http*://wnacg.org/*',
 		],
 		exclude: [],
 	},

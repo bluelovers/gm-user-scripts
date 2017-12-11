@@ -2,9 +2,10 @@
  * Created by user on 2017/12/5/005.
  */
 
-import * as AFHConvert from 'ascii-fullwidth-halfwidth-convert';
+//import * as AFHConvert from 'ascii-fullwidth-halfwidth-convert';
+//export const AFH = new AFHConvert();
 
-export const AFH = new AFHConvert();
+const StrUtil = require("str-util");
 
 export class enspace
 {
@@ -84,7 +85,12 @@ export class enspace
 				s: /(第)([\_\t\uFEFF\xA0　 \d０１２３４５６７８９]+)(话|頁|夜|章|集)/g,
 				r: function ($0, $1, $2, $3)
 				{
-					$2 = AFH.toHalfWidth($2);
+					$2 = StrUtil.toFullNumber($2, {
+						only: {
+							number: true,
+							space: true,
+						},
+					});
 
 					let m;
 					if (m = $2.match(/^(\D+)?(.+)(\D+)?$/))
@@ -138,18 +144,29 @@ export class enspace
 				s: /^([^「『“”』」]+)?(“)([^「『“”』」]+)[』」]([^”]+)?$/m,
 				r: '$1$2$3”$4',
 			},
+			{
+				s: /，——/g,
+				r: '——',
+			},
+			{
+				s: /(?:話|话)/ug,
+				r: '話',
+			},
+			[/　[ \t]+（/g, '　（']
 		]
 
 	};
 	public options = {};
 
+	public _words_r1 = '(?:\@|（·?）|\-|\/|\\\(\\\)|%|￥|_|\\\?|\\\||#|\\\$|（和谐）)';
+
 	constructor(options?)
 	{
 		let _self = this;
 
-		let r = '(?:\@|（·?）|\-|\/|\\\(\\\)|%|￥|_|\\\?|\\\||#|\\\$|（和谐）)';
+		let r = this._words_r1;
 
-		[
+		let arr = [
 			'绝@望@的@魔@手',
 			'毛@骨@悚@然',
 			'怀@孕',
@@ -172,6 +189,22 @@ export class enspace
 			'防@卫@战',
 		]
 			.concat(options && options.words_block ? options.words_block : null)
+		;
+
+		this._data_.words = this._words1(arr, this._data_.words);
+		this._data_.words = this._words2(this._data_.words);
+	}
+
+	static create(...argv)
+	{
+		return new this(...argv);
+	}
+
+	_words1(arr, words = [])
+	{
+		let r = this._words_r1;
+
+		arr
 			.filter(function (el, index, arr)
 			{
 				return el && (index == arr.indexOf(el));
@@ -189,7 +222,7 @@ export class enspace
 
 				let s = a.join(`)${r}(`);
 
-				_self._data_.words.push({
+				words.push({
 					s: new RegExp(`(${s})`, 'g'),
 					r: a.map(function (value, index, array)
 					{
@@ -199,7 +232,14 @@ export class enspace
 			})
 		;
 
-		this._data_.words.map(function (value, index, array)
+		return words;
+	}
+
+	_words2(words)
+	{
+		let r = this._words_r1;
+
+		return words.map(function (value, index, array)
 		{
 			// @ts-ignore
 			if (value.no_regex)
@@ -207,28 +247,44 @@ export class enspace
 				return value;
 			}
 
+			if (Array.isArray(value) && value.length == 2)
+			{
+				value = {
+					_source: value,
+
+					s: value[0],
+					r: value[1],
+				};
+			}
+
 			if (typeof value.s == 'string' && (value.s as string).match(/^(.+)#_@_#(.+)$/))
 			{
 				// @ts-ignore
-				value._source = value.s;
+				if (!value._source) value._source = value.s;
 
-				value.s = new RegExp((RegExp.$1 + r + RegExp.$2), 'g');
+				let a = value.s.split('#_@_#');
+				let s = a.join(`)${r}(`);
+
+				value.s = new RegExp(`(${s})`, 'g');
+
+				if (value.r === null)
+				{
+					value.r = a.map(function (value, index, array)
+					{
+						return '$' + (index + 1);
+					}).join('');
+				}
 			}
 			else if (typeof value.s == 'string')
 			{
 				// @ts-ignore
-				value._source = value.s;
+				if (!value._source) value._source = value.s;
 
 				value.s = new RegExp(value.s, 'g');
 			}
 
 			return value;
 		});
-	}
-
-	static create(...argv)
-	{
-		return new this(...argv);
 	}
 
 	replace(text, options = {}): string
@@ -245,44 +301,62 @@ export class enspace
 			.replace(_self._data_.rtrim, '')
 		;
 
+		if (options.pad_eng)
+		{
+			_ret = this.paddingEng(_ret);
+		}
+
 		// @ts-ignore
 		if (options.words)
 		{
-			for (let i in _self._data_.words)
+			_ret = this.replace_words(_ret, _self._data_.words, _self._cache_.words).value;
+		}
+
+		return _ret;
+	}
+
+	replace_words(_ret, words, _cache_words?)
+	{
+		if (!_cache_words)
+		{
+			_cache_words = new Map();
+		}
+
+		for (let i in words)
+		{
+			let _r = words[i].s;
+
+			let _new = _ret.replace(_r, words[i].r);
+
+			if (_new != _ret)
 			{
-				let _r = _self._data_.words[i].s;
+				let myMap = [];
 
-				let _new = _ret.replace(_r, _self._data_.words[i].r);
-
-				if (_new != _ret)
+				if (_cache_words.has(words[i]))
 				{
-					let myMap = [];
-
-					if (_self._cache_.words.has(_self._data_.words[i]))
-					{
-						myMap = _self._cache_.words.get(_self._data_.words[i]);
-					}
-
-					myMap.push({
-						old: _ret,
-						new: _new,
-					});
-
-					_self._cache_.words.set(_self._data_.words[i], myMap);
-
-					_ret = _new;
+					myMap = _cache_words.get(words[i]);
 				}
 
-				if (!/[^\s]/.test(_ret))
-				{
-					break;
-				}
+				myMap.push({
+					old: _ret,
+					new: _new,
+				});
+
+				_cache_words.set(words[i], myMap);
+
+				_ret = _new;
+			}
+
+			if (!/[^\s]/.test(_ret))
+			{
+				break;
 			}
 		}
 
-		_ret = this.paddingEng(_ret);
-
-		return _ret;
+		return {
+			value: _ret,
+			cache: _cache_words,
+		};
 	}
 
 	paddingEng(text: string)
@@ -325,7 +399,7 @@ export class enspace
 
 				return argv[0];
 			})
-		;
+			;
 	}
 
 	clearLF(text: string)
@@ -339,5 +413,7 @@ export class enspace
 			;
 	}
 }
+
+export const novelText = enspace.create();
 
 export default exports;

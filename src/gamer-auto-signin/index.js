@@ -26,14 +26,15 @@ module.exports._lib = () =>
 };
 
 module.exports.metadata = {};
-module.exports.metadata.include = [
-	"http*://www.gamer.com.tw/*",
-	"http*://forum.gamer.com.tw/*",
-	"http*://home.gamer.com.tw/creationDetail.php*",
-	"http*://gnn.gamer.com.tw/*",
-	"http*://ani.gamer.com.tw/*"
+module.exports.metadata.include = [];
+module.exports.metadata.match = [
+	"*://www.gamer.com.tw/*",
+	"*://forum.gamer.com.tw/*",
+	"*://home.gamer.com.tw/creationDetail.php*",
+	"*://gnn.gamer.com.tw/*",
+	"*://ani.gamer.com.tw/*",
+	"*://acg.gamer.com.tw/*"
 ];
-module.exports.metadata.match = [];
 module.exports.metadata.exclude = [];
 module.exports.metadata.grant = [
 	"GM.deleteValue",
