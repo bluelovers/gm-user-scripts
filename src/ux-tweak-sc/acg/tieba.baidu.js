@@ -30,6 +30,13 @@ module.exports = {
 			.prop('target', '_blank')
 		;
 
+		greasemonkey
+			.GM_addStyle([
+				`#com_userbar { position: fixed; top: 55px; background: #fff9; }`,
+				`#com_userbar .u_bdhome { display: none; }`,
+			])
+		;
+
 		const throttle = require('throttle-debounce/throttle');
 
 		$(window)
