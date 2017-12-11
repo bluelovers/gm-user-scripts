@@ -11,14 +11,15 @@ declare const global: IGlobal;
 let o: IDemo = {
 
 	metadata: {
-		include: [
+		include: [],
+		match: [
 			'http*://www.gamer.com.tw/*',
 			'http*://forum.gamer.com.tw/*',
 			'http*://home.gamer.com.tw/creationDetail.php*',
 			'http*://gnn.gamer.com.tw/*',
 			'http*://ani.gamer.com.tw/*',
+			'http*://acg.gamer.com.tw/*',
 		],
-		nomatch: [],
 		exclude: [],
 
 		grant: [
