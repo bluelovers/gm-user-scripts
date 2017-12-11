@@ -238,6 +238,8 @@ module.exports.metadata.include = [
 	"http*://www.rawdevart.com/*",
 	"http*://*.wnacg.com/*",
 	"http*://*.wnacg.org/*",
+	"http*://wnacg.com/*",
+	"http*://wnacg.org/*",
 	"http*://www.fun01.cc/*",
 	"http*://syosetu.com/*",
 	"http*://ncode.syosetu.com/*",
