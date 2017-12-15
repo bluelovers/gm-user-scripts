@@ -31,9 +31,11 @@
     "prettify-xml": "^1.2.0",
     "pretty-data": "^0.40.0",
     "stonejs": "^2.3.0",
+    "str-util": "^1.0.3",
     "stream-to-promise": "^2.2.0",
     "throttle-debounce": "^1.0.1",
     "uglify-js": "^3.2.1",
+    "web-fs": "^2.1.0",
     "webpack-merge": "^4.1.1",
     "zh2cht": "0.0.2"
   },
