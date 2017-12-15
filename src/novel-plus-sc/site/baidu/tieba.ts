@@ -41,14 +41,15 @@ let o: IDemo = {
 	async main(_url_obj = global._url_obj)
 	{
 		greasemonkey.addStylesheet(require('root/lib/comic/font').font.NotoSansSC);
-		//greasemonkey.addStylesheet(require('root/lib/comic/font').font.NotoSansTC);
+		greasemonkey.addStylesheet(require('root/lib/comic/font').font.NotoSansTC);
 
 		greasemonkey
 			.GM_addStyle([
 				`.d_post_content, .core_title_txt, .threadlist_title { 
-				font-family: Consolas, Noto Sans SC, Noto Sans CJK SC, Noto Sans CJK, Microsoft Yahei UI, sans-serif; 
+				font-family: Consolas, Noto Sans CJK SC, Noto Sans CJK TC, Noto Sans SC, Noto Sans TC, Noto Sans CJK, Microsoft Yahei UI, sans-serif; 
 				text-shadow: 0 0.5px 0 rgba(228, 228, 228, 0.8), 0 0 1px rgba(0, 0, 0, 0.75); 
 				}`,
+
 				`.d_post_content { line-height: 1.45em; }`,
 				`.d_post_content { color: #131d24; }`,
 			])
