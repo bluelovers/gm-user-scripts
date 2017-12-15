@@ -56,3 +56,6 @@
 /lib/novel/*.js
 /lib/comic/*.js
 /src/ux-tweak-sc/wiki/moegirl.js
+/src/test-test-sc/
+/src/test-test-sc/index.js
+/dist/test-test-sc.user.js
