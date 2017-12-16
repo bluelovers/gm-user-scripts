@@ -45,6 +45,7 @@ module.exports.list = [
 	"code/github.js",
 	"code/greasyfork.js",
 	"code/npmjs.js",
+	"code/segmentfault.js",
 	"code/sourceforge.js",
 	"code/stackoverflow.js",
 	"comic/999comic.js",
@@ -126,6 +127,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/code/github.js');
 	require('root/src/ux-tweak-sc/code/greasyfork.js');
 	require('root/src/ux-tweak-sc/code/npmjs.js');
+	require('root/src/ux-tweak-sc/code/segmentfault.js');
 	require('root/src/ux-tweak-sc/code/sourceforge.js');
 	require('root/src/ux-tweak-sc/code/stackoverflow.js');
 	require('root/src/ux-tweak-sc/comic/999comic.js');
@@ -215,6 +217,7 @@ module.exports.metadata.include = [
 	"http*://greasyfork.org/*",
 	"https://www.npmjs.com/search?q=*",
 	"https://www.npmjs.com/~*",
+	"http*://segmentfault.com/*",
 	"http*://sourceforge.net/projects/*/files/*",
 	"http*://stackoverflow.com/*",
 	"http*://superuser.com/*",
