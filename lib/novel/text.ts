@@ -2,9 +2,6 @@
  * Created by user on 2017/12/5/005.
  */
 
-//import * as AFHConvert from 'ascii-fullwidth-halfwidth-convert';
-//export const AFH = new AFHConvert();
-
 const StrUtil = require("str-util");
 
 export class enspace
@@ -152,7 +149,14 @@ export class enspace
 				s: /(?:話|话)/ug,
 				r: '話',
 			},
-			[/　[ \t]+（/g, '　（']
+			[/　[ \t]+（/g, '　（'],
+
+			['製止', '制止'],
+
+			['預防性雞鴨', '預防性羈押'],
+
+			['查水[錶表]', '查水錶'],
+
 		]
 
 	};
@@ -247,13 +251,15 @@ export class enspace
 				return value;
 			}
 
-			if (Array.isArray(value) && value.length == 2)
+			if (Array.isArray(value) && (value.length == 2 || value.length == 3))
 			{
 				value = {
 					_source: value,
 
 					s: value[0],
 					r: value[1],
+
+					flags: value[2],
 				};
 			}
 
@@ -265,7 +271,7 @@ export class enspace
 				let a = value.s.split('#_@_#');
 				let s = a.join(`)${r}(`);
 
-				value.s = new RegExp(`(${s})`, 'g');
+				value.s = new RegExp(`(${s})`, value.flags ? value.flags : 'g');
 
 				if (value.r === null)
 				{
@@ -280,7 +286,7 @@ export class enspace
 				// @ts-ignore
 				if (!value._source) value._source = value.s;
 
-				value.s = new RegExp(value.s, 'g');
+				value.s = new RegExp(value.s, value.flags ? value.flags : 'g');
 			}
 
 			return value;

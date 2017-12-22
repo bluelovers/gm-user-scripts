@@ -2,6 +2,8 @@
  * Created by user on 2017/7/22/022.
  */
 
+'use strict';
+
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
@@ -11,18 +13,15 @@ declare const unsafeWindow: IWindow;
 declare const $: IJQueryStatic;
 declare const jQuery: IJQueryStatic;
 
-'use strict';
-
 let o: IDemo = {
-
-	//priority: 100,
 
 	metadata: {
 		include: [
 			'http*://syosetu.com/*',
-			'http*://ncode.syosetu.com/*',
 		],
-		match: [],
+		match: [
+			'*://ncode*.syosetu.com/*',
+		],
 		nomatch: [],
 		exclude: [],
 
@@ -45,17 +44,26 @@ let o: IDemo = {
 	{
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
-			//
+			'#novel_contents .novel_sublist2 .subtitle a',
 		].join(','))
 			.prop('target', '_blank')
 		;
 
+		greasemonkey.GM_addStyle([
+			`#novel_contents .novel_sublist2 .subtitle:after { content: "#" attr(data-id) " "; font-size: 8pt; font-family: Consolas; }`,
+		]);
+
+		// @ts-ignore
 		$(window).scrollTo('#novel_no', 0 - $('#novel_header').height());
+
+		$('#novel_contents .novel_sublist2 .subtitle').attr('data-id', function (index, old)
+		{
+			return index + 1;
+		});
 	},
 
 	adblock(_url_obj = global._url_obj)
 	{
-		//
 	},
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
@@ -64,11 +72,9 @@ let o: IDemo = {
 
 		_dom = _dom
 			.add([
-				//
+				'#pageBottom, #novel_header, #footer',
 			].join())
 		;
-
-		//_dom.remove();
 
 		return _dom;
 	},

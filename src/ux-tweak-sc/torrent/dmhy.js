@@ -9,8 +9,8 @@ module.exports = {
 	//disable: true,
 
 	metadata: {
-		include: [
-			'http*://share.dmhy.org/*',
+		match: [
+			'*://share.dmhy.org/*',
 		],
 		exclude: [],
 	},

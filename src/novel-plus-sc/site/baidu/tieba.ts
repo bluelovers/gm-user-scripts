@@ -103,7 +103,8 @@ let o: IDemo = {
 
 	adblock(_url_obj = global._url_obj)
 	{
-		let novelText = require('root/lib/novel/text').enspace.create();
+		//let novelText = require('root/lib/novel/text').enspace.create();
+		let novelText = require('root/lib/novel/text').novelText;
 
 		$('.d_post_content')
 			.add('h3.core_title_txt')
@@ -192,8 +193,6 @@ let o: IDemo = {
 									.replace(/\n\n/g, "\n")
 								;
 							}
-
-							//console.log(html);
 						}
 
 						html = html

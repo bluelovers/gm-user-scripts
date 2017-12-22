@@ -261,7 +261,6 @@ module.exports.metadata.include = [
 	"http*://www.facebook.com/saved/*",
 	"http*://www.weibo.com/*",
 	"http*://m.weibo.cn/*",
-	"http*://share.dmhy.org/*",
 	"http*://www.jandown.com/*",
 	"http*://sukebei.nyaa.si/*",
 	"http*://*.wikipedia.org/*",
@@ -273,6 +272,7 @@ module.exports.metadata.include = [
 ];
 module.exports.metadata.match = [
 	"*://www.u2mtv.com/*",
+	"*://share.dmhy.org/*",
 	"*://*.moegirl.org/*"
 ];
 module.exports.metadata.exclude = [
