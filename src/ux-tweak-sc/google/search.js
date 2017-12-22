@@ -51,7 +51,7 @@ module.exports = {
 		_google = new googleData(_url_obj);
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
-		_uf_dom_filter_link('#ires .g h3 a, #ires .g .s .th a, ._qgd a')
+		_uf_dom_filter_link('#ires .g h3 a, #ires .g .s .th a, ._qgd a, #topstuff .gl a, #imagebox_bigimages .bicc a')
 			.prop('target', '_blank')
 		;
 
