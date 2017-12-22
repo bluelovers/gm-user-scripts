@@ -144,7 +144,7 @@ async function sign(_url_obj = global._url_obj)
 {
 	const Promise = require('bluebird');
 
-	await Promise.delay(500);
+	await Promise.delay(1000);
 
 	let a = $('#sign_mod #signstar_wrapper a.j_cansign');
 
