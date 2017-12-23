@@ -16,6 +16,8 @@ module.exports.icon = '';
 module.exports.list = [
 	"acg/2dfan.js",
 	"acg/3dmgame.js",
+	"acg/baidu/safecheck.js",
+	"acg/baidu/tieba.js",
 	"acg/blog.reimu.net.js",
 	"acg/dlsite.js",
 	"acg/gamer.com.tw.js",
@@ -29,7 +31,6 @@ module.exports.list = [
 	"acg/qoo-app.js",
 	"acg/qtfy.eu.js",
 	"acg/reddit.js",
-	"acg/tieba.baidu.js",
 	"acg/vsgames.js",
 	"adult/up01.js",
 	"anti-adblock/epinv.js",
@@ -98,6 +99,8 @@ module.exports._lib = () =>
 {
 	require('root/src/ux-tweak-sc/acg/2dfan.js');
 	require('root/src/ux-tweak-sc/acg/3dmgame.js');
+	require('root/src/ux-tweak-sc/acg/baidu/safecheck.js');
+	require('root/src/ux-tweak-sc/acg/baidu/tieba.js');
 	require('root/src/ux-tweak-sc/acg/blog.reimu.net.js');
 	require('root/src/ux-tweak-sc/acg/dlsite.js');
 	require('root/src/ux-tweak-sc/acg/gamer.com.tw.js');
@@ -111,7 +114,6 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/acg/qoo-app.js');
 	require('root/src/ux-tweak-sc/acg/qtfy.eu.js');
 	require('root/src/ux-tweak-sc/acg/reddit.js');
-	require('root/src/ux-tweak-sc/acg/tieba.baidu.js');
 	require('root/src/ux-tweak-sc/acg/vsgames.js');
 	require('root/src/ux-tweak-sc/adult/up01.js');
 	require('root/src/ux-tweak-sc/anti-adblock/epinv.js');
@@ -174,6 +176,7 @@ module.exports.metadata.include = [
 	"http*://www.2dfan.com/*",
 	"http*://www.3dmgame.com/*",
 	"http*://bbs.3dmgame.com/*",
+	"http*://tieba.baidu.com/*",
 	"http*://blog.reimu.net/*",
 	"http*://www.dlsite.com/*",
 	"http*://www.gamer.com.tw/*",
@@ -198,7 +201,6 @@ module.exports.metadata.include = [
 	"http*://*.qoo-app.com/*",
 	"http*://qtfy.eu/*",
 	"http*://www.reddit.com/r/*",
-	"http*://tieba.baidu.com/*",
 	"http*://gw2.vsgames.cn/*",
 	"http*://*.vsgames.cn/*",
 	"http*://www.up01.cc/*",
@@ -270,6 +272,7 @@ module.exports.metadata.include = [
 	"http*://*.google.*/imgres*"
 ];
 module.exports.metadata.match = [
+	"*://*.bdimg.com/safecheck/*",
 	"*://www.u2mtv.com/*",
 	"*://ncode.syosetu.com/*",
 	"*://novel18.syosetu.com/*",
