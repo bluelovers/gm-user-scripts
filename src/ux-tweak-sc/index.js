@@ -245,7 +245,6 @@ module.exports.metadata.include = [
 	"http*://wnacg.org/*",
 	"http*://www.fun01.cc/*",
 	"http*://syosetu.com/*",
-	"http*://ncode.syosetu.com/*",
 	"http*://mall.pchome.com.tw/*",
 	"http://www.kerrytj.com/zh/search/search_track.aspx*",
 	"http://postserv.post.gov.tw/pstmail/main_mail.html*",
@@ -272,6 +271,8 @@ module.exports.metadata.include = [
 ];
 module.exports.metadata.match = [
 	"*://www.u2mtv.com/*",
+	"*://ncode.syosetu.com/*",
+	"*://novel18.syosetu.com/*",
 	"*://share.dmhy.org/*",
 	"*://*.moegirl.org/*"
 ];
