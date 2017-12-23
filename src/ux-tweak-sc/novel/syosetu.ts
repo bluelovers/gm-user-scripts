@@ -20,7 +20,8 @@ let o: IDemo = {
 			'http*://syosetu.com/*',
 		],
 		match: [
-			'*://ncode*.syosetu.com/*',
+			'*://ncode.syosetu.com/*',
+			'*://novel18.syosetu.com/*',
 		],
 		nomatch: [],
 		exclude: [],
@@ -53,11 +54,12 @@ let o: IDemo = {
 			`#novel_contents .novel_sublist2 .subtitle:after { content: "#" attr(data-id) " "; font-size: 8pt; font-family: Consolas; }`,
 		]);
 
-		// @ts-ignore
-		$(window).scrollTo('#novel_no', 0 - $('#novel_header').height());
+		$(window).scrollTo('#novel_no, .novel_subtitle', 0 - $('#novel_header').height());
 
 		$('#novel_contents .novel_sublist2 .subtitle').attr('data-id', function (index, old)
 		{
+			$(this).html($(this).html() + ' ');
+
 			return index + 1;
 		});
 	},
