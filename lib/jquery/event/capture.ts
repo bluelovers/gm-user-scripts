@@ -40,4 +40,4 @@ export function onCapture(who, originalType: string, listener: EventListener, ..
 	return o;
 }
 
-export default exports;
+export default onCapture;

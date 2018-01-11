@@ -62,6 +62,7 @@ module.exports.list = [
 	"comic/nhentai.js",
 	"comic/rawdevart.js",
 	"comic/wnacg.js",
+	"comic/yoedge.js",
 	"content/farm/fun01.cc.js",
 	"novel/syosetu.js",
 	"shop/pchome.js",
@@ -145,6 +146,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/comic/nhentai.js');
 	require('root/src/ux-tweak-sc/comic/rawdevart.js');
 	require('root/src/ux-tweak-sc/comic/wnacg.js');
+	require('root/src/ux-tweak-sc/comic/yoedge.js');
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc.js');
 	require('root/src/ux-tweak-sc/novel/syosetu.js');
 	require('root/src/ux-tweak-sc/shop/pchome.js');
@@ -245,6 +247,7 @@ module.exports.metadata.include = [
 	"http*://*.wnacg.org/*",
 	"http*://wnacg.com/*",
 	"http*://wnacg.org/*",
+	"http*://smp*.yoedge.com/*",
 	"http*://www.fun01.cc/*",
 	"http*://syosetu.com/*",
 	"http*://mall.pchome.com.tw/*",

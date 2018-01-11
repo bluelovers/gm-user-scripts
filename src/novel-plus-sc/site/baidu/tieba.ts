@@ -152,7 +152,8 @@ let o: IDemo = {
 							.replace(/\r\n|\r|\n/g, '')
 							.replace(/<br>/ig, "\n")
 							.replace(/[ 　\t]+\n/g, "\n")
-							.replace(/^[\s]+|[\s　]+$/g, '')
+							.replace(/[\s　]+$/g, '')
+							.replace(/^[\n \t]+/g, '')
 							.replace(/\n{4,}/g, "\n\n\n\n")
 						;
 

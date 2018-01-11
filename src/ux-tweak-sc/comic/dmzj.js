@@ -218,7 +218,7 @@ module.exports = {
 		}
 		else if (_url_obj.host.match(/i\.dmzj\.com/))
 		{
-			$('#my_subscribe_id')
+			$('#my_subscribe_id, #my_record_id')
 				.on('DOMNodeInserted', debounce(200, function (event)
 				{
 					$(window).triggerHandler('load.ready');
@@ -231,8 +231,8 @@ module.exports = {
 		$(window)
 			.on('load.ready', function ()
 			{
-				$('.mainNav a, .about-info a, #my_subscribe_id a')
-					.attr('href', function (i, old)
+				$('.mainNav a, .about-info a, #my_subscribe_id a, #my_record_id a')
+					.prop('href', function (i, old)
 					{
 						return old.replace('xs.dmzj.com', 'q.dmzj.com');
 					})
