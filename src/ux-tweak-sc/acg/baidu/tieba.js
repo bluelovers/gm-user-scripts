@@ -129,6 +129,8 @@ module.exports = {
 				'body :hidden, iframe, script',
 				'#footer, #pb-footer-header, #quick_reply',
 				'.j_user_sign',
+
+				'.p_author .d_icons, .save_face_card, .d_name_icon, .save_face_bg',
 			].join())
 		;
 

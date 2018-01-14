@@ -9,7 +9,7 @@
 // @description:en	youtube-plus-sc 各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
 // @description:zh	youtube-plus-sc 各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
 //
-// @version		4.1.11
+// @version		4.2.1
 //
 // @grant		GM.xmlhttpRequest
 // @grant		GM_xmlhttpRequest

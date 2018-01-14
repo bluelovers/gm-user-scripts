@@ -52,8 +52,10 @@ let o: IDemo = {
 
 		greasemonkey.GM_addStyle([
 			`#novel_contents .novel_sublist2 .subtitle:after { content: "#" attr(data-id) " "; font-size: 8pt; font-family: Consolas; }`,
+			`#novel_contents .novel_sublist2 .subtitle:before { content: "#" attr(data-id-sub) " "; font-size: 8pt; font-family: Consolas; }`,
 		]);
 
+		// @ts-ignore
 		$(window).scrollTo('#novel_no, .novel_subtitle', 0 - $('#novel_header').height());
 
 		$('#novel_contents .novel_sublist2 .subtitle').attr('data-id', function (index, old)
@@ -62,6 +64,28 @@ let o: IDemo = {
 
 			return index + 1;
 		});
+
+		let iv = 0;
+		let ic = 1;
+
+		// @ts-ignore
+		$('> .chapter_title, > .novel_sublist2', '#novel_contents .index_box')
+			.each(function ()
+			{
+				let _this = $(this);
+
+				if (_this.is('.chapter_title'))
+				{
+					iv++;
+					ic = 1;
+				}
+				else if (_this.is('.novel_sublist2'))
+				{
+					_this.find('.subtitle').attr('data-id-sub', ic);
+					ic++;
+				}
+			})
+		;
 	},
 
 	adblock(_url_obj = global._url_obj)
