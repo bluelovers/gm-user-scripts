@@ -187,7 +187,7 @@ module.exports = {
 				.css(comic_style.bg_dark)
 			;
 
-			let _div_page = $('<div/>')
+			let _div_page = $('<div data-div-page/>')
 				.css(comic_style.page)
 				.css(comic_style.bg_dark)
 				.css(comic_style.bg_dark_border)
