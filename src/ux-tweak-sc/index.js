@@ -66,6 +66,7 @@ module.exports.list = [
 	"comic/yoedge.js",
 	"content/farm/fun01.cc.js",
 	"novel/syosetu.js",
+	"novel/wenku8.js",
 	"shop/pchome.js",
 	"shop/post/kerrytj.js",
 	"shop/post/post/gov/tw/pstmail.js",
@@ -151,6 +152,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/comic/yoedge.js');
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc.js');
 	require('root/src/ux-tweak-sc/novel/syosetu.js');
+	require('root/src/ux-tweak-sc/novel/wenku8.js');
 	require('root/src/ux-tweak-sc/shop/pchome.js');
 	require('root/src/ux-tweak-sc/shop/post/kerrytj.js');
 	require('root/src/ux-tweak-sc/shop/post/post/gov/tw/pstmail.js');
@@ -253,6 +255,7 @@ module.exports.metadata.include = [
 	"http*://smp*.yoedge.com/*",
 	"http*://www.fun01.cc/*",
 	"http*://syosetu.com/*",
+	"http*://www.wenku8.com/*",
 	"http*://mall.pchome.com.tw/*",
 	"http://www.kerrytj.com/zh/search/search_track.aspx*",
 	"http://postserv.post.gov.tw/pstmail/main_mail.html*",
