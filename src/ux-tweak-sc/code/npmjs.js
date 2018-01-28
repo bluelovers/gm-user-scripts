@@ -46,6 +46,35 @@ module.exports = {
 		;
 
 		$(window)
+			.one('load.ready', throttle(200, function ()
+			{
+				$('.collaborated-packages:has(> li)')
+					.html($('.collaborated-packages > li')
+						.css({
+							'list-style': 'd',
+						})
+						.sort(function (a, b)
+						{
+							// convert to integers from strings
+							a = $(a).find('a').text();
+							b = $(b).find('a').text();
+
+							// compare
+							if (a > b)
+							{
+								return 1;
+							}
+							else if (a < b)
+							{
+								return -1;
+							}
+							else
+							{
+								return 0;
+							}
+						}))
+				;
+			}))
 			.on('load.ready', throttle(200, function ()
 			{
 				_uf_dom_filter_link([
