@@ -60,7 +60,7 @@ let o: IDemo = {
 
 		$('#novel_contents .novel_sublist2 .subtitle').attr('data-id', function (index, old)
 		{
-			$(this).html($(this).html() + ' ');
+			$(this).html($(this).html().replace(/[\t\r\n]/g, '').trim());
 
 			return index + 1;
 		});
@@ -73,6 +73,8 @@ let o: IDemo = {
 			.each(function ()
 			{
 				let _this = $(this);
+
+				_this.html(_this.html().replace(/[\t\r\n]/g, '').trim());
 
 				if (_this.is('.chapter_title'))
 				{
