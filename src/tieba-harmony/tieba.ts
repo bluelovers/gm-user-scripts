@@ -35,8 +35,8 @@ let o: IDemo = {
 	{
 		let tiebaHarmony = require('tieba-harmony');
 
-		$('#tb_rich_poster_container .poster_submit')
-			.on('mousedown', function ()
+		$('body')
+			.on('mousedown mouseenter', '#tb_rich_poster_container .poster_submit', function ()
 			{
 				$('#ueditor_replace')
 					.find('*')
