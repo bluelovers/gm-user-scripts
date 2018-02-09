@@ -38,7 +38,9 @@ export function saveBlob(blob: Blob, filename?: string): Promise<FileSaver>
 		})
 	;
 
+	// @ts-ignore
 	p.filesaver = filesaver;
+	// @ts-ignore
 	p.timerid = timerid;
 
 	return p;
@@ -50,6 +52,7 @@ export function saveCanvas(canvas: HTMLCanvasElement, filename?: string): Promis
 	{
 		canvas.toBlob(function (blob)
 		{
+			// @ts-ignore
 			resolve(saveBlob(blob, filename || canvas.download || blob.name || 'download.png'));
 		});
 	});
@@ -61,6 +64,7 @@ export function saveText(data: string, filename?: string, options?): Promise<Fil
 		type: 'text/plain;charset=utf-8',
 	}, options));
 
+	// @ts-ignore
 	return saveBlob(blob, filename || blob.name || 'download.txt');
 }
 

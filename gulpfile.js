@@ -396,13 +396,13 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 					}, function (config, options, webpack_config)
 					{
 						config.entry = {};
-						config.entry[`${k}.user`] = `./src/${k}/index.user.js`;
+						config.entry[`${k}.user`] = `./src/${k}/index.user`;
 
 						config.module = config.module || {};
 						config.module.rules = [];
 
 						config.module.rules.push({
-							test: /\.js$/,
+							test: /\.(js)|tsx?$/,
 
 							exclude: function (modulePath)
 							{
@@ -477,7 +477,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 								return false;
 							}
 
-							if (!/^\.\//.test(resource) || /^\.\/\.\./.test(resource) || ['.', './'].includes(resource) || /^\.\/[^\/]+\.js$/.test(resource))
+							if (!/^\.\//.test(resource) || /^\.\/\.\./.test(resource) || ['.', './'].includes(resource) || /^\.\/[^\/]+\.(js|tsx?)$/.test(resource))
 							{
 								//console.log(555, resource);
 

@@ -14,7 +14,7 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
-	"tieba.js"
+	"tieba/tieba.js"
 ];
 
 module.exports.list_disable = [];
@@ -22,7 +22,7 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('root/src/tieba-harmony/tieba.js');
+	require('root/src/tieba-harmony/tieba/tieba.js');
 };
 
 module.exports.metadata = {};
@@ -30,7 +30,11 @@ module.exports.metadata.include = [
 	"http*://tieba.baidu.com/*"
 ];
 module.exports.metadata.match = [];
-module.exports.metadata.exclude = [];
+module.exports.metadata.exclude = [
+	"http*://tieba.baidu.com/i*",
+	"http*://tieba.baidu.com/h*",
+	"http*://tieba.baidu.com/s*"
+];
 module.exports.metadata.grant = [
 	"GM.deleteValue",
 	"GM.getValue",

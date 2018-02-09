@@ -20,19 +20,23 @@ let o: IDemo = {
 		],
 	},
 
+	// @ts-ignore
 	test(_url_obj = global._url_obj)
 	{
 		return false;
 	},
 
+	// @ts-ignore
 	main(_url_obj = global._url_obj)
 	{
 	},
 
+	// @ts-ignore
 	adblock(_url_obj = global._url_obj)
 	{
 	},
 
+	// @ts-ignore
 	clearly(_url_obj = global._url_obj, _dom_list = null)
 	{
 		let _dom = $(_dom_list);

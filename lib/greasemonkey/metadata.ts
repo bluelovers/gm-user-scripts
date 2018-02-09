@@ -45,6 +45,7 @@ export function parseMetadata(script: string): IParseMetadata
 			})
 			.reduce(function (_arr, value)
 			{
+				// @ts-ignore
 				let _m = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(value.trim("\t "));
 
 				//console.log(_m, value);
@@ -53,6 +54,7 @@ export function parseMetadata(script: string): IParseMetadata
 
 				if (v)
 				{
+					// @ts-ignore
 					v = v.trim("\t ");
 				}
 

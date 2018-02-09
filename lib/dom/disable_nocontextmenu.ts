@@ -17,9 +17,12 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 	let jq;
 	let arr;
 
+	// @ts-ignore
 	if (unsafeWindow && unsafeWindow.jQuery)
 	{
+		// @ts-ignore
 		jq = unsafeWindow.jQuery;
+		// @ts-ignore
 		arr = unsafeWindow.jQuery(elem).add('body, html')
 			.add(unsafeWindow.document)
 			.add(unsafeWindow)
@@ -29,7 +32,9 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 	}
 	else
 	{
+		// @ts-ignore
 		jq = window.jQuery;
+		// @ts-ignore
 		arr = window.jQuery(elem).add('body, html')
 			.add(window.document)
 			.add(window)
@@ -53,6 +58,7 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 	let arr2 = jQuery(elem)
 		.add('body, html')
 		// http://ftp.ezla.com.tw/files/article/html/54/54491/217056.html
+		// @ts-ignore
 		.add(unsafeWindow.document)
 		.add(unsafeWindow)
 	;
@@ -130,8 +136,10 @@ export function _uf_disable_nocontextmenu(mode, elem?)
 			//$(_style).attr('id', '_uf_disable_nocontextmenu');
 		}
 
+		// @ts-ignore
 		if (unsafeWindow.$ && unsafeWindow.$.fn && unsafeWindow.$.fn.jquery)
 		{
+			// @ts-ignore
 			_unsafeJquery = unsafeWindow.$;
 
 			_jquery_array[_jquery_array.length] = _unsafeJquery;
@@ -206,6 +214,7 @@ export function _uf_disable_nocontextmenu(mode, elem?)
 					try
 					{
 						this.oncontextmenu = this.ondragstart = this.onselectstart = this.onmousedown = this.onmouseup
+							// @ts-ignore
 							= this.onsource = null;
 					}
 					catch (e)
@@ -216,6 +225,7 @@ export function _uf_disable_nocontextmenu(mode, elem?)
 			;
 
 			(_jquery.fn.unbind) && _fn_jq_call(_jquery, arr, 'unbind', _fn_event);
+			// @ts-ignore
 			(_jquery.fn.die) && _fn_jq_call(_jquery, arr, 'die', _fn_event);
 
 			if (_jquery.fn.off)

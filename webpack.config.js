@@ -38,6 +38,11 @@ module.exports = {
 		loaders: [
 			{ test: /\.css$/, loader: 'style-loader!css-loader' },
 			//{ test: /\.tsx$/, loader: 'ts-loader' }
+//			{
+//				test: /\.tsx?$/,
+//				use: 'ts-loader',
+//				exclude: /node_modules/
+//			},
 		]
 	},
 

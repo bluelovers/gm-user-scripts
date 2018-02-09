@@ -56,6 +56,7 @@ function _init_gm()
 					{
 						if (typeof current.lib[fn] == 'function')
 						{
+							// @ts-ignore
 							let ret = await current.lib[fn](global._url_obj, _dom);
 
 							if (ret && ret !== true)

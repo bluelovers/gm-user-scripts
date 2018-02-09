@@ -8,25 +8,80 @@ import index from './index';
 module.exports.id = 'tieba-harmony';
 module.exports.name = module.exports.id;
 
-userScriptCore.run(module.exports.id, module.exports, null, function (uxid, exports, global, window, $jq, _url)
+userScriptCore.run(module.exports.id, module.exports, jQuery, function (uxid, exports, global, window, $jq, _url)
 {
 	userScriptCore.init(uxid, exports, global, window, $jq, _url);
 
-	/*
+	_init_gm();
+});
 
-	const UF = require('root/lib/greasemonkey/gm');
+function _init_gm()
+{
+	const UF = require('root/lib/greasemonkey/gm/menu');
 
 	UF.registerMenuCommand({
-		id: exports.name,
-		key: 'gamer signin',
+		id: module.exports.name,
+		key: 'unescape',
 	}, async (options) =>
 	{
-		const signin = require('root/lib/site/gamer/signin').default;
+		let index = require(`root/src/${module.exports.id}`);
 
-		await signin(true)
-			.catch(err => console.error('[簽到錯誤]', err))
-		;
+		if (index.current && index.current.length)
+		{
+			const label = UF.getLabel(options);
+
+			let _dom = $();
+
+			let temp = null;
+
+			let list_script = index.current;
+
+			{
+				let a = [];
+				for (let current of list_script)
+				{
+					if (a.includes(current.name))
+					{
+						continue;
+					}
+
+					a.push(current.name);
+
+					for (let fn of ['adblock'])
+					{
+						if (typeof current.lib[fn] == 'function')
+						{
+							// @ts-ignore
+							let ret = await current.lib[fn](global._url_obj, _dom);
+
+							if (ret && ret !== true)
+							{
+								if (fn == 'clearly')
+								{
+									//_dom = _dom.add(ret);
+
+									if (ret.length)
+									{
+										// allow remove dom from list
+										// need update clearly
+										_dom = ret;
+									}
+
+									//console.log(777, [ret.length, ret], [_dom.length, _dom]);
+								}
+
+								console.info(label, current.name, fn, [ret.length, ret], [_dom.length, _dom]);
+							}
+						}
+					}
+				}
+			}
+
+			console.info(label, [_dom.length, _dom]);
+
+			_dom
+				.remove()
+			;
+		}
 	});
-
-	*/
-});
+}

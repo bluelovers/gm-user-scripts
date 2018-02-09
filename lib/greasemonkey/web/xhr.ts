@@ -50,6 +50,13 @@ export class GMXMLHttpRequest implements IGMXMLHttpRequest
 
 	public onreadystatechange;
 
+	responseXML?
+	response?
+	finalUrl?
+	lengthComputable?
+	loaded?
+	total?
+
 	constructor()
 	{
 		this._params.context = this;

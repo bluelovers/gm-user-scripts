@@ -1,34 +1,53 @@
 {
   "name": "ux-tweak-sc",
-  "version": "4.2.3",
+  "version": "4.3.0",
   "description": "各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作",
+  "keywords": [
+    "chrome",
+    "firefox",
+    "greasemonkey",
+    "hack",
+    "injector",
+    "mobile",
+    "plugin",
+    "script",
+    "script injector",
+    "tampermonkey",
+    "tweak",
+    "userscript",
+    "ux",
+    "web"
+  ],
+  "homepage": "https://github.com/bluelovers/gm-user-scripts#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/gm-user-scripts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/gm-user-scripts.git"
+  },
+  "license": "ISC",
+  "author": "bluelovers",
   "main": "gulpfile.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "bluelovers",
-  "license": "ISC",
   "dependencies": {
-    "@types/greasemonkey": "0.0.28",
-    "@types/jquery": "^3.2.16",
-    "ascii-fullwidth-halfwidth-convert": "^0.1.1",
     "bluebird": "^3.5.1",
-    "cheerio": "^1.0.0-rc.2",
     "deepmerge": "^2.0.1",
     "file-saver": "^1.3.3",
     "gulp-add-tasks2": "^2.0.8",
     "imagesloaded": "^4.1.4",
     "jquery": "^3.2.1",
     "jquery-stylesheet": "^0.3.7",
-    "jquery-touchswipe": "^1.6.18",
-    "js-cookie": "^2.2.0",
     "keycodes": "^0.2.5",
     "lets-fetch": "^2.1.0",
-    "lodash": "^4.17.4",
-    "lodash.clone": "^4.5.0",
-    "lodash.sortby": "^4.7.0",
     "moment": "^2.19.3",
-    "node-novel": "^1.0.0",
+    "novel-text": "^1.0.1",
     "parse-domain": "^1.2.0",
     "prettify-xml": "^1.2.0",
     "pretty-data": "^0.40.0",
@@ -37,32 +56,20 @@
     "stream-to-promise": "^2.2.0",
     "throttle-debounce": "^1.0.1",
     "tieba-harmony": "^1.2.2",
-    "ts-loader": "^3.2.0",
-    "uglify-js": "^3.2.1",
-    "web-fs": "^2.1.0",
     "webpack-merge": "^4.1.1",
     "zh2cht": "0.0.2"
   },
   "devDependencies": {
+    "@types/greasemonkey": "0.0.28",
+    "@types/jquery": "^3.2.16",
     "globby": "^6.1.0",
     "google-closure-compiler": "^20170626.0.0",
     "gulp-header": "^1.8.9",
     "gulp-util": "^3.0.8",
     "phantomjs-prebuilt": "^2.1.16",
+    "ts-loader": "^3.5.0",
     "webpack": "^3.9.1",
     "webpack-closure-compiler": "^2.1.5",
     "webpack-stream": "^3.2.0"
-  },
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bluelovers/gm-user-scripts.git"
-  },
-  "bugs": {
-    "url": "https://github.com/bluelovers/gm-user-scripts/issues"
-  },
-  "homepage": "https://github.com/bluelovers/gm-user-scripts#readme"
+  }
 }

@@ -6,6 +6,7 @@ import GMApi from './api';
 
 export const GM_XHR = GMApi.xmlhttpRequest;
 
+// @ts-ignore
 export interface IXMLHttpRequestOptions extends GMXMLHttpRequestOptions
 {
 	data: string | any[] | FormData;

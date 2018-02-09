@@ -85,6 +85,7 @@ export async function signin(force?: boolean): Promise<IXMLHttpRequestResponse>
 										return res;
 									}
 
+									// @ts-ignore
 									return Promise.reject(new Error(res));
 								})
 								;
@@ -92,6 +93,7 @@ export async function signin(force?: boolean): Promise<IXMLHttpRequestResponse>
 
 						greasemonkey.error('無法取得 token', res);
 
+						// @ts-ignore
 						return Promise.reject(new Error(res));
 					})
 					;
@@ -103,6 +105,7 @@ export async function signin(force?: boolean): Promise<IXMLHttpRequestResponse>
 				return res;
 			}
 
+			// @ts-ignore
 			return Promise.reject(new Error(res));
 		})
 		.then(function (res)
