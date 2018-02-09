@@ -36,6 +36,7 @@
     "str-util": "^1.1.1",
     "stream-to-promise": "^2.2.0",
     "throttle-debounce": "^1.0.1",
+    "tieba-harmony": "^1.2.2",
     "ts-loader": "^3.2.0",
     "uglify-js": "^3.2.1",
     "web-fs": "^2.1.0",

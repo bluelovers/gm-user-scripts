@@ -64,3 +64,6 @@
 /src/ux-tweak-sc/comic/yoedge.js
 /src/ux-tweak-sc/comic/manhuaren.js
 /src/ux-tweak-sc/novel/wenku8.js
+/src/tieba-harmony/*.js
+/src/tieba-harmony/**/*.js
+!/src/tieba-harmony/index.js
