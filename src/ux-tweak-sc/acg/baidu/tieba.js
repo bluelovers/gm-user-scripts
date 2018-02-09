@@ -44,6 +44,12 @@ module.exports = {
 			{
 				sign(_url_obj);
 			}))
+			.on('load', function ()
+			{
+				$('.p_postlist > .l_post:has(.louzhubiaoshi_wrap)').css({
+					border: '1px solid #2d64b3',
+				});
+			})
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
@@ -107,6 +113,13 @@ module.exports = {
 			})
 		;
 
+		$('.pb_footer')
+			.on('DOMNodeInserted', function ()
+			{
+				$(window).triggerHandler('load');
+			})
+		;
+
 		lazyload(_url_obj);
 	},
 
@@ -131,6 +144,9 @@ module.exports = {
 				'.j_user_sign',
 
 				'.p_author .d_icons, .save_face_card, .d_name_icon, .save_face_bg',
+
+				'.icon_tbworld, .BDE_Smiley',
+				'.louzhubiaoshi_wrap, .save_face_card',
 			].join())
 		;
 

@@ -99,6 +99,13 @@ let o: IDemo = {
 
 		await module.exports.adblock(_url_obj);
 
+		$('.pb_footer, .l_thread_info')
+			.on('DOMNodeInserted', function ()
+			{
+				module.exports.adblock(_url_obj)
+			})
+		;
+
 	},
 
 	adblock(_url_obj = global._url_obj)
