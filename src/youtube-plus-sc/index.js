@@ -14,22 +14,22 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
-	"youtube/2016/my_video.js",
-	"youtube/2016/upload.js",
-	"global/script.js"
+	"youtube/2016/my_video",
+	"youtube/2016/upload",
+	"global/script"
 ];
 
 module.exports.list_disable = [
-	"youtube/2016/watch.js",
-	"youtube/2016.js"
+	"youtube/2016/watch",
+	"youtube/2016"
 ];
 
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('root/src/youtube-plus-sc/youtube/2016/my_video.js');
-	require('root/src/youtube-plus-sc/youtube/2016/upload.js');
-	require('root/src/youtube-plus-sc/global/script.js');
+	require('root/src/youtube-plus-sc/youtube/2016/my_video');
+	require('root/src/youtube-plus-sc/youtube/2016/upload');
+	require('root/src/youtube-plus-sc/global/script');
 };
 
 module.exports.metadata = {};
@@ -54,7 +54,7 @@ module.exports.metadata.grant = [
 ];
 
 module.exports.list_script = [
-	"global/script.js"
+	"global/script"
 ];
 
 module.exports.current = [];

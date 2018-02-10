@@ -4,7 +4,7 @@
 
 "use strict";
 
-import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
+import { IDemo, global, $, jQuery, unsafeWindow, greasemonkey, window, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
 declare const greasemonkey: IGreasemonkey;

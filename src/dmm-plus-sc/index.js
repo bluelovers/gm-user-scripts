@@ -14,13 +14,13 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
-	"dmm/games.js",
-	"games/gadgets.js",
-	"games/pc-play.js",
-	"games/canvas.js",
-	"global/iframe.js",
-	"global/script.js",
-	"_fake.js"
+	"dmm/games",
+	"games/gadgets",
+	"games/pc-play",
+	"games/canvas",
+	"global/iframe",
+	"global/script",
+	"_fake"
 ];
 
 module.exports.list_disable = [];
@@ -28,13 +28,13 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('root/src/dmm-plus-sc/dmm/games.js');
-	require('root/src/dmm-plus-sc/games/gadgets.js');
-	require('root/src/dmm-plus-sc/games/pc-play.js');
-	require('root/src/dmm-plus-sc/games/canvas.js');
-	require('root/src/dmm-plus-sc/global/iframe.js');
-	require('root/src/dmm-plus-sc/global/script.js');
-	require('root/src/dmm-plus-sc/_fake.js');
+	require('root/src/dmm-plus-sc/dmm/games');
+	require('root/src/dmm-plus-sc/games/gadgets');
+	require('root/src/dmm-plus-sc/games/pc-play');
+	require('root/src/dmm-plus-sc/games/canvas');
+	require('root/src/dmm-plus-sc/global/iframe');
+	require('root/src/dmm-plus-sc/global/script');
+	require('root/src/dmm-plus-sc/_fake');
 };
 
 module.exports.metadata = {};
@@ -83,7 +83,7 @@ module.exports.metadata.grant = [
 ];
 
 module.exports.list_script = [
-	"global/script.js"
+	"global/script"
 ];
 
 module.exports.current = [];

@@ -76,7 +76,14 @@ gulp.task("webpack:before", async function (callback)
 
 	for (let name in data)
 	{
-		let ls = await globby(['**/*.js', '!index.js', '!lib/*', '!index.user.js'], {
+		let ls = await globby([
+			'**/*.js',
+			'**/*.ts',
+			'!index.*',
+			'!lib/*',
+			'!index.user.*',
+			'!**/*.d.ts',
+		], {
 			cwd: path.join(cwd_src, name),
 		});
 
@@ -86,6 +93,8 @@ gulp.task("webpack:before", async function (callback)
 		{
 
 			//console.log(name, b);
+
+			b = b.replace(/\.(js|tsx?)$/, '');
 
 			a[b] = require(path.join(cwd_src, name, b));
 

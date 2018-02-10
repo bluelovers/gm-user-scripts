@@ -258,7 +258,7 @@ let o: IDemo = {
 			;
 
 			{
-				let novelText = require('root/lib/novel/text').enspace.create();
+				let novelText = require('novel-text').novelText;
 
 				let _elem = full_contents
 					.find('*')

@@ -14,7 +14,7 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
-	"facebook/2017.11.js"
+	"facebook/2017.11"
 ];
 
 module.exports.list_disable = [];
@@ -22,7 +22,7 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('root/src/fuck-u-fb-share/facebook/2017.11.js');
+	require('root/src/fuck-u-fb-share/facebook/2017.11');
 };
 
 module.exports.metadata = {};

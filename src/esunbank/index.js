@@ -14,7 +14,7 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
-	"esunbank/ebank.js"
+	"esunbank/ebank"
 ];
 
 module.exports.list_disable = [];
@@ -22,7 +22,7 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('root/src/esunbank/esunbank/ebank.js');
+	require('root/src/esunbank/esunbank/ebank');
 };
 
 module.exports.metadata = {};

@@ -14,7 +14,7 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
-	"ajax.js"
+	"ajax"
 ];
 
 module.exports.list_disable = [];
@@ -22,7 +22,7 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('root/src/gamer-auto-signin/ajax.js');
+	require('root/src/gamer-auto-signin/ajax');
 };
 
 module.exports.metadata = {};

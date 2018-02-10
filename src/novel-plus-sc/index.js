@@ -14,12 +14,12 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
-	"site/baidu/tieba.js",
-	"site/dmzj.js",
-	"site/gamer/home.js",
-	"site/lightnovel/discuz.js",
-	"site/sfacg/book.js",
-	"site/syosetu.js"
+	"site/baidu/tieba",
+	"site/dmzj",
+	"site/gamer/home",
+	"site/lightnovel/discuz",
+	"site/sfacg/book",
+	"site/syosetu"
 ];
 
 module.exports.list_disable = [];
@@ -27,12 +27,12 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
-	require('root/src/novel-plus-sc/site/baidu/tieba.js');
-	require('root/src/novel-plus-sc/site/dmzj.js');
-	require('root/src/novel-plus-sc/site/gamer/home.js');
-	require('root/src/novel-plus-sc/site/lightnovel/discuz.js');
-	require('root/src/novel-plus-sc/site/sfacg/book.js');
-	require('root/src/novel-plus-sc/site/syosetu.js');
+	require('root/src/novel-plus-sc/site/baidu/tieba');
+	require('root/src/novel-plus-sc/site/dmzj');
+	require('root/src/novel-plus-sc/site/gamer/home');
+	require('root/src/novel-plus-sc/site/lightnovel/discuz');
+	require('root/src/novel-plus-sc/site/sfacg/book');
+	require('root/src/novel-plus-sc/site/syosetu');
 };
 
 module.exports.metadata = {};

@@ -3,10 +3,10 @@
  */
 
 import { IUrlObject } from 'root/lib/func/parse_url';
-import { IGlobal, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core';
+import { global, greasemonkey, unsafeWindow, window, $, jQuery, IGlobal, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core';
 import { IGreasemonkey } from 'root/lib/greasemonkey/uf';
 
-export { IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 };
+export { global, greasemonkey, unsafeWindow, window, $, jQuery, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 };
 
 export declare const global: IGlobal;
 export declare const greasemonkey: IGreasemonkey;
@@ -66,7 +66,7 @@ export interface IMetadata
 	grant?: string[];
 }
 
-export function create(data = {})
+export function create(data = {}): IDemo
 {
 	return Object.assign(
 		{
