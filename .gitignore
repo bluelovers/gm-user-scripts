@@ -67,3 +67,4 @@
 /src/tieba-harmony/*.js
 /src/tieba-harmony/**/*.js
 !/src/tieba-harmony/index.js
+/package-lock.json
