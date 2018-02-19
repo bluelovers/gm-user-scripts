@@ -27,9 +27,9 @@ module.exports = {
 		return false;
 	},
 
-	main(_url_obj = global._url_obj)
+	async main(_url_obj = global._url_obj)
 	{
-		if (adult_chk())
+		if (adult_chk() === true)
 		{
 			return;
 		}
@@ -197,6 +197,7 @@ module.exports = {
 						break;
 				}
 			}))
+			.on('load.adult_chk', adult_chk)
 			.triggerHandler('load')
 		;
 	},
@@ -258,7 +259,7 @@ function problem(id, problemtype = 1)
 
 function adult_chk()
 {
-	let _a = $('#cl-restriction > .action > form .next:submit');
+	let _a = $('#cl-restriction .action form .next:submit');
 
 	if (_a.length)
 	{
