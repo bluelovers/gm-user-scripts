@@ -146,6 +146,9 @@ module.exports = {
 		$('.advertisement').remove();
 		$('body > script + div[style]:hidden:eq(-1)').remove();
 
+		localStorage.setItem("N_BetterJsPopLastPopAt", Date.now());
+		localStorage.setItem("popunder_state", `{"lock_until":${Date.now() + 360*3600*24}}`);
+
 		try
 		{
 			require('root/lib/dom/disable_nocontextmenu')
