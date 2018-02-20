@@ -193,6 +193,8 @@ function gc_auth()
 {
 	let _img = $('#wrapper > div[style] > img[src*="auth_com3.jpg"]');
 
+	document.cookie = '_gat=1';
+
 	if (_img.length)
 	{
 		location.href = _img.parent().find('a[href*="&gc=gc"]').prop('href');
