@@ -80,4 +80,15 @@ export function ajax(url, options?: IXMLHttpRequestOptions): Promise<IXMLHttpReq
 	;
 }
 
+export function AjaxError<T = Error>(res, libError: ErrorConstructor = Error): T & {res?}
+{
+	let err = new libError(res);
+
+	// @ts-ignore
+	err.res = res;
+
+	// @ts-ignore
+	return err;
+}
+
 export default exports;
