@@ -283,6 +283,7 @@ module.exports.metadata.include = [
 module.exports.metadata.match = [
 	"*://*.bdimg.com/safecheck/*",
 	"*://www.u2mtv.com/*",
+	"*://nl.syosetu.com/*",
 	"*://ncode.syosetu.com/*",
 	"*://novel18.syosetu.com/*",
 	"*://share.dmhy.org/*",

@@ -20,6 +20,7 @@ let o: IDemo = {
 			'http*://syosetu.com/*',
 		],
 		match: [
+			'*://nl.syosetu.com/*',
 			'*://ncode.syosetu.com/*',
 			'*://novel18.syosetu.com/*',
 		],
@@ -49,6 +50,19 @@ let o: IDemo = {
 		].join(','))
 			.prop('target', '_blank')
 		;
+
+		{
+			let days = 365;
+
+			let date = new Date();
+			date.setTime(date.getTime()+(days * 24 * 60 * 60 * 1000));
+			// @ts-ignore
+			let _expires = date.toGMTString();
+
+			_expires = ';expires=' + _expires;
+
+			document.cookie = 'over18=yes; Domain=.syosetu.com; Path=/' + _expires;
+		}
 
 		greasemonkey.GM_addStyle([
 			`#novel_contents .novel_sublist2 .subtitle:after { content: "#" attr(data-id) " "; font-size: 8pt; font-family: Consolas; }`,
