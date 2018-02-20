@@ -4,14 +4,15 @@
 
 ## install
 
-1. 請參閱 [安裝需求](userscript.md)
+1. 請參閱 [安裝需求](readme/userscript.md)
 
 ### 腳本
 
-* [ux-tweak-sc](reademe/ux-tweak-sc.md)
+* [ux-tweak-sc](readme/ux-tweak-sc.md)
 
-* [novel-plus-sc](reademe/novel-plus-sc.md)
+* [novel-plus-sc](readme/novel-plus-sc.md)
 
-* [fuck-u-fb-share](reademe/fuck-u-fb-share.md)
+* [fuck-u-fb-share](readme/fuck-u-fb-share.md)
 
 * [其他](dist/)
+

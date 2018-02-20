@@ -51,18 +51,7 @@ let o: IDemo = {
 			.prop('target', '_blank')
 		;
 
-		{
-			let days = 365;
-
-			let date = new Date();
-			date.setTime(date.getTime()+(days * 24 * 60 * 60 * 1000));
-			// @ts-ignore
-			let _expires = date.toGMTString();
-
-			_expires = ';expires=' + _expires;
-
-			document.cookie = 'over18=yes; Domain=.syosetu.com; Path=/' + _expires;
-		}
+		adult_chk();
 
 		greasemonkey.GM_addStyle([
 			`#novel_contents .novel_sublist2 .subtitle:after { content: "#" attr(data-id) " "; font-size: 8pt; font-family: Consolas; }`,
@@ -122,5 +111,28 @@ let o: IDemo = {
 	},
 
 };
+
+function adult_chk()
+{
+	let days = 365;
+
+	let date = new Date();
+	date.setTime(date.getTime()+(days * 24 * 60 * 60 * 1000));
+	// @ts-ignore
+	let _expires = date.toGMTString();
+
+	_expires = ';expires=' + _expires;
+
+	document.cookie = 'over18=yes; Domain=.syosetu.com; Path=/' + _expires;
+
+	let _a = $('#modal #yes18[data-url]');
+
+	if (_a.length)
+	{
+		window.location.href = _a.attr('data-url');
+
+		return true;
+	}
+}
 
 export = o as IDemo;
