@@ -65,7 +65,6 @@ module.exports.list = [
 	"comic/wnacg",
 	"comic/yoedge",
 	"content/farm/fun01.cc",
-	"novel/iqing",
 	"novel/syosetu",
 	"novel/wenku8",
 	"shop/pchome",
@@ -95,7 +94,8 @@ module.exports.list = [
 module.exports.list_disable = [
 	"acg/dmm",
 	"acg/guildwars2/forum",
-	"google/drive"
+	"google/drive",
+	"novel/iqing"
 ];
 
 // for webpack, don't use this method
@@ -152,7 +152,6 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/comic/wnacg');
 	require('root/src/ux-tweak-sc/comic/yoedge');
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc');
-	require('root/src/ux-tweak-sc/novel/iqing');
 	require('root/src/ux-tweak-sc/novel/syosetu');
 	require('root/src/ux-tweak-sc/novel/wenku8');
 	require('root/src/ux-tweak-sc/shop/pchome');
@@ -285,8 +284,6 @@ module.exports.metadata.include = [
 module.exports.metadata.match = [
 	"*://*.bdimg.com/safecheck/*",
 	"*://www.u2mtv.com/*",
-	"*://*.iqing.com/*",
-	"*://*.iqing.in/*",
 	"*://nl.syosetu.com/*",
 	"*://ncode.syosetu.com/*",
 	"*://novel18.syosetu.com/*",

@@ -10,6 +10,8 @@ declare const global: IGlobal;
 
 let o: IDemo = {
 
+	disable: true,
+
 	metadata: {
 		include: [],
 		match: [
