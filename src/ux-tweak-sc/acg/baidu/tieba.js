@@ -11,6 +11,10 @@ module.exports = {
 			'http*://tieba.baidu.com/*',
 		],
 		exclude: [],
+
+		grant: [
+			'GM_setClipboard',
+		],
 	},
 
 	test(_url_obj = global._url_obj)
@@ -25,6 +29,7 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
+		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('')
 			.prop('target', '_blank')
@@ -78,7 +83,12 @@ module.exports = {
 
 						let c = Number(floor_elem.text().replace(/\D/g, ''));
 
-						if (typeof floor == 'number' && c != floor + 1)
+						if (Number.isNaN(c) || Number.isNaN(floor))
+						{
+							console.error(floor_elem, c, floor);
+						}
+
+						if (typeof floor == 'number' && c != floor + 1 && !Number.isNaN(c))
 						{
 							let a = [];
 							for (let i = floor + 1; i < c; i++)
@@ -86,10 +96,17 @@ module.exports = {
 								a.push(i);
 							}
 
-							last_post.find('.d_post_content_main')
-								.append(`<div class="floor-check-miss">請注意：${a[0]}${a.length > 1
-									? ' ~ ' + a.slice(-1)
-									: ''} 樓 可能已被吞文或刪除</div>`)
+							if (a.length)
+							{
+								last_post.find('.d_post_content_main')
+									.append(`<div class="floor-check-miss">請注意：${a[0]}${a.length > 1
+										? ' ~ ' + a.slice(-1)
+										: ''} 樓 可能已被吞文或刪除</div>`);
+							}
+							else
+							{
+								console.error(floor_elem, c, floor, a);
+							}
 						}
 
 						floor = c;
@@ -110,7 +127,47 @@ module.exports = {
 									.attr('style',
 										'float: right; z-index: 500; position: absolute; right: 0px; top: 0px; padding: 1px 5px;'
 									)
-									.on('click', _uf_done)
+									/*
+									.on('click', function (event)
+									{
+										let text = _post.find('.d_post_content');
+
+										try
+										{
+											text[0].select();
+											document.execCommand('Copy');
+										}
+										catch (e)
+										{
+											console.error(e);
+										}
+
+										try
+										{
+											GMApi.GM_setClipboard(text.text().replace(/\r\n|\r(?!\n)|\n/g, "<br/>\n"));
+										}
+										catch (e)
+										{
+											console.error(e);
+										}
+
+										_uf_done(event);
+									})
+									*/
+									.attr('onclick', function ()
+									{
+										let id = _post.find('.d_post_content').attr('id');
+
+										return [
+											`event.preventDefault()`,
+											`var copyArea = document.getElementById('${id}')`,
+											`try{copyArea.select();}catch(e){console.error(e)}`,
+											`try{var range = document.createRange();range.selectNode(copyArea);window.getSelection().addRange(range)}catch(e){console.error(e)}`,
+											`try{document.execCommand('Copy')}catch(e){console.error(e)}`,
+											`return false`
+										].join(';')
+									})
+									.attr('title', '點擊可複製貼子')
 								);
 
 								floor_elem.wrapInner($('<a/>')
