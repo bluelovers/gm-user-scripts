@@ -306,7 +306,7 @@ let o: IDemo = {
 			})
 		;
 
-		console.debug(novelText._data_.words, novelText._cache_);
+		//console.debug(novelText._data_.words, novelText._cache_);
 	},
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)

@@ -34,26 +34,101 @@ module.exports = {
 			.GM_addStyle([
 				`#com_userbar { position: fixed; top: 55px; background: #fff9; }`,
 				`#com_userbar .u_bdhome { display: none; }`,
+				`.floor-check-miss { padding: 10px;background-color: #451159;border-radius: 5px;padding-bottom: 6px;color: #fff;text-align: center;margin: 5px;margin-left: auto;}`,
+				`.floor-check-miss:hover { opacity: 0.9; }`,
 			])
 		;
 
 		const throttle = require('throttle-debounce/throttle');
+		const _uf_done = require('root/lib/event/done');
+		let PageData;
 
 		$(window)
 			.on('load.sign', throttle(1000, function ()
 			{
 				sign(_url_obj);
+
+				$(window).triggerHandler('scroll.load');
 			}))
 			.on('load', function ()
 			{
+				PageData = $.extend({}, {
+					thread: {},
+				}, unsafeWindow.PageData);
+
 				$('.p_postlist > .l_post:has(.louzhubiaoshi_wrap)').css({
 					border: '1px solid #2d64b3',
 				});
+
+				let floor;
+				let last_post;
+				let n = 0;
+
+				$('.p_postlist .l_post:not([data-floor-check])')
+					.each(function ()
+					{
+						n++;
+
+						let _this = $(this);
+						let _post = _this;
+
+						_this.attr('data-floor-check', true);
+
+						let floor_elem = _this.find('.post-tail-wrap > .tail-info:eq(-2)');
+
+						let c = Number(floor_elem.text().replace(/\D/g, ''));
+
+						if (typeof floor == 'number' && c != floor + 1)
+						{
+							let a = [];
+							for (let i = floor + 1; i < c; i++)
+							{
+								a.push(i);
+							}
+
+							last_post.find('.d_post_content_main')
+								.append(`<div class="floor-check-miss">請注意：${a[0]}${a.length > 1
+									? ' ~ ' + a.slice(-1)
+									: ''} 樓 可能已被吞文或刪除</div>`)
+						}
+
+						floor = c;
+						last_post = _this;
+
+						try
+						{
+							if (_post.is(':not([data-loaded])'))
+							{
+								_post.attr('data-loaded', true);
+
+								$('.d_post_content_main', _post).prepend($('<a/>')
+									.text('#' + _post.data('field').content.post_no)
+									.attr('href',
+										'http://tieba.baidu.com/p/' + PageData.thread.thread_id + '?pid=' + _post.data(
+										'field').content.post_id + '#' + _post.data('field').content.post_id
+									)
+									.attr('style',
+										'float: right; z-index: 500; position: absolute; right: 0px; top: 0px; padding: 1px 5px;'
+									)
+									.on('click', _uf_done)
+								);
+
+								floor_elem.wrapInner($('<a/>')
+									.attr('href',
+										'http://tieba.baidu.com/p/' + PageData.thread.thread_id + '?pid=' + _post.data(
+										'field').content.post_id + '#' + _post.data('field').content.post_id
+									)
+									.on('click', _uf_done))
+							}
+						}
+						catch (e)
+						{}
+					})
+				;
 			})
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
-				const _uf_done = require('root/lib/event/done');
 
 				switch (event.which)
 				{
@@ -102,6 +177,50 @@ module.exports = {
 			.one('scroll', function (event)
 			{
 				console.log(event);
+			})
+			.on('scroll.reply', function (event)
+			{
+				if (event.namespace == 'reply')
+				{
+					//console.log(event);
+				}
+				else
+				{
+
+				}
+			})
+			.on('scroll.load', function (event)
+			{
+				let n = 0;
+
+				$('.core_reply_wrapper:not([data-loaded]):has(.loading_reply)')
+					.each(function ()
+					{
+						let core_reply_wrapper = $(this);
+						core_reply_wrapper.attr('data-loaded', true);
+
+						let t = Number(core_reply_wrapper.prop('data-loaded-try') || 0);
+
+						if (t < 5 && core_reply_wrapper.find('.loading_reply').length)
+						{
+							n++;
+
+							core_reply_wrapper.prop('data-loaded-try', t + 1);
+
+							setTimeout(function ()
+							{
+								$(window)
+									.add('html, body')
+									.trigger($.Event('scroll.reply', {
+										pageY: core_reply_wrapper.offset().top,
+									}))
+								;
+
+								core_reply_wrapper.removeAttr('data-loaded');
+							}, 1000 + n * 100);
+						}
+					})
+				;
 			})
 			.triggerHandler('load')
 		;
