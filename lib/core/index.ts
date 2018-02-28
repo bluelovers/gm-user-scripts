@@ -38,7 +38,19 @@ export { greasemonkey };
 		}
 	}
 
+
+
 	console.info('jquery', _try, _try && _try.fn && _try.fn.jquery);
+
+	if (_try && _try.fn && _try.fn.jquery)
+	{
+		// @ts-ignore
+		$ = _try;
+		if (global)
+		{
+			global.$ = $;
+		}
+	}
 }
 
 export interface IJQueryStatic extends JQueryStatic
