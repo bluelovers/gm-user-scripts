@@ -9,7 +9,7 @@
 // @description:en	玉山銀行
 // @description:zh	玉山銀行
 //
-// @version		4.3.1
+// @version		4.3.2
 //
 // @grant		unsafeWindow
 // grant		none
