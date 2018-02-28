@@ -24,7 +24,7 @@ export const metadata = `// ==UserScript==
 // @version		<%= pkg.version %>
 //
 // @grant		<%= index.grant %>
-// grant		none
+// g_r_a_n_tnone
 //
 // @icon		<%= index.icon %>
 //

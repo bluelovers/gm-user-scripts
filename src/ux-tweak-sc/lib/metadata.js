@@ -21,7 +21,7 @@ module.exports.metadata = `// ==UserScript==
 // @version		<%= pkg.version %>
 //
 // @grant		<%= index.grant %>
-// grant		none
+// g_r_a_n_t		none
 //
 // @icon		<%= index.icon %>
 //

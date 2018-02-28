@@ -38,7 +38,15 @@ export { greasemonkey };
 		}
 	}
 
-	console.info('jquery', _try, _try && _try.fn && _try.fn.jquery);
+	try
+	{
+		console.info('jquery', _try, _try && _try.fn && _try.fn.jquery);
+		console.info(unsafeWindow, exportFunction);
+	}
+	catch (e)
+	{
+		console.error(e);
+	}
 
 	if (_try && _try.fn && _try.fn.jquery)
 	{
