@@ -64,57 +64,6 @@ module.exports = {
 			$(window)
 				.on('load.ready', function ()
 				{
-					return;
-
-					let len = 2;
-
-					if (cw_viewer.find('footer').length)
-					{
-						len = cw_viewer
-							.find('footer')
-							.text()
-							.replace(/\s+/g, '')
-							.split(/\s*[\/\/]\s*/)[1]
-							.trim()
-							.length
-						;
-					}
-
-					let episode_title = unsafeWindow.dataLayer[0].episode_title;
-
-					cw_viewer
-						.find('div[data-index]')
-						.each(function ()
-						{
-							let _this = $(this);
-
-							let canvas = _this.find('canvas');
-
-							canvas.attr('download', `${episode_title}_${pad(_this.attr('data-index'))}.png`);
-
-							let _a = canvas.parents('a').eq(0);
-
-							if (!_a.length)
-							{
-								canvas.wrap(`<a href="#"/>`);
-								_a = canvas.parents('a').eq(0);
-
-								_a.click(function ()
-								{
-									let canvas = $(this).find('canvas');
-
-									require('root/lib/save').saveCanvas(canvas[0], canvas.attr('download'))
-										.then(function (r)
-										{
-											console.log(r);
-										})
-										.catch(e => console.error(e))
-									;
-								})
-							}
-
-						})
-					;
 				})
 				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{

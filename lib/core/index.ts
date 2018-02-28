@@ -8,6 +8,39 @@ import { IDemo } from 'root/lib/core/demo';
 
 export { greasemonkey };
 
+{
+	let _try;
+
+	try
+	{
+		// @todo: 嘗試相容於 Tampermonkey 使腳本不影響網頁原本的 $
+		if (typeof $ != 'undefined' && $)
+		{
+			_try = $.noConflict();
+		}
+	}
+	catch (e)
+	{
+	}
+
+	if (!_try)
+	{
+		try
+		{
+			if (typeof global.$ != 'undefined' && global.$)
+			{
+				_try = global.$.noConflict();
+			}
+		}
+		catch (e)
+		{
+
+		}
+	}
+
+	console.info('jquery', _try, _try && _try.fn && _try.fn.jquery);
+}
+
 export interface IJQueryStatic extends JQueryStatic
 {
 	scrollTo?: JQuery<HTMLElement>;

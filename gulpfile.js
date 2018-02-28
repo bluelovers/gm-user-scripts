@@ -20,8 +20,6 @@ const globby = require('globby');
 
 const path = require('path');
 
-const sortBy = require('lodash.sortby');
-
 const cheerio = require('cheerio');
 
 const cwd_src = path.join(__dirname, 'src');
@@ -104,27 +102,6 @@ gulp.task("webpack:before", async function (callback)
 
 	for (let name in data)
 	{
-
-		/*
-		let ordered = sortBy(Object.keys(data[name]), [
-				function (b)
-				{
-					let o = data[name][b];
-
-					console.log(typeof o.priority == 'undefined' ? 500 : o.priority);
-
-					return typeof o.priority == 'undefined' ? 500 : o.priority;
-				},
-
-				function ()
-				{
-					return name;
-				},
-			])
-		;
-
-		ordered.reverse();
-		*/
 
 		let ordered = Object.keys(data[name])
 			.reduce(function (a, b)
