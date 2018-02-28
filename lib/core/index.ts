@@ -38,8 +38,6 @@ export { greasemonkey };
 		}
 	}
 
-
-
 	console.info('jquery', _try, _try && _try.fn && _try.fn.jquery);
 
 	if (_try && _try.fn && _try.fn.jquery)
@@ -94,9 +92,9 @@ export interface IMainCallback extends Function
 	(uxid: string, exports: IExports, global: IGlobal, window: Window, $?: JQueryStatic, _url?: string);
 }
 
-declare const window: IWindow;
-declare const unsafeWindow: IWindow;
-declare const global: IGlobal;
+export declare const window: IWindow;
+export declare const unsafeWindow: IWindow;
+export declare const global: IGlobal;
 
 export interface IUrlObject2 extends IUrlObject
 {
