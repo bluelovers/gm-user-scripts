@@ -2,9 +2,10 @@
  * Created by user on 2017/11/14/014.
  */
 
+export * from './index';
 import * as greasemonkey from './index';
 
-Object.assign(exports, greasemonkey);
+//Object.assign(exports, greasemonkey);
 
 export interface IGreasemonkey
 {
@@ -86,4 +87,5 @@ export function openInTabBackground(url: string)
 	return win;
 }
 
-export default exports;
+import * as self from './uf';
+export default self;

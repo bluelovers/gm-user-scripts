@@ -5,9 +5,12 @@
 import { parse_url, parse_url2, IUrlObject } from 'root/lib/func/parse_url';
 import greasemonkey from 'root/lib/greasemonkey/uf';
 import { IDemo } from 'root/lib/core/demo';
+//import {  } from 'root/lib/core/demo';
 
 export { greasemonkey };
 
+
+if (1)
 {
 	let _try;
 
@@ -16,7 +19,7 @@ export { greasemonkey };
 		// @todo: 嘗試相容於 Tampermonkey 使腳本不影響網頁原本的 $
 		if (typeof $ != 'undefined' && $)
 		{
-			_try = $.noConflict();
+			_try = $.noConflict(true);
 		}
 	}
 	catch (e)
@@ -29,7 +32,7 @@ export { greasemonkey };
 		{
 			if (typeof global.$ != 'undefined' && global.$)
 			{
-				_try = global.$.noConflict();
+				_try = global.$.noConflict(true);
 			}
 		}
 		catch (e)
@@ -38,17 +41,7 @@ export { greasemonkey };
 		}
 	}
 
-	try
-	{
-		console.info('jquery', _try, _try && _try.fn && _try.fn.jquery);
-		console.info(unsafeWindow, exportFunction);
-	}
-	catch (e)
-	{
-		console.error(e);
-	}
-
-	if (_try && _try.fn && _try.fn.jquery)
+	if (0 && _try && _try.fn && _try.fn.jquery)
 	{
 		// @ts-ignore
 		$ = _try;
@@ -56,6 +49,46 @@ export { greasemonkey };
 		{
 			global.$ = $;
 		}
+	}
+
+	try
+	{
+		_print_jquery('null', null);
+		_print_jquery('global', global);
+		_print_jquery('window', window);
+		_print_jquery('unsafeWindow', unsafeWindow);
+
+		console.info('exportFunction', exportFunction);
+	}
+	catch (e)
+	{
+		console.error(e);
+	}
+
+	function _print_jquery(label, where)
+	{
+		console[('groupCollapsed' in console) ? 'groupCollapsed' : 'group'](label);
+
+		try
+		{
+			if (where === null)
+			{
+				console.info(`$`, $, $ && $.fn && $.fn.jquery);
+				console.info(`jQuery`, jQuery, jQuery && jQuery.fn && jQuery.fn.jquery);
+			}
+			else
+			{
+				console.info(`${label}.$`, where.$, where.$ && where.$.fn && where.$.fn.jquery);
+				console.info(`${label}.jQuery`, where.jQuery, where.jQuery && where.jQuery.fn && where.jQuery.fn.jquery);
+			}
+		}
+		catch (e)
+		{
+			console.error(`${label}`, e.toString());
+		}
+
+		// @ts-ignore
+		console.groupEnd(label);
 	}
 }
 
@@ -100,9 +133,9 @@ export interface IMainCallback extends Function
 	(uxid: string, exports: IExports, global: IGlobal, window: Window, $?: JQueryStatic, _url?: string);
 }
 
-export declare const window: IWindow;
-export declare const unsafeWindow: IWindow;
-export declare const global: IGlobal;
+declare const window: IWindow;
+declare const unsafeWindow: IWindow;
+declare const global: IGlobal;
 
 export interface IUrlObject2 extends IUrlObject
 {
@@ -211,7 +244,7 @@ export function init(uxid: string,
 	//global.$ = $jq || global.$ || $;
 	//global.jQuery = $jq || global.jQuery || jQuery;
 
-	global.$ = global.jQuery = $jq;
+	//global.$ = global.jQuery = $jq;
 
 	global.userScript = exports;
 }

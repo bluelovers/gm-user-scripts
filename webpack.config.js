@@ -61,8 +61,12 @@ module.exports = {
 //		})
 
 		new webpack.ProvidePlugin({
-			$: 'jquery/dist/jquery.min',
-			jQuery: 'jquery/dist/jquery.min',
+			//$: 'jquery/dist/jquery.min',
+			//jQuery: 'jquery/dist/jquery.min',
+
+			$: ['root/lib/jquery/global', 'default'],
+			jQuery: ['root/lib/jquery/global', 'default'],
+
 			greasemonkey: 'root/lib/greasemonkey/uf',
 		}),
 

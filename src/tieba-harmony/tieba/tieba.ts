@@ -63,6 +63,29 @@ let o: IDemo = {
 					})
 				;
 			})
+			.on('mousedown mouseenter', '#j_editor_for_container', function ()
+			{
+				$('#j_editor_for_container')
+					.find('*')
+					.contents()
+					// @ts-ignore
+					.filter(function ()
+					{
+						return this.nodeType === 3 && this.nodeValue;
+					})
+					.each(function (index, elem)
+					{
+						let _this = $(this);
+
+						let _t = tiebaHarmony.escape(_this.text());
+
+						if (this.nodeValue != _t)
+						{
+							this.nodeValue = _t;
+						}
+					})
+				;
+			})
 		;
 	},
 

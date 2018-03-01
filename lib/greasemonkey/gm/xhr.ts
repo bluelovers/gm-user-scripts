@@ -91,4 +91,5 @@ export function AjaxError<T = Error>(res, libError: ErrorConstructor = Error): T
 	return err;
 }
 
-export default exports;
+import * as self from './xhr';
+export default self;
