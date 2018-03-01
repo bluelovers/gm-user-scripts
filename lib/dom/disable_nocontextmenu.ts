@@ -17,6 +17,8 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 	let jq;
 	let arr;
 
+	//console.log(unsafeWindow.jQuery, window.jQuery, global.jQuery, jQuery);
+
 	// @ts-ignore
 	if (unsafeWindow && unsafeWindow.jQuery)
 	{
@@ -30,13 +32,21 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 
 		//console.log(jq, arr);
 	}
-	else
+	else if (window.jQuery)
 	{
 		// @ts-ignore
 		jq = window.jQuery;
 		// @ts-ignore
 		arr = window.jQuery(elem).add('body, html')
 			.add(window.document)
+			.add(window)
+		;
+	}
+	else
+	{
+		jq = jQuery;
+		arr = jQuery(elem).add('body, html')
+			.add(document)
 			.add(window)
 		;
 	}

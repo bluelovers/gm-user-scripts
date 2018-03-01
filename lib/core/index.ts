@@ -9,8 +9,9 @@ import { IDemo } from 'root/lib/core/demo';
 
 export { greasemonkey };
 
+import _jQuery from 'root/lib/jquery/global';
 
-if (1)
+if (0)
 {
 	let _try;
 
@@ -64,31 +65,21 @@ if (1)
 	{
 		console.error(e);
 	}
-
-	function _print_jquery(label, where)
+}
+else
+{
+	try
 	{
-		console[('groupCollapsed' in console) ? 'groupCollapsed' : 'group'](label);
+		_print_jquery('null', null);
+		_print_jquery('global', global);
+		_print_jquery('window', window);
+		_print_jquery('unsafeWindow', unsafeWindow);
 
-		try
-		{
-			if (where === null)
-			{
-				console.info(`$`, $, $ && $.fn && $.fn.jquery);
-				console.info(`jQuery`, jQuery, jQuery && jQuery.fn && jQuery.fn.jquery);
-			}
-			else
-			{
-				console.info(`${label}.$`, where.$, where.$ && where.$.fn && where.$.fn.jquery);
-				console.info(`${label}.jQuery`, where.jQuery, where.jQuery && where.jQuery.fn && where.jQuery.fn.jquery);
-			}
-		}
-		catch (e)
-		{
-			console.error(`${label}`, e.toString());
-		}
-
-		// @ts-ignore
-		console.groupEnd(label);
+		console.info('exportFunction', exportFunction);
+	}
+	catch (e)
+	{
+		console.error(e);
 	}
 }
 
@@ -472,4 +463,30 @@ export async function main_list(index: IIndex, list: string[], options = {})
 			}
 		}
 	}
+}
+
+function _print_jquery(label, where)
+{
+	console[('groupCollapsed' in console) ? 'groupCollapsed' : 'group'](label);
+
+	try
+	{
+		if (where === null)
+		{
+			console.info(`$`, $, $ && $.fn && $.fn.jquery);
+			console.info(`jQuery`, jQuery, jQuery && jQuery.fn && jQuery.fn.jquery);
+		}
+		else
+		{
+			console.info(`${label}.$`, where.$, where.$ && where.$.fn && where.$.fn.jquery);
+			console.info(`${label}.jQuery`, where.jQuery, where.jQuery && where.jQuery.fn && where.jQuery.fn.jquery);
+		}
+	}
+	catch (e)
+	{
+		console.error(`${label}`, e.toString());
+	}
+
+	// @ts-ignore
+	console.groupEnd(label);
 }
