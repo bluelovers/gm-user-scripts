@@ -410,7 +410,24 @@ function follow_button(_url_obj, window)
 				}
 				else
 				{
-					window.open(pixiv_link_uid(uid), '_blank');
+					let _skip;
+
+					if (/member_illust\.php/.test(_url_obj.path) && _url_obj.query.match(/(?:\b|&|^)id=(\d+)/))
+					{
+						//console.log([RegExp.$1, uid]);
+
+						if (RegExp.$1 == uid)
+						{
+							_skip = true;
+						}
+					}
+
+					//console.log(_url_obj);
+
+					if (!_skip)
+					{
+						window.open(pixiv_link_uid(uid), '_blank');
+					}
 				}
 
 				setTimeout(() =>
