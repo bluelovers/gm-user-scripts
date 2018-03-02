@@ -36,6 +36,7 @@ module.exports.list = [
 	"anti-adblock/epinv",
 	"art/deviantart",
 	"art/pixiv",
+	"art/pixivision",
 	"bbs/ptt",
 	"blog/blog.xuite",
 	"blog/dulfy",
@@ -123,6 +124,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/anti-adblock/epinv');
 	require('root/src/ux-tweak-sc/art/deviantart');
 	require('root/src/ux-tweak-sc/art/pixiv');
+	require('root/src/ux-tweak-sc/art/pixivision');
 	require('root/src/ux-tweak-sc/bbs/ptt');
 	require('root/src/ux-tweak-sc/blog/blog.xuite');
 	require('root/src/ux-tweak-sc/blog/dulfy');
@@ -215,6 +217,7 @@ module.exports.metadata.include = [
 	"http*://*.deviantart.com/*",
 	"http*://*.pixiv.net/*",
 	"http*://www.pixiv.net/search*",
+	"http*://www.pixivision.net/*",
 	"http*://www.ptt.cc/*",
 	"http*://blog.xuite.net/*",
 	"http*://dulfy.net/*",

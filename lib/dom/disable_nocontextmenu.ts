@@ -104,24 +104,27 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 
 			_fn_off.forEach((fn) =>
 			{
-				if (jq.fn[fn])
+				try
 				{
-					try
+					if (arr2[fn])
 					{
 						arr2[fn](event);
 					}
-					catch (e)
-					{
-						console.error(e);
-					}
+				}
+				catch (e)
+				{
+					console.error(e, fn);
+				}
 
+				if (jq.fn[fn])
+				{
 					try
 					{
 						arr[fn](event);
 					}
 					catch (e)
 					{
-						console.error(e);
+						console.error(e, fn);
 					}
 				}
 			});

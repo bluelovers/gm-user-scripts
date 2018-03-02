@@ -19,7 +19,7 @@ let o: IDemo = {
 
 	metadata: {
 		include: [
-			//'http*://www.gamer.com.tw/*',
+			'http*://www.pixivision.net/*',
 		],
 		match: [],
 		nomatch: [],
@@ -44,10 +44,15 @@ let o: IDemo = {
 	{
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
-			//
+			'.article-card-container a',
 		].join(','))
 			.prop('target', '_blank')
 		;
+
+		$('a[href*="https://www.pixiv.net/member.php"]').prop('href', function (i, old)
+		{
+			return old.replace(/member\.php\?id=/, 'member_illust.php?id=');
+		});
 	},
 
 	adblock(_url_obj = global._url_obj)
