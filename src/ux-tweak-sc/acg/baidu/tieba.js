@@ -31,9 +31,15 @@ module.exports = {
 	{
 		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
-		_uf_dom_filter_link('')
-			.prop('target', '_blank')
-		;
+
+		$(window).on('load', function ()
+		{
+			_uf_dom_filter_link([
+				'.u_itieba a',
+			])
+				.prop('target', '_blank')
+			;
+		}).triggerHandler('load');
 
 		greasemonkey
 			.GM_addStyle([
