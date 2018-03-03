@@ -45,7 +45,7 @@ let o: IDemo = {
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
 			//
-		].join(','))
+		])
 			.prop('target', '_blank')
 		;
 	},

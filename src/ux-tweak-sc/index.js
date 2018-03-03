@@ -59,6 +59,7 @@ module.exports.list = [
 	"comic/dmzj",
 	"comic/exhentai",
 	"comic/ikanman",
+	"comic/lhscans",
 	"comic/manben",
 	"comic/manhuaren",
 	"comic/nhentai",
@@ -147,6 +148,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/comic/dmzj');
 	require('root/src/ux-tweak-sc/comic/exhentai');
 	require('root/src/ux-tweak-sc/comic/ikanman');
+	require('root/src/ux-tweak-sc/comic/lhscans');
 	require('root/src/ux-tweak-sc/comic/manben');
 	require('root/src/ux-tweak-sc/comic/manhuaren');
 	require('root/src/ux-tweak-sc/comic/nhentai');
@@ -248,6 +250,7 @@ module.exports.metadata.include = [
 	"http*://e-hentai.org/*",
 	"http*://*.ikanman.com/*",
 	"http*://*.manhuagui.com/*",
+	"http*://lhscans.com/*",
 	"http*://www.manben.com/*",
 	"http*://www.manhuaren.com/*",
 	"http*://nhentai.net/*",
