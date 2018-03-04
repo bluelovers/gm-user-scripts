@@ -58,6 +58,9 @@ let o: IDemo = {
 
 			'#watch7-creator-bar a',
 			'#watch-description-extras a',
+
+			'a[href*="/view_all_playlists"]',
+
 		].join(','))
 			.prop('target', '_blank')
 		;
@@ -93,6 +96,14 @@ let o: IDemo = {
 			$('#masthead-container #end #buttons').prepend(
 				`<a href="/my_videos?o=U" id="my_videos"><button is="paper-icon-button-light" class="style-scope ytd-masthead" aria-label="影片管理員" style="	width: auto;">影片管理員</button></a>`
 			);
+		}
+
+		if (_url_obj.path.match(/view_all_playlists/))
+		{
+			$('#vm-video-list-container a[href*=playlist]').attr('href', function (i, old)
+			{
+				return old + '&disable_polymer=true';
+			});
 		}
 	},
 

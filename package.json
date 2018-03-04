@@ -48,7 +48,7 @@
     "jquery-stylesheet": "^0.3.7",
     "keycodes": "^1.0.0",
     "moment": "^2.20.1",
-    "novel-text": "^1.0.8",
+    "novel-text": "^1.0.9",
     "parse-domain": "^2.0.0",
     "prettify-xml": "^1.2.0",
     "pretty-data": "^0.40.0",
