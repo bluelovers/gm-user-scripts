@@ -272,12 +272,30 @@ module.exports = {
 
 							setTimeout(function ()
 							{
+								let event = $.Event('scroll.reply', {
+									pageY: core_reply_wrapper.offset().top,
+								});
+
 								$(window)
 									.add('html, body')
-									.trigger($.Event('scroll.reply', {
-										pageY: core_reply_wrapper.offset().top,
-									}))
+									.trigger(event)
 								;
+
+								try
+								{
+									let event = unsafeWindow.$.Event('scroll.reply', {
+										pageY: core_reply_wrapper.offset().top,
+									});
+
+									unsafeWindow.$(unsafeWindow)
+										.add('html, body')
+										.trigger(event)
+									;
+								}
+								catch (e)
+								{
+									console.error(e.toString());
+								}
 
 								core_reply_wrapper.removeAttr('data-loaded');
 							}, 1000 + n * 100);
