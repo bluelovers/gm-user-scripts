@@ -183,7 +183,7 @@ function mini_jmd()
 		return false;
 	}
 
-	const zh2cht = require('zh2cht');
+	const zhRegExp = require('regexp-cjk').zhRegExp;
 
 	let data = {
 		jmd: [],
@@ -259,16 +259,7 @@ function mini_jmd()
 	{
 		let _kw_regex = '(' + _kw.replace('/', '//').replace(/\+/gmi, ').*(') + ')';
 
-		let _kw_regex2 = zh2cht.toZh(_kw_regex);
-
-		if (_kw_regex2 != _kw_regex)
-		{
-			_kw_regex = '(?:' + _kw_regex + ')|(?:' + _kw_regex2 + ')';
-		}
-
-		_kw_regex = new RegExp(_kw_regex, 'i');
-
-		return _kw_regex;
+		return new zhRegExp(_kw_regex, 'i');
 	}
 
 	//console.log(data);

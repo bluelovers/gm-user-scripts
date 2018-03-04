@@ -52,11 +52,11 @@
     "parse-domain": "^2.0.0",
     "prettify-xml": "^1.2.0",
     "pretty-data": "^0.40.0",
+    "regexp-cjk": "^1.2.12",
     "stonejs": "^2.3.0",
     "str-util": "^2.3.13",
     "throttle-debounce": "^1.0.1",
-    "tieba-harmony": "^1.2.3",
-    "zh2cht": "0.0.2"
+    "tieba-harmony": "^1.2.3"
   },
   "devDependencies": {
     "@types/greasemonkey": "0.0.28",
