@@ -1,6 +1,6 @@
 {
   "name": "ux-tweak-sc",
-  "version": "4.3.5",
+  "version": "4.3.6",
   "description": "各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作",
   "keywords": [
     "chrome",
@@ -40,15 +40,15 @@
   },
   "dependencies": {
     "bluebird": "^3.5.1",
-    "cjk-conv": "^1.0.8",
+    "cjk-conv": "^1.0.10",
     "deepmerge-plus": "^2.1.1",
     "gulp-add-tasks2": "^2.0.8",
     "imagesloaded": "^4.1.4",
     "jquery": "^3.3.1",
     "jquery-stylesheet": "^0.3.7",
     "keycodes": "^1.0.0",
-    "moment": "^2.20.1",
-    "novel-text": "^1.0.9",
+    "moment": "^2.21.0",
+    "novel-text": "^1.0.10",
     "parse-domain": "^2.0.0",
     "prettify-xml": "^1.2.0",
     "pretty-data": "^0.40.0",
@@ -56,7 +56,7 @@
     "stonejs": "^2.3.0",
     "str-util": "^2.3.13",
     "throttle-debounce": "^1.0.1",
-    "tieba-harmony": "^1.2.3"
+    "tieba-harmony": "^1.2.4"
   },
   "devDependencies": {
     "@types/greasemonkey": "0.0.28",
