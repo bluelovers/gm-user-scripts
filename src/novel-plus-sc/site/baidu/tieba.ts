@@ -303,6 +303,14 @@ let o: IDemo = {
 					})
 				;
 
+				_this.html(function (i, old)
+				{
+					return html = old
+						.replace(/^\s+/g, '')
+						.replace(/\s+$/g, '')
+					;
+				});
+
 				_this.data('html-new', html);
 			})
 		;
