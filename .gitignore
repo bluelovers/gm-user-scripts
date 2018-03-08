@@ -73,3 +73,6 @@
 /lib/jquery/global.js
 /src/ux-tweak-sc/art/pixivision.js
 /src/ux-tweak-sc/comic/lhscans.js
+/src/syosetu-list-number/lib/metadata.js
+/src/syosetu-list-number/index.user.js
+/src/syosetu-list-number/site/syosetu.js
