@@ -5,8 +5,8 @@ module.exports.version = '';
 module.exports.name = 'syosetu-list-number';
 module.exports.name_en = 'syosetu-list-number';
 
-module.exports.desc = 'syosetu-list-number 讓小說家的章節顯示序列';
-module.exports.desc_en = 'syosetu-list-number 讓小說家的章節顯示序列';
+module.exports.desc = 'syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)';
+module.exports.desc_en = 'syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)';
 
 module.exports.namespace = '';
 module.exports.author = '';

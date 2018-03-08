@@ -2,7 +2,7 @@
  * Created by user on 2017/8/6/006.
  */
 
-export const desc = 'syosetu-list-number 讓小說家的章節顯示序列';
+export const desc = 'syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)';
 
 export const grant = [
 

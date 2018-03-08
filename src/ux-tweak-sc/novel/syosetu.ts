@@ -56,6 +56,9 @@ let o: IDemo = {
 		greasemonkey.GM_addStyle([
 			`#novel_contents .novel_sublist2 .subtitle:after { content: "#" attr(data-id) " "; font-size: 8pt; font-family: Consolas; margin-left: 0.5em; }`,
 			`#novel_contents .novel_sublist2 .subtitle:before { content: "#" attr(data-id-sub) " "; font-size: 8pt; font-family: Consolas; min-width: 3em; display: inline-block; }`,
+
+			`#novel_contents .novel_sublist a[data-id]:after { content: "#" attr(data-id) " "; font-size: 8pt; font-family: Consolas; margin-left: 0.5em; }`,
+			`#novel_contents .novel_sublist a[data-id-sub]:before { content: "#" attr(data-id-sub) " "; font-size: 8pt; font-family: Consolas; min-width: 3em; display: inline-block; }`,
 		]);
 
 		// @ts-ignore
@@ -67,6 +70,18 @@ let o: IDemo = {
 
 			return index + 1;
 		});
+
+		$('#novel_contents .novel_sublist > ul > li:not(.chapter)')
+			.each(function (index)
+			{
+				$(this).html($(this).html().replace(/[\t\r\n]/g, '').trim());
+
+				$('> a:eq(0)', this).attr('data-id', function ()
+				{
+					return index + 1;
+				})
+			})
+		;
 
 		let iv = 0;
 		let ic = 1;
@@ -88,6 +103,31 @@ let o: IDemo = {
 				{
 					_this.find('.subtitle').attr('data-id-sub', ic);
 					ic++;
+				}
+			})
+		;
+
+		iv = 0;
+		ic = 1;
+
+		$('#novel_contents .novel_sublist > ul > li')
+			.each(function ()
+			{
+				let _this = $(this);
+
+				_this.html(_this.html().replace(/[\t\r\n]/g, '').trim());
+
+				if (_this.is('.chapter'))
+				{
+					iv++;
+					ic = 1;
+				}
+				else
+				{
+					_this.find('> a:eq(0)').attr('data-id-sub', function ()
+					{
+						return ic++;
+					});
 				}
 			})
 		;
@@ -117,7 +157,7 @@ function adult_chk()
 	let days = 365;
 
 	let date = new Date();
-	date.setTime(date.getTime()+(days * 24 * 60 * 60 * 1000));
+	date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
 	// @ts-ignore
 	let _expires = date.toGMTString();
 
