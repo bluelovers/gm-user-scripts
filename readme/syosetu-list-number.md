@@ -12,7 +12,7 @@
 
 然後點擊此處安裝腳本 [syosetu-list-number.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/syosetu-list-number.user.js)
 
-### 御覽圖
+### 預覽圖
 
 #### PC
 
