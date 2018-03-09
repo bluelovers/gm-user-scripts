@@ -53,6 +53,15 @@ let o: IDemo = {
 
 		adult_chk();
 
+		let novel_contents = $('#novel_contents');
+
+		if (!novel_contents.length)
+		{
+			return;
+		}
+
+		const ENABLE_CLASS = 'enable-syosetu-list-number';
+
 		greasemonkey.GM_addStyle([
 
 			/*
@@ -63,11 +72,11 @@ let o: IDemo = {
 			`#novel_contents .novel_sublist a[data-id-sub]:before { content: "#" attr(data-id-sub) " "; font-size: 0.7em; font-family: Consolas; min-width: 3em; display: inline-block; }`,
 			*/
 
-			`#novel_contents .novel_sublist2 .subtitle:after, #novel_contents .novel_sublist a[data-id]:after, #novel_contents .novel_sublist2 .subtitle:before, #novel_contents .novel_sublist a[data-id-sub]:before { font-size: 0.7em; font-family: Consolas; min-width: 3em; display: inline-block; opacity: 0.6; }`,
+			`#novel_contents.enable-syosetu-list-number .novel_sublist2 .subtitle:after, #novel_contents.enable-syosetu-list-number .novel_sublist a[data-id]:after, #novel_contents.enable-syosetu-list-number .novel_sublist2 .subtitle:before, #novel_contents.enable-syosetu-list-number .novel_sublist a[data-id-sub]:before { font-size: 0.7em; font-family: Consolas; min-width: 3em; display: inline-block; opacity: 0.6; }`,
 			`#novel_contents .novel_sublist2 .subtitle:hover:after, #novel_contents .novel_sublist li:hover a[data-id]:after, #novel_contents .novel_sublist2 .subtitle:hover:before, #novel_contents .novel_sublist li:hover a[data-id-sub]:before { opacity: 1; }`,
 
-			`#novel_contents .novel_sublist2 .subtitle:after, #novel_contents .novel_sublist a[data-id]:after { content: "#" attr(data-id) ""; margin-left: 0.5em; }`,
-			`#novel_contents .novel_sublist2 .subtitle:before, #novel_contents .novel_sublist a[data-id-sub]:before { content: "#" attr(data-id-sub) ""; }`,
+			`#novel_contents.enable-syosetu-list-number .novel_sublist2 .subtitle:after, #novel_contents.enable-syosetu-list-number .novel_sublist a[data-id]:after { content: "#" attr(data-id) ""; margin-left: 0.5em; }`,
+			`#novel_contents.enable-syosetu-list-number .novel_sublist2 .subtitle:before, #novel_contents.enable-syosetu-list-number .novel_sublist a[data-id-sub]:before { content: "#" attr(data-id-sub) ""; }`,
 		]);
 
 		// @ts-ignore
@@ -140,6 +149,55 @@ let o: IDemo = {
 				}
 			})
 		;
+
+		novel_contents.addClass(ENABLE_CLASS);
+
+		let btn = $(`<div class="btn-${ENABLE_CLASS}"></div>`);
+
+		greasemonkey.GM_addStyle([
+
+			`.btn-${ENABLE_CLASS}:before { content: " " attr(data-text) " "; display: block; height: 1em; text-align: center; margin: auto; font-size: 0.9rem; line-height: 1; background-color: #1f2448; color: #fff; padding: 5px; border-radius: 1em; width: 90%; font-family: Consolas; }`,
+
+			`.btn-${ENABLE_CLASS} { text-align: center; margin: auto; opacity: 0.7; }`,
+			`.btn-${ENABLE_CLASS}:hover { opacity: 1; }`,
+		]);
+
+		if (novel_contents.find('.index_box').length)
+		{
+			btn.insertBefore(novel_contents.find('.index_box').eq(0));
+		}
+		else if (novel_contents.find('.novel_sublist').length)
+		{
+			btn.insertBefore(novel_contents.find('.novel_sublist').eq(0));
+		}
+
+		btn = $(`.btn-${ENABLE_CLASS}`).eq(0);
+
+		if (btn.length)
+		{
+			btn
+				.on('mousedown.click touchend.click', function ()
+				{
+					novel_contents.toggleClass(ENABLE_CLASS);
+
+				})
+				.on('mousedown.class touchend.class', function ()
+				{
+					let bool = novel_contents.hasClass(ENABLE_CLASS);
+
+					let text = bool ? 'ON' : 'OFF';
+
+					btn
+					//.text(text)
+						.attr('data-text', text)
+					;
+
+				})
+				.triggerHandler('mousedown.class')
+			;
+		}
+
+		//console.log(btn);
 	},
 
 	adblock(_url_obj = global._url_obj)

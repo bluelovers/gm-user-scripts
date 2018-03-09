@@ -9,7 +9,7 @@
 // @description:en	tieba-harmony 貼吧發文時自動和諧
 // @description:zh	tieba-harmony 貼吧發文時自動和諧
 //
-// @version		4.3.6
+// @version		4.3.7
 //
 // @grant		GM.deleteValue
 // @grant		GM.getValue

@@ -15,6 +15,8 @@ declare const jQuery: IJQueryStatic;
 
 let o: IDemo = {
 
+	disable: true,
+
 	metadata: {
 		include: [
 			'http*://syosetu.com/*',

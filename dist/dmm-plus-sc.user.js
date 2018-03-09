@@ -9,7 +9,7 @@
 // @description:en	dmm games layout tweak
 // @description:zh	DMM Games 介面調整以及更適合遊戲直播
 //
-// @version		4.3.6
+// @version		4.3.7
 //
 // @grant		unsafeWindow
 // g_r_a_n_tnone
