@@ -55,8 +55,22 @@ let o: IDemo = {
 
 		let novel_contents = $('#novel_contents');
 
-		if (!novel_contents.length)
+		if (!novel_contents.find('.novel_sublist, .index_box').length)
 		{
+			$('#novel_p').append("<p class='p-hr'><br/>=====================================<br/><br/></p>");
+			$('#novel_a').prepend("<p class='p-hr'><br/><br/>=====================================<br/><br/></p>");
+
+			$('.novelview_navi, #novel_header')
+				.on('click', function ()
+				{
+					$('.p-hr').css('color', function ()
+					{
+						return $('body').css('background-color');
+					});
+				})
+				.triggerHandler('click')
+			;
+
 			return;
 		}
 
