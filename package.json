@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.1",
-    "cjk-conv": "^1.0.10",
+    "cjk-conv": "^1.0.14",
     "deepmerge-plus": "^2.1.1",
     "gulp-add-tasks2": "^2.0.8",
     "imagesloaded": "^4.1.4",
@@ -56,7 +56,7 @@
     "stonejs": "^2.3.0",
     "str-util": "^2.3.13",
     "throttle-debounce": "^1.0.1",
-    "tieba-harmony": "^1.2.4"
+    "tieba-harmony": "^1.2.8"
   },
   "devDependencies": {
     "@types/greasemonkey": "0.0.28",
