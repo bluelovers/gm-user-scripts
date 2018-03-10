@@ -32,14 +32,21 @@ module.exports = {
 		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
-		$(window).on('load', function ()
+		$(window).on('load.link', function ()
 		{
 			_uf_dom_filter_link([
-				'.u_itieba a',
+				'.u_itieba a, .u_news a, .u_username a, .com_userbar a, #j_u_username a',
 			])
-				.prop('target', '_blank')
+				.attr('target', '_blank')
 			;
+
+			$('.u_itieba a, .u_news a, .u_username a, .com_userbar a, #j_u_username a').attr('target', '_blank');
 		}).triggerHandler('load');
+
+		$('body').on('hover', '#j_u_username, .u_username, .u_username li, .u_ddl_con_top', function ()
+		{
+			$(window).triggerHandler('load.link');
+		});
 
 		greasemonkey
 			.GM_addStyle([
