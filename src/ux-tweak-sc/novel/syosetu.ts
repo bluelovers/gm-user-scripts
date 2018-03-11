@@ -15,7 +15,7 @@ declare const jQuery: IJQueryStatic;
 
 let o: IDemo = {
 
-	disable: true,
+	//disable: true,
 
 	metadata: {
 		include: [
@@ -55,6 +55,11 @@ let o: IDemo = {
 
 		adult_chk();
 
+		// @ts-ignore
+		$(window).scrollTo('#novel_no, .novel_subtitle', 0 - $('#novel_header').height());
+
+		return;
+
 		greasemonkey.GM_addStyle([
 			`#novel_contents .novel_sublist2 .subtitle:after { content: "#" attr(data-id) " "; font-size: 8pt; font-family: Consolas; margin-left: 0.5em; }`,
 			`#novel_contents .novel_sublist2 .subtitle:before { content: "#" attr(data-id-sub) " "; font-size: 8pt; font-family: Consolas; min-width: 3em; display: inline-block; }`,
@@ -62,9 +67,6 @@ let o: IDemo = {
 			`#novel_contents .novel_sublist a[data-id]:after { content: "#" attr(data-id) " "; font-size: 0.7em; font-family: Consolas; margin-left: 0.5em; }`,
 			`#novel_contents .novel_sublist a[data-id-sub]:before { content: "#" attr(data-id-sub) " "; font-size: 0.7em; font-family: Consolas; min-width: 3em; display: inline-block; }`,
 		]);
-
-		// @ts-ignore
-		$(window).scrollTo('#novel_no, .novel_subtitle', 0 - $('#novel_header').height());
 
 		$('#novel_contents .novel_sublist2 .subtitle').attr('data-id', function (index, old)
 		{
