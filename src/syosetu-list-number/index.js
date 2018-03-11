@@ -32,7 +32,8 @@ module.exports.metadata.include = [
 module.exports.metadata.match = [
 	"*://nl.syosetu.com/*",
 	"*://ncode.syosetu.com/*",
-	"*://novel18.syosetu.com/*"
+	"*://novel18.syosetu.com/*",
+	"*://nkx.syosetu.com/*"
 ];
 module.exports.metadata.exclude = [];
 module.exports.metadata.grant = [];

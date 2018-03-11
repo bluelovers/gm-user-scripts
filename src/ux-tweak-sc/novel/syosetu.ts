@@ -25,6 +25,7 @@ let o: IDemo = {
 			'*://nl.syosetu.com/*',
 			'*://ncode.syosetu.com/*',
 			'*://novel18.syosetu.com/*',
+			'*://nkx.syosetu.com/*',
 		],
 		nomatch: [],
 		exclude: [],

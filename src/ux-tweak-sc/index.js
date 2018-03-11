@@ -293,6 +293,7 @@ module.exports.metadata.match = [
 	"*://nl.syosetu.com/*",
 	"*://ncode.syosetu.com/*",
 	"*://novel18.syosetu.com/*",
+	"*://nkx.syosetu.com/*",
 	"*://share.dmhy.org/*",
 	"*://*.moegirl.org/*"
 ];
