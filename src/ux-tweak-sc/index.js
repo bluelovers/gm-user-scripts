@@ -291,6 +291,10 @@ module.exports.metadata.include = [
 ];
 module.exports.metadata.match = [
 	"*://*.bdimg.com/safecheck/*",
+	"*://tieba.baidu.com/i/i/my_tie*",
+	"*://tieba.baidu.com/i/i/my_reply*",
+	"*://tieba.baidu.com/i/i/atme*",
+	"*://tieba.baidu.com/i/i/storethread*",
 	"*://www.u2mtv.com/*",
 	"*://nl.syosetu.com/*",
 	"*://ncode.syosetu.com/*",

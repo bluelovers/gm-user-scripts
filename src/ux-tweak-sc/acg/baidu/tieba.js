@@ -10,6 +10,12 @@ module.exports = {
 		include: [
 			'http*://tieba.baidu.com/*',
 		],
+		match: [
+			'*://tieba.baidu.com/i/i/my_tie*',
+			'*://tieba.baidu.com/i/i/my_reply*',
+			'*://tieba.baidu.com/i/i/atme*',
+			'*://tieba.baidu.com/i/i/storethread*',
+		],
 		exclude: [],
 
 		grant: [
@@ -19,7 +25,9 @@ module.exports = {
 
 	test(_url_obj = global._url_obj)
 	{
-		if (_url_obj.host.match(/tieba\.baidu\.com/))
+		let ret;
+
+		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj.source, module.exports))
 		{
 			return true;
 		}
@@ -76,6 +84,40 @@ module.exports = {
 
 				$('.p_postlist > .l_post:has(.louzhubiaoshi_wrap)').css({
 					border: '1px solid #2d64b3',
+				});
+
+				$([
+					'.card_title_fname',
+					'.simple_block_container .wrap_container .nowrap a',
+					'.simple_block_container .t_forward .common_source_main a:eq(-1)',
+				].join(',')).each(function ()
+				{
+					let title = $(this).attr('title');
+
+					if (title)
+					{
+						$(this).text(title + (title.slice(-1) == '吧' ? '' : '吧'));
+					}
+				});
+
+				$('.u_news .j_category_list').each(function ()
+				{
+					let ul = $(this);
+
+					if (!ul.find('a.j_cleardata[data-type="favts"]').length)
+					{
+						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/storethread" target="_blank" data-type="favts">我的收藏</a></li>`);
+					}
+
+					if (!ul.find('a.j_cleardata[data-type="atme"]').length)
+					{
+						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/atme" target="_blank" data-type="atme">查看@提到我</a></li>`);
+					}
+
+					if (!ul.find('a.j_cleardata[data-type="reply"]').length)
+					{
+						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/replyme" target="_blank" data-type="reply">查看回复</a></li>`);
+					}
 				});
 
 				let floor;
