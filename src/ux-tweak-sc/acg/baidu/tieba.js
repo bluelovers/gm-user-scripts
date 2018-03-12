@@ -109,6 +109,11 @@ module.exports = {
 						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/storethread" target="_blank" data-type="favts">我的收藏</a></li>`);
 					}
 
+					if (!ul.find('a.j_cleardata[data-type="my_tie"]').length)
+					{
+						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/my_tie" target="_blank" data-type="my_tie">我的贴子</a></li>`);
+					}
+
 					if (!ul.find('a.j_cleardata[data-type="atme"]').length)
 					{
 						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/atme" target="_blank" data-type="atme">查看@提到我</a></li>`);
