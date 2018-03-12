@@ -49,7 +49,7 @@ module.exports = {
 			;
 
 			$('.u_itieba a, .u_news a, .u_username a, .com_userbar a, #j_u_username a').attr('target', '_blank');
-		}).triggerHandler('load');
+		}).triggerHandler('load.link');
 
 		$('body').on('hover', '#j_u_username, .u_username, .u_username li, .u_ddl_con_top', function ()
 		{
@@ -66,15 +66,48 @@ module.exports = {
 		;
 
 		const throttle = require('throttle-debounce/throttle');
+		const debounce = require('throttle-debounce/debounce');
 		const _uf_done = require('root/lib/event/done');
 		let PageData;
 
+		$('body').on('DOMNodeInserted', '#com_userbar', debounce(1000, function ()
+		{
+			$(window).triggerHandler('load.menu');
+		}));
+
 		$(window)
-			.on('load.sign', throttle(1000, function ()
+			.on('load.sign', debounce(1000, function ()
 			{
 				sign(_url_obj);
 
 				$(window).triggerHandler('scroll.load');
+			}))
+			.on('load.menu', debounce(1000, function ()
+			{
+				$('.u_news ul.j_category_list').each(function ()
+				{
+					let ul = $(this);
+
+					if (!ul.find('a.j_cleardata[data-type="favts"]').length)
+					{
+						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/storethread" target="_blank" data-type="favts">我的收藏</a></li>`);
+					}
+
+					if (!ul.find('a.j_cleardata[data-type="my_tie"]').length)
+					{
+						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/my_tie" target="_blank" data-type="my_tie">我的贴子</a></li>`);
+					}
+
+					if (!ul.find('a.j_cleardata[data-type="atme"]').length)
+					{
+						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/atme" target="_blank" data-type="atme">查看@提到我</a></li>`);
+					}
+
+					if (!ul.find('a.j_cleardata[data-type="reply"]').length)
+					{
+						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/replyme" target="_blank" data-type="reply">查看回复</a></li>`);
+					}
+				});
 			}))
 			.on('load', function ()
 			{
@@ -97,31 +130,6 @@ module.exports = {
 					if (title)
 					{
 						$(this).text(title + (title.slice(-1) == '吧' ? '' : '吧'));
-					}
-				});
-
-				$('.u_news .j_category_list').each(function ()
-				{
-					let ul = $(this);
-
-					if (!ul.find('a.j_cleardata[data-type="favts"]').length)
-					{
-						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/storethread" target="_blank" data-type="favts">我的收藏</a></li>`);
-					}
-
-					if (!ul.find('a.j_cleardata[data-type="my_tie"]').length)
-					{
-						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/my_tie" target="_blank" data-type="my_tie">我的贴子</a></li>`);
-					}
-
-					if (!ul.find('a.j_cleardata[data-type="atme"]').length)
-					{
-						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/atme" target="_blank" data-type="atme">查看@提到我</a></li>`);
-					}
-
-					if (!ul.find('a.j_cleardata[data-type="reply"]').length)
-					{
-						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="//tieba.baidu.com/i/i/replyme" target="_blank" data-type="reply">查看回复</a></li>`);
 					}
 				});
 
