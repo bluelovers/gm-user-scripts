@@ -69,6 +69,7 @@ module.exports.list = [
 	"content/farm/fun01.cc",
 	"novel/syosetu",
 	"novel/wenku8",
+	"p2p/wetransfer",
 	"shop/pchome",
 	"shop/post/kerrytj",
 	"shop/post/post/gov/tw/pstmail",
@@ -158,6 +159,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc');
 	require('root/src/ux-tweak-sc/novel/syosetu');
 	require('root/src/ux-tweak-sc/novel/wenku8');
+	require('root/src/ux-tweak-sc/p2p/wetransfer');
 	require('root/src/ux-tweak-sc/shop/pchome');
 	require('root/src/ux-tweak-sc/shop/post/kerrytj');
 	require('root/src/ux-tweak-sc/shop/post/post/gov/tw/pstmail');
@@ -294,6 +296,7 @@ module.exports.metadata.match = [
 	"*://ncode.syosetu.com/*",
 	"*://novel18.syosetu.com/*",
 	"*://nkx.syosetu.com/*",
+	"*://wetransfer.com/*",
 	"*://share.dmhy.org/*",
 	"*://*.moegirl.org/*"
 ];
