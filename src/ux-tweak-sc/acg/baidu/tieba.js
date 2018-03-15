@@ -133,6 +133,15 @@ module.exports = {
 					}
 				});
 
+				$([
+					'.feed_item a.itb_kw[title][href*="..."]',
+				].join(',')).attr('href', function ()
+				{
+					let title = $(this).attr('title');
+
+					return '/f?kw=' + title;
+				});
+
 				let floor;
 				let last_post;
 				let n = 0;

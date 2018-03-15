@@ -10,6 +10,8 @@ module.exports = {
 		include: [
 			'https://www.npmjs.com/search?q=*',
 			'https://www.npmjs.com/~*',
+			'https://www.npmjs.com/browse/*',
+			'https://www.npmjs.com/package/*',
 		],
 		exclude: [],
 	},
@@ -81,6 +83,7 @@ module.exports = {
 					'#readme a, .box a, a.packageName, a.authorName',
 					'.collaborated-packages a, .bullet-free a, .starred-packages a',
 					'.list-of-links a',
+					'.package-details a, .list-of-links a',
 				].join(','))
 					.prop('target', '_blank')
 				;

@@ -233,6 +233,8 @@ module.exports.metadata.include = [
 	"http*://greasyfork.org/*",
 	"https://www.npmjs.com/search?q=*",
 	"https://www.npmjs.com/~*",
+	"https://www.npmjs.com/browse/*",
+	"https://www.npmjs.com/package/*",
 	"http*://segmentfault.com/*",
 	"http*://sourceforge.net/projects/*/files/*",
 	"http*://stackoverflow.com/*",
