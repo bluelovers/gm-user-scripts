@@ -67,6 +67,7 @@ module.exports.list = [
 	"comic/wnacg",
 	"comic/yoedge",
 	"content/farm/fun01.cc",
+	"novel/kakuyomu.jp",
 	"novel/syosetu",
 	"novel/wenku8",
 	"p2p/wetransfer",
@@ -157,6 +158,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/comic/wnacg');
 	require('root/src/ux-tweak-sc/comic/yoedge');
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc');
+	require('root/src/ux-tweak-sc/novel/kakuyomu.jp');
 	require('root/src/ux-tweak-sc/novel/syosetu');
 	require('root/src/ux-tweak-sc/novel/wenku8');
 	require('root/src/ux-tweak-sc/p2p/wetransfer');
@@ -265,6 +267,8 @@ module.exports.metadata.include = [
 	"http*://wnacg.org/*",
 	"http*://smp*.yoedge.com/*",
 	"http*://www.fun01.cc/*",
+	"http*://kakuyomu.jp/works*",
+	"http*://kakuyomu.jp/*",
 	"http*://syosetu.com/*",
 	"http*://www.wenku8.com/*",
 	"http*://mall.pchome.com.tw/*",
