@@ -13,6 +13,7 @@
 然後點擊此處安裝腳本
 
 * [syosetu-list-number.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/pan-baidu-block-or-expire.user.js)
+* [greasyfork](https://greasyfork.org/zh-TW/scripts/39684-pan-baidu-block-or-expire) - 備用安裝連結
 
 ### 預覽圖
 

@@ -10,4 +10,7 @@
 
 #### tieba-harmony
 
-然後點擊此處安裝腳本 [tieba-harmony.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/tieba-harmony.user.js)
+然後點擊此處安裝腳本
+
+* [tieba-harmony.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/tieba-harmony.user.js)
+* [greasyfork](https://greasyfork.org/zh-TW/scripts/38314-tieba-harmony) - 備用安裝連結

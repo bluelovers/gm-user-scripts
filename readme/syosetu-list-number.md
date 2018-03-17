@@ -10,7 +10,10 @@
 
 #### syosetu-list-number
 
-然後點擊此處安裝腳本 [syosetu-list-number.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/syosetu-list-number.user.js)
+然後點擊此處安裝腳本
+
+* [syosetu-list-number.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/syosetu-list-number.user.js)
+* [greasyfork](https://greasyfork.org/zh-TW/scripts/39307-syosetu-list-number) - 備用安裝連結
 
 ### 預覽圖
 
