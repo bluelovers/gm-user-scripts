@@ -73,9 +73,15 @@ else
 		_print_jquery('null', null);
 		_print_jquery('global', global);
 		_print_jquery('window', window);
+		_print_jquery('window.self', window.self);
 		_print_jquery('unsafeWindow', unsafeWindow);
 
-		console.info('exportFunction', exportFunction);
+		// @ts-ignore
+		if (typeof exportFunction != 'undefined')
+		{
+			// @ts-ignore
+			console.info('exportFunction', exportFunction);
+		}
 	}
 	catch (e)
 	{
@@ -471,6 +477,8 @@ function _print_jquery(label, where)
 
 	try
 	{
+		console.info(label, where);
+
 		if (where === null)
 		{
 			console.info(`$`, $, $ && $.fn && $.fn.jquery);

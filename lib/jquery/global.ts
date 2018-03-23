@@ -4,15 +4,30 @@
 
 console[('groupCollapsed' in console) ? 'groupCollapsed' : 'group']('before');
 
+let _old = {} as {
+	$,
+	jQuery,
+};
+
 try
 {
 	_print_jquery('null', null);
 	_print_jquery('global', global);
 	_print_jquery('window', window);
+	_print_jquery('window.self', window.self);
 	_print_jquery('unsafeWindow', unsafeWindow);
 
 	// @ts-ignore
-	console.info('exportFunction', exportFunction);
+	_old.$ = unsafeWindow.$;
+	// @ts-ignore
+	_old.jQuery = unsafeWindow.jQuery;
+
+	// @ts-ignore
+	if (typeof exportFunction != 'undefined')
+	{
+		// @ts-ignore
+		console.info('exportFunction', exportFunction);
+	}
 }
 catch (e)
 {
@@ -30,7 +45,8 @@ export const $ = jQuery;
 export { jQuery };
 
 // @ts-ignore
-window.$ = window.jQuery = jQuery;
+//window.$ = window.jQuery = jQuery;
+window.self.$ = window.self.jQuery = jQuery;
 
 export default jQuery;
 
@@ -41,10 +57,15 @@ try
 	_print_jquery('null', null);
 	_print_jquery('global', global);
 	_print_jquery('window', window);
+	_print_jquery('window.self', window.self);
 	_print_jquery('unsafeWindow', unsafeWindow);
 
 	// @ts-ignore
-	console.info('exportFunction', exportFunction);
+	if (typeof exportFunction != 'undefined')
+	{
+		// @ts-ignore
+		console.info('exportFunction', exportFunction);
+	}
 }
 catch (e)
 {
@@ -53,6 +74,34 @@ catch (e)
 
 // @ts-ignore
 console.groupEnd('after');
+
+console[('groupCollapsed' in console) ? 'groupCollapsed' : 'group']('end');
+
+try
+{
+	if (_old.$ && _old.$ !== unsafeWindow.self.$)
+	{
+		unsafeWindow.self.$ = _old.$;
+	}
+
+	if (_old.jQuery && _old.jQuery !== unsafeWindow.self.jQuery)
+	{
+		unsafeWindow.self.jQuery = _old.jQuery;
+	}
+
+	_print_jquery('null', null);
+	_print_jquery('global', global);
+	_print_jquery('window', window);
+	_print_jquery('window.self', window.self);
+	_print_jquery('unsafeWindow', unsafeWindow);
+}
+catch (e)
+{
+	console.error(e);
+}
+
+// @ts-ignore
+console.groupEnd('end');
 
 function _print_jquery(label, where)
 {
