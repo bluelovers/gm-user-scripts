@@ -19,9 +19,11 @@ let o: IDemo = {
 		include: [
 			'http*://pan.baidu.com/s/*',
 			'http*://pan.baidu.com/error/*',
+			'http*://pan.baidu.com/wap/error*',
 		],
 		match: [
-
+			'https://pan.baidu.com/wap/error',
+			'http://pan.baidu.com/wap/error',
 		],
 		nomatch: [],
 		exclude: [],
@@ -43,9 +45,34 @@ let o: IDemo = {
 
 	async main(_url_obj = global._url_obj)
 	{
-		if (_url_obj.path.match(/error\//))
+		if (_url_obj.path.match(/wap\/error(?=[\/\?]|$)/))
 		{
-			$('.module-error .reason')
+			let bool = /文件已取消/.test(document.title);
+
+			if (bool)
+			{
+				$('#pageMain .share-error.error-box')
+					.prepend(`<div>
+<font color=red>此分享連結可能已經過期或刪除</font><br>
+<font color=red>請通知分享者補檔或嘗試其他分流連結</font><br>
+</div>`)
+				;
+			}
+			else if (!bool)
+			{
+				$('#pageMain .share-error.error-box')
+					.prepend(`<div>
+<font color=blue>1. 你的 IP 可能屬於被和諧區域</font><br>
+<font color=blue>請嘗試使用 VPN / Proxy</font><br>
+<font color=red>2. 此分享者所屬的 IP 可能被和諧</font><br>
+<font color=red>請通知更換其他網盤再進行分享</font><br>
+</div>`)
+				;
+			}
+		}
+		else if (_url_obj.path.match(/\/error(?=[\/\?]|$)/) && !/文件已取消/.test(document.title))
+		{
+			$('.module-error .reason, #pageMain .share-error.error-box')
 				.prepend(`<div>
 <font color=blue>1. 你的 IP 可能屬於被和諧區域</font><br>
 <font color=blue>請嘗試使用 VPN / Proxy</font><br>

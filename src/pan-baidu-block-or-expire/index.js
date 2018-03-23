@@ -28,9 +28,12 @@ module.exports._lib = () =>
 module.exports.metadata = {};
 module.exports.metadata.include = [
 	"http*://pan.baidu.com/s/*",
-	"http*://pan.baidu.com/error/*"
+	"http*://pan.baidu.com/error/*",
+	"http*://pan.baidu.com/wap/error*"
 ];
-module.exports.metadata.match = [];
+module.exports.metadata.match = [
+	"*://pan.baidu.com/wap/error"
+];
 module.exports.metadata.exclude = [];
 module.exports.metadata.grant = [];
 
