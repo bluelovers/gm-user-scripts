@@ -45,12 +45,24 @@ let o: IDemo = {
 
 	async main(_url_obj = global._url_obj)
 	{
+		/**
+		 * 過期測試
+		 * https://pan.baidu.com/s/1dEBdp1R
+		 *
+		 * 封鎖測試
+		 * https://pan.baidu.com/s/1o9Tnnya
+		 */
+
 		if (_url_obj.path.match(/wap\/error(?=[\/\?]|$)/))
 		{
-			let bool = /文件已取消/.test(document.title);
+			let bool = _url_obj.query.match(/err_num=1/);
 
 			if (bool)
 			{
+				/**
+				 * https://pan.baidu.com/wap/error?err_num=1&err_type=share
+				 */
+
 				$('#pageMain .share-error.error-box')
 					.prepend(`<div>
 <font color=red>此分享連結可能已經過期或刪除</font><br>
@@ -58,8 +70,12 @@ let o: IDemo = {
 </div>`)
 				;
 			}
-			else if (!bool)
+			else if (_url_obj.query.match(/err_num=3/))
 			{
+				/**
+				 * https://pan.baidu.com/wap/error?err_num=3&err_type=share
+				 */
+
 				$('#pageMain .share-error.error-box')
 					.prepend(`<div>
 <font color=blue>1. 你的 IP 可能屬於被和諧區域</font><br>
