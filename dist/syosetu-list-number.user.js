@@ -9,7 +9,7 @@
 // @description:en	syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)
 // @description:zh	syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)
 //
-// @version		4.3.7
+// @version		4.3.8
 //
 // @grant		
 // g_r_a_n_tnone

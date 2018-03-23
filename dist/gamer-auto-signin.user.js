@@ -9,7 +9,7 @@
 // @description:en	巴哈姆特自動簽到
 // @description:zh	巴哈姆特自動簽到
 //
-// @version		4.3.7
+// @version		4.3.8
 //
 // @grant		GM.deleteValue
 // @grant		GM.getValue
