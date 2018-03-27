@@ -15,6 +15,7 @@ module.exports = {
 			'*://tieba.baidu.com/i/i/my_reply*',
 			'*://tieba.baidu.com/i/i/atme*',
 			'*://tieba.baidu.com/i/i/storethread*',
+			'*://tieba.baidu.com/pmc/*',
 		],
 		exclude: [],
 
@@ -106,6 +107,12 @@ module.exports = {
 					if (!ul.find('a.j_cleardata[data-type="reply"]').length)
 					{
 						ul.prepend(`<li class="category_item category_item_empty"><a class="j_cleardata" href="http://tieba.baidu.com/i/i/replyme" target="_blank" data-type="reply">查看回复</a></li>`);
+					}
+
+					if (!ul.find('a.j_cleardata[data-type="recycle"]').length)
+					{
+						//http://tieba.baidu.com/pmc/recycle
+						ul.append(`<li class="category_item category_item_empty"><a class="j_cleardata" href="http://tieba.baidu.com/pmc/recycle" target="_blank" data-type="recycle">删贴信息</a></li>`);
 					}
 				});
 			}))

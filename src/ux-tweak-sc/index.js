@@ -301,6 +301,7 @@ module.exports.metadata.match = [
 	"*://tieba.baidu.com/i/i/my_reply*",
 	"*://tieba.baidu.com/i/i/atme*",
 	"*://tieba.baidu.com/i/i/storethread*",
+	"*://tieba.baidu.com/pmc/*",
 	"*://www.u2mtv.com/*",
 	"*://nl.syosetu.com/*",
 	"*://ncode.syosetu.com/*",
