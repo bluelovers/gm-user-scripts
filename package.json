@@ -43,6 +43,7 @@
     "cjk-conv": "^1.0.14",
     "deepmerge-plus": "^2.1.1",
     "gulp-add-tasks2": "^2.0.8",
+    "hash-sum": "^1.0.2",
     "imagesloaded": "^4.1.4",
     "jquery": "^3.3.1",
     "jquery-stylesheet": "^0.3.7",

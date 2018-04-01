@@ -2,7 +2,7 @@
  * Created by user on 2017/8/6/006.
  */
 
-export const desc = '巴哈姆特自動簽到';
+export const desc = '自動簽到 ( 巴哈姆特 ... and other )';
 
 export const grant = [
 	'GM_registerMenuCommand',
