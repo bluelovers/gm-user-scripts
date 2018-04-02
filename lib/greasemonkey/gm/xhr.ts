@@ -3,6 +3,7 @@
  */
 
 import GMApi from './api';
+import * as Promise from 'bluebird';
 
 export const GM_XHR = GMApi.xmlhttpRequest;
 

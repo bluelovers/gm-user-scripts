@@ -120,10 +120,11 @@ let o: IDemo = {
 				await signin()
 					.then(function (ret)
 					{
-						console.log(ret);
+						//console.log(ret);
 					})
-					.then(function ()
+					.tap(function ()
 					{
+						console.log('done');
 						runtimeSiteID.updateTimestamp();
 					})
 				;
@@ -151,7 +152,7 @@ let o: IDemo = {
 
 };
 
-async function signin(ajaxData = {}, force?: boolean)
+function signin(ajaxData = {}, force?: boolean)
 {
 	const GM_XHR = require("root/lib/greasemonkey/gm/xhr").default;
 
@@ -174,16 +175,31 @@ async function signin(ajaxData = {}, force?: boolean)
 		}))
 		.then(function (res)
 		{
-			if (res && res.response.msg)
+			if (res)
 			{
-				greasemonkey.log(res.response.msg, res.response);
+				if (res.response.status == 200)
+				{
+					console.log(`[簽到成功]`, res.response);
+				}
+				else if (res.response.status == 400)
+				{
+					console.log(`[簽到無效]`, res.response);
+				}
+				else if (res.response.msg)
+				{
+					greasemonkey.error('[UNKNOW]', res.response.msg, res.response);
+				}
+				else
+				{
+					greasemonkey.error('[UNKNOW]', res.response);
+				}
+
+				return res.response;
 			}
 			else
 			{
-				console.log(res.response);
+				return Promise.reject(res);
 			}
-
-			return res.response;
 		})
 	;
 }

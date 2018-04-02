@@ -102,7 +102,7 @@ let o: IDemo = {
 				await signin()
 					.catch((err) =>
 					{
-						console.error('[簽到錯誤]', err);
+						console.error('[ERROR]', err);
 					})
 					.then(function ()
 					{
