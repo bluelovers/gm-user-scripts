@@ -38,6 +38,8 @@ export const metadata = `// ==UserScript==
 //
 // @include		<%= index.include %>
 //
+// @match		<%= index.match %>
+//
 // @exclude		<%= index.exclude %>
 //
 // ==/UserScript==
