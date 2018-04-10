@@ -9,24 +9,32 @@ let _old = {} as {
 	jQuery,
 };
 
+const DEBUG = false;
+
 try
 {
-	_print_jquery('null', null);
-	_print_jquery('global', global);
-	_print_jquery('window', window);
-	_print_jquery('window.self', window.self);
-	_print_jquery('unsafeWindow', unsafeWindow);
+	if (DEBUG)
+	{
+		_print_jquery('null', null);
+		_print_jquery('global', global);
+		_print_jquery('window', window);
+		_print_jquery('window.self', window.self);
+		_print_jquery('unsafeWindow', unsafeWindow);
+	}
 
 	// @ts-ignore
 	_old.$ = unsafeWindow.$;
 	// @ts-ignore
 	_old.jQuery = unsafeWindow.jQuery;
 
-	// @ts-ignore
-	if (typeof exportFunction != 'undefined')
+	if (DEBUG)
 	{
 		// @ts-ignore
-		console.info('exportFunction', exportFunction);
+		if (typeof exportFunction != 'undefined')
+		{
+			// @ts-ignore
+			console.info('exportFunction', exportFunction);
+		}
 	}
 }
 catch (e)
@@ -37,9 +45,9 @@ catch (e)
 // @ts-ignore
 console.groupEnd('before');
 
-import * as jQuery from 'jquery/dist/jquery.min';
+import * as _jQuery from 'jquery/dist/jquery.min';
 
-jQuery.noConflict(true);
+const jQuery = _jQuery.noConflict(true);
 
 export const $ = jQuery;
 export { jQuery };
@@ -54,17 +62,20 @@ console[('groupCollapsed' in console) ? 'groupCollapsed' : 'group']('after');
 
 try
 {
-	_print_jquery('null', null);
-	_print_jquery('global', global);
-	_print_jquery('window', window);
-	_print_jquery('window.self', window.self);
-	_print_jquery('unsafeWindow', unsafeWindow);
-
-	// @ts-ignore
-	if (typeof exportFunction != 'undefined')
+	if (DEBUG)
 	{
+		_print_jquery('null', null);
+		_print_jquery('global', global);
+		_print_jquery('window', window);
+		_print_jquery('window.self', window.self);
+		_print_jquery('unsafeWindow', unsafeWindow);
+
 		// @ts-ignore
-		console.info('exportFunction', exportFunction);
+		if (typeof exportFunction != 'undefined')
+		{
+			// @ts-ignore
+			console.info('exportFunction', exportFunction);
+		}
 	}
 }
 catch (e)
@@ -79,21 +90,28 @@ console[('groupCollapsed' in console) ? 'groupCollapsed' : 'group']('end');
 
 try
 {
+	// @ts-ignore
 	if (_old.$ && _old.$ !== unsafeWindow.self.$)
 	{
+		// @ts-ignore
 		unsafeWindow.self.$ = _old.$;
 	}
 
+	// @ts-ignore
 	if (_old.jQuery && _old.jQuery !== unsafeWindow.self.jQuery)
 	{
+		// @ts-ignore
 		unsafeWindow.self.jQuery = _old.jQuery;
 	}
 
-	_print_jquery('null', null);
-	_print_jquery('global', global);
-	_print_jquery('window', window);
-	_print_jquery('window.self', window.self);
-	_print_jquery('unsafeWindow', unsafeWindow);
+	if (DEBUG)
+	{
+		_print_jquery('null', null);
+		_print_jquery('global', global);
+		_print_jquery('window', window);
+		_print_jquery('window.self', window.self);
+		_print_jquery('unsafeWindow', unsafeWindow);
+	}
 }
 catch (e)
 {

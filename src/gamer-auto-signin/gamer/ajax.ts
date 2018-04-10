@@ -43,13 +43,12 @@ let o: IDemo = {
 
 	async main(_url_obj = global._url_obj)
 	{
-		await (new Promise(function (resolve, reject)
-		{
-			setTimeout(function ()
-			{
-				resolve();
-			}, 1000);
-		}));
+		const Promise = require('bluebird');
+		await Promise.delay(1000);
+
+		console.log(o.file);
+
+		const runtimeSiteID = require('root/lib/site/index').create(o.file);
 
 		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
 
@@ -57,25 +56,31 @@ let o: IDemo = {
 
 		let _ok = false;
 
-		if (_url_obj.host.match(/www\.gamer\.com\.tw/) && (_a = $('.BA-left #signin-btn[onclick]'), _a.length))
+		if (_url_obj.host.match(/www\.gamer\.com\.tw/) && (_a = $('.BA-left #signin-btn[onclick]:not([onclick*="showSigninMap"])'), _a.length))
 		{
 			_a[0].click();
 
-			GMApi.setValue('timestamp', Date.now());
+			//GMApi.setValue('timestamp', Date.now());
+			runtimeSiteID.updateTimestamp();
 		}
 		else if (_a && _a.length)
 		{
 			console.log('已經簽到過', _a);
 
-			GMApi.setValue('timestamp', Date.now());
+			//GMApi.setValue('timestamp', Date.now());
+			runtimeSiteID.updateTimestamp();
 		}
 		else
 		{
 			// @ts-ignore
 			let username = unsafeWindow.BAHAID || unsafeWindow.MB_BAHAID;
 
-			let t = GMApi.getValue('timestamp', 0);
-			let u = GMApi.getValue('username');
+			//let t = GMApi.getValue('timestamp', 0);
+			//let u = GMApi.getValue('username');
+
+			let u = runtimeSiteID.getValue('username');
+			let c = runtimeSiteID.chkTimestamp(3);
+
 			let _do = null;
 
 			//console.log(username, u);
@@ -84,7 +89,7 @@ let o: IDemo = {
 			{
 				//_do = false;
 			}
-			else if ((username && username != u) || (Date.now() - t) >= (10 * 60 * 1000))
+			else if ((username && username != u) || (c > 0))
 			{
 				_do = true;
 			}
@@ -92,7 +97,7 @@ let o: IDemo = {
 			{
 				_do = false;
 
-				console.info('[距離上次簽到]', (Date.now() - t) / 1000);
+				console.info('[距離上次簽到]', Math.abs(c) + 's');
 			}
 
 			if (_do)
@@ -106,8 +111,11 @@ let o: IDemo = {
 					})
 					.then(function ()
 					{
-						GMApi.setValue('username', username);
-						GMApi.setValue('timestamp', Date.now());
+						//GMApi.setValue('username', username);
+						//GMApi.setValue('timestamp', Date.now());
+
+						runtimeSiteID.setValue('username', username);
+						runtimeSiteID.updateTimestamp();
 					})
 				;
 			}

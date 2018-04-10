@@ -7,12 +7,20 @@ import * as Promise from 'bluebird';
 
 export const GM_XHR = GMApi.xmlhttpRequest;
 
-// @ts-ignore
-export interface IXMLHttpRequestOptions extends GMXMLHttpRequestOptions
-{
+export type IOptions_Share = {
 	data: string | any[] | FormData;
 	dataType?: string;
 }
+
+// @ts-ignore
+export type IXMLHttpRequestOptions = GMXMLHttpRequestOptions & IOptions_Share & {
+	withCredentials?: boolean,
+}
+
+export type IAjaxOptions = JQuery.AjaxSettings & IOptions_Share & {
+
+	xhrFields?: IXMLHttpRequestOptions,
+};
 
 export interface IXMLHttpRequestResponse extends GMXMLHttpRequestResponse
 {
@@ -21,19 +29,27 @@ export interface IXMLHttpRequestResponse extends GMXMLHttpRequestResponse
 	responseOriginal?;
 }
 
-export function makeOptions(options): IXMLHttpRequestOptions
+export function makeOptions(options: IAjaxOptions & IXMLHttpRequestOptions): IXMLHttpRequestOptions
 {
-	return Object.assign({
+	let data = Object.assign({
 		method: 'GET',
 	}, options);
+
+	if (data.xhrFields)
+	{
+		Object.assign(data, data.xhrFields);
+	}
+
+	return data;
 }
 
-export function ajax(url, options?: IXMLHttpRequestOptions): Promise<IXMLHttpRequestResponse>
+export function ajax(url, options?: IAjaxOptions & IXMLHttpRequestOptions): Promise<IXMLHttpRequestResponse>
 {
 	options = makeOptions(options);
 
 	options.url = url;
 
+	// @ts-ignore
 	if (options.data && typeof options.data == 'object' && !(options.data instanceof FormData))
 	{
 		let formData = new FormData();
@@ -43,6 +59,7 @@ export function ajax(url, options?: IXMLHttpRequestOptions): Promise<IXMLHttpReq
 			formData.append(i, options.data[i]);
 		}
 
+		// @ts-ignore
 		options.data = formData;
 	}
 

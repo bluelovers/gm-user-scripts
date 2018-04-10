@@ -468,6 +468,8 @@ module.exports = {
  */
 function daily_signin(_url_obj)
 {
+	return;
+
 	if (_url_obj.host.match(/www\.gamer\.com\.tw/))
 	{
 		setTimeout(function ()

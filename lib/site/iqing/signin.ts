@@ -22,6 +22,10 @@ export async function signin(force?: boolean): Promise<IXMLHttpRequestResponse>
 				//action: 2,
 			},
 
+			xhrFields: {
+				withCredentials: true,
+			},
+
 		}))
 		.then(function (res: IXMLHttpRequestResponse)
 		{

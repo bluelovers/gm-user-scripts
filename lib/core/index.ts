@@ -6,13 +6,15 @@ import { parse_url, parse_url2, IUrlObject } from 'root/lib/func/parse_url';
 import greasemonkey from 'root/lib/greasemonkey/uf';
 import { IDemo } from 'root/lib/core/demo';
 //import {  } from 'root/lib/core/demo';
+import { registerGlobalMenu } from './plus';
 
 export { greasemonkey };
 
-import _jQuery from 'root/lib/jquery/global';
+//import _jQuery from 'root/lib/jquery/global';
 
 if (0)
 {
+	/*
 	let _try;
 
 	try
@@ -65,8 +67,9 @@ if (0)
 	{
 		console.error(e);
 	}
+	*/
 }
-else
+else if (0)
 {
 	try
 	{
@@ -189,6 +192,15 @@ export function run(uxid: string, exports: IExports, $jq?: JQueryStatic, cb?: IM
 		finally
 		{
 			console.info(uxid, [global._url, global._url_obj, global.unsafeWindow]);
+		}
+
+		try
+		{
+			await registerGlobalMenu(uxid, exports);
+		}
+		catch (e)
+		{
+			console.error(uxid, e.message, e.stack);
 		}
 	};
 

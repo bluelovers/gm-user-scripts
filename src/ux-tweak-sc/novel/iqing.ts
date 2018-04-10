@@ -80,9 +80,11 @@ let o: IDemo = {
 				{
 					console.error('[簽到錯誤]', err);
 				})
-				.then(function ()
+				.then(function (res)
 				{
 					GMApi.setValue(TIMESTAMP_KEY, Date.now());
+
+					console.log(res);
 				})
 			;
 		}
