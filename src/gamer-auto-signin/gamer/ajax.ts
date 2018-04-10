@@ -46,11 +46,11 @@ let o: IDemo = {
 		const Promise = require('bluebird');
 		await Promise.delay(1000);
 
-		console.log(o.file);
+		//console.log(o.file);
 
 		const runtimeSiteID = require('root/lib/site/index').create(o.file);
 
-		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
+		//const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
 
 		let _a;
 
@@ -78,12 +78,16 @@ let o: IDemo = {
 			//let t = GMApi.getValue('timestamp', 0);
 			//let u = GMApi.getValue('username');
 
+			//let t = runtimeSiteID.getTimestamp();
+
+			//console.log((Date.now() - t), t, Date.now());
+
 			let u = runtimeSiteID.getValue('username');
 			let c = runtimeSiteID.chkTimestamp(3);
 
 			let _do = null;
 
-			//console.log(username, u);
+			//console.log(username, u, c);
 
 			if (!username)
 			{

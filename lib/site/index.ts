@@ -106,10 +106,14 @@ export function checkDate(date: Date | number, sec: number = 10 * 60): number
 		return diff;
 	}
 
-	let c = new Date(t + 8 * 3600 * 1000);
+	//let c = new Date(t - 8 * 3600 * 1000);
+	let c = new Date();
 
 	if (date.getDay() != c.getDay())
 	{
+		console.log(date, c);
+		console.log(date.getDay(), c.getDay());
+
 		return 1;
 	}
 
