@@ -1,51 +1,61 @@
-import { IExports } from './index';
+import { IExports, requireScript } from './index';
 import * as UF from '../greasemonkey/gm/menu';
+import { hasGrant } from '../greasemonkey/metadata';
 
 export function registerGlobalMenu(uxid: string, exports: IExports, $jq?: JQueryStatic)
 {
-	UF.registerMenuCommand({
-		id: uxid,
-		key: 'debug jquery',
-	}, async (options) =>
-	{
-		try
-		{
-			_print_jquery('null', null);
-			_print_jquery('global', global);
-			_print_jquery('window', window);
-			_print_jquery('window.self', window.self);
-			_print_jquery('unsafeWindow', unsafeWindow);
-		}
-		catch (e)
-		{
-			console.error(e);
-		}
+	let index = requireScript(uxid, 'index');
 
-		try
+	if (hasGrant(index.metadata.grant, 'registerMenuCommand'))
+	{
+		UF.registerMenuCommand({
+			id: uxid,
+			key: 'debug jquery',
+		}, async (options) =>
 		{
-			// @ts-ignore
-			if (typeof exportFunction != 'undefined')
+			try
+			{
+				_print_jquery('null', null);
+				_print_jquery('global', global);
+				_print_jquery('window', window);
+				_print_jquery('window.self', window.self);
+				_print_jquery('unsafeWindow', unsafeWindow);
+			}
+			catch (e)
+			{
+				console.error(e);
+			}
+
+			try
 			{
 				// @ts-ignore
-				console.info('exportFunction', exportFunction);
+				if (typeof exportFunction != 'undefined')
+				{
+					// @ts-ignore
+					console.info('exportFunction', exportFunction);
+				}
 			}
-		}
-		catch (e)
-		{
-			console.error(e);
-		}
+			catch (e)
+			{
+				console.error(e);
+			}
 
-		try
-		{
-			let _jQuery = await import('../jquery/global');
+			try
+			{
+				let _jQuery = await import('../jquery/global');
 
-			_print_jquery('jquery/global', _jQuery);
-		}
-		catch (e)
-		{
-			console.error(e);
-		}
-	});
+				_print_jquery('jquery/global', _jQuery);
+			}
+			catch (e)
+			{
+				console.error(e);
+			}
+		});
+	}
+	else
+	{
+		console.info(uxid, `registerMenuCommand = false`);
+	}
 }
 
 function _print_jquery(label, where)

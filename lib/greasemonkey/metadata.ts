@@ -98,6 +98,16 @@ export function parseMetadata(script: string): IParseMetadata
 	}
 }
 
+export function hasGrant(grant: string[], name: string)
+{
+	if (grant.includes('GM.' + name) || grant.includes('GM_' + name))
+	{
+		return true;
+	}
+
+	return false;
+}
+
 export function lazyMetaFix(meta: IParseMetadata): IParseMetadata
 {
 	if (meta.noframes && meta.noframes.length && meta.noframes[0] == 'no')
