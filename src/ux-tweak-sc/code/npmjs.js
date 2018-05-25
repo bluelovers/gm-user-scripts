@@ -12,6 +12,7 @@ module.exports = {
 			'https://www.npmjs.com/~*',
 			'https://www.npmjs.com/browse/*',
 			'https://www.npmjs.com/package/*',
+			'https://www.npmjs.com/settings/*',
 		],
 		exclude: [],
 	},
@@ -32,22 +33,40 @@ module.exports = {
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
 		const greasemonkey = require('root/lib/greasemonkey/index');
+		const _uf_done = require('root/lib/event/done');
 
 		greasemonkey.GM_addStyle([
 			`.package-details { padding-bottom: 0.25em; }`,
 			`.package-details h3 { padding-top: 0.25em; }`,
+
+			//'section .truncate { max-height: 1.5em; }',
+			//'section:hover .truncate { max-height: auto; }',
+
+			//'section .black-60.mt0.mb1.lh-copy { float: right; }',
+
 		].join(''));
 
-		$('.search-results')
-			.on('DOMNodeInserted.ready', throttle(300, function ()
-			{
-				$(window)
-					.triggerHandler('load')
-				;
-			}))
-		;
+		function _on_dom()
+		{
+			$('.search-results, #app main')
+				.off('DOMNodeInserted.ready')
+				.on('DOMNodeInserted.ready', throttle(300, function ()
+				{
+					$(window)
+						.triggerHandler('load')
+					;
+				}))
+				.triggerHandler('DOMNodeInserted.ready')
+			;
+		}
+
+		_on_dom();
 
 		$(window)
+			.on('click', 'a[target]', function (event)
+			{
+				setTimeout(_on_dom, 300);
+			})
 			.one('load.ready', throttle(200, function ()
 			{
 				$('.collaborated-packages:has(> li)')
@@ -84,8 +103,13 @@ module.exports = {
 					'.collaborated-packages a, .bullet-free a, .starred-packages a',
 					'.list-of-links a',
 					'.package-details a, .list-of-links a',
+
+					'.items-end a',
+
 				].join(','))
+					.attr('target', '_blank')
 					.prop('target', '_blank')
+					//.attr('onclick', 'window.open(this.href, this.target);return false;')
 				;
 			}))
 			.on('load.page', throttle(200, function ()
@@ -121,7 +145,7 @@ module.exports = {
 					case keycodes('pagedown'):
 						//case keycodes('right'):
 
-						var _a = $('.container > div:eq(1) > span:eq(-1) a.next');
+						var _a = $('.container > div:eq(1) > span:eq(-1) a.next, div[class^="search__pagination"] div[class*="pagination__current"] + div > a');
 
 						if (_a.length)
 						{

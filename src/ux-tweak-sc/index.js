@@ -44,6 +44,7 @@ module.exports.list = [
 	"blog/juejin.im",
 	"blog/oneapm",
 	"blog/steachs",
+	"code/gitee",
 	"code/github",
 	"code/greasyfork",
 	"code/npmjs",
@@ -135,6 +136,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/blog/juejin.im');
 	require('root/src/ux-tweak-sc/blog/oneapm');
 	require('root/src/ux-tweak-sc/blog/steachs');
+	require('root/src/ux-tweak-sc/code/gitee');
 	require('root/src/ux-tweak-sc/code/github');
 	require('root/src/ux-tweak-sc/code/greasyfork');
 	require('root/src/ux-tweak-sc/code/npmjs');
@@ -231,12 +233,15 @@ module.exports.metadata.include = [
 	"http*://juejin.im/*",
 	"http*://blog.oneapm.com/*",
 	"http*://steachs.com/*",
+	"http*://gitee.com/*",
+	"http*://gitee.com/api/*",
 	"http*://github.com/*",
 	"http*://greasyfork.org/*",
 	"https://www.npmjs.com/search?q=*",
 	"https://www.npmjs.com/~*",
 	"https://www.npmjs.com/browse/*",
 	"https://www.npmjs.com/package/*",
+	"https://www.npmjs.com/settings/*",
 	"http*://segmentfault.com/*",
 	"http*://sourceforge.net/projects/*/files/*",
 	"http*://stackoverflow.com/*",
