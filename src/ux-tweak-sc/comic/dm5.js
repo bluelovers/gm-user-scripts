@@ -57,7 +57,7 @@ module.exports = {
 				.triggerHandler('load.link')
 			;
 
-			$('.js_update_mh_list')
+			$('.js_update_mh_list, .mh-list')
 				.on('DOMNodeInserted', debounce(100, function ()
 				{
 					$(window).triggerHandler('load.link');
@@ -283,6 +283,10 @@ module.exports = {
 			_dm5();
 
 			$(window).triggerHandler('load.imagesLoaded');
+		}
+		else if ($('#barChapter').length)
+		{
+			$('#barChapter').attr('oncontextmenu', '');
 		}
 		else
 		{

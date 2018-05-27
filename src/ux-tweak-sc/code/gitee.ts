@@ -4,6 +4,7 @@
 
 "use strict";
 
+// @ts-ignore
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
@@ -21,6 +22,7 @@ let o: IDemo = {
 		include: [
 			'http*://gitee.com/*',
 			'http*://gitee.com/api/*',
+			'http*://gitee.com/oauth/applications/*',
 		],
 		match: [],
 		nomatch: [],
@@ -54,9 +56,16 @@ let o: IDemo = {
 			.on('load', function ()
 			{
 				_uf_dom_filter_link([
-					'#users-events .event-group a'
+					'#users-events .event-group a',
+					'a.view-file, .git-commit-meta a',
 				].join(','))
 					.prop('target', '_blank')
+				;
+
+				$('.edit_oauth_application :input[disabled]')
+					//.filter('#secret, #uid')
+					.removeAttr('disabled')
+					.prop('readonly', 'true')
 				;
 			})
 			.triggerHandler('load')

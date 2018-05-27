@@ -235,6 +235,7 @@ module.exports.metadata.include = [
 	"http*://steachs.com/*",
 	"http*://gitee.com/*",
 	"http*://gitee.com/api/*",
+	"http*://gitee.com/oauth/applications/*",
 	"http*://github.com/*",
 	"http*://greasyfork.org/*",
 	"https://www.npmjs.com/search?q=*",
