@@ -161,7 +161,7 @@ let o: IDemo = {
 							.replace(/<br>/ig, "\n")
 							.replace(/[ 　\t]+\n/g, "\n")
 							.replace(/[\s　]+$/g, '')
-							.replace(/^[\n \t]+/g, '')
+							.replace(/^ *[\n\t]+/g, '')
 							.replace(/\n{4,}/g, "\n\n\n\n")
 						;
 
@@ -184,7 +184,18 @@ let o: IDemo = {
 									//console.log(999);
 
 									html = html
-										.replace(/\n{2}/g, "")
+										//.replace(/\n{2}/g, "")
+										.replace(/(\n{2})+/g, function (s)
+										{
+											let w = s.replace('\n\n', '');
+
+											if (s.indexOf('\n') == -1)
+											{
+												w = s.replace('\n\n', '\n');
+											}
+
+											return w;
+										})
 									;
 								}
 
@@ -207,7 +218,7 @@ let o: IDemo = {
 						html = html
 							// for ts
 							.toString()
-							.trim()
+							.replace(/\s+$/, '')
 							.replace(/([^\n「」【】《》“”『』（）](?:[！？?!。]*)?)\n((?:[—]+)?[「」“”【】《》（）『』])/ug, "$1\n\n$2")
 
 							.replace(/([「」【】《》“”『』（）―](?:[！？?!。]*)?)\n([^\n「」“”【】《》（）『』])/ug, "$1\n\n$2")
@@ -243,7 +254,7 @@ let o: IDemo = {
 						;
 
 						html = html
-							.replace(/^\n+|[\s　]+$/g, '')
+							.replace(/^ *\n+|[\s　]+$/g, '')
 							.replace(/(\n){4,}/g, "\n\n\n\n")
 							.replace(/(\n){3}/g, "\n\n")
 							.replace(/\n/g, '<br>')
@@ -306,7 +317,7 @@ let o: IDemo = {
 				_this.html(function (i, old)
 				{
 					return html = old
-						.replace(/^\s+/g, '')
+						.replace(/^ *\n/g, '')
 						.replace(/\s+$/g, '')
 					;
 				});

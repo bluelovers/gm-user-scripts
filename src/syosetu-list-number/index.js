@@ -27,7 +27,8 @@ module.exports._lib = () =>
 
 module.exports.metadata = {};
 module.exports.metadata.include = [
-	"http*://syosetu.com/*"
+	"http*://syosetu.com/*",
+	"http*://ncode.syosetu.com/*"
 ];
 module.exports.metadata.match = [
 	"*://nl.syosetu.com/*",

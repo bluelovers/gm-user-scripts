@@ -111,6 +111,15 @@ module.exports = {
 					.prop('target', '_blank')
 					//.attr('onclick', 'window.open(this.href, this.target);return false;')
 				;
+
+				$('[class*="package__sidebarText"]')
+					.off('click.stat', 'time')
+					.on('click.stat', 'time', function ()
+					{
+						window.open('https://npm-stat.com/charts.html?package=' + $('h2[class*="package__packageName"] [class*="package__name"]').text(), '_blank');
+					})
+				;
+
 			}))
 			.on('load.page', throttle(200, function ()
 			{

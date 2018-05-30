@@ -18,6 +18,7 @@ let o: IDemo = {
 	metadata: {
 		include: [
 			'http*://syosetu.com/*',
+			'http*://ncode.syosetu.com/*'
 		],
 		match: [
 			'*://nl.syosetu.com/*',
@@ -71,6 +72,17 @@ let o: IDemo = {
 				})
 				.triggerHandler('click')
 			;
+
+			if (0 && $('#novel_honbun').length)
+			{
+				//const minifyHTML = require('root/lib/func/html').minifyHTML;
+				const crlf = require('crlf-normalize').crlf;
+
+				$('#novel_honbun').html(function (i, old)
+				{
+					return crlf(old).replace(/\n/g, '');
+				})
+			}
 
 			return;
 		}
