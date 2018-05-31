@@ -120,6 +120,21 @@ module.exports = {
 					})
 				;
 
+				$('body')
+					.off('click.stat', 'section > [class*="package-list-item__metrics"]')
+					.on('click.stat', 'section > [class*="package-list-item__metrics"]', function ()
+					{
+						let section = $(this).parent('section');
+
+						if (section.length)
+						{
+							let title = $('.items-end > a[href*="/package/"] > h3', section);
+
+							window.open('https://npm-stat.com/charts.html?package=' + title.text(), '_blank');
+						}
+					})
+				;
+
 			}))
 			.on('load.page', throttle(200, function ()
 			{
