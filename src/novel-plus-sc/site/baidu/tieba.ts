@@ -218,6 +218,7 @@ let o: IDemo = {
 						html = html
 							// for ts
 							.toString()
+							.replace(/^ +/g, '')
 							.replace(/\s+$/, '')
 							.replace(/([^\n「」【】《》“”『』（）](?:[！？?!。]*)?)\n((?:[—]+)?[「」“”【】《》（）『』])/ug, "$1\n\n$2")
 
@@ -254,7 +255,7 @@ let o: IDemo = {
 						;
 
 						html = html
-							.replace(/^ *\n+|[\s　]+$/g, '')
+							.replace(/^ *\n*|[\s　]+$/g, '')
 							.replace(/(\n){4,}/g, "\n\n\n\n")
 							.replace(/(\n){3}/g, "\n\n")
 							.replace(/\n/g, '<br>')
