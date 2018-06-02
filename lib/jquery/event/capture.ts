@@ -2,7 +2,9 @@
  * Created by user on 2017/11/23/023.
  */
 
-export function onCapture(who, originalType: string, listener: EventListener, ...argv)
+//export function onCapture(who, originalType: string, selector: string, listener: EventListener, ...argv)
+//export function onCapture(who, originalType: string, listener: EventListener, ...argv)
+export function onCapture<T extends EventListener>(who, originalType: string, listener: T, ...argv)
 {
 	let selector;
 

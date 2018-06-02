@@ -34,6 +34,7 @@ module.exports = {
 		const throttle = require('throttle-debounce/throttle');
 		const greasemonkey = require('root/lib/greasemonkey/index');
 		const _uf_done = require('root/lib/event/done');
+		const onCapture = require('root/lib/jquery/event/capture').onCapture;
 
 		greasemonkey.GM_addStyle([
 			`.package-details { padding-bottom: 0.25em; }`,
@@ -98,7 +99,7 @@ module.exports = {
 			}))
 			.on('load.ready', throttle(200, function ()
 			{
-				_uf_dom_filter_link([
+				let selector_link = [
 					'#readme a, .box a, a.packageName, a.authorName',
 					'.collaborated-packages a, .bullet-free a, .starred-packages a',
 					'.list-of-links a',
@@ -106,34 +107,66 @@ module.exports = {
 
 					'.items-end a',
 
-				].join(','))
+					'a[href^="/package/"]',
+
+				].join(',');
+
+				_uf_dom_filter_link(selector_link)
 					.attr('target', '_blank')
 					.prop('target', '_blank')
 					//.attr('onclick', 'window.open(this.href, this.target);return false;')
 				;
 
-				$('[class*="package__sidebarText"]')
-					.off('click.stat', 'time')
-					.on('click.stat', 'time', function ()
-					{
-						window.open('https://npm-stat.com/charts.html?package=' + $('h2[class*="package__packageName"] [class*="package__name"]').text(), '_blank');
-					})
-				;
+				let selector = [
+					'[class*="package__sidebarText"] time',
+					'section > [class*="package-list-item__metrics"]',
+					'section [class*="package-list-item__version"]',
+				].join(',');
 
 				$('body')
-					.off('click.stat', 'section > [class*="package-list-item__metrics"]')
-					.on('click.stat', 'section > [class*="package-list-item__metrics"]', function ()
+					.off('click.stat', selector)
+					.on('click.stat', selector, function ()
 					{
-						let section = $(this).parent('section');
+						let _this = $(this);
 
-						if (section.length)
+						if (_this.is('[class*="package__sidebarText"] time'))
 						{
-							let title = $('.items-end > a[href*="/package/"] > h3', section);
+							window.open('https://npm-stat.com/charts.html?package=' + $('h2[class*="package__packageName"] [class*="package__name"]').text(), '_blank');
+						}
+						else if (_this.is('section > [class*="package-list-item__metrics"], section [class*="package-list-item__version"]'))
+						{
+							let section = $(this).parents('section');
 
-							window.open('https://npm-stat.com/charts.html?package=' + title.text(), '_blank');
+							if (section.length)
+							{
+								let title = $('.items-end > a[href*="/package/"] > h3', section);
+
+								window.open('https://npm-stat.com/charts.html?package=' + title.text(), '_blank');
+							}
+						}
+					})
+					.off('click.link', selector_link)
+					.on('click.link', selector_link, function (event)
+					{
+						let _this = $(this);
+
+						if (_uf_dom_filter_link(_this).length)
+						{
+							window.open(_this.prop('href'), '_blank');
+
+							_uf_done(event);
 						}
 					})
 				;
+
+				onCapture('body', 'click.link2', 'a[href*="/package/"]', function (event)
+				{
+					let _this = $(this);
+					window.open(_this.prop('href'), '_blank');
+					_uf_done(event);
+				});
+
+				//$('a[href*="/package/"]').attr('onclick', `window.open(this.href, '_blank');return false;`)
 
 			}))
 			.on('load.page', throttle(200, function ()
