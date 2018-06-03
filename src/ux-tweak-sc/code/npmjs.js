@@ -69,6 +69,18 @@ module.exports = {
 			'section [class*="package-list-item__version"]',
 		].join(',');
 
+		let selector_link = [
+			'#readme a, .box a, a.packageName, a.authorName',
+			'.collaborated-packages a, .bullet-free a, .starred-packages a',
+			'.list-of-links a',
+			'.package-details a, .list-of-links a',
+
+			'.items-end a',
+
+			'a[href^="/package/"]',
+
+		].join(',');
+
 		$('body')
 			.off('click.stat', selector)
 			.on('click.stat', selector, function ()
@@ -149,18 +161,6 @@ module.exports = {
 			}))
 			.on('load.ready', throttle(200, function ()
 			{
-				let selector_link = [
-					'#readme a, .box a, a.packageName, a.authorName',
-					'.collaborated-packages a, .bullet-free a, .starred-packages a',
-					'.list-of-links a',
-					'.package-details a, .list-of-links a',
-
-					'.items-end a',
-
-					'a[href^="/package/"]',
-
-				].join(',');
-
 				_uf_dom_filter_link(selector_link)
 					.attr('target', '_blank')
 					.prop('target', '_blank')
