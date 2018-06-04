@@ -20,6 +20,7 @@ module.exports.list = [
 	"games/canvas",
 	"global/iframe",
 	"global/script",
+	"global/webgl_dmm",
 	"_fake"
 ];
 
@@ -34,6 +35,7 @@ module.exports._lib = () =>
 	require('root/src/dmm-plus-sc/games/canvas');
 	require('root/src/dmm-plus-sc/global/iframe');
 	require('root/src/dmm-plus-sc/global/script');
+	require('root/src/dmm-plus-sc/global/webgl_dmm');
 	require('root/src/dmm-plus-sc/_fake');
 };
 
@@ -56,6 +58,7 @@ module.exports.metadata.include = [
 	"http*://*",
 	"http*://pc-x.phantom-greed.com/top*",
 	"http*://pc-x.phantom-greed.com/start*",
+	"*/webgl_dmm/*",
 	"http*://*.dmm.co*/*",
 	"http*://*games.dmm.co*/*"
 ];
@@ -83,7 +86,8 @@ module.exports.metadata.grant = [
 ];
 
 module.exports.list_script = [
-	"global/script"
+	"global/script",
+	"global/webgl_dmm"
 ];
 
 module.exports.current = [];

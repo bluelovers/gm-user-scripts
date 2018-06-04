@@ -49,7 +49,10 @@ let o: IDemo = {
 		greasemonkey
 			.GM_addStyle([
 				`.dmm-ntgnavi { margin-left: 0px; margin-right: 0px; padding: 0px; margin-top: 0px; border-bottom: 0 none transparent; }`,
-				`@media only screen and (max-width: ${game_width + 200}px) { #main-ntg { text-align: left; } }`,
+				`@media only screen and (max-width: ${game_width + 200}px) {
+				#main-ntg { text-align: left; }
+				#leftnavi { display: none; }
+				}`,
 				`iframe, #main-ntg { background-color: transparent !important; border: 0 none #000; }`,
 				`#main-ntg, #main-ntg.page-appdetial { background-color: #000; margin-left: 0px; margin-right: 0px; }`,
 				`body { background-color: #000; margin-left: 0px; margin-right: 0px; border: 0 none transparent; }`,
