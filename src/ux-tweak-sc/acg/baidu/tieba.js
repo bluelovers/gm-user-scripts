@@ -297,8 +297,12 @@ module.exports = {
 
 					if (_t.length && !_this.find('.see_lz').length)
 					{
+						let url = new URL(_t.prop('href'));
+
+						url.searchParams.append('see_lz', 1);
+
 						$('<a target="_blank" class="see_lz btn-sub btn-small">只看楼主</a>')
-							.attr('href', _t.attr('href') + '?see_lz=1')
+							.attr('href', url.toString())
 							.appendTo($('<span/>')
 								.css({
 									display: 'inline-block',
