@@ -63,6 +63,26 @@ module.exports = {
 				`#com_userbar .u_bdhome { display: none; }`,
 				`.floor-check-miss { padding: 10px;background-color: #451159;border-radius: 5px;padding-bottom: 6px;color: #fff;text-align: center;margin: 5px;margin-left: auto;}`,
 				`.floor-check-miss:hover { opacity: 0.9; }`,
+
+				`.threadlist_title {
+				word-wrap: break-word;
+				word-break: break-all;
+				white-space: normal;
+				}`,
+
+				`.see_lz { 
+				margin-left: 1em;
+				text-decoration: none !important; 
+				font-size: 9pt;
+				padding: 2px 8px 1px;
+				text-shadow: initial;
+				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+				}`,
+
+				`.j_thread_list .threadlist_title .see_lz { 
+				display: none; 
+				}`,
+				`.j_thread_list:hover .threadlist_title .see_lz { display: inline-block; }`,
 			])
 		;
 
@@ -267,6 +287,31 @@ module.exports = {
 					})
 				;
 			})
+			.on('load.list', throttle(500, function ()
+			{
+				let ls = $('.j_thread_list .threadlist_title, .ihome_section .new_list .thread_name').each(function ()
+				{
+					let _this = $(this);
+
+					let _t = _this.find('a.j_th_tit, a.title');
+
+					if (_t.length && !_this.find('.see_lz').length)
+					{
+						$('<a target="_blank" class="see_lz btn-sub btn-small">只看楼主</a>')
+							.attr('href', _t.attr('href') + '?see_lz=1')
+							.appendTo($('<span/>')
+								.css({
+									display: 'inline-block',
+									'vertical-align': 'inherit',
+								})
+								.appendTo(_this)
+							)
+						;
+					}
+				});
+
+				console.log('load.list', ls);
+			}))
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				const keycodes = require('keycodes');
@@ -383,6 +428,16 @@ module.exports = {
 			})
 			.triggerHandler('load')
 		;
+
+		$('body').on('DOMNodeInserted', '#frs_list_pager, #thread_list', debounce(500, function ()
+		{
+			$(window).triggerHandler('load.list');
+		}));
+
+		setTimeout(function ()
+		{
+			$(window).triggerHandler('load.list');
+		}, 500);
 
 		$('#frs_list_pager')
 			.on('DOMNodeInserted.page', function ()

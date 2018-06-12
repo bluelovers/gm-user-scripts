@@ -1,4 +1,6 @@
 {
+  "extends": "../../tsconfig.json",
+
   "compilerOptions": {
     "module": "CommonJS",
     "target": "es2017",

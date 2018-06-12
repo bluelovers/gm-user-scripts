@@ -42,6 +42,8 @@ module.exports = {
 					'.post a',
 					'.column-search-result a',
 					'#js-react-search-mid a',
+
+					'ul li div a[href*="member"]',
 				].join(','))
 					.prop('target', '_blank')
 				;
@@ -386,7 +388,7 @@ function pixiv_link_uid(uid, type = 'member_illust')
 function follow_button(_url_obj, window)
 {
 	$('body')
-		.on('click.follow', ':not(.following2) .follow-button:not(.on)', function (event)
+		.on('click.follow', ':not(.following2) .follow-button:not(.on), aside section button[data-click-label="follow"], ul li div button[data-click-label="follow"]', function (event)
 		{
 			let _this = $(this);
 
@@ -397,6 +399,19 @@ function follow_button(_url_obj, window)
 				uid = _this.parents('[data-id]:eq(0)').eq(0)
 					.attr('data-id')
 				;
+			}
+
+			if (!uid)
+			{
+				let p = _this.parents('aside section, ul li div')
+						.find('a[href*="/member.php"]')
+					.eq(0)
+				;
+
+				if (p.length)
+				{
+					window.open(p.prop('href').replace('member.php', 'member_illust.php'), '_blank');
+				}
 			}
 
 			if (uid)
