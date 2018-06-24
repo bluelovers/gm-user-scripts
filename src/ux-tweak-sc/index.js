@@ -71,6 +71,7 @@ module.exports.list = [
 	"novel/kakuyomu.jp",
 	"novel/syosetu",
 	"novel/wenku8",
+	"other/jetbrains/jetbrains",
 	"p2p/wetransfer",
 	"shop/pchome",
 	"shop/post/kerrytj",
@@ -163,6 +164,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/novel/kakuyomu.jp');
 	require('root/src/ux-tweak-sc/novel/syosetu');
 	require('root/src/ux-tweak-sc/novel/wenku8');
+	require('root/src/ux-tweak-sc/other/jetbrains/jetbrains');
 	require('root/src/ux-tweak-sc/p2p/wetransfer');
 	require('root/src/ux-tweak-sc/shop/pchome');
 	require('root/src/ux-tweak-sc/shop/post/kerrytj');
@@ -277,6 +279,7 @@ module.exports.metadata.include = [
 	"http*://kakuyomu.jp/*",
 	"http*://syosetu.com/*",
 	"http*://www.wenku8.com/*",
+	"http*://www.jetbrains.com/*",
 	"http*://mall.pchome.com.tw/*",
 	"http://www.kerrytj.com/zh/search/search_track.aspx*",
 	"http://postserv.post.gov.tw/pstmail/main_mail.html*",

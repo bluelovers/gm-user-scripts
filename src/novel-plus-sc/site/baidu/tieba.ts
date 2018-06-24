@@ -92,20 +92,31 @@ let o: IDemo = {
 
 				])
 			;
-		}
 
-		const Promise = require('bluebird');
-		await Promise.delay(500);
+			const debounce = require('throttle-debounce/debounce');
 
-		await module.exports.adblock(_url_obj);
+			let _init = false;
 
-		$('.pb_footer, .l_thread_info')
-			.on('DOMNodeInserted', function ()
+			//const Promise = require('bluebird');
+			//await Promise.delay(500);
+
+			$('.pb_footer, .l_thread_info')
+				.on('DOMNodeInserted', debounce(300, function ()
+				{
+					_init = true;
+					module.exports.adblock(_url_obj)
+				}))
+			;
+
+			setTimeout(function ()
 			{
-				module.exports.adblock(_url_obj)
-			})
-		;
-
+				if (!_init)
+				{
+					_init = true;
+					module.exports.adblock(_url_obj);
+				}
+			}, 500)
+		}
 	},
 
 	adblock(_url_obj = global._url_obj)
