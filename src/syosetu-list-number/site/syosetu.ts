@@ -62,9 +62,7 @@ let o: IDemo = {
 			greasemonkey.GM_addStyle([
 				`._fake_p { display: block; }`,
 				`._fake_p:after { content: " "; }`,
-				//`._fake_pre { white-space: pre-wrap; }`,
 			]);
-
 
 			$('#novel_p').append("<p class='p-hr'><br/>=====================================<br/><br/></p>");
 			$('#novel_a').prepend("<p class='p-hr'><br/><br/>=====================================<br/><br/></p>");
