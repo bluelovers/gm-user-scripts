@@ -59,6 +59,13 @@ let o: IDemo = {
 
 		if (!novel_contents.find('.novel_sublist, .index_box').length)
 		{
+			greasemonkey.GM_addStyle([
+				`._fake_p { display: block; }`,
+				`._fake_p:after { content: " "; }`,
+				//`._fake_pre { white-space: pre-wrap; }`,
+			]);
+
+
 			$('#novel_p').append("<p class='p-hr'><br/>=====================================<br/><br/></p>");
 			$('#novel_a').prepend("<p class='p-hr'><br/><br/>=====================================<br/><br/></p>");
 
@@ -83,6 +90,29 @@ let o: IDemo = {
 					return crlf(old).replace(/\n/g, '');
 				})
 			}
+
+			$('#novel_honbun, #novel_p, #novel_a')
+				.addClass('_fake_pre')
+				.find('p')
+				.each(function(){
+
+					let _this = $(this);
+
+					let elem = $('<div/>')
+						.html(_this.html())
+						.attr('class', _this.attr('class'))
+						.attr('id', _this.attr('id'))
+						.attr('style', _this.attr('style'))
+						.addClass('_fake_p')
+					;
+
+					_this
+						.after(elem)
+						//.after('<br/>')
+						.remove()
+					;
+				})
+			;
 
 			return;
 		}

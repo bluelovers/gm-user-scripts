@@ -59,7 +59,6 @@ let o: IDemo = {
 			])
 		;
 
-
 	},
 
 	adblock(_url_obj = global._url_obj)
