@@ -67,6 +67,8 @@ let o: IDemo = {
 				`#novel_honbun, #novel_p, #novel_a { width: auto; max-width: 600px; }`,
 				`#novel_color, #novel_honbun, #novel_p, #novel_a { font-size: 14px; line-height: 1.6em; }`,
 
+				`ruby rt { opacity: 0.5; }`,
+
 			]);
 
 			$('#novel_p').append("<p class='p-hr'><br/>=====================================<br/><br/></p>");
