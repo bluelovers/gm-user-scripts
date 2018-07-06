@@ -62,6 +62,10 @@ let o: IDemo = {
 			greasemonkey.GM_addStyle([
 				`._fake_p { display: block; }`,
 				`._fake_p:after { content: " "; }`,
+
+				`#novel_color { width: auto; max-width: 730px; }`,
+				`#novel_honbun, #novel_p, #novel_a { width: auto; max-width: 600px; }`,
+
 			]);
 
 			$('#novel_p').append("<p class='p-hr'><br/>=====================================<br/><br/></p>");

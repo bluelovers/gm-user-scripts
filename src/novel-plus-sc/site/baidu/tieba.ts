@@ -301,6 +301,15 @@ let o: IDemo = {
 						_this.html(html);
 					}
 				}
+				else
+				{
+					html = html
+						.replace(/^\s+/, '')
+						.replace(/\s+$/, '')
+					;
+
+					_this.html(html);
+				}
 
 				_this
 					.find('*')
