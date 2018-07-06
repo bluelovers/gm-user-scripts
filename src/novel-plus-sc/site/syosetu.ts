@@ -55,7 +55,7 @@ let o: IDemo = {
 			.GM_addStyle([
 				//`#novel_honbun, .novel_view, #novel_ex, .novel_sublist2 { font-family: "メイリオ","IPAexゴシック","IPAゴシック","ＭＳ ゴシック","SimSun",monospace; }`,
 
-				`#novel_honbun, .novel_view { font-size: 14px !important; line-height: 1.6em !important; }`,
+				`#novel_honbun, .novel_view { line-height: 1.6em !important; }`,
 			])
 		;
 
