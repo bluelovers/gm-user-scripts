@@ -18,11 +18,12 @@ module.exports.list = [
 	"site/dmzj",
 	"site/gamer/home",
 	"site/lightnovel/discuz",
-	"site/sfacg/book",
-	"site/syosetu"
+	"site/sfacg/book"
 ];
 
-module.exports.list_disable = [];
+module.exports.list_disable = [
+	"site/syosetu"
+];
 
 // for webpack, don't use this method
 module.exports._lib = () =>
@@ -32,7 +33,6 @@ module.exports._lib = () =>
 	require('root/src/novel-plus-sc/site/gamer/home');
 	require('root/src/novel-plus-sc/site/lightnovel/discuz');
 	require('root/src/novel-plus-sc/site/sfacg/book');
-	require('root/src/novel-plus-sc/site/syosetu');
 };
 
 module.exports.metadata = {};
@@ -44,8 +44,7 @@ module.exports.metadata.match = [
 	"*://q.dmzj.com/*",
 	"*://home.gamer.com.tw/creationDetail.php*",
 	"*://www.lightnovel.cn/*",
-	"*://book.sfacg.com/Novel/*",
-	"*://*.syosetu.com/*"
+	"*://book.sfacg.com/Novel/*"
 ];
 module.exports.metadata.exclude = [];
 module.exports.metadata.grant = [
