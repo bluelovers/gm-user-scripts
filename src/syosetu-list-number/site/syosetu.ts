@@ -65,6 +65,7 @@ let o: IDemo = {
 
 				`#novel_color { width: auto; max-width: 730px; font-size: 14px; line-height: 1.6em !important; }`,
 				`#novel_honbun, #novel_p, #novel_a { width: auto; max-width: 600px; }`,
+				`#novel_color, #novel_honbun, #novel_p, #novel_a { font-size: 14px; line-height: 1.6em; }`,
 
 			]);
 
