@@ -69,6 +69,7 @@ module.exports.list = [
 	"comic/yoedge",
 	"content/farm/fun01.cc",
 	"novel/kakuyomu.jp",
+	"novel/lightnovel.cn",
 	"novel/syosetu",
 	"novel/wenku8",
 	"other/jetbrains/jetbrains",
@@ -162,6 +163,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/comic/yoedge');
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc');
 	require('root/src/ux-tweak-sc/novel/kakuyomu.jp');
+	require('root/src/ux-tweak-sc/novel/lightnovel.cn');
 	require('root/src/ux-tweak-sc/novel/syosetu');
 	require('root/src/ux-tweak-sc/novel/wenku8');
 	require('root/src/ux-tweak-sc/other/jetbrains/jetbrains');
@@ -277,6 +279,8 @@ module.exports.metadata.include = [
 	"http*://www.fun01.cc/*",
 	"http*://kakuyomu.jp/works*",
 	"http*://kakuyomu.jp/*",
+	"http*://*.lightnovel.cn/*",
+	"http*://*.lightnovel.cn/*mod=viewthread*",
 	"http*://syosetu.com/*",
 	"http*://www.wenku8.com/*",
 	"http*://www.jetbrains.com/*",
