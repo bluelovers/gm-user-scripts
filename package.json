@@ -40,9 +40,11 @@
   },
   "dependencies": {
     "bluebird": "^3.5.1",
-    "cjk-conv": "^1.0.14",
+    "cjk-conv": "^1.0.44",
     "crlf-normalize": "^1.0.2",
+    "debug-color2": "^1.0.2",
     "deepmerge-plus": "^2.1.1",
+    "fs-extra": "^6.0.1",
     "gulp-add-tasks2": "^2.0.8",
     "hash-sum": "^1.0.2",
     "html-minifier": "^3.5.16",
@@ -57,9 +59,10 @@
     "pretty-data": "^0.40.0",
     "regexp-cjk": "^1.2.12",
     "stonejs": "^2.3.0",
-    "str-util": "^2.3.13",
+    "str-util": "^2.3.16",
     "throttle-debounce": "^1.0.1",
-    "tieba-harmony": "^1.2.8"
+    "tieba-harmony": "^1.2.8",
+    "yargs2": "^1.0.1"
   },
   "devDependencies": {
     "@types/greasemonkey": "0.0.28",
@@ -71,7 +74,7 @@
     "gulp-util": "^3.0.8",
     "stream-to-promise": "^2.2.0",
     "ts-loader": "^4.0.0",
-    "webpack": "^3.11.0",
+    "webpack": "3.12.0",
     "webpack-closure-compiler": "^2.1.6",
     "webpack-merge": "^4.1.2",
     "webpack-stream": "^4.0.2"
