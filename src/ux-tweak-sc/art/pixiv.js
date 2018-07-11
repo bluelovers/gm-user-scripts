@@ -94,10 +94,20 @@ module.exports = {
 		if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=medium/))
 		{
 			if ($('body').css('background-color') == '#E4E7EE' || $('body')
-					.css('background-color') == 'rgb(228, 231, 238)')
+				.css('background-color') == 'rgb(228, 231, 238)')
 			{
 				$('body').css('background-color', 'rgba(0, 3, 11, 0.9)');
 			}
+
+			$('body').on('hover', 'a', function ()
+			{
+				$(this)
+					.attr('href', function (i, old)
+					{
+						return old.replace('member.php', 'member_illust.php')
+					})
+				;
+			});
 		}
 		else if (_url_obj.path.match(/search\.php/))
 		{
@@ -207,7 +217,7 @@ module.exports = {
 				.on('load', debounce(3000, function ()
 				{
 					if (!$('.user-recommendation-items .user-recommendation-item').length && $(
-							'#wrapper .user-recommendation-unit ._no-item:visible').length)
+						'#wrapper .user-recommendation-unit ._no-item:visible').length)
 					{
 						window.close();
 					}
@@ -253,8 +263,8 @@ module.exports = {
 						//console.log(index, _stacc_ref_illust_user_name.text(), _stacc_post_user_name.text());
 
 						if ($('.stacc_ref_thumb_caption .stacc_ref_illust_title',
-								_this
-							).length && !_badge_poster.length && _stacc_ref_illust_user_name.text() != _stacc_post_user_name.text())
+							_this
+						).length && !_badge_poster.length && _stacc_ref_illust_user_name.text() != _stacc_post_user_name.text())
 						{
 							_this
 							//.css('box-shadow', '0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset')
@@ -404,7 +414,7 @@ function follow_button(_url_obj, window)
 			if (!uid)
 			{
 				let p = _this.parents('aside section, ul li div')
-						.find('a[href*="/member.php"]')
+					.find('a[href*="/member.php"]')
 					.eq(0)
 				;
 
