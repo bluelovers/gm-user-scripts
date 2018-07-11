@@ -34,6 +34,17 @@ module.exports = {
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
+		if (document.referrer
+			&& _url_obj.path.match(/member\.php/)
+			&& _url_obj.query.match(/^id=\d+$/)
+			&& !document.referrer.match(/pixiv/)
+		)
+		{
+			location.href = location.href.replace('member.php', 'member_illust.php');
+
+			return;
+		}
+
 		$(window)
 			.on('load.link', debounce(100, function ()
 			{
