@@ -99,14 +99,18 @@ module.exports = {
 				$('body').css('background-color', 'rgba(0, 3, 11, 0.9)');
 			}
 
-			$('body').on('hover', 'a', function ()
+			$('#root').on('DOMNodeInserted', function (event)
 			{
-				$(this)
+				let _a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"]', $(event.target))
+					.attr('data-done', true)
+					.attr('target', '_blank')
 					.attr('href', function (i, old)
 					{
 						return old.replace('member.php', 'member_illust.php')
 					})
 				;
+
+				//console.log(this, event.target, _a);
 			});
 		}
 		else if (_url_obj.path.match(/search\.php/))
