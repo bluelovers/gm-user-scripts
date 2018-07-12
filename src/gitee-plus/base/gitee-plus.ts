@@ -62,6 +62,18 @@ let o: IDemo = {
 			return;
 		}
 
+		try
+		{
+			// @ts-ignore
+			global.pathAutoRender = window.pathAutoRender = unsafeWindow.pathAutoRender;
+			// @ts-ignore
+			global.Tree = window.Tree = unsafeWindow.Tree;
+		}
+		catch (e)
+		{
+			console.error(e);
+		}
+
 		const _uf_done = require('root/lib/event/done');
 		const greasemonkey = require('root/lib/greasemonkey/index');
 		require('root/lib/jquery/event/key').makeJQueryPlugin($, window);
