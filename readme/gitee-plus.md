@@ -18,3 +18,13 @@
 
 ![001.png](images/gitee-plus/001.png)
 
+## todo
+
+> 以下功能尚未完成 或 無法完成
+
+### 使以下圖片中紅框部分的連結支援 AJAX
+
+![002.png](images/gitee-plus/002.png)
+
+![003.png](images/gitee-plus/003.png)
+
