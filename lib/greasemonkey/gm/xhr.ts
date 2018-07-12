@@ -83,6 +83,9 @@ export function ajax(url, options?: IAjaxOptions & IXMLHttpRequestOptions): Prom
 
 			res.responseType = res.responseType || options.dataType || null;
 
+			// @ts-ignore
+			res._options = options;
+
 			if (typeof options.onload === 'function')
 			{
 				let ret = options.onload.call(this, res);

@@ -62,6 +62,7 @@ let o: IDemo = {
 			return;
 		}
 
+		const _uf_done = require('root/lib/event/done');
 		const greasemonkey = require('root/lib/greasemonkey/index');
 		require('root/lib/jquery/event/key').makeJQueryPlugin($, window);
 		const keycodes = require('keycodes');
@@ -77,16 +78,7 @@ let o: IDemo = {
 				let btn_table = $('#git-project-bread .ui.right .item.table-btn');
 				let btn_clone = $('#btn-dl-or-clone');
 
-				userScriptCore
-					.url(window.location.href, global, function (_url, domain, old)
-					{
-						userScriptCore.greasemonkey.debug('location', _url, domain._url_obj, old);
-
-						_url_obj = domain._url_obj;
-
-						giteedata = updateGiteedata(_url_obj);
-					})
-				;
+				userScriptCoreUrl();
 
 				$('#git-project-branch')
 					.css('border-color', function (i, old)
@@ -131,8 +123,42 @@ let o: IDemo = {
 
 				$('#git-project-bread').trigger('DOMNodeInserted');
 			}))
+			.on('load.ajax', throttle(200, function ()
+			{
+				$(window).triggerHandler('load.ajax');
+
+				$('#path-breadcrumb a.section:not(.repo-name)')
+					.off('click.ajax')
+					.on('click.ajax', function (event)
+					{
+						_uf_done(event);
+						giteeAjax($(this).prop('href'));
+					})
+				;
+			}))
+			.on('popstate.ajax', throttle(200, function (event)
+			{
+				userScriptCoreUrl();
+				$(window).triggerHandler('load');
+			}))
 			.triggerHandler('load')
 		;
+
+		function userScriptCoreUrl()
+		{
+			userScriptCore
+				.url(window.location.href, global, function (_url, domain, old)
+				{
+					userScriptCore.greasemonkey.debug('location', _url, domain._url_obj, old);
+
+					_url_obj = domain._url_obj;
+
+					giteedata = updateGiteedata(_url_obj);
+
+					$(window).triggerHandler('load.ajax');
+				})
+			;
+		}
 	},
 
 	adblock(_url_obj = global._url_obj)
@@ -181,4 +207,57 @@ function updateGiteedata(_url_obj = global._url_obj)
 namespace updateGiteedata
 {
 	export let inited: boolean;
+}
+
+import { IXMLHttpRequestResponse } from 'root/lib/greasemonkey/gm/xhr';
+
+function giteeAjax(url: string, options?)
+{
+	//const GM_XHR = require('root/lib/greasemonkey/gm/xhr');
+
+	let xhrFields = {
+		headers: {
+			Accept: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01",
+			"Content-Type": "text/javascript; charset=utf-8",
+			"Cache-Control": "must-revalidate, no-cache, no-store, private, max-age=0",
+		},
+
+		dataType: "script",
+
+		cache: false,
+	};
+
+	console.log('state', history.state);
+
+	return $
+		.getScript(url, Object.assign({}, options, {
+
+			data: {
+				_: Date.now(),
+			},
+
+			...xhrFields,
+
+			xhrFields,
+
+		}))
+		.done(function (script, textStatus)
+		{
+			let stateObj = history.state;
+
+//			console.log({
+//				script, textStatus
+//			});
+
+			history.pushState(stateObj, document.title, url);
+
+			$(window).triggerHandler('popstate.ajax');
+		})
+		.fail(function (jqxhr, settings, exception)
+		{
+			console.error("Triggered ajaxError handler.", {
+				jqxhr, settings, exception
+			});
+		})
+		;
 }
