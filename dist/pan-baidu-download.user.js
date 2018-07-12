@@ -9,7 +9,7 @@
 // @description:en	直接下载百度网盘和百度网盘分享的文件,避免下载文件时调用百度网盘客户端,获取网盘文件的直接下载地址
 // @description:zh	直接下载百度网盘和百度网盘分享的文件,避免下载文件时调用百度网盘客户端,获取网盘文件的直接下载地址
 //
-// @version		4.3.11
+// @version		4.3.12
 //
 // @grant		GM.setClipboard
 // @grant		GM_setClipboard

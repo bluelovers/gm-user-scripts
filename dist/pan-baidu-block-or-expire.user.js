@@ -9,7 +9,7 @@
 // @description:en	輔助判斷百度盤是封鎖還是過期
 // @description:zh	輔助判斷百度盤是封鎖還是過期
 //
-// @version		4.3.11
+// @version		4.3.12
 //
 // @grant		
 // g_r_a_n_tnone

@@ -132,7 +132,25 @@ let o: IDemo = {
 					.on('click.ajax', function (event)
 					{
 						_uf_done(event);
-						giteeAjax($(this).prop('href'));
+
+						let _a = $(this);
+
+						let _p = _a.parentsUntil('#path-breadcrumb');
+
+						if (!_p.length)
+						{
+							_p = _a;
+						}
+
+						// 部分狀況下導覽列沒有正確 reset
+						_p.nextAll().remove();
+
+						let _url = _a.prop('href');
+
+						if (window.location.href != _url)
+						{
+							giteeAjax(_a.prop('href'));
+						}
 					})
 				;
 			}))
@@ -223,6 +241,9 @@ function giteeAjax(url: string, options?)
 		},
 
 		dataType: "script",
+
+		accepts: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, */*; q=0.01",
+		contentType: "text/javascript; charset=utf-8",
 
 		cache: false,
 	};
