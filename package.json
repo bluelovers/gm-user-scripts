@@ -62,7 +62,7 @@
     "str-util": "^2.3.16",
     "throttle-debounce": "^1.0.1",
     "tieba-harmony": "^1.2.8",
-    "yargs2": "^1.0.1"
+    "yargs2": "^1.0.4"
   },
   "devDependencies": {
     "@types/greasemonkey": "0.0.28",

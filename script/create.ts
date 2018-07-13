@@ -2,7 +2,7 @@
  * Created by user on 2018/7/12/012.
  */
 
-import * as yargs from 'yargs';
+import yargs from 'yargs2';
 import { console } from 'debug-color2';
 import * as path from 'path';
 import * as fs from 'fs-extra';

@@ -68,6 +68,8 @@ let o: IDemo = {
 			global.pathAutoRender = window.pathAutoRender = unsafeWindow.pathAutoRender;
 			// @ts-ignore
 			global.Tree = window.Tree = unsafeWindow.Tree;
+			// @ts-ignore
+			global.ajaxGet = window.ajaxGet = unsafeWindow.ajaxGet;
 		}
 		catch (e)
 		{
@@ -260,10 +262,9 @@ function giteeAjax(url: string, options?)
 		cache: false,
 	};
 
-	console.log('state', history.state);
+	console.log('state', history.state, url);
 
-	return $
-		.getScript(url, Object.assign({}, options, {
+	return $.getScript(url, Object.assign({}, options, {
 
 			data: {
 				_: Date.now(),
@@ -274,6 +275,8 @@ function giteeAjax(url: string, options?)
 			xhrFields,
 
 		}))
+		// @ts-ignore
+	//return unsafeWindow.ajaxGet(url)
 		.done(function (script, textStatus)
 		{
 			let stateObj = history.state;
@@ -281,6 +284,13 @@ function giteeAjax(url: string, options?)
 //			console.log({
 //				script, textStatus
 //			});
+
+			//console.log(777777);
+
+			//console.log(script, textStatus);
+
+			// @ts-ignore
+			//unsafeWindow.eval(script);
 
 			history.pushState(stateObj, document.title, url);
 
