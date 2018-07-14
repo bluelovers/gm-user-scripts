@@ -168,27 +168,39 @@ module.exports = {
 						case keycodes('left'):
 							var _a = $('#s_pre a, a.s_pre');
 
-							if (_a.length)
-							{
-								_uf_done(event);
-								_a[0].click();
-
-								//setTimeout(_dm5, 100);
-							}
-							else if (unsafeWindow.ShowPre)
+							if (unsafeWindow.ShowPre)
 							{
 								_uf_done(event);
 								unsafeWindow.ShowPre();
 								setTimeout(function ()
 								{
-									$(window).scrollTo(_img.add('#showimage'));
+									$(window).scrollTo(_img.add('#showimage, #cp_img'));
 								}, 0);
+							}
+							else if (_a.length)
+							{
+								_uf_done(event);
+								_a[0].click();
+
+								//setTimeout(_dm5, 100);
 							}
 
 							break;
 						case keycodes('pagedown'):
 						case keycodes('right'):
+
 							var _a = $('#s_next a, a.s_next, #last-win:visible a.view-btn-next');
+
+							if (!_a.is('a.view-btn-next') && unsafeWindow.ShowNext)
+							{
+								_uf_done(event);
+								unsafeWindow.ShowNext();
+								setTimeout(function ()
+								{
+									$(window).scrollTo(_img.add('#showimage, #cp_img'));
+								}, 0);
+								return;
+							}
 
 							if (_a.length)
 							{
@@ -196,15 +208,6 @@ module.exports = {
 								_a[0].click();
 
 								//setTimeout(_dm5, 100);
-							}
-							else if (unsafeWindow.ShowNext)
-							{
-								_uf_done(event);
-								unsafeWindow.ShowNext();
-								setTimeout(function ()
-								{
-									$(window).scrollTo(_img.add('#showimage'));
-								}, 0);
 							}
 
 							break;
