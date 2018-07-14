@@ -79,6 +79,8 @@ module.exports = {
 				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 				}`,
 
+				`.deepread-wrap { font-size: 9pt; }`,
+
 				`.j_thread_list .threadlist_title .see_lz { 
 				display: none; 
 				}`,

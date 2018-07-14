@@ -46,7 +46,7 @@ let o: IDemo = {
 
 		greasemonkey
 			.GM_addStyle([
-				`.d_post_content, .core_title_txt, .threadlist_title { 
+				`.d_post_content, .core_title_txt, .threadlist_title, .deepread-wrap { 
 				font-family: Consolas, Noto Sans CJK JP, Noto Sans CJK SC, Noto Sans CJK TC, Noto Sans JP, Noto Sans SC, Noto Sans TC, Noto Sans CJK, Microsoft Yahei UI, sans-serif; 
 				text-shadow: 0 0.5px 0 rgba(228, 228, 228, 0.8), 0 0 1px rgba(0, 0, 0, 0.75); 
 				}`,
