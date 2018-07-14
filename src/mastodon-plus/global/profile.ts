@@ -82,13 +82,19 @@ let o: IDemo = {
 				;
 		});
 
+		let has_follow = !!(btn_follow.length || btn_unfollow.length);
+		let has_remote_follow = !!(btn_remote_follow.length);
+
 		console.log({
 			btn_follow,
 			btn_unfollow,
 			btn_remote_follow,
+
+			has_follow,
+			has_remote_follow,
 		});
 
-		if (!btn_remote_follow.length)
+		if (has_follow && !has_remote_follow)
 		{
 
 		}
