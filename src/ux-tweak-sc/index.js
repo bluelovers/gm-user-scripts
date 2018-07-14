@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'ux-tweak-sc';
 module.exports.name_en = 'ux-tweak-sc';
+module.exports.name_ja = 'ux-tweak-sc';
 
 module.exports.desc = '';
 module.exports.desc_en = '';
+module.exports.desc_ja = '';
 
 module.exports.namespace = '';
 module.exports.author = '';

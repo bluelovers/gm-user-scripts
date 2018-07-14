@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'novel-plus-sc';
 module.exports.name_en = 'novel-plus-sc';
+module.exports.name_ja = 'novel-plus-sc';
 
 module.exports.desc = '部分小說網站重新排版、修正文字，改變閱讀樣式';
 module.exports.desc_en = '部分小說網站重新排版、修正文字，改變閱讀樣式';
+module.exports.desc_ja = '部分小說網站重新排版、修正文字，改變閱讀樣式';
 
 module.exports.namespace = '';
 module.exports.author = '';

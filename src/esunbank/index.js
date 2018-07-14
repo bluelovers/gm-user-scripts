@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'esunbank';
 module.exports.name_en = 'esunbank';
+module.exports.name_ja = 'esunbank';
 
 module.exports.desc = '玉山銀行';
 module.exports.desc_en = '玉山銀行';
+module.exports.desc_ja = '玉山銀行';
 
 module.exports.namespace = '';
 module.exports.author = '';

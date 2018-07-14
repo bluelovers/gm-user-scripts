@@ -202,9 +202,11 @@ module.exports.version = '${metadata.version || ''}';
 
 module.exports.name = '${metadata.name || name}';
 module.exports.name_en = '${metadata.name_en || metadata.name || name}';
+module.exports.name_ja = '${metadata.name_ja || metadata.name || name}';
 
 module.exports.desc = '${metadata.desc || ""}';
 module.exports.desc_en = '${metadata.desc_en || metadata.desc || ""}';
+module.exports.desc_ja = '${metadata.desc_ja || metadata.desc || ""}';
 
 module.exports.namespace = '${metadata.namespace || ''}';
 module.exports.author = '${metadata.author || ''}';
@@ -511,6 +513,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 							name: index.name,
 							name_en: index.name_en || index.name,
+							name_ja: index.name_ja || index.name,
 
 							namespace: index.namespace || pkg.author || '',
 							author: index.author || pkg.author || '',
@@ -519,6 +522,7 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 							desc: index.desc || index.id + ' ' + pkg.description || '',
 							desc_en: index.desc_en || index.desc || index.id + ' ' + pkg.description || '',
+							desc_ja: index.desc_ja || index.desc || index.id + ' ' + pkg.description || '',
 
 							include: gmMetadata.makeMetaRow('include', index.metadata.include || []),
 							//match: meta_match(index.metadata.include).join("\n// @match		"),

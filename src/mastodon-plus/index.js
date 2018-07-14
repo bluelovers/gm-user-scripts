@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'mastodon-plus';
 module.exports.name_en = 'mastodon-plus';
+module.exports.name_ja = 'mastodon-plus';
 
 module.exports.desc = '';
 module.exports.desc_en = '';
+module.exports.desc_ja = '';
 
 module.exports.namespace = '';
 module.exports.author = '';

@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'syosetu-list-number';
 module.exports.name_en = 'syosetu-list-number';
+module.exports.name_ja = 'syosetu-list-number';
 
 module.exports.desc = 'syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)';
 module.exports.desc_en = 'syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)';
+module.exports.desc_ja = 'syosetu-list-number 小説家になろう 章の表示順序';
 
 module.exports.namespace = '';
 module.exports.author = '';

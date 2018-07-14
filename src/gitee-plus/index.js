@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'gitee-plus';
 module.exports.name_en = 'gitee-plus';
+module.exports.name_ja = 'gitee-plus';
 
 module.exports.desc = '於 Gitee 碼雲 增加一點小功能';
 module.exports.desc_en = '於 Gitee 碼雲 增加一點小功能';
+module.exports.desc_ja = '於 Gitee 碼雲 增加一點小功能';
 
 module.exports.namespace = '';
 module.exports.author = '';

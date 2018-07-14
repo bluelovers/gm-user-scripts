@@ -19,12 +19,14 @@ export const grant = [
 export const metadata = `// ==UserScript==
 // @name		<%= index.id %>
 // @name:en		<%= index.name_en %>
+// @name:ja		<%= index.name_ja %>
 // @name:zh		<%= index.name %>
 // @namespace	<%= index.namespace %>
 // @author		<%= index.author %>
 //
 // @description		<%= index.desc %>
 // @description:en	<%= index.desc_en %>
+// @description:ja	<%= index.desc_ja %>
 // @description:zh	<%= index.desc %>
 //
 // @version		<%= pkg.version %>

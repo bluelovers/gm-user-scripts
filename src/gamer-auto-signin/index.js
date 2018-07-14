@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'gamer-auto-signin';
 module.exports.name_en = 'gamer-auto-signin';
+module.exports.name_ja = 'gamer-auto-signin';
 
 module.exports.desc = '自動簽到 ( 巴哈姆特 ... and other )';
 module.exports.desc_en = '自動簽到 ( 巴哈姆特 ... and other )';
+module.exports.desc_ja = '自動簽到 ( 巴哈姆特 ... and other )';
 
 module.exports.namespace = '';
 module.exports.author = '';

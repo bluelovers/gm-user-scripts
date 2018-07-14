@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'tieba-harmony';
 module.exports.name_en = 'tieba-harmony';
+module.exports.name_ja = 'tieba-harmony';
 
 module.exports.desc = 'tieba-harmony 貼吧發文時自動和諧';
 module.exports.desc_en = 'tieba-harmony 貼吧發文時自動和諧';
+module.exports.desc_ja = 'tieba-harmony 貼吧發文時自動和諧';
 
 module.exports.namespace = '';
 module.exports.author = '';

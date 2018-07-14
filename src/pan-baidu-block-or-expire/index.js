@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'pan-baidu-block-or-expire';
 module.exports.name_en = 'pan-baidu-block-or-expire';
+module.exports.name_ja = 'pan-baidu-block-or-expire';
 
 module.exports.desc = '輔助判斷百度盤是封鎖還是過期';
 module.exports.desc_en = '輔助判斷百度盤是封鎖還是過期';
+module.exports.desc_ja = '輔助判斷百度盤是封鎖還是過期';
 
 module.exports.namespace = '';
 module.exports.author = '';

@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'dmm-plus-sc';
 module.exports.name_en = 'dmm-plus-sc';
+module.exports.name_ja = 'dmm-plus-sc';
 
 module.exports.desc = 'DMM Games 介面調整以及更適合遊戲直播';
 module.exports.desc_en = 'dmm games layout tweak';
+module.exports.desc_ja = 'DMM Games 介面調整以及更適合遊戲直播';
 
 module.exports.namespace = '';
 module.exports.author = '';

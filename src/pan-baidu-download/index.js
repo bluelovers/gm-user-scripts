@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'pan-baidu-download';
 module.exports.name_en = 'pan-baidu-download';
+module.exports.name_ja = 'pan-baidu-download';
 
 module.exports.desc = '直接下载百度网盘和百度网盘分享的文件,避免下载文件时调用百度网盘客户端,获取网盘文件的直接下载地址';
 module.exports.desc_en = '直接下载百度网盘和百度网盘分享的文件,避免下载文件时调用百度网盘客户端,获取网盘文件的直接下载地址';
+module.exports.desc_ja = '直接下载百度网盘和百度网盘分享的文件,避免下载文件时调用百度网盘客户端,获取网盘文件的直接下载地址';
 
 module.exports.namespace = '';
 module.exports.author = '';

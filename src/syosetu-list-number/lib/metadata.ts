@@ -3,6 +3,7 @@
  */
 
 export const desc = 'syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)';
+export const desc_ja = 'syosetu-list-number 小説家になろう 章の表示順序';
 
 export const grant = [
 
@@ -11,12 +12,14 @@ export const grant = [
 export const metadata = `// ==UserScript==
 // @name		<%= index.name %>
 // @name:en		<%= index.name_en %>
+// @name:ja		<%= index.name_ja %>
 // @name:zh		<%= index.name %>
 // @namespace	bluelovers
 // @author		bluelovers
 //
 // @description		<%= index.desc %>
 // @description:en	<%= index.desc_en %>
+// @description:ja	<%= index.desc_ja %>
 // @description:zh	<%= index.desc %>
 //
 // @version		<%= pkg.version %>

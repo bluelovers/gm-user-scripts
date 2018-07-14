@@ -4,9 +4,11 @@ module.exports.version = '';
 
 module.exports.name = 'fuck-u-fb-share';
 module.exports.name_en = 'fuck-u-fb-share';
+module.exports.name_ja = 'fuck-u-fb-share';
 
 module.exports.desc = '此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)';
 module.exports.desc_en = 'this script try kill facebook new share (2017-11)';
+module.exports.desc_ja = '此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)';
 
 module.exports.namespace = '';
 module.exports.author = '';
