@@ -55,6 +55,14 @@ let o: IDemo = {
 
 		adult_chk();
 
+		greasemonkey.GM_addStyle([
+			`#novel_header { opacity: 0.5; }`,
+			`#novel_header:hover { opacity: 1; }`,
+
+			`#novel_contents .novel_bn:last-of-type { position: sticky; bottom: 1em; opacity: 0.5; text-align: right; }`,
+			`#novel_contents .novel_bn:last-of-type:hover { opacity: 1; }`,
+		]);
+
 		let novel_contents = $('#novel_contents');
 
 		if (!novel_contents.find('.novel_sublist, .index_box').length)
@@ -184,7 +192,22 @@ let o: IDemo = {
 					_this.find('.subtitle').attr('data-id-sub', ic);
 					ic++;
 				}
+
+				_this.attr('data-chapter', iv);
 			})
+			.filter('.chapter_title[data-chapter]')
+			.append($('<span style="margin-left: 2em;opacity: 0.5;font-size: 0.5em;">(+/-)</span>').on('click', function ()
+			{
+				let iv = $(this)
+					.parents('.chapter_title')
+					.attr('data-chapter')
+				;
+
+				if (iv)
+				{
+					$(`.novel_sublist2[data-chapter="${iv}"]`).toggle();
+				}
+			}))
 		;
 
 		iv = 0;
