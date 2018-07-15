@@ -61,6 +61,10 @@ let o: IDemo = {
 
 			`#novel_contents .novel_bn:last-of-type { position: sticky; bottom: 1em; opacity: 0.5; text-align: right; }`,
 			`#novel_contents .novel_bn:last-of-type:hover { opacity: 1; }`,
+
+			`.contents1 { width: auto; max-width: 700px; }`,
+			`#novel_color { width: auto; max-width: 730px; }`,
+			`.index_box { width: auto; max-width: 720px; }`,
 		]);
 
 		let novel_contents = $('#novel_contents');
@@ -171,69 +175,129 @@ let o: IDemo = {
 			})
 		;
 
+		let btn2 = $(`<div class="btn-collapse"></div>`);
+
 		let iv = 0;
 		let ic = 1;
 
-		// @ts-ignore
-		$('> .chapter_title, > .novel_sublist2', '#novel_contents .index_box')
-			.each(function ()
+		{
+			greasemonkey.GM_addStyle([
+				`._syosetu-chapter-toc { 
+				display: none; 
+				position: sticky; 
+				max-width: 300px; 
+				top: 55px; 
+				float: left; 
+				margin-left: -300px;
+				font-size: 0.7em;
+				}`,
+
+				`@media only screen and (min-width: 1000px) {
+					._syosetu-chapter-toc { display: block; },
+				}`,
+
+			]);
+
+			// @ts-ignore
+			let list = $('> .chapter_title, > .novel_sublist2', '#novel_contents .index_box');
+
+			let chapter_toc_area = $('<div class="_syosetu-chapter-toc"/>');
+			let chapter_toc = $('<ol style="list-style-type: unset;"/>').appendTo(chapter_toc_area);
+
+			if (list.length)
 			{
-				let _this = $(this);
+				list
+					.each(function ()
+					{
+						let _this = $(this);
 
-				_this.html(_this.html().replace(/[\t\r\n]/g, '').trim());
+						_this.html(_this.html().replace(/[\t\r\n]/g, '').trim());
 
-				if (_this.is('.chapter_title'))
-				{
-					iv++;
-					ic = 1;
-				}
-				else if (_this.is('.novel_sublist2'))
-				{
-					_this.find('.subtitle').attr('data-id-sub', ic);
-					ic++;
-				}
+						if (_this.is('.chapter_title'))
+						{
+							iv++;
+							ic = 1;
 
-				_this.attr('data-chapter', iv);
-			})
-			.filter('.chapter_title[data-chapter]')
-			.append($('<span style="margin-left: 2em;opacity: 0.5;font-size: 0.5em;">(+/-)</span>').on('click', function ()
-			{
-				let iv = $(this)
-					.parents('.chapter_title')
-					.attr('data-chapter')
+							_this.attr('data-type', 'chapter_title');
+
+							let _a = $(`<li><a href="javascript:void(0)">${_this.text()}</a></li>`);
+
+							_a
+								.attr('data-chapter', iv)
+							;
+
+							chapter_toc.append(_a);
+						}
+						else if (_this.is('.novel_sublist2'))
+						{
+							_this.find('.subtitle').attr('data-id-sub', ic);
+							ic++;
+						}
+
+						_this.attr('data-chapter', iv);
+					})
+					.filter('.chapter_title[data-chapter]')
+					.append($('<span style="margin-left: 2em;opacity: 0.5;font-size: 0.5em;">(+/-)</span>').on('click', function ()
+					{
+						let iv = $(this)
+							.parents('.chapter_title')
+							.attr('data-chapter')
+						;
+
+						if (iv)
+						{
+							$(`.novel_sublist2[data-chapter="${iv}"]`).toggle();
+						}
+					}))
 				;
 
-				if (iv)
+				let chapter_title = list.filter(`[data-type="chapter_title"]`);
+
+				if (chapter_title.length)
 				{
-					$(`.novel_sublist2[data-chapter="${iv}"]`).toggle();
-				}
-			}))
-		;
+					chapter_toc_area.prependTo('#novel_color');
 
-		iv = 0;
-		ic = 1;
-
-		$('#novel_contents .novel_sublist > ul > li')
-			.each(function ()
-			{
-				let _this = $(this);
-
-				_this.html(_this.html().replace(/[\t\r\n]/g, '').trim());
-
-				if (_this.is('.chapter'))
-				{
-					iv++;
-					ic = 1;
-				}
-				else
-				{
-					_this.find('> a:eq(0)').attr('data-id-sub', function ()
+					chapter_toc.on('click', 'li', function ()
 					{
-						return ic++;
+						let _t = chapter_title.filter(`[data-chapter="${$(this).attr('data-chapter')}"]`);
+
+						if (_t.length)
+						{
+							// @ts-ignore
+							$.scrollTo(_t, -30);
+						}
 					});
 				}
-			})
-		;
+			}
+			else
+			{
+				list = $('#novel_contents .novel_sublist > ul > li');
+
+				list
+					.each(function ()
+					{
+						let _this = $(this);
+
+						_this.html(_this.html().replace(/[\t\r\n]/g, '').trim());
+
+						if (_this.is('.chapter'))
+						{
+							iv++;
+							ic = 1;
+
+							_this.attr('data-type', 'chapter_title');
+						}
+						else
+						{
+							_this.find('> a:eq(0)').attr('data-id-sub', function ()
+							{
+								return ic++;
+							});
+						}
+					})
+				;
+			}
+		}
 
 		novel_contents.addClass(ENABLE_CLASS);
 

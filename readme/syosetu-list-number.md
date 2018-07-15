@@ -22,6 +22,7 @@
 - 複製章節內容時不會產生額外的多於空白行
 - 自動登入 r18 (因為有些人被長城牆了某些腳本 導致無法點擊按鈕)
 - 其他介面微調
+- 浮動索引 TOC
 - 
 
 ### 預覽圖
@@ -31,6 +32,8 @@
 ![syosetu-list-number](syosetu-list-number.jpg)
 
 ![2018-07-14-17-58-13-4.png](images/syosetu-list-number/2018-07-14-17-58-13-4.png)
+
+![2018-07-15-18-35-07-3.png](images/syosetu-list-number/2018-07-15-18-35-07-3.png)
 
 #### Mobile
 
