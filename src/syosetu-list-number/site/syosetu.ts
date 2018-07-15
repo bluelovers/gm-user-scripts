@@ -190,7 +190,10 @@ let o: IDemo = {
 				float: left; 
 				margin-left: -300px;
 				font-size: 0.7em;
+				opacity: 0.5;
 				}`,
+
+				`._syosetu-chapter-toc:hover { opacity: 1; }`,
 
 				`@media only screen and (min-width: 1000px) {
 					._syosetu-chapter-toc { display: block; },
