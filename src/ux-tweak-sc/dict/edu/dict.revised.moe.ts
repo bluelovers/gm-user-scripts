@@ -47,25 +47,140 @@ let o: IDemo = {
 
 		if (_url_obj.path.match(/search\.htm/) || _url_obj.query.match(/o=dcbdic/))
 		{
-			$('script').remove();
+			$('script:not([src])').remove();
+		}
+
+		if (_url_obj.path == '/' || _url_obj.path == '')
+		{
+			$('meta[HTTP-EQUIV*="Refresh"], meta[HTTP-EQUIV*="refresh"]').remove();
 		}
 
 		this.adblock(_url_obj);
 
-		$('form[name="main"]').attr('method', 'get');
+		let referrer_url: URL;
+		let referrer_qs: URLSearchParams;
+		let current_qs: URLSearchParams;
+		let target_qs: URLSearchParams;
 
-		let qs = new URLSearchParams(_url_obj.query);
-
-		console.info(qs.toString());
-
-		let qs0 = $('#qs0:input, :input[name="qs0"]').eq(0);
-		let qs_qs0 = qs.get('qs0') || '';
-
-		if (qs_qs0 && qs0.length)
+		if (document.referrer && document.referrer.match(/dict\.revised\.moe\.edu\.tw/))
 		{
-			if (!qs0.val())
+			referrer_url = new URL(document.referrer);
+
+			if (hasSearchParams(referrer_url))
 			{
-				qs0.val(qs_qs0);
+				referrer_qs = referrer_url.searchParams;
+			}
+		}
+
+		if (hasSearchParams(_url_obj.query))
+		{
+			current_qs = new URLSearchParams(_url_obj.query);
+		}
+
+		if (referrer_qs && referrer_qs.get('qs0'))
+		{
+			target_qs = referrer_qs;
+		}
+
+		if (current_qs && current_qs.get('qs0'))
+		{
+			target_qs = current_qs;
+		}
+
+		let target_ccd: string = target_qs && target_qs.get('ccd') || '';
+		let target_qs0 = '';
+
+		if (target_qs)
+		{
+			target_qs.delete('ccd');
+			target_qs.delete('o');
+			target_qs.delete('index');
+		}
+
+		if (!hasSearchParams(target_qs))
+		{
+			target_qs = null;
+		}
+		else
+		{
+			target_qs0 = target_qs.get('qs0');
+		}
+
+		console.info({
+			referrer: referrer_url,
+			referrer_qs,
+			current_qs,
+			target_qs,
+			target_ccd,
+			target_qs0,
+		});
+
+		if (target_qs && _url_obj.path.match(/cbdic(?:\/(?:index.html)?)?$/))
+		{
+			let url = "/cgi-bin/cbdic/gsweb.cgi/?&o=dcbdic&" + "cache="+(new Date()).getTime() + '&' + target_qs.toString();
+
+			let _a = $('#myContent .my-img a')
+				//.attr('href', '/cbdic/search.htm?' + target_qs.toString())
+				.attr('href', url)
+			;
+
+			_a[0].click();
+		}
+
+		let form = $('form[name="main"]').attr('method', 'get');
+
+		let qs0_input = $('#qs0:input, :input[name="qs0"]').eq(0);
+
+		if (target_qs0 && qs0_input.length)
+		{
+			if (!qs0_input.val())
+			{
+				qs0_input.val(target_qs0);
+			}
+		}
+
+		if (target_qs && _url_obj.path.match(/gsweb\.cgi/) && _url_obj.query.match(/index=1/) && form.length)
+		{
+			let bool;
+
+			if (target_qs.get('selectmode'))
+			{
+				console.log(target_qs.get('selectmode'));
+
+				let ip = $(':checkbox[name="selectmode"]', form)
+					.removeAttr('checked')
+					.prop('checked', false)
+					.filter(`[value="${target_qs.get('selectmode')}"]`)
+					.eq(0)
+					.attr('checked', 'checked')
+					.prop('checked', true)
+				;
+
+				if (ip.length)
+				{
+					ip[0].click();
+				}
+
+				bool = true;
+			}
+
+			if (target_qs.get('clscan'))
+			{
+				console.log(target_qs.get('clscan'));
+
+				let ip = $('select[name="clscan"]', form)
+					.val(target_qs.get('clscan'))
+				;
+
+				bool = true;
+			}
+
+			console.log(bool);
+
+			if (bool)
+			{
+				// @ts-ignore
+				form[0].submit();
 			}
 		}
 
@@ -76,8 +191,6 @@ let o: IDemo = {
 					.attr('target', '_blank')
 					.prop('target', '_blank')
 				;
-
-				console.log(_a);
 			})
 			.triggerHandler('load')
 		;
@@ -98,29 +211,27 @@ let o: IDemo = {
 			document.cookie = '_gat' + '=' + '1' + _expires + ';domain=' + 'dict.revised.moe.edu.tw' + ';path=' + '/';
 		}
 
-		$('body')
+		$('body, html, :root')
 			.removeAttr('onLoad')
 			.removeAttr('onUnload')
+			.removeAttr('onclick')
+			.removeAttr('onkeypress')
 		;
-
-		// @ts-ignore
-		document.body.onload = null;
-		// @ts-ignore
-		document.body.onunload = null;
 
 		try
 		{
 			// @ts-ignore
-			unsafeWindow.document.body.onload = null;
-			// @ts-ignore
-			unsafeWindow.document.body.onunload = null;
-			unsafeWindow.onload = null;
-			unsafeWindow.onunload = null;
-		}
-		catch (e)
-		{
+			document.body.onload = document.body.onunload = document.body.onclick = document.body.onkeypress = null;
+		} catch (e) {}
 
-		}
+		try
+		{
+			// @ts-ignore
+			unsafeWindow.document.body.onload = unsafeWindow.document.body.onunload = unsafeWindow.document.body.onclick = unsafeWindow.document.body.onkeypress = null;
+
+			// @ts-ignore
+			unsafeWindow.onload = unsafeWindow.onunload = unsafeWindow.onclick = unsafeWindow.onkeypress = null;
+		} catch (e) {}
 
 		try
 		{
@@ -133,6 +244,8 @@ let o: IDemo = {
 			// @ts-ignore
 			unsafeWindow.cleartimeout();
 		} catch (e) {}
+
+		$('#myContent .my-img a[href*="html_onclick"]').attr('href', '/cbdic/search.htm');
 	},
 
 	clearly(_url_obj = global._url_obj, _dom_list = null)
@@ -159,4 +272,30 @@ function getCookie(e)
 	return n.cookie.length > 0 && (o = n.cookie.indexOf(e + "="), -1 != o)
 		? (o = o + e.length + 1, t = n.cookie.indexOf(";", o), -1 == t && (t = n.cookie.length), c(n.cookie.substring(o, t)))
 		: "";
+}
+
+function hasSearchParams(obj: URLSearchParams | URL | string)
+{
+	if (obj)
+	{
+		if (obj instanceof URL)
+		{
+			obj = obj.searchParams;
+		}
+
+		let s = '';
+
+		if (obj instanceof URLSearchParams)
+		{
+			s = obj.toString();
+		}
+		else
+		{
+			s = obj.toString();
+		}
+
+		return s.replace(/^[\?\s#&]+|[\?\s#&]+$/g, '').length > 1;
+	}
+
+	return false;
 }
