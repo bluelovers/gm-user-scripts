@@ -334,6 +334,7 @@ module.exports.metadata.exclude = [
 	"http*://gc.bahamut.com.tw/*",
 	"http*://*.bahamut.com.tw/*",
 	"http*://*.bahamut.com.tw/js/*",
+	"http*://*.pixiv.net/novel/*",
 	"http*://www.facebook.com/ajax/*",
 	"http*://www.facebook.com/*plugins/*",
 	"http*://staticxx.facebook.com/*",

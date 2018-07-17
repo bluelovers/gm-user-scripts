@@ -29,7 +29,9 @@ module.exports = {
 			'http*://*.pixiv.net/*',
 			'http*://www.pixiv.net/search*',
 		],
-		exclude: [],
+		exclude: [
+			'http*://*.pixiv.net/novel/*',
+		],
 	},
 
 	test(_url_obj)
@@ -53,7 +55,7 @@ module.exports = {
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
 		if (document.referrer
-			&& _url_obj.path.match(/member\.php/)
+			&& _url_obj.path.match(/^\/?member\.php/)
 			&& _url_obj.query.match(/^id=\d+$/)
 			&& !document.referrer.match(/pixiv/)
 		)
