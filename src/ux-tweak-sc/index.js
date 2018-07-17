@@ -70,6 +70,7 @@ module.exports.list = [
 	"comic/wnacg",
 	"comic/yoedge",
 	"content/farm/fun01.cc",
+	"dict/edu/dict.revised.moe",
 	"novel/kakuyomu.jp",
 	"novel/lightnovel.cn",
 	"novel/syosetu",
@@ -164,6 +165,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/comic/wnacg');
 	require('root/src/ux-tweak-sc/comic/yoedge');
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc');
+	require('root/src/ux-tweak-sc/dict/edu/dict.revised.moe');
 	require('root/src/ux-tweak-sc/novel/kakuyomu.jp');
 	require('root/src/ux-tweak-sc/novel/lightnovel.cn');
 	require('root/src/ux-tweak-sc/novel/syosetu');
@@ -279,6 +281,8 @@ module.exports.metadata.include = [
 	"http*://wnacg.org/*",
 	"http*://smp*.yoedge.com/*",
 	"http*://www.fun01.cc/*",
+	"http*://dict.revised.moe.edu.tw/*",
+	"http*://dict.revised.moe.edu.tw/cbdic/search.htm*",
 	"http*://kakuyomu.jp/works*",
 	"http*://kakuyomu.jp/*",
 	"http*://*.lightnovel.cn/*",
