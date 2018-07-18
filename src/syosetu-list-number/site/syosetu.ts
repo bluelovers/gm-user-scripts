@@ -196,7 +196,12 @@ let o: IDemo = {
 				`._syosetu-chapter-toc:hover { opacity: 1; }`,
 
 				`@media only screen and (min-width: 1000px) {
-					._syosetu-chapter-toc { display: block; },
+					._syosetu-chapter-toc { display: block; }
+					
+					html, body, :root
+					{
+						scroll-behavior: smooth;
+					}
 				}`,
 
 			]);
