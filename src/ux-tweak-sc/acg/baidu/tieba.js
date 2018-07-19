@@ -85,6 +85,33 @@ module.exports = {
 				display: none; 
 				}`,
 				`.j_thread_list:hover .threadlist_title .see_lz { display: inline-block; }`,
+
+				`._post-toc { 
+				display: none; 
+				position: sticky; 
+				max-width: 150px; 
+				top: 55px; 
+				float: left; 
+				//margin-left: -150px;
+				left: 150px;
+				font-size: 0.7em;
+				opacity: 0.5;
+				overflow-x: hidden;
+				}`,
+
+				`._post-toc a { min-width: 100px; display: inline-block; line-height: 2em; min-height: 2em; }`,
+
+				`._post-toc:hover { opacity: 1; }`,
+
+				`@media only screen and (min-width: 1000px) {
+					._post-toc { display: block; }
+					
+					html, body, :root
+					{
+						scroll-behavior: smooth;
+					}
+				}`,
+
 			])
 		;
 
@@ -92,6 +119,11 @@ module.exports = {
 		const debounce = require('throttle-debounce/debounce');
 		const _uf_done = require('root/lib/event/done');
 		let PageData;
+
+		let _toc_inited = false;
+
+		let _toc_area = $('<div class="_post-toc"/>');
+		let _toc = $('<dl style="list-style-type: unset;"/>').appendTo(_toc_area);
 
 		$('body').on('DOMNodeInserted', '#com_userbar', debounce(1000, function ()
 		{
@@ -175,7 +207,51 @@ module.exports = {
 				let last_post;
 				let n = 0;
 
-				$('.p_postlist .l_post:not([data-floor-check])')
+				let _toc_reset = true;
+
+				$('.p_postlist .l_post')
+					.each(function ()
+					{
+						if (!_toc_inited)
+						{
+							_toc_inited = true;
+							_toc_area
+								//.prependTo('#container')
+								.insertBefore('#container')
+							;
+						}
+
+						if (_toc_reset)
+						{
+							_toc_reset = false;
+							_toc.empty();
+
+							$('.card_top_wrap').outerHeight($('.card_top_wrap .card_top').outerHeight());
+
+							$(window).triggerHandler('scroll.load');
+						}
+
+						let _this = $(this);
+
+						let floor_elem = _this.find('.post-tail-wrap > .tail-info:eq(-2)');
+						let c = Number(floor_elem.text().replace(/\D/g, ''));
+
+						if (c && !Number.isNaN(c))
+						{
+							let _a = $(`<dt></dt>`)
+								.html(`<a href="javascript:void(0)">#${c} ` + $('.p_author .p_author_name', _this).html()+'</a>')
+							;
+
+							_a.on('click', function ()
+							{
+								$(window).triggerHandler('scroll.load');
+								$(window).scrollTo(_this, -60);
+							});
+
+							_a.appendTo(_toc);
+						}
+					})
+					.filter(':not([data-floor-check])')
 					.each(function ()
 					{
 						n++;
