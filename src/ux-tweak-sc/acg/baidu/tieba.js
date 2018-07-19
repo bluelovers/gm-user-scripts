@@ -242,10 +242,12 @@ module.exports = {
 								.html(`<a href="javascript:void(0)">#${c} ` + $('.p_author .p_author_name', _this).html()+'</a>')
 							;
 
+							_a.attr('title', _a.text());
+
 							_a.on('click', function ()
 							{
 								$(window).triggerHandler('scroll.load');
-								$(window).scrollTo(_this, -60);
+								$(window).scrollTo(_this, -70);
 							});
 
 							_a.appendTo(_toc);
