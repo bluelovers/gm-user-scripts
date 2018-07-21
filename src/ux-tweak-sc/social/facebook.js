@@ -71,8 +71,8 @@ module.exports = {
 				}
 			}
 
-			//userScriptCore.greasemonkey.debug(GMApi.callSafe('GM_listValues')());
-			//userScriptCore.greasemonkey.debug(_fb_cache, Cookies.get(), document.cookie);
+			userScriptCore.greasemonkey.debug(GMApi.callSafe('GM_listValues')());
+			userScriptCore.greasemonkey.debug(_url_obj, _fb_cache, document.cookie);
 		}
 
 		_fb_cache_update();
@@ -85,6 +85,20 @@ module.exports = {
 			;
 
 			return;
+		}
+
+		if (_fb_cache.sk == 'h_chr')
+		{
+			$('#bluebarRoot h1[data-click="bluebar_logo"] a')
+				.attr('href', function (i, old)
+				{
+					return old
+						.replace(/&?sk=(h_chr|h_nor)/, '')
+						.trim('&')
+						.concat((old.indexOf('?') !== -1 ? '&' : '?') + 'sk=' + _fb_cache.sk)
+						;
+				})
+			;
 		}
 
 		let _ready = debounce(1500, function ()
