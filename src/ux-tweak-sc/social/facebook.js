@@ -79,13 +79,16 @@ module.exports = {
 
 		if (_fb_cache.sk)
 		{
+			console.log(_fb_cache);
+
 			if (typeof _fb_cache.sk != 'string' && (_fb_cache.sk instanceof Promise || typeof _fb_cache.sk.then == 'function'))
 			{
+				/**
+				 * @FIXME 不知道為什麼會有發生 sk 的值為 Promise 的狀況
+				 */
 				_fb_cache.sk = await _fb_cache.sk;
 			}
 		}
-
-		console.log(_fb_cache);
 
 		if (_fb_cache.sk && (_fb_cache.sk == 'h_chr') && window.location.href.match(/\/\/(?:www\.)?facebook\.com\/?\??(?:#.+)?$/))
 		{
