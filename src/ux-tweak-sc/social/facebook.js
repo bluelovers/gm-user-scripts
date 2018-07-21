@@ -28,7 +28,7 @@ module.exports = {
 		return false;
 	},
 
-	main(_url_obj = global._url_obj)
+	async main(_url_obj = global._url_obj)
 	{
 		const _uf_done = require('root/lib/event/done');
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
@@ -76,6 +76,16 @@ module.exports = {
 		}
 
 		_fb_cache_update();
+
+		if (_fb_cache.sk)
+		{
+			if (typeof _fb_cache.sk != 'string' && (_fb_cache.sk instanceof Promise || typeof _fb_cache.sk.then == 'function'))
+			{
+				_fb_cache.sk = await _fb_cache.sk;
+			}
+		}
+
+		console.log(_fb_cache);
 
 		if (_fb_cache.sk && (_fb_cache.sk == 'h_chr') && window.location.href.match(/\/\/(?:www\.)?facebook\.com\/?\??(?:#.+)?$/))
 		{
