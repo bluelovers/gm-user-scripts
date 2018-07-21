@@ -170,7 +170,7 @@ module.exports = {
 					}
 				});
 			}))
-			.on('load', function ()
+			.on('load', debounce(200, function ()
 			{
 				PageData = $.extend({}, {
 					thread: {},
@@ -367,7 +367,9 @@ module.exports = {
 						{}
 					})
 				;
-			})
+
+				$(window).triggerHandler('scroll.load');
+			}))
 			.on('load.list', throttle(500, function ()
 			{
 				let ls = $('.j_thread_list .threadlist_title, .ihome_section .new_list .thread_name').each(function ()
@@ -460,19 +462,25 @@ module.exports = {
 
 				}
 			})
-			.on('scroll.load', function (event)
+			.on('scroll.load', throttle(1000, function (event)
 			{
 				let n = 0;
 
-				$('.core_reply_wrapper:not([data-loaded]):has(.loading_reply)')
+				$('.core_reply_wrapper:not([data-loaded])')
 					.each(function ()
 					{
 						let core_reply_wrapper = $(this);
 						core_reply_wrapper.attr('data-loaded', true);
 
+						let loading_reply = core_reply_wrapper.find('.loading_reply');
+
+						let core_reply = core_reply_wrapper.parents('.core_reply:eq(0)').eq(0);
+
+						core_reply_handler(core_reply);
+
 						let t = Number(core_reply_wrapper.prop('data-loaded-try') || 0);
 
-						if (t < 5 && core_reply_wrapper.find('.loading_reply').length)
+						if (t < 5 && loading_reply.length)
 						{
 							n++;
 
@@ -502,15 +510,39 @@ module.exports = {
 								}
 								catch (e)
 								{
-									console.error(e.toString());
+									//console.error(e.toString());
 								}
 
-								core_reply_wrapper.removeAttr('data-loaded');
+								try
+								{
+									let event = $.Event('scroll.reply', {
+										pageY: core_reply_wrapper.offset().top,
+									});
+
+									$(unsafeWindow)
+										.add('html, body')
+										.trigger(event)
+									;
+								}
+								catch (e)
+								{
+									//console.error(e.toString());
+								}
+
+								setTimeout(function ()
+								{
+									if (core_reply_wrapper.find('.loading_reply').length)
+									{
+										core_reply_wrapper.removeAttr('data-loaded');
+									}
+								}, 200);
+
+								core_reply_handler(core_reply);
 							}, 1000 + n * 100);
 						}
 					})
 				;
-			})
+			}))
 			.triggerHandler('load')
 		;
 
@@ -525,17 +557,17 @@ module.exports = {
 		}, 500);
 
 		$('#frs_list_pager')
-			.on('DOMNodeInserted.page', function ()
+			.on('DOMNodeInserted.page', debounce(200, function ()
 			{
 				$(window).scrollTo('.head_content .card_title, #content, #tab_forumname');
-			})
+			}))
 		;
 
 		$('.pb_footer')
-			.on('DOMNodeInserted', function ()
+			.on('DOMNodeInserted', debounce(200, function ()
 			{
 				$(window).triggerHandler('load');
-			})
+			}))
 		;
 
 		lazyload(_url_obj);
@@ -611,4 +643,21 @@ function lazyload(_url_obj)
 			}
 		})
 	;
+}
+
+function core_reply_handler(_this)
+{
+	let chk = _this.find('.lzl_link_fold:visible, .loading_reply');
+	let elem = _this.find('.core_reply_wrapper');
+
+	if (chk.length)
+	{
+		elem.show();
+	}
+	else
+	{
+		elem.hide();
+	}
+
+	//console.log(elem, chk);
 }
