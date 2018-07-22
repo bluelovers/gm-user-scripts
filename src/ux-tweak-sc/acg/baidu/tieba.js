@@ -650,13 +650,18 @@ function core_reply_handler(_this)
 	let chk = _this.find('.lzl_link_fold:visible, .loading_reply');
 	let elem = _this.find('.core_reply_wrapper');
 
+	if (elem.css('min-height') <= 50)
+	{
+		elem.css('min-height', 'auto');
+	}
+
 	if (chk.length)
 	{
-		elem.show();
+		//elem.show();
 	}
 	else
 	{
-		elem.hide();
+		//elem.hide();
 	}
 
 	//console.log(elem, chk);

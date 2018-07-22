@@ -55,7 +55,36 @@ module.exports = {
 				});
 				*/
 
+				console.log(6666666, _fb_cache);
+
 				GMApi.callSafe('GM_setValue')('facebook.sk', _fb_cache.sk);
+
+				let sk = GMApi.callSafe('GM_getValue')('facebook.sk');
+
+				let sk2 = GMApi.GM_getValue('facebook.sk');
+				let sk3 = GM_getValue('facebook.sk');
+
+				console.log(777777777, {
+					sk,
+					sk2,
+					sk3,
+				}, [
+					/**
+					 * @see https://github.com/bluelovers/gm-user-scripts/blob/master/lib/greasemonkey/gm/api.ts#L190
+					 */
+					GMApi,
+					/**
+					 * @BUG in chome tampermonkey this func will became async
+					 */
+					GMApi.GM_getValue,
+
+					/**
+					 * but here still is sync
+					 */
+					GM_getValue,
+
+					GMApi.GM_getValue === GM_getValue,
+				]);
 			}
 			else if (!_fb_cache.sk)
 			{
