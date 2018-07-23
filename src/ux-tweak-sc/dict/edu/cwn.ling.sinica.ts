@@ -89,7 +89,7 @@ let o: IDemo = {
 		}
 		else
 		{
-			target_qs0 = target_qs.get(Q_MAIN);
+			target_qs0 = target_qs.get(Q_MAIN).trim();
 		}
 
 		let form = $('form[name="form1"]').attr('method', 'get');
@@ -126,11 +126,11 @@ let o: IDemo = {
 			}
 		}
 
-		if (target_qs0 && qs0_input.length && target_qs !== referrer_qs)
+		if (target_qs0 && qs0_input.length)
 		{
 			let bool;
 
-			if (!qs0_input.val())
+			if (!qs0_input.val() && (target_qs === current_qs || target_qs0.match(/^[\w\u4E00-\u9FFF\s]+$/i)))
 			{
 				qs0_input.val(target_qs0);
 
