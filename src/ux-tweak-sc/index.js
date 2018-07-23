@@ -70,6 +70,7 @@ module.exports.list = [
 	"comic/wnacg",
 	"comic/yoedge",
 	"content/farm/fun01.cc",
+	"dict/edu/cwn.ling.sinica",
 	"dict/edu/dict.revised.moe",
 	"novel/kakuyomu.jp",
 	"novel/lightnovel.cn",
@@ -165,6 +166,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/comic/wnacg');
 	require('root/src/ux-tweak-sc/comic/yoedge');
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc');
+	require('root/src/ux-tweak-sc/dict/edu/cwn.ling.sinica');
 	require('root/src/ux-tweak-sc/dict/edu/dict.revised.moe');
 	require('root/src/ux-tweak-sc/novel/kakuyomu.jp');
 	require('root/src/ux-tweak-sc/novel/lightnovel.cn');
@@ -281,6 +283,10 @@ module.exports.metadata.include = [
 	"http*://wnacg.org/*",
 	"http*://smp*.yoedge.com/*",
 	"http*://www.fun01.cc/*",
+	"http*://cwn.ling.sinica.edu.tw/*",
+	"http*://cwn.ling.sinica.edu.tw/query1.htm*",
+	"http*://cwn.ling.sinica.edu.tw/_process.asp*",
+	"http*://cwn.ling.sinica.edu.tw/input.asp*",
 	"http*://dict.revised.moe.edu.tw/*",
 	"http*://dict.revised.moe.edu.tw/cbdic/search.htm*",
 	"http*://kakuyomu.jp/works*",
