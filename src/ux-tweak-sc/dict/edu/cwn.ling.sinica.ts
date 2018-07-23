@@ -64,6 +64,15 @@ let o: IDemo = {
 			}
 		}
 
+		{
+			let _a = $('a[href*="_process.asp?inputword="]');
+
+			if (_a.length > 1)
+			{
+				_a.attr('target', '_blank');
+			}
+		}
+
 		const Q_MAIN = 'inputword';
 
 		if (hasSearchParams(_url_obj.query))
