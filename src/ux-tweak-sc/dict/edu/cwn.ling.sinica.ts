@@ -54,6 +54,13 @@ let o: IDemo = {
 		let current_qs: URLSearchParams;
 		let target_qs: URLSearchParams;
 
+		greasemonkey
+			.GM_addStyle([
+				`html, body, :root { font-size: 9pt; }`,
+				`table { font-size: inherit; }`,
+			])
+		;
+
 		if (document.referrer && document.referrer.match(/cwn\.ling\.sinica\.edu\.tw/))
 		{
 			referrer_url = new URL(document.referrer);
@@ -64,12 +71,12 @@ let o: IDemo = {
 			}
 		}
 
-		{
-			let _a = $('a[href*="_process.asp?inputword="]');
+		let _list_a = $('a[href*="_process.asp?inputword="]');
 
-			if (_a.length > 1)
+		{
+			if (_list_a.length > 1)
 			{
-				_a.attr('target', '_blank');
+				_list_a.attr('target', '_blank');
 			}
 		}
 
@@ -108,7 +115,7 @@ let o: IDemo = {
 		{
 			let q_name = 'radiobutton';
 
-			if (target_qs.get(q_name))
+			if (target_qs && target_qs.get(q_name))
 			{
 				let q_value = target_qs.get(q_name);
 
@@ -131,6 +138,52 @@ let o: IDemo = {
 				$('a[href$="query1.htm"]').attr('href', function (i, old)
 				{
 					return 'input.asp' + '?' + `${q_name}=${q_value}`;
+				})
+			}
+		}
+
+		{
+			let m = [];
+
+			if (target_qs0)
+			{
+				m.push(target_qs0);
+			}
+
+			let elem = $('div + table[align="center"] td[align="center"] font').eq(0);
+
+			if (elem.length)
+			{
+				m.push(elem.text().replace(/[\s「」]+/g, ''));
+			}
+
+			console.log(m);
+
+			if (m.length)
+			{
+				_list_a.each(function ()
+				{
+					let _a = $(this);
+
+					let text = _a.text().trim().replace(/\d+$/, '').trim();
+
+					if (m.includes(text))
+					{
+						if (_a.parent().is('td'))
+						{
+							_a.parent()
+								.css('background-color', '#ff00ea')
+							;
+						}
+						else
+						{
+							_a
+								.css('background-color', '#ff00ea')
+							;
+						}
+
+						_a.css('color', '#fff');
+					}
 				})
 			}
 		}
@@ -159,6 +212,8 @@ let o: IDemo = {
 				form.submit();
 			}
 		}
+
+		$('font').removeAttr('face');
 	},
 
 	adblock(_url_obj = global._url_obj)
