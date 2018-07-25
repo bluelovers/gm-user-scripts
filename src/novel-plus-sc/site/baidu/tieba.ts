@@ -67,7 +67,7 @@ let o: IDemo = {
 					`.tbui_aside_float_bar { opacity: 0.5; } 
 					.tbui_aside_float_bar:hover { opacity: 0.8; }`,
 
-					`@media only screen and (max-width: 1000px)
+					`@media only screen and (max-width: 1200px)
 					{
 					
 					.right_section { display: none; }

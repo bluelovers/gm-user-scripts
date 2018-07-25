@@ -59,6 +59,44 @@ module.exports = {
 
 		greasemonkey
 			.GM_addStyle([
+
+				`.d_post_content { line-height: 1.45em; }`,
+
+				//`.l_post_bright, .skin_normal .wrap1, .pb_content { background: #e6d7bd; }`,
+				`.d_post_content_main { background: transparent; }`,
+				//`.core_title_wrap_bright { background: #fff9; }`,
+
+				`.tbui_aside_float_bar { opacity: 0.5; } 
+					.tbui_aside_float_bar:hover { opacity: 0.8; }`,
+
+				`@media only screen and (max-width: 1200px)
+					{
+					
+					.right_section { display: none; }
+					.left_section { float: none; margin: auto; }
+					
+					.search_bright .search_ipt, .l_container, .content, .pb_content, .thread_theme_5, .pb_footer, .pb_footer .p_thread, .tb_rich_poster_container, .search_bright .search_form, .nav_list { width: auto; }
+					
+					}`,
+
+				`@media only screen and (max-width: 800px)
+					{
+					
+					.core_title_wrap_bright { width: 100%; }
+					
+					.d_post_content_main { padding-left: 0px; }
+					.d_author, .d_author_anonym { display: none; }
+					.p_content { padding-right: 0px; }
+					
+					.d_post_content_main { float: none;margin: auto; }
+					
+					}`,
+
+			])
+		;
+
+		greasemonkey
+			.GM_addStyle([
 				`#com_userbar { position: fixed; top: 55px; background: #fff9; }`,
 				`#com_userbar .u_bdhome { display: none; }`,
 				`.floor-check-miss { padding: 10px;background-color: #451159;border-radius: 5px;padding-bottom: 6px;color: #fff;text-align: center;margin: 5px;margin-left: auto;}`,
@@ -102,6 +140,18 @@ module.exports = {
 				`._post-toc a { min-width: 100px; display: inline-block; line-height: 2em; min-height: 2em; }`,
 
 				`._post-toc:hover { opacity: 1; }`,
+
+				`@media only screen and (max-width: 1600px) {
+					._post-toc { left: 100px; }
+				}`,
+
+				`@media only screen and (max-width: 1500px) {
+					._post-toc { left: 50px; }
+				}`,
+
+				`@media only screen and (max-width: 1400px) {
+					._post-toc { left: 10px; }
+				}`,
 
 				`@media only screen and (min-width: 1000px) {
 					._post-toc { display: block; }
@@ -563,7 +613,7 @@ module.exports = {
 			}))
 		;
 
-		$('.pb_footer')
+		$('.pb_footer .l_thread_info')
 			.on('DOMNodeInserted', debounce(200, function ()
 			{
 				$(window).triggerHandler('load');
