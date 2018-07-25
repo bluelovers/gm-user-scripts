@@ -700,8 +700,18 @@ function core_reply_handler(_this)
 	let chk = _this.find('.lzl_link_fold:visible, .loading_reply');
 	let elem = _this.find('.core_reply_wrapper');
 
-	if (elem.css('min-height') <= 50)
+	let min_height = elem.css('min-height').replace(/px$/, '');
+	let height = elem.height();
+
+	0 && console.log(elem, {
+		min_height,
+		height,
+		chk: chk.length,
+	});
+
+	if (min_height <= 50 || height <= 50)
 	{
+		// 處理捲動時會因為留言區的高度變動導致定位 以及 看到白色內容的問題
 		elem.css('min-height', 'auto');
 	}
 
