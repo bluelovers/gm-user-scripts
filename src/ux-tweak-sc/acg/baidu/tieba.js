@@ -220,6 +220,23 @@ module.exports = {
 			})
 		;
 
+		$('body').on('DOMNodeInserted', '#thread_list .j_thread_list .media_box', debounce(500, function (event)
+		{
+			let _img = $('img[id^="big_img_"]', this);
+
+			0 && console.log({
+				"this": this,
+				target: event.target,
+				_img,
+			});
+
+			_img.each(function ()
+			{
+				libSiteBaiduTieba.bde_image(this);
+			});
+
+		}));
+
 		$(window)
 			.on('load.sign', debounce(1000, function ()
 			{
@@ -496,6 +513,8 @@ module.exports = {
 				});
 
 				console.log('load.list', ls);
+
+				lazyload(_url_obj);
 			}))
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
@@ -667,8 +686,6 @@ module.exports = {
 				$(window).triggerHandler('load');
 			}))
 		;
-
-		lazyload(_url_obj);
 	},
 
 	adblock(_url_obj = global._url_obj)
@@ -728,12 +745,22 @@ async function sign(_url_obj = global._url_obj)
 
 function lazyload(_url_obj)
 {
+	const libSiteBaiduTieba = require('root/lib/site/baidu/tieba');
+
 	$('img.BDE_Image[data-original], img.threadlist_pic')
 		.not('[data-done]')
 		.attr('data-done', true)
 		.attr('src', function (i, old)
 		{
-			let src = $(this).attr('data-original');
+			let _this = $(this);
+			let src = _this.attr('data-original');
+
+			let _img = libSiteBaiduTieba.bde_image(_this.clone());
+
+			if (_img)
+			{
+				_this.attr('bpic', _img.data('fullsrc'));
+			}
 
 			if (old != src)
 			{

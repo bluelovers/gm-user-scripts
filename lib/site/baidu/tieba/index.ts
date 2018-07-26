@@ -129,6 +129,7 @@ export function bde_image(input: JQuery<HTMLElement> | string)
 
 	elem.attr('data-id', name_id);
 	elem.data('fullsrc', fullsrc);
+	elem.attr('bpic', fullsrc);
 
 	return elem;
 }
