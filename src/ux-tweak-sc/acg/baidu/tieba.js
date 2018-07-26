@@ -40,6 +40,7 @@ module.exports = {
 	{
 		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
+		const libSiteBaiduTieba = require('root/lib/site/baidu/tieba');
 
 		$(window).on('load.link', function ()
 		{
@@ -168,6 +169,9 @@ module.exports = {
 		const throttle = require('throttle-debounce/throttle');
 		const debounce = require('throttle-debounce/debounce');
 		const _uf_done = require('root/lib/event/done');
+		/**
+		 * @type import('root/lib/site/baidu/tieba').IBaiduTiebaPageData
+		 */
 		let PageData;
 
 		let _toc_inited = false;
@@ -179,6 +183,42 @@ module.exports = {
 		{
 			$(window).triggerHandler('load.menu');
 		}));
+
+		$('#pb_content')
+			.on('click', 'img.BDE_Image', function (event)
+			{
+				/**
+				 * @type JQuery<HTMLElement>
+				 */
+				let _img = libSiteBaiduTieba.bde_image(this);
+
+				if (_img && _img.length)
+				{
+					let name_id = _img.attr('data-id');
+
+					let url;
+
+					if (PageData && PageData.forum && PageData.thread)
+					{
+						url = [
+							`http://tieba.baidu.com/photo/p?`,
+							`kw=${PageData.forum.name_url}`,
+							`&flux=1&tid=${PageData.thread.thread_id}`,
+							`&pic_id=${name_id}`,
+							`&pn=1&fp=2&see_lz=0&red_tag=s2698993533`,
+						].join('')
+					}
+					else
+					{
+						url = _img.prop('src');
+					}
+
+					_uf_done(event);
+
+					window.open(url, name_id);
+				}
+			})
+		;
 
 		$(window)
 			.on('load.sign', debounce(1000, function ()
@@ -259,14 +299,16 @@ module.exports = {
 
 				let _toc_reset = true;
 
-				$('.p_postlist .l_post')
+				let p_postlist_post = $('.p_postlist .l_post');
+
+				p_postlist_post
 					.each(function ()
 					{
 						if (!_toc_inited)
 						{
 							_toc_inited = true;
 							_toc_area
-								//.prependTo('#container')
+							//.prependTo('#container')
 								.insertBefore('#container')
 							;
 						}
@@ -289,7 +331,8 @@ module.exports = {
 						if (c && !Number.isNaN(c))
 						{
 							let _a = $(`<dt></dt>`)
-								.html(`<a href="javascript:void(0)">#${c} ` + $('.p_author .p_author_name', _this).html()+'</a>')
+								.html(`<a href="javascript:void(0)">#${c} ` + $('.p_author .p_author_name', _this)
+									.html() + '</a>')
 							;
 
 							_a.attr('title', _a.text());
@@ -417,6 +460,11 @@ module.exports = {
 						{}
 					})
 				;
+
+				$('img.BDE_Image', p_postlist_post).each(function ()
+				{
+					libSiteBaiduTieba.bde_image(this);
+				});
 
 				$(window).triggerHandler('scroll.load');
 			}))
