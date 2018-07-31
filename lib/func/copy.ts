@@ -15,5 +15,44 @@ export function copyonclick(id: string)
 	].join(';')
 }
 
+export function copyElem(copyArea: HTMLElement)
+{
+	try
+	{
+		window.getSelection().removeAllRanges();
+	}
+	catch (e)
+	{}
+	try
+	{
+		copyArea.select();
+	}
+	catch (e)
+	{
+		console.error(e)
+	}
+	try
+	{
+		let range = document.createRange();
+		range.selectNode(copyArea);
+		window.getSelection().addRange(range)
+	}
+	catch (e)
+	{
+		console.error(e)
+	}
+
+	try
+	{
+		document.execCommand('Copy')
+	}
+	catch (e)
+	{
+		console.error(e)
+	}
+}
+
+import { IHTMLElement } from 'root/lib/dom/img/size';
 import * as self from './copy';
+
 export default self;

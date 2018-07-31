@@ -4,7 +4,6 @@
 
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
-// @ts-ignore
 export function makeJQueryPlugin($: IJQueryStatic = global.jQuery, window: IWindow = global.window)
 {
 	(function (_old)

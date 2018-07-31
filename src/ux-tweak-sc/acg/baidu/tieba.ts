@@ -285,6 +285,43 @@ height: 18px;
 
 		}));
 
+		const CopyLib = require('root/lib/func/copy');
+
+		$('body')
+			.on('DOMNodeInserted DOMSubtreeModified', '#creative-platform-deepread-wrap', debounce(1000, function (event)
+		{
+			console.log(event.type, this, event.target);
+			let _this = $(this);
+
+			if (!_this.length || !_this.is('#creative-platform-deepread-wrap:not([data-done])'))
+			{
+				return;
+			}
+
+			_this.attr('data-done', true);
+
+			let deepread_content = $('#deepread-wrap .deepread-content');
+			let deepread_nav = $('#deepread-nav', _this);
+
+			let _a = $('<a title="點擊可複製貼子">點擊可複製貼子</a>');
+
+			_a.on('click', function (event)
+			{
+				console.log(event.type, this, event.target);
+
+				CopyLib.copyElem($('#deepread-wrap .deepread-content')[0]);
+			});
+
+			_a.appendTo(deepread_nav);
+
+			let _div = $('<div class="clearfix"/>');
+			let t = $('.deepread-title, .deepread-author', _this);
+
+			t.appendTo(_div);
+			_div.insertAfter(deepread_nav);
+		}))
+		;
+
 		$(window)
 			.on('load.sign', debounce(1000, function ()
 			{
@@ -382,7 +419,7 @@ height: 18px;
 
 				let p_postlist_post = $('.l_post', p_postlist);
 
-				console.log(p_postlist, p_postlist_post);
+				//console.log(p_postlist, p_postlist_post);
 
 				p_postlist_post
 					.each(function ()
@@ -810,7 +847,7 @@ height: 18px;
 		$('#frs_list_pager')
 			.on('DOMNodeInserted.page', debounce(200, function ()
 			{
-				console.log(event.type, this, event.target);
+				//console.log(event.type, this, event.target);
 				// @ts-ignore
 				$(window).scrollTo('.head_content .card_title, #content, #tab_forumname');
 			}))
@@ -827,7 +864,7 @@ height: 18px;
 		$('#j_core_title_wrap')
 			.on('DOMNodeInserted', '.core_title_txt', throttle(200, function (event)
 			{
-				console.log(event.type, this, event.target);
+				//console.log(event.type, this, event.target);
 				$(window).triggerHandler('load');
 			}))
 		;
