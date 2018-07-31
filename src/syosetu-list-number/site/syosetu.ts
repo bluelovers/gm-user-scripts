@@ -65,6 +65,13 @@ let o: IDemo = {
 			`.contents1 { width: auto; max-width: 700px; }`,
 			`#novel_color { width: auto; max-width: 730px; }`,
 			`.index_box { width: auto; max-width: 720px; }`,
+
+			`#pageTop { opacity: 0.5; }`,
+			`#pageTop:hover { opacity: 1; }`,
+
+			`@media only screen and (min-width: 1100px) {
+				
+			}`,
 		]);
 
 		let novel_contents = $('#novel_contents');

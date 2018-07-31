@@ -4,15 +4,7 @@
 
 import { IWindow } from '../../core/demo';
 
-declare module 'root/lib/core/demo'
-{
-	interface IWindow
-	{
-		PageData: IBaiduTiebaPageData,
-	}
-}
-
-declare module '../../core/demo'
+declare global
 {
 	interface IWindow
 	{
@@ -80,6 +72,28 @@ export interface IBaiduTiebaPageData
 		total_page: number,
 	},
 
+}
+
+export interface IBaiduTiebaPostField
+{
+	"author": {
+		"user_id": number,
+		"user_name": string,
+		"props": null
+	},
+	"content": {
+		"post_id": number,
+		"is_anonym": boolean,
+		"forum_id": number,
+		"thread_id": number,
+		"content": string,
+		"post_no": number,
+		"type": string | "0",
+		"comment_num": number,
+		"props": null,
+		"post_index": number,
+		"pb_tpoint": null
+	}
 }
 
 export function bde_image(input: JQuery<HTMLElement> | string)

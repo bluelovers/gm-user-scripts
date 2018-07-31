@@ -45,11 +45,12 @@ let o: IDemo = {
 		return false;
 	},
 
-	main(_url_obj = global._url_obj)
+	async main(_url_obj = global._url_obj)
 	{
 		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		const libSiteBaiduTieba = require('root/lib/site/baidu/tieba');
+		const PromiseBluebird = await import('bluebird');
 
 		$(window).on('load.link', function ()
 		{
@@ -127,12 +128,22 @@ let o: IDemo = {
 				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 				}`,
 
+				`.icon-reply {
+					width: 16px;
+					height: 13px;
+					display: inline-block;
+					vertical-align: middle;
+					background: url(//tb2.bdstatic.com/tb/static-pb/widget/forum_title/images/icon_reply_d8a44b9.png) no-repeat;
+				}`,
+
 				`.deepread-wrap { font-size: 9pt; }`,
 
 				`.j_thread_list .threadlist_title .see_lz { 
 				display: none; 
 				}`,
 				`.j_thread_list:hover .threadlist_title .see_lz { display: inline-block; }`,
+
+				`.l_post._louzhubiaoshi_post { border: 1px solid #2d64b3; }`,
 
 				`._post-toc { 
 				display: none; 
@@ -146,6 +157,28 @@ let o: IDemo = {
 				opacity: 0.5;
 				overflow-x: hidden;
 				}`,
+
+				`._post-toc dt {  }`,
+				`._post-toc dt a { padding-left: 3px; border-radius: 3px; }`,
+
+				`._post-toc dt .icon-reply {
+				 
+				 margin-left: 3px;
+border-radius: 100%;
+background-color: #fff;
+width: 18px;
+background-position: center;
+height: 18px;
+				 
+				 }`,
+
+				`._post-toc dt { opacity: 0.7; }`,
+				`._post-toc dt:hover { opacity: 1; }`,
+
+				`._post-toc dt a:hover { background: #2d64b3; color: #FFF; }`,
+
+				`._louzhubiaoshi_toc {  }`,
+				`._louzhubiaoshi_toc a { background: #FF7F42; color: #FFF; font-weight: bold; }`,
 
 				`._post-toc a { min-width: 100px; display: inline-block; line-height: 2em; min-height: 2em; }`,
 
@@ -179,6 +212,8 @@ let o: IDemo = {
 		const debounce = require('throttle-debounce/debounce');
 		const _uf_done = require('root/lib/event/done');
 
+		await PromiseBluebird.delay(250);
+
 		let PageData: IBaiduTiebaPageData;
 
 		let _toc_inited = false;
@@ -186,10 +221,15 @@ let o: IDemo = {
 		let _toc_area = $('<div class="_post-toc"/>');
 		let _toc = $('<dl style="list-style-type: unset;"/>').appendTo(_toc_area);
 
-		$('body').on('DOMNodeInserted', '#com_userbar', debounce(1000, function ()
+		$('body').on('DOMNodeInserted', '#com_userbar', function (event)
 		{
-			$(window).triggerHandler('load.menu');
-		}));
+			//console.log(event.type, this, event.target);
+
+			if ($(event.target).is('#u_notify_item, .unread-num'))
+			{
+				$(window).triggerHandler('load.menu');
+			}
+		});
 
 		$('#pb_content')
 			.on('click', 'img.BDE_Image', function (event)
@@ -252,8 +292,10 @@ let o: IDemo = {
 
 				$(window).triggerHandler('scroll.load');
 			}))
-			.on('load.menu', debounce(1000, function ()
+			.on('load.menu', throttle(1000, function (event)
 			{
+				console.log(event.type, this, event.target);
+
 				$('.u_news ul.j_category_list').each(function ()
 				{
 					let ul = $(this);
@@ -285,15 +327,44 @@ let o: IDemo = {
 					}
 				});
 			}))
-			.on('load', debounce(200, function ()
+			.on('load', throttle(500, function ()
 			{
 				PageData = $.extend({}, {
 					thread: {},
 				}, unsafeWindow.PageData);
 
-				$('.p_postlist > .l_post:has(.louzhubiaoshi_wrap)').css({
-					border: '1px solid #2d64b3',
+				$([
+					'.feed_item a.itb_kw[title][href*="..."]',
+				].join(',')).attr('href', function ()
+				{
+					let title = $(this).attr('title');
+
+					return '/f?kw=' + title;
 				});
+
+				let floor: number;
+				let last_post;
+
+				let _toc_reset = true;
+
+				let p_postlist = $('#j_p_postlist, #j_p_postlist #j_p_postlist, .p_postlist[id]', '#pb_content')
+					.eq(-1)
+				;
+
+				{
+					let chk = $('> ._p_postlist_', p_postlist);
+
+					if (chk.length)
+					{
+						return;
+					}
+
+					p_postlist.prepend('<div class="_p_postlist_" style="display: none"/>');
+				}
+
+//				$('.p_postlist > .l_post:has(.louzhubiaoshi_wrap)').css({
+//					border: '1px solid #2d64b3',
+//				});
 
 				$([
 					'.card_title_fname',
@@ -309,22 +380,9 @@ let o: IDemo = {
 					}
 				});
 
-				$([
-					'.feed_item a.itb_kw[title][href*="..."]',
-				].join(',')).attr('href', function ()
-				{
-					let title = $(this).attr('title');
+				let p_postlist_post = $('.l_post', p_postlist);
 
-					return '/f?kw=' + title;
-				});
-
-				let floor;
-				let last_post;
-				let n = 0;
-
-				let _toc_reset = true;
-
-				let p_postlist_post = $('.p_postlist .l_post[data-field]');
+				console.log(p_postlist, p_postlist_post);
 
 				p_postlist_post
 					.each(function ()
@@ -336,16 +394,6 @@ let o: IDemo = {
 							//.prependTo('#container')
 								.insertBefore('#container')
 							;
-						}
-
-						if (_toc_reset)
-						{
-							_toc_reset = false;
-							_toc.empty();
-
-							$('.card_top_wrap').outerHeight($('.card_top_wrap .card_top').outerHeight());
-
-							$(window).triggerHandler('scroll.load');
 						}
 
 						let _this = $(this);
@@ -369,38 +417,111 @@ let o: IDemo = {
 							content: {},
 						}, _field);
 
-						_this.data('field-data', _field);
-
 						let floor_elem = _this.find('.post-tail-wrap > .tail-info:eq(-2)');
 						//let c = Number(floor_elem.text().replace(/\D/g, ''));
 						let c = _field.content.post_no;
 
-						if (c && !Number.isNaN(c))
+						if (!c)
 						{
-							console.log(c, _field.author.user_name, _field);
-
-							let _a = $(`<dt></dt>`)
-								.html(`<a href="javascript:void(0)">#${c} ` + $('.p_author .p_author_name', _this)
-									.html() + '</a>')
-							;
-
-							_a.attr('title', _a.text());
-
-							_a.on('click', function ()
-							{
-								$(window).triggerHandler('scroll.load');
-								// @ts-ignore
-								$(window).scrollTo(_this, -70);
-							});
-
-							_a.appendTo(_toc);
+							c = Number(floor_elem.text().replace(/\D/g, ''));
 						}
+
+						if (_toc_reset)
+						{
+							_toc_reset = false;
+							_toc.empty();
+
+							$('.card_top_wrap').outerHeight($('.card_top_wrap .card_top').outerHeight());
+
+							$(window).triggerHandler('scroll.load');
+
+							floor = c;
+
+							last_post = _this;
+						}
+
+						//console.log(c, _field.author.user_name, _field);
+
+						if (typeof c === 'number' && !Number.isNaN(c))
+						{
+							let is_louzhubiaoshi = (_field.author.user_name == PageData.thread.author);
+
+							if (is_louzhubiaoshi)
+							{
+								_this.addClass('_louzhubiaoshi_post');
+							}
+
+							{
+								let _a = $(`<dt></dt>`)
+									.html(`<a href="javascript:void(0)">#${c} ` + $('.p_author .p_author_name', _this)
+										.html() + '</a>')
+								;
+
+								_a.attr('title', _a.text());
+
+								if (is_louzhubiaoshi)
+								{
+									_a.addClass('_louzhubiaoshi_toc');
+								}
+
+								if (_field.content.comment_num)
+								{
+									_a.find('a:eq(0)').append('<i class="icon-reply"/>');
+								}
+
+								_a.find('a:eq(0)').on('click', function ()
+								{
+									$(window).triggerHandler('scroll.load');
+									// @ts-ignore
+
+									let fn = function ()
+									{
+										$(window)
+											.scrollTo(_this, -80)
+										;
+									};
+
+									setTimeout(fn, 200);
+								});
+
+								_a.appendTo(_toc);
+							}
+
+							//console.log(222, floor, c, last_post);
+
+							if (c != floor)
+							{
+								if (c != floor + 1)
+								{
+									let a = [];
+									for (let i = floor + 1; i < c; i++)
+									{
+										a.push(i);
+									}
+
+									if (a.length)
+									{
+										last_post.find('.d_post_content_main')
+											.append(`<div class="floor-check-miss">請注意：${a[0]}${a.length > 1
+												? ' ~ ' + a.slice(-1)
+												: ''} 樓 可能已被吞文或刪除</div>`);
+									}
+								}
+
+								floor = c;
+								last_post = _this;
+							}
+						}
+						else
+						{
+							console.error(c, floor);
+						}
+
+						_this.data('field-data', _field);
 					})
 					.filter(':not([data-floor-check])')
 					.each(function ()
 					{
-						n++;
-
 						let _this = $(this);
 						let _post = _this;
 
@@ -408,37 +529,6 @@ let o: IDemo = {
 						_this.attr('data-floor-check', true);
 
 						let floor_elem = _this.find('.post-tail-wrap > .tail-info:eq(-2)');
-
-						let c = Number(floor_elem.text().replace(/\D/g, ''));
-
-						if (Number.isNaN(c) || Number.isNaN(floor))
-						{
-							console.error(floor_elem, c, floor);
-						}
-
-						if (typeof floor == 'number' && c != floor + 1 && !Number.isNaN(c))
-						{
-							let a = [];
-							for (let i = floor + 1; i < c; i++)
-							{
-								a.push(i);
-							}
-
-							if (a.length)
-							{
-								last_post.find('.d_post_content_main')
-									.append(`<div class="floor-check-miss">請注意：${a[0]}${a.length > 1
-										? ' ~ ' + a.slice(-1)
-										: ''} 樓 可能已被吞文或刪除</div>`);
-							}
-							else
-							{
-								console.error(floor_elem, c, floor, a);
-							}
-						}
-
-						floor = c;
-						last_post = _this;
 
 						try
 						{
@@ -520,8 +610,11 @@ let o: IDemo = {
 
 				$(window).triggerHandler('scroll.load');
 			}))
-			.on('load.list', throttle(500, function ()
+			.on('load.list', throttle(1000, function ()
 			{
+				/**
+				 * 處理貼子列表
+				 */
 				let ls = $('.j_thread_list .threadlist_title, .ihome_section .new_list .thread_name').each(function ()
 				{
 					let _this = $(this);
@@ -548,7 +641,7 @@ let o: IDemo = {
 					}
 				});
 
-				console.log('load.list', ls);
+				//console.log('load.list', ls);
 
 				lazyload(_url_obj);
 			}))
@@ -717,14 +810,24 @@ let o: IDemo = {
 		$('#frs_list_pager')
 			.on('DOMNodeInserted.page', debounce(200, function ()
 			{
+				console.log(event.type, this, event.target);
 				// @ts-ignore
 				$(window).scrollTo('.head_content .card_title, #content, #tab_forumname');
 			}))
 		;
 
-		$('.pb_footer .l_thread_info')
-			.on('DOMNodeInserted', debounce(200, function ()
+//		$('body')
+//			.on('DOMNodeInserted', '.pb_footer .l_thread_info', debounce(200, function (event)
+//			{
+//				console.log('DOMNodeInserted', this, event.target);
+//				$(window).triggerHandler('load');
+//			}))
+//		;
+
+		$('#j_core_title_wrap')
+			.on('DOMNodeInserted', '.core_title_txt', throttle(200, function (event)
 			{
+				console.log(event.type, this, event.target);
 				$(window).triggerHandler('load');
 			}))
 		;
@@ -765,24 +868,38 @@ let o: IDemo = {
 	},
 };
 
-async function sign(_url_obj = global._url_obj)
+export = o as IDemo;
+
+async function sign(_url_obj = global._url_obj, bool?: boolean)
 {
 	const Promise = require('bluebird');
 
 	await Promise.delay(1000);
 
+	let b = $('#j_head_focus_btn');
 	let a = $('#sign_mod #signstar_wrapper a.j_cansign');
 
 	if (a.length)
 	{
-		a[0].click();
-		await Promise.delay(500);
-		a[0].click();
-		await Promise.delay(500);
-		$('.j_succ_info.sign_succ1').hide();
+		if (b.is('.cancel_focus'))
+		{
+			a[0].click();
+			await Promise.delay(500);
+			a[0].click();
+			await Promise.delay(500);
+			$('.j_succ_info.sign_succ1').hide();
 
-		return true;
+			return true;
+		}
+		else if (!bool)
+		{
+			b.one('click.sign', function ()
+			{
+				sign(_url_obj, true);
+			});
+		}
 	}
+
 }
 
 function lazyload(_url_obj)
