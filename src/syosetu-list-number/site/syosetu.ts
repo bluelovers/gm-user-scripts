@@ -158,6 +158,10 @@ let o: IDemo = {
 
 			`#novel_contents.enable-syosetu-list-number .novel_sublist2 .subtitle:after, #novel_contents.enable-syosetu-list-number .novel_sublist a[data-id]:after { content: "#" attr(data-id) ""; margin-left: 0.5em; }`,
 			`#novel_contents.enable-syosetu-list-number .novel_sublist2 .subtitle:before, #novel_contents.enable-syosetu-list-number .novel_sublist a[data-id-sub]:before { content: "#" attr(data-id-sub) ""; }`,
+
+			`._syosetu-chapter-toc [data-id]:after { content: "#" attr(data-id) ""; margin-left: 0.5em; }`,
+			`._syosetu-chapter-toc [data-chapter]:after { content: "#" attr(data-chapter) ""; margin-left: 0.5em; }`,
+			//`._syosetu-chapter-toc [data-id-sub]:before { content: "#" attr(data-id-sub) ""; }`,
 		]);
 
 		// @ts-ignore
@@ -280,6 +284,40 @@ let o: IDemo = {
 						{
 							// @ts-ignore
 							$.scrollTo(_t, -30);
+						}
+					});
+				}
+				else if (list.length)
+				{
+					list.each(function (idx, elem)
+					{
+						if (idx % 20)
+						{
+							return;
+						}
+
+						let _this = $(this).find('.subtitle');
+
+						let _a = $(`<li><a href="javascript:void(0)">${_this.text()}</a></li>`);
+
+						_a
+							.attr('data-id', _this.attr('data-id'))
+							.attr('data-id-sub', _this.attr('data-id-sub'))
+						;
+
+						chapter_toc.append(_a);
+					});
+
+					chapter_toc_area.prependTo('#novel_color');
+
+					chapter_toc.on('click', 'li', function ()
+					{
+						let _t = list.find(`.subtitle[data-id="${$(this).attr('data-id')}"]`);
+
+						if (_t.length)
+						{
+							// @ts-ignore
+							$.scrollTo(_t, -40);
 						}
 					});
 				}
