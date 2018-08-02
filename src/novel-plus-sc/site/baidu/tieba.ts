@@ -127,7 +127,8 @@ let o: IDemo = {
 
 		$('.d_post_content')
 			.add('h3.core_title_txt')
-			.each(function ()
+			.filter(':visible')
+			.each(async function ()
 			{
 				let _this = $(this);
 				let _br = _this.find('br');

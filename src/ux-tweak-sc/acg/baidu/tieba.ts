@@ -417,7 +417,7 @@ height: 18px;
 					}
 				});
 
-				let p_postlist_post = $('.l_post', p_postlist);
+				let p_postlist_post = $('.l_post:visible', p_postlist);
 
 				//console.log(p_postlist, p_postlist_post);
 
