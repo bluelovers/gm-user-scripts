@@ -55,6 +55,23 @@ let o: IDemo = {
 			$('meta[HTTP-EQUIV*="Refresh"], meta[HTTP-EQUIV*="refresh"]').remove();
 		}
 
+		greasemonkey
+			.GM_addStyle([
+				`html, body, :root { font-size: 9pt; }`,
+				`table, select, input { font-size: inherit; }`,
+				`select, input, option, font, .prtresult_div .resnums, .menufmt1, .menu2s1n a, .fmt1table .mainth, .fmt1table a:link, .fmt1table a:visited, .fmt1table .subfont, .fmt1table { font-family: initial; }`,
+				`.prtresult_div, .menu2s1n a, .pagefont, #nav, .menu2s1n a, .nn1, .fmt1table .mainth, .fmt1table, .fmt1table .maintd0, .fmt1table .maintd1 { font-size: 1rem; }`,
+				`.numfont { display: inline-block; min-width: 1em; text-align: center; }`,
+
+				`sub.subfont { vertical-align: text-top; }`,
+
+				`.fmt1table .maintd0, .fmt1table .maintd1 { padding: 1px; }`,
+				`.fmt1table tr .maintd0:nth-child(3), .fmt1table .maintd1:nth-child(3) { font-size: 0.9rem; }`,
+
+
+			], 'body')
+		;
+
 		this.adblock(_url_obj);
 
 		let referrer_url: URL;
@@ -143,14 +160,16 @@ let o: IDemo = {
 		{
 			let bool;
 
-			if (target_qs.get('selectmode'))
-			{
-				console.log(target_qs.get('selectmode'));
+			let input_name = 'selectmode';
 
-				let ip = $(':checkbox[name="selectmode"]', form)
+			if (target_qs.get(input_name))
+			{
+				console.log(target_qs.get(input_name));
+
+				let ip = $(`:checkbox[name="${input_name}"]`, form)
 					.removeAttr('checked')
 					.prop('checked', false)
-					.filter(`[value="${target_qs.get('selectmode')}"]`)
+					.filter(`[value="${target_qs.get(input_name)}"]`)
 					.eq(0)
 					.attr('checked', 'checked')
 					.prop('checked', true)
@@ -164,15 +183,56 @@ let o: IDemo = {
 				bool = true;
 			}
 
-			if (target_qs.get('clscan'))
-			{
-				console.log(target_qs.get('clscan'));
+			input_name = 'clscan';
 
-				let ip = $('select[name="clscan"]', form)
-					.val(target_qs.get('clscan'))
+			if (target_qs.get(input_name))
+			{
+				console.log(target_qs.get(input_name));
+
+				let ip = $(`select[name="${input_name}"]`, form)
+					.val(target_qs.get(input_name))
 				;
 
 				bool = true;
+			}
+
+			input_name = 'psize';
+
+			if (target_qs.get(input_name))
+			{
+				let value = target_qs.get(input_name);
+
+				let input = $(`select[name="${input_name}"], :input[name="${input_name}"]`, form);
+
+				console.log(input_name, value, input);
+
+				if (!input.length)
+				{
+					input = $(`<input name="${input_name}" type="hidden"/>`)
+						.appendTo(form)
+					;
+
+					input.val(value)
+				}
+			}
+			input_name = 'sortby';
+
+			if (target_qs.get(input_name))
+			{
+				let value = target_qs.get(input_name);
+
+				let input = $(`select[name="${input_name}"], :input[name="${input_name}"]`, form);
+
+				console.log(input_name, value, input);
+
+				if (!input.length)
+				{
+					input = $(`<input name="${input_name}" type="hidden"/>`)
+						.appendTo(form)
+					;
+
+					input.val(value)
+				}
 			}
 
 			console.log(bool);
@@ -184,10 +244,33 @@ let o: IDemo = {
 			}
 		}
 
+		if (_url_obj.path.match(/gsweb\.cgi/))
+		{
+			$(window)
+				// @ts-ignore
+				.scrollTo('.fmt1table')
+			;
+
+			if (target_qs0)
+			{
+				$('.fmt1table a').prop('href', function (i, old)
+				{
+					let u = new URL(old);
+
+					if (!u.searchParams.get('qs0'))
+					{
+						u.searchParams.set('qs0', target_qs0);
+					}
+
+					return u.href;
+				})
+			}
+		}
+
 		$(window)
 			.on('load', function ()
 			{
-				let _a = $('a.slink')
+				let _a = $('a.slink:not(.prtresult_div a)')
 					.attr('target', '_blank')
 					.prop('target', '_blank')
 				;
