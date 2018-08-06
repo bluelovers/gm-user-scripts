@@ -3,6 +3,7 @@
  */
 
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
+import { IHTMLElement } from 'root/lib/dom/img/size';
 
 declare const global: IGlobal;
 declare const greasemonkey: IGreasemonkey;
@@ -209,6 +210,26 @@ height: 18px;
 				`.topic_list_box .topic_list_hot { display: none; }`,
 				`.topic_list_box:hover .topic_list_hot { display: block; }`,
 
+				`.tbui_fbar_refresh { margin-top: 20px; }`,
+
+				`._tbui_fbar_nav a {
+				display: block; 
+				height: 45px; 
+				width: 45px; 
+				text-align: center; 
+				vertical-align: middle; 
+				line-height: 45px; 
+				background-color: #E4F0FD;
+				background-color: #2C6099;
+				color: #B2C7E2;
+				margin-bottom: 7px;
+				font-weight: bold;
+				}`,
+
+				`._tbui_fbar_nav:hover a { background-color: #569AFC; color: #E9F1FC; }`,
+
+				`.tbui_follow_fixed, .core_title_wrap_bright { position: sticky !important; top: 0px; }`,
+
 			])
 		;
 
@@ -327,17 +348,22 @@ height: 18px;
 			}))
 		;
 
+		let p_postlist: JQuery<HTMLElement>;
+		let p_postlist_post: JQuery<HTMLElement>;
+
 		$('body')
 			.one('DOMNodeInserted DOMSubtreeModified', '.tbui_aside_float_bar', debounce(1000, async function (event)
 			{
 				let tbui_aside_float_bar = $('.tbui_aside_float_bar');
+
+				let tbui_fbar_post = tbui_aside_float_bar.find('.tbui_fbar_post');
 
 				let tbui_fbar_refresh = $('.tbui_fbar_refresh', tbui_aside_float_bar);
 
 				if (!tbui_fbar_refresh.length)
 				{
 					tbui_fbar_refresh = $(`<li class="tbui_aside_fbar_button tbui_fbar_refresh"><a href="javascript:void(0)"></a></li>`)
-						.insertAfter(tbui_aside_float_bar.find('.tbui_fbar_post'))
+						.insertAfter(tbui_fbar_post)
 					;
 
 					tbui_fbar_refresh.on('click', function ()
@@ -378,6 +404,145 @@ height: 18px;
 								// @ts-ignore
 									.scrollTo('#content_wrap', 0 - n)
 								;
+							}
+						})
+					;
+				}
+
+				let tbui_fbar_nav = $('._tbui_fbar_nav', tbui_aside_float_bar);
+
+				console.log(555, tbui_fbar_nav, $('#pb_content').length);
+
+				if (!tbui_fbar_nav.length && $('#pb_content').length)
+				{
+					require('root/lib/jquery/onscreen');
+
+					$(`<li class="tbui_aside_fbar_button _tbui_fbar_nav _tbui_fbar_down"><a href="javascript:void(0)" class="_tbui_fbar_down">DOWN</a></li>`)
+						.insertAfter(tbui_fbar_post)
+					;
+
+					$(`<li class="tbui_aside_fbar_button _tbui_fbar_nav _tbui_fbar_up"><a href="javascript:void(0)" class="_tbui_fbar_up">UP</a></li>`)
+						.insertAfter(tbui_fbar_post)
+					;
+
+					let tbui_fbar_nav = $('._tbui_fbar_nav', tbui_aside_float_bar);
+
+					console.log(666, tbui_fbar_nav);
+
+					tbui_fbar_nav
+						.off('click')
+						.on('click', function (event)
+						{
+							_uf_done(event);
+
+							let _this = $(this);
+
+							if (!p_postlist || !p_postlist_post)
+							{
+								// @ts-ignore
+								p_postlist = $('#j_p_postlist, #j_p_postlist #j_p_postlist, .p_postlist[id]', '#pb_content')
+									.eq(-1)
+								;
+
+								p_postlist_post = $('.l_post:visible', p_postlist);
+							}
+
+							let _btn_up = _this.is('._tbui_fbar_up');
+
+							let len = p_postlist_post.length;
+							let i = 0;
+							let j = 0;
+
+							let n = $('#j_core_title_wrap')
+								.outerHeight()
+							;
+
+							n = Math.max(n, 70);
+
+							//console.log(len, p_postlist_post);
+
+							let _y = $(window).scrollTop();
+							let _yh = $(window).innerHeight();
+							let _y2 = _y + _yh;
+
+							for (; i < len; i++)
+							{
+								console.log(i);
+
+								let elem = p_postlist_post.eq(i);
+								let _see = elem.is(':onScreen');
+
+								//console.log(i, _see, elem);
+
+								let _h = elem.height();
+
+								if (_see)
+								{
+									let _offset = elem.offset().top;
+
+									if (_btn_up)
+									{
+										if (_y > _offset)
+										{
+											j = i;
+										}
+										else
+										{
+											j = i - 1;
+										}
+
+										break;
+									}
+									else
+									{
+										j = i + 1;
+									}
+								}
+								else if (j > 0)
+								{
+									let elem = p_postlist_post.eq(i - 1);
+									let _offset = elem.offset().top;
+
+									//console.log(_offset, _y, _y2, _yh, _offset + 200, elem);
+
+									if ((_offset + 200) >= _y2)
+									{
+										j = i - 1;
+									}
+
+									break;
+								}
+							}
+
+							j = Math.max(-1, Math.min(j, len - 1));
+
+							//console.log(j, i, n);
+
+							if (j >= 0)
+							{
+								let elem = p_postlist_post.eq(j);
+								let _offset = elem.offset().top;
+
+								console.log(_offset, _y, _offset + n, _offset - n, this);
+
+								if (elem.length)
+								{
+									$(window)
+										// @ts-ignore
+										.scrollTo(elem, 0 - n, undefined, true)
+									;
+
+									setTimeout(function ()
+									{
+										let _offset = elem.offset().top;
+
+										let _y = $(window).scrollTop();
+										let _yh = $(window).innerHeight();
+										let _y2 = _y + _yh;
+
+										console.log(222, _offset, _y, _offset + n, _offset - n);
+									}, 1000);
+								}
 							}
 						})
 					;
@@ -452,7 +617,7 @@ height: 18px;
 				let _toc_reset = true;
 
 				// @ts-ignore
-				let p_postlist = $('#j_p_postlist, #j_p_postlist #j_p_postlist, .p_postlist[id]', '#pb_content')
+				p_postlist = $('#j_p_postlist, #j_p_postlist #j_p_postlist, .p_postlist[id]', '#pb_content')
 					.eq(-1)
 				;
 
@@ -485,7 +650,7 @@ height: 18px;
 					}
 				});
 
-				let p_postlist_post = $('.l_post:visible', p_postlist);
+				p_postlist_post = $('.l_post:visible', p_postlist);
 
 				//console.log(p_postlist, p_postlist_post);
 

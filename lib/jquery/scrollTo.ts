@@ -2,8 +2,9 @@
  * Created by user on 2017/7/13/013.
  */
 
-import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
+import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from '../core/demo';
 
+// @ts-ignore
 export function makeJQueryPlugin($: IJQueryStatic = global.jQuery, window: IWindow = global.window)
 {
 	(function (_old)
@@ -42,7 +43,7 @@ export function makeJQueryPlugin($: IJQueryStatic = global.jQuery, window: IWind
 		if (typeof _old === 'undefined')
 		{
 			// @ts-ignore
-			$.fn.scrollTo = function (who, offset)
+			$.fn.scrollTo = function (who, offset, animate?, finish?: boolean)
 			{
 				let _top = _fn_top(who);
 
@@ -53,7 +54,19 @@ export function makeJQueryPlugin($: IJQueryStatic = global.jQuery, window: IWind
 
 				if (_top !== undefined)
 				{
-					this.finish().scrollTop(_top);
+					if (finish)
+					{
+						this.finish();
+					}
+
+					if (0 && animate)
+					{
+						return this.animate({
+							scrollTop: _top,
+						}, animate);
+					}
+
+					return this.scrollTop(_top);
 				}
 
 				return this;
@@ -64,10 +77,10 @@ export function makeJQueryPlugin($: IJQueryStatic = global.jQuery, window: IWind
 		if (typeof $.scrollTo === 'undefined')
 		{
 			// @ts-ignore
-			$.scrollTo = function (who, offset)
+			$.scrollTo = function (who, offset, animate?, finish?: boolean)
 			{
 				// @ts-ignore
-				return $(window).scrollTo(who, offset);
+				return $(window).scrollTo(who, offset, animate, finish);
 			};
 		}
 		// @ts-ignore

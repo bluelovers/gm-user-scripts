@@ -2,7 +2,8 @@
  * Created by user on 2018/7/27/027.
  */
 
-import { IWindow } from '../../core/demo';
+///<reference path="../../../core/demo.ts"/>
+import { IWindow } from '../../../core/demo';
 
 declare global
 {
@@ -17,7 +18,7 @@ export type IBaiduTiebaPageDataBool = 0 | 1;
 export interface IBaiduTiebaPageData
 {
 	tbs: string,
-	page: "frs" | string,
+	page: "frs" | "pb_bright" | string,
 	user: {},
 	forum: {
 		id: string,
@@ -36,7 +37,6 @@ export interface IBaiduTiebaPageData
 
 	// -------------
 
-	page?: "pb_bright" | string,
 	product?: "pb" | string,
 
 	can_post?: IBaiduTiebaPageDataBool,

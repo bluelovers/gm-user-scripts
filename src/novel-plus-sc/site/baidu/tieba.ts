@@ -5,6 +5,7 @@
 "use strict";
 
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
+import { IHTMLElement } from 'root/lib/dom/img/size';
 
 declare const global: IGlobal;
 declare const greasemonkey: IGreasemonkey;
@@ -129,230 +130,243 @@ let o: IDemo = {
 			.add('h3.core_title_txt')
 			.filter(':visible')
 			// @ts-ignore
-			.each(async function ()
+			.each(function (index, ...argv)
 			{
-				let _this = $(this);
-				let _br = _this.find('br');
+				const self = this;
 
-				let html: string = _this.html();
-
-				const old_html = html;
-
-				_this.data('html-source', html);
-
-				if (_br.length >= 10 || (_br.length == 0 && html.match(/\n/)))
+				setTimeout(function ()
 				{
-					html = trimHtml(html);
+					f.call(self, index, ...argv);
+				}, index * 100);
 
-					if (!html.match(/<br>/) && html.match(/\n/))
+			})
+		;
+
+		async function f(this: HTMLElement, ...argv)
+		{
+			//console.log(argv);
+
+			let _this = $(this);
+			let _br = _this.find('br');
+
+			let html: string = _this.html();
+
+			const old_html = html;
+
+			_this.data('html-source', html);
+
+			if (_br.length >= 10 || (_br.length == 0 && html.match(/\n/)))
+			{
+				html = trimHtml(html);
+
+				if (!html.match(/<br>/) && html.match(/\n/))
+				{
+					// 隱藏功能: 將純文字內容轉為HTML
+
+					html = html
+						.replace(/[ \t　\r]+(\n)/ig, '$1')
+						/*
+						.replace(/([^「」【】《》『』（）“”])\n([“”「」【】《》『』（）])/ig, '$1\n\n$2')
+						.replace(/([「」【】《》『』（）“”―])\n([^“”「」【】《》（）『』])/ig, '$1\n\n$2')
+						.replace(/([^「」【】《》『』（）“”])\n([“”「」（）【】《》『』])/ig, '$1\n\n$2')
+						.replace(/(）)\n([「」【】“”《》『』])/ig, '$1\n\n$2')
+						.replace(/\n{3,}/ig, "\n\n")
+						.replace(/\n/g, '<br>')
+						*/
+						.replace(/\n/g, '<br>')
+					;
+
+					_this.html(html);
+					_br = _this.find('br');
+				}
+
+				if (1 || !html.match(/<br><br>/i))
+				{
+					// 修正無段落
+					//_this.find('br').after('<br>');
+
+					// 修正段落
+					html = html
+						.replace(/\r\n|\r|\n/g, '')
+						.replace(/<br>/ig, "\n")
+						.replace(/[ 　\t]+\n/g, "\n")
+						.replace(/[\s　]+$/g, '')
+						.replace(/^ *[\n\t]+/g, '')
+						.replace(/\n{4,}/g, "\n\n\n\n")
+					;
+
+					if (!html.match(/[^\n]\n[^\n]/g))
 					{
-						// 隱藏功能: 將純文字內容轉為HTML
+						let len = 1;
 
-						html = html
-							.replace(/[ \t　\r]+(\n)/ig, '$1')
-							/*
-							.replace(/([^「」【】《》『』（）“”])\n([“”「」【】《》『』（）])/ig, '$1\n\n$2')
-							.replace(/([「」【】《》『』（）“”―])\n([^“”「」【】《》（）『』])/ig, '$1\n\n$2')
-							.replace(/([^「」【】《》『』（）“”])\n([“”「」（）【】《》『』])/ig, '$1\n\n$2')
-							.replace(/(）)\n([「」【】“”《》『』])/ig, '$1\n\n$2')
-							.replace(/\n{3,}/ig, "\n\n")
-							.replace(/\n/g, '<br>')
-							*/
-							.replace(/\n/g, '<br>')
-						;
+						//console.log(html);
 
-						_this.html(html);
-						_br = _this.find('br');
-					}
-
-					if (1 || !html.match(/<br><br>/i))
-					{
-						// 修正無段落
-						//_this.find('br').after('<br>');
-
-						// 修正段落
-						html = html
-							.replace(/\r\n|\r|\n/g, '')
-							.replace(/<br>/ig, "\n")
-							.replace(/[ 　\t]+\n/g, "\n")
-							.replace(/[\s　]+$/g, '')
-							.replace(/^ *[\n\t]+/g, '')
-							.replace(/\n{4,}/g, "\n\n\n\n")
-						;
-
-						if (!html.match(/[^\n]\n[^\n]/g))
+						if (/\n\n\n/g.test(html))
 						{
-							let len = 1;
+							//console.log(777);
 
-							//console.log(html);
-
-							if (/\n\n\n/g.test(html))
+							if (/[^\n]\n\n[^\n]/g.test(html))
 							{
-								//console.log(777);
-
-								if (/[^\n]\n\n[^\n]/g.test(html))
-								{
-									//console.log(888);
-								}
-								else
-								{
-									//console.log(999);
-
-									html = html
-										//.replace(/\n{2}/g, "")
-										.replace(/(\n{2})+/g, function (s)
-										{
-											let w = s.replace('\n\n', '');
-
-											if (s.indexOf('\n') == -1)
-											{
-												w = s.replace('\n\n', '\n');
-											}
-
-											return w;
-										})
-									;
-								}
-
-								html = html
-									.replace(/\n{3,}/g, "\n\n\n")
-									.replace(/\n{2}/g, "\n")
-								;
+								//console.log(888);
 							}
 							else
 							{
-								//console.log(666);
+								//console.log(999);
 
 								html = html
-									.replace(/\n{3,}/g, "\n\n\n")
-									.replace(/\n\n/g, "\n")
+								//.replace(/\n{2}/g, "")
+									.replace(/(\n{2})+/g, function (s)
+									{
+										let w = s.replace('\n\n', '');
+
+										if (s.indexOf('\n') == -1)
+										{
+											w = s.replace('\n\n', '\n');
+										}
+
+										return w;
+									})
 								;
 							}
+
+							html = html
+								.replace(/\n{3,}/g, "\n\n\n")
+								.replace(/\n{2}/g, "\n")
+							;
 						}
+						else
+						{
+							//console.log(666);
 
-						html = html
-							// for ts
-							.toString()
-							.replace(/^ +/g, '')
-							.replace(/\s+$/, '')
-							.replace(/([^\n][^\n「」【】《》“”『』（）](?:[！？?!。]*)?)\n((?:[—]+)?[「」“”【】《》（）『』])/ug, "$1\n\n$2")
-
-							.replace(/([「」【】《》“”『』（）―](?:[！？?!。]*)?)\n([^\n「」“”【】《》（）『』。])/ug, "$1\n\n$2")
-
-							.replace(/([^\n][^\n「」【】《》“”『』（）](?:[！？?!。]*)?)\n((?:[—]+)?[「」“”【】《》（）『』])/ug, "$1\n\n$2")
-
-							.replace(/([「」【】《》“”『』（）―](?:[！？?!。]*)?)\n([^\n「」“”【】《》（）『』。])/ug, "$1\n\n$2")
-
-							.replace(/(）(?:[！？?!。]*)?)\n([「」【】《》『』“”])/ug, "$1\n\n$2")
-
-							/**
-							 * https://tieba.baidu.com/p/5400503864
-							 *
-							 * 「第三试炼也，多亏了妮露而通过了吗……」
-							 『心神守护的白羽毛』，这个从妮露那里收到的护身符，确实地守护了我的心。
-
-							 */
-							.replace(/([「」【】《》“”『』（）―](?:[！？?!。]*)?)\n((?:[「」“”【】《》（）『』])(?:[^\n]+)([^「」【】《》“”『』（）―](?:[！？?!。]*)?)\n)/ug, "$1\n$2\n")
-
-							/**
-							 * 住手，住手，我就是我。不是其他的任何人。
-							 　表示出要必死地进行抵抗的意志，但是侵入脑内的这个『什么东西』，并不能被阻止。不能被，阻止……
-							 */
-							.replace(/(\n(?:[^　\n][^\n]+))\n([　])/g, '$1\n\n$2')
-
-							/**
-							 * 这样一直在这高兴着
-
-							 。
-							 */
-							//.replace(/([^\n])(\n+)((?:[吧呢]*)?[。！？，、])\n/ug, "$1$3$2")
-
-							.replace(/([^\n])(\n)(fin)(\n|$)/ig, "$1$2\n$3$4")
-						;
-
-						html = html
-							.replace(/^ *\n*|[\s　]+$/g, '')
-							.replace(/(\n){4,}/g, "\n\n\n\n")
-							.replace(/(\n){3}/g, "\n\n")
-							.replace(/\n/g, '<br>')
-						;
-
-						_this.html(html);
-
-						_br = _this.find('br');
+							html = html
+								.replace(/\n{3,}/g, "\n\n\n")
+								.replace(/\n\n/g, "\n")
+							;
+						}
 					}
-					else if (_br.length >= (2 * 4 * 3) && html.split(/(?:<br><br>)/ig).length <= 4)
-					{
-						// 增加分行
-						_this.find('br').after('<br>');
 
-						html = _this.html();
-						html = trimHtml(html);
-
-						html = html
-							.replace(/(<br>\s*<br\s*\/?>\s*(?:<br\s*\/?>\s*)+)/ig, '<br><br><br>')
-						;
-
-						_this.html(html);
-					}
-					else if (html.split(/(<br><br><br>)/ig).length >= (1 || 10))
-					{
-						// 減少分行
-						html = html
-							.replace(/(<br><br><br>)/ig, '<br><br>')
-						;
-
-						_this.html(html);
-					}
-				}
-				else
-				{
 					html = html
-						.replace(/^\s+/, '')
+					// for ts
+						.toString()
+						.replace(/^ +/g, '')
 						.replace(/\s+$/, '')
+						.replace(/([^\n][^\n「」【】《》“”『』（）](?:[！？?!。]*)?)\n((?:[—]+)?[「」“”【】《》（）『』])/ug, "$1\n\n$2")
+
+						.replace(/([「」【】《》“”『』（）―](?:[！？?!。]*)?)\n([^\n「」“”【】《》（）『』。])/ug, "$1\n\n$2")
+
+						.replace(/([^\n][^\n「」【】《》“”『』（）](?:[！？?!。]*)?)\n((?:[—]+)?[「」“”【】《》（）『』])/ug, "$1\n\n$2")
+
+						.replace(/([「」【】《》“”『』（）―](?:[！？?!。]*)?)\n([^\n「」“”【】《》（）『』。])/ug, "$1\n\n$2")
+
+						.replace(/(）(?:[！？?!。]*)?)\n([「」【】《》『』“”])/ug, "$1\n\n$2")
+
+						/**
+						 * https://tieba.baidu.com/p/5400503864
+						 *
+						 * 「第三试炼也，多亏了妮露而通过了吗……」
+						 『心神守护的白羽毛』，这个从妮露那里收到的护身符，确实地守护了我的心。
+
+						 */
+						.replace(/([「」【】《》“”『』（）―](?:[！？?!。]*)?)\n((?:[「」“”【】《》（）『』])(?:[^\n]+)([^「」【】《》“”『』（）―](?:[！？?!。]*)?)\n)/ug, "$1\n$2\n")
+
+						/**
+						 * 住手，住手，我就是我。不是其他的任何人。
+						 　表示出要必死地进行抵抗的意志，但是侵入脑内的这个『什么东西』，并不能被阻止。不能被，阻止……
+						 */
+						.replace(/(\n(?:[^　\n][^\n]+))\n([　])/g, '$1\n\n$2')
+
+						/**
+						 * 这样一直在这高兴着
+
+						 。
+						 */
+						//.replace(/([^\n])(\n+)((?:[吧呢]*)?[。！？，、])\n/ug, "$1$3$2")
+
+						.replace(/([^\n])(\n)(fin)(\n|$)/ig, "$1$2\n$3$4")
+					;
+
+					html = html
+						.replace(/^ *\n*|[\s　]+$/g, '')
+						.replace(/(\n){4,}/g, "\n\n\n\n")
+						.replace(/(\n){3}/g, "\n\n")
+						.replace(/\n/g, '<br>')
+					;
+
+					_this.html(html);
+
+					_br = _this.find('br');
+				}
+				else if (_br.length >= (2 * 4 * 3) && html.split(/(?:<br><br>)/ig).length <= 4)
+				{
+					// 增加分行
+					_this.find('br').after('<br>');
+
+					html = _this.html();
+					html = trimHtml(html);
+
+					html = html
+						.replace(/(<br>\s*<br\s*\/?>\s*(?:<br\s*\/?>\s*)+)/ig, '<br><br><br>')
 					;
 
 					_this.html(html);
 				}
+				else if (html.split(/(<br><br><br>)/ig).length >= (1 || 10))
+				{
+					// 減少分行
+					html = html
+						.replace(/(<br><br><br>)/ig, '<br><br>')
+					;
 
-				_this
-					.find('*')
-					.addBack()
-					.not('.core_title_txt a')
-					.contents()
-					// @ts-ignore
-					.filter(function ()
-					{
-						return this.nodeType === 3 && this.nodeValue && this.nodeValue.replace(/[\s\r\n　]+/ig, '');
-					})
-					.each(function (index, elem)
-					{
-						let _this = $(this);
-
-						let _t = novelText.replace(_this.text(), {
-							words: true,
-						});
-
-						if (this.nodeValue != _t)
-						{
-							this.nodeValue = _t;
-						}
-					})
+					_this.html(html);
+				}
+			}
+			else
+			{
+				html = html
+					.replace(/^\s+/, '')
+					.replace(/\s+$/, '')
 				;
 
-				_this.html(function (i, old)
+				_this.html(html);
+			}
+
+			_this
+				.find('*')
+				.addBack()
+				.not('.core_title_txt a')
+				.contents()
+				// @ts-ignore
+				.filter(function ()
 				{
-					return html = old
-						.replace(/^ *\n/g, '')
-						.replace(/\s+$/g, '')
+					return this.nodeType === 3 && this.nodeValue && this.nodeValue.replace(/[\s\r\n　]+/ig, '');
+				})
+				.each(function (index, elem)
+				{
+					let _this = $(this);
 
-						+ "\n\n\n"
+					let _t = novelText.replace(_this.text(), {
+						words: true,
+					});
+
+					if (this.nodeValue != _t)
+					{
+						this.nodeValue = _t;
+					}
+				})
+			;
+
+			_this.html(function (i, old)
+			{
+				return html = old
+					.replace(/^ *\n/g, '')
+					.replace(/\s+$/g, '')
+
+					+ "\n\n\n"
 					;
-				});
+			});
 
-				_this.data('html-new', html);
-			})
-		;
+			_this.data('html-new', html);
+		}
 
 		//console.debug(novelText._data_.words, novelText._cache_);
 	},
