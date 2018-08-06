@@ -340,6 +340,8 @@ height: 18px;
 					CopyLib.copyElem($('#deepread-wrap .deepread-content')[0]);
 				});
 
+				deepread_content.find('._remove_when_join').remove();
+
 				_a.appendTo(deepread_nav);
 
 				let _div = $('<div class="clearfix"/>');

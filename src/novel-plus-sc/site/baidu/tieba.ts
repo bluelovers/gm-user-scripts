@@ -357,11 +357,12 @@ let o: IDemo = {
 
 			_this.html(function (i, old)
 			{
+				let p = $(this).is('.d_post_content') ? "<div class='_remove_when_join' style='visibility: hidden'><br/></div>" : "";
+
 				return html = old
 					.replace(/^ *\n/g, '')
 					.replace(/\s+$/g, '')
-
-					+ "\n\n\n"
+					+ p
 					;
 			});
 
