@@ -119,7 +119,7 @@ let o: IDemo = {
 		}
 	},
 
-	adblock(_url_obj = global._url_obj)
+	async adblock(_url_obj = global._url_obj)
 	{
 		//let novelText = require('root/lib/novel/text').enspace.create();
 		//let novelText = require('root/lib/novel/text').novelText;
@@ -135,6 +135,8 @@ let o: IDemo = {
 				let _br = _this.find('br');
 
 				let html: string = _this.html();
+
+				const old_html = html;
 
 				_this.data('html-source', html);
 
@@ -343,6 +345,8 @@ let o: IDemo = {
 					return html = old
 						.replace(/^ *\n/g, '')
 						.replace(/\s+$/g, '')
+
+						+ "\n\n\n"
 					;
 				});
 

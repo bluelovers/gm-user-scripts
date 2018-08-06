@@ -205,6 +205,10 @@ height: 18px;
 					}
 				}`,
 
+				`.topic_list_box { max-height: 388px; height: auto; }`,
+				`.topic_list_box .topic_list_hot { display: none; }`,
+				`.topic_list_box:hover .topic_list_hot { display: block; }`,
+
 			])
 		;
 
@@ -268,7 +272,7 @@ height: 18px;
 			})
 		;
 
-		$('body').on('DOMNodeInserted', '#thread_list .j_thread_list .media_box', debounce(500, function (event)
+		$('body').on('DOMNodeInserted', '#thread_list .j_thread_list .media_box', debounce(500, async function (event)
 		{
 			let _img = $('img[id^="big_img_"]', this);
 
@@ -288,48 +292,107 @@ height: 18px;
 		const CopyLib = require('root/lib/func/copy');
 
 		$('body')
-			.on('DOMNodeInserted DOMSubtreeModified', '#creative-platform-deepread-wrap', debounce(1000, function (event)
-		{
-			console.log(event.type, this, event.target);
-			let _this = $(this);
-
-			if (!_this.length || !_this.is('#creative-platform-deepread-wrap:not([data-done])'))
-			{
-				return;
-			}
-
-			_this.attr('data-done', true);
-
-			let deepread_content = $('#deepread-wrap .deepread-content');
-			let deepread_nav = $('#deepread-nav', _this);
-
-			let _a = $('<a title="點擊可複製貼子">點擊可複製貼子</a>');
-
-			_a.on('click', function (event)
+			.on('DOMNodeInserted DOMSubtreeModified', '#creative-platform-deepread-wrap', debounce(1000, async function (event)
 			{
 				console.log(event.type, this, event.target);
+				let _this = $(this);
 
-				CopyLib.copyElem($('#deepread-wrap .deepread-content')[0]);
-			});
+				if (!_this.length || !_this.is('#creative-platform-deepread-wrap:not([data-done])'))
+				{
+					return;
+				}
 
-			_a.appendTo(deepread_nav);
+				// @ts-ignore
+				_this.attr('data-done', true);
 
-			let _div = $('<div class="clearfix"/>');
-			let t = $('.deepread-title, .deepread-author', _this);
+				let deepread_content = $('#deepread-wrap .deepread-content');
+				let deepread_nav = $('#deepread-nav', _this);
 
-			t.appendTo(_div);
-			_div.insertAfter(deepread_nav);
-		}))
+				let _a = $('<a title="點擊可複製貼子">點擊可複製貼子</a>');
+
+				_a.on('click', function (event)
+				{
+					console.log(event.type, this, event.target);
+
+					CopyLib.copyElem($('#deepread-wrap .deepread-content')[0]);
+				});
+
+				_a.appendTo(deepread_nav);
+
+				let _div = $('<div class="clearfix"/>');
+				let t = $('.deepread-title, .deepread-author', _this);
+
+				t.appendTo(_div);
+				_div.insertAfter(deepread_nav);
+			}))
+		;
+
+		$('body')
+			.one('DOMNodeInserted DOMSubtreeModified', '.tbui_aside_float_bar', debounce(1000, async function (event)
+			{
+				let tbui_aside_float_bar = $('.tbui_aside_float_bar');
+
+				let tbui_fbar_refresh = $('.tbui_fbar_refresh', tbui_aside_float_bar);
+
+				if (!tbui_fbar_refresh.length)
+				{
+					tbui_fbar_refresh = $(`<li class="tbui_aside_fbar_button tbui_fbar_refresh"><a href="javascript:void(0)"></a></li>`)
+						.insertAfter(tbui_aside_float_bar.find('.tbui_fbar_post'))
+					;
+
+					tbui_fbar_refresh.on('click', function ()
+					{
+						window.location.reload();
+					});
+				}
+
+				if ($('#pb_content, #content_wrap').length)
+				{
+					$('.tbui_fbar_top, .tbui_fbar_top a', tbui_aside_float_bar)
+						.off('click')
+						.on('click', function (event)
+						{
+							_uf_done(event);
+
+							let _t = $('#pb_content');
+							let n = 0;
+
+							if (_t.length)
+							{
+								n = $('#j_core_title_wrap')
+									.outerHeight()
+								;
+
+								$(window)
+								// @ts-ignore
+									.scrollTo(_t, 0 - n)
+								;
+							}
+							else
+							{
+								n = $('#head .search_main')
+									.outerHeight()
+								;
+
+								$(window)
+								// @ts-ignore
+									.scrollTo('#content_wrap', 0 - n)
+								;
+							}
+						})
+					;
+				}
+			}))
 		;
 
 		$(window)
-			.on('load.sign', debounce(1000, function ()
+			.on('load.sign', debounce(1000, async function ()
 			{
 				sign(_url_obj);
 
 				$(window).triggerHandler('scroll.load');
 			}))
-			.on('load.menu', throttle(1000, function (event)
+			.on('load.menu', throttle(1000, async function (event)
 			{
 				console.log(event.type, this, event.target);
 
@@ -364,11 +427,15 @@ height: 18px;
 					}
 				});
 			}))
-			.on('load', throttle(500, function ()
+			/*
+			.on('load.init', async function ()
 			{
-				PageData = $.extend({}, {
-					thread: {},
-				}, unsafeWindow.PageData);
+
+			})
+			*/
+			.on('load.post', throttle(500, async function ()
+			{
+				PageData = updatePageData(PageData)
 
 				$([
 					'.feed_item a.itb_kw[title][href*="..."]',
@@ -384,6 +451,7 @@ height: 18px;
 
 				let _toc_reset = true;
 
+				// @ts-ignore
 				let p_postlist = $('#j_p_postlist, #j_p_postlist #j_p_postlist, .p_postlist[id]', '#pb_content')
 					.eq(-1)
 				;
@@ -514,6 +582,7 @@ height: 18px;
 									let fn = function ()
 									{
 										$(window)
+										// @ts-ignore
 											.scrollTo(_this, -80)
 										;
 									};
@@ -640,15 +709,28 @@ height: 18px;
 					})
 				;
 
-				$('img.BDE_Image', p_postlist_post).each(function ()
+				new Promise(function ()
 				{
-					libSiteBaiduTieba.bde_image(this);
-				});
+					// @ts-ignore
+					$('img.BDE_Image', p_postlist_post).each(async function ()
+					{
+						libSiteBaiduTieba.bde_image(this);
+					});
 
-				$(window).triggerHandler('scroll.load');
+					// @ts-ignore
+					$('.right_section div:has(> .topic_list_box)')
+						.css('height', 'auto')
+					;
+
+					$(window).triggerHandler('scroll.load');
+				});
 			}))
-			.on('load.list', throttle(1000, function ()
+			.on('load.list', throttle(1000, async function ()
 			{
+				let in_tieba_list = $('.head_content .card_title_fname').length;
+
+				let _toc_reset = true;
+
 				/**
 				 * 處理貼子列表
 				 */
@@ -660,6 +742,21 @@ height: 18px;
 
 					if (_t.length && !_this.find('.see_lz').length)
 					{
+						if (0 && !_toc_inited)
+						{
+							_toc_inited = true;
+							_toc_area
+							//.prependTo('#content')
+								.insertBefore('#content')
+							;
+						}
+
+						if (0 && _toc_reset)
+						{
+							_toc_reset = false;
+							_toc.empty();
+						}
+
 						let url = new URL(_t.prop('href'));
 
 						// @ts-ignore
@@ -675,6 +772,18 @@ height: 18px;
 								.appendTo(_this)
 							)
 						;
+
+						if (0)
+						{
+							let _a = $(`<dt></dt>`)
+								.html(`<a href="javascript:void(0)">` + $('.j_th_tit', _this)
+									.text() + '</a>')
+							;
+
+							_a.attr('title', _a.text());
+
+							_a.appendTo(_toc);
+						}
 					}
 				});
 
@@ -722,7 +831,7 @@ height: 18px;
 						break;
 				}
 			}))
-			.on('load.scroll', function ()
+			.on('load.scroll', async function ()
 			{
 				if ($(window).scrollTop() < 300)
 				{
@@ -747,7 +856,7 @@ height: 18px;
 
 				}
 			})
-			.on('scroll.load', throttle(1000, function (event)
+			.on('scroll.load', throttle(1000, async function (event)
 			{
 				let n = 0;
 
@@ -772,7 +881,7 @@ height: 18px;
 
 							core_reply_wrapper.prop('data-loaded-try', t + 1);
 
-							setTimeout(function ()
+							setTimeout(async function ()
 							{
 								let event = $.Event('scroll.reply', {
 									pageY: core_reply_wrapper.offset().top,
@@ -836,16 +945,20 @@ height: 18px;
 
 		$('body').on('DOMNodeInserted', '#frs_list_pager, #thread_list', debounce(500, function ()
 		{
-			$(window).triggerHandler('load.list');
+			$(window)
+				.triggerHandler('load.list')
+			;
 		}));
 
 		setTimeout(function ()
 		{
-			$(window).triggerHandler('load.list');
+			$(window)
+				.triggerHandler('load.list')
+			;
 		}, 500);
 
 		$('#frs_list_pager')
-			.on('DOMNodeInserted.page', debounce(200, function ()
+			.on('DOMNodeInserted.page', debounce(200, async function ()
 			{
 				//console.log(event.type, this, event.target);
 				// @ts-ignore
@@ -862,7 +975,7 @@ height: 18px;
 //		;
 
 		$('#j_core_title_wrap')
-			.on('DOMNodeInserted', '.core_title_txt', throttle(200, function (event)
+			.on('DOMNodeInserted', '.core_title_txt', throttle(200, async function (event)
 			{
 				//console.log(event.type, this, event.target);
 				$(window).triggerHandler('load');
@@ -997,4 +1110,12 @@ function core_reply_handler(_this)
 	}
 
 	//console.log(elem, chk);
+}
+
+function updatePageData(PageData?): IBaiduTiebaPageData
+{
+	return PageData = $.extend({}, {
+		thread: {},
+		// @ts-ignore
+	}, unsafeWindow.PageData);
 }

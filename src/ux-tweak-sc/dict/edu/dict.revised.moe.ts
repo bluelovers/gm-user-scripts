@@ -257,9 +257,9 @@ let o: IDemo = {
 				{
 					let u = new URL(old);
 
-					if (!u.searchParams.get('qs0'))
+					if (!u.searchParams.get('qs0_from'))
 					{
-						u.searchParams.set('qs0', target_qs0);
+						u.searchParams.set('qs0_from', target_qs0);
 					}
 
 					return u.href;
