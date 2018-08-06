@@ -4,6 +4,7 @@
 
 ///<reference path="../../../core/demo.ts"/>
 import { IWindow } from '../../../core/demo';
+import Node = JQuery.Node;
 
 declare global
 {
@@ -96,7 +97,7 @@ export interface IBaiduTiebaPostField
 	}
 }
 
-export function bde_image(input: JQuery<HTMLElement> | string)
+export function bde_image(input: JQuery<HTMLElement> | string | HTMLElement)
 {
 	let elem = $(input);
 
@@ -148,6 +149,35 @@ export function bde_image(input: JQuery<HTMLElement> | string)
 	return elem;
 }
 
-import * as self from './index';
+export type INodeAll<T extends Node = any> = JQuery<T> | HTMLElement | Window | Document | string
 
-export default self;
+export function scrollToTieba(who: INodeAll, target: INodeAll, offset?, animate?, finish?: boolean): JQuery<HTMLElement>
+export function scrollToTieba(who, ...argv)
+{
+	const fn = function f()
+	{
+		return $(who)
+			// @ts-ignore
+			.scrollTo(...argv)
+			;
+	};
+
+	setTimeout(fn, 500);
+
+	return fn();
+}
+
+export function scrollTopPadding(who: INodeAll | number, min = 70)
+{
+	if (typeof who !== 'number')
+	{
+		who = $(who).outerHeight() || 0;
+	}
+
+	return Math.max(who, min);
+}
+
+import * as libSiteBaiduTieba from './index';
+export { libSiteBaiduTieba }
+export default libSiteBaiduTieba;
+

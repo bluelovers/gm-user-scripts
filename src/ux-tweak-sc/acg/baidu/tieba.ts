@@ -13,6 +13,7 @@ declare const $: IJQueryStatic;
 declare const jQuery: IJQueryStatic;
 
 import { IBaiduTiebaPageData, IBaiduTiebaPostField } from 'root/lib/site/baidu/tieba';
+import * as ILibSiteBaiduTieba from 'root/lib/site/baidu/tieba';
 
 let o: IDemo = {
 
@@ -50,7 +51,7 @@ let o: IDemo = {
 	{
 		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
-		const libSiteBaiduTieba = require('root/lib/site/baidu/tieba');
+		const libSiteBaiduTieba: typeof ILibSiteBaiduTieba = require('root/lib/site/baidu/tieba');
 		const PromiseBluebird = await import('bluebird');
 
 		$(window).on('load.link', function ()
@@ -389,29 +390,38 @@ height: 18px;
 									.outerHeight()
 								;
 
-								$(window)
-								// @ts-ignore
-									.scrollTo(_t, 0 - n)
-								;
+//								$(window)
+//								// @ts-ignore
+//									.scrollTo(_t, 0 - n)
+//								;
 							}
 							else
 							{
+								_t = $('#pb_content, #content_wrap');
+
 								n = $('#head .search_main')
 									.outerHeight()
 								;
 
-								$(window)
-								// @ts-ignore
-									.scrollTo('#content_wrap', 0 - n)
-								;
+//								$(window)
+//								// @ts-ignore
+//									.scrollTo('#content_wrap', 0 - n)
+//								;
 							}
+
+							n = libSiteBaiduTieba.scrollTopPadding(n);
+
+							libSiteBaiduTieba
+								.scrollToTieba(window, _t, 0 - n, undefined, true)
+							;
+
 						})
 					;
 				}
 
 				let tbui_fbar_nav = $('._tbui_fbar_nav', tbui_aside_float_bar);
 
-				console.log(555, tbui_fbar_nav, $('#pb_content').length);
+				//console.log(555, tbui_fbar_nav, $('#pb_content').length);
 
 				if (!tbui_fbar_nav.length && $('#pb_content').length)
 				{
@@ -427,7 +437,7 @@ height: 18px;
 
 					let tbui_fbar_nav = $('._tbui_fbar_nav', tbui_aside_float_bar);
 
-					console.log(666, tbui_fbar_nav);
+					//console.log(666, tbui_fbar_nav);
 
 					tbui_fbar_nav
 						.off('click')
@@ -453,11 +463,12 @@ height: 18px;
 							let i = 0;
 							let j = 0;
 
-							let n = $('#j_core_title_wrap')
-								.outerHeight()
-							;
+//							let n = $('#j_core_title_wrap')
+//								.outerHeight()
+//							;
+//							n = Math.max(n, 70);
 
-							n = Math.max(n, 70);
+							let n = libSiteBaiduTieba.scrollTopPadding('#j_core_title_wrap');
 
 							//console.log(len, p_postlist_post);
 
@@ -467,7 +478,7 @@ height: 18px;
 
 							for (; i < len; i++)
 							{
-								console.log(i);
+								//console.log(i);
 
 								let elem = p_postlist_post.eq(i);
 								let _see = elem.is(':onScreen');
@@ -523,25 +534,18 @@ height: 18px;
 								let elem = p_postlist_post.eq(j);
 								let _offset = elem.offset().top;
 
-								console.log(_offset, _y, _offset + n, _offset - n, this);
-
 								if (elem.length)
 								{
+									/*
 									$(window)
 										// @ts-ignore
 										.scrollTo(elem, 0 - n, undefined, true)
 									;
+									*/
 
-									setTimeout(function ()
-									{
-										let _offset = elem.offset().top;
-
-										let _y = $(window).scrollTop();
-										let _yh = $(window).innerHeight();
-										let _y2 = _y + _yh;
-
-										console.log(222, _offset, _y, _offset + n, _offset - n);
-									}, 1000);
+									libSiteBaiduTieba
+										.scrollToTieba(window, elem, 0 - n, undefined, true)
+									;
 								}
 							}
 						})
@@ -744,15 +748,22 @@ height: 18px;
 									$(window).triggerHandler('scroll.load');
 									// @ts-ignore
 
-									let fn = function ()
-									{
-										$(window)
-										// @ts-ignore
-											.scrollTo(_this, -80)
-										;
-									};
+//									let fn = function ()
+//									{
+//										$(window)
+//										// @ts-ignore
+//											.scrollTo(_this, -80)
+//										;
+//									};
+//
+//									setTimeout(fn, 200);
 
-									setTimeout(fn, 200);
+									let n = libSiteBaiduTieba.scrollTopPadding('#j_core_title_wrap');
+
+									libSiteBaiduTieba
+										.scrollToTieba(window, _this, 0 - n, undefined, true)
+									;
+
 								});
 
 								_a.appendTo(_toc);
@@ -1001,7 +1012,14 @@ height: 18px;
 				if ($(window).scrollTop() < 300)
 				{
 					// @ts-ignore
-					$(window).scrollTo('#pb_content, .head_content .card_title, #content, #tab_forumname');
+					//$(window).scrollTo('#pb_content, .head_content .card_title, #content, #tab_forumname');
+
+					let n = libSiteBaiduTieba.scrollTopPadding('#j_core_title_wrap');
+
+					libSiteBaiduTieba
+						.scrollToTieba(window, '#pb_content, .head_content .card_title, #content, #tab_forumname', 0 - n, undefined, true)
+					;
+
 				}
 			})
 			// @ts-ignore
@@ -1127,7 +1145,12 @@ height: 18px;
 			{
 				//console.log(event.type, this, event.target);
 				// @ts-ignore
-				$(window).scrollTo('.head_content .card_title, #content, #tab_forumname');
+				//$(window).scrollTo('.head_content .card_title, #content, #tab_forumname');
+
+				libSiteBaiduTieba
+					.scrollToTieba(window, '.head_content .card_title, #content, #tab_forumname')
+				;
+
 			}))
 		;
 
