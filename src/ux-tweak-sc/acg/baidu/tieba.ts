@@ -225,6 +225,7 @@ height: 18px;
 				color: #B2C7E2;
 				margin-bottom: 7px;
 				font-weight: bold;
+				border-radius: 100%;
 				}`,
 
 				`._tbui_fbar_nav:hover a { background-color: #569AFC; color: #E9F1FC; }`,
