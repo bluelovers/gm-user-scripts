@@ -128,7 +128,7 @@ let o: IDemo = {
 
 		$('.d_post_content')
 			.add('h3.core_title_txt')
-			.filter(':visible')
+			.filter(':visible, :not(:has(._remove_when_join))')
 			// @ts-ignore
 			.each(function (index, ...argv)
 			{
@@ -357,7 +357,12 @@ let o: IDemo = {
 
 			_this.html(function (i, old)
 			{
-				let p = $(this).is('.d_post_content') ? "<div class='_remove_when_join' style='visibility: hidden'><br/></div>" : "";
+				let p = "";
+
+				if ($(this).is('.d_post_content') && !$(this).find('._remove_when_join').length)
+				{
+					p = "<div class='_remove_when_join' style='visibility: hidden'><br/></div>"
+				}
 
 				return html = old
 					.replace(/^ *\n/g, '')
