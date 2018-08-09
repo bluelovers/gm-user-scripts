@@ -43,6 +43,7 @@ let o: IDemo = {
 
 	async main(_url_obj = global._url_obj)
 	{
+		const self = this;
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
 		if (_url_obj.path.match(/search\.htm/) || _url_obj.query.match(/o=dcbdic/))
@@ -268,12 +269,14 @@ let o: IDemo = {
 		}
 
 		$(window)
-			.on('load', function ()
+			.on('load', async function ()
 			{
 				let _a = $('a.slink:not(.prtresult_div a)')
 					.attr('target', '_blank')
 					.prop('target', '_blank')
 				;
+
+				self.adblock(_url_obj);
 			})
 			.triggerHandler('load')
 		;
@@ -297,6 +300,8 @@ let o: IDemo = {
 		$('body, html, :root')
 			.removeAttr('onLoad')
 			.removeAttr('onUnload')
+			.removeAttr('onload')
+			.removeAttr('onunload')
 			.removeAttr('onclick')
 			.removeAttr('onkeypress')
 		;
@@ -305,6 +310,9 @@ let o: IDemo = {
 		{
 			// @ts-ignore
 			document.body.onload = document.body.onunload = document.body.onclick = document.body.onkeypress = null;
+
+			// @ts-ignore
+			window.onload = window.onunload = window.onclick = window.onkeypress = null;
 		} catch (e) {}
 
 		try
@@ -327,6 +335,20 @@ let o: IDemo = {
 			// @ts-ignore
 			unsafeWindow.cleartimeout();
 		} catch (e) {}
+
+		try
+		{
+			// @ts-ignore
+			unsafeWindow.secondsleft = 3600 * 24 * 30;
+		}
+		catch (e) {}
+
+		try
+		{
+			// @ts-ignore
+			unsafeWindow.showtimeout = null;
+		}
+		catch (e) {}
 
 		$('#myContent .my-img a[href*="html_onclick"]').attr('href', '/cbdic/search.htm');
 	},

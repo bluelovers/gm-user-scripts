@@ -1030,6 +1030,15 @@ height: 18px;
 			.one('scroll', function (event)
 			{
 				console.log(event);
+
+				if (_url_obj.fragment)
+				{
+					setTimeout(function ()
+					{
+						gotoFragment(_url_obj);
+					}, 500);
+				}
+
 			})
 			.on('scroll.reply', function (event)
 			{
@@ -1309,4 +1318,27 @@ function updatePageData(PageData?): IBaiduTiebaPageData
 		thread: {},
 		// @ts-ignore
 	}, unsafeWindow.PageData);
+}
+
+function gotoFragment(_url_obj = global._url_obj)
+{
+	if (_url_obj.fragment)
+	{
+		let _a = $(`.l_post_anchor[name="${_url_obj.fragment}"]`);
+
+		if (_a.length)
+		{
+			const libSiteBaiduTieba: typeof ILibSiteBaiduTieba = require('root/lib/site/baidu/tieba');
+
+			let n = libSiteBaiduTieba.scrollTopPadding('#j_core_title_wrap');
+
+			libSiteBaiduTieba.scrollToTieba(window, _a, 0 - n);
+
+			return true;
+		}
+
+		return null;
+	}
+
+	return false;
 }
