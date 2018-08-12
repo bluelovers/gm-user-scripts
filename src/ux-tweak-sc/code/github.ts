@@ -179,8 +179,6 @@ let o: IDemo = {
 			.add([].join())
 		;
 
-		//_dom.remove();
-
 		return _dom;
 	},
 };

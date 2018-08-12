@@ -18,7 +18,7 @@ let o: IDemo = {
 	metadata: {
 		include: [
 			'http*://syosetu.com/*',
-			'http*://ncode.syosetu.com/*'
+			'http*://ncode.syosetu.com/*',
 		],
 		match: [
 			'*://nl.syosetu.com/*',
@@ -53,6 +53,8 @@ let o: IDemo = {
 			.prop('target', '_blank')
 		;
 
+		const _uf_done = require('root/lib/event/done');
+
 		adult_chk();
 
 		greasemonkey.GM_addStyle([
@@ -82,11 +84,19 @@ let o: IDemo = {
 				`._fake_p { display: block; }`,
 				`._fake_p:after { content: " "; }`,
 
+				`#novel_contents > div, .footer_bookmark { max-width: 100%; }`,
+
 				`#novel_color { width: auto; max-width: 730px; font-size: 14px; line-height: 1.6em !important; }`,
 				`#novel_honbun, #novel_p, #novel_a { width: auto; max-width: 600px; }`,
 				`#novel_color, #novel_honbun, #novel_p, #novel_a { font-size: 14px; line-height: 1.6em; }`,
 
 				`ruby rt { opacity: 0.5; }`,
+
+				//`#pageBottom { display: block !important; }`,
+
+				`#pageTop { bottom: 50px; }`,
+
+				`#novel_contents img { max-width: 100%; }`,
 
 			]);
 
@@ -118,7 +128,8 @@ let o: IDemo = {
 			$('#novel_honbun, #novel_p, #novel_a')
 				.addClass('_fake_pre')
 				.find('p')
-				.each(function(){
+				.each(function ()
+				{
 
 					let _this = $(this);
 
@@ -136,6 +147,53 @@ let o: IDemo = {
 						.remove()
 					;
 				})
+			;
+
+			let _b = $('#novel_contents div.novelrankingtag').eq(0);
+
+			if (_b.length)
+			{
+				_b.prepend('<a id="novelrankingtag" name="novelrankingtag" style="display: block;height: 0px;">&nbsp;</a>');
+				let _a = $('#pageBottom');
+				_a
+					.attr('href', 'javascript:void(0)')
+					.on('click', function (event)
+					{
+						_uf_done._uf_done2(event);
+
+						let fn = function ()
+						{
+							//console.log($('.novelrankingtag, #novelrankingtag'));
+
+							// @ts-ignore
+							$(window)
+								.scrollTo($('.novelrankingtag, #novelrankingtag'), -60)
+							;
+						};
+
+						fn();
+
+						//setTimeout(fn, 250);
+						setTimeout(fn, 500);
+						setTimeout(fn, 750);
+					})
+				;
+
+				console.log(_b, _a);
+			}
+
+			const CopyLib = require('root/lib/func/copy');
+
+			let _area = $('<div/>');
+			_area.insertAfter('.novel_subtitle');
+			$('#novel_p, #novel_honbun, #novel_a').appendTo(_area);
+
+			$(`<a href="javascript:void(0)">COPY</a>`)
+				.on('click', function ()
+				{
+					CopyLib.copyElem(_area[0]);
+				})
+				.appendTo('.novel_bn')
 			;
 
 			return;
@@ -162,6 +220,7 @@ let o: IDemo = {
 			`._syosetu-chapter-toc [data-id]:after { content: "#" attr(data-id) ""; margin-left: 0.5em; }`,
 			`._syosetu-chapter-toc [data-chapter]:after { content: "#" attr(data-chapter) ""; margin-left: 0.5em; }`,
 			//`._syosetu-chapter-toc [data-id-sub]:before { content: "#" attr(data-id-sub) ""; }`,
+
 		]);
 
 		// @ts-ignore
@@ -256,18 +315,19 @@ let o: IDemo = {
 						_this.attr('data-chapter', iv);
 					})
 					.filter('.chapter_title[data-chapter]')
-					.append($('<span style="margin-left: 2em;opacity: 0.5;font-size: 0.5em;">(+/-)</span>').on('click', function ()
-					{
-						let iv = $(this)
-							.parents('.chapter_title')
-							.attr('data-chapter')
-						;
-
-						if (iv)
+					.append($('<span style="margin-left: 2em;opacity: 0.5;font-size: 0.5em;">(+/-)</span>')
+						.on('click', function ()
 						{
-							$(`.novel_sublist2[data-chapter="${iv}"]`).toggle();
-						}
-					}))
+							let iv = $(this)
+								.parents('.chapter_title')
+								.attr('data-chapter')
+							;
+
+							if (iv)
+							{
+								$(`.novel_sublist2[data-chapter="${iv}"]`).toggle();
+							}
+						}))
 				;
 
 				let chapter_title = list.filter(`[data-type="chapter_title"]`);
