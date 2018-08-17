@@ -24,6 +24,9 @@
 
 ![003.png](images/gitee-plus/003.png)
 
+### 使代碼支援 PRE-WRAP
+
+![2018-08-17-22-30-34-24.png](images/gitee-plus/2018-08-17-22-30-34-24.png)
 
 ## todo
 
