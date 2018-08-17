@@ -187,7 +187,7 @@ let o: IDemo = {
 
 				codePreWarp(_url_obj);
 			}))
-			.on('popstate.ajax', throttle(200, function (event)
+			.on('popstate.ajax', debounce(200, function (event)
 			{
 				console.log(event.type, event.namespace, event);
 
@@ -247,7 +247,7 @@ let o: IDemo = {
 
 					giteedata = updateGiteedata(_url_obj);
 
-					$(window).triggerHandler('load.ajax');
+					$(window).triggerHandler('popstate.ajax');
 				})
 			;
 		}
