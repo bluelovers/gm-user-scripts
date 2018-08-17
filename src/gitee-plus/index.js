@@ -31,7 +31,8 @@ module.exports.metadata = {};
 module.exports.metadata.include = [
 	"http*://gitee.com/*",
 	"http*://gitee.com/api/*",
-	"http*://gitee.com/oauth/applications/*"
+	"http*://gitee.com/oauth/applications/*",
+	"http*://m.gitee.com/*"
 ];
 module.exports.metadata.match = [];
 module.exports.metadata.exclude = [];

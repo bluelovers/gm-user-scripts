@@ -22,6 +22,7 @@ let o: IDemo = {
 			'http*://gitee.com/*',
 			'http*://gitee.com/api/*',
 			'http*://gitee.com/oauth/applications/*',
+			'http*://m.gitee.com/*',
 		],
 		match: [],
 		nomatch: [],
@@ -84,7 +85,19 @@ let o: IDemo = {
 		greasemonkey.GM_addStyle([
 			`body, html, :root { font-size: 9pt; }`,
 			`.markdown-body, .markdown-body pre, body.git-project .git-project-bread > .ui.horizontal.list .table-btn .btn-table-item, .ui.mini.buttons .button, .ui.mini.buttons .or, .ui.mini.button, .activity_content .event-note, body.git-project .tree-comment-form textarea { font-size: 1rem; }`,
-		].join(''));
+
+			`._pre_warp_area { padding-top: 5px; padding-bottom: 5px; }`,
+			`._pre_warp_area .line-numbers, ._pre_warp_area pre { padding: 0 !important; padding-right: 5px !important; }`,
+			`._pre_warp_area pre { white-space: pre-wrap !important; }`,
+
+			`._pre_warp_area_row:hover .line-numbers { background: #1f8cd1 !important; }`,
+
+			`.ui.container { max-width: 1040px; auto: 1040px; }`,
+
+			`#project-app .file_holder .file_content.code .lines .line-numbers a { min-width: 20px; }`,
+			`.file_holder .file_content.code .lines .highlight pre .line { min-height: 1.33em; height: auto; }`,
+
+		].join(''), $('body')[0]);
 
 		$('body')
 			.on('DOMNodeInserted', '#git-project-bread', function (event)
@@ -126,8 +139,10 @@ let o: IDemo = {
 		;
 
 		$(window)
-			.on('load', debounce(1000, function ()
+			.on('load', debounce(1000, function (event)
 			{
+				console.log(event.type, event.namespace, event);
+
 				_uf_dom_filter_link([
 					'#users-events .event-group a',
 					'a.view-file, .git-commit-meta a',
@@ -137,9 +152,11 @@ let o: IDemo = {
 
 				$('#git-project-bread').trigger('DOMNodeInserted');
 			}))
-			.on('load.ajax', throttle(200, function ()
+			.on('load.ajax', throttle(200, function (event)
 			{
-				$(window).triggerHandler('load.ajax');
+				console.log(event.type, event.namespace, event);
+
+				//$(window).triggerHandler('load.ajax');
 
 				$('#path-breadcrumb a.section:not(.repo-name)')
 					.off('click.ajax')
@@ -167,13 +184,56 @@ let o: IDemo = {
 						}
 					})
 				;
+
+				codePreWarp(_url_obj);
 			}))
 			.on('popstate.ajax', throttle(200, function (event)
 			{
+				console.log(event.type, event.namespace, event);
+
 				userScriptCoreUrl();
 				$(window).triggerHandler('load');
 			}))
+			.on('resize', debounce(200, function ()
+			{
+				const _is_mobile = /^m\./.test(_url_obj.host);
+
+				let vw = $(window).innerWidth();
+
+				let mw = Math.min(1040, vw);
+
+				if (!_is_mobile)
+				{
+					mw -= 30;
+				}
+
+				$(`._pre_warp_area`)
+					.css({
+						'max-width': mw,
+					})
+				;
+			}))
 			.triggerHandler('load')
+		;
+
+		$('#project-app')
+			.on('DOMNodeInserted', debounce(500, function (event)
+			{
+				//console.log(event.type, event.namespace, event);
+
+				$('.view-content')
+					.one('DOMNodeInserted', debounce(200, function (event)
+					{
+						console.log(event.type, event.namespace, event);
+						$(window).triggerHandler('load');
+					}))
+				;
+
+				if ($('.file_content.code').length)
+				{
+					$(window).triggerHandler('load');
+				}
+			}))
 		;
 
 		function userScriptCoreUrl()
@@ -225,7 +285,7 @@ function updateGiteedata(_url_obj = global._url_obj)
 			username: RegExp.$1,
 			repo: RegExp.$2,
 			router: RegExp.$3,
-			isajax: typeof updateGiteedata.inited != 'undefined'
+			isajax: typeof updateGiteedata.inited != 'undefined',
 		};
 
 		console.info(giteedata);
@@ -276,7 +336,7 @@ function giteeAjax(url: string, options?)
 
 		}))
 		// @ts-ignore
-	//return unsafeWindow.ajaxGet(url)
+		//return unsafeWindow.ajaxGet(url)
 		.done(function (script, textStatus)
 		{
 			let stateObj = history.state;
@@ -299,8 +359,69 @@ function giteeAjax(url: string, options?)
 		.fail(function (jqxhr, settings, exception)
 		{
 			console.error("Triggered ajaxError handler.", {
-				jqxhr, settings, exception
+				jqxhr, settings, exception,
 			});
 		})
 		;
+}
+
+function codePreWarp(_url_obj = global._url_obj)
+{
+	const _is_mobile = /^m\./.test(_url_obj.host);
+
+	let _area = $('.file_content.code > .lines');
+
+	if ($('._pre_warp_area').length)
+	{
+		return;
+	}
+
+	let _ok: boolean;
+
+	let _new_list = $(`<div class="_pre_warp_area"/>`);
+
+	_area
+		.find('.line-numbers a')
+		.each(function ()
+		{
+			let _num = $(this);
+
+			let _n = _num.attr('id').replace(/^\D+/, '');
+
+			let _code = _area.find(`#LC${_n}`);
+
+			let _div = $('<div class="_pre_warp_area_row"/>');
+
+			let _num_div = $(`<div class="line-numbers"/>`)
+				.appendTo(_div);
+			;
+
+			let _code_div = $(`<pre/>`)
+				.appendTo($(`<div class="highlight"/>`).appendTo(_div));
+			;
+
+			_num.appendTo(_num_div);
+			_code.appendTo(_code_div);
+
+			//_new_list = _new_list.add(_div);
+
+			_new_list.append(_div);
+
+			_ok = true;
+		})
+	;
+
+	if (_ok)
+	{
+		_area
+			.find('> .line-numbers, > .highlight')
+			.hide()
+		;
+	}
+
+	_new_list.appendTo(_area);
+
+	$(window).triggerHandler('resize');
+
+	//console.log(_new_list);
 }

@@ -457,10 +457,20 @@ function follow_button(_url_obj, window)
 
 			if (!uid)
 			{
-				let p = _this.parents('aside section, ul li div')
-					.find('a[href*="/member.php"], a[href*="/member_illust.php"]')
+				let _area = _this.parents('aside section, ul li div');
+
+				let p = _area
+					.find('a[href*="/member.php"]')
 					.eq(0)
 				;
+
+				if (!p.length)
+				{
+					p = _area
+						.find('a[href*="/member_illust.php"]')
+						.eq(0)
+					;
+				}
 
 				if (p.length)
 				{
