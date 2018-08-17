@@ -63,6 +63,8 @@ let o: IDemo = {
 			return;
 		}
 
+		createCss(_url_obj);
+
 		try
 		{
 			// @ts-ignore
@@ -81,23 +83,6 @@ let o: IDemo = {
 		const greasemonkey = require('root/lib/greasemonkey/index');
 		require('root/lib/jquery/event/key').makeJQueryPlugin($, window);
 		const keycodes = require('keycodes');
-
-		greasemonkey.GM_addStyle([
-			`body, html, :root { font-size: 9pt; }`,
-			`.markdown-body, .markdown-body pre, body.git-project .git-project-bread > .ui.horizontal.list .table-btn .btn-table-item, .ui.mini.buttons .button, .ui.mini.buttons .or, .ui.mini.button, .activity_content .event-note, body.git-project .tree-comment-form textarea { font-size: 1rem; }`,
-
-			`._pre_warp_area { padding-top: 5px; padding-bottom: 5px; }`,
-			`._pre_warp_area .line-numbers, ._pre_warp_area pre { padding: 0 !important; padding-right: 5px !important; }`,
-			`._pre_warp_area pre { white-space: pre-wrap !important; }`,
-
-			`._pre_warp_area_row:hover .line-numbers { background: #1f8cd1 !important; }`,
-
-			`.ui.container { max-width: 1040px; auto: 1040px; }`,
-
-			`#project-app .file_holder .file_content.code .lines .line-numbers a { min-width: 20px; }`,
-			`.file_holder .file_content.code .lines .highlight pre .line { min-height: 1.33em; height: auto; }`,
-
-		].join(''), $('body')[0]);
 
 		$('body')
 			.on('DOMNodeInserted', '#git-project-bread', function (event)
@@ -186,6 +171,8 @@ let o: IDemo = {
 				;
 
 				codePreWarp(_url_obj);
+
+				$(window).triggerHandler('resize');
 			}))
 			.on('popstate.ajax', debounce(200, function (event)
 			{
@@ -207,7 +194,7 @@ let o: IDemo = {
 					mw -= 30;
 				}
 
-				$(`._pre_warp_area`)
+				$(`._pre_warp_area, .file_content`)
 					.css({
 						'max-width': mw,
 					})
@@ -421,7 +408,49 @@ function codePreWarp(_url_obj = global._url_obj)
 
 	_new_list.appendTo(_area);
 
-	$(window).triggerHandler('resize');
-
 	//console.log(_new_list);
+}
+
+function createCss(_url_obj = global._url_obj)
+{
+	const _is_mobile = /^m\./.test(_url_obj.host);
+
+	let _head = $('body')[0];
+
+	greasemonkey.GM_addStyle([
+
+		`._pre_warp_area { padding-top: 5px; padding-bottom: 5px; }`,
+		`._pre_warp_area .line-numbers, ._pre_warp_area pre { padding: 0 !important; padding-right: 5px !important; }`,
+		`._pre_warp_area pre { white-space: pre-wrap !important; }`,
+
+		`._pre_warp_area_row:hover .line-numbers { background: #1f8cd1 !important; }`,
+
+		`.ui.container { max-width: 1040px; auto: 1040px; }`,
+
+		`#project-app .file_holder .file_content.code .lines .line-numbers a { min-width: 20px; }`,
+		`.file_holder .file_content.code .lines .highlight pre .line { min-height: 1.33em; height: auto; }`,
+
+	].join(''));
+
+	console.log({
+		_url_obj,
+		_is_mobile,
+	});
+
+	if (_is_mobile)
+	{
+		greasemonkey.GM_addStyle([
+			`body, html, :root { font-size: 9pt; }`,
+
+			`.markdown-body, .markdown-body pre { font-size: 1em !important; }`,
+		].join(''));
+	}
+	else
+	{
+		greasemonkey.GM_addStyle([
+			`body, html, :root { font-size: 9pt; }`,
+
+			`.markdown-body, .markdown-body pre, body.git-project .git-project-bread > .ui.horizontal.list .table-btn .btn-table-item, .ui.mini.buttons .button, .ui.mini.buttons .or, .ui.mini.button, .activity_content .event-note, body.git-project .tree-comment-form textarea { font-size: 1rem; }`,
+		].join(''));
+	}
 }
