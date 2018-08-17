@@ -430,7 +430,7 @@ function createCss(_url_obj = global._url_obj)
 		`#project-app .file_holder .file_content.code .lines .line-numbers a { min-width: 20px; }`,
 		`.file_holder .file_content.code .lines .highlight pre .line { min-height: 1.33em; height: auto; }`,
 
-	].join(''));
+	].join(''), _head);
 
 	console.log({
 		_url_obj,
