@@ -42,6 +42,8 @@ let o: IDemo = {
 
 				//`body, html, :root { font-size: 9pt; }`,
 
+				`.blob-code-inner { white-space: pre-wrap; }`,
+
 			])
 		;
 
