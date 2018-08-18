@@ -27,6 +27,7 @@ let o: IDemo = {
 			'*://tieba.baidu.com/i/i/atme*',
 			'*://tieba.baidu.com/i/i/storethread*',
 			'*://tieba.baidu.com/pmc/*',
+			'*://tieba.baidu.com/photo/*',
 		],
 		exclude: [],
 
@@ -979,11 +980,18 @@ height: 18px;
 					case keycodes('pageup'):
 					case keycodes('left'):
 
-						var _a = $('.pagination-default a.prev, .pagination-default a.pre');
+						var _a = $('.pagination-default a.prev, .pagination-default a.pre, #image_original_container .image_original_prev');
 
-						if (_a.length)
+						if (_a.length
+							&& event.which == keycodes('right')
+							&& _a.is('.image_original_prev, .image_original_next')
+						)
 						{
-							_uf_done(event);
+
+						}
+						else if (_a.length)
+						{
+							_uf_done._uf_done2(event);
 							_a[0].click();
 						}
 						else
@@ -995,11 +1003,18 @@ height: 18px;
 					case keycodes('pagedown'):
 					case keycodes('right'):
 
-						var _a = $('.pagination-default a.next');
+						var _a = $('.pagination-default a.next, #image_original_container .image_original_next');
 
-						if (_a.length)
+						if (_a.length
+							&& event.which == keycodes('right')
+							&& _a.is('.image_original_prev, .image_original_next')
+						)
 						{
-							_uf_done(event);
+
+						}
+						else if (_a.length)
+						{
+							_uf_done._uf_done2(event);
 							_a[0].click();
 						}
 						else
