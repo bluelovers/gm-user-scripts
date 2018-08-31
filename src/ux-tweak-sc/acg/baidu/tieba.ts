@@ -612,9 +612,9 @@ height: 18px;
 
 				$([
 					'.feed_item a.itb_kw[title][href*="..."]',
-				].join(',')).attr('href', function ()
+				].join(',')).prop('href', function ()
 				{
-					let title = $(this).attr('title');
+					let title = $(this).prop('title');
 
 					return '/f?kw=' + title;
 				});
@@ -650,7 +650,7 @@ height: 18px;
 					'.simple_block_container .t_forward .common_source_main a:eq(-1)',
 				].join(',')).each(function ()
 				{
-					let title = $(this).attr('title');
+					let title = $(this).prop('title');
 
 					if (title)
 					{
@@ -735,7 +735,7 @@ height: 18px;
 										.html() + '</a>')
 								;
 
-								_a.attr('title', _a.text());
+								_a.prop('title', _a.text());
 
 								if (is_louzhubiaoshi)
 								{
@@ -821,11 +821,11 @@ height: 18px;
 							if (_post.is(':not([data-loaded])'))
 							{
 								// @ts-ignore
-								_post.attr('data-loaded', true);
+								_post.prop('data-loaded', true);
 
 								$('.d_post_content_main', _post).prepend($('<a/>')
 									.text('#' + _post.data('field').content.post_no)
-									.attr('href',
+									.prop('href',
 										'http://tieba.baidu.com/p/' + PageData.thread.thread_id + '?pid=' + _post.data(
 										'field').content.post_id + '#' + _post.data('field').content.post_id
 									)
@@ -861,7 +861,7 @@ height: 18px;
 									*/
 									.attr('onclick', function ()
 									{
-										let id = _post.find('.d_post_content').attr('id');
+										let id = _post.find('.d_post_content').prop('id');
 
 										return [
 											`event.preventDefault()`,
@@ -873,11 +873,11 @@ height: 18px;
 											`return false`
 										].join(';')
 									})
-									.attr('title', '點擊可複製貼子')
+									.prop('title', '點擊可複製貼子')
 								);
 
 								floor_elem.wrapInner($('<a/>')
-									.attr('href',
+									.prop('href',
 										'http://tieba.baidu.com/p/' + PageData.thread.thread_id + '?pid=' + _post.data(
 										'field').content.post_id + '#' + _post.data('field').content.post_id
 									)
@@ -943,7 +943,7 @@ height: 18px;
 						url.searchParams.append('see_lz', 1);
 
 						$('<a target="_blank" class="see_lz btn-sub btn-small">只看楼主</a>')
-							.attr('href', url.toString())
+							.prop('href', url.toString())
 							.appendTo($('<span/>')
 								.css({
 									display: 'inline-block',
@@ -960,7 +960,7 @@ height: 18px;
 									.text() + '</a>')
 							;
 
-							_a.attr('title', _a.text());
+							_a.prop('title', _a.text());
 
 							_a.appendTo(_toc);
 						}

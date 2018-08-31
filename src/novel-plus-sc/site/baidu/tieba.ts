@@ -128,7 +128,7 @@ let o: IDemo = {
 
 		$('.d_post_content')
 			.add('h3.core_title_txt')
-			.filter(':visible, :not(:has(._remove_when_join))')
+			.filter(':visible, :not(:has(._remove_when_join)), :not(.p_content_nameplate .p_content_nameplate:has(.ad_bottom_view))')
 			// @ts-ignore
 			.each(function (index, ...argv)
 			{
@@ -146,14 +146,16 @@ let o: IDemo = {
 		{
 			//console.log(argv);
 
-			let _this = $(this);
+			let _this_src = $(this);
+
+			let _this = _this_src.clone();
 			let _br = _this.find('br');
 
 			let html: string = _this.html();
 
 			const old_html = html;
 
-			_this.data('html-source', html);
+			//_this_src.data('html-source', html);
 
 			if (_br.length >= 10 || (_br.length == 0 && html.match(/\n/)))
 			{
@@ -371,7 +373,12 @@ let o: IDemo = {
 					;
 			});
 
-			_this.data('html-new', html);
+			html = _this.html();
+
+			//_this_src.data('html-new', html);
+			_this_src.html(html);
+
+			_this.remove();
 		}
 
 		//console.debug(novelText._data_.words, novelText._cache_);

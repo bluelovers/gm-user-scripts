@@ -11,7 +11,18 @@ export interface IOptions
 
 export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 {
-	let _fn_event = ['dragstart', 'contextmenu', 'selectstart', 'mousedown', 'mouseup', 'source', 'copy'];
+	let _fn_event = [
+		'dragstart',
+		'contextmenu',
+		'selectstart',
+		'mousedown',
+		'mouseup',
+		'source',
+		'copy',
+		'selectstart',
+		'select',
+		//'dragstart',
+	];
 	let _fn_off = ['unbind', 'die', 'off'];
 
 	let jq;
@@ -32,6 +43,7 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 
 		//console.log(jq, arr);
 	}
+	// @ts-ignore
 	else if (window.jQuery)
 	{
 		// @ts-ignore
@@ -46,6 +58,7 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 	{
 		jq = jQuery;
 		arr = jQuery(elem).add('body, html')
+			// @ts-ignore
 			.add(document)
 			.add(window)
 		;
@@ -60,7 +73,7 @@ export function _uf_disable_nocontextmenu2(mode, elem?, options: IOptions = {})
 			_style = greasemonkey.GM_addStyle(
 				'* { -moz-user-select: auto !important; -webkit-user-select: auto !important; -ms-user-select: auto !important; user-select: auto !important; }');
 
-			jq(_style).attr('id', '_uf_disable_nocontextmenu');
+			jq(_style).prop('id', '_uf_disable_nocontextmenu');
 		}
 	}
 
@@ -226,6 +239,7 @@ export function _uf_disable_nocontextmenu(mode, elem?)
 				{
 					try
 					{
+						// @ts-ignore
 						this.oncontextmenu = this.ondragstart = this.onselectstart = this.onmousedown = this.onmouseup
 							// @ts-ignore
 							= this.onsource = null;

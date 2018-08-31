@@ -31,7 +31,7 @@ module.exports = {
 	{
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('.gallary_item a')
-			.attr('target', '_blank')
+			.prop('target', '_blank')
 		;
 
 		module.exports.adblock(_url_obj, true);
@@ -223,7 +223,7 @@ module.exports = {
 					//console.log(_img);
 
 					_img
-						.attr('data-index', function (i)
+						.prop('data-index', function (i)
 						{
 							return i;
 						})
@@ -249,15 +249,17 @@ module.exports = {
 					_to = _to.add(_img.filter(':onScreen')).eq(-1);
 
 					_div_page
-						.text((parseInt(_to.attr('data-index')) + 1) + '/' + _img.length)
+						.text((parseInt(_to.prop('data-index')) + 1) + '/' + _img.length)
 					;
 				})
 			;
 
-			let _fn_page = function (_to)
+			let _delay_page;
+
+			let _fn_page = function (_to, s)
 			{
 				_div_page
-					.text((parseInt(_to.attr('data-index')) + 1) + '/' + _img.length)
+					.text((parseInt(_to.prop('data-index')) + 1) + '/' + _img.length)
 				;
 
 				_div_page
@@ -265,6 +267,17 @@ module.exports = {
 						left: _to.offset().left - _div_page.outerWidth(),
 					})
 				;
+
+				if (s)
+				{
+					$(window).scrollTo(s);
+
+					_delay_page = setTimeout(function ()
+					{
+						_delay_page && clearTimeout(_delay_page);
+						_delay_page = null;
+					}, 40);
+				}
 			};
 
 			$(window)
@@ -309,6 +322,20 @@ module.exports = {
 				}))
 				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
+					if (_delay_page)
+					{
+						switch (event.which)
+						{
+							case keycodes('pageup'):
+							case keycodes('left'):
+							case keycodes('pagedown'):
+							case keycodes('right'):
+								_uf_done(event);
+								return false;
+								break;
+						}
+					}
+
 					_img = $(_img_selector)
 					//.parent('div')
 					;
@@ -343,9 +370,9 @@ module.exports = {
 
 							if (_a.length)
 							{
-								_fn_page(_a);
+								_fn_page(_a, _a.parent());
 
-								$(window).scrollTo(_a.parent());
+								//$(window).scrollTo(_a.parent());
 							}
 
 							break;
@@ -365,9 +392,9 @@ module.exports = {
 
 							if (_a.length)
 							{
-								_fn_page(_a);
+								_fn_page(_a, _a.parent());
 
-								$(window).scrollTo(_a.parent());
+								//$(window).scrollTo(_a.parent());
 							}
 
 							break;
@@ -392,7 +419,7 @@ module.exports = {
 				if (1 || $('.paginator .thispage').text() == 1)
 				{
 					$('.gallary_wrap .gallary_item:eq(0) a')
-						.attr('href', function (i, old)
+						.prop('href', function (i, old)
 						{
 							//let _m = old.match(/photos-view-id-(\d+)/);
 							let _m = parseInt($(this).parents('.gallary_item').find('.info .title .name').text());

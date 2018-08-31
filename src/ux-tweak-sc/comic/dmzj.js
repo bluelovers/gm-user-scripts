@@ -36,6 +36,16 @@ module.exports = {
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
 
+		greasemonkey
+			.GM_addStyle([
+
+				`.comment .content_r .text, .content_r .info_bar .userName, .page a, .page span { font-size: 9pt; }`,
+
+				`input, textarea { font-size: 9pt; }`,
+
+			])
+		;
+
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
 			'.cartoon_online_border a, #type_comics a, .anim-main_list a',
@@ -45,7 +55,7 @@ module.exports = {
 		;
 
 		const comic_style = require('root/lib/comic/style');
-		const greasemonkey = require('root/lib/greasemonkey/uf');
+		//const greasemonkey = require('root/lib/greasemonkey/uf');
 
 		module.exports.adblock();
 
@@ -184,7 +194,7 @@ module.exports = {
 						;
 					});
 				;
-			};
+			}
 
 			_fn_img();
 
@@ -223,6 +233,15 @@ module.exports = {
 				{
 					$(window).triggerHandler('load.ready');
 				}))
+			;
+		}
+		else
+		{
+			$(window)
+				.on('load.ready', function ()
+				{
+					$(window).scrollTo('.wrap');
+				})
 			;
 		}
 
