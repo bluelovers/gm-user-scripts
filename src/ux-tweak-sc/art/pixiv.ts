@@ -75,6 +75,9 @@ module.exports = {
 					'#js-react-search-mid a',
 
 					'ul li div a[href*="member"]',
+
+					'.gtm-illust-recommend-zone a',
+
 				].join(','))
 					.prop('target', '_blank')
 				;
@@ -147,6 +150,34 @@ module.exports = {
 
 				//console.log(this, event.target, _a);
 			});
+
+			setTimeout(function ()
+			{
+				let _a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"]')
+					.attr('data-done', true)
+					.attr('target', '_blank')
+					.attr('href', function (i, old)
+					{
+						return old.replace('member.php', 'member_illust.php')
+					})
+				;
+
+				$('body')
+					.one('DOMNodeInserted', '.gtm-illust-recommend-zone', function (event)
+					{
+						$(window).triggerHandler('load.link');
+					})
+					.on('DOMNodeInserted', '.gtm-illust-recommend-zone', function (event)
+					{
+						console.log(event);
+
+						$(event.target)
+							.find('a')
+							.prop('target', '_blank')
+						;
+					})
+				;
+			}, 500);
 		}
 		else if (_url_obj.path.match(/search\.php/))
 		{
