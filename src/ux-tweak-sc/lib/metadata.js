@@ -10,6 +10,7 @@ module.exports.grant = [
 	'GM_getValue',
 	'GM_listValues',
 	'GM_setValue',
+	'GM_openInTab',
 ];
 
 module.exports.metadata = `// ==UserScript==

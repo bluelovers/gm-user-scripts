@@ -48,6 +48,7 @@ module.exports = {
 	{
 		const debounce = require('throttle-debounce/debounce');
 		const throttle = require('throttle-debounce/throttle');
+		//const winOpen = require('root/lib/func/open') as typeof import("root/lib/func/open");
 
 		const _uf_done = require('root/lib/event/done');
 		//require('root/lib/func/debounce');
@@ -99,7 +100,7 @@ module.exports = {
 			// @ts-ignore
 			.push('.layout-body')
 			.push('#search-result')
-			.eq(0)
+			.eq(0),
 		);
 
 		// @ts-ignore
@@ -137,30 +138,45 @@ module.exports = {
 				$('body').css('background-color', 'rgba(0, 3, 11, 0.9)');
 			}
 
-			$('#root').on('DOMNodeInserted', function (event)
+			let fa = function (content?)
 			{
-				let _a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"]', $(event.target))
-					.attr('data-done', true)
+				let _a;
+				if (content)
+				{
+					_a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"]', $(content))
+				}
+				else
+				{
+					_a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"]');
+				}
+
+				_a.attr('data-done', true)
 					.attr('target', '_blank')
 					.attr('href', function (i, old)
 					{
 						return old.replace('member.php', 'member_illust.php')
 					})
+					.off('click.member_illust')
+					.on('click.member_illust', function (event)
+					{
+						let _href = $(this).prop('href');
+						my_openInBackground(_href, '_blank');
+
+						return _uf_done(event);
+					})
 				;
+			};
+
+			$('#root').on('DOMNodeInserted', function (event)
+			{
+				fa(event.target);
 
 				//console.log(this, event.target, _a);
 			});
 
 			setTimeout(function ()
 			{
-				let _a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"]')
-					.attr('data-done', true)
-					.attr('target', '_blank')
-					.attr('href', function (i, old)
-					{
-						return old.replace('member.php', 'member_illust.php')
-					})
-				;
+				fa();
 
 				$('body')
 					.one('DOMNodeInserted', '.gtm-illust-recommend-zone', function (event)
@@ -240,7 +256,7 @@ module.exports = {
 
 					setTimeout(function ()
 					{
-						window.open(_href, '_blank');
+						my_openInBackground(_href, '_blank');
 					}, 200);
 				}
 			});
@@ -278,7 +294,7 @@ module.exports = {
 			$('body')
 				.on('click', '.action-follow :submit, .action-follow ._button', function ()
 				{
-					window.open(_href, '_blank');
+					my_openInBackground(_href, '_blank');
 				})
 			;
 		}
@@ -307,7 +323,7 @@ module.exports = {
 			let _area = $(_area_selector);
 
 			greasemonkey.GM_addStyle([
-				'._uf_stacc_ref_illust { box-shadow: 0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset; border-radius: 10px; }'
+				'._uf_stacc_ref_illust { box-shadow: 0px 0px 0px 2px rgba(0, 149, 222, 0.3) inset; border-radius: 10px; }',
 			].join());
 
 			let _fn_timeline = function (event)
@@ -318,7 +334,7 @@ module.exports = {
 						let _this = $(this);
 
 						_this
-							// @ts-ignore
+						// @ts-ignore
 							.attr('data-done', true)
 							.attr('data-index', index)
 						;
@@ -329,13 +345,13 @@ module.exports = {
 
 						let _badge_poster = $(
 							'.stacc_follow_unify_comment_profile_list img[src*="badge_add_content.png"]:first',
-							_this
+							_this,
 						);
 
 						//console.log(index, _stacc_ref_illust_user_name.text(), _stacc_post_user_name.text());
 
 						if ($('.stacc_ref_thumb_caption .stacc_ref_illust_title',
-							_this
+							_this,
 						).length && !_badge_poster.length && _stacc_ref_illust_user_name.text() != _stacc_post_user_name.text())
 						{
 							_this
@@ -470,6 +486,8 @@ function pixiv_link_uid(uid, type = 'member_illust')
 
 function follow_button(_url_obj, window)
 {
+	//const winOpen = require('root/lib/func/open') as typeof import("root/lib/func/open");
+
 	$('body')
 		.on('click.follow', ':not(.following2) .follow-button:not(.on), aside section button[data-click-label="follow"], section button[data-click-label="follow"], ul li div button[data-click-label="follow"]', function (event)
 		{
@@ -505,7 +523,7 @@ function follow_button(_url_obj, window)
 
 				if (p.length)
 				{
-					window.open(href_replace(p.prop('href')), '_blank');
+					my_openInBackground(href_replace(p.prop('href')), '_blank');
 				}
 			}
 
@@ -536,7 +554,7 @@ function follow_button(_url_obj, window)
 
 					if (!_skip)
 					{
-						window.open(pixiv_link_uid(uid), '_blank');
+						my_openInBackground(pixiv_link_uid(uid), '_blank');
 					}
 				}
 
@@ -568,4 +586,12 @@ function href_uid(href: string): string
 	{
 		return m[1];
 	}
+}
+
+export function my_openInBackground(url: string, ...argv)
+{
+	const GMApi = require('root/lib/greasemonkey/gm/api').GMApi as typeof import("root/lib/greasemonkey/gm/api").GMApi;
+	//const winOpen = require('root/lib/func/open') as typeof import("root/lib/func/open");
+
+	return GMApi.openInTab(url, true);
 }

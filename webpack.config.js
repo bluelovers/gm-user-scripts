@@ -73,7 +73,10 @@ module.exports = {
 		new webpack.IgnorePlugin(/\.(txt|ts)$/),
 
 		//new webpack.optimize.ModuleConcatenationPlugin(),
-		new webpack.optimize.UglifyJsPlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+//			comments: false,
+//			minimize: true,
+		}),
 
 	],
 

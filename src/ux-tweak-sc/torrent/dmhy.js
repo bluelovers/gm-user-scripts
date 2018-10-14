@@ -34,6 +34,10 @@ module.exports = {
 		let jquery_stylesheet = require('jquery-stylesheet');
 		jquery_stylesheet($);
 
+		const Promise = require('bluebird');
+
+		await Promise.delay(100);
+
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link('.weekly_list_part a')
 			.prop('target', '_blank')
