@@ -63,7 +63,7 @@
 // @exclude		http*://www.dmm.co*/digital*
 //
 // ==/UserScript==
-!function(e){function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}var t={};n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:r})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},n.p="",n(n.s=6)}([/*!******************************!*\
+!function(e){function n(r){if(t[r])return t[r].exports;var i=t[r]={i:r,l:!1,exports:{}};return e[r].call(i.exports,i,i.exports,n),i.l=!0,i.exports}var t={};n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:r})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},n.p="",n(n.s=6)}([/*!******************************!*\
   !*** ./lib/jquery/global.js ***!
   \******************************/
 /*! dynamic exports provided */
@@ -188,7 +188,7 @@ function(module,exports,__webpack_require__){"use strict";eval("\nObject.defineP
   \*************************************/
 /*! dynamic exports provided */
 /*! all exports used */
-function(module,exports,__webpack_require__){"use strict";eval("\nconst menu = __webpack_require__(/*! greasemonkey/lib/menu */ 25);\nmodule.exports = menu;\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./lib/greasemonkey/gm/menu.js\n// module id = 24\n// module chunks = 0\n\n//# sourceURL=webpack:///./lib/greasemonkey/gm/menu.js?")},/*!***********************************************!*\
+function(module,exports,__webpack_require__){"use strict";eval("\nconst menu = __webpack_require__(/*! greasemonkey/lib/menu */ 25);\nmodule.exports = menu;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWVudS5qcyIsInNvdXJjZVJvb3QiOiIuLyIsInNvdXJjZXMiOlsibGliL2dyZWFzZW1vbmtleS9nbS9tZW51LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSw4Q0FBOEM7QUFDOUMsaUJBQVMsSUFBSSxDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IG1lbnUgPSByZXF1aXJlKCdncmVhc2Vtb25rZXkvbGliL21lbnUnKVxyXG5leHBvcnQgPSBtZW51XHJcbiJdfQ==\n\n//////////////////\n// WEBPACK FOOTER\n// ./lib/greasemonkey/gm/menu.js\n// module id = 24\n// module chunks = 0\n\n//# sourceURL=webpack:///./lib/greasemonkey/gm/menu.js?")},/*!***********************************************!*\
   !*** ./node_modules/greasemonkey/lib/menu.js ***!
   \***********************************************/
 /*! dynamic exports provided */

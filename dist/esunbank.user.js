@@ -105,7 +105,7 @@ function(module,exports,__webpack_require__){"use strict";eval("\nObject.defineP
   \*************************************/
 /*! dynamic exports provided */
 /*! all exports used */
-function(module,exports,__webpack_require__){"use strict";eval("\nconst menu = __webpack_require__(/*! greasemonkey/lib/menu */ 15);\nmodule.exports = menu;\n\n\n//////////////////\n// WEBPACK FOOTER\n// ./lib/greasemonkey/gm/menu.js\n// module id = 14\n// module chunks = 0\n\n//# sourceURL=webpack:///./lib/greasemonkey/gm/menu.js?")},/*!***********************************************!*\
+function(module,exports,__webpack_require__){"use strict";eval("\nconst menu = __webpack_require__(/*! greasemonkey/lib/menu */ 15);\nmodule.exports = menu;\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWVudS5qcyIsInNvdXJjZVJvb3QiOiIuLyIsInNvdXJjZXMiOlsibGliL2dyZWFzZW1vbmtleS9nbS9tZW51LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSw4Q0FBOEM7QUFDOUMsaUJBQVMsSUFBSSxDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IG1lbnUgPSByZXF1aXJlKCdncmVhc2Vtb25rZXkvbGliL21lbnUnKVxyXG5leHBvcnQgPSBtZW51XHJcbiJdfQ==\n\n//////////////////\n// WEBPACK FOOTER\n// ./lib/greasemonkey/gm/menu.js\n// module id = 14\n// module chunks = 0\n\n//# sourceURL=webpack:///./lib/greasemonkey/gm/menu.js?")},/*!***********************************************!*\
   !*** ./node_modules/greasemonkey/lib/menu.js ***!
   \***********************************************/
 /*! dynamic exports provided */
