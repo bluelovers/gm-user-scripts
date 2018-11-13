@@ -1080,7 +1080,7 @@ height: 18px;
 				let n = 0;
 
 				$('.core_reply_wrapper:not([data-loaded])')
-					.each(function ()
+					.each(function (elem, index)
 					{
 						let core_reply_wrapper = $(this);
 						// @ts-ignore
@@ -1090,7 +1090,7 @@ height: 18px;
 
 						let core_reply = core_reply_wrapper.parents('.core_reply:eq(0)').eq(0);
 
-						core_reply_handler(core_reply);
+						core_reply_handler(core_reply, index);
 
 						let t = Number(core_reply_wrapper.prop('data-loaded-try') || 0);
 
@@ -1153,7 +1153,7 @@ height: 18px;
 									}
 								}, 200);
 
-								core_reply_handler(core_reply);
+								core_reply_handler(core_reply, index);
 							}, 1000 + n * 100);
 						}
 					})
@@ -1331,13 +1331,14 @@ function core_reply_handler(_this)
 	else
 	{
 		//elem.hide();
-	}
 
-	let _a = $('.p_reply a.lzl_link_unfold:visible', _this)
+		let _a = $('.p_reply a.lzl_link_unfold:visible:not([data-done])', _this)
 
-	if (_a.length && _a.text().match(/\(\s*\d+\s*\)/))
-	{
-		_a[0].click();
+		if (_a.length && _a.text().match(/.+\(\s*\d+\s*\)/))
+		{
+			_a.attr('data-done', true);
+			_a[0].click();
+		}
 	}
 
 	//console.log(elem, chk);
