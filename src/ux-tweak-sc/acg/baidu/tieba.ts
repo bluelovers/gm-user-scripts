@@ -823,6 +823,15 @@ height: 18px;
 								// @ts-ignore
 								_post.prop('data-loaded', true);
 
+								{
+									let _a = $('.p_content a.p_forbidden_post_content_fold:visible', _this)
+
+									if (_a.length)
+									{
+										_a[0].click();
+									}
+								}
+
 								$('.d_post_content_main', _post).prepend($('<a/>')
 									.text('#' + _post.data('field').content.post_no)
 									.prop('href',
@@ -1322,6 +1331,13 @@ function core_reply_handler(_this)
 	else
 	{
 		//elem.hide();
+	}
+
+	let _a = $('.p_reply a.lzl_link_unfold:visible', _this)
+
+	if (_a.length && _a.text().match(/\(\s*\d+\s*\)/))
+	{
+		_a[0].click();
 	}
 
 	//console.log(elem, chk);

@@ -9,7 +9,7 @@
 // @description:en	於 Gitee 碼雲 增加一點小功能
 // @description:zh	於 Gitee 碼雲 增加一點小功能
 //
-// @version		4.4.0
+// @version		4.4.1
 //
 // @grant		GM.deleteValue
 // @grant		GM.getValue
