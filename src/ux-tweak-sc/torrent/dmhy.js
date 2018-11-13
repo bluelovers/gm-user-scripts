@@ -240,7 +240,11 @@ function mini_jmd()
 					let _name = _this.text();
 					let _href = _this.prop('href');
 
-					let _kw = decodeURIComponent(_href.replace(/.*\/topics\/list\?keyword=/g, ''));
+					let _s = _href.replace(/.*\/topics\/list\?keyword=/g, '')
+						.replace(/%(?=%)/g, '')
+					;
+
+					let _kw = decodeURIComponent(_s);
 
 					_kw = mini_jmd_kw(_kw, _name);
 
