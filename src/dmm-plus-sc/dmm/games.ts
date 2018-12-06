@@ -12,11 +12,13 @@ let o: IDemo = {
 		include: [
 			'http*://games.dmm.co.jp/*',
 			'http*://games.dmm.co.jp/detail/*',
+			'http*://games.dmm.co.jp/*/detail/*',
 			'http*://www.dmm.co.jp/netgame/*',
 			'http*://personal.games.dmm.co.jp/my-games/*',
 
 			'http*://games.dmm.com/*',
 			'http*://games.dmm.com/detail/*',
+			'http*://games.dmm.com/*/detail/*',
 			'http*://www.dmm.com/netgame/*',
 			'http*://personal.games.dmm.com/my-games/*',
 		],

@@ -256,6 +256,8 @@ module.exports = {
 						return old.replace('xs.dmzj.com', 'q.dmzj.com');
 					})
 				;
+
+				addNav();
 			})
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
@@ -395,3 +397,24 @@ module.exports = {
 	},
 
 };
+
+function addNav()
+{
+	let nav = $('.mainNav');
+
+	if (nav.length)
+	{
+		if (!$('#mainNav_in_r a', nav).length)
+		{
+			$('#mainNav_in_r a', nav).append(`<a href="http://i.dmzj.com/subscribe">我的订阅</a>`);
+		}
+
+		if (!$('#center_box').length)
+		{
+			nav.eq(0).css({
+				position: 'sticky',
+				top: 0,
+			});
+		}
+	}
+}

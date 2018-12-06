@@ -74,6 +74,7 @@ module.exports.list = [
 	"dict/edu/dict.revised.moe",
 	"novel/kakuyomu.jp",
 	"novel/lightnovel.cn",
+	"novel/masiro.moe",
 	"novel/syosetu",
 	"novel/wenku8",
 	"other/jetbrains/jetbrains",
@@ -170,6 +171,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/dict/edu/dict.revised.moe');
 	require('root/src/ux-tweak-sc/novel/kakuyomu.jp');
 	require('root/src/ux-tweak-sc/novel/lightnovel.cn');
+	require('root/src/ux-tweak-sc/novel/masiro.moe');
 	require('root/src/ux-tweak-sc/novel/syosetu');
 	require('root/src/ux-tweak-sc/novel/wenku8');
 	require('root/src/ux-tweak-sc/other/jetbrains/jetbrains');
@@ -293,6 +295,8 @@ module.exports.metadata.include = [
 	"http*://kakuyomu.jp/*",
 	"http*://*.lightnovel.cn/*",
 	"http*://*.lightnovel.cn/*mod=viewthread*",
+	"http*://masiro.moe/*",
+	"http*://masiro.moe/*mod=viewthread*",
 	"http*://syosetu.com/*",
 	"http*://www.wenku8.com/*",
 	"http*://www.jetbrains.com/*",
