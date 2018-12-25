@@ -131,6 +131,8 @@ let o: IDemo = {
 				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 				}`,
 
+				`.lzl_cnt .lzl_content_main { font-size: 9pt; }`,
+
 				`.icon-reply {
 					width: 16px;
 					height: 13px;
@@ -1304,7 +1306,7 @@ function lazyload(_url_obj)
 	;
 }
 
-function core_reply_handler(_this)
+function core_reply_handler(_this, index?: number)
 {
 	let chk = _this.find('.lzl_link_fold:visible, .loading_reply');
 	let elem = _this.find('.core_reply_wrapper');
