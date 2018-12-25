@@ -76,15 +76,6 @@ let o: IDemo = {
 
 			`#wp, .wp { max-width: 960px; width: 95%; }`,
 
-			`.pi { min-height: 16px; height: auto; }`,
-			`@media only screen and (max-width: 950px) {`,
-
-			`#hd .hdc > h2 { display: none; }`,
-			`.fl_icn_g { display: none; }`,
-			`.fl_g dl { margin-left: auto; }`,
-
-			`}`,
-
 			`.fl_tb .fl_g { opacity: 0.25; min-width: 150px; }`,
 			`.fl_tb .fl_g._has_new_post { opacity: 0.75; }`,
 			`.fl_tb .fl_g:hover { opacity: 1; }`,
@@ -96,6 +87,24 @@ let o: IDemo = {
 			`.pls.favatar:hover .noavatar { display: initial; }`,
 
 			`.t_fsz { min-height: auto; }`,
+
+			`.pi { min-height: 16px; height: auto; }`,
+			`@media only screen and (max-width: 950px) {`,
+
+			`#hd .hdc > h2 { display: none; }`,
+			`.fl_icn_g { display: none; }`,
+			`.fl_g dl { margin-left: auto; }`,
+
+			`#f_pst #fastpostform td.pls { display: none; }`,
+			`#f_pst #fastsmiliesdiv { display: none; }`,
+
+			//`.pls.favatar ._avatar_area { display: none; }`,
+			//`.pls.favatar:hover ._avatar_area { display: block; }`,
+			//`._avatar_area { position: absolute; }`,
+
+			`}`,
+
+
 		]);
 
 		{

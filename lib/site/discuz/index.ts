@@ -15,6 +15,8 @@ export function hide_userinfo(context)
 		_avatar.addClass('noavatar');
 	}
 
+	_avatar.addClass('_avatar_area');
+
 	let _pls_sub = $('<div class="_pls_sub"/>');
 
 	console.log(_pls_sub, _avatar);
