@@ -257,7 +257,10 @@ module.exports = {
 					})
 				;
 
-				addNav();
+				setTimeout(function ()
+				{
+					addNav();
+				}, 1000);
 			})
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{

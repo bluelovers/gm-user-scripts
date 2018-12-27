@@ -75,6 +75,7 @@ let o: IDemo = {
 			`#threadlist th .xst, .newthread .xst { font-size: 1rem; }`,
 
 			`#wp, .wp { max-width: 960px; width: 95%; }`,
+			`.widthauto #wp, .widthauto .wp { max-width: initial; }`,
 
 			`.fl_tb .fl_g { opacity: 0.25; min-width: 150px; }`,
 			`.fl_tb .fl_g._has_new_post { opacity: 0.75; }`,
@@ -211,6 +212,20 @@ let o: IDemo = {
 			{
 
 			}
+		}
+
+		if ($('body.pg_task').length)
+		{
+			let _a = $('#ct .bbda a:has(> img[alt="apply"])');
+
+			if (_a.length)
+			{
+				_a.each(function (index, elem)
+				{
+					elem.click();
+				})
+			}
+
 		}
 	},
 
