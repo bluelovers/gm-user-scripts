@@ -46,8 +46,8 @@ module.exports = {
 
 	main(_url_obj = global._url_obj)
 	{
-		const debounce = require('throttle-debounce/debounce');
-		const throttle = require('throttle-debounce/throttle');
+		const { debounce } = require('throttle-debounce');
+		const { throttle } = require('throttle-debounce');
 		//const winOpen = require('root/lib/func/open') as typeof import("root/lib/func/open");
 
 		const _uf_done = require('root/lib/event/done');
@@ -225,8 +225,8 @@ module.exports = {
 
 			module.exports.adblock(_url_obj);
 
-			//const debounce = require('throttle-debounce/debounce');
-			//const throttle = require('throttle-debounce/throttle');
+			//const { debounce } = require('throttle-debounce');
+			//const { throttle } = require('throttle-debounce');
 
 			$('.column-search-result').on('DOMNodeInserted', throttle(300, function ()
 			{

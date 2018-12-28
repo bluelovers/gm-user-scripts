@@ -94,7 +94,7 @@ let o: IDemo = {
 				])
 			;
 
-			const debounce = require('throttle-debounce/debounce');
+			const { debounce } = require('throttle-debounce');
 
 			let _init = false;
 

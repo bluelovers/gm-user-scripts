@@ -362,7 +362,7 @@ let o: IDemo = {
 				_div_padding.appendTo(full_contents);
 			}
 
-			const throttle = require('throttle-debounce/throttle');
+			const { throttle } = require('throttle-debounce');
 
 			full_contents
 				.scrollTop(0)

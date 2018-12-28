@@ -42,8 +42,8 @@ module.exports = {
 		if ($('#manga').length)
 		{
 			const comic_style = require('root/lib/comic/style');
-			const debounce = require('throttle-debounce/debounce');
-			const throttle = require('throttle-debounce/throttle');
+			const { debounce } = require('throttle-debounce');
+			const { throttle } = require('throttle-debounce');
 
 			let _img_selector = '#manga';
 			let _img = $(_img_selector);

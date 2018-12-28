@@ -131,7 +131,7 @@ let o: IDemo = {
 				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 				}`,
 
-				`.lzl_cnt .lzl_content_main { font-size: 9pt; }`,
+				`.lzl_cnt .lzl_content_main, .replyme_text, .edui-editor-body .edui-body-container { font-size: 9pt; }`,
 
 				`.icon-reply {
 					width: 16px;
@@ -238,8 +238,8 @@ height: 18px;
 			])
 		;
 
-		const throttle = require('throttle-debounce/throttle');
-		const debounce = require('throttle-debounce/debounce');
+		const { throttle } = require('throttle-debounce');
+		const { debounce } = require('throttle-debounce');
 		const _uf_done = require('root/lib/event/done');
 
 		await PromiseBluebird.delay(250);
@@ -1035,7 +1035,7 @@ height: 18px;
 
 						break;
 				}
-			}))
+			}, null, '.edui-container, :input, [contenteditable="true"]'))
 			.on('load.scroll', async function ()
 			{
 				if ($(window).scrollTop() < 300)

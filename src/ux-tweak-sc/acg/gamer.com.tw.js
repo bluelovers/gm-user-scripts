@@ -45,8 +45,8 @@ module.exports = {
 
 		const _uf_done = require('root/lib/event/done');
 		const keycodes = require('keycodes');
-		const debounce = require('throttle-debounce/debounce');
-		const throttle = require('throttle-debounce/throttle');
+		const { debounce } = require('throttle-debounce');
+		const { throttle } = require('throttle-debounce');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
@@ -77,8 +77,8 @@ module.exports = {
 
 		if (_url_obj.path.match(/animeVideo/))
 		{
-			const debounce = require('throttle-debounce/debounce');
-			const throttle = require('throttle-debounce/throttle');
+			const { debounce } = require('throttle-debounce');
+			const { throttle } = require('throttle-debounce');
 
 			greasemonkey.GM_addStyle([
 				`body, #BH_background, .BH_background, .sky, .bullet-send, .bullet-send .bullet-send-setting, .bullet-send .bullet-send-submit, .bullet-send .bullet-send-msg input, .anime-title { background: ${comic_style.bg_dark.background}; }`,

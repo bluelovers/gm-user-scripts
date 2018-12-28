@@ -33,8 +33,8 @@ let o: IDemo = {
 	async main(_url_obj = global._url_obj)
 	{
 		const _uf_done = require('root/lib/event/done');
-		const debounce = require('throttle-debounce/debounce');
-		const throttle = require('throttle-debounce/throttle');
+		const { debounce } = require('throttle-debounce');
+		const { throttle } = require('throttle-debounce');
 		const greasemonkey = require('root/lib/greasemonkey/uf');
 		const comic_style = require('root/lib/comic/style');
 		const keycodes = require('keycodes');

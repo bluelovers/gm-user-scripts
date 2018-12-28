@@ -36,8 +36,8 @@ module.exports = {
 		if ($('#mangaBox').length)
 		{
 			const comic_style = require('root/lib/comic/style');
-			const debounce = require('throttle-debounce/debounce');
-			const throttle = require('throttle-debounce/throttle');
+			const { debounce } = require('throttle-debounce');
+			const { throttle } = require('throttle-debounce');
 
 			let _img_selector = '#mangaBox #mangaFile';
 			let _img = $(_img_selector);

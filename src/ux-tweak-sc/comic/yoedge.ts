@@ -43,8 +43,8 @@ let o: IDemo = {
 		const _uf_done = require('root/lib/event/done');
 		require('root/lib/jquery/event/key');
 		const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
-		const debounce = require('throttle-debounce/debounce');
-		const throttle = require('throttle-debounce/throttle');
+		const { debounce } = require('throttle-debounce');
+		const { throttle } = require('throttle-debounce');
 		require('root/lib/jquery/onscreen');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');

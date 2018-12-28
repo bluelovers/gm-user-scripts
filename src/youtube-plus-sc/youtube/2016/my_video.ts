@@ -41,8 +41,8 @@ let o: IDemo = {
 	async main(_url_obj = global._url_obj)
 	{
 		const _uf_done = require('root/lib/event/done');
-		const debounce = require('throttle-debounce/debounce');
-		const throttle = require('throttle-debounce/throttle');
+		const { debounce } = require('throttle-debounce');
+		const { throttle } = require('throttle-debounce');
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		require('root/lib/greasemonkey/web/xhr').ajaxSetup();
 		const YU = require('root/lib/site/youtube');

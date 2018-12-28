@@ -45,8 +45,8 @@ let o: IDemo = {
 		const comic_style = require('root/lib/comic/style');
 		const greasemonkey = require('root/lib/greasemonkey/uf');
 		const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
-		const debounce = require('throttle-debounce/debounce');
-		const throttle = require('throttle-debounce/throttle');
+		const { debounce } = require('throttle-debounce');
+		const { throttle } = require('throttle-debounce');
 		require('root/lib/jquery/onscreen');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');

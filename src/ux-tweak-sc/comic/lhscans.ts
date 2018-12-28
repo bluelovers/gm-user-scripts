@@ -50,8 +50,8 @@ let o: IDemo = {
 		;
 
 		const _uf_done = require('root/lib/event/done');
-		const debounce = require('throttle-debounce/debounce');
-		const throttle = require('throttle-debounce/throttle');
+		const { debounce } = require('throttle-debounce');
+		const { throttle } = require('throttle-debounce');
 		const greasemonkey = require('root/lib/greasemonkey/uf');
 		const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
 		const comic_style = require('root/lib/comic/style');

@@ -37,8 +37,8 @@ module.exports = {
 		const keycodes = require('keycodes');
 		const _uf_done = require('root/lib/event/done');
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
-		const debounce = require('throttle-debounce/debounce');
-		const throttle = require('throttle-debounce/throttle');
+		const { debounce } = require('throttle-debounce');
+		const { throttle } = require('throttle-debounce');
 
 		$('#srp-pjax')
 			.on('DOMNodeInserted', '#srp-pjax-content', debounce(200, function ()

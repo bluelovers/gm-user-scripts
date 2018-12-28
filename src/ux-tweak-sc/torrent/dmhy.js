@@ -69,8 +69,8 @@ module.exports = {
 		$(window).scrollTo($('.topic-main').push('.menu'));
 
 		{
-			const debounce = require('throttle-debounce/debounce');
-			const throttle = require('throttle-debounce/throttle');
+			const { debounce } = require('throttle-debounce');
+			const { throttle } = require('throttle-debounce');
 
 			let data = mini_jmd();
 
