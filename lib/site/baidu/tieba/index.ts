@@ -99,7 +99,7 @@ export interface IBaiduTiebaPostField
 
 export function bde_image(input: JQuery<HTMLElement> | string | HTMLElement)
 {
-	let elem = $(input);
+	let elem = $(input as any);
 
 	if (!elem.length)
 	{
@@ -167,13 +167,15 @@ export function scrollToTieba(who, ...argv)
 	return fn();
 }
 
-export function scrollTopPadding(who: INodeAll | number, min = 70)
+export function scrollTopPadding(who: INodeAll | number, min = 70): number
 {
 	if (typeof who !== 'number')
 	{
+		// @ts-ignore
 		who = $(who).outerHeight() || 0;
 	}
 
+	// @ts-ignore
 	return Math.max(who, min);
 }
 

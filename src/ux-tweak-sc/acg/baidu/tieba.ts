@@ -235,6 +235,9 @@ height: 18px;
 
 				`.tbui_follow_fixed, .core_title_wrap_bright { position: sticky !important; top: 0px; }`,
 
+				`.small_list_gallery .thumbnail { max-height: 135px; max-width: 200px; overflow: hidden; display: inline-block; }`,
+				`.small_list_gallery .thumbnail img.threadlist_pic { max-height: 200px; }`,
+
 			])
 		;
 
@@ -242,6 +245,7 @@ height: 18px;
 		const { debounce } = require('throttle-debounce');
 		const _uf_done = require('root/lib/event/done');
 
+		// @ts-ignore
 		await PromiseBluebird.delay(250);
 
 		let PageData: IBaiduTiebaPageData;
@@ -1082,7 +1086,7 @@ height: 18px;
 				let n = 0;
 
 				$('.core_reply_wrapper:not([data-loaded])')
-					.each(function (elem, index)
+					.each(function (index, elem)
 					{
 						let core_reply_wrapper = $(this);
 						// @ts-ignore
@@ -1282,10 +1286,11 @@ function lazyload(_url_obj)
 {
 	const libSiteBaiduTieba = require('root/lib/site/baidu/tieba');
 
-	$('img.BDE_Image[data-original], img.threadlist_pic')
+	let _imgs = $('img.BDE_Image[data-original], img.threadlist_pic')
+		.filter('img')
 		.not('[data-done]')
-		// @ts-ignore
-		.attr('data-done', true)
+		.attr('data-done', true as any)
+		.off('error.src')
 		.attr('src', function (i, old)
 		{
 			let _this = $(this);
@@ -1295,15 +1300,39 @@ function lazyload(_url_obj)
 
 			if (_img)
 			{
+				src = _img.data('fullsrc');
+
 				_this.attr('bpic', _img.data('fullsrc'));
 			}
+
+//			_this.attr('lowsrc', _this.attr('bpic') || src);
 
 			if (old != src)
 			{
 				return src;
 			}
 		})
+		.on('error.src', function ()
+		{
+			let _this = $(this);
+
+			let _s0 = _this.attr('src');
+			let _s1 = _this.attr('bpic');
+
+			_this.off('error.src');
+
+			if ((_s0 != _s1) && _s1)
+			{
+				_this.attr('src', _s1);
+			}
+			else if ((_s0 == _s1) && _this.attr('data-original'))
+			{
+				_this.attr('src', _this.attr('data-original'));
+			}
+		})
 	;
+
+	//console.log('lazyload', _imgs);
 }
 
 function core_reply_handler(_this, index?: number)
