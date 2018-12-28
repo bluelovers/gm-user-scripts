@@ -35,7 +35,7 @@ module.exports = {
 	},
 
 	module: {
-		loaders: [
+		rules: [
 			{ test: /\.css$/, loader: 'style-loader!css-loader' },
 			//{ test: /\.tsx$/, loader: 'ts-loader' }
 //			{
@@ -43,7 +43,7 @@ module.exports = {
 //				use: 'ts-loader',
 //				exclude: /node_modules/
 //			},
-		]
+		],
 	},
 
 //	devtool: "inline-source-map",
@@ -79,6 +79,10 @@ module.exports = {
 		}),
 
 	],
+
+//	optimization: {
+////		//minimize: true,
+////	},
 
 	//cache: false,
 
