@@ -54,7 +54,10 @@ let o: IDemo = {
 
 		UF.registerMenuCommand({
 			id: module.exports.name,
-			key: 'disable_nocontextmenu',
+			//key: 'kill it',
+
+			key: '破壞石墨網頁',
+
 		}, (options) =>
 		{
 			_fn_editor()
