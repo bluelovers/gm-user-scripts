@@ -131,7 +131,7 @@ let o: IDemo = {
 				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 				}`,
 
-				`.lzl_cnt .lzl_content_main, .replyme_text, .edui-editor-body .edui-body-container { font-size: 9pt; }`,
+				`.lzl_cnt .lzl_content_main, .replyme_text, .edui-editor-body .edui-body-container, .edui-editor-body .edui-body-container { font-size: 9pt; }`,
 
 				`.icon-reply {
 					width: 16px;
