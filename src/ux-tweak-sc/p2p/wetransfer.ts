@@ -60,7 +60,7 @@ let o: IDemo = {
 		$('body')
 			.on('DOMNodeInserted', '.transfer', debounce(300, function ()
 			{
-				let input = $('.transfer__textfield');
+				let input = $('.transfer__textfield, .transfer-link__url');
 
 				//console.log(input);
 
