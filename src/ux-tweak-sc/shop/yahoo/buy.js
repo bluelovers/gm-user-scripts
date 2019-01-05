@@ -13,6 +13,7 @@ module.exports = {
 			'http*://tw.buy.yahoo.com/activity/*',
 			'https://tw.search.buy.yahoo.com/search/shopping/*',
 			'https://twpay.buy.yahoo.com/checkout/preview*',
+			'https://tw.buy.yahoo.com/coupons*',
 		],
 		exclude: [],
 	},
@@ -39,6 +40,10 @@ module.exports = {
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		const { debounce } = require('throttle-debounce');
 		const { throttle } = require('throttle-debounce');
+
+		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
+
+		const runtimeSiteID = require('root/lib/site/index').create(module.exports.file);
 
 		$('#srp-pjax')
 			.on('DOMNodeInserted', '#srp-pjax-content', debounce(200, function ()
@@ -163,6 +168,86 @@ module.exports = {
 				$('#myaccount > a:has(> .username)')
 					.prop('href', 'https://tw.buy.yahoo.com/myaccount/orderlist?hpp=S2')
 				;
+
+				let _input = $('#TextBoxName, #TextBoxEmail, #TextBoxCustomValue, form[action*="actregister"]');
+
+				if (_input.length)
+				{
+					_input.attr('autocomplete', 'on');
+
+					$('#ButtonConfirm').removeAttr('disabled');
+
+					$('.blockUI.blockOverlay').click(function (event)
+					{
+						$('.blockUI')
+							.hide()
+							.css('z-index', 0)
+							.remove()
+						;
+
+						_uf_done(event);
+					});
+
+					_input = _input
+						.filter(':text, textarea')
+						.filter('[id]')
+						.filter(':visible')
+						.not(':hidden, :submit, :file')
+						;
+
+					_input
+						.each(function ()
+						{
+							let _this = $(this);
+
+							let _id = _this.prop('id');
+							let _value = _this.val();
+
+							if (!_value)
+							{
+								let _v = runtimeSiteID
+									.getValue(_id)
+								;
+
+								if (_v)
+								{
+									_this.val(_v);
+								}
+							}
+						})
+					;
+
+					_input
+						.on('change keyup', function ()
+						{
+							let _this = $(this);
+
+							let _id = _this.prop('id');
+							let _value = _this.val();
+
+							if (_value)
+							{
+								runtimeSiteID
+									.setValue(_id, _value)
+								;
+							}
+						})
+					;
+				}
+
+				if (_url_obj.path.match(/coupons/))
+				{
+					$('div[class*="CouponsItem__receive"]').each(function ()
+					{
+						let _a = $(this);
+
+						if (!_a.text().match(/已領取/))
+						{
+							this.click();
+						}
+					});
+				}
+
 			}))
 			.on('load.search', function ()
 			{

@@ -311,6 +311,7 @@ module.exports.metadata.include = [
 	"http*://tw.buy.yahoo.com/activity/*",
 	"https://tw.search.buy.yahoo.com/search/shopping/*",
 	"https://twpay.buy.yahoo.com/checkout/preview*",
+	"https://tw.buy.yahoo.com/coupons*",
 	"http*://tw.mall.yahoo.com/*",
 	"http*://tw.user.mall.yahoo.com/my/*",
 	"https://tw.search.mall.yahoo.com/*",
