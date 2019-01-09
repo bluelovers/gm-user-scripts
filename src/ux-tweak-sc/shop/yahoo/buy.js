@@ -85,6 +85,8 @@ module.exports = {
 
 					'a[class*="OrderItem__item"]',
 
+					'a[class*="BaseGridItem__content"]',
+
 				].join(','))
 					.prop('target', '_blank')
 					.attr('data-done', true)

@@ -29,3 +29,7 @@ export function hide_userinfo(context)
 	;
 }
 
+export function f()
+{
+
+}

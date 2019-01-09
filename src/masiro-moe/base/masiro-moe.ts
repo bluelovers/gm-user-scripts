@@ -77,8 +77,10 @@ let o: IDemo = {
 			`#wp, .wp { max-width: 960px; width: 95%; }`,
 			`.widthauto #wp, .widthauto .wp { max-width: initial; }`,
 
-			`.fl_tb .fl_g { opacity: 0.25; min-width: 150px; }`,
+			`.fl_tb .fl_g { opacity: 0.35; min-width: 150px; }`,
+			`.fl_tb .fl_g._has_unread_post { opacity: 0.5; }`,
 			`.fl_tb .fl_g._has_new_post { opacity: 0.75; }`,
+
 			`.fl_tb .fl_g:hover { opacity: 1; }`,
 
 			`.pls.favatar ._pls_sub { display: none; }`,
@@ -135,6 +137,11 @@ let o: IDemo = {
 						{
 							_row.addClass('_has_new_post');
 						}
+
+						if (_row.find('.fl_icn_g img[src*="forum_new"]').length)
+						{
+							_row.addClass('_has_unread_post');
+						}
 					})
 				;
 
@@ -142,24 +149,20 @@ let o: IDemo = {
 					// @ts-ignore
 					.sort(function (a, b)
 					{
-						let _a_v = $(a).hasClass('_has_new_post');
-						let _b_v = $(b).hasClass('_has_new_post');
+						let _a_v = $(a).hasClass('_has_new_post') ? 1 : 0;
+						let _b_v = $(b).hasClass('_has_new_post') ? 1 : 0;
 
-						if (_a_v)
-						{
-							if (_b_v)
-							{
-								return 0;
-							}
+						let _c = _b_v - _a_v;
 
-							return -1;
-						}
-						else if (_b_v)
+						if (!_c)
 						{
-							return 1;
+							let _a_v = $(a).hasClass('_has_unread_post') ? 1 : 0;
+							let _b_v = $(b).hasClass('_has_unread_post') ? 1 : 0;
+
+							_c = _b_v - _a_v;
 						}
 
-						return 0;
+						return _c;
 					})
 					.appendTo(_tr)
 				;

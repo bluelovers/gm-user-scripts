@@ -409,7 +409,7 @@ function addNav()
 	{
 		if (!$('#mainNav_in_r a', nav).length)
 		{
-			$('#mainNav_in_r a', nav).append(`<a href="http://i.dmzj.com/subscribe">我的订阅</a>`);
+			$('#mainNav_in_r', nav).append(`<a href="http://i.dmzj.com/subscribe">我的订阅</a>`);
 		}
 
 		if (!$('#center_box').length)
