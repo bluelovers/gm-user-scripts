@@ -130,13 +130,93 @@ module.exports = {
 
 		follow_button(_url_obj, window);
 
-		if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=medium/))
+		if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=manga/))
+		{
+
+			require('root/lib/jquery/event/key').makeJQueryPlugin();
+
+			const keycodes = require('keycodes');
+
+			greasemonkey.GM_addStyle([
+				`.manga .item-container .image { padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0; }`,
+				`.manga { background-color: rgba(0,0,0,0.9); }`,
+			]);
+
+			$(window)
+				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
+				{
+					console.log(666, event.which, keycodes(event.which));
+
+					let target = 'body, #main, .manga, html';
+
+					switch (event.which)
+					{
+						case 33:
+
+							_uf_done(event);
+
+							// @ts-ignore
+							$(target).triggerKey(keycodes('up'));
+
+							break;
+
+						case 37:
+
+							//_uf_done(event);
+
+							break;
+						case 34:
+
+							_uf_done(event);
+
+							// @ts-ignore
+							$(target).triggerKey(keycodes('down'));
+
+							break;
+
+						case 39:
+
+							//_uf_done(event);
+
+							break;
+					}
+				}))
+			;
+		}
+		else if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=medium/))
 		{
 			if ($('body').css('background-color') == '#E4E7EE' || $('body')
 				.css('background-color') == 'rgb(228, 231, 238)')
 			{
 				$('body').css('background-color', 'rgba(0, 3, 11, 0.9)');
 			}
+
+			$(window).on('load', function ()
+			{
+				setTimeout(function ()
+				{
+					$('a[href*="mode=manga"]').each(function ()
+					{
+						let _this = $(this);
+
+						if (_this.attr('href').match(/member_illust\.php/))
+						{
+							_this
+							// @ts-ignore
+								.attr('data-done', true)
+								.attr('target', '_self')
+								.off('click')
+								.on('click', function (event)
+								{
+									_uf_done(event);
+
+									window.location.href = this.href
+								})
+							;
+						}
+					});
+				}, 1000);
+			});
 
 			let fa = function (content?)
 			{

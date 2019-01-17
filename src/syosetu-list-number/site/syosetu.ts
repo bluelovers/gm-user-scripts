@@ -84,7 +84,8 @@ let o: IDemo = {
 				`._fake_p { display: block; }`,
 				`._fake_p:after { content: " "; }`,
 
-				`#novel_contents > div, .footer_bookmark { max-width: 100%; }`,
+				//`#novel_contents > div, .footer_bookmark { max-width: 100%; }`,
+				//`#novel_contents > div, .footer_bookmark { max-width: 730px; }`,
 
 				`#novel_color { width: auto; max-width: 730px; font-size: 14px; line-height: 1.6em !important; }`,
 				`#novel_honbun, #novel_p, #novel_a { width: auto; max-width: 600px; }`,
@@ -167,6 +168,7 @@ let o: IDemo = {
 
 							// @ts-ignore
 							$(window)
+							// @ts-ignore
 								.scrollTo($('.novelrankingtag, #novelrankingtag'), -60)
 							;
 						};
@@ -185,16 +187,30 @@ let o: IDemo = {
 			const CopyLib = require('root/lib/func/copy');
 
 			let _area = $('<div/>');
-			_area.insertAfter('.novel_subtitle');
-			$('#novel_p, #novel_honbun, #novel_a').appendTo(_area);
 
-			$(`<a href="javascript:void(0)">COPY</a>`)
-				.on('click', function ()
+			let _target = $('.novel_subtitle');
+			let _context = $('#novel_p, #novel_honbun, #novel_a');
+
+			if (_target.length)
+			{
+				greasemonkey.GM_addStyle([
+					`#novel_contents > div, .footer_bookmark { max-width: 100%; }`,
+				]);
+
+				_area.insertAfter('.novel_subtitle');
+				_context.appendTo(_area);
+
+				if (_context.length)
 				{
-					CopyLib.copyElem(_area[0]);
-				})
-				.appendTo('.novel_bn')
-			;
+					$(`<a href="javascript:void(0)">COPY</a>`)
+						.on('click', function ()
+						{
+							CopyLib.copyElem(_area[0]);
+						})
+						.appendTo('.novel_bn')
+					;
+				}
+			}
 
 			return;
 		}
