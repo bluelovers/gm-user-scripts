@@ -40,6 +40,7 @@ module.exports = {
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		const { debounce } = require('throttle-debounce');
 		const { throttle } = require('throttle-debounce');
+		const greasemonkey = require('root/lib/greasemonkey/uf');
 
 		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
 
@@ -60,6 +61,21 @@ module.exports = {
 		;
 
 		proctip_post_gov(_url_obj);
+
+		greasemonkey
+			.GM_addStyle([
+				`:root, html, body { font-size: 10pt; font-family: unset; }`,
+
+				`#cl-menunav .tabview .panel ul.yui3-menu li.menuitem .yui3-menu-label { font-size: unset; }`,
+			])
+		;
+
+		greasemonkey
+			.GM_addStyle([
+				`.ShoppingProductFeatures__productFeatureWrapper___1D0EZ ul li div { display: inline-block; margin-top: 0; margin-left: 0; }`,
+
+			])
+		;
 
 		$(window)
 			.on('load.ready', debounce(500, function ()
@@ -86,6 +102,13 @@ module.exports = {
 					'a[class*="OrderItem__item"]',
 
 					'a[class*="BaseGridItem__content"]',
+
+					'[class*="ViewAlsoView__recomendedItem"] a',
+					'[class*="ProductHorizList"] a',
+
+					'.catitem-bd #cl-recproduct a',
+
+					'#cl-menunav .category .popup a',
 
 				].join(','))
 					.prop('target', '_blank')
@@ -195,7 +218,7 @@ module.exports = {
 						.filter('[id]')
 						.filter(':visible')
 						.not(':hidden, :submit, :file')
-						;
+					;
 
 					_input
 						.each(function ()
@@ -250,11 +273,26 @@ module.exports = {
 					});
 				}
 
+				let classs = filter_hash_class([
+					'InfoCell__cellContent',
+					'InfoCell__cellTitle',
+					'DeliveryInfo__expandableContent',
+					'ProductMainInfo__ccardWrap',
+					'InfoCell__cellContent',
+					'ShoppingPromiseInfo__cellContent',
+					'ThemeDiscoveryAd',
+					'ProductMainInfo__ccard',
+				]);
+
+				$(`[class*="ProductHtmlDetail__detail___34PZN"] td > p[style*="font-size"], ${classs.join(', ')}, [class*="RadioButtons__radioBtn___qhOjt"] span`)
+					.css('font-size', 'unset')
+				;
+
 			}))
 			.on('load.search', function ()
 			{
 				//require('root/lib/dom/disable_nocontextmenu')
-					//._uf_disable_nocontextmenu2(1, '#srp_result_list .item, #srp_result_list .item *');
+				//._uf_disable_nocontextmenu2(1, '#srp_result_list .item, #srp_result_list .item *');
 			})
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
@@ -381,4 +419,9 @@ function proctip_post_gov(_url_obj = global._url_obj)
 			}
 		})
 	;
+}
+
+function filter_hash_class(classs)
+{
+	return classs.map(v => `[class*="${v}"]`)
 }
