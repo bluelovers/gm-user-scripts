@@ -4,8 +4,12 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 
 //const ClosureCompilerPlugin = require('webpack-closure-compiler');
+
+let allowSourceMap = false;
+//allowSourceMap = true;
 
 module.exports = {
 	entry: {
@@ -47,8 +51,10 @@ module.exports = {
 	},
 
 //	devtool: "inline-source-map",
-	devtool: "eval",
+//	devtool: "eval",
 //	devtool: false,
+//	devtool: "cheap-eval-source-map ",
+	devtool: allowSourceMap ? 'source-map' : false,
 
 	plugins: [
 //		new ClosureCompilerPlugin({
@@ -58,7 +64,10 @@ module.exports = {
 //				compilation_level: 'ADVANCED'
 //			},
 //			concurrency: 3,
-//		})
+//		}),
+
+		new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ja/),
+		new webpack.IgnorePlugin(/zh[/\\]convert[/\\].*\.txt/, /cjk-conv/),
 
 		new webpack.ProvidePlugin({
 			//$: 'jquery/dist/jquery.min',
@@ -73,12 +82,51 @@ module.exports = {
 		new webpack.IgnorePlugin(/\.(txt|ts)$/),
 
 		//new webpack.optimize.ModuleConcatenationPlugin(),
-		new webpack.optimize.UglifyJsPlugin({
-//			comments: false,
-//			minimize: true,
-		}),
+//		new webpack.optimize.UglifyJsPlugin({
+////			comments: false,
+////			minimize: true,
+//		}),
 
 	],
+
+	optimization: {
+		minimizer: [new TerserPlugin({
+			sourceMap: allowSourceMap,
+
+			parallel: true,
+
+			//exclude: /regexp-cjk|regex/,
+
+			terserOptions: {
+				compress: {
+					dead_code: false,
+					global_defs: {},
+					ecma: 8,
+					inline: true,
+					keep_classnames: true,
+					keep_fnames: false,
+					keep_infinity: true,
+					passes: 2,
+					pure_getters: false,
+					unused: false,
+					warnings: true,
+				},
+				sourceMap: !allowSourceMap ? undefined : {
+					url: "includeSources",
+					includeSources: true,
+				},
+				ecma: 8,
+				output: {
+					beautify: true,
+					indent_level: 0,
+					indent_start: 0,
+					comments: false,
+				},
+				keep_classnames: true,
+				keep_fnames: false,
+			},
+		})],
+	},
 
 //	optimization: {
 ////		//minimize: true,

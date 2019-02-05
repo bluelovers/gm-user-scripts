@@ -187,7 +187,9 @@ export function run(uxid: string, exports: IExports, $jq?: JQueryStatic, cb?: IM
 		}
 		catch (e)
 		{
-			console.error(uxid, e.message, e.stack);
+			console.error(uxid, e.message);
+			console.error(e.stack);
+			console.trace(e.message);
 		}
 		finally
 		{

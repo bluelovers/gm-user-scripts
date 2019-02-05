@@ -55,6 +55,7 @@ module.exports.list = [
 	"code/stackoverflow",
 	"comic/999comic",
 	"comic/alphapolis.co.jp",
+	"comic/backup/lhscan",
 	"comic/book.dmm.co.jp",
 	"comic/comic-walker",
 	"comic/comico",
@@ -152,6 +153,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/code/stackoverflow');
 	require('root/src/ux-tweak-sc/comic/999comic');
 	require('root/src/ux-tweak-sc/comic/alphapolis.co.jp');
+	require('root/src/ux-tweak-sc/comic/backup/lhscan');
 	require('root/src/ux-tweak-sc/comic/book.dmm.co.jp');
 	require('root/src/ux-tweak-sc/comic/comic-walker');
 	require('root/src/ux-tweak-sc/comic/comico');
@@ -262,6 +264,7 @@ module.exports.metadata.include = [
 	"http*://www.999comic.com/*",
 	"http://t.168girl.com/*",
 	"http*://www.alphapolis.co.jp/*",
+	"http*://lhscan.net/*",
 	"http*://book.dmm.co.jp/*",
 	"https://comic-walker.com/*",
 	"http*://www.comico.com.tw/*",

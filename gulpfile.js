@@ -15,7 +15,8 @@ const webpack = require("webpack");
 const gulpWebpack = require('webpack-stream');
 
 const Promise = require("bluebird");
-const fs = Promise.promisifyAll(require("fs"));
+//const fs = Promise.promisifyAll(require("fs"));
+const fs = require("fs-extra");
 const globby = require('globby');
 
 const path = require('path');
@@ -24,6 +25,7 @@ const cheerio = require('cheerio');
 
 const cwd_src = path.join(__dirname, 'src');
 const cwd_dist = path.join(__dirname, 'dist');
+const cwd_temp = path.join(__dirname, 'test/temp');
 
 const prettifyXml = require('prettify-xml');
 const pd = require('pretty-data').pd;
@@ -37,6 +39,14 @@ const addTasks = require('gulp-add-tasks2').init(gulp);
 const gmMetadata = require('./lib/greasemonkey/metadata');
 
 const webpackMerge = require('webpack-merge');
+
+const console = require('debug-color2').console;
+
+console.enabledColor = true;
+
+console.inspectOptions = {
+	colors: true,
+};
 
 //var closureCompiler = require('google-closure-compiler').gulp();
 
@@ -239,7 +249,7 @@ module.exports.default = module.exports;
 
 		//module.exports.main = ${main.toString()};
 
-		await fs.writeFileAsync(path.join(cwd_src, name, 'index.js'), text);
+		await fs.writeFile(path.join(cwd_src, name, 'index.js'), text);
 	}
 
 	//console.log(data);
@@ -249,7 +259,7 @@ gulp.task("gm_scripts:config", async function (callback)
 {
 	const config_path = 'D:\\Users\\Documents\\The Project\\gm_scripts_repo\\gm_scripts\\config.xml';
 
-	let _data = await fs.readFileAsync(config_path)
+	let _data = await fs.readFile(config_path)
 
 	const $ = cheerio.load(_data, {
 		xmlMode: true,
@@ -311,7 +321,7 @@ gulp.task("gm_scripts:config", async function (callback)
 		}
 
 		{
-			let s = await fs.readFileSync(path.join(cwd_dist, `${name}.user.js`));
+			let s = await fs.readFile(path.join(cwd_dist, `${name}.user.js`));
 
 			let meta = gmMetadata.parseMetadata(s.toString());
 
@@ -358,7 +368,7 @@ gulp.task("gm_scripts:config", async function (callback)
 	});
 
 	//console.log(dump);
-	await fs.writeFileAsync(config_path, dump);
+	await fs.writeFile(config_path, dump);
 });
 
 gulp.task("webpack", ["webpack:before"], function (callback)
@@ -374,11 +384,31 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 				console.log(k);
 
-				const index = require(path.join(cwd_src, k, 'index'));
+				const pathScriptMain = path.join(cwd_src, k);
 
-				let banner = require(path.join(cwd_src, k, 'lib/metadata')).metadata;
+				const index = require(path.join(pathScriptMain, 'index'));
+
+				const pathTemp = path.join(cwd_temp, k + '.json');
+
+				let all_files = {
+					skip: [],
+					list: [],
+				};
+
+				let banner = require(path.join(pathScriptMain, 'lib/metadata')).metadata;
+
+				banner = banner.replace(/^(\/\/ ==\/UserScript==)/m, function (s)
+				{
+					s = [
+						//`// @exclude		${k}.user.js.map	./${k}.user.js.map`,
+						s,
+					].join('\n');
+
+					return s;
+				});
 
 				let s = gulp.src(`src/${k}/index.user.js`)
+
 					.pipe(gulpWebpack(webpack_runtime({
 
 					}, function (config, options, webpack_config)
@@ -458,8 +488,85 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 						//let myIgnorePlugin = new webpack.IgnorePlugin(/\.\/dmm-plus-sc|\.js$/, /ux-tweak-sc[\/\\]+src/);
 						let myIgnorePlugin = new webpack.IgnorePlugin(new RegExp(`(\\.|src)\\/${k}`), /ux-tweak-sc[\/\\]+src/);
 
+						((old) => {
+
+							let bool;
+
+							myIgnorePlugin.checkIgnore = (function (...argv)
+							{
+								let ret = old(...argv);
+
+								if (!bool)
+								{
+									//console.dir(ret);
+									bool = true;
+								}
+
+								let p2 = path.resolve(argv[0].context, argv[0].request);
+
+								if (p2.indexOf(cwd_src) === 0)
+								{
+									let bool = p2.indexOf(pathScriptMain) === 0;
+
+									if (bool)
+									{
+										ret = ret || argv[0]
+									}
+									else
+									{
+										if (ret)
+										{
+											//console.red.log(path.relative(cwd_src, p2));
+										}
+										ret = null;
+									}
+								}
+
+								if (false && ret == null)
+								{
+									let p2 = path.resolve(argv[0].context, argv[0].request);
+
+									if (p2.indexOf(cwd_src) == 0 && p2.indexOf(pathScriptMain) == 0)
+									{
+										ret = argv[0]
+									}
+									else
+									{
+										/*
+										console.dir({
+											k,
+											cwd_src,
+											pathScriptMain,
+										});
+										*/
+
+										/*
+										console.dir(this.options);
+
+										console.dir(ret);
+										console.dir(argv, {
+											depth: 5,
+											colors: true,
+										});
+
+										process.exit();
+										*/
+
+									}
+
+								}
+
+								all_files[ret == null ? 'skip' : 'list'].push(path.relative(cwd_src, p2));
+
+								return ret;
+							}).bind(myIgnorePlugin);
+
+						})(myIgnorePlugin.checkIgnore);
+
 						myIgnorePlugin.checkResource = function (resource)
 						{
+							//console.log(resource);
+
 							if (!this.resourceRegExp)
 							{
 								return false;
@@ -487,6 +594,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 								return true;
 							}
 							*/
+
+							console.log(context);
 
 							let bool = context.indexOf(path.join(__dirname, 'src')) == 0 && context.indexOf(path.join(__dirname, 'src', k)) == -1;
 
@@ -536,10 +645,19 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 
 						token: Date.now()
 					}))
+//					.pipe(sourcemaps.init({
+//						loadMaps: true,
+//					}))
+//					.pipe(sourcemaps.write())
 					.pipe(gulp.dest('dist/'))
 				;
 
 				await streamToPromise(s);
+
+				await fs.outputJSON(pathTemp, all_files, {
+					space: '\t',
+					spaces: '\t',
+				});
 
 				//break;
 			}

@@ -61,6 +61,8 @@ let o: IDemo = {
 			`#novel_header { opacity: 0.5; }`,
 			`#novel_header:hover { opacity: 1; }`,
 
+			`#novel_contents .novel_subtitle { text-align: center; }`,
+
 			`#novel_contents .novel_bn:last-of-type { position: sticky; bottom: 1em; opacity: 0.5; text-align: right; }`,
 			`#novel_contents .novel_bn:last-of-type:hover { opacity: 1; }`,
 

@@ -40,7 +40,7 @@
       ]
     },
 
-    "traceResolution": true,
+    "traceResolution": false,
     "newLine": "lf"
   },
 
