@@ -16,6 +16,7 @@ module.exports.author = '';
 module.exports.icon = '';
 
 module.exports.list = [
+	"site/kakuyomu.jp",
 	"site/syosetu"
 ];
 
@@ -24,11 +25,15 @@ module.exports.list_disable = [];
 // for webpack, don't use this method
 module.exports._lib = () =>
 {
+	require('root/src/syosetu-list-number/site/kakuyomu.jp');
 	require('root/src/syosetu-list-number/site/syosetu');
 };
 
 module.exports.metadata = {};
 module.exports.metadata.include = [
+	"http*://kakuyomu.jp/works*",
+	"http*://kakuyomu.jp/works*/*/episodes/*",
+	"http*://kakuyomu.jp/*",
 	"http*://syosetu.com/*",
 	"http*://ncode.syosetu.com/*"
 ];
@@ -39,7 +44,10 @@ module.exports.metadata.match = [
 	"*://nkx.syosetu.com/*"
 ];
 module.exports.metadata.exclude = [];
-module.exports.metadata.grant = [];
+module.exports.metadata.grant = [
+	"GM.setClipboard",
+	"GM_setClipboard"
+];
 
 module.exports.list_script = [];
 
