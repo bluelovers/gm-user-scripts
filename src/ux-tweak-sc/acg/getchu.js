@@ -159,6 +159,13 @@ module.exports = {
 				'button.header_wish, a[rel="leanModal"]',
 				'body :hidden',
 				'.footer_guide, .top_return',
+
+				'#soft_table th + td[rowspan="2"]',
+
+				'#soft_table div:has(> img[src*="samplepackage_s"])',
+
+				'head img, head meta',
+
 			].join())
 		;
 

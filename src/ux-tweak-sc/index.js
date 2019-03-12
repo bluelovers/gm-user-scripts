@@ -36,6 +36,7 @@ module.exports.list = [
 	"acg/vsgames",
 	"adult/up01",
 	"anti-adblock/epinv",
+	"art/danbooru.donmai.us",
 	"art/deviantart",
 	"art/pixiv",
 	"art/pixivision",
@@ -133,6 +134,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/acg/vsgames');
 	require('root/src/ux-tweak-sc/adult/up01');
 	require('root/src/ux-tweak-sc/anti-adblock/epinv');
+	require('root/src/ux-tweak-sc/art/danbooru.donmai.us');
 	require('root/src/ux-tweak-sc/art/deviantart');
 	require('root/src/ux-tweak-sc/art/pixiv');
 	require('root/src/ux-tweak-sc/art/pixivision');
@@ -234,6 +236,7 @@ module.exports.metadata.include = [
 	"http*://*.vsgames.cn/*",
 	"http*://www.up01.cc/*",
 	"http*://www.epinv.com/*",
+	"http*://danbooru.donmai.us/*",
 	"http*://*.deviantart.com/*",
 	"http*://*.pixiv.net/*",
 	"http*://www.pixiv.net/search*",

@@ -420,7 +420,8 @@ gulp.task("webpack", ["webpack:before"], function (callback)
 						config.module.rules = [];
 
 						config.module.rules.push({
-							test: /\.(js)|tsx?$/,
+							//test: /\.(js)|tsx?$/,
+							test: /\.(js)$/,
 
 							exclude: function (modulePath)
 							{

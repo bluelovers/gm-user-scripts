@@ -421,6 +421,22 @@ module.exports = {
 
 				'#BH-footer',
 				'#ACG-box1mark, .BH-lbox.ACG-mster_box4 a > img, .BH-lbox img[src*="newbtn_talk"], .BH-lbox img[src*="btn_edit"]',
+
+				'.buttonbar, .c-post__header__tools',
+
+				'link[href*="photoswipe"]',
+
+				'link[href*="fonts"]',
+				'link[href*="font"]',
+
+				'link[href*="search"]',
+
+				'meta',
+
+				'link:not([rel="stylesheet"])',
+
+				'#dialogifyCss',
+
 			].join())
 		;
 

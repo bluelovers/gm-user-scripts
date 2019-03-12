@@ -3,10 +3,10 @@
  */
 
 import { IUrlObject } from 'root/lib/func/parse_url';
-import { $, jQuery, IGlobal, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core';
+import { IGlobal, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core';
 import { IGreasemonkey } from 'root/lib/greasemonkey/uf';
 
-export { $, jQuery, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 };
+export { IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 };
 
 export declare const window: IWindow;
 export declare const unsafeWindow: IWindow;
