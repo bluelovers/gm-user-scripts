@@ -119,7 +119,7 @@ let o: IDemo = {
 			{
 				greasemonkey.GM_addStyle([
 					`._fl_tb_block ._fl_tb_tr_block { display: block; }`,
-					`._fl_tb_block .fl_g { display: inline-block; }`,
+					`._fl_tb_block .fl_g { display: inline-block; max-width: 300px; }`,
 				]);
 
 				_fl_tb.addClass('_fl_tb_block');
@@ -142,6 +142,8 @@ let o: IDemo = {
 						{
 							_row.addClass('_has_unread_post');
 						}
+
+						_row.data('data-title', _row.find('dl dt a').eq(0).text());
 					})
 				;
 
@@ -166,6 +168,100 @@ let o: IDemo = {
 					})
 					.appendTo(_tr)
 				;
+
+				{
+					let _area = $('<form id="_search_form" onsubmit="return false;"/>')
+						.insertAfter('#ct .mn .bm.bml.pbn')
+					;
+
+					greasemonkey.GM_addStyle([
+						`#_search_form { padding: 5px;
+margin: auto;
+display: block;
+width: auto;
+text-align: center; margin-bottom: 10px; }`,
+						`#_search_form input { margin-right: 5px; }`,
+					]);
+
+					let _input = $('<input type="text" class="scbar_txt" size="50" placeholder="搜尋版塊"/>')
+						.appendTo(_area)
+					;
+
+					let _btn_s = $('<input type="submit"/>')
+						.appendTo(_area)
+						.on('click', function ()
+						{
+							_area.triggerHandler('submit');
+						})
+					;
+
+					let _btn_c = $('<input type="reset"/>')
+						.appendTo(_area)
+						.on('click', function ()
+						{
+							_area.triggerHandler('reset');
+						})
+					;
+
+					_area
+						.on('submit', function (event)
+						{
+							_uf_done(event);
+
+							let _txt = String(_input.val() || '').trim();
+
+							if (!_txt.length)
+							{
+								_area.triggerHandler('reset');
+
+								return;
+							}
+
+							const zhRegExp = require('regexp-cjk').zhRegExp;
+
+							try
+							{
+								let _r = new zhRegExp(_txt, 'iu', {
+									greedyTable: true,
+								});
+
+								console.dir(_r);
+
+								_fl_g.each(function (index, elem)
+								{
+									let _row = $(elem);
+
+									let _title = _row.data('data-title');
+
+									///console.dir(_title);
+
+									if (_title)
+									{
+										if (_r.test(String(_title)))
+										{
+											_row.show();
+										}
+										else
+										{
+											_row.hide();
+										}
+									}
+								})
+							}
+							catch (e)
+							{
+								window.alert(`搜尋條件不支援 請刪除部分文字後 在搜尋一次`)
+							}
+
+
+						})
+						.on('reset', function (event)
+						{
+							_uf_done(event);
+							_fl_g.show();
+						})
+					;
+				}
 			}
 
 
