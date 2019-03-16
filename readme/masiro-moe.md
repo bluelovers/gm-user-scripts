@@ -8,9 +8,9 @@
 
 ### 腳本
 
-#### novel-plus-sc
+#### masiro-moe
 
-然後點擊此處安裝腳本 [novel-plus-sc.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/masiro-moe.user.js)
+然後點擊此處安裝腳本 [masiro-moe.user.js](https://github.com/bluelovers/gm-user-scripts/raw/master/dist/masiro-moe.user.js)
 
 ## 功能
 
