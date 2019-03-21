@@ -223,7 +223,11 @@ module.exports = {
 		}
 		else
 		{
-			greasemonkey.GM_addStyle(`.id1._zh { border-color: rgb(54, 176, 197); } .id1._other { opacity: 0.25; } .id1:hover { opacity: 1; }`);
+			greasemonkey.GM_addStyle([
+				`.id1._zh, .gl1t._zh { border: 1px solid rgb(54, 176, 197); }`,
+				`.id1._other, .gl1t._other { opacity: 0.25; }`,
+				`.id1:hover, .gl1t:hover { opacity: 1; }`,
+			].join(''));
 
 			$.scrollTo([
 				((_url_obj.query && _url_obj.query.match(/p(?:age)?=(\d+)/) && RegExp.$1 > 0) ? '.itg' : null),
@@ -237,15 +241,31 @@ module.exports = {
 
 					let text = _this.text();
 
-					if (/Chinese|中国|漢化/i.test(text))
+					if (is_chinese(text))
 					{
 						_this.parents('.id1:eq(0)').addClass('_zh');
-						;
 					}
-					else if (/([\[\(])(Eng(?:lish)?|Korean|korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish|Vietnamese Tiếng Việt|French|Portuguese-BR|Malay|Indonesian|German|팀 논엣지|On\s*Going|Portuguese|Português\-[a-zA-Z]+)[\]\)]/i.test(
-							text))
+					else if (not_chinese(text))
 					{
 						_this.parents('.id1:eq(0)').addClass('_other');
+					}
+				})
+			;
+
+			$('.itg .gl1t .glname')
+				.each(function ()
+				{
+					let _this = $(this);
+
+					let text = _this.text();
+
+					if (is_chinese(text))
+					{
+						_this.parents('.gl1t:eq(0)').addClass('_zh');
+					}
+					else if (not_chinese(text))
+					{
+						_this.parents('.gl1t:eq(0)').addClass('_other');
 					}
 				})
 			;
@@ -309,3 +329,13 @@ module.exports = {
 	},
 
 };
+
+function is_chinese(title)
+{
+	return /Chinese|中国|漢化/i.test(title)
+}
+
+function not_chinese(title)
+{
+	return /([\[\(])(Eng(?:lish)?|Korean|korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish|Vietnamese Tiếng Việt|French|Portuguese-BR|Malay|Indonesian|German|팀 논엣지|On\s*Going|Portuguese|Português\-[a-zA-Z]+|スペイン翻訳|英訳|ベトナム翻訳|ロシア翻訳|RUS|韓国翻訳|ポルトガル翻訳|タイ翻訳)[\]\)]/i.test(title)
+}

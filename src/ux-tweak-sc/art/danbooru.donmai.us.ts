@@ -49,11 +49,14 @@ let o: IDemo = {
 			.prop('target', '_blank')
 		;
 
-		$('#image-container image').prop('src', function (i, old)
+		$('#image-container #image').attr('src', function (i, old)
 		{
 			$(this).prop('lowsrc', old);
 
-			return old.replace(/\/sample\//, '/');
+			return old
+				.replace(/\/sample\//, '/')
+				.replace(/_sample-/, '_')
+				;
 		});
 	},
 

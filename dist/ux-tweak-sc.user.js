@@ -4696,8 +4696,8 @@ return !!(r = n(6).auto(a.source, e.exports));
 },
 async main(e = t._url_obj) {
 const r = n(2);
-r([ "#posts-container .post-preview a" ].join(",")).prop("target", "_blank"), a("#image-container image").prop("src", function(e, t) {
-return a(this).prop("lowsrc", t), t.replace(/\/sample\//, "/");
+r([ "#posts-container .post-preview a" ].join(",")).prop("target", "_blank"), a("#image-container #image").attr("src", function(e, t) {
+return a(this).prop("lowsrc", t), t.replace(/\/sample\//, "/").replace(/_sample-/, "_");
 });
 },
 adblock(e = t._url_obj) {},
@@ -5959,6 +5959,12 @@ o;
 }, function(e, t, n) {
 "use strict";
 (function(t, a) {
+function r(e) {
+return /Chinese|中国|漢化/i.test(e);
+}
+function i(e) {
+return /([\[\(])(Eng(?:lish)?|Korean|korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish|Vietnamese Tiếng Việt|French|Portuguese-BR|Malay|Indonesian|German|팀 논엣지|On\s*Going|Portuguese|Português\-[a-zA-Z]+|スペイン翻訳|英訳|ベトナム翻訳|ロシア翻訳|RUS|韓国翻訳|ポルトガル翻訳|タイ翻訳)[\]\)]/i.test(e);
+}
 e.exports = {
 metadata: {
 include: [ "http*://exhentai.org/*", "http*://g.e-hentai.org/*", "http*://e-hentai.org/*" ],
@@ -5967,50 +5973,50 @@ exclude: []
 test: e => !(!e.host.match(/e-hentai\.org/) && !e.host.match(/exhentai\.org/)),
 main(a) {
 e.exports.adblock(a);
-const r = n(7), i = n(2), o = n(4), s = n(10), c = n(9);
-if (i(".itg a, #gdt a, #cdiv .c6 a, #pp a").prop("target", "_blank"), console.log(a), 
+const o = n(7), s = n(2), c = n(4), u = n(10), l = n(9);
+if (s(".itg a, #gdt a, #cdiv .c6 a, #pp a").prop("target", "_blank"), console.log(a), 
 a.path.match(/\/s\//)) {
 let e = t("#img");
-c.GM_addStyle([ `a { color: ${s.bg_dark_text.color}; }` ].join("")), t("body").css(s.bg_dark).css(s.bg_dark_text), 
-t("div.sni").css(s.bg_dark2).css(s.bg_dark_border);
-let a = t("<div/>").css(s.page).css(s.bg_dark).css(s.bg_dark_border).css({
+l.GM_addStyle([ `a { color: ${u.bg_dark_text.color}; }` ].join("")), t("body").css(u.bg_dark).css(u.bg_dark_text), 
+t("div.sni").css(u.bg_dark2).css(u.bg_dark_border);
+let a = t("<div/>").css(u.page).css(u.bg_dark).css(u.bg_dark_border).css({
 "border-left-width": 0
 }).offset({
 top: t("#img").offset().top,
 left: t("#i1").offset().left
 }).appendTo(t("body"));
-function u() {
+function d() {
 e = t("#img"), setTimeout(() => {
 t(window).triggerHandler("resize");
 }, 100), e.imagesLoaded().always(function() {
 t(window).triggerHandler("resize");
 }).done(function() {});
 }
-t("#i3").on("DOMNodeInserted", u), t(window).on("resize", function() {
+t("#i3").on("DOMNodeInserted", d), t(window).on("resize", function() {
 const r = n(12)._uf_fixsize2;
 r(e = t("#img"), window, 1, {
 width: "auto"
-}), e.css(s.photo).css({
+}), e.css(u.photo).css({
 "max-width": "auto",
 "max-height": "auto"
 }), a.text(t(".sn div").eq(0).text()).offset({
 left: t("#i1").offset().left
 }), t.scrollTo(e);
 }).on("load.imagesLoaded", function(e) {
-u();
+d();
 }).on("keydown.page", n(5).packEvent(function(e) {
 switch (e.which) {
-case r("pageup"):
-case r("left"):
-o(e), t("#prev").trigger("click");
+case o("pageup"):
+case o("left"):
+c(e), t("#prev").trigger("click");
 break;
 
-case r("pagedown"):
-case r("right"):
-o(e), t("#next").trigger("click");
+case o("pagedown"):
+case o("right"):
+c(e), t("#next").trigger("click");
 break;
 }
-setTimeout(u, 500);
+setTimeout(d, 500);
 })).triggerHandler("load.imagesLoaded");
 } else if (a.path.match(/\/g\//)) {
 if (t("#gn").length) {
@@ -6033,23 +6039,26 @@ margin: "0px 10px"
 }).append(e.append(n)).appendTo(t("#gn"));
 }
 t.scrollTo([ a.query && a.query.match(/p=(\d+)/) && RegExp.$1 > 0 ? "#gdt" : null, "div.gm" ]);
-} else c.GM_addStyle(".id1._zh { border-color: rgb(54, 176, 197); } .id1._other { opacity: 0.25; } .id1:hover { opacity: 1; }"), 
+} else l.GM_addStyle([ ".id1._zh, .gl1t._zh { border: 1px solid rgb(54, 176, 197); }", ".id1._other, .gl1t._other { opacity: 0.25; }", ".id1:hover, .gl1t:hover { opacity: 1; }" ].join("")), 
 t.scrollTo([ a.query && a.query.match(/p(?:age)?=(\d+)/) && RegExp.$1 > 0 ? ".itg" : null, "#toppane, #gd2" ]), 
 t(".itg .id2").each(function() {
 let e = t(this), n = e.text();
-/Chinese|中国|漢化/i.test(n) ? e.parents(".id1:eq(0)").addClass("_zh") : /([\[\(])(Eng(?:lish)?|Korean|korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish|Vietnamese Tiếng Việt|French|Portuguese-BR|Malay|Indonesian|German|팀 논엣지|On\s*Going|Portuguese|Português\-[a-zA-Z]+)[\]\)]/i.test(n) && e.parents(".id1:eq(0)").addClass("_other");
+r(n) ? e.parents(".id1:eq(0)").addClass("_zh") : i(n) && e.parents(".id1:eq(0)").addClass("_other");
+}), t(".itg .gl1t .glname").each(function() {
+let e = t(this), n = e.text();
+r(n) ? e.parents(".gl1t:eq(0)").addClass("_zh") : i(n) && e.parents(".gl1t:eq(0)").addClass("_other");
 });
 t(window).on("keydown.page", n(5).packEvent(function(e) {
 let n = t(".ptt td > a[onclick]");
 switch (e.which) {
-case r("pageup"):
-case r("left"):
-n.length && (o(e), location.href = n.eq(0).attr("href"));
+case o("pageup"):
+case o("left"):
+n.length && (c(e), location.href = n.eq(0).attr("href"));
 break;
 
-case r("pagedown"):
-case r("right"):
-n.length && (o(e), location.href = n.eq(-1).attr("href"));
+case o("pagedown"):
+case o("right"):
+n.length && (c(e), location.href = n.eq(-1).attr("href"));
 break;
 }
 }));
