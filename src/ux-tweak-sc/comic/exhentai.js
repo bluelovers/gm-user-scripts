@@ -141,6 +141,7 @@ module.exports = {
 				.triggerHandler('load.imagesLoaded')
 			;
 
+			// @ts-ignore
 			function _fn_img()
 			{
 				_img = $('#img');
@@ -337,5 +338,5 @@ function is_chinese(title)
 
 function not_chinese(title)
 {
-	return /([\[\(])(Eng(?:lish)?|Korean|korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish|Vietnamese Tiếng Việt|French|Portuguese-BR|Malay|Indonesian|German|팀 논엣지|On\s*Going|Portuguese|Português\-[a-zA-Z]+|スペイン翻訳|英訳|ベトナム翻訳|ロシア翻訳|RUS|韓国翻訳|ポルトガル翻訳|タイ翻訳)[\]\)]/i.test(title)
+	return /([\[\(])(Eng(?:lish)?|Korean|korean|Spanish|Thai(\s*ภาษาไทย)?|Italian|Rus(sian)?|Polish|Vietnamese Tiếng Việt|French|Portuguese-BR|Malay|Indonesian|German|팀 논엣지|On\s*Going|Portuguese|Português\-[a-zA-Z]+|スペイン翻訳|英訳|ベトナム翻訳|ロシア翻訳|RUS|韓国翻訳|ポルトガル翻訳|タイ翻訳|英語|フランス翻訳|インドネシア翻訳)[\]\)]/i.test(title)
 }

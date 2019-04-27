@@ -257,7 +257,7 @@ module.exports.default = module.exports;
 
 gulp.task("gm_scripts:config", async function (callback)
 {
-	const config_path = 'D:\\Users\\Documents\\The Project\\gm_scripts_repo\\gm_scripts\\config.xml';
+	const config_path = 'G:\\Users\\The Project\\user-hack\\userscript\\gm_scripts_repo\\gm_scripts\\config.xml';
 
 	let _data = await fs.readFile(config_path)
 

@@ -979,6 +979,22 @@ return n = r.normalize(n, t);
 fixOptions(e) {
 return Object.entries(e).forEach(([t, n]) => e[t] = s.envVal(n)), e;
 }
+reduceLine(e, t = {}) {
+if ((t = this.fixOptions(t)).allow_lf2) return e;
+let n = this.trim(e, t), r = n = n.replace(/[ 　\t]+\n/g, "\n").replace(/[\s　]+$/g, "").replace(/^[\n \t]+/g, "").replace(/\n{4,}/g, "\n\n\n\n");
+if (!r.match(/[^\n]\n[^\n]/g)) {
+let [e, o, a] = i.default(r.toString());
+if (e > 2 && (t.allow_lf2 = !1), a >= 3) {
+if (e > 2) {
+let t = new RegExp(`\\n{${e - 1}}(\\n+)`, "g");
+r = r.replace(t, "$1");
+}
+r = r.replace(/\n{3,}/g, "\n\n\n");
+}
+if (t.allow_lf2 || (r = r.replace(/\n\n/g, "\n")), r != n) return r;
+}
+return e;
+}
 textlayout(e, t = {}) {
 if (t = this.fixOptions(t), !(e = (e = this.trim(e, t)).replace(/[ 　\t]+\n/g, "\n").replace(/[\s　]+$/g, "").replace(/^[\n \t]+/g, "").replace(/\n{4,}/g, "\n\n\n\n")).match(/[^\n]\n[^\n]/g)) {
 let [n, r, o] = i.default(e.toString());

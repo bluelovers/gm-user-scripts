@@ -5421,7 +5421,7 @@ reject: P
 };
 }, a.notEnumerableProp(O, "_makeSelfResolutionError", n), e("./method")(O, v, m, i, w), 
 e("./bind")(O, v, m, w), e("./cancel")(O, _, i, w), e("./direct_resolve")(O), e("./synchronous_inspection")(O), 
-e("./join")(O, _, m, v, f, u), O.Promise = O, O.version = "3.5.3", e("./map.js")(O, _, i, m, v, w), 
+e("./join")(O, _, m, v, f, u), O.Promise = O, O.version = "3.5.4", e("./map.js")(O, _, i, m, v, w), 
 e("./call_get.js")(O), e("./using.js")(O, i, m, x, v, w), e("./timers.js")(O, v, w), 
 e("./generators.js")(O, i, v, m, o, w), e("./nodeify.js")(O), e("./promisify.js")(O, v), 
 e("./props.js")(O, _, m, i), e("./race.js")(O, v, m, i), e("./reduce.js")(O, _, i, m, v, w), 
@@ -6481,7 +6481,7 @@ global: globalObject,
 getNativePromise,
 domainBind
 }, version;
-ret.isRecentNode = ret.isNode && (version = process.versions.node.split(".").map(Number), 
+ret.isRecentNode = ret.isNode && (process.versions && process.versions.node ? version = process.versions.node.split(".").map(Number) : process.version && (version = process.version.split(".").map(Number)), 
 0 === version[0] && version[1] > 10 || version[0] > 0), ret.isNode && ret.toFastProperties(process);
 try {
 throw new Error();

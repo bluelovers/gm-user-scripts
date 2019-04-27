@@ -74,6 +74,7 @@ module.exports.list = [
 	"content/farm/fun01.cc",
 	"dict/edu/cwn.ling.sinica",
 	"dict/edu/dict.revised.moe",
+	"novel/esjzone",
 	"novel/lightnovel.cn",
 	"novel/masiro.moe",
 	"novel/syosetu",
@@ -172,6 +173,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/content/farm/fun01.cc');
 	require('root/src/ux-tweak-sc/dict/edu/cwn.ling.sinica');
 	require('root/src/ux-tweak-sc/dict/edu/dict.revised.moe');
+	require('root/src/ux-tweak-sc/novel/esjzone');
 	require('root/src/ux-tweak-sc/novel/lightnovel.cn');
 	require('root/src/ux-tweak-sc/novel/masiro.moe');
 	require('root/src/ux-tweak-sc/novel/syosetu');
@@ -295,6 +297,7 @@ module.exports.metadata.include = [
 	"http*://cwn.ling.sinica.edu.tw/input.asp*",
 	"http*://dict.revised.moe.edu.tw/*",
 	"http*://dict.revised.moe.edu.tw/cbdic/search.htm*",
+	"http*://www.esjzone.cc/*",
 	"http*://*.lightnovel.cn/*",
 	"http*://*.lightnovel.cn/*mod=viewthread*",
 	"http*://masiro.moe/*",

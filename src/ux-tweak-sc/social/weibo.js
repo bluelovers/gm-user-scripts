@@ -35,6 +35,9 @@ module.exports = {
 		require('root/lib/jquery/onscreen');
 		const _uf_done = require('root/lib/event/done');
 
+		const { debounce } = require('throttle-debounce');
+		const { throttle } = require('throttle-debounce');
+
 		//const _feed_selector = '.WB_detail, .WB_feed_detail';
 		const _feed_selector = '.WB_feed_type, .weibo-member';
 
@@ -86,13 +89,10 @@ module.exports = {
 					})
 				;
 			})
-			.on('scroll.img', function (event)
+			.on('scroll.img', throttle(1000, function (event)
 			{
-				setTimeout(function ()
-				{
-					$(window).triggerHandler('load.img');
-				}, 1000);
-			})
+				$(window).triggerHandler('load.img');
+			}))
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
 				switch (event.which)
@@ -165,27 +165,30 @@ module.exports = {
 
 								//console.log(999, event, $('.layer_multipic_preview .pic_show_box img'));
 
-								$('.layer_multipic_preview .pic_show_box img')
-									.not('[data-done]')
-									.attr('data-done', true)
-									.on('load', function (data)
-									{
-										let _this = $(this);
+								setTimeout(function ()
+								{
+									$('.layer_multipic_preview .pic_show_box img, .layer_multipic_preview .pic img')
+										.not('[data-done]')
+										.attr('data-done', true)
+										.on('load', function (data)
+										{
+											let _this = $(this);
 
-										_this
-											.attr('src', function (i, old)
-											{
-												let _this = $(this);
+											_this
+												.attr('src', function (i, old)
+												{
+													let _this = $(this);
 
-												_this
-													.attr('lowsrc', old)
-												;
+													_this
+														.attr('lowsrc', old)
+													;
 
-												return fix_thumb(old);
-											})
-										;
-									})
-								;
+													return fix_thumb(old);
+												})
+											;
+										})
+									;
+								}, 1000);
 							}
 
 							/*

@@ -238,6 +238,9 @@ height: 18px;
 				`.small_list_gallery .thumbnail { max-height: 135px; max-width: 200px; overflow: hidden; display: inline-block; }`,
 				`.small_list_gallery .thumbnail img.threadlist_pic { max-height: 200px; }`,
 
+				`.nav_wrap { position: unset; }`,
+				`.left_section .core_title_absolute_bright { max-height: 50px; }`,
+
 			])
 		;
 
