@@ -52,6 +52,8 @@ let o: IDemo = {
 		const { debounce } = require('throttle-debounce');
 		const _uf_done = require('root/lib/event/done');
 
+
+
 		this.clearly();
 
 		$('.container .alert.alert-info > .pull-right')
@@ -62,7 +64,13 @@ let o: IDemo = {
 
 		const copyonclick = require('root/lib/func/copy').copyonclick;
 
-		$('.forum-content').attr('id', '_forum_content');
+		$('.forum-content')
+			.attr('id', '_forum_content')
+			.css({
+				'font-size': '1rem',
+				'font-family': 'initial'
+			})
+		;
 
 		$('#_copy').attr('onclick', copyonclick('_forum_content'));
 
@@ -130,7 +138,11 @@ function _p_2_br(target)
 		{
 			let _this = $(this);
 
-			let _html = _this.html();
+			let _html = _this
+				.html()
+				.replace(/(?:&nbsp;?)/g, ' ')
+				.replace(/[\xA0\s]+$/g, '')
+			;
 
 			if (_html == '<br/>' || _html == '<br>')
 			{

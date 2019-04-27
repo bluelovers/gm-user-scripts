@@ -4271,8 +4271,10 @@ const {throttle: o} = n(3), {debounce: s} = n(3), c = n(4);
 this.clearly(), r(".container .alert.alert-info > .pull-right").append('<div style="padding-left: 10px; text-align: center; display: inline-block;"><button id="_copy">Copy</button></div>'), 
 a(r(".forum-content > p")), a(r(".book_description p"));
 const u = n(25).copyonclick;
-r(".forum-content").attr("id", "_forum_content"), r("#_copy").attr("onclick", u("_forum_content")), 
-r(window).on("load.ready", o(1e3, function() {
+r(".forum-content").attr("id", "_forum_content").css({
+"font-size": "1rem",
+"font-family": "initial"
+}), r("#_copy").attr("onclick", u("_forum_content")), r(window).on("load.ready", o(1e3, function() {
 try {
 unsafeWindow.$(unsafeWindow.document).bind({
 copy: function() {
@@ -4294,7 +4296,7 @@ i;
 };
 function a(e) {
 return r(e).each(function() {
-let e = r(this), t = e.html();
+let e = r(this), t = e.html().replace(/(?:&nbsp;?)/g, " ").replace(/[\xA0\s]+$/g, "");
 "<br/>" != t && "<br>" != t || (t = ""), e.after(`${t}<br/>`), e.remove();
 });
 }
