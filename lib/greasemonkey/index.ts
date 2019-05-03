@@ -27,5 +27,4 @@ export function GM_addStyle(css: string, head?)
 	return style;
 }
 
-import * as self from './index';
-export default self;
+export default exports as typeof import('./index');

@@ -251,5 +251,4 @@ export function meta_filter(arr: any[])
 	});
 }
 
-import * as self from './metadata';
-export default self;
+export default exports as typeof import('./metadata');

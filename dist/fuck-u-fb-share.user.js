@@ -87,7 +87,7 @@ r.$ = unsafeWindow.$, r.jQuery = unsafeWindow.jQuery;
 console.error(e);
 }
 console.groupEnd("before");
-const o = n(15), s = o.noConflict(!0);
+const o = n(12), s = o.noConflict(!0);
 t.jQuery = s, t.$ = s, window.self.$ = window.self.jQuery = s, t.default = s, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("after");
 try {} catch (e) {
 console.error(e);
@@ -128,7 +128,7 @@ e.exports = n;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const i = n(8);
+const i = n(7);
 e.exports.id = "fuck-u-fb-share", e.exports.name = e.exports.id, i.run(e.exports.id, e.exports, r);
 }).call(this, n(0).default);
 }, function(e, t, n) {
@@ -159,30 +159,12 @@ Object.defineProperty(t, "__esModule", {
 value: !0
 }), t.parse_url2 = r, t.parse_url = i, t.default = i;
 }, function(e, t, n) {
-"use strict";
-function r(e, t) {
-if (!(t = t || document.getElementsByTagName("head")[0])) return;
-let n = document.createElement("style");
-n.type = "text/css";
-try {
-n.innerHTML = e;
-} catch (t) {
-n.innerText = e;
-}
-return t.appendChild(n), n;
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), t.GM_addStyle = r;
-const i = n(4);
-t.default = i;
-}, function(e, t, n) {
 e.exports.id = "fuck-u-fb-share", e.exports.version = "", e.exports.name = "fuck-u-fb-share", 
 e.exports.name_en = "fuck-u-fb-share", e.exports.name_ja = "fuck-u-fb-share", e.exports.desc = "此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)", 
 e.exports.desc_en = "this script try kill facebook new share (2017-11)", e.exports.desc_ja = "此腳本試圖解決智障 FB 新分享機制導致的困擾 並且恢復為舊版分享 (2017-11)", 
 e.exports.namespace = "", e.exports.author = "", e.exports.icon = "", e.exports.list = [ "facebook/2017.11" ], 
 e.exports.list_disable = [], e.exports._lib = (() => {
-n(6);
+n(5);
 }), e.exports.metadata = {}, e.exports.metadata.include = [ "http*://www.facebook.com/*", "http*://facebook.com/*" ], 
 e.exports.metadata.match = [], e.exports.metadata.exclude = [], e.exports.metadata.grant = [ "unsafeWindow" ], 
 e.exports.list_script = [], e.exports.current = [], e.exports.default = e.exports;
@@ -202,7 +184,7 @@ return !!(i = n(23).auto(r.source, e.exports));
 },
 async main(e = t._url_obj) {
 await i.delay(2e3);
-const o = n(29)._uf_done2, a = n(13);
+const o = n(29)._uf_done2, a = n(10);
 let u = "a.share_action_link:not([data-is-link=2])";
 r("body").on("click mousedown", `span[aria-haspopup="true"]:has(> ${u})`, function(e) {
 a(r(this).find(u)).length && o(e);
@@ -221,7 +203,7 @@ return i = i.add([].join());
 }
 };
 function s(e, t) {
-if (!(e = e.filter("a")).length || n(13)(e).length) return;
+if (!(e = e.filter("a")).length || n(10)(e).length) return;
 let r, i, o = {
 p: [],
 share_type: "all_modes",
@@ -253,7 +235,7 @@ e.parents("div.userContentWrapper:eq(0) > div > div .fwb").find('a[href*="/media
 }
 if (s.is_link && (e.attr("data-is-link", s.is_link).css("color", "rgb(147,0,68)"), 
 s.is_link > 1)) return;
-o.st = o.sharer_type = o.share_type, o.type = o.s, o.p = n(12).array_unique(o.p), 
+o.st = o.sharer_type = o.share_type, o.type = o.s, o.p = n(9).array_unique(o.p), 
 o.share_params = a(o.p, 1);
 let d, v = `/ajax/sharer/?${Object.keys(o).reduce(function(e, t) {
 return (o[t] || 0 === o[t] || "0" === o[t]) && (Array.isArray(o[t]) && o[t].length ? e.push(a(o.p, 0, t)) : e.push(`${t}=${o[t].toString()}`)), 
@@ -400,9 +382,9 @@ return 0;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const o = n(3), s = n(9);
+const o = n(3), s = n(13);
 t.greasemonkey = s.default;
-const a = n(10);
+const a = n(14);
 function u(t, n, i, o) {
 let s = async () => {
 try {
@@ -515,165 +497,20 @@ t.main_list = v;
 }).call(this, n(1), n(0).default, n(0).default);
 }, function(e, t, n) {
 "use strict";
-(function(e, r) {
-function i(e) {
-for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), i(n(4));
-const o = n(4);
-function s(t, n) {
-return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
-"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), o.GM_addStyle(t.toString(), n);
-}
-function a(t, n) {
-return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
-}
-function u(e, ...t) {
-return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
-}
-function c(e, ...t) {
-return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
-}
-function l(e, ...t) {
-return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
-}
-function f(e, ...t) {
-return console.log(e, ...t);
-}
-function p(e) {
-let t = window.open(e, "_blank");
-return setTimeout(function() {
-window.focus();
-}, 300), t;
-}
-t.GM_addStyle = s, t.addStylesheet = a, t.debug = u, t.error = c, t.info = l, t.log = f, 
-t.openInTabBackground = p;
-const h = n(9);
-t.default = h;
-}).call(this, n(0).default, n(1));
-}, function(e, t, n) {
-"use strict";
-(function(e, r, i) {
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-const o = n(8), s = n(16), a = n(11);
-function u(t, r, i) {
-let u = o.requireScript(t, "index");
-a.hasGrant(u.metadata.grant, "registerMenuCommand") ? s.registerMenuCommand({
-id: t,
-key: "debug jquery"
-}, async t => {
+function r(e, t) {
+if (!(t = t || document.getElementsByTagName("head")[0])) return;
+let n = document.createElement("style");
+n.type = "text/css";
 try {
-c("null", null), c("global", e), c("window", window), c("window.self", window.self), 
-c("unsafeWindow", unsafeWindow);
-} catch (e) {
-console.error(e);
-}
-try {
-"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
-} catch (e) {
-console.error(e);
-}
-try {
-let e;
-c("jquery/global", await Promise.resolve().then(() => n(0)));
-} catch (e) {
-console.error(e);
-}
-}) : console.info(t, "registerMenuCommand = false");
-}
-function c(e, t) {
-console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
-try {
-console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
-console.info("jQuery", i, i && i.fn && i.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
-console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+n.innerHTML = e;
 } catch (t) {
-console.error(`${e}`, t.toString());
+n.innerText = e;
 }
-console.groupEnd(e);
+return t.appendChild(n), n;
 }
-t.registerGlobalMenu = u;
-const l = n(10);
-t.default = l;
-}).call(this, n(1), n(0).default, n(0).default);
-}, function(e, t, n) {
-"use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
-const r = n(12);
-function i(e) {
-let t;
-if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
-let n = t.index;
-{
-let n = /(^\/\/\s+==\/UserScript==)/m;
-n.lastIndex = t.index + t[0].length, t = n.exec(e);
-}
-let i = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
-return /^\/\/\s*@/g.test(e);
-}).reduce(function(e, t) {
-let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], i = n[2];
-return i && (i = i.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(i) && e[r].push(i), 
-e;
-}, {});
-return i = Object.assign({
-name: []
-}, i, {
-grant: [],
-include: [],
-exclude: [],
-noframes: []
-}, i), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
-i[e] && (i[e] = i[e].length ? c(r.array_unique(i[e])) : []);
-}), i.grant.sort(), i;
-}
-}
-function o(e, t) {
-return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
-}
-function s(e) {
-return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
-e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
-let i;
-(i = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + i[1]), e.grant.push("GM_" + i[1]));
-}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
-t = Array.isArray(t) ? t : [ t ];
-for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
-e.grant = e.grant.concat(t.map(function(e) {
-return "GM." + e;
-})).concat(t.map(function(e) {
-return "GM_" + e;
-}));
-break;
-}
-})), e.match && (e.match = a(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
-e[t] && (e[t] = e[t].length ? c(r.array_unique(e[t])) : []);
-}), e.grant && e.grant.length && e.grant.sort(), e;
-}
-function a(e) {
-return e.map(function(e, t, n) {
-return e.replace(/^.*(\:\/\/)/, "*$1");
-});
-}
-function u(e, t, n = !1, r = "\t\t", i = "// ", o = "\n") {
-let s = "", a = `${i}@${e}${r}`;
-return Array.isArray(t) ? s = t.join(`${o}${a}`) : void 0 !== t && (s = t.toString()), 
-n && (s = a + s), s;
-}
-function c(e) {
-return e.filter(function(e, t, n) {
-return !!e;
-});
-}
-t.parseMetadata = i, t.hasGrant = o, t.lazyMetaFix = s, t.meta_match = a, t.makeMetaRow = u, 
-t.meta_filter = c;
-const l = n(11);
-t.default = l;
+}), t.GM_addStyle = r, t.default = t;
 }, function(e, t, n) {
 "use strict";
 function r(e) {
@@ -3613,14 +3450,97 @@ return n.$ === k && (n.$ = tn), e && n.jQuery === k && (n.jQuery = en), k;
 });
 }, function(e, t, n) {
 "use strict";
-const r = n(17);
+(function(e, r) {
+function i(e) {
+for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
+}
+Object.defineProperty(t, "__esModule", {
+value: !0
+}), i(n(8));
+const o = n(8);
+function s(t, n) {
+return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
+"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), o.GM_addStyle(t.toString(), n);
+}
+function a(t, n) {
+return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
+}
+function u(e, ...t) {
+return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
+}
+function c(e, ...t) {
+return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
+}
+function l(e, ...t) {
+return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
+}
+function f(e, ...t) {
+return console.log(e, ...t);
+}
+function p(e) {
+let t = window.open(e, "_blank");
+return setTimeout(function() {
+window.focus();
+}, 300), t;
+}
+t.GM_addStyle = s, t.addStylesheet = a, t.debug = u, t.error = c, t.info = l, t.log = f, 
+t.openInTabBackground = p, t.default = t;
+}).call(this, n(0).default, n(1));
+}, function(e, t, n) {
+"use strict";
+(function(e, r, i) {
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const o = n(7), s = n(15), a = n(18);
+function u(t, r, i) {
+let u = o.requireScript(t, "index");
+a.hasGrant(u.metadata.grant, "registerMenuCommand") ? s.registerMenuCommand({
+id: t,
+key: "debug jquery"
+}, async t => {
+try {
+c("null", null), c("global", e), c("window", window), c("window.self", window.self), 
+c("unsafeWindow", unsafeWindow);
+} catch (e) {
+console.error(e);
+}
+try {
+"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
+} catch (e) {
+console.error(e);
+}
+try {
+let e;
+c("jquery/global", await Promise.resolve().then(() => n(0)));
+} catch (e) {
+console.error(e);
+}
+}) : console.info(t, "registerMenuCommand = false");
+}
+function c(e, t) {
+console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
+try {
+console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
+console.info("jQuery", i, i && i.fn && i.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
+console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+} catch (t) {
+console.error(`${e}`, t.toString());
+}
+console.groupEnd(e);
+}
+t.registerGlobalMenu = u, t.default = t;
+}).call(this, n(1), n(0).default, n(0).default);
+}, function(e, t, n) {
+"use strict";
+const r = n(16);
 e.exports = r;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(18), i = new Map();
+const r = n(17), i = new Map();
 function o(e, t, n = []) {
 "string" == typeof e && (e = {
 label: e
@@ -3703,28 +3623,99 @@ _GMApi_1.call = call, _GMApi_1.callSafe = callSafe;
 0 == e.indexOf("GM_") && (module.exports[e] = _GMApi[e]);
 }), _GMApi.default = _GMApi.GMApi = _GMApi, exports.GMApi = _GMApi, exports.default = exports.GMApi;
 }, function(e, t, n) {
+"use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(9);
+function i(e) {
+let t;
+if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
+let n = t.index;
+{
+let n = /(^\/\/\s+==\/UserScript==)/m;
+n.lastIndex = t.index + t[0].length, t = n.exec(e);
+}
+let i = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
+return /^\/\/\s*@/g.test(e);
+}).reduce(function(e, t) {
+let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], i = n[2];
+return i && (i = i.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(i) && e[r].push(i), 
+e;
+}, {});
+return i = Object.assign({
+name: []
+}, i, {
+grant: [],
+include: [],
+exclude: [],
+noframes: []
+}, i), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
+i[e] && (i[e] = i[e].length ? c(r.array_unique(i[e])) : []);
+}), i.grant.sort(), i;
+}
+}
+function o(e, t) {
+return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
+}
+function s(e) {
+return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
+e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
+let i;
+(i = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + i[1]), e.grant.push("GM_" + i[1]));
+}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
+t = Array.isArray(t) ? t : [ t ];
+for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
+e.grant = e.grant.concat(t.map(function(e) {
+return "GM." + e;
+})).concat(t.map(function(e) {
+return "GM_" + e;
+}));
+break;
+}
+})), e.match && (e.match = a(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
+e[t] && (e[t] = e[t].length ? c(r.array_unique(e[t])) : []);
+}), e.grant && e.grant.length && e.grant.sort(), e;
+}
+function a(e) {
+return e.map(function(e, t, n) {
+return e.replace(/^.*(\:\/\/)/, "*$1");
+});
+}
+function u(e, t, n = !1, r = "\t\t", i = "// ", o = "\n") {
+let s = "", a = `${i}@${e}${r}`;
+return Array.isArray(t) ? s = t.join(`${o}${a}`) : void 0 !== t && (s = t.toString()), 
+n && (s = a + s), s;
+}
+function c(e) {
+return e.filter(function(e, t, n) {
+return !!e;
+});
+}
+t.parseMetadata = i, t.hasGrant = o, t.lazyMetaFix = s, t.meta_match = a, t.makeMetaRow = u, 
+t.meta_filter = c, t.default = t;
+}, function(e, t, n) {
 var r = {
-"./fuck-u-fb-share/": 5,
-"./fuck-u-fb-share/facebook/2017.11": 6,
-"./fuck-u-fb-share/facebook/2017.11.js": 6,
-"./fuck-u-fb-share/index": 5,
-"./fuck-u-fb-share/index.js": 5,
+"./fuck-u-fb-share/": 4,
+"./fuck-u-fb-share/facebook/2017.11": 5,
+"./fuck-u-fb-share/facebook/2017.11.js": 5,
+"./fuck-u-fb-share/index": 4,
+"./fuck-u-fb-share/index.js": 4,
 "./fuck-u-fb-share/index.user": 2,
 "./fuck-u-fb-share/index.user.js": 2,
-"./fuck-u-fb-share/lib/metadata": 14,
-"./fuck-u-fb-share/lib/metadata.js": 14
+"./fuck-u-fb-share/lib/metadata": 11,
+"./fuck-u-fb-share/lib/metadata.js": 11
 };
 function i(e) {
 var t = o(e);
 return n(t);
 }
 function o(e) {
-var t = r[e];
-if (!(t + 1)) {
-var n = new Error("Cannot find module '" + e + "'");
-throw n.code = "MODULE_NOT_FOUND", n;
+if (!n.o(r, e)) {
+var t = new Error("Cannot find module '" + e + "'");
+throw t.code = "MODULE_NOT_FOUND", t;
 }
-return t;
+return r[e];
 }
 i.keys = function e() {
 return Object.keys(r);
@@ -6515,7 +6506,7 @@ module.exports = ret;
 } ]
 }, {}, [ 4 ])(4);
 }), "undefined" != typeof window && null !== window ? window.P = window.Promise : "undefined" != typeof self && null !== self && (self.P = self.Promise);
-}).call(this, __webpack_require__(7), __webpack_require__(1), __webpack_require__(21).setImmediate);
+}).call(this, __webpack_require__(6), __webpack_require__(1), __webpack_require__(21).setImmediate);
 }, function(e, t, n) {
 (function(e) {
 var r = void 0 !== e && e || "undefined" != typeof self && self || window, i = Function.prototype.apply;
@@ -6649,7 +6640,7 @@ setTimeout(p, 0, e);
 };
 }
 }("undefined" == typeof self ? void 0 === e ? this : e : self);
-}).call(this, n(1), n(7));
+}).call(this, n(1), n(6));
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -7100,7 +7091,7 @@ return e.substr(t, n);
 } : function(e, t, n) {
 return t < 0 && (t = e.length + t), e.substr(t, n);
 };
-}).call(this, n(7));
+}).call(this, n(6));
 }, function(e, t, n) {
 var r = n(27), i = n(28);
 e.exports = d;

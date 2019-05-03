@@ -95,7 +95,7 @@ r.$ = unsafeWindow.$, r.jQuery = unsafeWindow.jQuery;
 console.error(e);
 }
 console.groupEnd("before");
-const i = n(22), a = i.noConflict(!0);
+const i = n(20), a = i.noConflict(!0);
 t.jQuery = a, t.$ = a, window.self.$ = window.self.jQuery = a, t.default = a, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("after");
 try {} catch (e) {
 console.error(e);
@@ -255,7 +255,7 @@ e.exports.name_en = "youtube-plus-sc", e.exports.name_ja = "youtube-plus-sc", e.
 e.exports.desc_en = "", e.exports.desc_ja = "", e.exports.namespace = "", e.exports.author = "", 
 e.exports.icon = "", e.exports.list = [ "youtube/2016/my_video", "youtube/2016/upload", "global/script" ], 
 e.exports.list_disable = [ "youtube/2016/watch", "youtube/2016" ], e.exports._lib = (() => {
-n(10), n(11), n(12);
+n(8), n(9), n(10);
 }), e.exports.metadata = {}, e.exports.metadata.include = [ "*://www.youtube.com/*", "*://youtube.com/*", "https://www.youtube.com/my_videos*", "http*://www.youtube.com/upload*" ], 
 e.exports.metadata.match = [], e.exports.metadata.exclude = [ "http*://*.youtube.com/embed/*", "http*://*.youtube.com/v/*", "http*://creatoracademy.youtube.com/*", "http*://artists.youtube.com/*", "http*://kids.youtube.com/*" ], 
 e.exports.metadata.grant = [ "GM.xmlhttpRequest", "GM_xmlhttpRequest", "unsafeWindow" ], 
@@ -266,69 +266,11 @@ e.exports.list_script = [ "global/script" ], e.exports.current = [], e.exports.d
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const o = n(13), i = n(6);
+const o = n(11), i = n(6);
 e.exports.id = i.id, e.exports.name = i.name, e.exports.indexScript = i, o.run(e.exports.id, e.exports, r, function(e, t, n, r, i, a) {
 o.init(e, t, n, r, i, a);
 });
 }).call(this, n(0).default);
-}, function(e, t, n) {
-"use strict";
-(function(e, r) {
-function o(e) {
-for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), o(n(9));
-const i = n(9);
-function a(t, n) {
-return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
-"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), i.GM_addStyle(t.toString(), n);
-}
-function s(t, n) {
-return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
-}
-function u(e, ...t) {
-return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
-}
-function l(e, ...t) {
-return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
-}
-function c(e, ...t) {
-return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
-}
-function f(e, ...t) {
-return console.log(e, ...t);
-}
-function p(e) {
-let t = window.open(e, "_blank");
-return setTimeout(function() {
-window.focus();
-}, 300), t;
-}
-t.GM_addStyle = a, t.addStylesheet = s, t.debug = u, t.error = l, t.info = c, t.log = f, 
-t.openInTabBackground = p;
-const d = n(8);
-t.default = d;
-}).call(this, n(0).default, n(1));
-}, function(e, t, n) {
-"use strict";
-function r(e, t) {
-if (!(t = t || document.getElementsByTagName("head")[0])) return;
-let n = document.createElement("style");
-n.type = "text/css";
-try {
-n.innerHTML = e;
-} catch (t) {
-n.innerText = e;
-}
-return t.appendChild(n), n;
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), t.GM_addStyle = r;
-const o = n(9);
-t.default = o;
 }, function(e, t, n) {
 "use strict";
 (function(t, r, o) {
@@ -345,8 +287,8 @@ let o;
 return !!(o = n(4).auto(r.source, e.exports));
 },
 async main(e = t._url_obj) {
-const i = n(16), {debounce: a} = n(2), {throttle: s} = n(2), u = n(3);
-n(17).ajaxSetup();
+const i = n(14), {debounce: a} = n(2), {throttle: s} = n(2), u = n(3);
+n(15).ajaxSetup();
 const l = n(5);
 r.GM_addStyle([ "#creator-page #creator-page-content .vm-list-view .vm-video-item-content-primary { width: 51%; min-width: 470px; }", "#creator-page #creator-page-content .vm-list-view .vm-video-item-content-secondary { width: 51%; min-width: 470px; margin-left: 1%; }", ".vm-list-view .vm-video-title-container { overflow: visible; }", ".vm-list-view .vm-video-title-badges { white-space: normal; }", ".vm-video-title-badges .btn-edit { opacity: 0;/* background-color: red; padding: 0px 5px; color: #fff; */ }", ".vm-video-title:hover .vm-video-title-badges .btn-edit { display: inline-block; visibility: visible; opacity: 1; }" ]);
 let c = o("#vm-video-list-container");
@@ -389,7 +331,7 @@ return r = r.add([].join());
 }
 };
 e.exports = i;
-}).call(this, n(1), n(8), n(0).default);
+}).call(this, n(1), n(12), n(0).default);
 }, function(e, t, n) {
 "use strict";
 (function(t, r) {
@@ -460,9 +402,9 @@ e.exports = o;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const i = n(23), a = n(8);
+const i = n(21), a = n(12);
 t.greasemonkey = a.default;
-const s = n(14);
+const s = n(22);
 function u(t, n, o, i) {
 let a = async () => {
 try {
@@ -575,125 +517,58 @@ t.main_list = g;
 }).call(this, n(1), n(0).default, n(0).default);
 }, function(e, t, n) {
 "use strict";
-(function(e, r, o) {
+(function(e, r) {
+function o(e) {
+for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
+}
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
-const i = n(13), a = n(24), s = n(15);
-function u(t, r, o) {
-let u = i.requireScript(t, "index");
-s.hasGrant(u.metadata.grant, "registerMenuCommand") ? a.registerMenuCommand({
-id: t,
-key: "debug jquery"
-}, async t => {
-try {
-l("null", null), l("global", e), l("window", window), l("window.self", window.self), 
-l("unsafeWindow", unsafeWindow);
-} catch (e) {
-console.error(e);
+}), o(n(13));
+const i = n(13);
+function a(t, n) {
+return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
+"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), i.GM_addStyle(t.toString(), n);
 }
-try {
-"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
-} catch (e) {
-console.error(e);
+function s(t, n) {
+return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
 }
-try {
-let e;
-l("jquery/global", await Promise.resolve().then(() => n(0)));
-} catch (e) {
-console.error(e);
+function u(e, ...t) {
+return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
 }
-}) : console.info(t, "registerMenuCommand = false");
+function l(e, ...t) {
+return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
 }
-function l(e, t) {
-console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
-try {
-console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
-console.info("jQuery", o, o && o.fn && o.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
-console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
-} catch (t) {
-console.error(`${e}`, t.toString());
+function c(e, ...t) {
+return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
 }
-console.groupEnd(e);
+function f(e, ...t) {
+return console.log(e, ...t);
 }
-t.registerGlobalMenu = u;
-const c = n(14);
-t.default = c;
-}).call(this, n(1), n(0).default, n(0).default);
+function p(e) {
+let t = window.open(e, "_blank");
+return setTimeout(function() {
+window.focus();
+}, 300), t;
+}
+t.GM_addStyle = a, t.addStylesheet = s, t.debug = u, t.error = l, t.info = c, t.log = f, 
+t.openInTabBackground = p, t.default = t;
+}).call(this, n(0).default, n(1));
 }, function(e, t, n) {
 "use strict";
+function r(e, t) {
+if (!(t = t || document.getElementsByTagName("head")[0])) return;
+let n = document.createElement("style");
+n.type = "text/css";
+try {
+n.innerHTML = e;
+} catch (t) {
+n.innerText = e;
+}
+return t.appendChild(n), n;
+}
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
-const r = n(27);
-function o(e) {
-let t;
-if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
-let n = t.index;
-{
-let n = /(^\/\/\s+==\/UserScript==)/m;
-n.lastIndex = t.index + t[0].length, t = n.exec(e);
-}
-let o = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
-return /^\/\/\s*@/g.test(e);
-}).reduce(function(e, t) {
-let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], o = n[2];
-return o && (o = o.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(o) && e[r].push(o), 
-e;
-}, {});
-return o = Object.assign({
-name: []
-}, o, {
-grant: [],
-include: [],
-exclude: [],
-noframes: []
-}, o), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
-o[e] && (o[e] = o[e].length ? l(r.array_unique(o[e])) : []);
-}), o.grant.sort(), o;
-}
-}
-function i(e, t) {
-return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
-}
-function a(e) {
-return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
-e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
-let o;
-(o = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + o[1]), e.grant.push("GM_" + o[1]));
-}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
-t = Array.isArray(t) ? t : [ t ];
-for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
-e.grant = e.grant.concat(t.map(function(e) {
-return "GM." + e;
-})).concat(t.map(function(e) {
-return "GM_" + e;
-}));
-break;
-}
-})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
-e[t] && (e[t] = e[t].length ? l(r.array_unique(e[t])) : []);
-}), e.grant && e.grant.length && e.grant.sort(), e;
-}
-function s(e) {
-return e.map(function(e, t, n) {
-return e.replace(/^.*(\:\/\/)/, "*$1");
-});
-}
-function u(e, t, n = !1, r = "\t\t", o = "// ", i = "\n") {
-let a = "", s = `${o}@${e}${r}`;
-return Array.isArray(t) ? a = t.join(`${i}${s}`) : void 0 !== t && (a = t.toString()), 
-n && (a = s + a), a;
-}
-function l(e) {
-return e.filter(function(e, t, n) {
-return !!e;
-});
-}
-t.parseMetadata = o, t.hasGrant = i, t.lazyMetaFix = a, t.meta_match = s, t.makeMetaRow = u, 
-t.meta_filter = l;
-const c = n(15);
-t.default = c;
+}), t.GM_addStyle = r, t.default = t;
 }, function(e, t, n) {
 "use strict";
 function r(e, t) {
@@ -823,8 +698,8 @@ let o;
 return !!(o = n(4).auto(r.source, e.exports));
 },
 async main(e = t._url_obj) {
-const o = n(16), {debounce: i} = n(2), {throttle: a} = n(2), s = n(3);
-s([].join(",")).prop("target", "_blank"), n(17).ajaxSetup();
+const o = n(14), {debounce: i} = n(2), {throttle: a} = n(2), s = n(3);
+s([].join(",")).prop("target", "_blank"), n(15).ajaxSetup();
 const u = n(5);
 r(window).on("load.ready", function() {
 e.path.match(/my_videos/);
@@ -3802,14 +3677,59 @@ value: !0
 }), t.parse_url2 = r, t.parse_url = o, t.default = o;
 }, function(e, t, n) {
 "use strict";
-const r = n(25);
+(function(e, r, o) {
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const i = n(11), a = n(23), s = n(26);
+function u(t, r, o) {
+let u = i.requireScript(t, "index");
+s.hasGrant(u.metadata.grant, "registerMenuCommand") ? a.registerMenuCommand({
+id: t,
+key: "debug jquery"
+}, async t => {
+try {
+l("null", null), l("global", e), l("window", window), l("window.self", window.self), 
+l("unsafeWindow", unsafeWindow);
+} catch (e) {
+console.error(e);
+}
+try {
+"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
+} catch (e) {
+console.error(e);
+}
+try {
+let e;
+l("jquery/global", await Promise.resolve().then(() => n(0)));
+} catch (e) {
+console.error(e);
+}
+}) : console.info(t, "registerMenuCommand = false");
+}
+function l(e, t) {
+console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
+try {
+console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
+console.info("jQuery", o, o && o.fn && o.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
+console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+} catch (t) {
+console.error(`${e}`, t.toString());
+}
+console.groupEnd(e);
+}
+t.registerGlobalMenu = u, t.default = t;
+}).call(this, n(1), n(0).default, n(0).default);
+}, function(e, t, n) {
+"use strict";
+const r = n(24);
 e.exports = r;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(26), o = new Map();
+const r = n(25), o = new Map();
 function i(e, t, n = []) {
 "string" == typeof e && (e = {
 label: e
@@ -3893,6 +3813,78 @@ _GMApi_1.call = call, _GMApi_1.callSafe = callSafe;
 }), _GMApi.default = _GMApi.GMApi = _GMApi, exports.GMApi = _GMApi, exports.default = exports.GMApi;
 }, function(e, t, n) {
 "use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(27);
+function o(e) {
+let t;
+if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
+let n = t.index;
+{
+let n = /(^\/\/\s+==\/UserScript==)/m;
+n.lastIndex = t.index + t[0].length, t = n.exec(e);
+}
+let o = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
+return /^\/\/\s*@/g.test(e);
+}).reduce(function(e, t) {
+let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], o = n[2];
+return o && (o = o.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(o) && e[r].push(o), 
+e;
+}, {});
+return o = Object.assign({
+name: []
+}, o, {
+grant: [],
+include: [],
+exclude: [],
+noframes: []
+}, o), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
+o[e] && (o[e] = o[e].length ? l(r.array_unique(o[e])) : []);
+}), o.grant.sort(), o;
+}
+}
+function i(e, t) {
+return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
+}
+function a(e) {
+return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
+e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
+let o;
+(o = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + o[1]), e.grant.push("GM_" + o[1]));
+}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
+t = Array.isArray(t) ? t : [ t ];
+for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
+e.grant = e.grant.concat(t.map(function(e) {
+return "GM." + e;
+})).concat(t.map(function(e) {
+return "GM_" + e;
+}));
+break;
+}
+})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
+e[t] && (e[t] = e[t].length ? l(r.array_unique(e[t])) : []);
+}), e.grant && e.grant.length && e.grant.sort(), e;
+}
+function s(e) {
+return e.map(function(e, t, n) {
+return e.replace(/^.*(\:\/\/)/, "*$1");
+});
+}
+function u(e, t, n = !1, r = "\t\t", o = "// ", i = "\n") {
+let a = "", s = `${o}@${e}${r}`;
+return Array.isArray(t) ? a = t.join(`${i}${s}`) : void 0 !== t && (a = t.toString()), 
+n && (a = s + a), a;
+}
+function l(e) {
+return e.filter(function(e, t, n) {
+return !!e;
+});
+}
+t.parseMetadata = o, t.hasGrant = i, t.lazyMetaFix = a, t.meta_match = s, t.makeMetaRow = u, 
+t.meta_filter = l, t.default = t;
+}, function(e, t, n) {
+"use strict";
 function r(e) {
 return e.filter(function(e, t, n) {
 return t == n.indexOf(e);
@@ -3904,36 +3896,35 @@ value: !0
 }, function(e, t, n) {
 var r = {
 "./youtube-plus-sc/": 6,
-"./youtube-plus-sc/_fake": 18,
-"./youtube-plus-sc/_fake.js": 18,
-"./youtube-plus-sc/global/script": 12,
-"./youtube-plus-sc/global/script.js": 12,
+"./youtube-plus-sc/_fake": 16,
+"./youtube-plus-sc/_fake.js": 16,
+"./youtube-plus-sc/global/script": 10,
+"./youtube-plus-sc/global/script.js": 10,
 "./youtube-plus-sc/index": 6,
 "./youtube-plus-sc/index.js": 6,
 "./youtube-plus-sc/index.user": 7,
 "./youtube-plus-sc/index.user.js": 7,
-"./youtube-plus-sc/lib/metadata": 19,
-"./youtube-plus-sc/lib/metadata.js": 19,
-"./youtube-plus-sc/youtube/2016": 20,
-"./youtube-plus-sc/youtube/2016.js": 20,
-"./youtube-plus-sc/youtube/2016/my_video": 10,
-"./youtube-plus-sc/youtube/2016/my_video.js": 10,
-"./youtube-plus-sc/youtube/2016/upload": 11,
-"./youtube-plus-sc/youtube/2016/upload.js": 11,
-"./youtube-plus-sc/youtube/2016/watch": 21,
-"./youtube-plus-sc/youtube/2016/watch.js": 21
+"./youtube-plus-sc/lib/metadata": 17,
+"./youtube-plus-sc/lib/metadata.js": 17,
+"./youtube-plus-sc/youtube/2016": 18,
+"./youtube-plus-sc/youtube/2016.js": 18,
+"./youtube-plus-sc/youtube/2016/my_video": 8,
+"./youtube-plus-sc/youtube/2016/my_video.js": 8,
+"./youtube-plus-sc/youtube/2016/upload": 9,
+"./youtube-plus-sc/youtube/2016/upload.js": 9,
+"./youtube-plus-sc/youtube/2016/watch": 19,
+"./youtube-plus-sc/youtube/2016/watch.js": 19
 };
 function o(e) {
 var t = i(e);
 return n(t);
 }
 function i(e) {
-var t = r[e];
-if (!(t + 1)) {
-var n = new Error("Cannot find module '" + e + "'");
-throw n.code = "MODULE_NOT_FOUND", n;
+if (!n.o(r, e)) {
+var t = new Error("Cannot find module '" + e + "'");
+throw t.code = "MODULE_NOT_FOUND", t;
 }
-return t;
+return r[e];
 }
 o.keys = function e() {
 return Object.keys(r);

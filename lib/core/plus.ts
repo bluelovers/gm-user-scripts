@@ -86,5 +86,4 @@ function _print_jquery(label, where)
 	console.groupEnd(label);
 }
 
-import * as self from './plus';
-export default self;
+export default exports as typeof import('./plus');

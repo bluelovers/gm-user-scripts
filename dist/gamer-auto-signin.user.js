@@ -92,7 +92,7 @@ return e;
 return n.d(t, "a", t), t;
 }, n.o = function(e, t) {
 return Object.prototype.hasOwnProperty.call(e, t);
-}, n.p = "", n(n.s = 3);
+}, n.p = "", n(n.s = 2);
 }([ function(e, t) {
 var n;
 n = function() {
@@ -118,7 +118,7 @@ r.$ = unsafeWindow.$, r.jQuery = unsafeWindow.jQuery;
 console.error(e);
 }
 console.groupEnd("before");
-const o = n(19), s = o.noConflict(!0);
+const o = n(16), s = o.noConflict(!0);
 t.jQuery = s, t.$ = s, window.self.$ = window.self.jQuery = s, t.default = s, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("after");
 try {} catch (e) {
 console.error(e);
@@ -144,14 +144,23 @@ console.groupEnd("end");
 }).call(this, n(0));
 }, function(e, t, n) {
 "use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(10);
+e.exports.id = "gamer-auto-signin", e.exports.name = e.exports.id, r.run(e.exports.id, e.exports, null, function(e, t, n, i, o, s) {
+r.init(e, t, n, i, o, s);
+});
+}, function(e, t, n) {
+"use strict";
 (function(e, r) {
 function i(e) {
 for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), i(n(4));
-const o = n(4);
+}), i(n(11));
+const o = n(11);
 function s(t, n) {
 return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
 "object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), o.GM_addStyle(t.toString(), n);
@@ -178,37 +187,8 @@ window.focus();
 }, 300), t;
 }
 t.GM_addStyle = s, t.addStylesheet = a, t.debug = u, t.error = c, t.info = l, t.log = f, 
-t.openInTabBackground = p;
-const h = n(2);
-t.default = h;
+t.openInTabBackground = p, t.default = t;
 }).call(this, n(1).default, n(0));
-}, function(e, t, n) {
-"use strict";
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-const r = n(11);
-e.exports.id = "gamer-auto-signin", e.exports.name = e.exports.id, r.run(e.exports.id, e.exports, null, function(e, t, n, i, o, s) {
-r.init(e, t, n, i, o, s);
-});
-}, function(e, t, n) {
-"use strict";
-function r(e, t) {
-if (!(t = t || document.getElementsByTagName("head")[0])) return;
-let n = document.createElement("style");
-n.type = "text/css";
-try {
-n.innerHTML = e;
-} catch (t) {
-n.innerText = e;
-}
-return t.appendChild(n), n;
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), t.GM_addStyle = r;
-const i = n(4);
-t.default = i;
 }, function(module, exports, __webpack_require__) {
 "use strict";
 var _GMApi;
@@ -261,7 +241,7 @@ e.exports.desc = "自動簽到 ( 巴哈姆特 ... and other )", e.exports.desc_e
 e.exports.desc_ja = "自動簽到 ( 巴哈姆特 ... and other )", e.exports.namespace = "", e.exports.author = "", 
 e.exports.icon = "", e.exports.list = [ "gamer/ajax", "novel/sfacg" ], e.exports.list_disable = [], 
 e.exports._lib = (() => {
-n(7), n(10);
+n(6), n(9);
 }), e.exports.metadata = {}, e.exports.metadata.include = [ "*://*.sfacg.com/*", "*://book.sfacg.com/signin/*" ], 
 e.exports.metadata.match = [ "*://www.gamer.com.tw/*", "*://forum.gamer.com.tw/*", "*://home.gamer.com.tw/creationDetail.php*", "*://gnn.gamer.com.tw/*", "*://ani.gamer.com.tw/*", "*://acg.gamer.com.tw/*" ], 
 e.exports.metadata.exclude = [ "*://*.sfacg.com/ajax*" ], e.exports.metadata.grant = [ "GM.deleteValue", "GM.getValue", "GM.listValues", "GM.registerMenuCommand", "GM.setValue", "GM.unregisterMenuCommand", "GM.xmlhttpRequest", "GM_deleteValue", "GM_getValue", "GM_listValues", "GM_registerMenuCommand", "GM_setValue", "GM_unregisterMenuCommand", "GM_xmlhttpRequest" ], 
@@ -278,19 +258,19 @@ grant: [ "GM_xmlhttpRequest", "GM_getValue", "GM_setValue" ]
 },
 test(r = t._url_obj) {
 let i;
-return !!(i = n(14).auto(r.source, e.exports));
+return !!(i = n(12).auto(r.source, e.exports));
 },
 async main(e = t._url_obj) {
-const o = n(9);
+const o = n(8);
 await o.delay(1e3);
-const s = n(15).create(i.file);
+const s = n(13).create(i.file);
 let a, u = !1;
 if (e.host.match(/www\.gamer\.com\.tw/) && (a = r('.BA-left #signin-btn[onclick]:not([onclick*="showSigninMap"])')).length) a[0].click(), 
 s.updateTimestamp(); else if (a && a.length) console.log("已經簽到過", a), s.updateTimestamp(); else {
 let e = unsafeWindow.BAHAID || unsafeWindow.MB_BAHAID, t = s.getValue("username"), r = s.chkTimestamp(3), i = null;
 if (e && (e && e != t || r > 0 ? i = !0 : (i = !1, console.info("[距離上次簽到]", Math.abs(r) + "s"))), 
 i) {
-const t = n(34).default;
+const t = n(33).default;
 await t().catch(e => {
 console.error("[ERROR]", e);
 }).then(function() {
@@ -3178,7 +3158,7 @@ module.exports = ret;
 } ]
 }, {}, [ 4 ])(4);
 }), "undefined" != typeof window && null !== window ? window.P = window.Promise : "undefined" != typeof self && null !== self && (self.P = self.Promise);
-}).call(this, __webpack_require__(8), __webpack_require__(0), __webpack_require__(30).setImmediate);
+}).call(this, __webpack_require__(7), __webpack_require__(0), __webpack_require__(29).setImmediate);
 }, function(e, t, n) {
 "use strict";
 (function(t, r, i) {
@@ -3191,12 +3171,12 @@ grant: [ "GM_xmlhttpRequest", "GM_getValue", "GM_setValue" ]
 },
 test(r = t._url_obj) {
 let i;
-return !!(i = n(14).auto(r.source, e.exports));
+return !!(i = n(12).auto(r.source, e.exports));
 },
 async main(e = t._url_obj) {
-const i = n(9);
+const i = n(8);
 await i.delay(1e3);
-const a = n(15).create(o.file);
+const a = n(13).create(o.file);
 let u = !1;
 if (e.host.match(/book\.sfacg\.com/) && e.path.match(/signin/)) {
 let e = r(".calendar-sign .sign-btn");
@@ -3221,7 +3201,7 @@ return i = i.add([].join());
 }
 };
 function s(e = {}, t) {
-const r = n(16).default;
+const r = n(14).default;
 let o = {
 method: "GET",
 headers: {
@@ -3240,16 +3220,16 @@ e.response) : Promise.reject(e);
 });
 }
 e.exports = o;
-}).call(this, n(0), n(1).default, n(2));
+}).call(this, n(0), n(1).default, n(3));
 }, function(e, t, n) {
 "use strict";
 (function(e, r, i) {
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const o = n(20), s = n(2);
+const o = n(17), s = n(3);
 t.greasemonkey = s.default;
-const a = n(12);
+const a = n(18);
 function u(t, n, i, o) {
 let s = async () => {
 try {
@@ -3288,7 +3268,7 @@ t._url_obj.source = t._url_obj._source = e, t._url_obj_ = Object.assign({}, t._u
 }, !0);
 }
 function p(e, t) {
-return n(24)(`./${e}/${t}`);
+return n(23)(`./${e}/${t}`);
 }
 function h(e, t, n) {
 let r;
@@ -3362,131 +3342,26 @@ t.main_list = g;
 }).call(this, n(0), n(1).default, n(1).default);
 }, function(e, t, n) {
 "use strict";
-(function(e, r, i) {
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-const o = n(11), s = n(21), a = n(13);
-function u(t, r, i) {
-let u = o.requireScript(t, "index");
-a.hasGrant(u.metadata.grant, "registerMenuCommand") ? s.registerMenuCommand({
-id: t,
-key: "debug jquery"
-}, async t => {
+function r(e, t) {
+if (!(t = t || document.getElementsByTagName("head")[0])) return;
+let n = document.createElement("style");
+n.type = "text/css";
 try {
-c("null", null), c("global", e), c("window", window), c("window.self", window.self), 
-c("unsafeWindow", unsafeWindow);
-} catch (e) {
-console.error(e);
-}
-try {
-"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
-} catch (e) {
-console.error(e);
-}
-try {
-let e;
-c("jquery/global", await Promise.resolve().then(() => n(1)));
-} catch (e) {
-console.error(e);
-}
-}) : console.info(t, "registerMenuCommand = false");
-}
-function c(e, t) {
-console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
-try {
-console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
-console.info("jQuery", i, i && i.fn && i.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
-console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+n.innerHTML = e;
 } catch (t) {
-console.error(`${e}`, t.toString());
+n.innerText = e;
 }
-console.groupEnd(e);
+return t.appendChild(n), n;
 }
-t.registerGlobalMenu = u;
-const l = n(12);
-t.default = l;
-}).call(this, n(0), n(1).default, n(1).default);
+Object.defineProperty(t, "__esModule", {
+value: !0
+}), t.GM_addStyle = r, t.default = t;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(23);
-function i(e) {
-let t;
-if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
-let n = t.index;
-{
-let n = /(^\/\/\s+==\/UserScript==)/m;
-n.lastIndex = t.index + t[0].length, t = n.exec(e);
-}
-let i = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
-return /^\/\/\s*@/g.test(e);
-}).reduce(function(e, t) {
-let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], i = n[2];
-return i && (i = i.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(i) && e[r].push(i), 
-e;
-}, {});
-return i = Object.assign({
-name: []
-}, i, {
-grant: [],
-include: [],
-exclude: [],
-noframes: []
-}, i), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
-i[e] && (i[e] = i[e].length ? c(r.array_unique(i[e])) : []);
-}), i.grant.sort(), i;
-}
-}
-function o(e, t) {
-return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
-}
-function s(e) {
-return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
-e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
-let i;
-(i = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + i[1]), e.grant.push("GM_" + i[1]));
-}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
-t = Array.isArray(t) ? t : [ t ];
-for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
-e.grant = e.grant.concat(t.map(function(e) {
-return "GM." + e;
-})).concat(t.map(function(e) {
-return "GM_" + e;
-}));
-break;
-}
-})), e.match && (e.match = a(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
-e[t] && (e[t] = e[t].length ? c(r.array_unique(e[t])) : []);
-}), e.grant && e.grant.length && e.grant.sort(), e;
-}
-function a(e) {
-return e.map(function(e, t, n) {
-return e.replace(/^.*(\:\/\/)/, "*$1");
-});
-}
-function u(e, t, n = !1, r = "\t\t", i = "// ", o = "\n") {
-let s = "", a = `${i}@${e}${r}`;
-return Array.isArray(t) ? s = t.join(`${o}${a}`) : void 0 !== t && (s = t.toString()), 
-n && (s = a + s), s;
-}
-function c(e) {
-return e.filter(function(e, t, n) {
-return !!e;
-});
-}
-t.parseMetadata = i, t.hasGrant = o, t.lazyMetaFix = s, t.meta_match = a, t.makeMetaRow = u, 
-t.meta_filter = c;
-const l = n(13);
-t.default = l;
-}, function(e, t, n) {
-"use strict";
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-const r = n(25), i = r.Minimatch;
+const r = n(24), i = r.Minimatch;
 function o(e, t, n = {}) {
 n = s(n);
 let i = !1;
@@ -3536,9 +3411,9 @@ t.match = o, t.option = s, t.auto = a, t.matchChrome = u;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(32);
+const r = n(31);
 t.hashSum = r;
-const i = n(33);
+const i = n(32);
 function o(e, t) {
 return SiteID.create(e, t);
 }
@@ -3590,49 +3465,8 @@ return t ? t.toString() + e : e;
 t.SiteID = SiteID, t.default = SiteID, t.checkDate = s, t.hashKey = a;
 }, function(e, t, n) {
 "use strict";
-const r = n(17);
+const r = n(34);
 e.exports = r;
-}, function(e, t, n) {
-"use strict";
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-const r = n(5), i = n(9);
-function o(e) {
-let t = Object.assign({
-method: "GET"
-}, e);
-return t.xhrFields && Object.assign(t, t.xhrFields), t;
-}
-function s(e, n) {
-if ((n = o(n)).url = e, n.data && "object" == typeof n.data && !(n.data instanceof FormData)) {
-let e = new FormData();
-for (let t in n.data) e.append(t, n.data[t]);
-n.data = e;
-}
-return new i(function(e, r) {
-t.GM_XHR(Object.assign({}, n, {
-onload: function(t) {
-e(t);
-},
-onerror: r
-}));
-}).then(function(e) {
-if ("json" == n.dataType && (e.responseOriginal = e.response, e.response = JSON.parse(e.responseText)), 
-e.responseType = e.responseType || n.dataType || null, "function" == typeof n.onload) {
-let t = n.onload.call(this, e);
-if (void 0 !== t) return t;
-}
-return e;
-});
-}
-function a(e, t = Error) {
-let n = new t(e);
-return n.res = e, n;
-}
-t.GM_XHR = r.default.xmlhttpRequest, t.makeOptions = o, t.ajax = s, t.AjaxError = a;
-const u = n(17);
-t.default = u;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -6577,14 +6411,59 @@ value: !0
 }), t.parse_url2 = r, t.parse_url = i, t.default = i;
 }, function(e, t, n) {
 "use strict";
-const r = n(22);
+(function(e, r, i) {
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const o = n(10), s = n(19), a = n(21);
+function u(t, r, i) {
+let u = o.requireScript(t, "index");
+a.hasGrant(u.metadata.grant, "registerMenuCommand") ? s.registerMenuCommand({
+id: t,
+key: "debug jquery"
+}, async t => {
+try {
+c("null", null), c("global", e), c("window", window), c("window.self", window.self), 
+c("unsafeWindow", unsafeWindow);
+} catch (e) {
+console.error(e);
+}
+try {
+"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
+} catch (e) {
+console.error(e);
+}
+try {
+let e;
+c("jquery/global", await Promise.resolve().then(() => n(1)));
+} catch (e) {
+console.error(e);
+}
+}) : console.info(t, "registerMenuCommand = false");
+}
+function c(e, t) {
+console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
+try {
+console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
+console.info("jQuery", i, i && i.fn && i.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
+console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+} catch (t) {
+console.error(`${e}`, t.toString());
+}
+console.groupEnd(e);
+}
+t.registerGlobalMenu = u, t.default = t;
+}).call(this, n(0), n(1).default, n(1).default);
+}, function(e, t, n) {
+"use strict";
+const r = n(20);
 e.exports = r;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(5), i = new Map();
+const r = n(4), i = new Map();
 function o(e, t, n = []) {
 "string" == typeof e && (e = {
 label: e
@@ -6623,6 +6502,78 @@ e.push(n);
 t.registerMenuCommand = o, t.getLabel = s, t.callMenuCommand = a, t.listMenuCommand = u;
 }, function(e, t, n) {
 "use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(22);
+function i(e) {
+let t;
+if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
+let n = t.index;
+{
+let n = /(^\/\/\s+==\/UserScript==)/m;
+n.lastIndex = t.index + t[0].length, t = n.exec(e);
+}
+let i = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
+return /^\/\/\s*@/g.test(e);
+}).reduce(function(e, t) {
+let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], i = n[2];
+return i && (i = i.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(i) && e[r].push(i), 
+e;
+}, {});
+return i = Object.assign({
+name: []
+}, i, {
+grant: [],
+include: [],
+exclude: [],
+noframes: []
+}, i), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
+i[e] && (i[e] = i[e].length ? c(r.array_unique(i[e])) : []);
+}), i.grant.sort(), i;
+}
+}
+function o(e, t) {
+return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
+}
+function s(e) {
+return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
+e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
+let i;
+(i = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + i[1]), e.grant.push("GM_" + i[1]));
+}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
+t = Array.isArray(t) ? t : [ t ];
+for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
+e.grant = e.grant.concat(t.map(function(e) {
+return "GM." + e;
+})).concat(t.map(function(e) {
+return "GM_" + e;
+}));
+break;
+}
+})), e.match && (e.match = a(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
+e[t] && (e[t] = e[t].length ? c(r.array_unique(e[t])) : []);
+}), e.grant && e.grant.length && e.grant.sort(), e;
+}
+function a(e) {
+return e.map(function(e, t, n) {
+return e.replace(/^.*(\:\/\/)/, "*$1");
+});
+}
+function u(e, t, n = !1, r = "\t\t", i = "// ", o = "\n") {
+let s = "", a = `${i}@${e}${r}`;
+return Array.isArray(t) ? s = t.join(`${o}${a}`) : void 0 !== t && (s = t.toString()), 
+n && (s = a + s), s;
+}
+function c(e) {
+return e.filter(function(e, t, n) {
+return !!e;
+});
+}
+t.parseMetadata = i, t.hasGrant = o, t.lazyMetaFix = s, t.meta_match = a, t.makeMetaRow = u, 
+t.meta_filter = c, t.default = t;
+}, function(e, t, n) {
+"use strict";
 function r(e) {
 return e.filter(function(e, t, n) {
 return t == n.indexOf(e);
@@ -6633,42 +6584,41 @@ value: !0
 }), t.array_unique = r, t.default = r;
 }, function(e, t, n) {
 var r = {
-"./gamer-auto-signin/": 6,
-"./gamer-auto-signin/gamer/ajax": 7,
-"./gamer-auto-signin/gamer/ajax.js": 7,
-"./gamer-auto-signin/index": 6,
-"./gamer-auto-signin/index.js": 6,
-"./gamer-auto-signin/index.user": 3,
-"./gamer-auto-signin/index.user.js": 3,
-"./gamer-auto-signin/lib/metadata": 18,
-"./gamer-auto-signin/lib/metadata.js": 18,
-"./gamer-auto-signin/novel/sfacg": 10,
-"./gamer-auto-signin/novel/sfacg.js": 10
+"./gamer-auto-signin/": 5,
+"./gamer-auto-signin/gamer/ajax": 6,
+"./gamer-auto-signin/gamer/ajax.js": 6,
+"./gamer-auto-signin/index": 5,
+"./gamer-auto-signin/index.js": 5,
+"./gamer-auto-signin/index.user": 2,
+"./gamer-auto-signin/index.user.js": 2,
+"./gamer-auto-signin/lib/metadata": 15,
+"./gamer-auto-signin/lib/metadata.js": 15,
+"./gamer-auto-signin/novel/sfacg": 9,
+"./gamer-auto-signin/novel/sfacg.js": 9
 };
 function i(e) {
 var t = o(e);
 return n(t);
 }
 function o(e) {
-var t = r[e];
-if (!(t + 1)) {
-var n = new Error("Cannot find module '" + e + "'");
-throw n.code = "MODULE_NOT_FOUND", n;
+if (!n.o(r, e)) {
+var t = new Error("Cannot find module '" + e + "'");
+throw t.code = "MODULE_NOT_FOUND", t;
 }
-return t;
+return r[e];
 }
 i.keys = function e() {
 return Object.keys(r);
-}, i.resolve = o, e.exports = i, i.id = 24;
+}, i.resolve = o, e.exports = i, i.id = 23;
 }, function(e, t, n) {
 e.exports = v, v.Minimatch = m;
 var r = {
 sep: "/"
 };
 try {
-r = n(26);
+r = n(25);
 } catch (e) {}
-var i = v.GLOBSTAR = m.GLOBSTAR = {}, o = n(27), s = {
+var i = v.GLOBSTAR = m.GLOBSTAR = {}, o = n(26), s = {
 "!": {
 open: "(?:(?!(?:",
 close: "))[^/]*?)"
@@ -7060,9 +7010,9 @@ return e.substr(t, n);
 } : function(e, t, n) {
 return t < 0 && (t = e.length + t), e.substr(t, n);
 };
-}).call(this, n(8));
+}).call(this, n(7));
 }, function(e, t, n) {
-var r = n(28), i = n(29);
+var r = n(27), i = n(28);
 e.exports = d;
 var o = "\0SLASH" + Math.random() + "\0", s = "\0OPEN" + Math.random() + "\0", a = "\0CLOSE" + Math.random() + "\0", u = "\0COMMA" + Math.random() + "\0", c = "\0PERIOD" + Math.random() + "\0";
 function l(e) {
@@ -7199,7 +7149,7 @@ var t = e._idleTimeout;
 t >= 0 && (e._idleTimeoutId = setTimeout(function t() {
 e._onTimeout && e._onTimeout();
 }, t));
-}, n(31), t.setImmediate = "undefined" != typeof self && self.setImmediate || void 0 !== e && e.setImmediate || this && this.setImmediate, 
+}, n(30), t.setImmediate = "undefined" != typeof self && self.setImmediate || void 0 !== e && e.setImmediate || this && this.setImmediate, 
 t.clearImmediate = "undefined" != typeof self && self.clearImmediate || void 0 !== e && e.clearImmediate || this && this.clearImmediate;
 }).call(this, n(0));
 }, function(e, t, n) {
@@ -7308,7 +7258,7 @@ setTimeout(p, 0, e);
 };
 }
 }("undefined" == typeof self ? void 0 === e ? this : e : self);
-}).call(this, n(0), n(8));
+}).call(this, n(0), n(7));
 }, function(e, t, n) {
 "use strict";
 function r(e, t) {
@@ -7342,14 +7292,14 @@ return r(s(0, e, "", []).toString(16), 8);
 e.exports = u;
 }, function(e, t, n) {
 "use strict";
-const r = n(5);
+const r = n(4);
 e.exports = r;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(16), i = n(2);
+const r = n(14), i = n(3);
 async function o(e) {
 let t = {
 method: "POST",
@@ -7384,4 +7334,44 @@ return !e || !0 !== e && !e.response ? Promise.reject(new Error(e)) : e;
 }).catch(e => i.default.error(e));
 }
 t.signin = o, t.default = o;
+}, function(e, t, n) {
+"use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(4), i = n(8);
+function o(e) {
+let t = Object.assign({
+method: "GET"
+}, e);
+return t.xhrFields && Object.assign(t, t.xhrFields), t;
+}
+function s(e, n) {
+if ((n = o(n)).url = e, n.data && "object" == typeof n.data && !(n.data instanceof FormData)) {
+let e = new FormData();
+for (let t in n.data) e.append(t, n.data[t]);
+n.data = e;
+}
+return new i(function(e, r) {
+t.GM_XHR(Object.assign({}, n, {
+onload: function(t) {
+e(t);
+},
+onerror: r
+}));
+}).then(function(e) {
+if ("json" == n.dataType && (e.responseOriginal = e.response, e.response = JSON.parse(e.responseText)), 
+e.responseType = e.responseType || n.dataType || null, "function" == typeof n.onload) {
+let t = n.onload.call(this, e);
+if (void 0 !== t) return t;
+}
+return e;
+});
+}
+function a(e, t = Error) {
+let n = new t(e);
+return n.res = e, n;
+}
+t.GM_XHR = r.default.xmlhttpRequest, t.makeOptions = o, t.ajax = s, t.AjaxError = a, 
+t.default = t;
 } ]);

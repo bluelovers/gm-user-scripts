@@ -93,7 +93,7 @@ r.$ = unsafeWindow.$, r.jQuery = unsafeWindow.jQuery;
 console.error(e);
 }
 console.groupEnd("before");
-const i = n(12), a = i.noConflict(!0);
+const i = n(9), a = i.noConflict(!0);
 t.jQuery = a, t.$ = a, window.self.$ = window.self.jQuery = a, t.default = a, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("after");
 try {} catch (e) {
 console.error(e);
@@ -134,7 +134,7 @@ e.exports.name_en = "mastodon-plus", e.exports.name_ja = "mastodon-plus", e.expo
 e.exports.desc_en = "", e.exports.desc_ja = "", e.exports.namespace = "", e.exports.author = "", 
 e.exports.icon = "", e.exports.list = [ "base/mastodon-plus", "global/profile" ], 
 e.exports.list_disable = [], e.exports._lib = (() => {
-n(5), n(6);
+n(4), n(5);
 }), e.exports.metadata = {}, e.exports.metadata.include = [ "http*://mastodon.social/*", "http*://g0v.social/*", "http*://pawoo.net/*", "http*://music.pawoo.net/*", "http*://friends.nico/*", "http*://cmx.im/*" ], 
 e.exports.metadata.match = [], e.exports.metadata.exclude = [], e.exports.metadata.grant = [], 
 e.exports.list_script = [ "global/profile" ], e.exports.current = [], e.exports.default = e.exports;
@@ -144,29 +144,11 @@ e.exports.list_script = [ "global/profile" ], e.exports.current = [], e.exports.
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const o = n(7), i = n(2);
+const o = n(6), i = n(2);
 e.exports.id = i.id, e.exports.name = i.name, e.exports.indexScript = i, o.run(e.exports.id, e.exports, r, function(e, t, n, r, i, a) {
 o.init(e, t, n, r, i, a);
 });
 }).call(this, n(0).default);
-}, function(e, t, n) {
-"use strict";
-function r(e, t) {
-if (!(t = t || document.getElementsByTagName("head")[0])) return;
-let n = document.createElement("style");
-n.type = "text/css";
-try {
-n.innerHTML = e;
-} catch (t) {
-n.innerText = e;
-}
-return t.appendChild(n), n;
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), t.GM_addStyle = r;
-const o = n(4);
-t.default = o;
 }, function(e, t, n) {
 "use strict";
 (function(t, r) {
@@ -251,9 +233,9 @@ e.exports = r;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const i = n(13), a = n(8);
+const i = n(10), a = n(11);
 t.greasemonkey = a.default;
-const s = n(9);
+const s = n(12);
 function u(t, n, o, i) {
 let a = async () => {
 try {
@@ -366,165 +348,20 @@ t.main_list = g;
 }).call(this, n(1), n(0).default, n(0).default);
 }, function(e, t, n) {
 "use strict";
-(function(e, r) {
-function o(e) {
-for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), o(n(4));
-const i = n(4);
-function a(t, n) {
-return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
-"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), i.GM_addStyle(t.toString(), n);
-}
-function s(t, n) {
-return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
-}
-function u(e, ...t) {
-return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
-}
-function l(e, ...t) {
-return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
-}
-function c(e, ...t) {
-return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
-}
-function f(e, ...t) {
-return console.log(e, ...t);
-}
-function p(e) {
-let t = window.open(e, "_blank");
-return setTimeout(function() {
-window.focus();
-}, 300), t;
-}
-t.GM_addStyle = a, t.addStylesheet = s, t.debug = u, t.error = l, t.info = c, t.log = f, 
-t.openInTabBackground = p;
-const d = n(8);
-t.default = d;
-}).call(this, n(0).default, n(1));
-}, function(e, t, n) {
-"use strict";
-(function(e, r, o) {
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-const i = n(7), a = n(14), s = n(10);
-function u(t, r, o) {
-let u = i.requireScript(t, "index");
-s.hasGrant(u.metadata.grant, "registerMenuCommand") ? a.registerMenuCommand({
-id: t,
-key: "debug jquery"
-}, async t => {
+function r(e, t) {
+if (!(t = t || document.getElementsByTagName("head")[0])) return;
+let n = document.createElement("style");
+n.type = "text/css";
 try {
-l("null", null), l("global", e), l("window", window), l("window.self", window.self), 
-l("unsafeWindow", unsafeWindow);
-} catch (e) {
-console.error(e);
-}
-try {
-"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
-} catch (e) {
-console.error(e);
-}
-try {
-let e;
-l("jquery/global", await Promise.resolve().then(() => n(0)));
-} catch (e) {
-console.error(e);
-}
-}) : console.info(t, "registerMenuCommand = false");
-}
-function l(e, t) {
-console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
-try {
-console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
-console.info("jQuery", o, o && o.fn && o.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
-console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+n.innerHTML = e;
 } catch (t) {
-console.error(`${e}`, t.toString());
+n.innerText = e;
 }
-console.groupEnd(e);
+return t.appendChild(n), n;
 }
-t.registerGlobalMenu = u;
-const c = n(9);
-t.default = c;
-}).call(this, n(1), n(0).default, n(0).default);
-}, function(e, t, n) {
-"use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
-const r = n(17);
-function o(e) {
-let t;
-if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
-let n = t.index;
-{
-let n = /(^\/\/\s+==\/UserScript==)/m;
-n.lastIndex = t.index + t[0].length, t = n.exec(e);
-}
-let o = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
-return /^\/\/\s*@/g.test(e);
-}).reduce(function(e, t) {
-let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], o = n[2];
-return o && (o = o.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(o) && e[r].push(o), 
-e;
-}, {});
-return o = Object.assign({
-name: []
-}, o, {
-grant: [],
-include: [],
-exclude: [],
-noframes: []
-}, o), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
-o[e] && (o[e] = o[e].length ? l(r.array_unique(o[e])) : []);
-}), o.grant.sort(), o;
-}
-}
-function i(e, t) {
-return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
-}
-function a(e) {
-return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
-e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
-let o;
-(o = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + o[1]), e.grant.push("GM_" + o[1]));
-}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
-t = Array.isArray(t) ? t : [ t ];
-for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
-e.grant = e.grant.concat(t.map(function(e) {
-return "GM." + e;
-})).concat(t.map(function(e) {
-return "GM_" + e;
-}));
-break;
-}
-})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
-e[t] && (e[t] = e[t].length ? l(r.array_unique(e[t])) : []);
-}), e.grant && e.grant.length && e.grant.sort(), e;
-}
-function s(e) {
-return e.map(function(e, t, n) {
-return e.replace(/^.*(\:\/\/)/, "*$1");
-});
-}
-function u(e, t, n = !1, r = "\t\t", o = "// ", i = "\n") {
-let a = "", s = `${o}@${e}${r}`;
-return Array.isArray(t) ? a = t.join(`${i}${s}`) : void 0 !== t && (a = t.toString()), 
-n && (a = s + a), a;
-}
-function l(e) {
-return e.filter(function(e, t, n) {
-return !!e;
-});
-}
-t.parseMetadata = o, t.hasGrant = i, t.lazyMetaFix = a, t.meta_match = s, t.makeMetaRow = u, 
-t.meta_filter = l;
-const c = n(10);
-t.default = c;
+}), t.GM_addStyle = r, t.default = t;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -3468,14 +3305,97 @@ value: !0
 }), t.parse_url2 = r, t.parse_url = o, t.default = o;
 }, function(e, t, n) {
 "use strict";
-const r = n(15);
+(function(e, r) {
+function o(e) {
+for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
+}
+Object.defineProperty(t, "__esModule", {
+value: !0
+}), o(n(7));
+const i = n(7);
+function a(t, n) {
+return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
+"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), i.GM_addStyle(t.toString(), n);
+}
+function s(t, n) {
+return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
+}
+function u(e, ...t) {
+return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
+}
+function l(e, ...t) {
+return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
+}
+function c(e, ...t) {
+return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
+}
+function f(e, ...t) {
+return console.log(e, ...t);
+}
+function p(e) {
+let t = window.open(e, "_blank");
+return setTimeout(function() {
+window.focus();
+}, 300), t;
+}
+t.GM_addStyle = a, t.addStylesheet = s, t.debug = u, t.error = l, t.info = c, t.log = f, 
+t.openInTabBackground = p, t.default = t;
+}).call(this, n(0).default, n(1));
+}, function(e, t, n) {
+"use strict";
+(function(e, r, o) {
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const i = n(6), a = n(13), s = n(16);
+function u(t, r, o) {
+let u = i.requireScript(t, "index");
+s.hasGrant(u.metadata.grant, "registerMenuCommand") ? a.registerMenuCommand({
+id: t,
+key: "debug jquery"
+}, async t => {
+try {
+l("null", null), l("global", e), l("window", window), l("window.self", window.self), 
+l("unsafeWindow", unsafeWindow);
+} catch (e) {
+console.error(e);
+}
+try {
+"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
+} catch (e) {
+console.error(e);
+}
+try {
+let e;
+l("jquery/global", await Promise.resolve().then(() => n(0)));
+} catch (e) {
+console.error(e);
+}
+}) : console.info(t, "registerMenuCommand = false");
+}
+function l(e, t) {
+console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
+try {
+console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
+console.info("jQuery", o, o && o.fn && o.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
+console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+} catch (t) {
+console.error(`${e}`, t.toString());
+}
+console.groupEnd(e);
+}
+t.registerGlobalMenu = u, t.default = t;
+}).call(this, n(1), n(0).default, n(0).default);
+}, function(e, t, n) {
+"use strict";
+const r = n(14);
 e.exports = r;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(16), o = new Map();
+const r = n(15), o = new Map();
 function i(e, t, n = []) {
 "string" == typeof e && (e = {
 label: e
@@ -3559,6 +3479,78 @@ _GMApi_1.call = call, _GMApi_1.callSafe = callSafe;
 }), _GMApi.default = _GMApi.GMApi = _GMApi, exports.GMApi = _GMApi, exports.default = exports.GMApi;
 }, function(e, t, n) {
 "use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(17);
+function o(e) {
+let t;
+if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
+let n = t.index;
+{
+let n = /(^\/\/\s+==\/UserScript==)/m;
+n.lastIndex = t.index + t[0].length, t = n.exec(e);
+}
+let o = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
+return /^\/\/\s*@/g.test(e);
+}).reduce(function(e, t) {
+let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], o = n[2];
+return o && (o = o.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(o) && e[r].push(o), 
+e;
+}, {});
+return o = Object.assign({
+name: []
+}, o, {
+grant: [],
+include: [],
+exclude: [],
+noframes: []
+}, o), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
+o[e] && (o[e] = o[e].length ? l(r.array_unique(o[e])) : []);
+}), o.grant.sort(), o;
+}
+}
+function i(e, t) {
+return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
+}
+function a(e) {
+return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
+e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
+let o;
+(o = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + o[1]), e.grant.push("GM_" + o[1]));
+}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
+t = Array.isArray(t) ? t : [ t ];
+for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
+e.grant = e.grant.concat(t.map(function(e) {
+return "GM." + e;
+})).concat(t.map(function(e) {
+return "GM_" + e;
+}));
+break;
+}
+})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
+e[t] && (e[t] = e[t].length ? l(r.array_unique(e[t])) : []);
+}), e.grant && e.grant.length && e.grant.sort(), e;
+}
+function s(e) {
+return e.map(function(e, t, n) {
+return e.replace(/^.*(\:\/\/)/, "*$1");
+});
+}
+function u(e, t, n = !1, r = "\t\t", o = "// ", i = "\n") {
+let a = "", s = `${o}@${e}${r}`;
+return Array.isArray(t) ? a = t.join(`${i}${s}`) : void 0 !== t && (a = t.toString()), 
+n && (a = s + a), a;
+}
+function l(e) {
+return e.filter(function(e, t, n) {
+return !!e;
+});
+}
+t.parseMetadata = o, t.hasGrant = i, t.lazyMetaFix = a, t.meta_match = s, t.makeMetaRow = u, 
+t.meta_filter = l, t.default = t;
+}, function(e, t, n) {
+"use strict";
 function r(e) {
 return e.filter(function(e, t, n) {
 return t == n.indexOf(e);
@@ -3570,28 +3562,27 @@ value: !0
 }, function(e, t, n) {
 var r = {
 "./mastodon-plus/": 2,
-"./mastodon-plus/base/mastodon-plus": 5,
-"./mastodon-plus/base/mastodon-plus.js": 5,
-"./mastodon-plus/global/profile": 6,
-"./mastodon-plus/global/profile.js": 6,
+"./mastodon-plus/base/mastodon-plus": 4,
+"./mastodon-plus/base/mastodon-plus.js": 4,
+"./mastodon-plus/global/profile": 5,
+"./mastodon-plus/global/profile.js": 5,
 "./mastodon-plus/index": 2,
 "./mastodon-plus/index.js": 2,
 "./mastodon-plus/index.user": 3,
 "./mastodon-plus/index.user.js": 3,
-"./mastodon-plus/lib/metadata": 11,
-"./mastodon-plus/lib/metadata.js": 11
+"./mastodon-plus/lib/metadata": 8,
+"./mastodon-plus/lib/metadata.js": 8
 };
 function o(e) {
 var t = i(e);
 return n(t);
 }
 function i(e) {
-var t = r[e];
-if (!(t + 1)) {
-var n = new Error("Cannot find module '" + e + "'");
-throw n.code = "MODULE_NOT_FOUND", n;
+if (!n.o(r, e)) {
+var t = new Error("Cannot find module '" + e + "'");
+throw t.code = "MODULE_NOT_FOUND", t;
 }
-return t;
+return r[e];
 }
 o.keys = function e() {
 return Object.keys(r);

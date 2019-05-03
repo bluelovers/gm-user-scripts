@@ -122,7 +122,7 @@ r.$ = unsafeWindow.$, r.jQuery = unsafeWindow.jQuery;
 console.error(e);
 }
 console.groupEnd("before");
-const i = n(21), a = i.noConflict(!0);
+const i = n(19), a = i.noConflict(!0);
 t.jQuery = a, t.$ = a, window.self.$ = window.self.jQuery = a, t.default = a, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("after");
 try {} catch (e) {
 console.error(e);
@@ -157,46 +157,6 @@ n = n || new Function("return this")();
 "object" == typeof window && (n = window);
 }
 e.exports = n;
-}, function(e, t, n) {
-"use strict";
-(function(e, r) {
-function o(e) {
-for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), o(n(6));
-const i = n(6);
-function a(t, n) {
-return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
-"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), i.GM_addStyle(t.toString(), n);
-}
-function s(t, n) {
-return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
-}
-function u(e, ...t) {
-return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
-}
-function l(e, ...t) {
-return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
-}
-function c(e, ...t) {
-return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
-}
-function f(e, ...t) {
-return console.log(e, ...t);
-}
-function p(e) {
-let t = window.open(e, "_blank");
-return setTimeout(function() {
-window.focus();
-}, 300), t;
-}
-t.GM_addStyle = a, t.addStylesheet = s, t.debug = u, t.error = l, t.info = c, t.log = f, 
-t.openInTabBackground = p;
-const d = n(2);
-t.default = d;
-}).call(this, n(0).default, n(1));
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -249,6 +209,44 @@ return void 0 === e;
 t.match = i, t.option = a, t.auto = s, t.matchChrome = u;
 }, function(e, t, n) {
 "use strict";
+(function(e, r) {
+function o(e) {
+for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
+}
+Object.defineProperty(t, "__esModule", {
+value: !0
+}), o(n(17));
+const i = n(17);
+function a(t, n) {
+return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
+"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), i.GM_addStyle(t.toString(), n);
+}
+function s(t, n) {
+return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
+}
+function u(e, ...t) {
+return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
+}
+function l(e, ...t) {
+return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
+}
+function c(e, ...t) {
+return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
+}
+function f(e, ...t) {
+return console.log(e, ...t);
+}
+function p(e) {
+let t = window.open(e, "_blank");
+return setTimeout(function() {
+window.focus();
+}, 300), t;
+}
+t.GM_addStyle = a, t.addStylesheet = s, t.debug = u, t.error = l, t.info = c, t.log = f, 
+t.openInTabBackground = p, t.default = t;
+}).call(this, n(0).default, n(1));
+}, function(e, t, n) {
+"use strict";
 (function(e) {
 function n(t) {
 return (t = e(t)).attr("frameBorder", 0).attr("allowTransparency", !0).css({
@@ -267,37 +265,19 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const o = n(17);
+const o = n(16);
 e.exports.id = "dmm-plus-sc", e.exports.name = e.exports.id, e.exports.desc = "dmm games layout tweak", 
 o.run(e.exports.id, e.exports, r, function(e, t, r, i, a, s) {
 o.init(e, t, r, i, a, s), n(34).makeJQueryPlugin(a);
 });
 }).call(this, n(0).default);
 }, function(e, t, n) {
-"use strict";
-function r(e, t) {
-if (!(t = t || document.getElementsByTagName("head")[0])) return;
-let n = document.createElement("style");
-n.type = "text/css";
-try {
-n.innerHTML = e;
-} catch (t) {
-n.innerText = e;
-}
-return t.appendChild(n), n;
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), t.GM_addStyle = r;
-const o = n(6);
-t.default = o;
-}, function(e, t, n) {
 e.exports.id = "dmm-plus-sc", e.exports.version = "", e.exports.name = "dmm-plus-sc", 
 e.exports.name_en = "dmm-plus-sc", e.exports.name_ja = "dmm-plus-sc", e.exports.desc = "DMM Games 介面調整以及更適合遊戲直播", 
 e.exports.desc_en = "dmm games layout tweak", e.exports.desc_ja = "DMM Games 介面調整以及更適合遊戲直播", 
 e.exports.namespace = "", e.exports.author = "", e.exports.icon = "", e.exports.list = [ "dmm/games", "games/gadgets", "games/pc-play", "games/canvas", "global/iframe", "global/script", "global/webgl_dmm", "_fake" ], 
 e.exports.list_disable = [], e.exports._lib = (() => {
-n(8), n(10), n(11), n(12), n(13), n(14), n(15), n(16);
+n(7), n(9), n(10), n(11), n(12), n(13), n(14), n(15);
 }), e.exports.metadata = {}, e.exports.metadata.include = [ "http*://games.dmm.co.jp/*", "http*://games.dmm.co.jp/detail/*", "http*://games.dmm.co.jp/*/detail/*", "http*://www.dmm.co.jp/netgame/*", "http*://personal.games.dmm.co.jp/my-games/*", "http*://games.dmm.com/*", "http*://games.dmm.com/detail/*", "http*://games.dmm.com/*/detail/*", "http*://www.dmm.com/netgame/*", "http*://personal.games.dmm.com/my-games/*", "http*://osapi.dmm.com/gadgets/*", "http*://pc-play.games.dmm.co.jp/play/*", "http*://web.killdoya.jp/*", "http*://dmm-*.iolite.link/*", "http*://*/product/dmm_pc.php/*", "http*://assets.millennium-war.net/*/*", "http*://*", "http*://pc-x.phantom-greed.com/top*", "http*://pc-x.phantom-greed.com/start*", "*/webgl_dmm/*", "http*://*.dmm.co*/*", "http*://*games.dmm.co*/*" ], 
 e.exports.metadata.match = [], e.exports.metadata.exclude = [ "http://pc-play.games.dmm.co.jp/headnavi/*", "http*://pc-x.phantom-greed.com/*frame*", "http*://spdmg-backend2.i-mobile.co.jp/*", "http*://tg.socdm.com/*", "http://*.microad.jp/*", "*.youtube.*", "*.google.*", "*facebook.*", "*twitter.*", "*wiki.*/*", "*.tw/*", "*.cn/*", "*.org/*", "*.tv/*", "*.eu/*", "http*://www.dmm.co*/digital*" ], 
 e.exports.metadata.grant = [ "unsafeWindow" ], e.exports.list_script = [ "global/script", "global/webgl_dmm" ], 
@@ -312,10 +292,10 @@ exclude: []
 },
 test(r = t._url_obj) {
 let o;
-return !!(o = n(3).auto(r.source, e.exports));
+return !!(o = n(2).auto(r.source, e.exports));
 },
 main(e = t._url_obj) {
-const o = n(9);
+const o = n(8);
 o([ ".d-item a" ].join()).prop("target", "_blank");
 let i = r(window);
 e.path.match(/exchange|error|regist|login|netgame_s|list/), e.path.match(/gadgets/) && (document.title = document.title.replace(" - オンラインゲーム - DMM.com", "").replace(" - オンラインゲーム - DMM.R18", "")), 
@@ -376,10 +356,10 @@ exclude: []
 },
 test(r = t._url_obj) {
 let o;
-return !!(o = n(3).auto(r.source, e.exports)) && 2;
+return !!(o = n(2).auto(r.source, e.exports)) && 2;
 },
 main(o = t._url_obj) {
-const i = n(2);
+const i = n(3);
 function a(e) {
 e.source.postMessage(window.location.href.toString(), e.origin);
 }
@@ -415,12 +395,12 @@ exclude: [ "http://pc-play.games.dmm.co.jp/headnavi/*" ]
 },
 test(r = t._url_obj) {
 let o;
-return !!(o = n(3).auto(r.source, e.exports)) && 2;
+return !!(o = n(2).auto(r.source, e.exports)) && 2;
 },
 main(o = t._url_obj) {
-const i = n(9);
+const i = n(8);
 i([].join()).prop("target", "_blank");
-const a = n(2);
+const a = n(3);
 let s = r("#game_frame"), u = s.length ? s.width() : 1200;
 a.GM_addStyle([ ".dmm-ntgnavi { margin-left: 0px; margin-right: 0px; padding: 0px; margin-top: 0px; border-bottom: 0 none transparent; }", `@media only screen and (max-width: ${u + 200}px) {\n\t\t\t\t#main-ntg { text-align: left; }\n\t\t\t\t#leftnavi { display: none; }\n\t\t\t\t}`, "iframe, #main-ntg { background-color: transparent !important; border: 0 none #000; }", "#main-ntg, #main-ntg.page-appdetial { background-color: #000; margin-left: 0px; margin-right: 0px; }", "body { background-color: #000; margin-left: 0px; margin-right: 0px; border: 0 none transparent; }", ".page-inner { margin-left: 0px !important; }" ], "body");
 let l = r(window);
@@ -451,12 +431,12 @@ exclude: []
 },
 test(r = t._url_obj) {
 let o;
-return !!(o = n(3).auto(r.source, e.exports)) && 2;
+return !!(o = n(2).auto(r.source, e.exports)) && 2;
 },
 main(o = t._url_obj) {
-const i = n(9);
+const i = n(8);
 i([].join()).prop("target", "_blank");
-const a = n(2);
+const a = n(3);
 a.GM_addStyle([ "iframe, body, html { background-color: transparent !important; border: 0 none transparent; }" ], "body");
 let s = r("#gameCanvas, .emscripten").filter("canvas"), u = s.length ? s.width() : 960, l = r(window);
 l.on("load.ready", function() {
@@ -485,7 +465,7 @@ exclude: [ "http*://pc-x.phantom-greed.com/*frame*", "http*://spdmg-backend2.i-m
 },
 test(r = t._url_obj) {
 let o;
-return window.self != window.top && window.top != window.parent && !n(3).match(r.source, [].concat(e.exports.metadata.nomatch, e.exports.metadata.exclude));
+return window.self != window.top && window.top != window.parent && !n(2).match(r.source, [].concat(e.exports.metadata.nomatch, e.exports.metadata.exclude));
 },
 main(e = t._url_obj) {
 let n = "http://osapi.dmm.com", r = window.location.href.toString();
@@ -532,10 +512,10 @@ metadata: {
 include: [ "*/webgl_dmm/*" ],
 exclude: []
 },
-test: (o = t._url_obj) => !(!n(3).auto(o.source, e.exports) || !r("#main_contents #game-outer").length) && 2,
+test: (o = t._url_obj) => !(!n(2).auto(o.source, e.exports) || !r("#main_contents #game-outer").length) && 2,
 main(e = t._url_obj) {
 let o = r("#main_contents #game-outer"), i = o.length ? o.width() : 1200;
-const a = n(2);
+const a = n(3);
 a.GM_addStyle([ `@media only screen and (max-width: ${i + 200}px) {\n\t\t\t\t#main_contents > div[style] { margin-left: 0; }\n\t\t\t\t}`, "#main_contents > div[style] { margin-left: 0; }" ], "body");
 }
 };
@@ -566,9 +546,9 @@ e.exports = r;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const i = n(22), a = n(2);
+const i = n(20), a = n(3);
 t.greasemonkey = a.default;
-const s = n(18);
+const s = n(21);
 function u(t, n, o, i) {
 let a = async () => {
 try {
@@ -681,125 +661,20 @@ t.main_list = m;
 }).call(this, n(1), n(0).default, n(0).default);
 }, function(e, t, n) {
 "use strict";
-(function(e, r, o) {
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-const i = n(17), a = n(23), s = n(19);
-function u(t, r, o) {
-let u = i.requireScript(t, "index");
-s.hasGrant(u.metadata.grant, "registerMenuCommand") ? a.registerMenuCommand({
-id: t,
-key: "debug jquery"
-}, async t => {
+function r(e, t) {
+if (!(t = t || document.getElementsByTagName("head")[0])) return;
+let n = document.createElement("style");
+n.type = "text/css";
 try {
-l("null", null), l("global", e), l("window", window), l("window.self", window.self), 
-l("unsafeWindow", unsafeWindow);
-} catch (e) {
-console.error(e);
-}
-try {
-"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
-} catch (e) {
-console.error(e);
-}
-try {
-let e;
-l("jquery/global", await Promise.resolve().then(() => n(0)));
-} catch (e) {
-console.error(e);
-}
-}) : console.info(t, "registerMenuCommand = false");
-}
-function l(e, t) {
-console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
-try {
-console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
-console.info("jQuery", o, o && o.fn && o.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
-console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+n.innerHTML = e;
 } catch (t) {
-console.error(`${e}`, t.toString());
+n.innerText = e;
 }
-console.groupEnd(e);
+return t.appendChild(n), n;
 }
-t.registerGlobalMenu = u;
-const c = n(18);
-t.default = c;
-}).call(this, n(1), n(0).default, n(0).default);
-}, function(e, t, n) {
-"use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
-const r = n(26);
-function o(e) {
-let t;
-if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
-let n = t.index;
-{
-let n = /(^\/\/\s+==\/UserScript==)/m;
-n.lastIndex = t.index + t[0].length, t = n.exec(e);
-}
-let o = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
-return /^\/\/\s*@/g.test(e);
-}).reduce(function(e, t) {
-let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], o = n[2];
-return o && (o = o.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(o) && e[r].push(o), 
-e;
-}, {});
-return o = Object.assign({
-name: []
-}, o, {
-grant: [],
-include: [],
-exclude: [],
-noframes: []
-}, o), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
-o[e] && (o[e] = o[e].length ? l(r.array_unique(o[e])) : []);
-}), o.grant.sort(), o;
-}
-}
-function i(e, t) {
-return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
-}
-function a(e) {
-return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
-e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
-let o;
-(o = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + o[1]), e.grant.push("GM_" + o[1]));
-}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
-t = Array.isArray(t) ? t : [ t ];
-for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
-e.grant = e.grant.concat(t.map(function(e) {
-return "GM." + e;
-})).concat(t.map(function(e) {
-return "GM_" + e;
-}));
-break;
-}
-})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
-e[t] && (e[t] = e[t].length ? l(r.array_unique(e[t])) : []);
-}), e.grant && e.grant.length && e.grant.sort(), e;
-}
-function s(e) {
-return e.map(function(e, t, n) {
-return e.replace(/^.*(\:\/\/)/, "*$1");
-});
-}
-function u(e, t, n = !1, r = "\t\t", o = "// ", i = "\n") {
-let a = "", s = `${o}@${e}${r}`;
-return Array.isArray(t) ? a = t.join(`${i}${s}`) : void 0 !== t && (a = t.toString()), 
-n && (a = s + a), a;
-}
-function l(e) {
-return e.filter(function(e, t, n) {
-return !!e;
-});
-}
-t.parseMetadata = o, t.hasGrant = i, t.lazyMetaFix = a, t.meta_match = s, t.makeMetaRow = u, 
-t.meta_filter = l;
-const c = n(19);
-t.default = c;
+}), t.GM_addStyle = r, t.default = t;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -3744,14 +3619,59 @@ value: !0
 }), t.parse_url2 = r, t.parse_url = o, t.default = o;
 }, function(e, t, n) {
 "use strict";
-const r = n(24);
+(function(e, r, o) {
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const i = n(16), a = n(22), s = n(25);
+function u(t, r, o) {
+let u = i.requireScript(t, "index");
+s.hasGrant(u.metadata.grant, "registerMenuCommand") ? a.registerMenuCommand({
+id: t,
+key: "debug jquery"
+}, async t => {
+try {
+l("null", null), l("global", e), l("window", window), l("window.self", window.self), 
+l("unsafeWindow", unsafeWindow);
+} catch (e) {
+console.error(e);
+}
+try {
+"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
+} catch (e) {
+console.error(e);
+}
+try {
+let e;
+l("jquery/global", await Promise.resolve().then(() => n(0)));
+} catch (e) {
+console.error(e);
+}
+}) : console.info(t, "registerMenuCommand = false");
+}
+function l(e, t) {
+console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
+try {
+console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
+console.info("jQuery", o, o && o.fn && o.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
+console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+} catch (t) {
+console.error(`${e}`, t.toString());
+}
+console.groupEnd(e);
+}
+t.registerGlobalMenu = u, t.default = t;
+}).call(this, n(1), n(0).default, n(0).default);
+}, function(e, t, n) {
+"use strict";
+const r = n(23);
 e.exports = r;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(25), o = new Map();
+const r = n(24), o = new Map();
 function i(e, t, n = []) {
 "string" == typeof e && (e = {
 label: e
@@ -3835,6 +3755,78 @@ _GMApi_1.call = call, _GMApi_1.callSafe = callSafe;
 }), _GMApi.default = _GMApi.GMApi = _GMApi, exports.GMApi = _GMApi, exports.default = exports.GMApi;
 }, function(e, t, n) {
 "use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(26);
+function o(e) {
+let t;
+if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
+let n = t.index;
+{
+let n = /(^\/\/\s+==\/UserScript==)/m;
+n.lastIndex = t.index + t[0].length, t = n.exec(e);
+}
+let o = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
+return /^\/\/\s*@/g.test(e);
+}).reduce(function(e, t) {
+let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], o = n[2];
+return o && (o = o.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(o) && e[r].push(o), 
+e;
+}, {});
+return o = Object.assign({
+name: []
+}, o, {
+grant: [],
+include: [],
+exclude: [],
+noframes: []
+}, o), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
+o[e] && (o[e] = o[e].length ? l(r.array_unique(o[e])) : []);
+}), o.grant.sort(), o;
+}
+}
+function i(e, t) {
+return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
+}
+function a(e) {
+return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
+e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
+let o;
+(o = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + o[1]), e.grant.push("GM_" + o[1]));
+}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
+t = Array.isArray(t) ? t : [ t ];
+for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
+e.grant = e.grant.concat(t.map(function(e) {
+return "GM." + e;
+})).concat(t.map(function(e) {
+return "GM_" + e;
+}));
+break;
+}
+})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
+e[t] && (e[t] = e[t].length ? l(r.array_unique(e[t])) : []);
+}), e.grant && e.grant.length && e.grant.sort(), e;
+}
+function s(e) {
+return e.map(function(e, t, n) {
+return e.replace(/^.*(\:\/\/)/, "*$1");
+});
+}
+function u(e, t, n = !1, r = "\t\t", o = "// ", i = "\n") {
+let a = "", s = `${o}@${e}${r}`;
+return Array.isArray(t) ? a = t.join(`${i}${s}`) : void 0 !== t && (a = t.toString()), 
+n && (a = s + a), a;
+}
+function l(e) {
+return e.filter(function(e, t, n) {
+return !!e;
+});
+}
+t.parseMetadata = o, t.hasGrant = i, t.lazyMetaFix = a, t.meta_match = s, t.makeMetaRow = u, 
+t.meta_filter = l, t.default = t;
+}, function(e, t, n) {
+"use strict";
 function r(e) {
 return e.filter(function(e, t, n) {
 return t == n.indexOf(e);
@@ -3845,41 +3837,40 @@ value: !0
 }), t.array_unique = r, t.default = r;
 }, function(e, t, n) {
 var r = {
-"./dmm-plus-sc/": 7,
-"./dmm-plus-sc/_fake": 16,
-"./dmm-plus-sc/_fake.js": 16,
-"./dmm-plus-sc/dmm/games": 8,
-"./dmm-plus-sc/dmm/games.js": 8,
-"./dmm-plus-sc/games/canvas": 12,
-"./dmm-plus-sc/games/canvas.js": 12,
-"./dmm-plus-sc/games/gadgets": 10,
-"./dmm-plus-sc/games/gadgets.js": 10,
-"./dmm-plus-sc/games/pc-play": 11,
-"./dmm-plus-sc/games/pc-play.js": 11,
-"./dmm-plus-sc/global/iframe": 13,
-"./dmm-plus-sc/global/iframe.js": 13,
-"./dmm-plus-sc/global/script": 14,
-"./dmm-plus-sc/global/script.js": 14,
-"./dmm-plus-sc/global/webgl_dmm": 15,
-"./dmm-plus-sc/global/webgl_dmm.js": 15,
-"./dmm-plus-sc/index": 7,
-"./dmm-plus-sc/index.js": 7,
+"./dmm-plus-sc/": 6,
+"./dmm-plus-sc/_fake": 15,
+"./dmm-plus-sc/_fake.js": 15,
+"./dmm-plus-sc/dmm/games": 7,
+"./dmm-plus-sc/dmm/games.js": 7,
+"./dmm-plus-sc/games/canvas": 11,
+"./dmm-plus-sc/games/canvas.js": 11,
+"./dmm-plus-sc/games/gadgets": 9,
+"./dmm-plus-sc/games/gadgets.js": 9,
+"./dmm-plus-sc/games/pc-play": 10,
+"./dmm-plus-sc/games/pc-play.js": 10,
+"./dmm-plus-sc/global/iframe": 12,
+"./dmm-plus-sc/global/iframe.js": 12,
+"./dmm-plus-sc/global/script": 13,
+"./dmm-plus-sc/global/script.js": 13,
+"./dmm-plus-sc/global/webgl_dmm": 14,
+"./dmm-plus-sc/global/webgl_dmm.js": 14,
+"./dmm-plus-sc/index": 6,
+"./dmm-plus-sc/index.js": 6,
 "./dmm-plus-sc/index.user": 5,
 "./dmm-plus-sc/index.user.js": 5,
-"./dmm-plus-sc/lib/metadata": 20,
-"./dmm-plus-sc/lib/metadata.js": 20
+"./dmm-plus-sc/lib/metadata": 18,
+"./dmm-plus-sc/lib/metadata.js": 18
 };
 function o(e) {
 var t = i(e);
 return n(t);
 }
 function i(e) {
-var t = r[e];
-if (!(t + 1)) {
-var n = new Error("Cannot find module '" + e + "'");
-throw n.code = "MODULE_NOT_FOUND", n;
+if (!n.o(r, e)) {
+var t = new Error("Cannot find module '" + e + "'");
+throw t.code = "MODULE_NOT_FOUND", t;
 }
-return t;
+return r[e];
 }
 o.keys = function e() {
 return Object.keys(r);

@@ -8,7 +8,9 @@ export const desc_en = desc;
 export const icon = '';
 
 export const grant = [
-	//
+	'GM_registerMenuCommand',
+	'GM_xmlhttpRequest',
+	'GM_getValue',
 ];
 
 /**

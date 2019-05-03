@@ -101,7 +101,7 @@ r.$ = unsafeWindow.$, r.jQuery = unsafeWindow.jQuery;
 console.error(e);
 }
 console.groupEnd("before");
-const a = n(34), o = a.noConflict(!0);
+const a = n(31), o = a.noConflict(!0);
 t.jQuery = o, t.$ = o, window.self.$ = window.self.jQuery = o, t.default = o, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("after");
 try {} catch (e) {
 console.error(e);
@@ -152,7 +152,7 @@ e.exports.list_script = [], e.exports.current = [], e.exports.default = e.export
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(29);
+const r = n(26);
 function i(e, t = RegExp, n) {
 if (!e || "string" != typeof e || 1 != e.length) throw new TypeError(`"${e}" not a valid flag`);
 let i = null;
@@ -193,9 +193,9 @@ t.default = o, t.testFlagsAll = s, t.createRegExp = u;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const o = n(17);
+const o = n(16);
 function s() {
-const t = n(20);
+const t = n(18);
 t.registerMenuCommand({
 id: e.exports.name,
 key: "unescape"
@@ -237,7 +237,7 @@ let i;
 return !!(i = n(40).auto(r.source, e.exports));
 },
 async main(e = t._url_obj) {
-let i = n(11);
+let i = n(10);
 r("body").on("mousedown mouseenter", "#tb_rich_poster_container .poster_submit", function() {
 r("#ueditor_replace").find("*").contents().filter(function() {
 return 3 === this.nodeType && this.nodeValue;
@@ -255,7 +255,7 @@ this.nodeValue != a && (this.nodeValue = a);
 });
 },
 adblock(e = t._url_obj) {
-let i = n(11);
+let i = n(10);
 r(".d_post_content").add("h3.core_title_txt").each(function() {
 let e;
 r(this).find("*").addBack().not(".core_title_txt a").contents().filter(function() {
@@ -277,7 +277,7 @@ e.exports = i;
 "use strict";
 var r;
 !function(e) {
-const t = n(24);
+const t = n(21);
 function r(...e) {
 return e.length > 1 ? i(e) : i(e[0]);
 }
@@ -316,7 +316,7 @@ return t(e, n);
 e.lazy_unique = r, e.array_unique = i, e.lazy_unique_overwrite = a, e.array_unique_overwrite = o, 
 e.defaultFilter = s, e.defaultChecker = u;
 }(r || (r = {})), r = r.lazy_unique = Object.assign(r.lazy_unique, r, t, {
-equals: n(24),
+equals: n(21),
 default: r.lazy_unique
 }), t.default = r, Object.defineProperty(r, "__esModule", {
 value: !0
@@ -330,7 +330,7 @@ r[e] = Object.freeze(r[e]);
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(12);
+const r = n(11);
 var i = n(6);
 function a(e) {
 return r.default.split(e, "");
@@ -361,9 +361,9 @@ value: !0
 });
 const r = n(3);
 t.hasSupportFlag = r.hasSupportFlag, t.testFlag = r.testFlag;
-const i = n(29);
+const i = n(26);
 t.FlagsName = i.FlagsName;
-const a = n(3), o = n(30);
+const a = n(3), o = n(27);
 t.testPattern = o.testPattern;
 const s = n(79), u = n(85), c = n(87), l = n(89), f = n(90), p = n(91), h = {
 nativeFlags: "",
@@ -408,24 +408,6 @@ t.metadata = "// ==UserScript==\n// @name\t\t<%= index.name %>\n// @name:en\t\t<
 t.default = t.metadata;
 }, function(e, t, n) {
 "use strict";
-function r(e, t) {
-if (!(t = t || document.getElementsByTagName("head")[0])) return;
-let n = document.createElement("style");
-n.type = "text/css";
-try {
-n.innerHTML = e;
-} catch (t) {
-n.innerText = e;
-}
-return t.appendChild(n), n;
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), t.GM_addStyle = r;
-const i = n(10);
-t.default = i;
-}, function(e, t, n) {
-"use strict";
 function r(e) {
 for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
 }
@@ -433,8 +415,8 @@ Object.defineProperty(t, "__esModule", {
 value: !0
 });
 const i = n(46);
-r(n(16));
-const a = n(16);
+r(n(15));
+const a = n(15);
 function o(e, n = {}) {
 let r = n.count || 1;
 const a = n.toRegExp ? n.toRegExp : i.create;
@@ -485,7 +467,7 @@ return e.split("");
 t.SP_KEY = "#_@_#", t.SP_REGEXP = "(?:@|（·?）|-|/|\\(\\)|%|￥|_|\\?|？|\\||#|\\$|[（\\(](?:和谐|河蟹)[\\)）]|（河）（蟹）|[（\\(][河蟹]{1,2}[\\)）]| |\\.|[・·]|\\*|□|圌|[=＝]|\\\\\\\\|\\/\\/|｜)", 
 t.SP_REGEXP_UNSAFE = "(?:" + t.SP_REGEXP + "|、|。)", t.SP_ESCAPE = "（河蟹）", t.SP_REGEXP_STRICT = `(?:${t.SP_ESCAPE})`, 
 t.escape = o, t.unescape = s, t.getTable = u, t.loopTable = c, t.splitChar = l;
-const f = n(11);
+const f = n(10);
 t.default = f;
 }, function(e, t, n) {
 "use strict";
@@ -504,7 +486,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(30), i = n(31);
+const r = n(27), i = n(28);
 function a(...e) {
 e = e.reduce(function(e, t) {
 let n = i.inspect(t, {
@@ -541,7 +523,7 @@ value: !0
 }), t.table = r([ "噁心", "触手", "白痴", "打倒", "固守", "貴族", "自由", "討伐", "竊聽", "色情", "禁止", "淫穢", "下流", "含著", "調教", "情欲", "尸体", "凌辱", "幹掉", "非法", "激烈", "互毆", "求愛", "間諜", "賭局", "下賤", "爆炸", "呻吟", "屁股", "笨蛋", "蠢货", "洗脑", "魅惑", "狂化", "混乱", "是非", "弱智", "死掉", "日本", "法克", "畜生", "麻痹", "废物", "娼婦", "娼妓", "男娼", "男妓", "卖春", "流氓", "出卖肉体", "交合", "卖人", "強姦", "強奸", "反法", "禁药", "合体", "乱交会", "乱交", "贞操", "比基尼", "邪教", "非法", "妓院", "赌场", "治安", "警察", "口大", "政治", "逮捕", "法律", "政敌", "合法", "措施", "毒品", "性感", "混蛋", "胸部", "妖艳", "傢伙", "制作", "算是", "法理", "肉欲", "做愛", "利用", "注入", "少女", "色狼", "床上", "运动", "今晚", "摸着", "公粮", "诱惑", "兴奋", "饥渴", "少妇", "回復", "身体", "鼓起", "強健", "抓住", "杀害", "黑暗", "地震", "叫声", "引诱", "主谋", "游街", "旺盛", "燃烧", "基地", "垃圾", "觉醒", "愚蠢", "高潮", "蛋疼", "禁书", "妊娠", "翻弄", "射出", "毛骨悚然", "绝望的魔手", "肉身", "肉体", "艳丽", "绝望", "魔手", "代价", "防卫战", "较高", "体位", "出改", "善再", "自慰", "较高", "谄媚", "違背人倫", "尼玛", "阿尼玛", "断頭台", "断頭", "虐杀", "色女", "麻藥", "反国家", "殺戮", "侵犯", "賄賂", "斩首", "军事政变", "政变", "杀人", "国家颠覆", "颠覆", "鲜血", "露出", "内脏", "血水", "赌博", "俘虏", "發騷", "死刑", "殺死", "殺掉", "背叛", "性女" ]), 
 t.table2 = r([ [ "裸体", "果体", new String("裸$2") ], [ "奴隷", "奴隶" ] ]), t.table3 = r([ [ "強姦", "弓虽姦" ], [ "強奸", "弓虽女干", "弓虽奸" ], [ "娼婦", "女昌妇" ], [ "娼妓", "女昌妓", "女昌女支" ] ]), 
 t.array_unique = r;
-const i = n(16);
+const i = n(15);
 t.default = i;
 }, function(e, t, n) {
 "use strict";
@@ -549,9 +531,9 @@ t.default = i;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(35), o = n(18);
+const a = n(32), o = n(33);
 t.greasemonkey = o.default;
-const s = n(19);
+const s = n(34);
 function u(t, n, i, a) {
 let o = async () => {
 try {
@@ -664,169 +646,24 @@ t.main_list = g;
 }).call(this, n(1), n(0).default, n(0).default);
 }, function(e, t, n) {
 "use strict";
-(function(e, r) {
-function i(e) {
-for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), i(n(10));
-const a = n(10);
-function o(t, n) {
-return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
-"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), a.GM_addStyle(t.toString(), n);
-}
-function s(t, n) {
-return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
-}
-function u(e, ...t) {
-return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
-}
-function c(e, ...t) {
-return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
-}
-function l(e, ...t) {
-return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
-}
-function f(e, ...t) {
-return console.log(e, ...t);
-}
-function p(e) {
-let t = window.open(e, "_blank");
-return setTimeout(function() {
-window.focus();
-}, 300), t;
-}
-t.GM_addStyle = o, t.addStylesheet = s, t.debug = u, t.error = c, t.info = l, t.log = f, 
-t.openInTabBackground = p;
-const h = n(18);
-t.default = h;
-}).call(this, n(0).default, n(1));
-}, function(e, t, n) {
-"use strict";
-(function(e, r, i) {
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-const a = n(17), o = n(20), s = n(21);
-function u(t, r, i) {
-let u = a.requireScript(t, "index");
-s.hasGrant(u.metadata.grant, "registerMenuCommand") ? o.registerMenuCommand({
-id: t,
-key: "debug jquery"
-}, async t => {
+function r(e, t) {
+if (!(t = t || document.getElementsByTagName("head")[0])) return;
+let n = document.createElement("style");
+n.type = "text/css";
 try {
-c("null", null), c("global", e), c("window", window), c("window.self", window.self), 
-c("unsafeWindow", unsafeWindow);
-} catch (e) {
-console.error(e);
-}
-try {
-"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
-} catch (e) {
-console.error(e);
-}
-try {
-let e;
-c("jquery/global", await Promise.resolve().then(() => n(0)));
-} catch (e) {
-console.error(e);
-}
-}) : console.info(t, "registerMenuCommand = false");
-}
-function c(e, t) {
-console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
-try {
-console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
-console.info("jQuery", i, i && i.fn && i.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
-console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+n.innerHTML = e;
 } catch (t) {
-console.error(`${e}`, t.toString());
+n.innerText = e;
 }
-console.groupEnd(e);
+return t.appendChild(n), n;
 }
-t.registerGlobalMenu = u;
-const l = n(19);
-t.default = l;
-}).call(this, n(1), n(0).default, n(0).default);
-}, function(e, t, n) {
-"use strict";
-const r = n(36);
-e.exports = r;
-}, function(e, t, n) {
-"use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
-const r = n(38);
-function i(e) {
-let t;
-if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
-let n = t.index;
-{
-let n = /(^\/\/\s+==\/UserScript==)/m;
-n.lastIndex = t.index + t[0].length, t = n.exec(e);
-}
-let i = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
-return /^\/\/\s*@/g.test(e);
-}).reduce(function(e, t) {
-let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], i = n[2];
-return i && (i = i.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(i) && e[r].push(i), 
-e;
-}, {});
-return i = Object.assign({
-name: []
-}, i, {
-grant: [],
-include: [],
-exclude: [],
-noframes: []
-}, i), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
-i[e] && (i[e] = i[e].length ? c(r.array_unique(i[e])) : []);
-}), i.grant.sort(), i;
-}
-}
-function a(e, t) {
-return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
-}
-function o(e) {
-return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
-e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
-let i;
-(i = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + i[1]), e.grant.push("GM_" + i[1]));
-}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
-t = Array.isArray(t) ? t : [ t ];
-for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
-e.grant = e.grant.concat(t.map(function(e) {
-return "GM." + e;
-})).concat(t.map(function(e) {
-return "GM_" + e;
-}));
-break;
-}
-})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
-e[t] && (e[t] = e[t].length ? c(r.array_unique(e[t])) : []);
-}), e.grant && e.grant.length && e.grant.sort(), e;
-}
-function s(e) {
-return e.map(function(e, t, n) {
-return e.replace(/^.*(\:\/\/)/, "*$1");
-});
-}
-function u(e, t, n = !1, r = "\t\t", i = "// ", a = "\n") {
-let o = "", s = `${i}@${e}${r}`;
-return Array.isArray(t) ? o = t.join(`${a}${s}`) : void 0 !== t && (o = t.toString()), 
-n && (o = s + o), o;
-}
-function c(e) {
-return e.filter(function(e, t, n) {
-return !!e;
-});
-}
-t.parseMetadata = i, t.hasGrant = a, t.lazyMetaFix = o, t.meta_match = s, t.makeMetaRow = u, 
-t.meta_filter = c;
-const l = n(21);
-t.default = l;
+}), t.GM_addStyle = r, t.default = t;
+}, function(e, t, n) {
+"use strict";
+const r = n(35);
+e.exports = r;
 }, function(e, t) {
 var n = e.exports = {}, r, i;
 function a() {
@@ -934,8 +771,8 @@ return (r = a.array_unique(r)).sort(), r;
 function u(e, t = {}) {
 if (!e) return null;
 if (t.skip && -1 != t.skip.indexOf(e)) return [ e ];
-let n = r.jp2zht(e), a = r.jp2zhs(e), s;
-return o([], e, i.default.tw(e, t), i.default.cn(e, t), (!t.skip || -1 == t.skip.indexOf(n)) && i.default.cn(n, t), (!t.skip || -1 == t.skip.indexOf(a)) && i.default.tw(a, t), i.default.jp(e, t), t.greedyTable && r.cjk2jp(e), t.greedyTable && r.cjk2zhs(e), t.greedyTable && r.cjk2zht(e));
+let n = r.jp2zht(e), a = r.jp2zhs(e), s = 0 | t.greedyTable, u;
+return o([], e, i.default.tw(e, t), i.default.cn(e, t), (!t.skip || -1 == t.skip.indexOf(n)) && i.default.cn(n, t), (!t.skip || -1 == t.skip.indexOf(a)) && i.default.tw(a, t), i.default.jp(e, t), s && r.cjk2jp(e), s && r.cjk2zhs(e), s && r.cjk2zht(e));
 }
 t._get = o, t.tw = s("tw"), t.cn = s("cn"), t.jp = s("jp"), t.auto = u, t.default = t;
 }, function(e, t, n) {
@@ -1112,10 +949,10 @@ e.exports = u, e.exports.MemoizeMap = a;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(58), i = n(26);
+const r = n(58), i = n(23);
 t._call = i._call, t.defaultOptions = i.defaultOptions, t.getOptions = i.getOptions, 
 t.getOptionsSkip = i.getOptionsSkip, t.REGEXP_TEST = i.REGEXP_TEST, t.SAFE_MODE_CHAR = i.SAFE_MODE_CHAR;
-const a = n(25), o = n(62);
+const a = n(22), o = n(62);
 function s(e, t = {}, ...n) {
 return i._call(c, e, t, ...n);
 }
@@ -1136,7 +973,7 @@ t._tw2cn = l, t.default = a;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(6), i = n(12), a = n(13);
+const r = n(6), i = n(11), a = n(12);
 function o(e, t) {
 let n = t[e];
 return "string" == typeof n ? n : e;
@@ -1206,7 +1043,7 @@ value: !0
 });
 const r = n(6);
 t.array_unique = r.array_unique;
-const i = n(69), a = n(78), o = n(12);
+const i = n(69), a = n(78), o = n(11);
 function s(e) {
 return new i.RegExpParser(e);
 }
@@ -2317,7 +2154,7 @@ writable: !1,
 configurable: !0
 }), Object.defineProperties(n, r(t));
 }, t.promisify.custom = F, t.callbackify = N;
-}).call(this, n(22));
+}).call(this, n(19));
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -5754,10 +5591,93 @@ value: !0
 }), t.parse_url2 = r, t.parse_url = i, t.default = i;
 }, function(e, t, n) {
 "use strict";
+(function(e, r) {
+function i(e) {
+for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
+}
+Object.defineProperty(t, "__esModule", {
+value: !0
+}), i(n(17));
+const a = n(17);
+function o(t, n) {
+return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
+"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), a.GM_addStyle(t.toString(), n);
+}
+function s(t, n) {
+return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
+}
+function u(e, ...t) {
+return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
+}
+function c(e, ...t) {
+return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
+}
+function l(e, ...t) {
+return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
+}
+function f(e, ...t) {
+return console.log(e, ...t);
+}
+function p(e) {
+let t = window.open(e, "_blank");
+return setTimeout(function() {
+window.focus();
+}, 300), t;
+}
+t.GM_addStyle = o, t.addStylesheet = s, t.debug = u, t.error = c, t.info = l, t.log = f, 
+t.openInTabBackground = p, t.default = t;
+}).call(this, n(0).default, n(1));
+}, function(e, t, n) {
+"use strict";
+(function(e, r, i) {
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(37), i = new Map();
+const a = n(16), o = n(18), s = n(37);
+function u(t, r, i) {
+let u = a.requireScript(t, "index");
+s.hasGrant(u.metadata.grant, "registerMenuCommand") ? o.registerMenuCommand({
+id: t,
+key: "debug jquery"
+}, async t => {
+try {
+c("null", null), c("global", e), c("window", window), c("window.self", window.self), 
+c("unsafeWindow", unsafeWindow);
+} catch (e) {
+console.error(e);
+}
+try {
+"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
+} catch (e) {
+console.error(e);
+}
+try {
+let e;
+c("jquery/global", await Promise.resolve().then(() => n(0)));
+} catch (e) {
+console.error(e);
+}
+}) : console.info(t, "registerMenuCommand = false");
+}
+function c(e, t) {
+console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
+try {
+console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
+console.info("jQuery", i, i && i.fn && i.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
+console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+} catch (t) {
+console.error(`${e}`, t.toString());
+}
+console.groupEnd(e);
+}
+t.registerGlobalMenu = u, t.default = t;
+}).call(this, n(1), n(0).default, n(0).default);
+}, function(e, t, n) {
+"use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(36), i = new Map();
 function a(e, t, n = []) {
 "string" == typeof e && (e = {
 label: e
@@ -5841,6 +5761,78 @@ _GMApi_1.call = call, _GMApi_1.callSafe = callSafe;
 }), _GMApi.default = _GMApi.GMApi = _GMApi, exports.GMApi = _GMApi, exports.default = exports.GMApi;
 }, function(e, t, n) {
 "use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(38);
+function i(e) {
+let t;
+if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
+let n = t.index;
+{
+let n = /(^\/\/\s+==\/UserScript==)/m;
+n.lastIndex = t.index + t[0].length, t = n.exec(e);
+}
+let i = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
+return /^\/\/\s*@/g.test(e);
+}).reduce(function(e, t) {
+let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], i = n[2];
+return i && (i = i.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(i) && e[r].push(i), 
+e;
+}, {});
+return i = Object.assign({
+name: []
+}, i, {
+grant: [],
+include: [],
+exclude: [],
+noframes: []
+}, i), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
+i[e] && (i[e] = i[e].length ? c(r.array_unique(i[e])) : []);
+}), i.grant.sort(), i;
+}
+}
+function a(e, t) {
+return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
+}
+function o(e) {
+return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
+e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
+let i;
+(i = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + i[1]), e.grant.push("GM_" + i[1]));
+}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
+t = Array.isArray(t) ? t : [ t ];
+for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
+e.grant = e.grant.concat(t.map(function(e) {
+return "GM." + e;
+})).concat(t.map(function(e) {
+return "GM_" + e;
+}));
+break;
+}
+})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
+e[t] && (e[t] = e[t].length ? c(r.array_unique(e[t])) : []);
+}), e.grant && e.grant.length && e.grant.sort(), e;
+}
+function s(e) {
+return e.map(function(e, t, n) {
+return e.replace(/^.*(\:\/\/)/, "*$1");
+});
+}
+function u(e, t, n = !1, r = "\t\t", i = "// ", a = "\n") {
+let o = "", s = `${i}@${e}${r}`;
+return Array.isArray(t) ? o = t.join(`${a}${s}`) : void 0 !== t && (o = t.toString()), 
+n && (o = s + o), o;
+}
+function c(e) {
+return e.filter(function(e, t, n) {
+return !!e;
+});
+}
+t.parseMetadata = i, t.hasGrant = a, t.lazyMetaFix = o, t.meta_match = s, t.makeMetaRow = u, 
+t.meta_filter = c, t.default = t;
+}, function(e, t, n) {
+"use strict";
 function r(e) {
 return e.filter(function(e, t, n) {
 return t == n.indexOf(e);
@@ -5866,12 +5858,11 @@ var t = a(e);
 return n(t);
 }
 function a(e) {
-var t = r[e];
-if (!(t + 1)) {
-var n = new Error("Cannot find module '" + e + "'");
-throw n.code = "MODULE_NOT_FOUND", n;
+if (!n.o(r, e)) {
+var t = new Error("Cannot find module '" + e + "'");
+throw t.code = "MODULE_NOT_FOUND", t;
 }
-return t;
+return r[e];
 }
 i.keys = function e() {
 return Object.keys(r);
@@ -6326,7 +6317,7 @@ return e.substr(t, n);
 } : function(e, t, n) {
 return t < 0 && (t = e.length + t), e.substr(t, n);
 };
-}).call(this, n(22));
+}).call(this, n(19));
 }, function(e, t, n) {
 var r = n(44), i = n(45);
 e.exports = d;
@@ -6446,7 +6437,7 @@ e.exports = r, r.range = a;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(47), i = n(67), a = n(27), o = n(8), s = n(92), u = n(111), c = n(115), l = n(23);
+const r = n(47), i = n(67), a = n(24), o = n(8), s = n(92), u = n(111), c = n(115), l = n(20);
 t.defaultOptions = {};
 class zhRegExp extends RegExp {
 constructor(e, t = null, n = {}, ...o) {
@@ -6472,12 +6463,12 @@ n && (e = n.source, t = u ? t : n.flags);
 o = i.default.create(e, t || "");
 }
 n.disableZh || o.on(i.ParserEventEmitterEvent.default, function(e) {
-e.old_raw = e.old_raw || e.raw, e.raw = r._word_zh_core(e.raw, n.skip, c), o.emit(i.ParserEventEmitterEvent.change, e);
+e.old_raw = e.old_raw || e.raw, e.raw = r._word_zh_core(e.raw, n.skip, c, n), o.emit(i.ParserEventEmitterEvent.change, e);
 }), n.disableLocalRange || o.on(i.ParserEventEmitterEvent.class_range, function(e, ...t) {
 let a = e.min.raw, u = e.max.raw, l = s.default(a, u, {
 createRegExpString: !0
 });
-l && (n.allowLocalRangeAutoZh && (l = r._word_zh_core2(l, n.skip, c)), e.old_raw = e.old_raw || e.raw, 
+l && (n.allowLocalRangeAutoZh && (l = r._word_zh_core2(l, n.skip, c, n)), e.old_raw = e.old_raw || e.raw, 
 e.raw = l, o.emit(i.ParserEventEmitterEvent.change, e));
 }), n.on && Object.keys(n.on).forEach(function(e) {
 o.on(e, n.on[e]);
@@ -6525,22 +6516,28 @@ t.default = zhRegExp;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(23), i = n(66);
+const r = n(20), i = n(66);
 function a(e, t = {}) {
-return t.greedyTable = !0, r.auto(e, t);
+return t.safe = !1, t.greedyTable = t.greedyTable || !0, r.auto(e, t);
 }
-function o(e, t, n = r.auto) {
-return e.replace(i._re_cjk_conv("ug"), function(e) {
+function o(e, t, n = r.auto, a = {}) {
+let o;
+return a.unsafe, o = {
+safe: !1
+}, e.replace(i._re_cjk_conv("ug"), function(e) {
 if (t && -1 != t.indexOf(e)) return e;
-let r = n(e);
+let r = n(e, o);
 return r.length > 1 ? "[" + r.join("") + "]" : r[0];
 });
 }
-function s(e, t, n = r.auto) {
-return e.replace(i._re_cjk_conv("ug"), function(e) {
+function s(e, t, n = r.auto, a = {}) {
+let o;
+return a.unsafe, o = {
+safe: !1
+}, e.replace(i._re_cjk_conv("ug"), function(e) {
 if (t && -1 != t.indexOf(e)) return e;
 let r;
-return n(e).join("");
+return n(e, o).join("");
 });
 }
 t.zhTableAutoGreedyTable = a, t._word_zh_core = o, t._word_zh_core2 = s, t.default = t;
@@ -6560,7 +6557,7 @@ value: !0
 });
 const r = n(7), i = n(55);
 t.ZHJP_TABLE = i.default, t.ZHJP_TABLE_SAFE = i.TABLE_SAFE;
-const a = n(13);
+const a = n(12);
 t.KEY_JP = "jp", t.KEY_ZHT = "zht", t.KEY_ZHS = "zhs";
 let o = !1;
 t.defaultOptions = {
@@ -6931,7 +6928,7 @@ e.exports = [ [ [ "万" ], [ "萬" ], [ "万" ] ], [ [ "予" ], [ "預" ], [ "�
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(25), i = n(7), a = n(63);
+const r = n(22), i = n(7), a = n(63);
 function o(e, t) {
 return e = Object.keys(t).reduce(function(e, n) {
 return e[t[n]] = n, e;
@@ -13068,7 +13065,7 @@ e.exports = {
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(26);
+const r = n(23);
 t.wiki_s2t = {
 "䌶": "䊷",
 "䜥": "𧩙",
@@ -18303,7 +18300,7 @@ value: !0
 });
 const r = n(6);
 t.array_unique = r.array_unique;
-const i = n(13);
+const i = n(12);
 function a(e) {
 return i._re_cjk_conv(e, "のと");
 }
@@ -18313,7 +18310,7 @@ t._re_cjk_conv = a, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(68), i = n(27);
+const r = n(68), i = n(24);
 var a;
 !function(e) {
 e.default = "default", e.class = "class", e.other = "other", e.uniset = "uniset", 
@@ -18602,7 +18599,7 @@ const r = n(70);
 t.AST = r;
 const i = n(71);
 t.RegExpParser = i.RegExpParser;
-const a = n(28);
+const a = n(25);
 function o(e, t) {
 return new i.RegExpParser(t).parseLiteral(e instanceof RegExp ? e.toString() : e);
 }
@@ -18620,7 +18617,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(72), i = n(28), a = {}, o = {}, s = {};
+const r = n(72), i = n(25), a = {}, o = {}, s = {};
 function u(e, t) {
 for (const n of e) r.assert("Disjunction" !== n.type), n.parent = t;
 return e;
@@ -19089,7 +19086,7 @@ return /\uD83C\uDFF4(?:\uDB40\uDC67\uDB40\uDC62(?:\uDB40\uDC65\uDB40\uDC6E\uDB40
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(14), i = n(15), a = n(83), o = n(84), s = n(32);
+const r = n(13), i = n(14), a = n(83), o = n(84), s = n(29);
 var u;
 function c(e, n, r = t.PatternTest) {
 return !t.PatternTest.hasOwnProperty(e) && t.UNICODE_NAME_ALIAS_ALL[e] && t.PatternTest.hasOwnProperty(t.UNICODE_NAME_ALIAS_ALL[e]) && (e = t.UNICODE_NAME_ALIAS_ALL[e]), 
@@ -19399,7 +19396,7 @@ White_Space: !1
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(14), i = n(15), a = n(86);
+const r = n(13), i = n(14), a = n(86);
 function o(e = RegExp, n = t.PatternTest) {
 return Object.keys(t.UNICODE_BLOCKS_ALL).reduce(function(r, i) {
 return r[i] = t.testUnicodeBlocks(i, e, n), r;
@@ -19709,7 +19706,7 @@ InZanabazar_Square: !1
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(32), i = n(14), a = n(15), o = n(88);
+const r = n(29), i = n(13), a = n(14), o = n(88);
 var s;
 function u(e, n, r = t.PatternTest) {
 return !t.PatternTest.hasOwnProperty(e) && s[e] && t.PatternTest.hasOwnProperty(s[e]) && (e = s[e]), 
@@ -20080,7 +20077,7 @@ o.getOptions = c, o.toRegExpString = s, o.TABLE_RANGE = i.default, o.fillRange =
 o.default = o, t.default = t;
 }, function(e, t, n) {
 "use strict";
-const r = n(31), i = n(95), a = n(96);
+const r = n(28), i = n(95), a = n(96);
 function o(e, t, n, a) {
 if (void 0 === e) return [];
 if (void 0 === t || e === t) {
@@ -20372,7 +20369,7 @@ var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
 return typeof e;
 } : function(e) {
 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e;
-}, i = n(33);
+}, i = n(30);
 e.exports = function(e) {
 e.romanizationTable = {
 "あ": "a",
@@ -20826,7 +20823,7 @@ var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
 return typeof e;
 } : function(e) {
 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e;
-}, i = n(33), a = n(108);
+}, i = n(30), a = n(108);
 function o(e, t) {
 var n, r;
 return !!((e[Math.floor(t / 8)] || 0) & 1 << 7 - t % 8);
@@ -22276,7 +22273,7 @@ t.parseRegularExpressionString = i, t.rRegularExpressionString = a, t.default = 
 }, function(e) {
 e.exports = {
 name: "regexp-cjk",
-version: "3.0.4",
+version: "3.1.0",
 description: "Generate JavaScript-compatible regular expressions with chinese/jp/zh/cn",
 keywords: [ "big5", "char", "character", "characters", "charset", "check", "chinese", "cjk", "cn", "cn2tw", "conv", "conversion", "convert", "emit", "euc-jp", "event", "expression", "gb2312", "gbk", "generator", "hanja", "hanzi", "hook", "is", "japanese", "javascript", "jp2zhs", "jp2zht", "kanji", "match", "node-novel", "on", "parse", "re", "regex", "regexp", "regular", "regular expression", "simplified", "str-util", "test", "tool", "traditional", "transform", "tw", "tw2cn", "type", "unicode", "util", "words", "zh", "zh2jp", "zhs", "zht" ],
 homepage: "https://github.com/bluelovers/regexp-cjk#readme",
@@ -22302,7 +22299,7 @@ test: 'echo "Error: no test specified" && exit 1'
 },
 dependencies: {
 "array-hyper-unique": "^1.0.7",
-"cjk-conv": "^1.1.41",
+"cjk-conv": "^1.1.44",
 "regexp-helper": "^1.0.8",
 "regexp-parser-event": "^1.0.2",
 "regexp-parser-literal": "^1.0.2",
@@ -22310,7 +22307,7 @@ dependencies: {
 "regexp-support": "^1.0.24"
 },
 devDependencies: {
-"@types/node": "^11",
+"@types/node": "^12",
 "cross-spawn-extra": "^1.0.5",
 "git-root2": "^1.0.5"
 }
@@ -22333,12 +22330,11 @@ var t = a(e);
 return n(t);
 }
 function a(e) {
-var t = r[e];
-if (!(t + 1)) {
-var n = new Error("Cannot find module '" + e + "'");
-throw n.code = "MODULE_NOT_FOUND", n;
+if (!n.o(r, e)) {
+var t = new Error("Cannot find module '" + e + "'");
+throw t.code = "MODULE_NOT_FOUND", t;
 }
-return t;
+return r[e];
 }
 i.keys = function e() {
 return Object.keys(r);

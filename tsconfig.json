@@ -1,30 +1,11 @@
 {
   "extends": "../../tsconfig.json",
-
   "compilerOptions": {
-    "module": "CommonJS",
-    "target": "es2017",
-
-    "moduleResolution": "node",
     "allowJs": true,
 
     "sourceMap": true,
     "inlineSourceMap": true,
     "inlineSources": true,
-
-    "declaration": true,
-    "experimentalDecorators": true,
-
-    "allowSyntheticDefaultImports": true,
-
-    "strict": false,
-
-    //"forceConsistentCasingInFileNames": true,
-
-    "locale": "zh-TW",
-    "pretty": true,
-
-    "removeComments": true,
 
     "baseUrl": ".",
     "sourceRoot": ".",
@@ -42,9 +23,5 @@
 
     "traceResolution": false,
     "newLine": "lf"
-  },
-
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }

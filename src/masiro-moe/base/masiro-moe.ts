@@ -54,9 +54,6 @@ let o: IDemo = {
 	{
 		const keycodes = require('keycodes');
 		const _uf_done = require('root/lib/event/done');
-		const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
-
-		const site_discuz = require('root/lib/site/discuz');
 
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
@@ -107,7 +104,6 @@ let o: IDemo = {
 
 			`}`,
 
-
 		]);
 
 		{
@@ -117,9 +113,33 @@ let o: IDemo = {
 
 			if (_fl_g.length)
 			{
+				const runtimeSiteID = require('root/lib/site/index').create(o.file);
+				const GMApi = require('root/lib/greasemonkey/gm/api').GMApi;
+
+				let fid = new URL(location.href).searchParams.get('fid');
+
+				let cachekey = `fid${fid}`;
+
+				let cachelist: {
+					checkdate: number,
+					old: string[],
+					new: string[],
+					now: string[],
+				} = runtimeSiteID.getValue(cachekey, {}) || {};
+
+				cachelist.old = cachelist.old || [];
+				cachelist.new = [];
+				cachelist.checkdate = cachelist.checkdate || 0;
+
+				let changed: boolean;
+
+				//const slugify = require('cjk-conv/lib/zh/table/list').slugify;
+
 				greasemonkey.GM_addStyle([
 					`._fl_tb_block ._fl_tb_tr_block { display: block; }`,
-					`._fl_tb_block .fl_g { display: inline-block; max-width: 300px; }`,
+					`._fl_tb_block .fl_g { display: inline-block; max-width: 300px; margin: 1px; padding: 10px 3px; }`,
+
+					`._fl_tb_block ._is_new_fid { background-color: #18042ab3; }`
 				]);
 
 				_fl_tb.addClass('_fl_tb_block');
@@ -143,9 +163,54 @@ let o: IDemo = {
 							_row.addClass('_has_unread_post');
 						}
 
-						_row.data('data-title', _row.find('dl dt a').eq(0).text());
+						let _a = _row.find('dl dt a')
+							.eq(0)
+							.attr('target', '_blank')
+						;
+
+						let _link = _a.attr('href');
+
+						if (!cachelist.checkdate)
+						{
+							cachelist.old.push(_link);
+						}
+						else if (!cachelist.old.includes(_link))
+						{
+							cachelist.new.push(_link);
+							changed = true;
+
+							_row.addClass('_is_new_fid');
+						}
+
+						let title = _a
+							.text()
+							.trim()
+						;
+
+						_row.data('data-title', title);
+						_row.prop('title', title);
 					})
 				;
+
+				if (!cachelist.checkdate)
+				{
+					changed = true;
+				}
+
+				let _now = Date.now();
+
+				if (changed && (_now - cachelist.checkdate) > 3600 * 24 * 7)
+				{
+					cachelist.checkdate = _now;
+
+					cachelist.now = cachelist.old.concat(cachelist.new);
+
+					cachelist.old = cachelist.now;
+
+					runtimeSiteID.setValue(cachekey, cachelist);
+				}
+
+				console.log(cachelist);
 
 				_fl_g
 					// @ts-ignore
@@ -264,7 +329,6 @@ text-align: center; margin-bottom: 10px; }`,
 				}
 			}
 
-
 		}
 
 		let postlist = $('#postlist');
@@ -272,6 +336,8 @@ text-align: center; margin-bottom: 10px; }`,
 
 		if (postlist.length && posts.length)
 		{
+			const site_discuz = require('root/lib/site/discuz');
+
 			let _toc_cache: ({
 				id: string,
 

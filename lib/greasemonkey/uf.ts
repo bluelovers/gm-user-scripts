@@ -87,5 +87,4 @@ export function openInTabBackground(url: string)
 	return win;
 }
 
-import * as self from './uf';
-export default self;
+export default exports as typeof import('./uf');

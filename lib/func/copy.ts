@@ -25,6 +25,7 @@ export function copyElem(copyArea: HTMLElement)
 	{}
 	try
 	{
+		// @ts-ignore
 		copyArea.select();
 	}
 	catch (e)
@@ -52,7 +53,4 @@ export function copyElem(copyArea: HTMLElement)
 	}
 }
 
-import { IHTMLElement } from 'root/lib/dom/img/size';
-import * as self from './copy';
-
-export default self;
+export default exports as typeof import('./copy');

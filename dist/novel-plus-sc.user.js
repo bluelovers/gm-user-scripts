@@ -106,7 +106,7 @@ r.$ = unsafeWindow.$, r.jQuery = unsafeWindow.jQuery;
 console.error(e);
 }
 console.groupEnd("before");
-const o = n(52), a = o.noConflict(!0);
+const o = n(50), a = o.noConflict(!0);
 t.jQuery = a, t.$ = a, window.self.$ = window.self.jQuery = a, t.default = a, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("after");
 try {} catch (e) {
 console.error(e);
@@ -142,6 +142,17 @@ n = n || new Function("return this")();
 }
 e.exports = n;
 }, function(e, t, n) {
+e.exports.id = "novel-plus-sc", e.exports.version = "", e.exports.name = "novel-plus-sc", 
+e.exports.name_en = "novel-plus-sc", e.exports.name_ja = "novel-plus-sc", e.exports.desc = "部分小說網站重新排版、修正文字，改變閱讀樣式", 
+e.exports.desc_en = "部分小說網站重新排版、修正文字，改變閱讀樣式", e.exports.desc_ja = "部分小說網站重新排版、修正文字，改變閱讀樣式", 
+e.exports.namespace = "", e.exports.author = "", e.exports.icon = "", e.exports.list = [ "site/baidu/tieba", "site/dmzj", "site/gamer/home", "site/lightnovel/discuz", "site/sfacg/book" ], 
+e.exports.list_disable = [ "site/syosetu" ], e.exports._lib = (() => {
+n(8), n(10), n(12), n(13), n(14);
+}), e.exports.metadata = {}, e.exports.metadata.include = [ "http*://q.dmzj.com/*" ], 
+e.exports.metadata.match = [ "*://tieba.baidu.com/*", "*://q.dmzj.com/*", "*://home.gamer.com.tw/creationDetail.php*", "*://www.lightnovel.cn/*", "*://book.sfacg.com/Novel/*" ], 
+e.exports.metadata.exclude = [], e.exports.metadata.grant = [ "GM.deleteValue", "GM.getValue", "GM.listValues", "GM.registerMenuCommand", "GM.setValue", "GM.unregisterMenuCommand", "GM.xmlhttpRequest", "GM_deleteValue", "GM_getValue", "GM_listValues", "GM_registerMenuCommand", "GM_setValue", "GM_unregisterMenuCommand", "GM_xmlhttpRequest", "unsafeWindow" ], 
+e.exports.list_script = [], e.exports.current = [], e.exports.default = e.exports;
+}, function(e, t, n) {
 "use strict";
 (function(e, r) {
 function i(e) {
@@ -149,8 +160,8 @@ for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), i(n(19));
-const o = n(19);
+}), i(n(27));
+const o = n(27);
 function a(t, n) {
 return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
 "object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), o.GM_addStyle(t.toString(), n);
@@ -177,27 +188,14 @@ window.focus();
 }, 300), t;
 }
 t.GM_addStyle = a, t.addStylesheet = s, t.debug = u, t.error = l, t.info = c, t.log = f, 
-t.openInTabBackground = p;
-const h = n(2);
-t.default = h;
+t.openInTabBackground = p, t.default = t;
 }).call(this, n(0).default, n(1));
-}, function(e, t, n) {
-e.exports.id = "novel-plus-sc", e.exports.version = "", e.exports.name = "novel-plus-sc", 
-e.exports.name_en = "novel-plus-sc", e.exports.name_ja = "novel-plus-sc", e.exports.desc = "部分小說網站重新排版、修正文字，改變閱讀樣式", 
-e.exports.desc_en = "部分小說網站重新排版、修正文字，改變閱讀樣式", e.exports.desc_ja = "部分小說網站重新排版、修正文字，改變閱讀樣式", 
-e.exports.namespace = "", e.exports.author = "", e.exports.icon = "", e.exports.list = [ "site/baidu/tieba", "site/dmzj", "site/gamer/home", "site/lightnovel/discuz", "site/sfacg/book" ], 
-e.exports.list_disable = [ "site/syosetu" ], e.exports._lib = (() => {
-n(8), n(10), n(12), n(13), n(14);
-}), e.exports.metadata = {}, e.exports.metadata.include = [ "http*://q.dmzj.com/*" ], 
-e.exports.metadata.match = [ "*://tieba.baidu.com/*", "*://q.dmzj.com/*", "*://home.gamer.com.tw/creationDetail.php*", "*://www.lightnovel.cn/*", "*://book.sfacg.com/Novel/*" ], 
-e.exports.metadata.exclude = [], e.exports.metadata.grant = [ "GM.deleteValue", "GM.getValue", "GM.listValues", "GM.registerMenuCommand", "GM.setValue", "GM.unregisterMenuCommand", "GM.xmlhttpRequest", "GM_deleteValue", "GM_getValue", "GM_listValues", "GM_registerMenuCommand", "GM_setValue", "GM_unregisterMenuCommand", "GM_xmlhttpRequest", "unsafeWindow" ], 
-e.exports.list_script = [], e.exports.current = [], e.exports.default = e.exports;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(48);
+const r = n(46);
 function i(e, t = RegExp, n) {
 if (!e || "string" != typeof e || 1 != e.length) throw new TypeError(`"${e}" not a valid flag`);
 let i = null;
@@ -322,9 +320,9 @@ NotoSansCJKJP: [ "Noto Sans CJK JP", t.font.NotoSansJP, t.font.NotoSansSC, t.fon
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(27), s = n(3);
+const a = n(26), s = n(2);
 function u() {
-const t = n(29);
+const t = n(28);
 t.registerMenuCommand({
 id: e.exports.name,
 key: "redo"
@@ -371,7 +369,7 @@ if (r.addStylesheet(n(6).font.NotoSansSC), r.addStylesheet(n(6).font.NotoSansTC)
 r.addStylesheet(n(6).font.NotoSansJP), r.GM_addStyle([ ".d_post_content, .core_title_txt, .threadlist_title, .deepread-wrap { \n\t\t\t\tfont-family: Consolas, Noto Sans CJK JP, Noto Sans CJK SC, Noto Sans CJK TC, Noto Sans JP, Noto Sans SC, Noto Sans TC, Noto Sans CJK, Microsoft Yahei UI, sans-serif; \n\t\t\t\ttext-shadow: 0 0.5px 0 rgba(228, 228, 228, 0.8), 0 0 1px rgba(0, 0, 0, 0.75); \n\t\t\t\t}", ".d_post_content { line-height: 1.45em; }", ".d_post_content { color: #131d24; }" ]), 
 i(".p_postlist").length) {
 r.GM_addStyle([ ".l_post_bright, .skin_normal .wrap1, .pb_content { background: #e6d7bd; }", ".d_post_content_main { background: transparent; }", ".core_title_wrap_bright { background: #fff9; }", ".tbui_aside_float_bar { opacity: 0.5; } \n\t\t\t\t\t.tbui_aside_float_bar:hover { opacity: 0.8; }", "@media only screen and (max-width: 1200px)\n\t\t\t\t\t{\n\t\t\t\t\t\n\t\t\t\t\t.right_section { display: none; }\n\t\t\t\t\t.left_section { float: none; margin: auto; }\n\t\t\t\t\t\n\t\t\t\t\t.search_bright .search_ipt, .l_container, .content, .pb_content, .thread_theme_5, .pb_footer, .pb_footer .p_thread, .tb_rich_poster_container, .search_bright .search_form, .nav_list { width: auto; }\n\t\t\t\t\t\n\t\t\t\t\t}", "@media only screen and (max-width: 800px)\n\t\t\t\t\t{\n\t\t\t\t\t\n\t\t\t\t\t.core_title_wrap_bright { width: 100%; }\n\t\t\t\t\t\n\t\t\t\t\t.d_post_content_main { padding-left: 0px; }\n\t\t\t\t\t.d_author, .d_author_anonym { display: none; }\n\t\t\t\t\t.p_content { padding-right: 0px; }\n\t\t\t\t\t\n\t\t\t\t\t.d_post_content_main { float: none;margin: auto; }\n\t\t\t\t\t\n\t\t\t\t\t}" ]);
-const {debounce: t} = n(32);
+const {debounce: t} = n(30);
 let a = !1;
 i(".pb_footer, .l_thread_info").on("DOMNodeInserted", t(300, function() {
 a = !0, e.exports.adblock(o);
@@ -381,7 +379,7 @@ a || (a = !0, e.exports.adblock(o));
 }
 },
 async adblock(e = t._url_obj) {
-let r = n(33).novelText;
+let r = n(31).novelText;
 async function o(...e) {
 let t = i(this), n = t.clone(), o = n.find("br"), s = n.html();
 const u = s;
@@ -428,12 +426,12 @@ function a(e) {
 return e.toString().replace(/^\s+/, "").replace(/<br(?:\s+\/?|\s*\/)>/gi, "<br>").replace(/<br>\s*<br>/gi, "<br><br>").replace(/<br>\s*<br>/gi, "<br><br>").replace(/\s*(?:\<br\>)+\s*$/gi, "").replace(/\s*(?:\<br\>)+\s*$/gi, "");
 }
 e.exports = o;
-}).call(this, n(1), n(2), n(0).default);
+}).call(this, n(1), n(3), n(0).default);
 }, function(e, t, n) {
 "use strict";
 var r;
 !function(e) {
-const t = n(39);
+const t = n(37);
 function r(...e) {
 return e.length > 1 ? i(e) : i(e[0]);
 }
@@ -472,7 +470,7 @@ return t(e, n);
 e.lazy_unique = r, e.array_unique = i, e.lazy_unique_overwrite = o, e.array_unique_overwrite = a, 
 e.defaultFilter = s, e.defaultChecker = u;
 }(r || (r = {})), r = r.lazy_unique = Object.assign(r.lazy_unique, r, t, {
-equals: n(39),
+equals: n(37),
 default: r.lazy_unique
 }), t.default = r, Object.defineProperty(r, "__esModule", {
 value: !0
@@ -534,7 +532,7 @@ n.parents(".divimage").length || (n.parent().is("a") ? n.parent().wrap('<div cla
 }), i(".divimage a").attr("target", "_blank")), !t.text().replace(/[\s\r\n　]+/gi, "")) return void (t.find("img").length > 0 && v.html(t.html()));
 t.insertBefore(v).wrap('<div id="full_contents_wrap"/>');
 {
-let e = n(33).novelText, r = t.find("*");
+let e = n(31).novelText, r = t.find("*");
 t.add(r).contents().filter(function() {
 return 3 === this.nodeType && this.nodeValue && this.nodeValue.replace(/[\s\r\n　]+/gi, "");
 }).each(function(t, n) {
@@ -556,7 +554,7 @@ let s = i("<div/>").css(a.page).css(a.bg_dark).css(a.bg_dark_border).css(a.bg_da
 u = Math.ceil(t[0].scrollHeight / c);
 let p = D.lineHeight * D.line * u - t[0].scrollHeight;
 f.height(p), t.find(".divimage, img").length ? f.insertBefore(o.add(".divimage").eq(0)) : f.appendTo(t);
-const {throttle: h} = n(32);
+const {throttle: h} = n(30);
 t.scrollTop(0).on("scroll.page", function(e) {
 let t = i(this);
 l >= u && (l = u - 1), l < 0 && (l = 0), s.text(`${l + 1} / ${u}`), i(window).triggerHandler("resize");
@@ -597,7 +595,7 @@ return r = r.add([].join());
 }
 };
 e.exports = o;
-}).call(this, n(1), n(2), n(0).default);
+}).call(this, n(1), n(3), n(0).default);
 }, function(e, t, n) {
 (function(t) {
 e.exports = function e(n, r, i) {
@@ -637,7 +635,7 @@ return r = r.add([].join());
 }
 };
 e.exports = o;
-}).call(this, n(1), n(2), n(0).default);
+}).call(this, n(1), n(3), n(0).default);
 }, function(e, t, n) {
 "use strict";
 (function(t, r, i) {
@@ -664,7 +662,7 @@ return r = r.add([].join());
 }
 };
 e.exports = o;
-}).call(this, n(1), n(2), n(0).default);
+}).call(this, n(1), n(3), n(0).default);
 }, function(e, t, n) {
 "use strict";
 (function(t, r, i) {
@@ -692,13 +690,13 @@ return r = r.add([].join());
 }
 };
 e.exports = o;
-}).call(this, n(1), n(2), n(0).default);
+}).call(this, n(1), n(3), n(0).default);
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(21);
+const r = n(20);
 var i = n(9);
 function o(e) {
 return r.default.split(e, "");
@@ -729,9 +727,9 @@ value: !0
 });
 const r = n(4);
 t.hasSupportFlag = r.hasSupportFlag, t.testFlag = r.testFlag;
-const i = n(48);
+const i = n(46);
 t.FlagsName = i.FlagsName;
-const o = n(4), a = n(49);
+const o = n(4), a = n(47);
 t.testPattern = a.testPattern;
 const s = n(118), u = n(124), l = n(126), c = n(128), f = n(129), p = n(130), h = {
 nativeFlags: "",
@@ -801,25 +799,7 @@ return r = r.add([].join());
 }
 };
 e.exports = o;
-}).call(this, n(1), n(2), n(0).default);
-}, function(e, t, n) {
-"use strict";
-function r(e, t) {
-if (!(t = t || document.getElementsByTagName("head")[0])) return;
-let n = document.createElement("style");
-n.type = "text/css";
-try {
-n.innerHTML = e;
-} catch (t) {
-n.innerText = e;
-}
-return t.appendChild(n), n;
-}
-Object.defineProperty(t, "__esModule", {
-value: !0
-}), t.GM_addStyle = r;
-const i = n(19);
-t.default = i;
+}).call(this, n(1), n(3), n(0).default);
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -827,7 +807,7 @@ value: !0
 });
 const r = n(15), i = n(76);
 t.ZHJP_TABLE = i.default, t.ZHJP_TABLE_SAFE = i.TABLE_SAFE;
-const o = n(22);
+const o = n(21);
 t.KEY_JP = "jp", t.KEY_ZHT = "zht", t.KEY_ZHS = "zhs";
 let a = !1;
 t.defaultOptions = {
@@ -915,8 +895,8 @@ Object.defineProperty(t, "__esModule", {
 value: !0
 });
 const i = n(93);
-r(n(26));
-const o = n(26);
+r(n(25));
+const o = n(25);
 function a(e, n = {}) {
 let r = n.count || 1;
 const o = n.toRegExp ? n.toRegExp : i.create;
@@ -967,14 +947,14 @@ return e.split("");
 t.SP_KEY = "#_@_#", t.SP_REGEXP = "(?:@|（·?）|-|/|\\(\\)|%|￥|_|\\?|？|\\||#|\\$|[（\\(](?:和谐|河蟹)[\\)）]|（河）（蟹）|[（\\(][河蟹]{1,2}[\\)）]| |\\.|[・·]|\\*|□|圌|[=＝]|\\\\\\\\|\\/\\/|｜)", 
 t.SP_REGEXP_UNSAFE = "(?:" + t.SP_REGEXP + "|、|。)", t.SP_ESCAPE = "（河蟹）", t.SP_REGEXP_STRICT = `(?:${t.SP_ESCAPE})`, 
 t.escape = a, t.unescape = s, t.getTable = u, t.loopTable = l, t.splitChar = c;
-const f = n(23);
+const f = n(22);
 t.default = f;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(49), i = n(50);
+const r = n(47), i = n(48);
 function o(...e) {
 e = e.reduce(function(e, t) {
 let n = i.inspect(t, {
@@ -1011,7 +991,7 @@ value: !0
 }), t.table = r([ "噁心", "触手", "白痴", "打倒", "固守", "貴族", "自由", "討伐", "竊聽", "色情", "禁止", "淫穢", "下流", "含著", "調教", "情欲", "尸体", "凌辱", "幹掉", "非法", "激烈", "互毆", "求愛", "間諜", "賭局", "下賤", "爆炸", "呻吟", "屁股", "笨蛋", "蠢货", "洗脑", "魅惑", "狂化", "混乱", "是非", "弱智", "死掉", "日本", "法克", "畜生", "麻痹", "废物", "娼婦", "娼妓", "男娼", "男妓", "卖春", "流氓", "出卖肉体", "交合", "卖人", "強姦", "強奸", "反法", "禁药", "合体", "乱交会", "乱交", "贞操", "比基尼", "邪教", "非法", "妓院", "赌场", "治安", "警察", "口大", "政治", "逮捕", "法律", "政敌", "合法", "措施", "毒品", "性感", "混蛋", "胸部", "妖艳", "傢伙", "制作", "算是", "法理", "肉欲", "做愛", "利用", "注入", "少女", "色狼", "床上", "运动", "今晚", "摸着", "公粮", "诱惑", "兴奋", "饥渴", "少妇", "回復", "身体", "鼓起", "強健", "抓住", "杀害", "黑暗", "地震", "叫声", "引诱", "主谋", "游街", "旺盛", "燃烧", "基地", "垃圾", "觉醒", "愚蠢", "高潮", "蛋疼", "禁书", "妊娠", "翻弄", "射出", "毛骨悚然", "绝望的魔手", "肉身", "肉体", "艳丽", "绝望", "魔手", "代价", "防卫战", "较高", "体位", "出改", "善再", "自慰", "较高", "谄媚", "違背人倫", "尼玛", "阿尼玛", "断頭台", "断頭", "虐杀", "色女", "麻藥", "反国家", "殺戮", "侵犯", "賄賂", "斩首", "军事政变", "政变", "杀人", "国家颠覆", "颠覆", "鲜血", "露出", "内脏", "血水", "赌博", "俘虏", "發騷", "死刑", "殺死", "殺掉", "背叛", "性女" ]), 
 t.table2 = r([ [ "裸体", "果体", new String("裸$2") ], [ "奴隷", "奴隶" ] ]), t.table3 = r([ [ "強姦", "弓虽姦" ], [ "強奸", "弓虽女干", "弓虽奸" ], [ "娼婦", "女昌妇" ], [ "娼妓", "女昌妓", "女昌女支" ] ]), 
 t.array_unique = r;
-const i = n(26);
+const i = n(25);
 t.default = i;
 }, function(e, t, n) {
 "use strict";
@@ -1019,9 +999,9 @@ t.default = i;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const o = n(53), a = n(2);
+const o = n(51), a = n(3);
 t.greasemonkey = a.default;
-const s = n(28);
+const s = n(52);
 function u(t, n, i, o) {
 let a = async () => {
 try {
@@ -1134,129 +1114,24 @@ t.main_list = g;
 }).call(this, n(1), n(0).default, n(0).default);
 }, function(e, t, n) {
 "use strict";
-(function(e, r, i) {
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-const o = n(27), a = n(29), s = n(30);
-function u(t, r, i) {
-let u = o.requireScript(t, "index");
-s.hasGrant(u.metadata.grant, "registerMenuCommand") ? a.registerMenuCommand({
-id: t,
-key: "debug jquery"
-}, async t => {
+function r(e, t) {
+if (!(t = t || document.getElementsByTagName("head")[0])) return;
+let n = document.createElement("style");
+n.type = "text/css";
 try {
-l("null", null), l("global", e), l("window", window), l("window.self", window.self), 
-l("unsafeWindow", unsafeWindow);
-} catch (e) {
-console.error(e);
-}
-try {
-"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
-} catch (e) {
-console.error(e);
-}
-try {
-let e;
-l("jquery/global", await Promise.resolve().then(() => n(0)));
-} catch (e) {
-console.error(e);
-}
-}) : console.info(t, "registerMenuCommand = false");
-}
-function l(e, t) {
-console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
-try {
-console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
-console.info("jQuery", i, i && i.fn && i.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
-console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+n.innerHTML = e;
 } catch (t) {
-console.error(`${e}`, t.toString());
+n.innerText = e;
 }
-console.groupEnd(e);
+return t.appendChild(n), n;
 }
-t.registerGlobalMenu = u;
-const c = n(28);
-t.default = c;
-}).call(this, n(1), n(0).default, n(0).default);
-}, function(e, t, n) {
-"use strict";
-const r = n(54);
-e.exports = r;
-}, function(e, t, n) {
-"use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
-const r = n(56);
-function i(e) {
-let t;
-if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
-let n = t.index;
-{
-let n = /(^\/\/\s+==\/UserScript==)/m;
-n.lastIndex = t.index + t[0].length, t = n.exec(e);
-}
-let i = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
-return /^\/\/\s*@/g.test(e);
-}).reduce(function(e, t) {
-let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], i = n[2];
-return i && (i = i.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(i) && e[r].push(i), 
-e;
-}, {});
-return i = Object.assign({
-name: []
-}, i, {
-grant: [],
-include: [],
-exclude: [],
-noframes: []
-}, i), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
-i[e] && (i[e] = i[e].length ? l(r.array_unique(i[e])) : []);
-}), i.grant.sort(), i;
-}
-}
-function o(e, t) {
-return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
-}
-function a(e) {
-return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
-e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
-let i;
-(i = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + i[1]), e.grant.push("GM_" + i[1]));
-}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
-t = Array.isArray(t) ? t : [ t ];
-for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
-e.grant = e.grant.concat(t.map(function(e) {
-return "GM." + e;
-})).concat(t.map(function(e) {
-return "GM_" + e;
-}));
-break;
-}
-})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
-e[t] && (e[t] = e[t].length ? l(r.array_unique(e[t])) : []);
-}), e.grant && e.grant.length && e.grant.sort(), e;
-}
-function s(e) {
-return e.map(function(e, t, n) {
-return e.replace(/^.*(\:\/\/)/, "*$1");
-});
-}
-function u(e, t, n = !1, r = "\t\t", i = "// ", o = "\n") {
-let a = "", s = `${i}@${e}${r}`;
-return Array.isArray(t) ? a = t.join(`${o}${s}`) : void 0 !== t && (a = t.toString()), 
-n && (a = s + a), a;
-}
-function l(e) {
-return e.filter(function(e, t, n) {
-return !!e;
-});
-}
-t.parseMetadata = i, t.hasGrant = o, t.lazyMetaFix = a, t.meta_match = s, t.makeMetaRow = u, 
-t.meta_filter = l;
-const c = n(30);
-t.default = c;
+}), t.GM_addStyle = r, t.default = t;
+}, function(e, t, n) {
+"use strict";
+const r = n(53);
+e.exports = r;
 }, function(e, t) {
 var n = e.exports = {}, r, i;
 function o() {
@@ -1379,19 +1254,19 @@ for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), r(n(34));
-const i = n(35);
+}), r(n(32));
+const i = n(33);
 t.StrUtil = i;
-const o = n(34), a = n(23);
+const o = n(32), a = n(22);
 t.tiebaHarmony = a.default;
-const s = n(42);
+const s = n(40);
 t.chkBlankLine = s.default, t.novelText = o.enspace.create(), t.default = t.novelText;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(35), i = n(42), o = n(92), a = n(23);
+const r = n(33), i = n(40), o = n(92), a = n(22);
 t.SP_REGEXP = a.SP_REGEXP, t.SP_KEY = a.SP_KEY;
 const s = n(146);
 class enspace {
@@ -1573,14 +1448,14 @@ t.enspace = enspace, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-var r = n(36);
+var r = n(34);
 t.isFullWidth = r.isFullWidth, t.isFullwidthCodePoint = r.isFullwidthCodePoint;
 var i = n(64);
 t.stringWidth = i.stringWidth;
 const o = n(66);
 t.toFullNumber = o.toFullNumber, t.toHalfNumber = o.toHalfNumber, t.toFullEnglish = o.toFullEnglish, 
 t.toHalfEnglish = o.toHalfEnglish, t.toFullWidth = o.toFullWidth, t.toHalfWidth = o.toHalfWidth;
-const a = n(37);
+const a = n(35);
 t.stripAnsi = a.default;
 const s = n(68);
 t.normalize = s.default;
@@ -1590,7 +1465,7 @@ var l = n(70);
 t.zh2jp = l.zh2jp, t.jp2zhs = l.jp2zhs, t.jp2zht = l.jp2zht;
 var c = n(78);
 t.zh2num = c.zh2num, t.num2zh = c.num2zh;
-var f = n(38);
+var f = n(36);
 t.charCodeAt = f.charCodeAt, t.tableFullHalf = o.FullHalfCore.table, t.default = t;
 }, function(e, t, n) {
 "use strict";
@@ -1896,8 +1771,8 @@ return (r = o.array_unique(r)).sort(), r;
 function u(e, t = {}) {
 if (!e) return null;
 if (t.skip && -1 != t.skip.indexOf(e)) return [ e ];
-let n = r.jp2zht(e), o = r.jp2zhs(e), s;
-return a([], e, i.default.tw(e, t), i.default.cn(e, t), (!t.skip || -1 == t.skip.indexOf(n)) && i.default.cn(n, t), (!t.skip || -1 == t.skip.indexOf(o)) && i.default.tw(o, t), i.default.jp(e, t), t.greedyTable && r.cjk2jp(e), t.greedyTable && r.cjk2zhs(e), t.greedyTable && r.cjk2zht(e));
+let n = r.jp2zht(e), o = r.jp2zhs(e), s = 0 | t.greedyTable, u;
+return a([], e, i.default.tw(e, t), i.default.cn(e, t), (!t.skip || -1 == t.skip.indexOf(n)) && i.default.cn(n, t), (!t.skip || -1 == t.skip.indexOf(o)) && i.default.tw(o, t), i.default.jp(e, t), s && r.cjk2jp(e), s && r.cjk2zhs(e), s && r.cjk2zht(e));
 }
 t._get = a, t.tw = s("tw"), t.cn = s("cn"), t.jp = s("jp"), t.auto = u, t.default = t;
 }, function(e, t, n) {
@@ -1905,10 +1780,10 @@ t._get = a, t.tw = s("tw"), t.cn = s("cn"), t.jp = s("jp"), t.auto = u, t.defaul
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(97), i = n(45);
+const r = n(97), i = n(43);
 t._call = i._call, t.defaultOptions = i.defaultOptions, t.getOptions = i.getOptions, 
 t.getOptionsSkip = i.getOptionsSkip, t.REGEXP_TEST = i.REGEXP_TEST, t.SAFE_MODE_CHAR = i.SAFE_MODE_CHAR;
-const o = n(44), a = n(101);
+const o = n(42), a = n(101);
 function s(e, t = {}, ...n) {
 return i._call(l, e, t, ...n);
 }
@@ -1929,7 +1804,7 @@ t._tw2cn = c, t.default = o;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(9), i = n(21), o = n(22);
+const r = n(9), i = n(20), o = n(21);
 function a(e, t) {
 let n = t[e];
 return "string" == typeof n ? n : e;
@@ -1999,7 +1874,7 @@ value: !0
 });
 const r = n(9);
 t.array_unique = r.array_unique;
-const i = n(108), o = n(117), a = n(21);
+const i = n(108), o = n(117), a = n(20);
 function s(e) {
 return new i.RegExpParser(e);
 }
@@ -2978,24 +2853,24 @@ function S(e) {
 return void 0 === e;
 }
 function x(e) {
-return w(e) && "[object RegExp]" === j(e);
+return w(e) && "[object RegExp]" === T(e);
 }
 function w(e) {
 return "object" == typeof e && null !== e;
 }
 function A(e) {
-return w(e) && "[object Date]" === j(e);
+return w(e) && "[object Date]" === T(e);
 }
 function L(e) {
-return w(e) && ("[object Error]" === j(e) || e instanceof Error);
+return w(e) && ("[object Error]" === T(e) || e instanceof Error);
 }
 function P(e) {
 return "function" == typeof e;
 }
-function T(e) {
+function j(e) {
 return null === e || "boolean" == typeof e || "number" == typeof e || "string" == typeof e || "symbol" == typeof e || void 0 === e;
 }
-function j(e) {
+function T(e) {
 return Object.prototype.toString.call(e);
 }
 function I(e) {
@@ -3035,7 +2910,7 @@ date: "magenta",
 regexp: "red"
 }, t.isArray = m, t.isBoolean = y, t.isNull = b, t.isNullOrUndefined = D, t.isNumber = v, 
 t.isString = E, t.isSymbol = C, t.isUndefined = S, t.isRegExp = x, t.isObject = w, 
-t.isDate = A, t.isError = L, t.isFunction = P, t.isPrimitive = T, t.isBuffer = n(119);
+t.isDate = A, t.isError = L, t.isFunction = P, t.isPrimitive = j, t.isBuffer = n(119);
 var k = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 function M() {
 var e = new Date(), t = [ I(e.getHours()), I(e.getMinutes()), I(e.getSeconds()) ].join(":");
@@ -3110,7 +2985,7 @@ writable: !1,
 configurable: !0
 }), Object.defineProperties(n, r(t));
 }, t.promisify.custom = O, t.callbackify = N;
-}).call(this, n(31));
+}).call(this, n(29));
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -3715,7 +3590,7 @@ h["[object " + t + "]"] = t.toLowerCase();
 var L = function(e) {
 var t, n, r, i, o, a, s, u, l, c, f, p, h, d, g, _, m, y, b, D = "sizzle" + 1 * new Date(), v = e.document, E = 0, C = 0, S = ue(), x = ue(), w = ue(), A = ue(), L = function(e, t) {
 return e === t && (f = !0), 0;
-}, P = {}.hasOwnProperty, T = [], j = T.pop, I = T.push, k = T.push, M = T.slice, F = function(e, t) {
+}, P = {}.hasOwnProperty, j = [], T = j.pop, I = j.push, k = j.push, M = j.slice, F = function(e, t) {
 for (var n = 0, r = e.length; n < r; n++) if (e[n] === t) return n;
 return -1;
 }, O = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", R = "[\\x20\\t\\r\\n\\f]", N = "(?:\\\\.|[\\w-]|[^\0-\\xa0])+", B = "\\[" + R + "*(" + N + ")(?:" + R + "*([*^$|!~]?=)" + R + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + N + "))|)" + R + "*\\]", $ = ":(" + N + ")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|" + B + ")*)|.*)\\)|)", G = new RegExp(R + "+", "g"), U = new RegExp("^" + R + "+|((?:^|[^\\\\])(?:\\\\.)*)" + R + "+$", "g"), H = new RegExp("^" + R + "*," + R + "*"), z = new RegExp("^" + R + "*([>+~]|" + R + ")" + R + "*"), V = new RegExp(R + "|>"), q = new RegExp($), W = new RegExp("^" + N + "$"), K = {
@@ -3741,10 +3616,10 @@ dir: "parentNode",
 next: "legend"
 });
 try {
-k.apply(T = M.call(v.childNodes), v.childNodes), T[v.childNodes.length].nodeType;
+k.apply(j = M.call(v.childNodes), v.childNodes), j[v.childNodes.length].nodeType;
 } catch (t) {
 k = {
-apply: T.length ? function(e, t) {
+apply: j.length ? function(e, t) {
 I.apply(e, M.call(t));
 } : function(e, t) {
 for (var n = e.length, r = 0; e[n++] = t[r++]; ) ;
@@ -4266,7 +4141,7 @@ s && ((f = !_ && f) && m--, e && b.push(f));
 if (m += y, s && y !== m) {
 for (d = 0; _ = o[d++]; ) _(b, D, t, n);
 if (e) {
-if (0 < m) for (;y--; ) b[y] || D[y] || (D[y] = j.call(a));
+if (0 < m) for (;y--; ) b[y] || D[y] || (D[y] = T.call(a));
 D = Ee(D);
 }
 k.apply(a, D), c && !e && 0 < D.length && 1 < m + o.length && se.uniqueSort(a);
@@ -4314,10 +4189,10 @@ if (i && x(e).is(n)) break;
 r.push(e);
 }
 return r;
-}, T = function(e, t) {
+}, j = function(e, t) {
 for (var n = []; e; e = e.nextSibling) 1 === e.nodeType && e !== t && n.push(e);
 return n;
-}, j = x.expr.match.needsContext;
+}, T = x.expr.match.needsContext;
 function I(e, t) {
 return e.nodeName && e.nodeName.toLowerCase() === t.toLowerCase();
 }
@@ -4352,7 +4227,7 @@ not: function(e) {
 return this.pushStack(M(this, e || [], !0));
 },
 is: function(e) {
-return !!M(this, "string" == typeof e && j.test(e) ? x(e) : e || [], !1).length;
+return !!M(this, "string" == typeof e && T.test(e) ? x(e) : e || [], !1).length;
 }
 });
 var F, O = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/;
@@ -4389,7 +4264,7 @@ for (var e = 0; e < n; e++) if (x.contains(this, t[e])) return !0;
 },
 closest: function(e, t) {
 var n, r = 0, i = this.length, o = [], a = "string" != typeof e && x(e);
-if (!j.test(e)) for (;r < i; r++) for (n = this[r]; n && n !== t; n = n.parentNode) if (n.nodeType < 11 && (a ? -1 < a.index(n) : 1 === n.nodeType && x.find.matchesSelector(n, e))) {
+if (!T.test(e)) for (;r < i; r++) for (n = this[r]; n && n !== t; n = n.parentNode) if (n.nodeType < 11 && (a ? -1 < a.index(n) : 1 === n.nodeType && x.find.matchesSelector(n, e))) {
 o.push(n);
 break;
 }
@@ -4434,10 +4309,10 @@ prevUntil: function(e, t, n) {
 return P(e, "previousSibling", n);
 },
 siblings: function(e) {
-return T((e.parentNode || {}).firstChild, e);
+return j((e.parentNode || {}).firstChild, e);
 },
 children: function(e) {
-return T(e.firstChild);
+return j(e.firstChild);
 },
 contents: function(e) {
 return void 0 !== e.contentDocument ? e.contentDocument : (I(e, "template") && (e = e.content || e), 
@@ -4867,10 +4742,10 @@ var we = /^key/, Ae = /^(?:mouse|pointer|contextmenu|drag|drop)|click/, Le = /^(
 function Pe() {
 return !0;
 }
-function Te() {
+function je() {
 return !1;
 }
-function je(e, t) {
+function Te(e, t) {
 return e === function() {
 try {
 return s.activeElement;
@@ -4884,7 +4759,7 @@ for (s in "string" != typeof n && (r = r || n, n = void 0), t) Ie(e, s, n, r, t[
 return e;
 }
 if (null == r && null == i ? (i = n, r = n = void 0) : null == i && ("string" == typeof n ? (i = r, 
-r = void 0) : (i = r, r = n, n = void 0)), !1 === i) i = Te; else if (!i) return e;
+r = void 0) : (i = r, r = n, n = void 0)), !1 === i) i = je; else if (!i) return e;
 return 1 === o && (a = i, (i = function(e) {
 return x().off(e), a.apply(this, arguments);
 }).guid = a.guid || (a.guid = x.guid++)), e.each(function() {
@@ -5019,15 +4894,15 @@ void 0 !== e.result && e.originalEvent && (e.originalEvent.returnValue = e.resul
 e.removeEventListener && e.removeEventListener(t, n);
 }, x.Event = function(e, t) {
 if (!(this instanceof x.Event)) return new x.Event(e, t);
-e && e.type ? (this.originalEvent = e, this.type = e.type, this.isDefaultPrevented = e.defaultPrevented || void 0 === e.defaultPrevented && !1 === e.returnValue ? Pe : Te, 
+e && e.type ? (this.originalEvent = e, this.type = e.type, this.isDefaultPrevented = e.defaultPrevented || void 0 === e.defaultPrevented && !1 === e.returnValue ? Pe : je, 
 this.target = e.target && 3 === e.target.nodeType ? e.target.parentNode : e.target, 
 this.currentTarget = e.currentTarget, this.relatedTarget = e.relatedTarget) : this.type = e, 
 t && x.extend(this, t), this.timeStamp = e && e.timeStamp || Date.now(), this[x.expando] = !0;
 }, x.Event.prototype = {
 constructor: x.Event,
-isDefaultPrevented: Te,
-isPropagationStopped: Te,
-isImmediatePropagationStopped: Te,
+isDefaultPrevented: je,
+isPropagationStopped: je,
+isImmediatePropagationStopped: je,
 isSimulated: !1,
 preventDefault: function() {
 var e = this.originalEvent;
@@ -5083,7 +4958,7 @@ blur: "focusout"
 }, function(e, t) {
 x.event.special[e] = {
 setup: function() {
-return ke(this, e, je), !1;
+return ke(this, e, Te), !1;
 },
 trigger: function() {
 return ke(this, e), !0;
@@ -5120,7 +4995,7 @@ if ("object" == typeof e) {
 for (i in e) this.off(i, t, e[i]);
 return this;
 }
-return !1 !== t && "function" != typeof t || (n = t, t = void 0), !1 === n && (n = Te), 
+return !1 !== t && "function" != typeof t || (n = t, t = void 0), !1 === n && (n = je), 
 this.each(function() {
 x.event.remove(this, e, n, t);
 });
@@ -5933,7 +5808,7 @@ i ? ee.access(r, t, i) : (r.removeEventListener(e, n, !0), ee.remove(r, t));
 }
 };
 });
-var Lt = n.location, Pt = Date.now(), Tt = /\?/;
+var Lt = n.location, Pt = Date.now(), jt = /\?/;
 x.parseXML = function(e) {
 var t;
 if (!e || "string" != typeof e) return null;
@@ -5945,11 +5820,11 @@ t = void 0;
 return t && !t.getElementsByTagName("parsererror").length || x.error("Invalid XML: " + e), 
 t;
 };
-var jt = /\[\]$/, It = /\r?\n/g, kt = /^(?:submit|button|image|reset|file)$/i, Mt = /^(?:input|select|textarea|keygen)/i;
+var Tt = /\[\]$/, It = /\r?\n/g, kt = /^(?:submit|button|image|reset|file)$/i, Mt = /^(?:input|select|textarea|keygen)/i;
 function Ft(e, t, n, r) {
 var i;
 if (Array.isArray(t)) x.each(t, function(t, i) {
-n || jt.test(e) ? r(e, i) : Ft(e + "[" + ("object" == typeof i && null != i ? t : "") + "]", i, n, r);
+n || Tt.test(e) ? r(e, i) : Ft(e + "[" + ("object" == typeof i && null != i ? t : "") + "]", i, n, r);
 }); else if (n || "object" !== C(t)) r(e, t); else for (i in t) Ft(e + "[" + i + "]", t[i], n, r);
 }
 x.param = function(e, t) {
@@ -6104,8 +5979,8 @@ Wt(Ut, d, t, C), c) return C;
 for (p in (f = x.event && d.global) && 0 == x.active++ && x.event.trigger("ajaxStart"), 
 d.type = d.type.toUpperCase(), d.hasContent = !$t.test(d.type), i = d.url.replace(Rt, ""), 
 d.hasContent ? d.data && d.processData && 0 === (d.contentType || "").indexOf("application/x-www-form-urlencoded") && (d.data = d.data.replace(Ot, "+")) : (h = d.url.slice(i.length), 
-d.data && (d.processData || "string" == typeof d.data) && (i += (Tt.test(i) ? "&" : "?") + d.data, 
-delete d.data), !1 === d.cache && (i = i.replace(Nt, "$1"), h = (Tt.test(i) ? "&" : "?") + "_=" + Pt++ + h), 
+d.data && (d.processData || "string" == typeof d.data) && (i += (jt.test(i) ? "&" : "?") + d.data, 
+delete d.data), !1 === d.cache && (i = i.replace(Nt, "$1"), h = (jt.test(i) ? "&" : "?") + "_=" + Pt++ + h), 
 d.url = i + h), d.ifModified && (x.lastModified[i] && C.setRequestHeader("If-Modified-Since", x.lastModified[i]), 
 x.etag[i] && C.setRequestHeader("If-None-Match", x.etag[i])), (d.data && d.hasContent && !1 !== d.contentType || t.contentType) && C.setRequestHeader("Content-Type", d.contentType), 
 C.setRequestHeader("Accept", d.dataTypes[0] && d.accepts[d.dataTypes[0]] ? d.accepts[d.dataTypes[0]] + ("*" !== d.dataTypes[0] ? ", " + zt + "; q=0.01" : "") : d.accepts["*"]), 
@@ -6321,7 +6196,7 @@ return this[e] = !0, e;
 }), x.ajaxPrefilter("json jsonp", function(e, t, r) {
 var i, o, a, s = !1 !== e.jsonp && (Qt.test(e.url) ? "url" : "string" == typeof e.data && 0 === (e.contentType || "").indexOf("application/x-www-form-urlencoded") && Qt.test(e.data) && "data");
 if (s || "jsonp" === e.dataTypes[0]) return i = e.jsonpCallback = b(e.jsonpCallback) ? e.jsonpCallback() : e.jsonpCallback, 
-s ? e[s] = e[s].replace(Qt, "$1" + i) : !1 !== e.jsonp && (e.url += (Tt.test(e.url) ? "&" : "?") + e.jsonp + "=" + i), 
+s ? e[s] = e[s].replace(Qt, "$1" + i) : !1 !== e.jsonp && (e.url += (jt.test(e.url) ? "&" : "?") + e.jsonp + "=" + i), 
 e.converters["script json"] = function() {
 return a || x.error(i + " was not called"), a[0];
 }, e.dataTypes[0] = "json", o = n[i], n[i] = function() {
@@ -6510,10 +6385,55 @@ value: !0
 }), t.parse_url2 = r, t.parse_url = i, t.default = i;
 }, function(e, t, n) {
 "use strict";
+(function(e, r, i) {
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(55), i = new Map();
+const o = n(26), a = n(28), s = n(55);
+function u(t, r, i) {
+let u = o.requireScript(t, "index");
+s.hasGrant(u.metadata.grant, "registerMenuCommand") ? a.registerMenuCommand({
+id: t,
+key: "debug jquery"
+}, async t => {
+try {
+l("null", null), l("global", e), l("window", window), l("window.self", window.self), 
+l("unsafeWindow", unsafeWindow);
+} catch (e) {
+console.error(e);
+}
+try {
+"undefined" != typeof exportFunction && console.info("exportFunction", exportFunction);
+} catch (e) {
+console.error(e);
+}
+try {
+let e;
+l("jquery/global", await Promise.resolve().then(() => n(0)));
+} catch (e) {
+console.error(e);
+}
+}) : console.info(t, "registerMenuCommand = false");
+}
+function l(e, t) {
+console["groupCollapsed" in console ? "groupCollapsed" : "group"](e);
+try {
+console.info(e, t), null === t ? (console.info("$", r, r && r.fn && r.fn.jquery), 
+console.info("jQuery", i, i && i.fn && i.fn.jquery)) : (console.info(`${e}.$`, t.$, t.$ && t.$.fn && t.$.fn.jquery), 
+console.info(`${e}.jQuery`, t.jQuery, t.jQuery && t.jQuery.fn && t.jQuery.fn.jquery));
+} catch (t) {
+console.error(`${e}`, t.toString());
+}
+console.groupEnd(e);
+}
+t.registerGlobalMenu = u, t.default = t;
+}).call(this, n(1), n(0).default, n(0).default);
+}, function(e, t, n) {
+"use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(54), i = new Map();
 function o(e, t, n = []) {
 "string" == typeof e && (e = {
 label: e
@@ -6597,6 +6517,78 @@ _GMApi_1.call = call, _GMApi_1.callSafe = callSafe;
 }), _GMApi.default = _GMApi.GMApi = _GMApi, exports.GMApi = _GMApi, exports.default = exports.GMApi;
 }, function(e, t, n) {
 "use strict";
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+const r = n(56);
+function i(e) {
+let t;
+if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
+let n = t.index;
+{
+let n = /(^\/\/\s+==\/UserScript==)/m;
+n.lastIndex = t.index + t[0].length, t = n.exec(e);
+}
+let i = (e = e.slice(n, t.index + t[0].length)).split(/\r\n|\r|\n/).filter(function(e, t, n) {
+return /^\/\/\s*@/g.test(e);
+}).reduce(function(e, t) {
+let n = /^\/\/[\s\t]*@([a-z:]+)(?:[\s\t]+(.+))?(?:[\s\t]+)?$/i.exec(t.trim("\t ")), r = n[1], i = n[2];
+return i && (i = i.trim("\t ")), e[r] = e[r] || [], -1 == e[r].indexOf(i) && e[r].push(i), 
+e;
+}, {});
+return i = Object.assign({
+name: []
+}, i, {
+grant: [],
+include: [],
+exclude: [],
+noframes: []
+}, i), [ "include", "match", "exclude", "grant" ].forEach(function(e) {
+i[e] && (i[e] = i[e].length ? l(r.array_unique(i[e])) : []);
+}), i.grant.sort(), i;
+}
+}
+function o(e, t) {
+return !(!e.includes("GM." + t) && !e.includes("GM_" + t));
+}
+function a(e) {
+return e.noframes && e.noframes.length && "no" == e.noframes[0] && (e.noframes = []), 
+e.grant && e.grant.length && (e.grant.forEach(function(t, n, r) {
+let i;
+(i = /^GM[\.\_](.+)$/.exec(t)) && (e.grant.push("GM." + i[1]), e.grant.push("GM_" + i[1]));
+}), [ [ "getValue", "setValue", "deleteValue", "listValues" ], [ "getResourceUrl", "getResourceURL" ], [ "getTab", "saveTab", "getTabs" ], [ "addValueChangeListener", "removeValueChangeListener" ], [ "registerMenuCommand", "unregisterMenuCommand" ] ].forEach(function(t) {
+t = Array.isArray(t) ? t : [ t ];
+for (let n of t) if (e.grant.includes("GM." + n) || e.grant.includes("GM_" + n)) {
+e.grant = e.grant.concat(t.map(function(e) {
+return "GM." + e;
+})).concat(t.map(function(e) {
+return "GM_" + e;
+}));
+break;
+}
+})), e.match && (e.match = s(e.match)), [ "include", "match", "exclude", "grant" ].forEach(function(t) {
+e[t] && (e[t] = e[t].length ? l(r.array_unique(e[t])) : []);
+}), e.grant && e.grant.length && e.grant.sort(), e;
+}
+function s(e) {
+return e.map(function(e, t, n) {
+return e.replace(/^.*(\:\/\/)/, "*$1");
+});
+}
+function u(e, t, n = !1, r = "\t\t", i = "// ", o = "\n") {
+let a = "", s = `${i}@${e}${r}`;
+return Array.isArray(t) ? a = t.join(`${o}${s}`) : void 0 !== t && (a = t.toString()), 
+n && (a = s + a), a;
+}
+function l(e) {
+return e.filter(function(e, t, n) {
+return !!e;
+});
+}
+t.parseMetadata = i, t.hasGrant = o, t.lazyMetaFix = a, t.meta_match = s, t.makeMetaRow = u, 
+t.meta_filter = l, t.default = t;
+}, function(e, t, n) {
+"use strict";
 function r(e) {
 return e.filter(function(e, t, n) {
 return t == n.indexOf(e);
@@ -6607,9 +6599,9 @@ value: !0
 }), t.array_unique = r, t.default = r;
 }, function(e, t, n) {
 var r = {
-"./novel-plus-sc/": 3,
-"./novel-plus-sc/index": 3,
-"./novel-plus-sc/index.js": 3,
+"./novel-plus-sc/": 2,
+"./novel-plus-sc/index": 2,
+"./novel-plus-sc/index.js": 2,
 "./novel-plus-sc/index.user": 7,
 "./novel-plus-sc/index.user.js": 7,
 "./novel-plus-sc/lib/metadata": 17,
@@ -6632,12 +6624,11 @@ var t = o(e);
 return n(t);
 }
 function o(e) {
-var t = r[e];
-if (!(t + 1)) {
-var n = new Error("Cannot find module '" + e + "'");
-throw n.code = "MODULE_NOT_FOUND", n;
+if (!n.o(r, e)) {
+var t = new Error("Cannot find module '" + e + "'");
+throw t.code = "MODULE_NOT_FOUND", t;
 }
-return t;
+return r[e];
 }
 i.keys = function e() {
 return Object.keys(r);
@@ -6865,22 +6856,22 @@ var P = "*" === S.type ? u : "?" === S.type ? s : "\\" + S.type;
 o = !0, r = r.slice(0, S.reStart) + P + "\\(" + L;
 }
 b(), l && (r += "\\\\");
-var T = !1;
+var j = !1;
 switch (r.charAt(0)) {
 case ".":
 case "[":
 case "(":
-T = !0;
+j = !0;
 }
-for (var j = p.length - 1; j > -1; j--) {
-var I = p[j], k = r.slice(0, I.reStart), M = r.slice(I.reStart, I.reEnd - 8), F = r.slice(I.reEnd - 8, I.reEnd), O = r.slice(I.reEnd);
+for (var T = p.length - 1; T > -1; T--) {
+var I = p[T], k = r.slice(0, I.reStart), M = r.slice(I.reStart, I.reEnd - 8), F = r.slice(I.reEnd - 8, I.reEnd), O = r.slice(I.reEnd);
 F += O;
 var R = k.split("(").length - 1, N = O;
 for (D = 0; D < R; D++) N = N.replace(/\)[+*?]?/, "");
 var B = "", $;
 "" === (O = N) && t !== v && (B = "$"), r = k + M + O + B + F;
 }
-if ("" !== r && o && (r = "(?=.)" + r), T && (r = m + r), t === v) return [ r, o ];
+if ("" !== r && o && (r = "(?=.)" + r), j && (r = m + r), t === v) return [ r, o ];
 if (!o) return x(e);
 var G = n.nocase ? "i" : "";
 try {
@@ -7042,7 +7033,7 @@ return e.substr(t, n);
 } : function(e, t, n) {
 return t < 0 && (t = e.length + t), e.substr(t, n);
 };
-}).call(this, n(31));
+}).call(this, n(29));
 }, function(e, t, n) {
 var r = n(61), i = n(62);
 e.exports = d;
@@ -7099,16 +7090,16 @@ C < E && (x *= -1, w = b);
 var L = p.some(m);
 v = [];
 for (var P = E; w(P, C); P += x) {
-var T;
-if (u) "\\" === (T = String.fromCharCode(P)) && (T = ""); else if (T = String(P), 
+var j;
+if (u) "\\" === (j = String.fromCharCode(P)) && (j = ""); else if (j = String(P), 
 L) {
-var j = S - T.length;
-if (j > 0) {
-var I = new Array(j + 1).join("0");
-T = P < 0 ? "-" + I + T.slice(1) : I + T;
+var T = S - j.length;
+if (T > 0) {
+var I = new Array(T + 1).join("0");
+j = P < 0 ? "-" + I + j.slice(1) : I + j;
 }
 }
-v.push(T);
+v.push(j);
 }
 } else v = r(p, function(e) {
 return D(e, !1);
@@ -7166,7 +7157,7 @@ e.exports = r, e.exports.default = r;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(37), i = n(36);
+const r = n(35), i = n(34);
 function o(e) {
 if ("string" != typeof e || 0 === e.length) return 0;
 e = r.default(e);
@@ -7192,7 +7183,7 @@ return new RegExp(t, e.onlyFirst ? void 0 : "g");
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(67), i = n(38);
+const r = n(67), i = n(36);
 var o;
 !function(e) {
 let t;
@@ -7426,8 +7417,8 @@ for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), r(n(20));
-const i = n(20);
+}), r(n(19));
+const i = n(19);
 t.default = i.zh2jp;
 }, function(e, t, n) {
 "use strict";
@@ -7733,7 +7724,7 @@ e.exports = [ [ [ "万" ], [ "萬" ], [ "万" ] ], [ [ "予" ], [ "預" ], [ "�
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(79), i = n(40);
+const r = n(79), i = n(38);
 function o(e, n = {}) {
 n = Object.assign({}, t.defaultOptions, n);
 let o = [], s = !0, u = i.transcriptionConfigs, l = i.predefineedTranscriptionConfigs;
@@ -7920,7 +7911,7 @@ var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
 return typeof e;
 } : function(e) {
 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e;
-}, i = n(41);
+}, i = n(39);
 e.exports = function(e) {
 e.romanizationTable = {
 "あ": "a",
@@ -8374,7 +8365,7 @@ var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
 return typeof e;
 } : function(e) {
 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e;
-}, i = n(41), o = n(87);
+}, i = n(39), o = n(87);
 function a(e, t) {
 var n, r;
 return !!((e[Math.floor(t / 8)] || 0) & 1 << 7 - t % 8);
@@ -8879,7 +8870,7 @@ case "binary":
 return O(this, t, n);
 
 case "base64":
-return j(this, t, n);
+return T(this, t, n);
 
 case "ucs2":
 case "ucs-2":
@@ -8959,10 +8950,10 @@ return A(e, t, n, r);
 function P(e, t, n, r) {
 return ee(Q(t), e, n, r);
 }
-function T(e, t, n, r) {
+function j(e, t, n, r) {
 return ee(J(t, e.length - n), e, n, r);
 }
-function j(e, t, n) {
+function T(e, t, n) {
 return 0 === t && n === e.length ? r.fromByteArray(e) : r.fromByteArray(e.slice(t, n));
 }
 function I(e, t, n) {
@@ -9121,7 +9112,7 @@ case "ucs2":
 case "ucs-2":
 case "utf16le":
 case "utf-16le":
-return T(this, t, n, r);
+return j(this, t, n, r);
 
 default:
 if (a) throw new TypeError("Unknown encoding: " + i);
@@ -9765,7 +9756,7 @@ t.chkcrlf = i, t.lineSplit = o, t.crlf_unicode_normalize = a, t.default = r;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(94), i = n(106), o = n(46), a = n(16), s = n(131), u = n(141), l = n(145), c = n(43);
+const r = n(94), i = n(106), o = n(44), a = n(16), s = n(131), u = n(141), l = n(145), c = n(41);
 t.defaultOptions = {};
 class zhRegExp extends RegExp {
 constructor(e, t = null, n = {}, ...a) {
@@ -9791,12 +9782,12 @@ n && (e = n.source, t = u ? t : n.flags);
 a = i.default.create(e, t || "");
 }
 n.disableZh || a.on(i.ParserEventEmitterEvent.default, function(e) {
-e.old_raw = e.old_raw || e.raw, e.raw = r._word_zh_core(e.raw, n.skip, l), a.emit(i.ParserEventEmitterEvent.change, e);
+e.old_raw = e.old_raw || e.raw, e.raw = r._word_zh_core(e.raw, n.skip, l, n), a.emit(i.ParserEventEmitterEvent.change, e);
 }), n.disableLocalRange || a.on(i.ParserEventEmitterEvent.class_range, function(e, ...t) {
 let o = e.min.raw, u = e.max.raw, c = s.default(o, u, {
 createRegExpString: !0
 });
-c && (n.allowLocalRangeAutoZh && (c = r._word_zh_core2(c, n.skip, l)), e.old_raw = e.old_raw || e.raw, 
+c && (n.allowLocalRangeAutoZh && (c = r._word_zh_core2(c, n.skip, l, n)), e.old_raw = e.old_raw || e.raw, 
 e.raw = c, a.emit(i.ParserEventEmitterEvent.change, e));
 }), n.on && Object.keys(n.on).forEach(function(e) {
 a.on(e, n.on[e]);
@@ -9844,22 +9835,28 @@ t.default = zhRegExp;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(43), i = n(105);
+const r = n(41), i = n(105);
 function o(e, t = {}) {
-return t.greedyTable = !0, r.auto(e, t);
+return t.safe = !1, t.greedyTable = t.greedyTable || !0, r.auto(e, t);
 }
-function a(e, t, n = r.auto) {
-return e.replace(i._re_cjk_conv("ug"), function(e) {
+function a(e, t, n = r.auto, o = {}) {
+let a;
+return o.unsafe, a = {
+safe: !1
+}, e.replace(i._re_cjk_conv("ug"), function(e) {
 if (t && -1 != t.indexOf(e)) return e;
-let r = n(e);
+let r = n(e, a);
 return r.length > 1 ? "[" + r.join("") + "]" : r[0];
 });
 }
-function s(e, t, n = r.auto) {
-return e.replace(i._re_cjk_conv("ug"), function(e) {
+function s(e, t, n = r.auto, o = {}) {
+let a;
+return o.unsafe, a = {
+safe: !1
+}, e.replace(i._re_cjk_conv("ug"), function(e) {
 if (t && -1 != t.indexOf(e)) return e;
 let r;
-return n(e).join("");
+return n(e, a).join("");
 });
 }
 t.zhTableAutoGreedyTable = o, t._word_zh_core = a, t._word_zh_core2 = s, t.default = t;
@@ -9868,7 +9865,7 @@ t.zhTableAutoGreedyTable = o, t._word_zh_core = a, t._word_zh_core2 = s, t.defau
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-var r = n(20);
+var r = n(19);
 t.zh2jp = r.zh2jp, t.zht2jp = r.zht2jp, t.zhs2jp = r.zhs2jp, t.zhs2zht = r.zhs2zht, 
 t.zht2zhs = r.zht2zhs, t.cjk2zhs = r.cjk2zhs, t.jp2zhs = r.jp2zhs, t.jp2zht = r.jp2zht, 
 t.cjk2zht = r.cjk2zht, t.cjk2jp = r.cjk2jp, t.default = t;
@@ -9877,7 +9874,7 @@ t.cjk2zht = r.cjk2zht, t.cjk2jp = r.cjk2jp, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(44), i = n(15), o = n(102);
+const r = n(42), i = n(15), o = n(102);
 function a(e, t) {
 return e = Object.keys(t).reduce(function(e, n) {
 return e[t[n]] = n, e;
@@ -16014,7 +16011,7 @@ e.exports = {
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(45);
+const r = n(43);
 t.wiki_s2t = {
 "䌶": "䊷",
 "䜥": "𧩙",
@@ -21249,7 +21246,7 @@ value: !0
 });
 const r = n(9);
 t.array_unique = r.array_unique;
-const i = n(22);
+const i = n(21);
 function o(e) {
 return i._re_cjk_conv(e, "のと");
 }
@@ -21259,7 +21256,7 @@ t._re_cjk_conv = o, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(107), i = n(46);
+const r = n(107), i = n(44);
 var o;
 !function(e) {
 e.default = "default", e.class = "class", e.other = "other", e.uniset = "uniset", 
@@ -21548,7 +21545,7 @@ const r = n(109);
 t.AST = r;
 const i = n(110);
 t.RegExpParser = i.RegExpParser;
-const o = n(47);
+const o = n(45);
 function a(e, t) {
 return new i.RegExpParser(t).parseLiteral(e instanceof RegExp ? e.toString() : e);
 }
@@ -21566,7 +21563,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(111), i = n(47), o = {}, a = {}, s = {};
+const r = n(111), i = n(45), o = {}, a = {}, s = {};
 function u(e, t) {
 for (const n of e) r.assert("Disjunction" !== n.type), n.parent = t;
 return e;
@@ -22035,7 +22032,7 @@ return /\uD83C\uDFF4(?:\uDB40\uDC67\uDB40\uDC62(?:\uDB40\uDC65\uDB40\uDC6E\uDB40
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(24), i = n(25), o = n(122), a = n(123), s = n(51);
+const r = n(23), i = n(24), o = n(122), a = n(123), s = n(49);
 var u;
 function l(e, n, r = t.PatternTest) {
 return !t.PatternTest.hasOwnProperty(e) && t.UNICODE_NAME_ALIAS_ALL[e] && t.PatternTest.hasOwnProperty(t.UNICODE_NAME_ALIAS_ALL[e]) && (e = t.UNICODE_NAME_ALIAS_ALL[e]), 
@@ -22345,7 +22342,7 @@ White_Space: !1
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(24), i = n(25), o = n(125);
+const r = n(23), i = n(24), o = n(125);
 function a(e = RegExp, n = t.PatternTest) {
 return Object.keys(t.UNICODE_BLOCKS_ALL).reduce(function(r, i) {
 return r[i] = t.testUnicodeBlocks(i, e, n), r;
@@ -22655,7 +22652,7 @@ InZanabazar_Square: !1
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(51), i = n(24), o = n(25), a = n(127);
+const r = n(49), i = n(23), o = n(24), a = n(127);
 var s;
 function u(e, n, r = t.PatternTest) {
 return !t.PatternTest.hasOwnProperty(e) && s[e] && t.PatternTest.hasOwnProperty(s[e]) && (e = s[e]), 
@@ -23026,7 +23023,7 @@ a.getOptions = l, a.toRegExpString = s, a.TABLE_RANGE = i.default, a.fillRange =
 a.default = a, t.default = t;
 }, function(e, t, n) {
 "use strict";
-const r = n(50), i = n(134), o = n(135);
+const r = n(48), i = n(134), o = n(135);
 function a(e, t, n, o) {
 if (void 0 === e) return [];
 if (void 0 === t || e === t) {
@@ -23253,7 +23250,7 @@ circle: i.default
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(40);
+const r = n(38);
 t.list_range = [ "〇一二三四五六七八九十".split(""), "零一二三四五六七八九十".split("") ], [ [ "common", "十" ], [ "formal", "十" ], [ "traditional", "拾" ], [ "traditionalOld", "拾" ], [ "simplified", "拾" ], [ "traditional", "什" ], [ "traditionalOld", "什" ], [ "simplified", "什" ] ].forEach(function(e) {
 let n = r.predefineedTranscriptionConfigs.digits[e[0]];
 n && (n = Object.values(n), e[1] && n.push(e[1]), t.list_range.push(n));
@@ -23416,7 +23413,7 @@ t.parseRegularExpressionString = i, t.rRegularExpressionString = o, t.default = 
 }, function(e) {
 e.exports = {
 name: "regexp-cjk",
-version: "3.0.4",
+version: "3.1.0",
 description: "Generate JavaScript-compatible regular expressions with chinese/jp/zh/cn",
 keywords: [ "big5", "char", "character", "characters", "charset", "check", "chinese", "cjk", "cn", "cn2tw", "conv", "conversion", "convert", "emit", "euc-jp", "event", "expression", "gb2312", "gbk", "generator", "hanja", "hanzi", "hook", "is", "japanese", "javascript", "jp2zhs", "jp2zht", "kanji", "match", "node-novel", "on", "parse", "re", "regex", "regexp", "regular", "regular expression", "simplified", "str-util", "test", "tool", "traditional", "transform", "tw", "tw2cn", "type", "unicode", "util", "words", "zh", "zh2jp", "zhs", "zht" ],
 homepage: "https://github.com/bluelovers/regexp-cjk#readme",
@@ -23442,7 +23439,7 @@ test: 'echo "Error: no test specified" && exit 1'
 },
 dependencies: {
 "array-hyper-unique": "^1.0.7",
-"cjk-conv": "^1.1.41",
+"cjk-conv": "^1.1.44",
 "regexp-helper": "^1.0.8",
 "regexp-parser-event": "^1.0.2",
 "regexp-parser-literal": "^1.0.2",
@@ -23450,7 +23447,7 @@ dependencies: {
 "regexp-support": "^1.0.24"
 },
 devDependencies: {
-"@types/node": "^11",
+"@types/node": "^12",
 "cross-spawn-extra": "^1.0.5",
 "git-root2": "^1.0.5"
 }
@@ -23734,10 +23731,10 @@ default: r
 }), e.exports = r;
 }, function(e, t, n) {
 var r = {
-"./novel-plus-sc": 3,
-"./novel-plus-sc/": 3,
-"./novel-plus-sc/index": 3,
-"./novel-plus-sc/index.js": 3,
+"./novel-plus-sc": 2,
+"./novel-plus-sc/": 2,
+"./novel-plus-sc/index": 2,
+"./novel-plus-sc/index.js": 2,
 "./novel-plus-sc/index.user": 7,
 "./novel-plus-sc/index.user.js": 7,
 "./novel-plus-sc/lib/metadata": 17,
@@ -23760,12 +23757,11 @@ var t = o(e);
 return n(t);
 }
 function o(e) {
-var t = r[e];
-if (!(t + 1)) {
-var n = new Error("Cannot find module '" + e + "'");
-throw n.code = "MODULE_NOT_FOUND", n;
+if (!n.o(r, e)) {
+var t = new Error("Cannot find module '" + e + "'");
+throw t.code = "MODULE_NOT_FOUND", t;
 }
-return t;
+return r[e];
 }
 i.keys = function e() {
 return Object.keys(r);
