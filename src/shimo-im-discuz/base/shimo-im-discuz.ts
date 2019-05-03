@@ -90,6 +90,8 @@ let o: IDemo = {
 					.removeAttr('style');
 				;
 
+
+
 				$(':root').html('<body/>');
 
 				$('html, :root, body')
@@ -98,6 +100,8 @@ let o: IDemo = {
 				;
 
 				_ql_editor.attr('id', '_body');
+
+				_p_2_br(_ql_editor.find('p'));
 
 				/**
 				 * 解決不了 chrome 複製/貼上過程的BUG
@@ -197,3 +201,27 @@ let o: IDemo = {
 };
 
 export = o as IDemo;
+
+function _p_2_br(target)
+{
+	return $(target)
+		.each(function ()
+		{
+			let _this = $(this);
+
+			let _html = _this
+				.html()
+				.replace(/(?:&nbsp;?)/g, ' ')
+				.replace(/[\xA0\s]+$/g, '')
+			;
+
+			if (_html == '<br/>' || _html == '<br>')
+			{
+				_html = '';
+			}
+
+			_this.after(`${_html}<br/>`);
+			_this.remove()
+		})
+		;
+}
