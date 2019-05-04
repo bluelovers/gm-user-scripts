@@ -131,6 +131,35 @@ let o: IDemo = {
 				cachelist.new = [];
 				cachelist.checkdate = cachelist.checkdate || 0;
 
+				const UF = require('root/lib/greasemonkey/gm/menu');
+				UF.registerMenuCommand({
+					id: module.exports.name,
+					//key: 'kill it',
+
+					label: `slice-${cachekey}`,
+
+					key: 'cachelist.old.slice',
+
+				}, (options) =>
+				{
+					cachelist.old = cachelist.old.slice(0, -1);
+
+					runtimeSiteID.setValue(cachekey, cachelist);
+				});
+
+				UF.registerMenuCommand({
+					id: module.exports.name,
+					//key: 'kill it',
+
+					label: `reset-${cachekey}`,
+
+					key: 'reset-cachelist',
+
+				}, (options) =>
+				{
+					runtimeSiteID.setValue(cachekey, null);
+				});
+
 				let changed: boolean;
 
 				//const slugify = require('cjk-conv/lib/zh/table/list').slugify;
@@ -199,7 +228,14 @@ let o: IDemo = {
 
 				let _now = Date.now();
 
-				if (changed && (_now - cachelist.checkdate) > 3600 * 24 * 7)
+				let _diff_timestamp1 = 3600 * 24 * 7 * 1000;
+				let _diff_timestamp2 = _now - cachelist.checkdate, _diff_timestamp;
+
+				console.log(changed, _diff_timestamp2, _diff_timestamp1);
+
+
+
+				if (changed && _diff_timestamp2 > _diff_timestamp)
 				{
 					cachelist.checkdate = _now;
 
@@ -208,6 +244,8 @@ let o: IDemo = {
 					cachelist.old = cachelist.now;
 
 					runtimeSiteID.setValue(cachekey, cachelist);
+
+					console.log(`saved ${cachekey}`);
 				}
 
 				console.log(cachelist);
@@ -216,17 +254,31 @@ let o: IDemo = {
 					// @ts-ignore
 					.sort(function (a, b)
 					{
-						let _a_v = $(a).hasClass('_has_new_post') ? 1 : 0;
-						let _b_v = $(b).hasClass('_has_new_post') ? 1 : 0;
+						let _a = $(a);
+						let _b = $(b);
+
+						let _a_v = _a.hasClass('_has_new_post') ? 1 : 0;
+						let _b_v = _b.hasClass('_has_new_post') ? 1 : 0;
 
 						let _c = _b_v - _a_v;
 
 						if (!_c)
 						{
-							let _a_v = $(a).hasClass('_has_unread_post') ? 1 : 0;
-							let _b_v = $(b).hasClass('_has_unread_post') ? 1 : 0;
+							let _a_v = _a.hasClass('_has_unread_post') ? 1 : 0;
+							let _b_v = _b.hasClass('_has_unread_post') ? 1 : 0;
 
-							_c = _b_v - _a_v;
+
+							let _a_n = _a.hasClass('_is_new_fid') ? 1 : 0;
+							let _b_n = _b.hasClass('_is_new_fid') ? 1 : 0;
+
+							if (_a_n !== _b_n && (_a_v === 0 || _b_v === 0))
+							{
+								_c = _b_n - _a_n;
+							}
+							else
+							{
+								_c = _b_v - _a_v;
+							}
 						}
 
 						return _c;

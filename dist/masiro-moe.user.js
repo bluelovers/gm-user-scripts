@@ -107,7 +107,7 @@ r.$ = unsafeWindow.$, r.jQuery = unsafeWindow.jQuery;
 console.error(e);
 }
 console.groupEnd("before");
-const a = n(31), o = a.noConflict(!0);
+const a = n(32), o = a.noConflict(!0);
 t.jQuery = o, t.$ = o, window.self.$ = window.self.jQuery = o, t.default = o, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("after");
 try {} catch (e) {
 console.error(e);
@@ -147,7 +147,7 @@ e.exports = n;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(25);
+const r = n(26);
 function i(e, t = RegExp, n) {
 if (!e || "string" != typeof e || 1 != e.length) throw new TypeError(`"${e}" not a valid flag`);
 let i = null;
@@ -186,7 +186,7 @@ t.default = o, t.testFlagsAll = s, t.createRegExp = u;
 "use strict";
 var r;
 !function(e) {
-const t = n(20);
+const t = n(21);
 function r(...e) {
 return e.length > 1 ? i(e) : i(e[0]);
 }
@@ -225,7 +225,7 @@ return t(e, n);
 e.lazy_unique = r, e.array_unique = i, e.lazy_unique_overwrite = a, e.array_unique_overwrite = o, 
 e.defaultFilter = s, e.defaultChecker = u;
 }(r || (r = {})), r = r.lazy_unique = Object.assign(r.lazy_unique, r, t, {
-equals: n(20),
+equals: n(21),
 default: r.lazy_unique
 }), t.default = r, Object.defineProperty(r, "__esModule", {
 value: !0
@@ -280,9 +280,9 @@ value: !0
 });
 const r = n(2);
 t.hasSupportFlag = r.hasSupportFlag, t.testFlag = r.testFlag;
-const i = n(25);
+const i = n(26);
 t.FlagsName = i.FlagsName;
-const a = n(2), o = n(26);
+const a = n(2), o = n(27);
 t.testPattern = o.testPattern;
 const s = n(83), u = n(89), c = n(91), l = n(93), f = n(94), p = n(95), h = {
 nativeFlags: "",
@@ -344,53 +344,66 @@ test(r = t._url_obj) {
 let i;
 return !!(i = n(39).auto(r.source, e.exports));
 },
-async main(e = t._url_obj) {
-const o = n(45), s = n(46), u = n(47);
-u([]).prop("target", "_blank"), r.GM_addStyle([ "html, :root, body { font-size: 9pt; }", "html, :root, body, .xst, input, button, select, textarea, .xst { font-family: initial; }", "input, button, select, textarea { font-size: 1rem; }", ".t_f, .t_f td { font-size: 1rem; }", "#threadlist th .xst, .newthread .xst { font-size: 1rem; }", "#wp, .wp { max-width: 960px; width: 95%; }", ".widthauto #wp, .widthauto .wp { max-width: initial; }", ".fl_tb .fl_g { opacity: 0.35; min-width: 150px; }", ".fl_tb .fl_g._has_unread_post { opacity: 0.5; }", ".fl_tb .fl_g._has_new_post { opacity: 0.75; }", ".fl_tb .fl_g:hover { opacity: 1; }", ".pls.favatar ._pls_sub { display: none; }", ".pls.favatar:hover ._pls_sub { display: initial; }", ".pls.favatar .noavatar { display: none; }", ".pls.favatar:hover .noavatar { display: initial; }", ".t_fsz { min-height: auto; }", ".pi { min-height: 16px; height: auto; }", "@media only screen and (max-width: 950px) {", "#hd .hdc > h2 { display: none; }", ".fl_icn_g { display: none; }", ".fl_g dl { margin-left: auto; }", "#f_pst #fastpostform td.pls { display: none; }", "#f_pst #fastsmiliesdiv { display: none; }", "}" ]);
+async main(o = t._url_obj) {
+const s = n(45), u = n(46), c = n(47);
+c([]).prop("target", "_blank"), r.GM_addStyle([ "html, :root, body { font-size: 9pt; }", "html, :root, body, .xst, input, button, select, textarea, .xst { font-family: initial; }", "input, button, select, textarea { font-size: 1rem; }", ".t_f, .t_f td { font-size: 1rem; }", "#threadlist th .xst, .newthread .xst { font-size: 1rem; }", "#wp, .wp { max-width: 960px; width: 95%; }", ".widthauto #wp, .widthauto .wp { max-width: initial; }", ".fl_tb .fl_g { opacity: 0.35; min-width: 150px; }", ".fl_tb .fl_g._has_unread_post { opacity: 0.5; }", ".fl_tb .fl_g._has_new_post { opacity: 0.75; }", ".fl_tb .fl_g:hover { opacity: 1; }", ".pls.favatar ._pls_sub { display: none; }", ".pls.favatar:hover ._pls_sub { display: initial; }", ".pls.favatar .noavatar { display: none; }", ".pls.favatar:hover .noavatar { display: initial; }", ".t_fsz { min-height: auto; }", ".pi { min-height: 16px; height: auto; }", "@media only screen and (max-width: 950px) {", "#hd .hdc > h2 { display: none; }", ".fl_icn_g { display: none; }", ".fl_g dl { margin-left: auto; }", "#f_pst #fastpostform td.pls { display: none; }", "#f_pst #fastsmiliesdiv { display: none; }", "}" ]);
 {
-let e = i(".fl_tb").eq(0), t = i(".fl_g", e);
-if (t.length) {
-const o = n(48).create(a.file), u = n(18).GMApi;
-let c, l = `fid${new URL(location.href).searchParams.get("fid")}`, f = o.getValue(l, {}) || {}, p;
-f.old = f.old || [], f.new = [], f.checkdate = f.checkdate || 0, r.GM_addStyle([ "._fl_tb_block ._fl_tb_tr_block { display: block; }", "._fl_tb_block .fl_g { display: inline-block; max-width: 300px; margin: 1px; padding: 10px 3px; }", "._fl_tb_block ._is_new_fid { background-color: #18042ab3; }" ]), 
-e.addClass("_fl_tb_block");
-let h = t.eq(0).parents("tr:eq(0)").eq(0);
-h.addClass("_fl_tb_tr_block"), t.each(function(e, t) {
+let t = i(".fl_tb").eq(0), o = i(".fl_g", t);
+if (o.length) {
+const s = n(48).create(a.file), c = n(19).GMApi;
+let l, f = `fid${new URL(location.href).searchParams.get("fid")}`, p = s.getValue(f, {}) || {};
+p.old = p.old || [], p.new = [], p.checkdate = p.checkdate || 0;
+const h = n(16);
+let d;
+h.registerMenuCommand({
+id: e.exports.name,
+key: "cachelist.old.slice"
+}, e => {
+p.old = p.old.slice(0, -1), s.setValue(f, p);
+}), h.registerMenuCommand({
+id: e.exports.name,
+key: "reset-cachelist.old.slice"
+}, e => {
+p.old = p.old.slice(0, -1), s.setValue(f, p);
+}), r.GM_addStyle([ "._fl_tb_block ._fl_tb_tr_block { display: block; }", "._fl_tb_block .fl_g { display: inline-block; max-width: 300px; margin: 1px; padding: 10px 3px; }", "._fl_tb_block ._is_new_fid { background-color: #18042ab3; }" ]), 
+t.addClass("_fl_tb_block");
+let g = o.eq(0).parents("tr:eq(0)").eq(0);
+g.addClass("_fl_tb_tr_block"), o.each(function(e, t) {
 let n = i(t);
 n.find("dt .xw0.xi1[title]").length && n.addClass("_has_new_post"), n.find('.fl_icn_g img[src*="forum_new"]').length && n.addClass("_has_unread_post");
 let r = n.find("dl dt a").eq(0).attr("target", "_blank"), a = r.attr("href");
-f.checkdate ? f.old.includes(a) || (f.new.push(a), p = !0, n.addClass("_is_new_fid")) : f.old.push(a);
+p.checkdate ? p.old.includes(a) || (p.new.push(a), d = !0, n.addClass("_is_new_fid")) : p.old.push(a);
 let o = r.text().trim();
 n.data("data-title", o), n.prop("title", o);
-}), f.checkdate || (p = !0);
-let d = Date.now();
-p && d - f.checkdate > 604800 && (f.checkdate = d, f.now = f.old.concat(f.new), 
-f.old = f.now, o.setValue(l, f)), console.log(f), t.sort(function(e, t) {
-let n = i(e).hasClass("_has_new_post") ? 1 : 0, r, a = (i(t).hasClass("_has_new_post") ? 1 : 0) - n;
-if (!a) {
-let n = i(e).hasClass("_has_unread_post") ? 1 : 0, r;
-a = (i(t).hasClass("_has_unread_post") ? 1 : 0) - n;
+}), p.checkdate || (d = !0);
+let m = Date.now(), _ = 6048e5, y = m - p.checkdate, D;
+console.log(d, y, _), d && y > D && (p.checkdate = m, p.now = p.old.concat(p.new), 
+p.old = p.now, s.setValue(f, p), console.log(`saved ${f}`)), console.log(p), o.sort(function(e, t) {
+let n = i(e), r = i(t), a = n.hasClass("_has_new_post") ? 1 : 0, o, s = (r.hasClass("_has_new_post") ? 1 : 0) - a;
+if (!s) {
+let e = n.hasClass("_has_unread_post") ? 1 : 0, t = r.hasClass("_has_unread_post") ? 1 : 0, i = n.hasClass("_is_new_fid") ? 1 : 0, a = r.hasClass("_is_new_fid") ? 1 : 0;
+s = i === a || 0 !== e && 0 !== t ? t - e : a - i;
 }
-return a;
-}).appendTo(h);
+return s;
+}).appendTo(g);
 {
 let e = i('<form id="_search_form" onsubmit="return false;"/>').insertAfter("#ct .mn .bm.bml.pbn");
 r.GM_addStyle([ "#_search_form { padding: 5px;\nmargin: auto;\ndisplay: block;\nwidth: auto;\ntext-align: center; margin-bottom: 10px; }", "#_search_form input { margin-right: 5px; }" ]);
-let a = i('<input type="text" class="scbar_txt" size="50" placeholder="搜尋版塊"/>').appendTo(e), o = i('<input type="submit"/>').appendTo(e).on("click", function() {
+let t = i('<input type="text" class="scbar_txt" size="50" placeholder="搜尋版塊"/>').appendTo(e), a = i('<input type="submit"/>').appendTo(e).on("click", function() {
 e.triggerHandler("submit");
-}), u = i('<input type="reset"/>').appendTo(e).on("click", function() {
+}), s = i('<input type="reset"/>').appendTo(e).on("click", function() {
 e.triggerHandler("reset");
 });
 e.on("submit", function(r) {
-s(r);
-let o = String(a.val() || "").trim();
-if (!o.length) return void e.triggerHandler("reset");
-const u = n(50).zhRegExp;
+u(r);
+let a = String(t.val() || "").trim();
+if (!a.length) return void e.triggerHandler("reset");
+const s = n(50).zhRegExp;
 try {
-let e = new u(o, "iu", {
+let e = new s(a, "iu", {
 greedyTable: !0
 });
-console.dir(e), t.each(function(t, n) {
+console.dir(e), o.each(function(t, n) {
 let r = i(n), a = r.data("data-title");
 a && (e.test(String(a)) ? r.show() : r.hide());
 });
@@ -398,16 +411,16 @@ a && (e.test(String(a)) ? r.show() : r.hide());
 window.alert("搜尋條件不支援 請刪除部分文字後 在搜尋一次");
 }
 }).on("reset", function(e) {
-s(e), t.show();
+u(e), o.show();
 });
 }
 }
 }
-let c = i("#postlist"), l = c.find('> div[id^="post_"]');
-if (c.length && l.length) {
+let l = i("#postlist"), f = l.find('> div[id^="post_"]');
+if (l.length && f.length) {
 const e = n(120);
 let t = [];
-l.each(function(t, n) {
+f.each(function(t, n) {
 let r = i(this), a = r.attr("id"), o = i('[id^="postmessage_"]:eq(0)', r).eq(0);
 e.hide_userinfo(r);
 let s = r.find(".authi").eq(0).text(), u = o.text().replace(/\n+/, "\n").replace(/^\s+/, "").slice(0, 50);
@@ -445,7 +458,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(26), i = n(27);
+const r = n(27), i = n(28);
 function a(...e) {
 e = e.reduce(function(e, t) {
 let n = i.inspect(t, {
@@ -476,9 +489,9 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(32), o = n(14);
+const a = n(33), o = n(14);
 t.greasemonkey = o.default;
-const s = n(33);
+const s = n(34);
 function u(t, n, i, a) {
 let o = async () => {
 try {
@@ -643,6 +656,10 @@ return t.appendChild(n), n;
 Object.defineProperty(t, "__esModule", {
 value: !0
 }), t.GM_addStyle = r, t.default = t;
+}, function(e, t, n) {
+"use strict";
+const r = n(35);
+e.exports = r;
 }, function(module, exports, __webpack_require__) {
 "use strict";
 var _GMApi;
@@ -775,7 +792,7 @@ return 0;
 };
 }, function(e, t, n) {
 "use strict";
-const r = n(16);
+const r = n(17);
 e.exports = r;
 }, function(e, t, n) {
 "use strict";
@@ -977,10 +994,10 @@ e.exports = u, e.exports.MemoizeMap = a;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(62), i = n(22);
+const r = n(62), i = n(23);
 t._call = i._call, t.defaultOptions = i.defaultOptions, t.getOptions = i.getOptions, 
 t.getOptionsSkip = i.getOptionsSkip, t.REGEXP_TEST = i.REGEXP_TEST, t.SAFE_MODE_CHAR = i.SAFE_MODE_CHAR;
-const a = n(21), o = n(66);
+const a = n(22), o = n(66);
 function s(e, t = {}, ...n) {
 return i._call(c, e, t, ...n);
 }
@@ -2182,7 +2199,7 @@ writable: !1,
 configurable: !0
 }), Object.defineProperties(n, r(t));
 }, t.promisify.custom = F, t.callbackify = N;
-}).call(this, n(17));
+}).call(this, n(18));
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -5630,7 +5647,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(13), o = n(34), s = n(36);
+const a = n(13), o = n(16), s = n(36);
 function u(t, r, i) {
 let u = a.requireScript(t, "index");
 s.hasGrant(u.metadata.grant, "registerMenuCommand") ? o.registerMenuCommand({
@@ -5671,14 +5688,10 @@ t.registerGlobalMenu = u, t.default = t;
 }).call(this, n(1), n(0).default, n(0).default);
 }, function(e, t, n) {
 "use strict";
-const r = n(35);
-e.exports = r;
-}, function(e, t, n) {
-"use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(16), i = new Map();
+const r = n(17), i = new Map();
 function a(e, t, n = []) {
 "string" == typeof e && (e = {
 label: e
@@ -5806,8 +5819,8 @@ var r = {
 "./masiro-moe/index.js": 4,
 "./masiro-moe/index.user": 7,
 "./masiro-moe/index.user.js": 7,
-"./masiro-moe/lib/metadata": 30,
-"./masiro-moe/lib/metadata.js": 30
+"./masiro-moe/lib/metadata": 31,
+"./masiro-moe/lib/metadata.js": 31
 };
 function i(e) {
 var t = a(e);
@@ -6273,7 +6286,7 @@ return e.substr(t, n);
 } : function(e, t, n) {
 return t < 0 && (t = e.length + t), e.substr(t, n);
 };
-}).call(this, n(17));
+}).call(this, n(18));
 }, function(e, t, n) {
 var r = n(43), i = n(44);
 e.exports = d;
@@ -6479,7 +6492,7 @@ value: !0
 });
 const r = n(49);
 t.hashSum = r;
-const i = n(18);
+const i = n(19);
 function a(e, t) {
 return SiteID.create(e, t);
 }
@@ -6565,7 +6578,7 @@ e.exports = u;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(51), i = n(71), a = n(23), o = n(6), s = n(96), u = n(115), c = n(119), l = n(19);
+const r = n(51), i = n(71), a = n(24), o = n(6), s = n(96), u = n(115), c = n(119), l = n(20);
 t.defaultOptions = {};
 class zhRegExp extends RegExp {
 constructor(e, t = null, n = {}, ...o) {
@@ -6644,7 +6657,7 @@ t.default = zhRegExp;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(19), i = n(70);
+const r = n(20), i = n(70);
 function a(e, t = {}) {
 return t.safe = !1, t.greedyTable = t.greedyTable || !0, r.auto(e, t);
 }
@@ -7056,7 +7069,7 @@ e.exports = [ [ [ "万" ], [ "萬" ], [ "万" ] ], [ [ "予" ], [ "預" ], [ "�
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(21), i = n(5), a = n(67);
+const r = n(22), i = n(5), a = n(67);
 function o(e, t) {
 return e = Object.keys(t).reduce(function(e, n) {
 return e[t[n]] = n, e;
@@ -13193,7 +13206,7 @@ e.exports = {
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(22);
+const r = n(23);
 t.wiki_s2t = {
 "䌶": "䊷",
 "䜥": "𧩙",
@@ -18438,7 +18451,7 @@ t._re_cjk_conv = a, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(72), i = n(23);
+const r = n(72), i = n(24);
 var a;
 !function(e) {
 e.default = "default", e.class = "class", e.other = "other", e.uniset = "uniset", 
@@ -18727,7 +18740,7 @@ const r = n(74);
 t.AST = r;
 const i = n(75);
 t.RegExpParser = i.RegExpParser;
-const a = n(24);
+const a = n(25);
 function o(e, t) {
 return new i.RegExpParser(t).parseLiteral(e instanceof RegExp ? e.toString() : e);
 }
@@ -18745,7 +18758,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(76), i = n(24), a = {}, o = {}, s = {};
+const r = n(76), i = n(25), a = {}, o = {}, s = {};
 function u(e, t) {
 for (const n of e) r.assert("Disjunction" !== n.type), n.parent = t;
 return e;
@@ -19214,7 +19227,7 @@ return /\uD83C\uDFF4(?:\uDB40\uDC67\uDB40\uDC62(?:\uDB40\uDC65\uDB40\uDC6E\uDB40
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(11), i = n(12), a = n(87), o = n(88), s = n(28);
+const r = n(11), i = n(12), a = n(87), o = n(88), s = n(29);
 var u;
 function c(e, n, r = t.PatternTest) {
 return !t.PatternTest.hasOwnProperty(e) && t.UNICODE_NAME_ALIAS_ALL[e] && t.PatternTest.hasOwnProperty(t.UNICODE_NAME_ALIAS_ALL[e]) && (e = t.UNICODE_NAME_ALIAS_ALL[e]), 
@@ -19834,7 +19847,7 @@ InZanabazar_Square: !1
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(28), i = n(11), a = n(12), o = n(92);
+const r = n(29), i = n(11), a = n(12), o = n(92);
 var s;
 function u(e, n, r = t.PatternTest) {
 return !t.PatternTest.hasOwnProperty(e) && s[e] && t.PatternTest.hasOwnProperty(s[e]) && (e = s[e]), 
@@ -20205,7 +20218,7 @@ o.getOptions = c, o.toRegExpString = s, o.TABLE_RANGE = i.default, o.fillRange =
 o.default = o, t.default = t;
 }, function(e, t, n) {
 "use strict";
-const r = n(27), i = n(99), a = n(100);
+const r = n(28), i = n(99), a = n(100);
 function o(e, t, n, a) {
 if (void 0 === e) return [];
 if (void 0 === t || e === t) {
@@ -20497,7 +20510,7 @@ var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
 return typeof e;
 } : function(e) {
 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e;
-}, i = n(29);
+}, i = n(30);
 e.exports = function(e) {
 e.romanizationTable = {
 "あ": "a",
@@ -20951,7 +20964,7 @@ var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
 return typeof e;
 } : function(e) {
 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e;
-}, i = n(29), a = n(112);
+}, i = n(30), a = n(112);
 function o(e, t) {
 var n, r;
 return !!((e[Math.floor(t / 8)] || 0) & 1 << 7 - t % 8);

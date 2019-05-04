@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "@bluelovers/tsconfig",
   "compilerOptions": {
     "allowJs": true,
 
@@ -19,9 +19,6 @@
       "root/*": [
         "./*"
       ]
-    },
-
-    "traceResolution": false,
-    "newLine": "lf"
+    }
   }
 }
