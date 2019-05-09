@@ -339,7 +339,7 @@ text-align: center; margin-bottom: 10px; }`,
 							try
 							{
 								let _r = new zhRegExp(_txt, 'iu', {
-									greedyTable: true,
+									greedyTable: 2,
 								});
 
 								console.dir(_r);
