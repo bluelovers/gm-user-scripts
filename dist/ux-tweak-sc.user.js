@@ -7079,7 +7079,9 @@ let o = a("#postlist"), s = o.find('> div[id^="post_"]');
 o.length && s.length && s.each(function(e, t) {
 let n = a(this), r = a('[id^="postmessage_"]:eq(0)', n).eq(0);
 a("i.pstatus", r).remove();
-let o = a('<a href="javascript:void(0)">COPY</a>').attr("onclick", i(r.attr("id"))), s = a(".plc .authi:eq(0) .pipe.show:eq(0)", n).after('<span class="pipe show">|</span>').after(o), u = a(".t_f", n);
+let o = a('<a href="javascript:void(0)">COPY</a>').attr("onclick", i(r.attr("id"))), s = a(".plc .authi:eq(0) .pipe.show:eq(0)", n);
+s.length ? s.after('<span class="pipe show">|</span>').after(o) : s = a(".plc .authi:eq(0)", n).append('<span class="pipe">|</span>').append(o);
+let u = a(".t_f", n);
 a(":not(:visible), .jammer", u).remove(), console.log(s, o);
 });
 },

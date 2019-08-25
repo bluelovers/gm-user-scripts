@@ -4,6 +4,7 @@
 
 "use strict";
 
+// @ts-ignore
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
@@ -33,6 +34,7 @@ let o: IDemo = {
 	{
 		let ret;
 
+		// @ts-ignore
 		if (ret = require('root/lib/greasemonkey/match').auto(_url_obj.source, module.exports))
 		{
 			return true;
@@ -70,10 +72,21 @@ let o: IDemo = {
 						.attr('onclick', copyonclick(target.attr('id')))
 					;
 
-					let authi = $('.plc .authi:eq(0) .pipe.show:eq(0)', _this)
-						.after(`<span class="pipe show">|</span>`)
-						.after(button)
-					;
+					let authi = $('.plc .authi:eq(0) .pipe.show:eq(0)', _this);
+
+					if (!authi.length)
+					{
+						authi = $('.plc .authi:eq(0)', _this)
+							.append(`<span class="pipe">|</span>`)
+							.append(button)
+					}
+					else
+					{
+						authi
+							.after(`<span class="pipe show">|</span>`)
+							.after(button)
+						;
+					}
 
 					let t_f = $('.t_f', _this);
 
