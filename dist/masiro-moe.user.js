@@ -355,20 +355,18 @@ c([]).prop("target", "_blank"), r.GM_addStyle([ "html, :root, body { font-size: 
 let t = i(".fl_tb").eq(0), o = i(".fl_g", t);
 if (o.length) {
 const u = n(49).create(a.file), c = n(19).GMApi;
-let l, f = `fid${new URL(location.href).searchParams.get("fid")}`, p = u.getValue(f, {}) || {};
+let l;
+const f = `fid${new URL(location.href).searchParams.get("fid")}`;
+let p = u.getValue(f, {}) || {};
 p.old = p.old || [], p.new = [], p.checkdate = p.checkdate || 0;
 const h = n(16);
 let d;
 h.registerMenuCommand({
 id: e.exports.name,
-key: "cachelist.old.slice"
+label: `reset-${f}`,
+key: "reset-cachelist"
 }, e => {
-p.old = p.old.slice(0, -1), u.setValue(f, p);
-}), h.registerMenuCommand({
-id: e.exports.name,
-key: "reset-cachelist.old.slice"
-}, e => {
-p.old = p.old.slice(0, -1), u.setValue(f, p);
+u.setValue(f, null);
 }), r.GM_addStyle([ "._fl_tb_block ._fl_tb_tr_block { display: block; }", "._fl_tb_block .fl_g { display: inline-block; max-width: 300px; margin: 1px; padding: 10px 3px; }", "._fl_tb_block ._is_new_fid { background-color: #18042ab3; }" ]), 
 t.addClass("_fl_tb_block");
 let g = o.eq(0).parents("tr:eq(0)").eq(0);
@@ -380,9 +378,9 @@ p.checkdate ? p.old.includes(a) || (p.new.push(a), d = !0, n.addClass("_is_new_f
 let o = r.text().trim();
 n.data("data-title", o), n.prop("title", o);
 }), p.checkdate || (d = !0);
-let D = Date.now(), m = 6048e5, _ = D - p.checkdate, y;
-console.log(d, _, m), d && _ > y && (p.checkdate = D, p.now = p.old.concat(p.new), 
-p.old = p.now, u.setValue(f, p), console.log(`saved ${f}`)), console.log(p), o.sort(function(e, t) {
+let D = Date.now(), m = 86400, _ = D - p.checkdate;
+console.log(d, _, m), _ > m && (p.checkdate = D, p.now = p.old.concat(p.new), p.old = p.now, 
+u.setValue(f, p), console.log(`saved ${f}`)), console.log(p), o.sort(function(e, t) {
 let n = i(e), r = i(t), a = n.hasClass("_has_new_post") ? 1 : 0, o, u = (r.hasClass("_has_new_post") ? 1 : 0) - a;
 if (!u) {
 let e = n.hasClass("_has_unread_post") ? 1 : 0, t = r.hasClass("_has_unread_post") ? 1 : 0, i = n.hasClass("_is_new_fid") ? 1 : 0, a = r.hasClass("_is_new_fid") ? 1 : 0;
@@ -1079,7 +1077,7 @@ return e(n, r, ...i);
 }
 t.default = t, t.removeSame = p, t.defaultOptions = Object.freeze({
 safe: !0
-}), t.REGEXP_TEST = a._re_cjk_conv("ug"), t.SAFE_MODE_CHAR = r.array_unique([ "后", "里", "餵", "志", "布", "佈", "系", "繫", "梁", "樑", "衝", "沖", "谷", "穀" ]), 
+}), t.REGEXP_TEST = a._re_cjk_conv("ug"), t.SAFE_MODE_CHAR = r.array_unique([ "后", "里", "餵", "志", "布", "佈", "系", "繫", "梁", "樑", "衝", "沖", "谷", "穀", "注" ]), 
 t.getOptionsSkip = h, t.getOptions = d, t._call = g;
 }, function(e, t, n) {
 "use strict";
@@ -7471,7 +7469,8 @@ delete t.table_tw2cn[e];
 "鉴": "鑑",
 "䌽": "綵",
 "谷": "穀",
-"板": "闆"
+"板": "闆",
+"注": "註"
 }), t.table_tw2cn = Object.assign(t.table_tw2cn, {
 "殻": "壳",
 "殼": "壳",
@@ -7586,7 +7585,8 @@ delete t.table_tw2cn[e];
 "板": "板",
 "彙": "汇",
 "匯": "汇",
-"祢": "祢"
+"祢": "祢",
+"注": "注"
 }), [ "畲", "氹", "凼", "靣", "彪", "尨", "狵" ].forEach(function(e) {
 delete t.table_tw2cn[e], delete t.table_cn2tw[e];
 }), [ "鉅" ].forEach(function(e) {
@@ -18478,7 +18478,7 @@ return u(e) ? t._greedyTableCacheRegexp.reduce(function(e, t) {
 return e.replace(t[0], t[1]);
 }, e) : e;
 }
-r = o([ [ /[噁悪惡]/g, "恶" ], [ /[繋繫係]/g, "系" ], [ /[糊鬍]/g, "胡" ], [ /[儅噹當]/g, "当" ], [ /[復複覆]/g, "复" ], [ /[囌蘇甦]/g, "苏" ], [ /[採彩睬踩埰綵䌽]/g, "采" ], [ /[囉啰羅㑩儸]/g, "罗" ], [ /[浏瀏劉]/g, "刘" ], [ /[劵卷巻捲]/g, "券" ], [ /[划劃畫]/g, "画" ], [ /[鬥闘鬭鬪]/g, "斗" ], [ /[乾亁乹幹]/g, "干" ], [ /[図图]/g, "圖" ], [ /[暦曆歴歷]/g, "历" ], [ /[麪麵麺]/g, "面" ], [ /[讃讚賛贊赞]/g, "赞" ], [ /[發髪髮]/g, "发" ], [ /[侭儘盡]/g, "尽" ], [ /[優忧憂]/g, "忧" ], [ /[俱倶]/g, "具" ], [ /[之的得]/g, "の" ], [ /[與与]/g, "と" ], [ /[她他牠祂佗]/g, "它" ], [ /[支隻枝]/g, "只" ], [ /[炮砲炰]/g, "泡" ], [ /[仲]/g, "中" ], [ /[原]/g, "元" ], [ /[迴廻]/g, "回" ], [ /[乾亁乹幹]/g, "干" ], [ /[避闢]/g, "辟" ], [ /[滷鹵卤鲁]/g, "魯" ], [ /[檯臺颱儓]/g, "台" ], [ /[宻祕秘]/g, "密" ], [ /[謎谜]/g, "迷" ], [ /[砂莎]/g, "沙" ], [ /[編篇编]/g, "篇" ], [ /[冶]/g, "治" ], [ /[炼煉錬鍊𫔀練练]/gu, "練" ], [ /[亞亚婭娅]/gu, "亚" ], [ /[塞賽]/gu, "赛" ], [ /[腾騰籐籘]/gu, "藤" ], [ /[妳祢禰]/gu, "你" ], [ /[喰飠⻞飧]/gu, "食" ], [ /[瑪馬玛马]/gu, "马" ], [ /[餸餚]/gu, "餚" ], [ /[裸]/gu, "果" ], [ /[凱凯鎧铠]/gu, "凱" ], [ /[帖贴]/gu, "貼" ], [ /[什甚]/gu, "什" ], [ /[聯联連连]/gu, "連" ], [ /[像]/gu, "象" ], [ /[藉]/gu, "借" ], [ /[蕾]/gu, "雷" ], [ /[訂订]/gu, "定" ], [ /[嚮]/gu, "向" ], [ /[糸糹丝]/gu, "絲" ], [ /[筒]/gu, "桶" ], [ /[兹玆滋]/gu, "茲" ], [ /[呐訥讷]/gu, "吶" ], [ /[穀糓]/gu, "谷" ], [ /[两兩倆俩]/gu, "両" ], [ /[帳賬账]/gu, "帐" ], [ /[版闆]/gu, "板" ], [ /[待]/gu, "呆" ], [ /[熔鎔镕融螎]/gu, "溶" ], [ /[匯汇]/gu, "彙" ], [ /[彿仏]/gu, "佛" ], [ /[阿]/gu, "啊" ], [ /[家]/gu, "傢" ], [ /[爆]/gu, "暴" ] ]), 
+r = o([ [ /[噁悪惡]/g, "恶" ], [ /[繋繫係]/g, "系" ], [ /[糊鬍]/g, "胡" ], [ /[儅噹當]/g, "当" ], [ /[復複覆]/g, "复" ], [ /[囌蘇甦]/g, "苏" ], [ /[採彩睬踩埰綵䌽]/g, "采" ], [ /[囉啰羅㑩儸]/g, "罗" ], [ /[浏瀏劉]/g, "刘" ], [ /[劵卷巻捲]/g, "券" ], [ /[划劃畫]/g, "画" ], [ /[鬥闘鬭鬪]/g, "斗" ], [ /[乾亁乹幹]/g, "干" ], [ /[図图]/g, "圖" ], [ /[暦曆歴歷]/g, "历" ], [ /[麪麵麺]/g, "面" ], [ /[讃讚賛贊赞]/g, "赞" ], [ /[發髪髮]/g, "发" ], [ /[侭儘盡]/g, "尽" ], [ /[優忧憂]/g, "忧" ], [ /[俱倶]/g, "具" ], [ /[之的得]/g, "の" ], [ /[與与]/g, "と" ], [ /[她他牠祂佗]/g, "它" ], [ /[支隻枝]/g, "只" ], [ /[炮砲炰]/g, "泡" ], [ /[仲]/g, "中" ], [ /[原]/g, "元" ], [ /[迴廻]/g, "回" ], [ /[乾亁乹幹]/g, "干" ], [ /[避闢]/g, "辟" ], [ /[滷鹵卤鲁]/g, "魯" ], [ /[檯臺颱儓]/g, "台" ], [ /[宻祕秘]/g, "密" ], [ /[謎谜]/g, "迷" ], [ /[砂莎]/g, "沙" ], [ /[編篇编]/g, "篇" ], [ /[冶]/g, "治" ], [ /[炼煉錬鍊𫔀練练]/gu, "練" ], [ /[亞亚婭娅]/gu, "亚" ], [ /[塞賽]/gu, "赛" ], [ /[腾騰籐籘]/gu, "藤" ], [ /[妳祢禰]/gu, "你" ], [ /[喰飠⻞飧]/gu, "食" ], [ /[瑪馬玛马]/gu, "马" ], [ /[餸餚]/gu, "餚" ], [ /[裸]/gu, "果" ], [ /[凱凯鎧铠]/gu, "凱" ], [ /[帖贴]/gu, "貼" ], [ /[什甚]/gu, "什" ], [ /[聯联連连]/gu, "連" ], [ /[像]/gu, "象" ], [ /[藉]/gu, "借" ], [ /[蕾]/gu, "雷" ], [ /[訂订]/gu, "定" ], [ /[嚮]/gu, "向" ], [ /[糸糹丝]/gu, "絲" ], [ /[筒]/gu, "桶" ], [ /[兹玆滋]/gu, "茲" ], [ /[呐訥讷]/gu, "吶" ], [ /[穀糓]/gu, "谷" ], [ /[两兩倆俩]/gu, "両" ], [ /[帳賬账]/gu, "帐" ], [ /[版闆]/gu, "板" ], [ /[待]/gu, "呆" ], [ /[熔鎔镕融螎]/gu, "溶" ], [ /[匯汇]/gu, "彙" ], [ /[彿仏]/gu, "佛" ], [ /[阿]/gu, "啊" ], [ /[家]/gu, "傢" ], [ /[爆]/gu, "暴" ], [ /[網䋄䋞綱纲]/gu, "网" ], [ /[註]/gu, "注" ], [ /[灌贯潅]/gu, "貫" ], [ /[倒]/gu, "到" ], [ /[秤]/gu, "平" ], [ /[勋勛勲勳]/gu, "勋" ], [ /[麗丽莉]/gu, "利" ], [ /[已巳]/gu, "己" ], [ /[嗬]/gu, "呵" ], [ /[哊哟唷唹喲]/gu, "呦" ] ]), 
 t._greedyTableCacheRegexp = r._greedyTableCacheRegexp, t._greedyTableCacheMap = r._greedyTableCacheMap, 
 t._greedyTableCacheTest = r._greedyTableCacheTest, t._greedyTableBuild = o, t.greedyTableTest = u, 
 t.greedyTableCharArray = s, t.greedyTableReplace = c, t.default = t;

@@ -4,6 +4,7 @@
 
 "use strict";
 
+// @ts-ignore
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
@@ -118,7 +119,7 @@ let o: IDemo = {
 
 				let fid = new URL(location.href).searchParams.get('fid');
 
-				let cachekey = `fid${fid}`;
+				const cachekey = `fid${fid}`;
 
 				let cachelist: {
 					checkdate: number,
@@ -132,7 +133,8 @@ let o: IDemo = {
 				cachelist.checkdate = cachelist.checkdate || 0;
 
 				const UF = require('root/lib/greasemonkey/gm/menu');
-				UF.registerMenuCommand({
+
+				0 && UF.registerMenuCommand({
 					id: module.exports.name,
 					//key: 'kill it',
 
@@ -228,14 +230,12 @@ let o: IDemo = {
 
 				let _now = Date.now();
 
-				let _diff_timestamp1 = 3600 * 24 * 7 * 1000;
-				let _diff_timestamp2 = _now - cachelist.checkdate, _diff_timestamp;
+				let _diff_timestamp1 = 3600 * 24;
+				let _diff_timestamp2 = _now - cachelist.checkdate;
 
 				console.log(changed, _diff_timestamp2, _diff_timestamp1);
 
-
-
-				if (changed && _diff_timestamp2 > _diff_timestamp)
+				if (_diff_timestamp2 > _diff_timestamp1)
 				{
 					cachelist.checkdate = _now;
 

@@ -70,8 +70,9 @@ let o: IDemo = {
 						.attr('onclick', copyonclick(target.attr('id')))
 					;
 
-					let authi = $('.plc .authi:eq(0)', _this)
-						.append(button)
+					let authi = $('.plc .authi:eq(0) .pipe.show:eq(0)', _this)
+						.after(`<span class="pipe show">|</span>`)
+						.after(button)
 					;
 
 					let t_f = $('.t_f', _this);
