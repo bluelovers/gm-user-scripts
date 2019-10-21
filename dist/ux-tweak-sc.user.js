@@ -4,7 +4,7 @@
 //
 // @description	各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作 並且適合搭配 Scrapbook 擷取內容
 //
-// @version		4.5.0
+// @version		4.5.1
 //
 // @grant		GM.deleteValue
 // @grant		GM.getValue
@@ -4848,7 +4848,7 @@ exclude: [ "http*://*.pixiv.net/novel/*" ]
 test: e => !!e.host.match(/pixiv\.net/),
 main(t = a._url_obj) {
 const {debounce: i} = n(3), {throttle: o} = n(3), u = n(4), c = n(2);
-if (document.referrer && t.path.match(/^\/?member\.php/) && t.query.match(/^id=\d+$/) && !document.referrer.match(/pixiv/)) return void (location.href = location.href.replace("member.php", "member_illust.php"));
+if (document.referrer && t.path.match(/^\/?member\.php/) && t.query.match(/^id=\d+$/) && (!document.referrer || !document.referrer.match(/pixiv/))) return void (location.href = location.href.replace("member.php", "member_illust.php"));
 r(window).on("load.link", i(100, function() {
 c([ ".works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a", ".post a", ".column-search-result a", "#js-react-search-mid a", 'ul li div a[href*="member"]', ".gtm-illust-recommend-zone a" ].join(",")).prop("target", "_blank");
 })).triggerHandler("load.link"), r("#js-react-search-mid").on("DOMNodeInserted", i(100, function() {
@@ -4884,7 +4884,7 @@ case 39:
 break;
 }
 }));
-} else if (t.path.match(/member_illust\.php/) && t.query.match(/mode=medium/)) {
+} else if (t.path.match(/member_illust\.php/) && t.query.match(/mode=medium/) || t.path.match(/artworks/)) {
 "#E4E7EE" != r("body").css("background-color") && "rgb(228, 231, 238)" != r("body").css("background-color") || r("body").css("background-color", "rgba(0, 3, 11, 0.9)"), 
 r(window).on("load", function() {
 setTimeout(function() {

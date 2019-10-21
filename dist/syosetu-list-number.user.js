@@ -11,7 +11,7 @@
 // @description:ja	syosetu-list-number 小説家になろう 章の表示順序
 // @description:zh	syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)
 //
-// @version		4.5.0
+// @version		4.5.1
 //
 // @grant		GM.setClipboard
 // @grant		GM_setClipboard

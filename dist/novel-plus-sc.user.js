@@ -9,7 +9,7 @@
 // @description:en	部分小說網站重新排版、修正文字，改變閱讀樣式
 // @description:zh	部分小說網站重新排版、修正文字，改變閱讀樣式
 //
-// @version		4.5.0
+// @version		4.5.1
 //
 // @grant		GM.deleteValue
 // @grant		GM.getValue

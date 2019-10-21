@@ -4,6 +4,7 @@
 
 'use strict';
 
+// @ts-ignore
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
@@ -13,6 +14,7 @@ declare const unsafeWindow: IWindow;
 declare const $: IJQueryStatic;
 declare const jQuery: IJQueryStatic;
 
+// @ts-ignore
 declare module 'root/lib/core/demo'
 {
 	interface IGlobal
@@ -58,7 +60,7 @@ module.exports = {
 		if (document.referrer
 			&& _url_obj.path.match(/^\/?member\.php/)
 			&& _url_obj.query.match(/^id=\d+$/)
-			&& !document.referrer.match(/pixiv/)
+			&& (!document.referrer || !document.referrer.match(/pixiv/))
 		)
 		{
 			location.href = location.href.replace('member.php', 'member_illust.php');
@@ -185,7 +187,7 @@ module.exports = {
 				}))
 			;
 		}
-		else if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=medium/))
+		else if (_url_obj.path.match(/member_illust\.php/) && _url_obj.query.match(/mode=medium/) || _url_obj.path.match(/artworks/))
 		{
 			if ($('body').css('background-color') == '#E4E7EE' || $('body')
 				.css('background-color') == 'rgb(228, 231, 238)')

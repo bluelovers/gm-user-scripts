@@ -7,10 +7,10 @@
     "inlineSourceMap": true,
     "inlineSources": true,
 
-    "baseUrl": ".",
-    "sourceRoot": ".",
-    "rootDir": ".",
-    "outDir": ".",
+//    "baseUrl": ".",
+//    "sourceRoot": ".",
+//    "rootDir": ".",
+//    "outDir": ".",
 
     "paths": {
       "root/src/*": [

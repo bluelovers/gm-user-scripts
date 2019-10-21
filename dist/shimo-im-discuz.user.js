@@ -11,7 +11,7 @@
 // @description:ja	暴力複製破壞石墨網頁讓他可以正常複製格式到 discuz 論壇
 // @description:zh	暴力複製破壞石墨網頁讓他可以正常複製格式到 discuz 論壇
 //
-// @version		4.5.0
+// @version		4.5.1
 //
 // @grant		GM.registerMenuCommand
 // @grant		GM.unregisterMenuCommand

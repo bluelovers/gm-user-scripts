@@ -11,7 +11,7 @@
 // @description:ja	masiro-moe 各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
 // @description:zh	masiro-moe 各種網站 UX 優化 與 搭配某些插件/行為時的簡化動作
 //
-// @version		4.5.0
+// @version		4.5.1
 //
 // @grant		GM.deleteValue
 // @grant		GM.getValue
