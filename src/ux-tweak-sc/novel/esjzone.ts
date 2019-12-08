@@ -4,6 +4,7 @@
 
 "use strict";
 
+// @ts-ignore
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
@@ -52,16 +53,6 @@ let o: IDemo = {
 		const { debounce } = require('throttle-debounce');
 		const _uf_done = require('root/lib/event/done');
 
-
-
-		this.clearly();
-
-		$('.container .alert.alert-info > .pull-right')
-			.append(`<div style="padding-left: 10px; text-align: center; display: inline-block;"><button id="_copy">Copy</button></div>`);
-
-		_p_2_br($('.forum-content > p'));
-		_p_2_br($('.book_description p'));
-
 		const copyonclick = require('root/lib/func/copy').copyonclick;
 
 		$('.forum-content')
@@ -72,7 +63,42 @@ let o: IDemo = {
 			})
 		;
 
+		$('.container .alert.alert-info > .pull-right')
+			.append(`<div style="padding-left: 10px; text-align: center; display: inline-block;"><button id="_copy">Copy</button></div>`);
+
 		$('#_copy').attr('onclick', copyonclick('_forum_content'));
+
+		const _handleContext = debounce(500, () => {
+			this.clearly();
+
+			_p_2_br($('.forum-content > p'));
+			_p_2_br($('.book_description p'));
+		});
+
+		$(document)
+			.ready(_handleContext)
+		;
+
+		try
+		{
+			if (unsafeWindow.getTranslation)
+			{
+				((old) => {
+					unsafeWindow.getTranslation = function (...argv)
+					{
+						let ret = old.call(this, ...argv);
+
+						_handleContext();
+
+						return ret;
+					}
+				})(unsafeWindow.getTranslation);
+			}
+		}
+		catch (e)
+		{
+
+		}
 
 		$(window)
 			.on('load.ready', throttle(1000, function ()
@@ -100,6 +126,8 @@ let o: IDemo = {
 				$(document)
 					.off('copy')
 				;
+
+				_handleContext();
 			}))
 			.triggerHandler('load.ready')
 		;

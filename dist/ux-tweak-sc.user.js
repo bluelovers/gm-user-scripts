@@ -6986,14 +6986,24 @@ return !!(r = n(6).auto(a.source, e.exports));
 async main(e = t._url_obj) {
 const r = n(2);
 r([ ".container .thumbnail a", ".tabbable a" ].join(",")).prop("target", "_blank");
-const {throttle: o} = n(3), {debounce: s} = n(3), u = n(4);
-this.clearly(), a(".container .alert.alert-info > .pull-right").append('<div style="padding-left: 10px; text-align: center; display: inline-block;"><button id="_copy">Copy</button></div>'), 
-i(a(".forum-content > p")), i(a(".book_description p"));
-const c = n(112).copyonclick;
+const {throttle: o} = n(3), {debounce: s} = n(3), u = n(4), c = n(112).copyonclick;
 a(".forum-content").attr("id", "_forum_content").css({
 "font-size": "1rem",
 "font-family": "initial"
-}), a("#_copy").attr("onclick", c("_forum_content")), a(window).on("load.ready", o(1e3, function() {
+}), a(".container .alert.alert-info > .pull-right").append('<div style="padding-left: 10px; text-align: center; display: inline-block;"><button id="_copy">Copy</button></div>'), 
+a("#_copy").attr("onclick", c("_forum_content"));
+const l = s(1e3, () => {
+this.clearly(), i(a(".forum-content > p")), i(a(".book_description p"));
+});
+a(document).ready(l);
+try {
+unsafeWindow.getTranslation && (d = unsafeWindow.getTranslation, unsafeWindow.getTranslation = function(...e) {
+let t = d.call(this, ...e);
+return l(), t;
+});
+} catch (e) {}
+var d;
+a(window).on("load.ready", o(1e3, function() {
 try {
 unsafeWindow.$(unsafeWindow.document).bind({
 copy: function() {
@@ -7003,7 +7013,7 @@ return !0;
 } catch (e) {
 console.error(e);
 }
-a(document).off("copy");
+a(document).off("copy"), l();
 })).triggerHandler("load.ready");
 },
 adblock(e = t._url_obj) {},
