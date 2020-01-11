@@ -4,6 +4,7 @@
 
 'use strict';
 
+// @ts-ignore
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;

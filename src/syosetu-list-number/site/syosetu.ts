@@ -4,6 +4,7 @@
 
 'use strict';
 
+// @ts-ignore
 import { IDemo, IGlobal, IGreasemonkey, IWindow, IJQueryStatic, IUrlObject2 } from 'root/lib/core/demo';
 
 declare const global: IGlobal;
@@ -151,6 +152,46 @@ let o: IDemo = {
 					;
 				})
 			;
+
+			let _imgs = $('.novelrankingtag, .novel_view')
+				.find('img')
+			;
+
+			if (_imgs.length)
+			{
+				const _uf_fixsize2 = require('root/lib/dom/img/size')._uf_fixsize2;
+				const _mitemin = require('mitemin').parse;
+
+				_imgs
+					.imagesLoaded()
+					.done(function (data)
+					{
+						$(data.elements).each((i, elem) => {
+							let _this = $(elem);
+
+							let _src = _this.prop('src');
+
+							try
+							{
+								let data = _mitemin(_src);
+
+								if (data.fullsize)
+								{
+									_uf_fixsize2(_this);
+
+									_this.prop('src', data.fullsize)
+								}
+							}
+							catch (e)
+							{
+
+							}
+						});
+					})
+					;
+
+				;
+			}
 
 			let _b = $('#novel_contents div.novelrankingtag').eq(0);
 

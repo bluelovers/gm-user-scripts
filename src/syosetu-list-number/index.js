@@ -17,6 +17,7 @@ module.exports.icon = '';
 
 module.exports.list = [
 	"site/kakuyomu.jp",
+	"site/mitemin",
 	"site/syosetu"
 ];
 
@@ -26,6 +27,7 @@ module.exports.list_disable = [];
 module.exports._lib = () =>
 {
 	require('root/src/syosetu-list-number/site/kakuyomu.jp');
+	require('root/src/syosetu-list-number/site/mitemin');
 	require('root/src/syosetu-list-number/site/syosetu');
 };
 
@@ -34,6 +36,7 @@ module.exports.metadata.include = [
 	"http*://kakuyomu.jp/works*",
 	"http*://kakuyomu.jp/works*/*/episodes/*",
 	"http*://kakuyomu.jp/*",
+	"http*://*.mitemin.net/*",
 	"http*://syosetu.com/*",
 	"http*://ncode.syosetu.com/*"
 ];
