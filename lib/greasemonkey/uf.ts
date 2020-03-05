@@ -2,7 +2,6 @@
  * Created by user on 2017/11/14/014.
  */
 
-export * from './index';
 import * as greasemonkey from './index';
 
 //Object.assign(exports, greasemonkey);
@@ -88,3 +87,4 @@ export function openInTabBackground(url: string)
 }
 
 export default exports as typeof import('./uf');
+export * from './index';
