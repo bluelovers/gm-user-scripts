@@ -55,15 +55,18 @@ module.exports = {
 		const _uf_done = require('root/lib/event/done');
 		//require('root/lib/func/debounce');
 
+		const { replacePixivUserUrl, toPixivUserIllust } = require('root/lib/site/pixiv');
+
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 
-		if (document.referrer
-			&& _url_obj.path.match(/^\/?member\.php/)
-			&& _url_obj.query.match(/^id=\d+$/)
-			&& (!document.referrer || !document.referrer.match(/pixiv/))
+		if ((
+				_url_obj.path.match(/^\/?member\.php/) && _url_obj.query.match(/^id=\d+$/)
+				|| _url_obj.path.match(/users\/\d+\/?$/)
+			)
+			&& (!document.referrer || !document.referrer.match(/pixiv/i))
 		)
 		{
-			location.href = location.href.replace('member.php', 'member_illust.php');
+			location.href = replacePixivUserUrl(location.href);
 
 			return;
 		}
@@ -96,8 +99,6 @@ module.exports = {
 		;
 
 		const greasemonkey = require('root/lib/greasemonkey/uf');
-
-
 
 		// @ts-ignore
 		$(window).scrollTo($()
@@ -203,7 +204,7 @@ module.exports = {
 					{
 						let _this = $(this);
 
-						if (_this.attr('href').match(/member_illust\.php/))
+						if (_this.attr('href').match(/member_illust\.php|users\/\d+\/illustrations/))
 						{
 							_this
 							// @ts-ignore
@@ -214,6 +215,7 @@ module.exports = {
 								{
 									_uf_done(event);
 
+									// @ts-ignore
 									window.location.href = this.href
 								})
 							;
@@ -227,18 +229,18 @@ module.exports = {
 				let _a;
 				if (content)
 				{
-					_a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"]', $(content))
+					_a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"], a:not([data-done])[href*="users/"]', $(content))
 				}
 				else
 				{
-					_a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"]');
+					_a = _uf_dom_filter_link('a:not([data-done])[href*="member.php"], a:not([data-done])[href*="users/"]');
 				}
 
 				_a.attr('data-done', true)
 					.attr('target', '_blank')
 					.attr('href', function (i, old)
 					{
-						return old.replace('member.php', 'member_illust.php')
+						return replacePixivUserUrl(old);
 					})
 					.off('click.member_illust')
 					.on('click.member_illust', function (event)
@@ -323,7 +325,7 @@ module.exports = {
 
 			$(document).on('click mousedown', function (event)
 			{
-				var _this = $(event.target);
+				let _this = $(event.target);
 
 				//_uf_log(event, this);
 
@@ -331,10 +333,9 @@ module.exports = {
 				{
 					//_uf_log(777, event, _this);
 
-					var _a = _this.parents('.user-info:first').find('a.user-name:first');
+					let _a = _this.parents('.user-info:first').find('a.user-name:first');
 
-					var _href = _a.prop('href')
-						.replace('member.php', 'member_illust.php');
+					let _href = replacePixivUserUrl(_a.prop('href'));
 
 					//_uf_log(event, _this, _a, _href);
 
@@ -350,7 +351,7 @@ module.exports = {
 			$('.user-search-result-container .user-recommendation-item a.title')
 				.prop('href', function (i, v)
 				{
-					return v.replace('member.php', 'member_illust.php');
+					return replacePixivUserUrl(v);
 				})
 			;
 
@@ -446,8 +447,7 @@ module.exports = {
 
 						$('.stacc_ref_user_illust_caption_img a', _this).attr('href', function (i, v)
 						{
-							v = v.replace('member.php', 'member_illust.php');
-							return v;
+							return replacePixivUserUrl(v);
 						});
 					})
 				;
@@ -467,6 +467,12 @@ module.exports = {
 					}, 1000);
 				})
 			;
+		}
+		else
+		{
+			$('#page-mypage').find('a[href*="users/"], a[href*="member.php"]').each((i, elem: HTMLLinkElement) => {
+				elem.href = replacePixivUserUrl(elem.href);
+			})
 		}
 
 		$(window)
@@ -506,12 +512,36 @@ module.exports = {
 			}))
 			.on('load', function ()
 			{
+				let _nav = $('div > nav:has(a[href*="illustrations"]):eq(0)').not('[data-done]');
 
+				if (_nav.length)
+				{
+					_nav.attr('data-done', 'true');
+
+					let _a = _nav.find('> a[href*="illustrations"]:eq(-1)');
+
+					if (_a.length)
+					{
+						let _id = _a.prop('href').match(/users\/(\d+)\/illustrations/)[1];
+
+						let _b = _a.clone()
+							.prop('href', toPixivUserIllust(_id))
+							.removeAttr('aria-current')
+							.text(`插畫·漫畫`)
+						;
+
+						_a
+							.before(_b)
+						;
+
+					}
+				}
 			})
 		;
 
 		// @ts-ignore
 		$('a[href*="jump.php"]', '.profile-web, .caption, .body')
+			// @ts-ignore
 			.each(function ()
 			{
 				var _this = $(this);
@@ -525,6 +555,7 @@ module.exports = {
 					_this.prop('href', _url);
 				}
 			})
+			// @ts-ignore
 			.prop('target', '_blank')
 		;
 	},
@@ -563,13 +594,9 @@ function _pixiv_source(_src)
 	return _ret;
 }
 
-function pixiv_link_uid(uid, type = 'member_illust')
-{
-	return `http://www.pixiv.net/${type}.php?id=${uid}`;
-}
-
 function follow_button(_url_obj, window)
 {
+	const { replacePixivUserUrl, toPixivUserIllust } = require('root/lib/site/pixiv');
 	//const winOpen = require('root/lib/func/open') as typeof import("root/lib/func/open");
 
 	$('body')
@@ -600,31 +627,34 @@ function follow_button(_url_obj, window)
 				if (!p.length)
 				{
 					p = _area
-						.find('a[href*="/member_illust.php"]')
+						.find('a[href*="/member_illust.php"], a[href*="users/"]')
 						.eq(0)
 					;
 				}
 
 				if (p.length)
 				{
-					my_openInBackground(href_replace(p.prop('href')), '_blank');
+					my_openInBackground(replacePixivUserUrl(p.prop('href')), '_blank');
 				}
 			}
 
 			if (uid)
 			{
-				if (_url_obj.path.match(/member\.php/))
+				if (_url_obj.path.match(/member\.php|users\/\d+(?!\/illustrations)/))
 				{
 					setTimeout(function ()
 					{
-						window.location.href = pixiv_link_uid(uid);
+						window.location.href = toPixivUserIllust(uid);
 					}, 200);
 				}
 				else
 				{
 					let _skip;
 
-					if (/member_illust\.php/.test(_url_obj.path) && _url_obj.query.match(/(?:\b|&|^)id=(\d+)/))
+					if (
+						(/member_illust\.php/.test(_url_obj.path) && _url_obj.query.match(/(?:\b|&|^)id=(\d+)/))
+						|| _url_obj.path.match(/users\/(\d+)\/illustrations/)
+					)
 					{
 						//console.log([RegExp.$1, uid]);
 
@@ -638,7 +668,7 @@ function follow_button(_url_obj, window)
 
 					if (!_skip)
 					{
-						my_openInBackground(pixiv_link_uid(uid), '_blank');
+						my_openInBackground(toPixivUserIllust(uid), '_blank');
 					}
 				}
 
@@ -657,23 +687,9 @@ function follow_button(_url_obj, window)
 	;
 }
 
-function href_replace(href: string)
-{
-	return href.replace('member.php', 'member_illust.php');
-}
-
-function href_uid(href: string): string
-{
-	let m = href.match(/(?:[&\?])id=(\d+)(?:$|&|#)/);
-
-	if (m && m[1])
-	{
-		return m[1];
-	}
-}
-
 export function my_openInBackground(url: string, ...argv)
 {
+	// @ts-ignore
 	const GMApi = require('root/lib/greasemonkey/gm/api').GMApi as typeof import("root/lib/greasemonkey/gm/api").GMApi;
 	//const winOpen = require('root/lib/func/open') as typeof import("root/lib/func/open");
 

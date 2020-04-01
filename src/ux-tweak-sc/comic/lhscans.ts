@@ -20,6 +20,7 @@ let o: IDemo = {
 	metadata: {
 		include: [
 			'http*://lhscans.com/*',
+			'http*://loveheaven.net/*',
 		],
 		match: [],
 		nomatch: [],
@@ -71,6 +72,7 @@ let o: IDemo = {
 			;
 
 			_img
+				// @ts-ignore
 				.imagesLoaded()
 				.done(function (instance)
 				{
@@ -91,6 +93,7 @@ let o: IDemo = {
 
 					let _to = _img.filter(':onScreen').eq(-1);
 
+					// @ts-ignore
 					$(window).scrollTo(_to.parent('.separator').addBack());
 				}))
 				.on('load.init',  debounce(2000, function ()
@@ -131,6 +134,7 @@ let o: IDemo = {
 							if (_a.length)
 							{
 								_uf_done(event);
+								// @ts-ignore
 								$(window).scrollTo(_a.parents('.separator').addBack());
 							}
 
@@ -150,6 +154,7 @@ let o: IDemo = {
 							{
 								_uf_done(event);
 
+								// @ts-ignore
 								$(window).scrollTo(_a.parents('.separator').addBack());
 							}
 

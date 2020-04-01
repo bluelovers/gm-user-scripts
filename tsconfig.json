@@ -3,11 +3,11 @@
   "compilerOptions": {
     "allowJs": true,
 
-    "sourceMap": true,
+    "sourceMap": false,
     "inlineSourceMap": true,
     "inlineSources": true,
 
-//    "baseUrl": ".",
+    "baseUrl": ".",
 //    "sourceRoot": ".",
 //    "rootDir": ".",
 //    "outDir": ".",

@@ -268,59 +268,59 @@ height: 18px;
 			}
 		});
 
-		$('#pb_content')
-			.on('click', 'img.BDE_Image', function (event)
-			{
-				/**
-				 * @type JQuery<HTMLElement>
-				 */
-				let _img = libSiteBaiduTieba.bde_image(this);
-
-				if (_img && _img.length)
-				{
-					let name_id = _img.attr('data-id');
-
-					let url;
-
-					if (PageData && PageData.forum && PageData.thread)
-					{
-						url = [
-							`http://tieba.baidu.com/photo/p?`,
-							`kw=${PageData.forum.name_url}`,
-							`&flux=1&tid=${PageData.thread.thread_id}`,
-							`&pic_id=${name_id}`,
-							`&pn=1&fp=2&see_lz=0&red_tag=s2698993533`,
-						].join('')
-					}
-					else
-					{
-						url = _img.prop('src');
-					}
-
-					_uf_done(event);
-
-					// @ts-ignore
-					window.open(url, name_id);
-				}
-			})
-		;
-
-		$('body').on('DOMNodeInserted', '#thread_list .j_thread_list .media_box', debounce(500, async function (event)
-		{
-			let _img = $('img[id^="big_img_"]', this);
-
-			0 && console.log({
-				"this": this,
-				target: event.target,
-				_img,
-			});
-
-			_img.each(function ()
-			{
-				libSiteBaiduTieba.bde_image(this);
-			});
-
-		}));
+//		$('#pb_content')
+//			.on('click', 'img.BDE_Image', function (event)
+//			{
+//				/**
+//				 * @type JQuery<HTMLElement>
+//				 */
+//				let _img = libSiteBaiduTieba.bde_image(this);
+//
+//				if (_img && _img.length)
+//				{
+//					let name_id = _img.attr('data-id');
+//
+//					let url;
+//
+//					if (PageData && PageData.forum && PageData.thread)
+//					{
+//						url = [
+//							`http://tieba.baidu.com/photo/p?`,
+//							`kw=${PageData.forum.name_url}`,
+//							`&flux=1&tid=${PageData.thread.thread_id}`,
+//							`&pic_id=${name_id}`,
+//							`&pn=1&fp=2&see_lz=0&red_tag=s2698993533`,
+//						].join('')
+//					}
+//					else
+//					{
+//						url = _img.prop('src');
+//					}
+//
+//					_uf_done(event);
+//
+//					// @ts-ignore
+//					window.open(url, name_id);
+//				}
+//			})
+//		;
+//
+//		$('body').on('DOMNodeInserted', '#thread_list .j_thread_list .media_box', debounce(500, async function (event)
+//		{
+//			let _img = $('img[id^="big_img_"]', this);
+//
+//			0 && console.log({
+//				"this": this,
+//				target: event.target,
+//				_img,
+//			});
+//
+//			_img.each(function ()
+//			{
+//				libSiteBaiduTieba.bde_image(this);
+//			});
+//
+//		}));
 
 		const CopyLib = require('root/lib/func/copy');
 
@@ -910,10 +910,10 @@ height: 18px;
 				new Promise(function ()
 				{
 					// @ts-ignore
-					$('img.BDE_Image', p_postlist_post).each(async function ()
-					{
-						libSiteBaiduTieba.bde_image(this);
-					});
+//					$('img.BDE_Image', p_postlist_post).each(async function ()
+//					{
+//						libSiteBaiduTieba.bde_image(this);
+//					});
 
 					// @ts-ignore
 					$('.right_section div:has(> .topic_list_box)')
@@ -987,7 +987,7 @@ height: 18px;
 
 				//console.log('load.list', ls);
 
-				lazyload(_url_obj);
+				//lazyload(_url_obj);
 			}))
 			.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 			{
