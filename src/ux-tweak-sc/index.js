@@ -33,6 +33,7 @@ module.exports.list = [
 	"acg/qoo-app",
 	"acg/qtfy.eu",
 	"acg/reddit",
+	"acg/taptap",
 	"acg/vsgames",
 	"adult/up01",
 	"anti-adblock/epinv",
@@ -133,6 +134,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/acg/qoo-app');
 	require('root/src/ux-tweak-sc/acg/qtfy.eu');
 	require('root/src/ux-tweak-sc/acg/reddit');
+	require('root/src/ux-tweak-sc/acg/taptap');
 	require('root/src/ux-tweak-sc/acg/vsgames');
 	require('root/src/ux-tweak-sc/adult/up01');
 	require('root/src/ux-tweak-sc/anti-adblock/epinv');
@@ -236,6 +238,7 @@ module.exports.metadata.include = [
 	"http*://*.qoo-app.com/*",
 	"http*://qtfy.eu/*",
 	"http*://www.reddit.com/r/*",
+	"http*://www.taptap.com/*",
 	"http*://gw2.vsgames.cn/*",
 	"http*://*.vsgames.cn/*",
 	"http*://www.up01.cc/*",
