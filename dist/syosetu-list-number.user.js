@@ -90,7 +90,7 @@ return Object.prototype.hasOwnProperty.call(e, t);
 (function(e) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), console["groupCollapsed" in console ? "groupCollapsed" : "group"]("before");
+}), t.jQuery = t.$ = void 0, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("before");
 let r = {};
 const o = !1;
 try {
@@ -345,7 +345,7 @@ e.exports = o;
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.matchChrome = t.auto = t.option = t.match = void 0;
 const r = n(28), o = r.Minimatch;
 function i(e, t, n = {}) {
 n = s(n);
@@ -573,7 +573,7 @@ e.exports = i;
 (function(e, r, o) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.main_list = t.main = t.get_list_script = t.requireScript = t.init = t.url = t.run = t.greasemonkey = void 0;
 const i = n(21), s = n(10);
 t.greasemonkey = s.default;
 const a = n(22);
@@ -690,40 +690,49 @@ t.main_list = g;
 }, function(e, t, n) {
 "use strict";
 (function(e, r) {
-function o(e) {
-for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
+var o = this && this.__createBinding || (Object.create ? function(e, t, n, r) {
+void 0 === r && (r = n), Object.defineProperty(e, r, {
+enumerable: !0,
+get: function() {
+return t[n];
 }
+});
+} : function(e, t, n, r) {
+void 0 === r && (r = n), e[r] = t[n];
+}), i = this && this.__exportStar || function(e, t) {
+for (var n in e) "default" === n || Object.prototype.hasOwnProperty.call(t, n) || o(t, e, n);
+};
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), o(n(11));
-const i = n(11);
-function s(t, n) {
-return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
-"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), i.GM_addStyle(t.toString(), n);
-}
+}), t.openInTabBackground = t.log = t.info = t.error = t.debug = t.addStylesheet = t.GM_addStyle = void 0;
+const s = n(11);
 function a(t, n) {
+return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
+"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), s.GM_addStyle(t.toString(), n);
+}
+function u(t, n) {
 return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
 }
-function u(e, ...t) {
+function l(e, ...t) {
 return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
 }
-function l(e, ...t) {
+function c(e, ...t) {
 return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
 }
-function c(e, ...t) {
+function f(e, ...t) {
 return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
 }
-function f(e, ...t) {
+function p(e, ...t) {
 return console.log(e, ...t);
 }
-function p(e) {
+function d(e) {
 let t = window.open(e, "_blank");
 return setTimeout(function() {
 window.focus();
 }, 300), t;
 }
-t.GM_addStyle = s, t.addStylesheet = a, t.debug = u, t.error = l, t.info = c, t.log = f, 
-t.openInTabBackground = p, t.default = t;
+t.GM_addStyle = a, t.addStylesheet = u, t.debug = l, t.error = c, t.info = f, t.log = p, 
+t.openInTabBackground = d, t.default = t, i(n(11), t);
 }).call(this, n(0).default, n(1));
 }, function(e, t, n) {
 "use strict";
@@ -740,7 +749,7 @@ return t.appendChild(n), n;
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.GM_addStyle = r, t.default = t;
+}), t.GM_addStyle = void 0, t.GM_addStyle = r, t.default = t;
 }, function(module, exports, __webpack_require__) {
 "use strict";
 var _GMApi;
@@ -869,7 +878,7 @@ console.error(e);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.copyonclick = r, t.copyElem = o, t.default = t;
+}), t.copyElem = t.copyonclick = void 0, t.copyonclick = r, t.copyElem = o, t.default = t;
 }, function(e, t, n) {
 "use strict";
 (function(e) {
@@ -900,7 +909,7 @@ return e / t;
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t._uf_fixsize2 = n, t.default = n, t.calc_scale = r;
+}), t.calc_scale = t._uf_fixsize2 = void 0, t._uf_fixsize2 = n, t.default = n, t.calc_scale = r;
 }).call(this, n(0).default);
 }, function(e, t, n) {
 "use strict";
@@ -943,8 +952,8 @@ t.parse = o, t.parseAsync = i, t.default = o;
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.desc = "syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)", t.desc_ja = "syosetu-list-number 小説家になろう 章の表示順序", 
-t.grant = [], t.metadata = "// ==UserScript==\n// @name\t\t<%= index.name %>\n// @name:en\t\t<%= index.name_en %>\n// @name:ja\t\t<%= index.name_ja %>\n// @name:zh\t\t<%= index.name %>\n// @namespace\tbluelovers\n// @author\t\tbluelovers\n//\n// @description\t\t<%= index.desc %>\n// @description:en\t<%= index.desc_en %>\n// @description:ja\t<%= index.desc_ja %>\n// @description:zh\t<%= index.desc %>\n//\n// @version\t\t<%= pkg.version %>\n//\n// @grant\t\t<%= index.grant %>\n// g_r_a_n_tnone\n//\n// @icon\t\t<%= index.icon %>\n//\n// @noframes\n// @encoding\tutf-8\n//\n// @homepageURL\thttps://github.com/bluelovers/gm-user-scripts\n// @supportURL\thttps://github.com/bluelovers/gm-user-scripts/issues\n// @downloadURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n// @updateURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n//\n// @include\t\t<%= index.include %>\n//\n// @match\t\t<%= index.match %>\n//\n// @exclude\t\t<%= index.exclude %>\n//\n// ==/UserScript==\n", 
+}), t.metadata = t.grant = t.desc_ja = t.desc = void 0, t.desc = "syosetu-list-number 讓小說家的章節顯示序列 (支援手機版)", 
+t.desc_ja = "syosetu-list-number 小説家になろう 章の表示順序", t.grant = [], t.metadata = "// ==UserScript==\n// @name\t\t<%= index.name %>\n// @name:en\t\t<%= index.name_en %>\n// @name:ja\t\t<%= index.name_ja %>\n// @name:zh\t\t<%= index.name %>\n// @namespace\tbluelovers\n// @author\t\tbluelovers\n//\n// @description\t\t<%= index.desc %>\n// @description:en\t<%= index.desc_en %>\n// @description:ja\t<%= index.desc_ja %>\n// @description:zh\t<%= index.desc %>\n//\n// @version\t\t<%= pkg.version %>\n//\n// @grant\t\t<%= index.grant %>\n// g_r_a_n_tnone\n//\n// @icon\t\t<%= index.icon %>\n//\n// @noframes\n// @encoding\tutf-8\n//\n// @homepageURL\thttps://github.com/bluelovers/gm-user-scripts\n// @supportURL\thttps://github.com/bluelovers/gm-user-scripts/issues\n// @downloadURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n// @updateURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n//\n// @include\t\t<%= index.include %>\n//\n// @match\t\t<%= index.match %>\n//\n// @exclude\t\t<%= index.exclude %>\n//\n// ==/UserScript==\n", 
 t.default = t.metadata;
 }, function(e, t, n) {
 var r, o;
@@ -3880,13 +3889,13 @@ return delete a.source, a;
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.parse_url2 = r, t.parse_url = o, t.default = o;
+}), t.parse_url = t.parse_url2 = void 0, t.parse_url2 = r, t.parse_url = o, t.default = o;
 }, function(e, t, n) {
 "use strict";
 (function(e, r, o) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.registerGlobalMenu = void 0;
 const i = n(9), s = n(23), a = n(25);
 function u(t, r, o) {
 let u = i.requireScript(t, "index");
@@ -3976,7 +3985,7 @@ t.registerMenuCommand = i, t.getLabel = s, t.callMenuCommand = a, t.listMenuComm
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.meta_filter = t.makeMetaRow = t.meta_match = t.lazyMetaFix = t.hasGrant = t.parseMetadata = void 0;
 const r = n(26);
 function o(e) {
 let t;
@@ -4053,7 +4062,7 @@ return t == n.indexOf(e);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.array_unique = r, t.default = r;
+}), t.array_unique = void 0, t.array_unique = r, t.default = r;
 }, function(e, t, n) {
 var r = {
 "./syosetu-list-number/": 2,
@@ -4927,7 +4936,7 @@ return t(n).scrollTo(e, r, o, i);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.makeJQueryPlugin = n, t.default = n;
+}), t.makeJQueryPlugin = void 0, t.makeJQueryPlugin = n, t.default = n;
 }).call(this, n(1));
 }, function(e, t, n) {
 var r, o;

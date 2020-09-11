@@ -600,7 +600,7 @@ function follow_button(_url_obj, window)
 	//const winOpen = require('root/lib/func/open') as typeof import("root/lib/func/open");
 
 	$('body')
-		.on('click.follow', ':not(.following2) .follow-button:not(.on), aside section button[data-click-label="follow"], section button[data-click-label="follow"], ul li div button[data-click-label="follow"]', function (event)
+		.on('click.follow', ':not(.following2) .follow-button:not(.on), aside section button[data-click-label="follow"], section button[data-click-label="follow"], ul li div button[data-click-label="follow"], div > li > div > div > button:submit', function (event)
 		{
 			let _this = $(this);
 
@@ -617,7 +617,7 @@ function follow_button(_url_obj, window)
 
 			if (!uid)
 			{
-				let _area = _this.parents('aside section, ul li div');
+				let _area = _this.parents('aside section, ul li div, div > li > div');
 
 				let p = _area
 					.find('a[href*="/member.php"]')

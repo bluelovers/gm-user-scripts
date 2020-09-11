@@ -98,7 +98,7 @@ return Object.prototype.hasOwnProperty.call(e, t);
 (function(e) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), console["groupCollapsed" in console ? "groupCollapsed" : "group"]("before");
+}), t.jQuery = t.$ = void 0, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("before");
 let r = {};
 const i = !1;
 try {
@@ -486,7 +486,7 @@ value: !0
 (function(e, r, i) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.main_list = t.main = t.get_list_script = t.requireScript = t.init = t.url = t.run = t.greasemonkey = void 0;
 const a = n(34), o = n(14);
 t.greasemonkey = o.default;
 const u = n(35);
@@ -603,40 +603,49 @@ t.main_list = g;
 }, function(e, t, n) {
 "use strict";
 (function(e, r) {
-function i(e) {
-for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
+var i = this && this.__createBinding || (Object.create ? function(e, t, n, r) {
+void 0 === r && (r = n), Object.defineProperty(e, r, {
+enumerable: !0,
+get: function() {
+return t[n];
 }
+});
+} : function(e, t, n, r) {
+void 0 === r && (r = n), e[r] = t[n];
+}), a = this && this.__exportStar || function(e, t) {
+for (var n in e) "default" === n || Object.prototype.hasOwnProperty.call(t, n) || i(t, e, n);
+};
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), i(n(15));
-const a = n(15);
-function o(t, n) {
-return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
-"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), a.GM_addStyle(t.toString(), n);
-}
+}), t.openInTabBackground = t.log = t.info = t.error = t.debug = t.addStylesheet = t.GM_addStyle = void 0;
+const o = n(15);
 function u(t, n) {
+return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
+"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), o.GM_addStyle(t.toString(), n);
+}
+function s(t, n) {
 return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
 }
-function s(e, ...t) {
+function c(e, ...t) {
 return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
 }
-function c(e, ...t) {
+function l(e, ...t) {
 return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
 }
-function l(e, ...t) {
+function f(e, ...t) {
 return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
 }
-function f(e, ...t) {
+function p(e, ...t) {
 return console.log(e, ...t);
 }
-function p(e) {
+function h(e) {
 let t = window.open(e, "_blank");
 return setTimeout(function() {
 window.focus();
 }, 300), t;
 }
-t.GM_addStyle = o, t.addStylesheet = u, t.debug = s, t.error = c, t.info = l, t.log = f, 
-t.openInTabBackground = p, t.default = t;
+t.GM_addStyle = u, t.addStylesheet = s, t.debug = c, t.error = l, t.info = f, t.log = p, 
+t.openInTabBackground = h, t.default = t, a(n(15), t);
 }).call(this, n(0).default, n(1));
 }, function(e, t, n) {
 "use strict";
@@ -653,7 +662,7 @@ return t.appendChild(n), n;
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.GM_addStyle = r, t.default = t;
+}), t.GM_addStyle = void 0, t.GM_addStyle = r, t.default = t;
 }, function(e, t, n) {
 "use strict";
 const r = n(36);
@@ -2709,7 +2718,8 @@ return f;
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.desc = "", t.desc_en = t.desc, t.icon = "", t.grant = [ "GM_registerMenuCommand", "GM_xmlhttpRequest", "GM_getValue" ], 
+}), t.metadata = t.grant = t.icon = t.desc_en = t.desc = void 0, t.desc = "", t.desc_en = t.desc, 
+t.icon = "", t.grant = [ "GM_registerMenuCommand", "GM_xmlhttpRequest", "GM_getValue" ], 
 t.metadata = "// ==UserScript==\n// @name\t\t<%= index.id %>\n// @name:en\t\t<%= index.name_en %>\n// @name:ja\t\t<%= index.name_ja %>\n// @name:zh\t\t<%= index.name %>\n// @namespace\t<%= index.namespace %>\n// @author\t\t<%= index.author %>\n//\n// @description\t\t<%= index.desc %>\n// @description:en\t<%= index.desc_en %>\n// @description:ja\t<%= index.desc_ja %>\n// @description:zh\t<%= index.desc %>\n//\n// @version\t\t<%= pkg.version %>\n//\n// @grant\t\t<%= index.grant %>\n// g_r_a_n_tnone\n//\n// @icon\t\t<%= index.icon %>\n//\n// noframes\n// @encoding\tutf-8\n//\n// @homepageURL\thttps://github.com/bluelovers/gm-user-scripts\n// @supportURL\thttps://github.com/bluelovers/gm-user-scripts/issues\n// @downloadURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n// @updateURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n//\n// @include\t\t<%= index.include %>\n//\n// @match\t\t<%= index.match %>\n//\n// @exclude\t\t<%= index.exclude %>\n//\n// ==/UserScript==\n", 
 t.default = t.metadata;
 }, function(e, t, n) {
@@ -5646,13 +5656,13 @@ return delete u.source, u;
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.parse_url2 = r, t.parse_url = i, t.default = i;
+}), t.parse_url = t.parse_url2 = void 0, t.parse_url2 = r, t.parse_url = i, t.default = i;
 }, function(e, t, n) {
 "use strict";
 (function(e, r, i) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.registerGlobalMenu = void 0;
 const a = n(13), o = n(16), u = n(37);
 function s(t, r, i) {
 let s = a.requireScript(t, "index");
@@ -5738,7 +5748,7 @@ t.registerMenuCommand = a, t.getLabel = o, t.callMenuCommand = u, t.listMenuComm
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.meta_filter = t.makeMetaRow = t.meta_match = t.lazyMetaFix = t.hasGrant = t.parseMetadata = void 0;
 const r = n(38);
 function i(e) {
 let t;
@@ -5815,7 +5825,7 @@ return t == n.indexOf(e);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.array_unique = r, t.default = r;
+}), t.array_unique = void 0, t.array_unique = r, t.default = r;
 }, function(e, t, n) {
 var r = {
 "./masiro-moe/": 4,
@@ -5846,7 +5856,7 @@ return Object.keys(r);
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.matchChrome = t.auto = t.option = t.match = void 0;
 const r = n(41), i = r.Minimatch;
 function a(e, t, n = {}) {
 n = o(n);
@@ -6495,14 +6505,19 @@ return n = (n = r ? t(n, r) : t(n)).filter("a[href]").not('[href^="javascript:"]
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.hashKey = t.checkDate = t.SiteID = t.create = t.hashSum = t.GMApi = void 0;
 const r = n(50);
 t.hashSum = r;
 const i = n(19);
 function a(e, t) {
 return SiteID.create(e, t);
 }
-t.GMApi = i.GMApi, t.create = a;
+Object.defineProperty(t, "GMApi", {
+enumerable: !0,
+get: function() {
+return i.GMApi;
+}
+}), t.create = a;
 class SiteID {
 constructor(e, t) {
 this._ = Math.random() * Date.now(), this.options = {
@@ -22556,6 +22571,6 @@ console.log(i, r), r.after(i), r.nextAll().appendTo(i);
 function r() {}
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.hide_userinfo = n, t.f = r;
+}), t.f = t.hide_userinfo = void 0, t.hide_userinfo = n, t.f = r;
 }).call(this, n(0).default);
 } ]);

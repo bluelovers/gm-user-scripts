@@ -65,6 +65,7 @@
 // @include		http*://*.qoo-app.com/*
 // @include		http*://qtfy.eu/*
 // @include		http*://www.reddit.com/r/*
+// @include		http*://www.taptap.com/*
 // @include		http*://gw2.vsgames.cn/*
 // @include		http*://*.vsgames.cn/*
 // @include		http*://www.up01.cc/*
@@ -251,7 +252,7 @@ a.$ = unsafeWindow.$, a.jQuery = unsafeWindow.jQuery;
 console.error(e);
 }
 console.groupEnd("before");
-const o = n(149), i = o.noConflict(!0);
+const o = n(150), i = o.noConflict(!0);
 t.jQuery = i, t.$ = i, window.self.$ = window.self.jQuery = i, t.default = i, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("after");
 try {} catch (e) {
 console.error(e);
@@ -359,7 +360,7 @@ return n.proxy(e, o, t, ...a)();
 Object.defineProperty(t, "__esModule", {
 value: !0
 }), t.matchChrome = t.auto = t.option = t.match = void 0;
-const a = n(155), r = a.Minimatch;
+const a = n(156), r = a.Minimatch;
 function o(e, t, n = {}) {
 n = i(n);
 let r = !1;
@@ -476,7 +477,7 @@ return t[n];
 } : function(e, t, n, a) {
 void 0 === a && (a = n), e[a] = t[n];
 }), o = this && this.__exportStar || function(e, t) {
-for (var n in e) t.hasOwnProperty(n) || r(t, e, n);
+for (var n in e) "default" === n || Object.prototype.hasOwnProperty.call(t, n) || r(t, e, n);
 };
 Object.defineProperty(t, "__esModule", {
 value: !0
@@ -733,18 +734,18 @@ return s >= a && s < o || c > a && c <= o || u > r && s <= a && c >= o;
 e.exports.id = "ux-tweak-sc", e.exports.version = "", e.exports.name = "ux-tweak-sc", 
 e.exports.name_en = "ux-tweak-sc", e.exports.name_ja = "ux-tweak-sc", e.exports.desc = "", 
 e.exports.desc_en = "", e.exports.desc_ja = "", e.exports.namespace = "", e.exports.author = "", 
-e.exports.icon = "", e.exports.list = [ "acg/2dfan", "acg/3dmgame", "acg/baidu/safecheck", "acg/baidu/tieba", "acg/blog.reimu.net", "acg/dlsite", "acg/gamer.com.tw", "acg/gamme", "acg/getchu", "acg/guildwars2/forum.2017", "acg/guildwars2/wiki", "acg/gw2bltc", "acg/movie/u2mtv", "acg/movie/yahoo", "acg/qoo-app", "acg/qtfy.eu", "acg/reddit", "acg/vsgames", "adult/up01", "anti-adblock/epinv", "art/danbooru.donmai.us", "art/deviantart", "art/pixiv", "art/pixivision", "bbs/ptt", "blog/blog.xuite", "blog/dulfy", "blog/jianshu", "blog/juejin.im", "blog/oneapm", "blog/steachs", "code/gitee", "code/github", "code/greasyfork", "code/npmjs", "code/segmentfault", "code/sourceforge", "code/stackoverflow", "comic/999comic", "comic/alphapolis.co.jp", "comic/backup/lhscan", "comic/book.dmm.co.jp", "comic/comic-walker", "comic/comico", "comic/dm5", "comic/dmzj", "comic/exhentai", "comic/ikanman", "comic/lhscans", "comic/manben", "comic/manhuadui", "comic/manhuaren", "comic/nhentai", "comic/rawdevart", "comic/wnacg", "comic/yoedge", "content/farm/fun01.cc", "dict/edu/cwn.ling.sinica", "dict/edu/dict.revised.moe", "novel/esjzone", "novel/lightnovel.cn", "novel/masiro.moe", "novel/syosetu", "novel/wenku8", "other/jetbrains/jetbrains", "p2p/wetransfer", "shop/pchome", "shop/post/kerrytj", "shop/post/post/gov/tw/pstmail", "shop/yahoo/buy", "shop/yahoo/mall", "social/facebook", "social/weibo", "torrent/dmhy", "torrent/jandown", "torrent/nyaa", "wiki/moegirl", "wiki/wikipedia", "google/search", "global/discuz", "global/mediawiki", "global/video", "global/pagination", "global/pagination/page", "global/pagination/pagination.active", "global/pagination/srp_pagination", "global/social", "_fake" ], 
+e.exports.icon = "", e.exports.list = [ "acg/2dfan", "acg/3dmgame", "acg/baidu/safecheck", "acg/baidu/tieba", "acg/blog.reimu.net", "acg/dlsite", "acg/gamer.com.tw", "acg/gamme", "acg/getchu", "acg/guildwars2/forum.2017", "acg/guildwars2/wiki", "acg/gw2bltc", "acg/movie/u2mtv", "acg/movie/yahoo", "acg/qoo-app", "acg/qtfy.eu", "acg/reddit", "acg/taptap", "acg/vsgames", "adult/up01", "anti-adblock/epinv", "art/danbooru.donmai.us", "art/deviantart", "art/pixiv", "art/pixivision", "bbs/ptt", "blog/blog.xuite", "blog/dulfy", "blog/jianshu", "blog/juejin.im", "blog/oneapm", "blog/steachs", "code/gitee", "code/github", "code/greasyfork", "code/npmjs", "code/segmentfault", "code/sourceforge", "code/stackoverflow", "comic/999comic", "comic/alphapolis.co.jp", "comic/backup/lhscan", "comic/book.dmm.co.jp", "comic/comic-walker", "comic/comico", "comic/dm5", "comic/dmzj", "comic/exhentai", "comic/ikanman", "comic/lhscans", "comic/manben", "comic/manhuadui", "comic/manhuaren", "comic/nhentai", "comic/rawdevart", "comic/wnacg", "comic/yoedge", "content/farm/fun01.cc", "dict/edu/cwn.ling.sinica", "dict/edu/dict.revised.moe", "novel/esjzone", "novel/lightnovel.cn", "novel/masiro.moe", "novel/syosetu", "novel/wenku8", "other/jetbrains/jetbrains", "p2p/wetransfer", "shop/pchome", "shop/post/kerrytj", "shop/post/post/gov/tw/pstmail", "shop/yahoo/buy", "shop/yahoo/mall", "social/facebook", "social/weibo", "torrent/dmhy", "torrent/jandown", "torrent/nyaa", "wiki/moegirl", "wiki/wikipedia", "google/search", "global/discuz", "global/mediawiki", "global/video", "global/pagination", "global/pagination/page", "global/pagination/pagination.active", "global/pagination/srp_pagination", "global/social", "_fake" ], 
 e.exports.list_disable = [ "acg/dmm", "acg/guildwars2/forum", "google/drive", "novel/iqing" ], 
 e.exports._lib = (() => {
 n(21), n(22), n(23), n(24), n(26), n(27), n(28), n(29), n(30), n(31), n(32), n(33), 
-n(34), n(35), n(36), n(37), n(38), n(39), n(40), n(41), n(42), n(43), n(44), n(46), 
+n(34), n(35), n(36), n(37), n(38), n(39), n(40), n(41), n(42), n(43), n(44), n(45), 
 n(47), n(48), n(49), n(50), n(51), n(52), n(53), n(54), n(55), n(56), n(57), n(58), 
 n(59), n(60), n(61), n(62), n(63), n(64), n(65), n(66), n(67), n(68), n(69), n(70), 
 n(71), n(72), n(73), n(74), n(75), n(76), n(77), n(78), n(79), n(80), n(81), n(82), 
 n(83), n(84), n(85), n(86), n(87), n(88), n(89), n(90), n(91), n(92), n(93), n(94), 
-n(95), n(96), n(97), n(98), n(99), n(100), n(101), n(16), n(102), n(103), n(104), 
-n(105), n(106), n(107), n(108), n(109);
-}), e.exports.metadata = {}, e.exports.metadata.include = [ "http*://www.2dfan.com/*", "http*://www.3dmgame.com/*", "http*://bbs.3dmgame.com/*", "http*://tieba.baidu.com/*", "http*://blog.reimu.net/*", "http*://www.dlsite.com/*", "http*://www.gamer.com.tw/*", "http*://www.gamer.com.tw/index*.php*", "http*://acg.gamer.com.tw/acgDetail.php?s=*", "http*://gnn.gamer.com.tw/*.html", "http*://gnn.gamer.com.tw/*k=*", "http*://forum.gamer.com.tw/*bsn=*", "http*://home.gamer.com.tw/*", "http*://acg.gamer.com.tw/*", "http*://m.gamer.com.tw/*", "http*://ani.gamer.com.tw/*", "http*://news.gamme.com.tw/*", "http*://*.getchu.com/*", "http*://*-forum.guildwars2.com/*", "http*://wiki.guildwars2.com/*", "http*://www.gw2bltc.com/*", "http*://www.u2mtv.com/movie/*", "http*://tw.movies.yahoo.com/*", "http*://movies.yahoo.com.tw/*", "http*://movies.yahoo.com.tw/movie_*.html", "http*://*.qoo-app.com/*", "http*://qtfy.eu/*", "http*://www.reddit.com/r/*", "http*://gw2.vsgames.cn/*", "http*://*.vsgames.cn/*", "http*://www.up01.cc/*", "http*://www.epinv.com/*", "http*://danbooru.donmai.us/*", "http*://*.deviantart.com/*", "http*://*.pixiv.net/*", "http*://www.pixiv.net/search*", "http*://www.pixivision.net/*", "http*://www.ptt.cc/*", "http*://blog.xuite.net/*", "http*://dulfy.net/*", "http*://www.jianshu.com/*", "http*://juejin.im/*", "http*://blog.oneapm.com/*", "http*://steachs.com/*", "http*://gitee.com/*", "http*://gitee.com/api/*", "http*://gitee.com/oauth/applications/*", "http*://github.com/*", "http*://greasyfork.org/*", "https://www.npmjs.com/search?q=*", "https://www.npmjs.com/~*", "https://www.npmjs.com/browse/*", "https://www.npmjs.com/package/*", "https://www.npmjs.com/settings/*", "http*://segmentfault.com/*", "http*://sourceforge.net/projects/*/files/*", "http*://stackoverflow.com/*", "http*://superuser.com/*", "http*://www.999comic.com/*", "http://t.168girl.com/*", "http*://www.alphapolis.co.jp/*", "http*://lhscan.net/*", "http*://book.dmm.co.jp/*", "https://comic-walker.com/*", "http*://www.comico.com.tw/*", "http*://www.dm5.com/*", "http*://*.dmzj.com/*", "https://i.dmzj.com/*", "http*://manhua.dmzj.com/*", "http*://exhentai.org/*", "http*://g.e-hentai.org/*", "http*://e-hentai.org/*", "http*://*.ikanman.com/*", "http*://*.manhuagui.com/*", "http*://lhscans.com/*", "http*://loveheaven.net/*", "http*://www.manben.com/*", "https://www.manhuadui.com/manhua/*", "http*://www.manhuaren.com/*", "http*://nhentai.net/*", "http*://www.rawdevart.com/*", "http*://*.wnacg.com/*", "http*://*.wnacg.org/*", "http*://wnacg.com/*", "http*://wnacg.org/*", "http*://smp*.yoedge.com/*", "http*://www.fun01.cc/*", "http*://cwn.ling.sinica.edu.tw/*", "http*://cwn.ling.sinica.edu.tw/query1.htm*", "http*://cwn.ling.sinica.edu.tw/_process.asp*", "http*://cwn.ling.sinica.edu.tw/input.asp*", "http*://dict.revised.moe.edu.tw/*", "http*://dict.revised.moe.edu.tw/cbdic/search.htm*", "http*://www.esjzone.cc/*", "http*://*.lightnovel.cn/*", "http*://*.lightnovel.cn/*mod=viewthread*", "http*://masiro.moe/*", "http*://masiro.moe/*mod=viewthread*", "http*://syosetu.com/*", "http*://www.wenku8.com/*", "http*://www.jetbrains.com/*", "http*://www.jetbrains.org/*", "http*://intellij-support.jetbrains.com/*", "http*://plugins.jetbrains.com/*", "http*://mall.pchome.com.tw/*", "http://www.kerrytj.com/zh/search/search_track.aspx*", "http://postserv.post.gov.tw/pstmail/main_mail.html*", "http*://tw.buy.yahoo.com/*", "http*://tw.buy.yahoo.com/bestbuy/*", "http*://tw.buy.yahoo.com/activity/*", "https://tw.search.buy.yahoo.com/search/shopping/*", "https://twpay.buy.yahoo.com/checkout/preview*", "https://tw.buy.yahoo.com/coupons*", "http*://tw.mall.yahoo.com/*", "http*://tw.user.mall.yahoo.com/my/*", "https://tw.search.mall.yahoo.com/*", "http*://www.facebook.com/*", "http*://www.facebook.com/saved/*", "http*://www.weibo.com/*", "http*://m.weibo.cn/*", "http*://www.jandown.com/*", "http*://sukebei.nyaa.si/*", "http*://*.wikipedia.org/*", "http*://encrypted.google.com/*", "http*://www.google.co.jp/*", "http*://*.google.*/blank.html", "http*://*.google.*/search*", "http*://*.google.*/imgres*" ], 
+n(95), n(96), n(97), n(98), n(99), n(100), n(101), n(102), n(16), n(103), n(104), 
+n(105), n(106), n(107), n(108), n(109), n(110);
+}), e.exports.metadata = {}, e.exports.metadata.include = [ "http*://www.2dfan.com/*", "http*://www.3dmgame.com/*", "http*://bbs.3dmgame.com/*", "http*://tieba.baidu.com/*", "http*://blog.reimu.net/*", "http*://www.dlsite.com/*", "http*://www.gamer.com.tw/*", "http*://www.gamer.com.tw/index*.php*", "http*://acg.gamer.com.tw/acgDetail.php?s=*", "http*://gnn.gamer.com.tw/*.html", "http*://gnn.gamer.com.tw/*k=*", "http*://forum.gamer.com.tw/*bsn=*", "http*://home.gamer.com.tw/*", "http*://acg.gamer.com.tw/*", "http*://m.gamer.com.tw/*", "http*://ani.gamer.com.tw/*", "http*://news.gamme.com.tw/*", "http*://*.getchu.com/*", "http*://*-forum.guildwars2.com/*", "http*://wiki.guildwars2.com/*", "http*://www.gw2bltc.com/*", "http*://www.u2mtv.com/movie/*", "http*://tw.movies.yahoo.com/*", "http*://movies.yahoo.com.tw/*", "http*://movies.yahoo.com.tw/movie_*.html", "http*://*.qoo-app.com/*", "http*://qtfy.eu/*", "http*://www.reddit.com/r/*", "http*://www.taptap.com/*", "http*://gw2.vsgames.cn/*", "http*://*.vsgames.cn/*", "http*://www.up01.cc/*", "http*://www.epinv.com/*", "http*://danbooru.donmai.us/*", "http*://*.deviantart.com/*", "http*://*.pixiv.net/*", "http*://www.pixiv.net/search*", "http*://www.pixivision.net/*", "http*://www.ptt.cc/*", "http*://blog.xuite.net/*", "http*://dulfy.net/*", "http*://www.jianshu.com/*", "http*://juejin.im/*", "http*://blog.oneapm.com/*", "http*://steachs.com/*", "http*://gitee.com/*", "http*://gitee.com/api/*", "http*://gitee.com/oauth/applications/*", "http*://github.com/*", "http*://greasyfork.org/*", "https://www.npmjs.com/search?q=*", "https://www.npmjs.com/~*", "https://www.npmjs.com/browse/*", "https://www.npmjs.com/package/*", "https://www.npmjs.com/settings/*", "http*://segmentfault.com/*", "http*://sourceforge.net/projects/*/files/*", "http*://stackoverflow.com/*", "http*://superuser.com/*", "http*://www.999comic.com/*", "http://t.168girl.com/*", "http*://www.alphapolis.co.jp/*", "http*://lhscan.net/*", "http*://book.dmm.co.jp/*", "https://comic-walker.com/*", "http*://www.comico.com.tw/*", "http*://www.dm5.com/*", "http*://*.dmzj.com/*", "https://i.dmzj.com/*", "http*://manhua.dmzj.com/*", "http*://exhentai.org/*", "http*://g.e-hentai.org/*", "http*://e-hentai.org/*", "http*://*.ikanman.com/*", "http*://*.manhuagui.com/*", "http*://lhscans.com/*", "http*://loveheaven.net/*", "http*://www.manben.com/*", "https://www.manhuadui.com/manhua/*", "http*://www.manhuaren.com/*", "http*://nhentai.net/*", "http*://www.rawdevart.com/*", "http*://*.wnacg.com/*", "http*://*.wnacg.org/*", "http*://wnacg.com/*", "http*://wnacg.org/*", "http*://smp*.yoedge.com/*", "http*://www.fun01.cc/*", "http*://cwn.ling.sinica.edu.tw/*", "http*://cwn.ling.sinica.edu.tw/query1.htm*", "http*://cwn.ling.sinica.edu.tw/_process.asp*", "http*://cwn.ling.sinica.edu.tw/input.asp*", "http*://dict.revised.moe.edu.tw/*", "http*://dict.revised.moe.edu.tw/cbdic/search.htm*", "http*://www.esjzone.cc/*", "http*://*.lightnovel.cn/*", "http*://*.lightnovel.cn/*mod=viewthread*", "http*://masiro.moe/*", "http*://masiro.moe/*mod=viewthread*", "http*://syosetu.com/*", "http*://www.wenku8.com/*", "http*://www.jetbrains.com/*", "http*://www.jetbrains.org/*", "http*://intellij-support.jetbrains.com/*", "http*://plugins.jetbrains.com/*", "http*://mall.pchome.com.tw/*", "http://www.kerrytj.com/zh/search/search_track.aspx*", "http://postserv.post.gov.tw/pstmail/main_mail.html*", "http*://tw.buy.yahoo.com/*", "http*://tw.buy.yahoo.com/bestbuy/*", "http*://tw.buy.yahoo.com/activity/*", "https://tw.search.buy.yahoo.com/search/shopping/*", "https://twpay.buy.yahoo.com/checkout/preview*", "https://tw.buy.yahoo.com/coupons*", "http*://tw.mall.yahoo.com/*", "http*://tw.user.mall.yahoo.com/my/*", "https://tw.search.mall.yahoo.com/*", "http*://www.facebook.com/*", "http*://www.facebook.com/saved/*", "http*://www.weibo.com/*", "http*://m.weibo.cn/*", "http*://www.jandown.com/*", "http*://sukebei.nyaa.si/*", "http*://*.wikipedia.org/*", "http*://encrypted.google.com/*", "http*://www.google.co.jp/*", "http*://*.google.*/blank.html", "http*://*.google.*/search*", "http*://*.google.*/imgres*" ], 
 e.exports.metadata.match = [ "*://*.bdimg.com/safecheck/*", "*://tieba.baidu.com/i/i/my_tie*", "*://tieba.baidu.com/i/i/my_reply*", "*://tieba.baidu.com/i/i/atme*", "*://tieba.baidu.com/i/i/storethread*", "*://tieba.baidu.com/pmc/*", "*://tieba.baidu.com/photo/*", "*://www.u2mtv.com/*", "*://nl.syosetu.com/*", "*://ncode.syosetu.com/*", "*://novel18.syosetu.com/*", "*://nkx.syosetu.com/*", "*://wetransfer.com/*", "*://share.dmhy.org/*", "*://*.moegirl.org/*" ], 
 e.exports.metadata.exclude = [ "http*://gc.bahamut.com.tw/*", "http*://*.bahamut.com.tw/*", "http*://*.bahamut.com.tw/js/*", "http*://*.pixiv.net/novel/*", "http*://www.facebook.com/ajax/*", "http*://www.facebook.com/*plugins/*", "http*://staticxx.facebook.com/*", "http*://notifications.google.com/*", "http*://platform.twitter.com/widgets*", "http*://apis.google.com/*" ], 
 e.exports.metadata.grant = [ "GM.deleteValue", "GM.getValue", "GM.listValues", "GM.openInTab", "GM.registerMenuCommand", "GM.setClipboard", "GM.setValue", "GM.unregisterMenuCommand", "GM.xmlhttpRequest", "GM_deleteValue", "GM_getValue", "GM_listValues", "GM_openInTab", "GM_registerMenuCommand", "GM_setClipboard", "GM_setValue", "GM_unregisterMenuCommand", "GM_xmlhttpRequest", "unsafeWindow" ], 
@@ -755,7 +756,7 @@ e.exports.current = [], e.exports.default = e.exports;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(140);
+const a = n(141);
 function r(e, t = RegExp, n) {
 if (!e || "string" != typeof e || 1 != e.length) throw new TypeError(`"${e}" not a valid flag`);
 let r = null;
@@ -830,7 +831,7 @@ a("#postlist .vwthd:eq(0) h1").prependTo("#postlist .plhin .plc:eq(0)"), r;
 }).call(this, n(1), n(0).default);
 }, function(e, t, n) {
 "use strict";
-const a = n(123);
+const a = n(124);
 e.exports = a;
 }, function(e, t, n) {
 "use strict";
@@ -852,7 +853,7 @@ return !1;
 "use strict";
 var a;
 !function(e) {
-const t = n(135);
+const t = n(136);
 function a(...e) {
 return e.length > 1 ? r(e) : r(e[0]);
 }
@@ -891,7 +892,7 @@ return t(e, n);
 e.lazy_unique = a, e.array_unique = r, e.lazy_unique_overwrite = o, e.array_unique_overwrite = i, 
 e.defaultFilter = s, e.defaultChecker = u;
 }(a || (a = {})), a = a.lazy_unique = Object.assign(a.lazy_unique, a, t, {
-equals: n(135),
+equals: n(136),
 default: a.lazy_unique
 }), t.default = a, Object.defineProperty(a, "__esModule", {
 value: !0
@@ -904,14 +905,14 @@ a[e] = Object.freeze(a[e]);
 "use strict";
 (function(t, a, r) {
 e.exports.id = "ux-tweak-sc", e.exports.name = e.exports.id;
-const o = n(110);
+const o = n(111);
 function i(e, t, a, r, i, u) {
 let c;
-o.init(e, t, a, r, i, u), n(250).makeJQueryPlugin(i), n(252).makeJQueryPlugin(i), 
-n(253).makeJQueryPlugin(i), s();
+o.init(e, t, a, r, i, u), n(251).makeJQueryPlugin(i), n(253).makeJQueryPlugin(i), 
+n(254).makeJQueryPlugin(i), s();
 }
 function s() {
-const t = n(129);
+const t = n(130);
 t.registerMenuCommand({
 id: e.exports.name,
 key: "disable_nocontextmenu"
@@ -921,10 +922,10 @@ n(12)._uf_disable_nocontextmenu2(2);
 id: e.exports.name,
 key: "clearly"
 }, async o => {
-let i = n(254)(`./${e.exports.id}`);
+let i = n(255)(`./${e.exports.id}`);
 if (i.current && i.current.length) {
 const s = t.getLabel(o);
-let u = a(), c = null, l = n(110).get_list_script(e.exports.id, i, r._url_obj);
+let u = a(), c = null, l = n(111).get_list_script(e.exports.id, i, r._url_obj);
 {
 let e = [];
 for (let t of l) if (!e.includes(t.name)) {
@@ -1030,7 +1031,7 @@ let r;
 return !!(r = n(6).auto(a.source, e.exports));
 },
 async main(e = t._url_obj) {
-const o = n(17).GMApi, s = n(2), d = n(112), p = await Promise.resolve().then(() => n(25));
+const o = n(17).GMApi, s = n(2), d = n(113), p = await Promise.resolve().then(() => n(25));
 a(window).on("load.link", function() {
 s([ ".u_itieba a, .u_news a, .u_username a, .com_userbar a, #j_u_username a" ]).attr("target", "_blank"), 
 a(".u_itieba a, .u_news a, .u_username a, .com_userbar a, #j_u_username a").attr("target", "_blank");
@@ -1045,7 +1046,7 @@ let _ = !1, b = a('<div class="_post-toc"/>'), y = a('<dl style="list-style-type
 a("body").on("DOMNodeInserted", "#com_userbar", function(e) {
 a(e.target).is("#u_notify_item, .unread-num") && a(window).triggerHandler("load.menu");
 });
-const v = n(113);
+const v = n(114);
 let w, k;
 a("body").on("DOMNodeInserted DOMSubtreeModified", "#creative-platform-deepread-wrap", f(1e3, async function(e) {
 console.log(e.type, this, e.target);
@@ -1279,7 +1280,7 @@ i(e, !0);
 }
 }
 function s(e) {
-const t = n(112);
+const t = n(113);
 let r = a("img.BDE_Image[data-original], img.threadlist_pic").filter("img").not("[data-done]").attr("data-done", !0).off("error.src").attr("src", function(e, n) {
 let r = a(this), o = r.attr("data-original"), i = t.bde_image(r.clone());
 if (i && (o = i.data("fullsrc"), r.attr("bpic", i.data("fullsrc"))), n != o) return o;
@@ -1304,7 +1305,7 @@ function l(e = t._url_obj) {
 if (e.fragment) {
 let t = a(`.l_post_anchor[name="${e.fragment}"]`);
 if (t.length) {
-const e = n(112);
+const e = n(113);
 let a = e.scrollTopPadding("#j_core_title_wrap");
 return e.scrollToTieba(window, t, 0 - a), !0;
 }
@@ -4100,7 +4101,7 @@ module.exports = ret;
 } ]
 }, {}, [ 4 ])(4);
 }), "undefined" != typeof window && null !== window ? window.P = window.Promise : "undefined" != typeof self && null !== self && (self.P = self.Promise);
-}).call(this, __webpack_require__(111), __webpack_require__(1), __webpack_require__(130).setImmediate);
+}).call(this, __webpack_require__(112), __webpack_require__(1), __webpack_require__(131).setImmediate);
 }, function(e, t, n) {
 "use strict";
 (function(t) {
@@ -4190,7 +4191,7 @@ const {debounce: e} = n(3), {throttle: a} = n(3);
 h.GM_addStyle([ `body, #BH_background, .BH_background, .sky, .bullet-send, .bullet-send .bullet-send-setting, .bullet-send .bullet-send-submit, .bullet-send .bullet-send-msg input, .anime-title { background: ${p.bg_dark.background}; }`, `.sky ul.member a:hover, .bullet-send, .bullet-send .bullet-send-setting, .bullet-send .bullet-send-submit, .bullet-send .bullet-send-msg input, .anime-title, .season a { color: ${p.bg_dark_text.color}; }`, ".bullet-send { border: 0px none #fff; }", ".mainmenu { opacity: 0.5; }" ].join("")), 
 t(".news_list").css("background-color", t(".anime-title").css("background-color")), 
 t("#BH_background, .BH_background, .sky");
-const r = n(124).jquery, o = n(131).PromiseInterval;
+const r = n(125).jquery, o = n(132).PromiseInterval;
 let i = o(function(e) {
 let n = t("#video-container #adult");
 return h.debug(e.count, n), n.length ? (n.is(":visible") ? (h.log("自動略過警告"), n[0].click()) : h.debug(t("#ani_video").attr("class")), 
@@ -4657,6 +4658,33 @@ this.click();
 }).call(this, n(1), n(0).default);
 }, function(e, t, n) {
 "use strict";
+(function(t, a, r) {
+let o = {
+metadata: {
+include: [ "http*://www.taptap.com/*" ],
+match: [],
+nomatch: [],
+exclude: [],
+grant: []
+},
+test(a = t._url_obj) {
+let r;
+return !!(r = n(6).auto(a.source, e.exports));
+},
+async main(e = t._url_obj) {
+const r = n(2);
+r([]).prop("target", "_blank"), a.GM_addStyle([ "body, html, :root { font-size: 9pt; font-family: initial; }", ".bbcode-body, .topic-comments-list-v2 .item-text-body, .posts-item-v2 .item-text-header .taptap-user-name, topic-info, .comment-item__toggle-reply-list, .topic-v2-container .author-wrap .topic-info { font-size: 1rem; }" ]);
+},
+adblock(e = t._url_obj) {},
+clearly(e = t._url_obj, n = null) {
+let a = r(n);
+return a = a.add(r(".topic-v2-container").parentsUntil("body").addBack().siblings()).add([ '.btn[data-taptap-ajax="follow"]', ".post-item__text-footer button, .vote-up", ".post-bbcode-form, .tab-bar-box, .topic-operations__bottom", ".topic-operations__right-content", "#post-bbcode-form" ].join());
+}
+};
+e.exports = o;
+}).call(this, n(1), n(8), n(0).default);
+}, function(e, t, n) {
+"use strict";
 (function(t, a) {
 e.exports = {
 metadata: {
@@ -4798,13 +4826,13 @@ return e.match(n) ? t = e.replace(n, "$1/img-original/$2$3") : (n = /(\/img\/.+)
 t;
 }
 function i(e, t) {
-const {replacePixivUserUrl: o, toPixivUserIllust: i} = n(132);
-r("body").on("click.follow", ':not(.following2) .follow-button:not(.on), aside section button[data-click-label="follow"], section button[data-click-label="follow"], ul li div button[data-click-label="follow"]', function(n) {
+const {replacePixivUserUrl: o, toPixivUserIllust: i} = n(133);
+r("body").on("click.follow", ':not(.following2) .follow-button:not(.on), aside section button[data-click-label="follow"], section button[data-click-label="follow"], ul li div button[data-click-label="follow"], div > li > div > div > button:submit', function(n) {
 let u = r(this);
 console.info("click.follow", u);
 let c = u.attr("data-user-id");
 if (c || (c = u.parents("[data-id]:eq(0)").eq(0).attr("data-id")), !c) {
-let e = u.parents("aside section, ul li div"), t = e.find('a[href*="/member.php"]').eq(0);
+let e = u.parents("aside section, ul li div, div > li > div"), t = e.find('a[href*="/member.php"]').eq(0);
 t.length || (t = e.find('a[href*="/member_illust.php"], a[href*="users/"]').eq(0)), 
 t.length && s(o(t.prop("href")), "_blank");
 }
@@ -4835,7 +4863,7 @@ exclude: [ "http*://*.pixiv.net/novel/*" ]
 },
 test: e => !!e.host.match(/pixiv\.net/),
 main(t = a._url_obj) {
-const {debounce: o} = n(3), {throttle: u} = n(3), c = n(4), {replacePixivUserUrl: l, toPixivUserIllust: d} = n(132), p = n(2);
+const {debounce: o} = n(3), {throttle: u} = n(3), c = n(4), {replacePixivUserUrl: l, toPixivUserIllust: d} = n(133), p = n(2);
 if ((t.path.match(/^\/?member\.php/) && t.query.match(/^id=\d+$/) || t.path.match(/users\/\d+\/?$/)) && (!document.referrer || !document.referrer.match(/pixiv/i))) return void (location.href = l(location.href));
 r(window).on("load.link", o(100, function() {
 p([ ".works_display a.work, .tagCloud a, .user-list a, .image-item a, .worksListOthersImg a, .rank-detail a, .tags .tag a, #favorite-preference form, .spotlight-wrapper .spotlight-article-body .works-column a.work, .spotlight-wrapper .sidebar a, .members a", ".post a", ".column-search-result a", "#js-react-search-mid a", 'ul li div a[href*="member"]', ".gtm-illust-recommend-zone a" ].join(",")).prop("target", "_blank");
@@ -4850,7 +4878,7 @@ href: "http://www.pixiv.net/bookmark.php?type=user"
 }).html('<i class="_icon sprites-bookmarks"></i>關注');
 return r('<li class="bookmarks"/>').append(e);
 }), r("#favorite-button").prop("href", "javasctipt:void(0);"), i(t, window), t.path.match(/member_illust\.php/) && t.query.match(/mode=manga/)) {
-n(45).makeJQueryPlugin();
+n(46).makeJQueryPlugin();
 const e = n(7);
 h.GM_addStyle([ ".manga .item-container .image { padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0; }", ".manga { background-color: rgba(0,0,0,0.9); }" ]), 
 r(window).on("keydown.page", n(5).packEvent(function(t) {
@@ -5323,7 +5351,7 @@ exclude: []
 },
 test: (e = t._url_obj) => !!e.host.match(/npmjs\.com/),
 main(e = t._url_obj) {
-const r = n(2), {debounce: o} = n(3), {throttle: i} = n(3), s = n(9), u = n(4), c = n(161).onCapture;
+const r = n(2), {debounce: o} = n(3), {throttle: i} = n(3), s = n(9), u = n(4), c = n(162).onCapture;
 function l() {
 a(".search-results, #app main").off("DOMNodeInserted.ready").on("DOMNodeInserted.ready", i(300, function() {
 a(window).triggerHandler("load");
@@ -5553,7 +5581,7 @@ const e = n(10);
 let t = e.toCss(e.body, e.bg_dark), n = "200px";
 i.GM_addStyle([ "#TopLayer { display: none !important; }", `body.officialmangas { ${t} }`, `.current .page.right { margin-left: ${n} !important; }`, `.current .page.right .comic { margin-left: -${n} !important; }`, `.current .page.left { margin-right: ${n} !important; }`, `.current .page.left .comic { margin-right: -${n} !important; }`, ".current .page.first { margin: auto !important; }" ]);
 }
-n(12)._uf_disable_nocontextmenu2(1, "body, canvas.comic, .book, .book *"), n(45).makeJQueryPlugin(a), 
+n(12)._uf_disable_nocontextmenu2(1, "body, canvas.comic, .book, .book *"), n(46).makeJQueryPlugin(a), 
 a(window).on("keydown.page", n(5).packEvent(function(e) {
 const t = n(7), r = n(4);
 switch (e.which) {
@@ -5625,12 +5653,12 @@ return !!(r = n(6).auto(a.source, e.exports));
 async main(e = t._url_obj) {
 const r = n(4), {debounce: o} = n(3), {throttle: i} = n(3), s = n(8), u = n(10), c = n(7), l = n(2);
 l([].join()).prop("target", "_blank");
-const d = n(131).PromiseInterval;
+const d = n(132).PromiseInterval;
 let p;
 d(function(e) {
 if (a(".view-book").length) return !0;
 }, 500).promise.timeout(3e3).then(function(e) {
-if (e) return n(45).makeJQueryPlugin(a), s.GM_addStyle([ ".view-protection, .blank-img { display: none !important; }", `body { ${u.toCss(u.bg_dark)}; ${u.toCss(u.bg_dark_text)}; ${u.toCss(u.body)}; }` ]), 
+if (e) return n(46).makeJQueryPlugin(a), s.GM_addStyle([ ".view-protection, .blank-img { display: none !important; }", `body { ${u.toCss(u.bg_dark)}; ${u.toCss(u.bg_dark_text)}; ${u.toCss(u.body)}; }` ]), 
 a(window).off("keydown.page").on("keydown.page", n(5).packEvent(function(e) {
 switch (e.which) {
 case c("pageup"):
@@ -5770,7 +5798,7 @@ t(window).triggerHandler("load.link");
 }));
 const i = n(7), s = n(4), u = n(10);
 let c = "#cp_image2:visible, #cp_image:visible";
-const l = n(124).jquery;
+const l = n(125).jquery;
 if (t("body.vPage, #showimage").length) {
 let e = t(c), r = t("<div/>").css(u.page).css(u.bg_dark).css(u.bg_dark_border).css(u.bg_dark_text).css({
 position: "absolute"
@@ -5923,7 +5951,7 @@ r(window).scrollTo(t);
 })).on("load.imagesLoaded", function(e) {
 l();
 }).triggerHandler("resize");
-const d = n(124).jquery;
+const d = n(125).jquery;
 function l() {
 return d((n, a) => ((t = r(e)).length && n.resolveWith(t, [ t, a ]), t)).always(function(e, t) {
 e.off("load.imagesLoaded").on("load.imagesLoaded", function(e) {
@@ -6599,7 +6627,7 @@ t(window).triggerHandler("resize");
 }, 500);
 } else if (t("#img_list").length) {
 const e = t("#img_list");
-n(13), n(133)(t);
+n(13), n(134)(t);
 const r = "#img_list img";
 let d = t(r);
 if (a.query && a.query.match(/page=(\d+)/)) {
@@ -6745,7 +6773,7 @@ return !!(r = n(6).auto(a.source, e.exports));
 },
 async main(e = t._url_obj) {
 const r = n(4);
-n(45);
+n(46);
 const i = n(11)._uf_fixsize2, {debounce: s} = n(3), {throttle: u} = n(3);
 n(13);
 const c = n(2);
@@ -7040,7 +7068,7 @@ return !!(r = n(6).auto(a.source, e.exports));
 async main(e = t._url_obj) {
 const r = n(2);
 r([ ".container .thumbnail a", ".tabbable a" ].join(",")).prop("target", "_blank");
-const {throttle: i} = n(3), {debounce: s} = n(3), u = n(4), c = n(113).copyonclick;
+const {throttle: i} = n(3), {debounce: s} = n(3), u = n(4), c = n(114).copyonclick;
 a(".forum-content").attr("id", "_forum_content").css({
 "font-size": "1rem",
 "font-family": "initial"
@@ -7103,7 +7131,7 @@ return !!(r = n(6).auto(a.source, e.exports));
 async main(e = t._url_obj) {
 const r = n(2);
 r([]).prop("target", "_blank");
-const o = n(113).copyonclick;
+const o = n(114).copyonclick;
 let i = a("#postlist"), s = i.find('> div[id^="post_"]');
 i.length && s.length && s.each(function(e, t) {
 let n = a(this), r = a('[id^="postmessage_"]:eq(0)', n).eq(0);
@@ -7138,7 +7166,7 @@ return !!(r = n(6).auto(a.source, e.exports));
 async main(e = t._url_obj) {
 const r = n(2);
 r([]).prop("target", "_blank");
-const o = n(113).copyonclick;
+const o = n(114).copyonclick;
 let i = a("#postlist"), s = i.find('> div[id^="post_"]');
 i.length && s.length && s.each(function(e, t) {
 let n = a(this), r = a('[id^="postmessage_"]:eq(0)', n).eq(0);
@@ -7474,7 +7502,7 @@ exclude: []
 test: (e = t._url_obj) => !!e.host.match(/buy\.yahoo\.com/),
 async main(r = t._url_obj) {
 if (!0 === i()) return;
-const c = n(7), l = n(4), d = n(2), {debounce: p} = n(3), {throttle: h} = n(3), f = n(8), g = n(17).GMApi, m = n(162).create(e.exports.file);
+const c = n(7), l = n(4), d = n(2), {debounce: p} = n(3), {throttle: h} = n(3), f = n(8), g = n(17).GMApi, m = n(163).create(e.exports.file);
 a("#srp-pjax").on("DOMNodeInserted", "#srp-pjax-content", p(200, function() {
 a(window).triggerHandler("load");
 })), a(".orderbox").on("DOMNodeInserted", "#srp-pjax-content", p(200, function() {
@@ -7601,7 +7629,7 @@ exclude: [ "http*://www.facebook.com/ajax/*", "http*://www.facebook.com/*plugins
 },
 test: e => !!e.host.match(/facebook\.com/),
 async main(r = t._url_obj) {
-const o = n(4), i = n(2), s = n(128).parse_url, {debounce: u} = n(3), c = n(110), l = n(17).GMApi;
+const o = n(4), i = n(2), s = n(129).parse_url, {debounce: u} = n(3), c = n(111), l = n(17).GMApi;
 let d = {
 sk: null
 };
@@ -7765,7 +7793,7 @@ return r = r.add([].join());
 function r() {
 let e = t("#mini_jmd .jmd");
 if (!e.length) return !1;
-const a = n(164).zhRegExp;
+const a = n(165).zhRegExp;
 let r = {
 jmd: [],
 kw: {
@@ -7824,8 +7852,8 @@ return t(this).val();
 }), !0);
 }
 function s(e) {
-const a = n(235);
-n(236).makeJQueryPlugin(t, window);
+const a = n(236);
+n(237).makeJQueryPlugin(t, window);
 let r = "", o = u(e.team_id, a.tag);
 if (r += Object.keys(o).reduce((e, n) => {
 let a = t.Color(n), r = a.contrastColor(), i = a.lightness(function(e) {
@@ -7870,7 +7898,7 @@ test: e => !!e.host.match(/share\.dmhy\.org/),
 async main() {
 const a = n(9), u = n(4);
 let c;
-n(133)(t);
+n(134)(t);
 const l = n(25);
 await l.delay(100);
 const d = n(2);
@@ -8052,7 +8080,7 @@ adblock(e) {}
 };
 class googleData {
 constructor(e = a._url_obj) {
-const r = n(237);
+const r = n(238);
 this._data = {}, this._data.catalogs = {
 ja: {
 "plural-forms": "nplurals=2; plural=(n > 1);",
@@ -8066,7 +8094,7 @@ messages: {
 translate: [ "翻譯" ]
 }
 }
-}, this._data.Stone = n(245), this._data.Stone.addCatalogs({
+}, this._data.Stone = n(246), this._data.Stone.addCatalogs({
 ja: {
 "plural-forms": "nplurals=2; plural=(n > 1);",
 messages: {
@@ -8415,9 +8443,9 @@ adblock(e) {}
 Object.defineProperty(t, "__esModule", {
 value: !0
 }), t.main_list = t.main = t.get_list_script = t.requireScript = t.init = t.url = t.run = t.greasemonkey = void 0;
-const o = n(128), i = n(8);
+const o = n(129), i = n(8);
 t.greasemonkey = i.default;
-const s = n(150);
+const s = n(151);
 function u(t, n, r, o) {
 let i = async () => {
 try {
@@ -8456,7 +8484,7 @@ t._url_obj.source = t._url_obj._source = e, t._url_obj_ = Object.assign({}, t._u
 }, !0);
 }
 function p(e, t) {
-return n(154)(`./${e}/${t}`);
+return n(155)(`./${e}/${t}`);
 }
 function h(e, t, n) {
 let a;
@@ -8639,7 +8667,7 @@ Object.defineProperty(t, "__esModule", {
 value: !0
 }), t.libSiteBaiduTieba = t.scrollTopPadding = t.scrollToTieba = t.bde_image = void 0, 
 t.bde_image = a, t.scrollToTieba = r, t.scrollTopPadding = o;
-const i = n(112);
+const i = n(113);
 t.libSiteBaiduTieba = i, t.default = i;
 }).call(this, n(0).default);
 }, function(e, t, n) {
@@ -8676,7 +8704,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(115);
+const a = n(116);
 var r = n(19);
 function o(e) {
 return a.default.split(e, "");
@@ -8702,7 +8730,7 @@ t.array_unique = r.array_unique, t.lazy_unique = r.lazy_unique, t.split = o, t.c
 t.default = t;
 }, function(e, t, n) {
 "use strict";
-const a = n(168);
+const a = n(169);
 t.default = a.UString, a.UString.default = a.UString.UString = a.UString, e.exports = a.UString;
 }, function(e, t, n) {
 "use strict";
@@ -8711,11 +8739,11 @@ value: !0
 });
 const a = n(15);
 t.hasSupportFlag = a.hasSupportFlag, t.testFlag = a.testFlag;
-const r = n(140);
+const r = n(141);
 t.FlagsName = r.FlagsName;
-const o = n(15), i = n(141);
+const o = n(15), i = n(142);
 t.testPattern = i.testPattern;
-const s = n(200), u = n(206), c = n(208), l = n(210), d = n(211), p = n(212), h = {
+const s = n(201), u = n(207), c = n(209), l = n(211), d = n(212), p = n(213), h = {
 nativeFlags: "",
 flags: Object.keys(r.FlagsName).reduce(function(e, t) {
 let n = !1;
@@ -8820,7 +8848,7 @@ test: (e = t._url_obj) => !!e.host.match(/drive\.google\.com/),
 main(e = t._url_obj) {
 const r = n(2);
 let o;
-r([].join()).prop("target", "_blank"), n(45).makeJQueryPlugin(a, window), a(window).on("keydown.page", '[role="dialog"], .a-b-lc.a-b-ta-lc, .a-b-ta-Ua', n(5).packEvent(function(e) {
+r([].join()).prop("target", "_blank"), n(46).makeJQueryPlugin(a, window), a(window).on("keydown.page", '[role="dialog"], .a-b-lc.a-b-ta-lc, .a-b-ta-Ua', n(5).packEvent(function(e) {
 const t = n(7), r = n(4);
 switch (e.which) {
 case t("pageup"):
@@ -8893,7 +8921,7 @@ const a = n(17).GMApi, r = "iqing_timestamp";
 let o, i = !1, s = a.getValue(r, 0), u = null;
 if (Date.now() - s >= 6e5 ? u = !0 : (u = !1, console.info("[距離上次簽到]", (Date.now() - s) / 1e3)), 
 u) {
-const e = n(247).default;
+const e = n(248).default;
 await e().catch(e => {
 console.error("[簽到錯誤]", e);
 }).then(function(e) {
@@ -8963,7 +8991,7 @@ o.isRejected() || o.isResolved() || (!1 === e ? o.reject([ e, i ]) : i <= 20 || 
 };
 return n(s), o.promise();
 };
-}).call(this, n(0).default, n(130).setImmediate);
+}).call(this, n(0).default, n(131).setImmediate);
 }, function(e, t, n) {
 "use strict";
 function a(e, t) {
@@ -8977,7 +9005,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(141), r = n(142);
+const a = n(142), r = n(143);
 function o(...e) {
 e = e.reduce(function(e, t) {
 let n = r.inspect(t, {
@@ -8987,7 +9015,7 @@ return e.push(n), e;
 }, []), console.log(...e);
 }
 function i(e) {
-let t = n(203)(e);
+let t = n(204)(e);
 return t.__esModule && t.default || t;
 }
 function s(e) {
@@ -9031,7 +9059,7 @@ value: !0
 }), t.parse_url = t.parse_url2 = void 0, t.parse_url2 = a, t.parse_url = r, t.default = r;
 }, function(e, t, n) {
 "use strict";
-const a = n(151);
+const a = n(152);
 e.exports = a;
 }, function(e, t, n) {
 (function(e) {
@@ -9057,7 +9085,7 @@ var t = e._idleTimeout;
 t >= 0 && (e._idleTimeoutId = setTimeout(function t() {
 e._onTimeout && e._onTimeout();
 }, t));
-}, n(160), t.setImmediate = "undefined" != typeof self && self.setImmediate || void 0 !== e && e.setImmediate || this && this.setImmediate, 
+}, n(161), t.setImmediate = "undefined" != typeof self && self.setImmediate || void 0 !== e && e.setImmediate || this && this.setImmediate, 
 t.clearImmediate = "undefined" != typeof self && self.clearImmediate || void 0 !== e && e.clearImmediate || this && this.clearImmediate;
 }).call(this, n(1));
 }, function(e, t, n) {
@@ -9271,9 +9299,9 @@ return c;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(166), r = n(175);
+const a = n(167), r = n(176);
 t.libTable = r.default;
-const o = n(114), i = n(184);
+const o = n(115), i = n(185);
 function s(e, t, ...n) {
 return e = r.default._get(e, t, ...n), (e = o.array_unique(e)).sort(), e;
 }
@@ -9294,7 +9322,7 @@ return s([], e, r.default.tw(e, t), r.default.cn(e, t), (!t.skip || -1 == t.skip
 t._get = s, t.tw = u("tw"), t.cn = u("cn"), t.jp = u("jp"), t.auto = c, t.default = t;
 }, function(e, t, n) {
 "use strict";
-var a = n(172);
+var a = n(173);
 function r() {
 this._key = "chai/deep-eql__" + Math.random() + Date.now();
 }
@@ -9466,10 +9494,10 @@ e.exports = u, e.exports.MemoizeMap = o;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(176), r = n(137);
+const a = n(177), r = n(138);
 t._call = r._call, t.defaultOptions = r.defaultOptions, t.getOptions = r.getOptions, 
 t.getOptionsSkip = r.getOptionsSkip, t.REGEXP_TEST = r.REGEXP_TEST, t.SAFE_MODE_CHAR = r.SAFE_MODE_CHAR;
-const o = n(136), i = n(180);
+const o = n(137), i = n(181);
 function s(e, t = {}, ...n) {
 return r._call(c, e, t, ...n);
 }
@@ -9490,7 +9518,7 @@ t._tw2cn = l, t.default = o;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(19), r = n(115), o = n(125);
+const a = n(19), r = n(116), o = n(126);
 function i(e, t) {
 let n = t[e];
 return "string" == typeof n ? n : e;
@@ -9558,7 +9586,7 @@ t.getOptionsSkip = h, t.getOptions = f, t._call = g;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(19), r = n(188), o = n(199), i = n(115);
+const a = n(19), r = n(189), o = n(200), i = n(116);
 function s(e) {
 return new r.RegExpParser(e);
 }
@@ -9683,7 +9711,7 @@ t.fakePatternToRegExpLiteral = d, t.astToString = p, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(193), r = n(194), o = n(195);
+const a = n(194), r = n(195), o = n(196);
 function i(e) {
 return e === o.CircumflexAccent || e === o.DollarSign || e === o.ReverseSolidus || e === o.FullStop || e === o.Asterisk || e === o.PlusSign || e === o.QuestionMark || e === o.LeftParenthesis || e === o.RightParenthesis || e === o.LeftSquareBracket || e === o.RightSquareBracket || e === o.LeftCurlyBracket || e === o.RightCurlyBracket || e === o.VerticalLine;
 }
@@ -10599,7 +10627,7 @@ date: "magenta",
 regexp: "red"
 }, t.isArray = _, t.isBoolean = b, t.isNull = y, t.isNullOrUndefined = v, t.isNumber = w, 
 t.isString = k, t.isSymbol = x, t.isUndefined = D, t.isRegExp = j, t.isObject = C, 
-t.isDate = E, t.isError = S, t.isFunction = A, t.isPrimitive = T, t.isBuffer = n(201);
+t.isDate = E, t.isError = S, t.isFunction = A, t.isPrimitive = T, t.isBuffer = n(202);
 var I = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
 function M() {
 var e = new Date(), t = [ P(e.getHours()), P(e.getMinutes()), P(e.getSeconds()) ].join(":");
@@ -10610,7 +10638,7 @@ return Object.prototype.hasOwnProperty.call(e, t);
 }
 t.log = function() {
 console.log("%s - %s", M(), t.format.apply(t, arguments));
-}, t.inherits = n(202), t._extend = function(e, t) {
+}, t.inherits = n(203), t._extend = function(e, t) {
 if (!t || !C(t)) return e;
 for (var n = Object.keys(t), a = n.length; a--; ) e[n[a]] = t[n[a]];
 return e;
@@ -10674,7 +10702,7 @@ writable: !1,
 configurable: !0
 }), Object.defineProperties(n, a(t));
 }, t.promisify.custom = O, t.callbackify = z;
-}).call(this, n(111));
+}).call(this, n(112));
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -11181,7 +11209,7 @@ return d;
 };
 }, function(e, t, n) {
 "use strict";
-var a = n(239);
+var a = n(240);
 function r(e) {
 var t = new Map(), n = [ t ], r = "";
 function o(e) {
@@ -11280,7 +11308,7 @@ findBestMatchingLocale: i
 };
 }, function(e, t, n) {
 "use strict";
-var a = n(147), r = {}, o = null;
+var a = n(148), r = {}, o = null;
 function i(e, t) {
 var n = e;
 if (o && r[o] && r[o].messages && r[o].messages[e] && r[o].messages[e].length > 0 && "" !== r[o].messages[e][0] && (n = r[o].messages[e][0]), 
@@ -14257,7 +14285,7 @@ return n.$ === j && (n.$ = tn), e && n.jQuery === j && (n.jQuery = en), j;
 Object.defineProperty(t, "__esModule", {
 value: !0
 }), t.registerGlobalMenu = void 0;
-const o = n(110), i = n(129), s = n(152);
+const o = n(111), i = n(130), s = n(153);
 function u(t, a, r) {
 let u = o.requireScript(t, "index");
 s.hasGrant(u.metadata.grant, "registerMenuCommand") ? i.registerMenuCommand({
@@ -14301,7 +14329,7 @@ t.registerGlobalMenu = u, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(123), r = new Map();
+const a = n(124), r = new Map();
 function o(e, t, n = []) {
 "string" == typeof e && (e = {
 label: e
@@ -14343,7 +14371,7 @@ t.registerMenuCommand = o, t.getLabel = i, t.callMenuCommand = s, t.listMenuComm
 Object.defineProperty(t, "__esModule", {
 value: !0
 }), t.meta_filter = t.makeMetaRow = t.meta_match = t.lazyMetaFix = t.hasGrant = t.parseMetadata = void 0;
-const a = n(153);
+const a = n(154);
 function r(e) {
 let t;
 if (t = (e = e.toString()).match(/(^\/\/\s+==UserScript==)/m)) {
@@ -14423,8 +14451,8 @@ value: !0
 }, function(e, t, n) {
 var a = {
 "./ux-tweak-sc/": 14,
-"./ux-tweak-sc/_fake": 109,
-"./ux-tweak-sc/_fake.js": 109,
+"./ux-tweak-sc/_fake": 110,
+"./ux-tweak-sc/_fake.js": 110,
 "./ux-tweak-sc/acg/2dfan": 21,
 "./ux-tweak-sc/acg/2dfan.js": 21,
 "./ux-tweak-sc/acg/3dmgame": 22,
@@ -14437,18 +14465,18 @@ var a = {
 "./ux-tweak-sc/acg/blog.reimu.net.js": 26,
 "./ux-tweak-sc/acg/dlsite": 27,
 "./ux-tweak-sc/acg/dlsite.js": 27,
-"./ux-tweak-sc/acg/dmm": 117,
-"./ux-tweak-sc/acg/dmm.js": 117,
+"./ux-tweak-sc/acg/dmm": 118,
+"./ux-tweak-sc/acg/dmm.js": 118,
 "./ux-tweak-sc/acg/gamer.com.tw": 28,
 "./ux-tweak-sc/acg/gamer.com.tw.js": 28,
 "./ux-tweak-sc/acg/gamme": 29,
 "./ux-tweak-sc/acg/gamme.js": 29,
 "./ux-tweak-sc/acg/getchu": 30,
 "./ux-tweak-sc/acg/getchu.js": 30,
-"./ux-tweak-sc/acg/guildwars2/forum": 118,
+"./ux-tweak-sc/acg/guildwars2/forum": 119,
 "./ux-tweak-sc/acg/guildwars2/forum.2017": 31,
 "./ux-tweak-sc/acg/guildwars2/forum.2017.js": 31,
-"./ux-tweak-sc/acg/guildwars2/forum.js": 118,
+"./ux-tweak-sc/acg/guildwars2/forum.js": 119,
 "./ux-tweak-sc/acg/guildwars2/wiki": 32,
 "./ux-tweak-sc/acg/guildwars2/wiki.js": 32,
 "./ux-tweak-sc/acg/gw2bltc": 33,
@@ -14463,158 +14491,160 @@ var a = {
 "./ux-tweak-sc/acg/qtfy.eu.js": 37,
 "./ux-tweak-sc/acg/reddit": 38,
 "./ux-tweak-sc/acg/reddit.js": 38,
-"./ux-tweak-sc/acg/vsgames": 39,
-"./ux-tweak-sc/acg/vsgames.js": 39,
-"./ux-tweak-sc/adult/up01": 40,
-"./ux-tweak-sc/adult/up01.js": 40,
-"./ux-tweak-sc/anti-adblock/epinv": 41,
-"./ux-tweak-sc/anti-adblock/epinv.js": 41,
-"./ux-tweak-sc/art/danbooru.donmai.us": 42,
-"./ux-tweak-sc/art/danbooru.donmai.us.js": 42,
-"./ux-tweak-sc/art/deviantart": 43,
-"./ux-tweak-sc/art/deviantart.js": 43,
-"./ux-tweak-sc/art/pixiv": 44,
-"./ux-tweak-sc/art/pixiv.js": 44,
-"./ux-tweak-sc/art/pixivision": 46,
-"./ux-tweak-sc/art/pixivision.js": 46,
-"./ux-tweak-sc/bbs/ptt": 47,
-"./ux-tweak-sc/bbs/ptt.js": 47,
-"./ux-tweak-sc/blog/blog.xuite": 48,
-"./ux-tweak-sc/blog/blog.xuite.js": 48,
-"./ux-tweak-sc/blog/dulfy": 49,
-"./ux-tweak-sc/blog/dulfy.js": 49,
-"./ux-tweak-sc/blog/jianshu": 50,
-"./ux-tweak-sc/blog/jianshu.js": 50,
-"./ux-tweak-sc/blog/juejin.im": 51,
-"./ux-tweak-sc/blog/juejin.im.js": 51,
-"./ux-tweak-sc/blog/oneapm": 52,
-"./ux-tweak-sc/blog/oneapm.js": 52,
-"./ux-tweak-sc/blog/steachs": 53,
-"./ux-tweak-sc/blog/steachs.js": 53,
-"./ux-tweak-sc/code/gitee": 54,
-"./ux-tweak-sc/code/gitee.js": 54,
-"./ux-tweak-sc/code/github": 55,
-"./ux-tweak-sc/code/github.js": 55,
-"./ux-tweak-sc/code/greasyfork": 56,
-"./ux-tweak-sc/code/greasyfork.js": 56,
-"./ux-tweak-sc/code/npmjs": 57,
-"./ux-tweak-sc/code/npmjs.js": 57,
-"./ux-tweak-sc/code/segmentfault": 58,
-"./ux-tweak-sc/code/segmentfault.js": 58,
-"./ux-tweak-sc/code/sourceforge": 59,
-"./ux-tweak-sc/code/sourceforge.js": 59,
-"./ux-tweak-sc/code/stackoverflow": 60,
-"./ux-tweak-sc/code/stackoverflow.js": 60,
-"./ux-tweak-sc/comic/999comic": 61,
-"./ux-tweak-sc/comic/999comic.js": 61,
-"./ux-tweak-sc/comic/alphapolis.co.jp": 62,
-"./ux-tweak-sc/comic/alphapolis.co.jp.js": 62,
-"./ux-tweak-sc/comic/backup/lhscan": 63,
-"./ux-tweak-sc/comic/backup/lhscan.js": 63,
-"./ux-tweak-sc/comic/book.dmm.co.jp": 64,
-"./ux-tweak-sc/comic/book.dmm.co.jp.js": 64,
-"./ux-tweak-sc/comic/comic-walker": 65,
-"./ux-tweak-sc/comic/comic-walker.js": 65,
-"./ux-tweak-sc/comic/comico": 66,
-"./ux-tweak-sc/comic/comico.js": 66,
-"./ux-tweak-sc/comic/dm5": 67,
-"./ux-tweak-sc/comic/dm5.js": 67,
-"./ux-tweak-sc/comic/dmzj": 68,
-"./ux-tweak-sc/comic/dmzj.js": 68,
-"./ux-tweak-sc/comic/exhentai": 69,
-"./ux-tweak-sc/comic/exhentai.js": 69,
-"./ux-tweak-sc/comic/ikanman": 70,
-"./ux-tweak-sc/comic/ikanman.js": 70,
-"./ux-tweak-sc/comic/lhscans": 71,
-"./ux-tweak-sc/comic/lhscans.js": 71,
-"./ux-tweak-sc/comic/manben": 72,
-"./ux-tweak-sc/comic/manben.js": 72,
-"./ux-tweak-sc/comic/manhuadui": 73,
-"./ux-tweak-sc/comic/manhuadui.js": 73,
-"./ux-tweak-sc/comic/manhuaren": 74,
-"./ux-tweak-sc/comic/manhuaren.js": 74,
-"./ux-tweak-sc/comic/nhentai": 75,
-"./ux-tweak-sc/comic/nhentai.js": 75,
-"./ux-tweak-sc/comic/rawdevart": 76,
-"./ux-tweak-sc/comic/rawdevart.js": 76,
-"./ux-tweak-sc/comic/wnacg": 77,
-"./ux-tweak-sc/comic/wnacg.js": 77,
-"./ux-tweak-sc/comic/yoedge": 78,
-"./ux-tweak-sc/comic/yoedge.js": 78,
-"./ux-tweak-sc/content/farm/fun01.cc": 79,
-"./ux-tweak-sc/content/farm/fun01.cc.js": 79,
-"./ux-tweak-sc/dict/edu/cwn.ling.sinica": 80,
-"./ux-tweak-sc/dict/edu/cwn.ling.sinica.js": 80,
-"./ux-tweak-sc/dict/edu/dict.revised.moe": 81,
-"./ux-tweak-sc/dict/edu/dict.revised.moe.js": 81,
+"./ux-tweak-sc/acg/taptap": 39,
+"./ux-tweak-sc/acg/taptap.js": 39,
+"./ux-tweak-sc/acg/vsgames": 40,
+"./ux-tweak-sc/acg/vsgames.js": 40,
+"./ux-tweak-sc/adult/up01": 41,
+"./ux-tweak-sc/adult/up01.js": 41,
+"./ux-tweak-sc/anti-adblock/epinv": 42,
+"./ux-tweak-sc/anti-adblock/epinv.js": 42,
+"./ux-tweak-sc/art/danbooru.donmai.us": 43,
+"./ux-tweak-sc/art/danbooru.donmai.us.js": 43,
+"./ux-tweak-sc/art/deviantart": 44,
+"./ux-tweak-sc/art/deviantart.js": 44,
+"./ux-tweak-sc/art/pixiv": 45,
+"./ux-tweak-sc/art/pixiv.js": 45,
+"./ux-tweak-sc/art/pixivision": 47,
+"./ux-tweak-sc/art/pixivision.js": 47,
+"./ux-tweak-sc/bbs/ptt": 48,
+"./ux-tweak-sc/bbs/ptt.js": 48,
+"./ux-tweak-sc/blog/blog.xuite": 49,
+"./ux-tweak-sc/blog/blog.xuite.js": 49,
+"./ux-tweak-sc/blog/dulfy": 50,
+"./ux-tweak-sc/blog/dulfy.js": 50,
+"./ux-tweak-sc/blog/jianshu": 51,
+"./ux-tweak-sc/blog/jianshu.js": 51,
+"./ux-tweak-sc/blog/juejin.im": 52,
+"./ux-tweak-sc/blog/juejin.im.js": 52,
+"./ux-tweak-sc/blog/oneapm": 53,
+"./ux-tweak-sc/blog/oneapm.js": 53,
+"./ux-tweak-sc/blog/steachs": 54,
+"./ux-tweak-sc/blog/steachs.js": 54,
+"./ux-tweak-sc/code/gitee": 55,
+"./ux-tweak-sc/code/gitee.js": 55,
+"./ux-tweak-sc/code/github": 56,
+"./ux-tweak-sc/code/github.js": 56,
+"./ux-tweak-sc/code/greasyfork": 57,
+"./ux-tweak-sc/code/greasyfork.js": 57,
+"./ux-tweak-sc/code/npmjs": 58,
+"./ux-tweak-sc/code/npmjs.js": 58,
+"./ux-tweak-sc/code/segmentfault": 59,
+"./ux-tweak-sc/code/segmentfault.js": 59,
+"./ux-tweak-sc/code/sourceforge": 60,
+"./ux-tweak-sc/code/sourceforge.js": 60,
+"./ux-tweak-sc/code/stackoverflow": 61,
+"./ux-tweak-sc/code/stackoverflow.js": 61,
+"./ux-tweak-sc/comic/999comic": 62,
+"./ux-tweak-sc/comic/999comic.js": 62,
+"./ux-tweak-sc/comic/alphapolis.co.jp": 63,
+"./ux-tweak-sc/comic/alphapolis.co.jp.js": 63,
+"./ux-tweak-sc/comic/backup/lhscan": 64,
+"./ux-tweak-sc/comic/backup/lhscan.js": 64,
+"./ux-tweak-sc/comic/book.dmm.co.jp": 65,
+"./ux-tweak-sc/comic/book.dmm.co.jp.js": 65,
+"./ux-tweak-sc/comic/comic-walker": 66,
+"./ux-tweak-sc/comic/comic-walker.js": 66,
+"./ux-tweak-sc/comic/comico": 67,
+"./ux-tweak-sc/comic/comico.js": 67,
+"./ux-tweak-sc/comic/dm5": 68,
+"./ux-tweak-sc/comic/dm5.js": 68,
+"./ux-tweak-sc/comic/dmzj": 69,
+"./ux-tweak-sc/comic/dmzj.js": 69,
+"./ux-tweak-sc/comic/exhentai": 70,
+"./ux-tweak-sc/comic/exhentai.js": 70,
+"./ux-tweak-sc/comic/ikanman": 71,
+"./ux-tweak-sc/comic/ikanman.js": 71,
+"./ux-tweak-sc/comic/lhscans": 72,
+"./ux-tweak-sc/comic/lhscans.js": 72,
+"./ux-tweak-sc/comic/manben": 73,
+"./ux-tweak-sc/comic/manben.js": 73,
+"./ux-tweak-sc/comic/manhuadui": 74,
+"./ux-tweak-sc/comic/manhuadui.js": 74,
+"./ux-tweak-sc/comic/manhuaren": 75,
+"./ux-tweak-sc/comic/manhuaren.js": 75,
+"./ux-tweak-sc/comic/nhentai": 76,
+"./ux-tweak-sc/comic/nhentai.js": 76,
+"./ux-tweak-sc/comic/rawdevart": 77,
+"./ux-tweak-sc/comic/rawdevart.js": 77,
+"./ux-tweak-sc/comic/wnacg": 78,
+"./ux-tweak-sc/comic/wnacg.js": 78,
+"./ux-tweak-sc/comic/yoedge": 79,
+"./ux-tweak-sc/comic/yoedge.js": 79,
+"./ux-tweak-sc/content/farm/fun01.cc": 80,
+"./ux-tweak-sc/content/farm/fun01.cc.js": 80,
+"./ux-tweak-sc/dict/edu/cwn.ling.sinica": 81,
+"./ux-tweak-sc/dict/edu/cwn.ling.sinica.js": 81,
+"./ux-tweak-sc/dict/edu/dict.revised.moe": 82,
+"./ux-tweak-sc/dict/edu/dict.revised.moe.js": 82,
 "./ux-tweak-sc/global/discuz": 16,
 "./ux-tweak-sc/global/discuz.js": 16,
-"./ux-tweak-sc/global/mediawiki": 102,
-"./ux-tweak-sc/global/mediawiki.js": 102,
-"./ux-tweak-sc/global/pagination": 104,
-"./ux-tweak-sc/global/pagination.js": 104,
-"./ux-tweak-sc/global/pagination/page": 105,
-"./ux-tweak-sc/global/pagination/page.js": 105,
-"./ux-tweak-sc/global/pagination/pagination.active": 106,
-"./ux-tweak-sc/global/pagination/pagination.active.js": 106,
-"./ux-tweak-sc/global/pagination/srp_pagination": 107,
-"./ux-tweak-sc/global/pagination/srp_pagination.js": 107,
-"./ux-tweak-sc/global/social": 108,
-"./ux-tweak-sc/global/social.js": 108,
-"./ux-tweak-sc/global/video": 103,
-"./ux-tweak-sc/global/video.js": 103,
-"./ux-tweak-sc/google/drive": 119,
-"./ux-tweak-sc/google/drive.js": 119,
-"./ux-tweak-sc/google/search": 101,
-"./ux-tweak-sc/google/search.js": 101,
+"./ux-tweak-sc/global/mediawiki": 103,
+"./ux-tweak-sc/global/mediawiki.js": 103,
+"./ux-tweak-sc/global/pagination": 105,
+"./ux-tweak-sc/global/pagination.js": 105,
+"./ux-tweak-sc/global/pagination/page": 106,
+"./ux-tweak-sc/global/pagination/page.js": 106,
+"./ux-tweak-sc/global/pagination/pagination.active": 107,
+"./ux-tweak-sc/global/pagination/pagination.active.js": 107,
+"./ux-tweak-sc/global/pagination/srp_pagination": 108,
+"./ux-tweak-sc/global/pagination/srp_pagination.js": 108,
+"./ux-tweak-sc/global/social": 109,
+"./ux-tweak-sc/global/social.js": 109,
+"./ux-tweak-sc/global/video": 104,
+"./ux-tweak-sc/global/video.js": 104,
+"./ux-tweak-sc/google/drive": 120,
+"./ux-tweak-sc/google/drive.js": 120,
+"./ux-tweak-sc/google/search": 102,
+"./ux-tweak-sc/google/search.js": 102,
 "./ux-tweak-sc/index": 14,
 "./ux-tweak-sc/index.js": 14,
 "./ux-tweak-sc/index.user": 20,
 "./ux-tweak-sc/index.user.js": 20,
-"./ux-tweak-sc/lib/demo": 120,
-"./ux-tweak-sc/lib/demo.js": 120,
-"./ux-tweak-sc/lib/metadata": 121,
-"./ux-tweak-sc/lib/metadata.js": 121,
-"./ux-tweak-sc/novel/esjzone": 82,
-"./ux-tweak-sc/novel/esjzone.js": 82,
-"./ux-tweak-sc/novel/iqing": 122,
-"./ux-tweak-sc/novel/iqing.js": 122,
-"./ux-tweak-sc/novel/lightnovel.cn": 83,
-"./ux-tweak-sc/novel/lightnovel.cn.js": 83,
-"./ux-tweak-sc/novel/masiro.moe": 84,
-"./ux-tweak-sc/novel/masiro.moe.js": 84,
-"./ux-tweak-sc/novel/syosetu": 85,
-"./ux-tweak-sc/novel/syosetu.js": 85,
-"./ux-tweak-sc/novel/wenku8": 86,
-"./ux-tweak-sc/novel/wenku8.js": 86,
-"./ux-tweak-sc/other/jetbrains/jetbrains": 87,
-"./ux-tweak-sc/other/jetbrains/jetbrains.js": 87,
-"./ux-tweak-sc/p2p/wetransfer": 88,
-"./ux-tweak-sc/p2p/wetransfer.js": 88,
-"./ux-tweak-sc/shop/pchome": 89,
-"./ux-tweak-sc/shop/pchome.js": 89,
-"./ux-tweak-sc/shop/post/kerrytj": 90,
-"./ux-tweak-sc/shop/post/kerrytj.js": 90,
-"./ux-tweak-sc/shop/post/post/gov/tw/pstmail": 91,
-"./ux-tweak-sc/shop/post/post/gov/tw/pstmail.js": 91,
-"./ux-tweak-sc/shop/yahoo/buy": 92,
-"./ux-tweak-sc/shop/yahoo/buy.js": 92,
-"./ux-tweak-sc/shop/yahoo/mall": 93,
-"./ux-tweak-sc/shop/yahoo/mall.js": 93,
-"./ux-tweak-sc/social/facebook": 94,
-"./ux-tweak-sc/social/facebook.js": 94,
-"./ux-tweak-sc/social/weibo": 95,
-"./ux-tweak-sc/social/weibo.js": 95,
-"./ux-tweak-sc/torrent/dmhy": 96,
-"./ux-tweak-sc/torrent/dmhy.js": 96,
-"./ux-tweak-sc/torrent/jandown": 97,
-"./ux-tweak-sc/torrent/jandown.js": 97,
-"./ux-tweak-sc/torrent/nyaa": 98,
-"./ux-tweak-sc/torrent/nyaa.js": 98,
-"./ux-tweak-sc/wiki/moegirl": 99,
-"./ux-tweak-sc/wiki/moegirl.js": 99,
-"./ux-tweak-sc/wiki/wikipedia": 100,
-"./ux-tweak-sc/wiki/wikipedia.js": 100
+"./ux-tweak-sc/lib/demo": 121,
+"./ux-tweak-sc/lib/demo.js": 121,
+"./ux-tweak-sc/lib/metadata": 122,
+"./ux-tweak-sc/lib/metadata.js": 122,
+"./ux-tweak-sc/novel/esjzone": 83,
+"./ux-tweak-sc/novel/esjzone.js": 83,
+"./ux-tweak-sc/novel/iqing": 123,
+"./ux-tweak-sc/novel/iqing.js": 123,
+"./ux-tweak-sc/novel/lightnovel.cn": 84,
+"./ux-tweak-sc/novel/lightnovel.cn.js": 84,
+"./ux-tweak-sc/novel/masiro.moe": 85,
+"./ux-tweak-sc/novel/masiro.moe.js": 85,
+"./ux-tweak-sc/novel/syosetu": 86,
+"./ux-tweak-sc/novel/syosetu.js": 86,
+"./ux-tweak-sc/novel/wenku8": 87,
+"./ux-tweak-sc/novel/wenku8.js": 87,
+"./ux-tweak-sc/other/jetbrains/jetbrains": 88,
+"./ux-tweak-sc/other/jetbrains/jetbrains.js": 88,
+"./ux-tweak-sc/p2p/wetransfer": 89,
+"./ux-tweak-sc/p2p/wetransfer.js": 89,
+"./ux-tweak-sc/shop/pchome": 90,
+"./ux-tweak-sc/shop/pchome.js": 90,
+"./ux-tweak-sc/shop/post/kerrytj": 91,
+"./ux-tweak-sc/shop/post/kerrytj.js": 91,
+"./ux-tweak-sc/shop/post/post/gov/tw/pstmail": 92,
+"./ux-tweak-sc/shop/post/post/gov/tw/pstmail.js": 92,
+"./ux-tweak-sc/shop/yahoo/buy": 93,
+"./ux-tweak-sc/shop/yahoo/buy.js": 93,
+"./ux-tweak-sc/shop/yahoo/mall": 94,
+"./ux-tweak-sc/shop/yahoo/mall.js": 94,
+"./ux-tweak-sc/social/facebook": 95,
+"./ux-tweak-sc/social/facebook.js": 95,
+"./ux-tweak-sc/social/weibo": 96,
+"./ux-tweak-sc/social/weibo.js": 96,
+"./ux-tweak-sc/torrent/dmhy": 97,
+"./ux-tweak-sc/torrent/dmhy.js": 97,
+"./ux-tweak-sc/torrent/jandown": 98,
+"./ux-tweak-sc/torrent/jandown.js": 98,
+"./ux-tweak-sc/torrent/nyaa": 99,
+"./ux-tweak-sc/torrent/nyaa.js": 99,
+"./ux-tweak-sc/wiki/moegirl": 100,
+"./ux-tweak-sc/wiki/moegirl.js": 100,
+"./ux-tweak-sc/wiki/wikipedia": 101,
+"./ux-tweak-sc/wiki/wikipedia.js": 101
 };
 function r(e) {
 var t = o(e);
@@ -14629,16 +14659,16 @@ return a[e];
 }
 r.keys = function e() {
 return Object.keys(a);
-}, r.resolve = o, e.exports = r, r.id = 154;
+}, r.resolve = o, e.exports = r, r.id = 155;
 }, function(e, t, n) {
 e.exports = m, m.Minimatch = _;
 var a = {
 sep: "/"
 };
 try {
-a = n(156);
+a = n(157);
 } catch (e) {}
-var r = m.GLOBSTAR = _.GLOBSTAR = {}, o = n(157), i = {
+var r = m.GLOBSTAR = _.GLOBSTAR = {}, o = n(158), i = {
 "!": {
 open: "(?:(?!(?:",
 close: "))[^/]*?)"
@@ -15030,9 +15060,9 @@ return e.substr(t, n);
 } : function(e, t, n) {
 return t < 0 && (t = e.length + t), e.substr(t, n);
 };
-}).call(this, n(111));
+}).call(this, n(112));
 }, function(e, t, n) {
-var a = n(158), r = n(159);
+var a = n(159), r = n(160);
 e.exports = f;
 var o = "\0SLASH" + Math.random() + "\0", i = "\0OPEN" + Math.random() + "\0", s = "\0CLOSE" + Math.random() + "\0", u = "\0COMMA" + Math.random() + "\0", c = "\0PERIOD" + Math.random() + "\0";
 function l(e) {
@@ -15251,7 +15281,7 @@ setTimeout(p, 0, e);
 };
 }
 }("undefined" == typeof self ? void 0 === e ? this : e : self);
-}).call(this, n(1), n(111));
+}).call(this, n(1), n(112));
 }, function(e, t, n) {
 "use strict";
 (function(e) {
@@ -15277,7 +15307,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 }), t.hashKey = t.checkDate = t.SiteID = t.create = t.hashSum = t.GMApi = void 0;
-const a = n(163);
+const a = n(164);
 t.hashSum = a;
 const r = n(17);
 function o(e, t) {
@@ -15370,7 +15400,7 @@ e.exports = u;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(165), r = n(186), o = n(138), i = n(116), s = n(213), u = n(230), c = n(234), l = n(134);
+const a = n(166), r = n(187), o = n(139), i = n(117), s = n(214), u = n(231), c = n(235), l = n(135);
 t.defaultOptions = {};
 class zhRegExp extends RegExp {
 constructor(e, t = null, n = {}, ...i) {
@@ -15449,7 +15479,7 @@ t.default = zhRegExp;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(134), r = n(185);
+const a = n(135), r = n(186);
 function o(e, t = {}) {
 return t.safe = !1, t.greedyTable = t.greedyTable || !0, a.auto(e, t);
 }
@@ -15481,7 +15511,7 @@ t.zhTableAutoGreedyTable = o, t._word_zh_core = i, t._word_zh_core2 = s, t.defau
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-var a = n(167);
+var a = n(168);
 t.zh2jp = a.zh2jp, t.zht2jp = a.zht2jp, t.zhs2jp = a.zhs2jp, t.zhs2zht = a.zhs2zht, 
 t.zht2zhs = a.zht2zhs, t.cjk2zhs = a.cjk2zhs, t.jp2zhs = a.jp2zhs, t.jp2zht = a.jp2zht, 
 t.cjk2zht = a.cjk2zht, t.cjk2jp = a.cjk2jp, t.default = t;
@@ -15490,9 +15520,9 @@ t.cjk2zht = a.cjk2zht, t.cjk2jp = a.cjk2jp, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(114), r = n(173);
+const a = n(115), r = n(174);
 t.ZHJP_TABLE = r.default, t.ZHJP_TABLE_SAFE = r.TABLE_SAFE;
-const o = n(125);
+const o = n(126);
 t.KEY_JP = "jp", t.KEY_ZHT = "zht", t.KEY_ZHS = "zhs";
 let i = !1;
 t.defaultOptions = {
@@ -15564,7 +15594,7 @@ t.cjk2jp = c, t.cjk2zht = l, t.cjk2zhs = d, t.init = p, t._getdata = h, t.defaul
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(169), r = n(171);
+const a = n(170), r = n(172);
 t.STRING_PROTOTYPE = Object.getOwnPropertyNames(String.prototype);
 class UString extends String {
 constructor(e, ...t) {
@@ -15699,7 +15729,7 @@ value: !0
 }), UString.default = UString.UString = UString, t = Object.freeze(t);
 }, function(e, t, n) {
 "use strict";
-const a = n(170), r = a.default;
+const a = n(171), r = a.default;
 r.substr = a.substring;
 const o = r;
 Object.defineProperty(o, "__esModule", {
@@ -15818,7 +15848,7 @@ return w;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(114), r = n(174), o = a.array_unique([ [ "蝕", "蝕", "蚀" ], [ "絲", "絲", "丝" ], [ "異", "異", "异" ], [ "謎", "謎", "谜" ], [ "氷", "冰", "冰" ], [ "詛", "詛", "诅" ], [ "貪", "貪", "贪" ], [ "館", "館", "馆" ], [ "画", "劃", "划" ], [ "誰", "誰", "谁" ], [ "鶏", "雞", "鸡" ], [ "宮", "宮", "宫" ], [ "殻", "殻", "壳" ], [ "館", "館", "馆" ], [ "槍", "槍", "枪" ], [ "静", "靜", "静" ], [ "髪", "髮", null ], [ "棄", "棄", "弃" ], [ "強", "強", "强" ], [ "罵", "罵", "骂" ], [ "駄", "馱", "驮" ], [ "沢", "澤", "泽" ], [ "歴", "歷", "历" ], [ "暦", "曆", "历" ], [ "刹", "剎", "刹" ], [ "錬", "鍊", "炼" ], [ "蓋", "蓋", "盖" ], [ "決", "決", "决" ], [ "晩", "晚", "晚" ], [ "恒", "恆", "恒" ], [ "准", "準", "准" ], [ "準", "準", "准" ], [ "傑", "傑", "杰" ], [ "圏", "圈", "圈" ], [ "煙", "煙", "烟" ], [ "甦", "甦", "苏" ], [ "並", "並", "并" ], [ "贓", "贓", "赃" ], [ "鹹", "鹹", "咸" ], [ "踪", "蹤", "踪" ], [ "踪", "踪", "踪" ], [ "秘", "祕", "秘" ], [ "黙", "默", "默" ], [ "圧", "壓", "压" ], [ "凄", "淒", "凄" ], [ "凄", "悽", "凄" ], [ "穀󠄁", "穀󠄀", "谷" ] ]), i = a.array_unique([ [ "絶", "絕", "绝" ], [ "別", "別", "别" ], [ "魯", "魯", "鲁" ], [ "蘇", "蘇", "苏" ], [ "巻", "卷", "卷" ], [ "弐", "貳", "贰" ], [ "隷", "隸", "隶" ] ]);
+const a = n(115), r = n(175), o = a.array_unique([ [ "蝕", "蝕", "蚀" ], [ "絲", "絲", "丝" ], [ "異", "異", "异" ], [ "謎", "謎", "谜" ], [ "氷", "冰", "冰" ], [ "詛", "詛", "诅" ], [ "貪", "貪", "贪" ], [ "館", "館", "馆" ], [ "画", "劃", "划" ], [ "誰", "誰", "谁" ], [ "鶏", "雞", "鸡" ], [ "宮", "宮", "宫" ], [ "殻", "殻", "壳" ], [ "館", "館", "馆" ], [ "槍", "槍", "枪" ], [ "静", "靜", "静" ], [ "髪", "髮", null ], [ "棄", "棄", "弃" ], [ "強", "強", "强" ], [ "罵", "罵", "骂" ], [ "駄", "馱", "驮" ], [ "沢", "澤", "泽" ], [ "歴", "歷", "历" ], [ "暦", "曆", "历" ], [ "刹", "剎", "刹" ], [ "錬", "鍊", "炼" ], [ "蓋", "蓋", "盖" ], [ "決", "決", "决" ], [ "晩", "晚", "晚" ], [ "恒", "恆", "恒" ], [ "准", "準", "准" ], [ "準", "準", "准" ], [ "傑", "傑", "杰" ], [ "圏", "圈", "圈" ], [ "煙", "煙", "烟" ], [ "甦", "甦", "苏" ], [ "並", "並", "并" ], [ "贓", "贓", "赃" ], [ "鹹", "鹹", "咸" ], [ "踪", "蹤", "踪" ], [ "踪", "踪", "踪" ], [ "秘", "祕", "秘" ], [ "黙", "默", "默" ], [ "圧", "壓", "压" ], [ "凄", "淒", "凄" ], [ "凄", "悽", "凄" ], [ "穀󠄁", "穀󠄀", "谷" ] ]), i = a.array_unique([ [ "絶", "絕", "绝" ], [ "別", "別", "别" ], [ "魯", "魯", "鲁" ], [ "蘇", "蘇", "苏" ], [ "巻", "卷", "卷" ], [ "弐", "貳", "贰" ], [ "隷", "隸", "隶" ] ]);
 t.TABLE = [], o.forEach(function([e, n, a]) {
 s(t.TABLE, e, n, a);
 }), t.TABLE = a.array_unique(t.TABLE.concat(r.filter(function(e) {
@@ -15863,7 +15893,7 @@ e.exports = [ [ [ "万" ], [ "萬" ], [ "万" ] ], [ [ "予" ], [ "預" ], [ "�
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(136), r = n(114), o = n(181);
+const a = n(137), r = n(115), o = n(182);
 function i(e, t) {
 return e = Object.keys(t).reduce(function(e, n) {
 return e[t[n]] = n, e;
@@ -16182,7 +16212,7 @@ t.cn = l, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(177), r = n(178), o = n(179);
+const a = n(178), r = n(179), o = n(180);
 t.table_cn2tw = Object.assign(a, o.wiki_s2t_v2), t.table_tw2cn = Object.assign(r, o.wiki_t2s_v2), 
 [ "像", "象", "剷", "鏟", "铲", "刬", "剗" ].forEach(function(e) {
 delete t.table_tw2cn[e], delete t.table_cn2tw[e];
@@ -22002,7 +22032,7 @@ e.exports = {
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(137);
+const a = n(138);
 t.wiki_s2t = {
 "䌶": "䊷",
 "䜥": "𧩙",
@@ -27141,14 +27171,14 @@ value: !0
 }, t.table_cn2tw_min_plus = {}, t.default = t;
 }, function(e, t, n) {
 "use strict";
-const a = n(182);
+const a = n(183);
 e.exports = a.default;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(183);
+const a = n(184);
 function r(e) {
 return Array.isArray(e) ? [] : {};
 }
@@ -27236,7 +27266,7 @@ var a;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(115), o = n(19);
+const r = n(116), o = n(19);
 function i(e) {
 const t = e;
 let n, a;
@@ -27275,7 +27305,7 @@ value: !0
 });
 const a = n(19);
 t.array_unique = a.array_unique;
-const r = n(125);
+const r = n(126);
 function o(e) {
 return r._re_cjk_conv(e, "のと");
 }
@@ -27285,7 +27315,7 @@ t._re_cjk_conv = o, t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(187), r = n(138);
+const a = n(188), r = n(139);
 var o;
 !function(e) {
 e.default = "default", e.class = "class", e.other = "other", e.uniset = "uniset", 
@@ -27583,7 +27613,7 @@ for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), a(n(189)), t.default = t;
+}), a(n(190)), t.default = t;
 }, function(e, t, n) {
 "use strict";
 function a(e) {
@@ -27592,18 +27622,18 @@ for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const r = n(190);
+const r = n(191);
 t.AST = r;
-const o = n(191);
+const o = n(192);
 t.RegExpParser = o.RegExpParser;
-const i = n(139);
+const i = n(140);
 function s(e, t) {
 return new o.RegExpParser(t).parseLiteral(e instanceof RegExp ? e.toString() : e);
 }
 function u(e, t) {
 return new i.RegExpValidator(t).validateLiteral(e);
 }
-t.RegExpValidator = i.RegExpValidator, a(n(198)), t.parseRegExpLiteral = s, t.validateRegExpLiteral = u, 
+t.RegExpValidator = i.RegExpValidator, a(n(199)), t.parseRegExpLiteral = s, t.validateRegExpLiteral = u, 
 t.default = t;
 }, function(e, t, n) {
 "use strict";
@@ -27615,7 +27645,7 @@ value: !0
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(192), r = n(139), o = {}, i = {}, s = {};
+const a = n(193), r = n(140), o = {}, i = {}, s = {};
 function u(e, t) {
 for (const n of e) a.assert("Disjunction" !== n.type), n.parent = t;
 return e;
@@ -28002,9 +28032,9 @@ t.RegExpSyntaxError = RegExpSyntaxError;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-var a = n(196);
+var a = n(197);
 t.isIdContinue = a.isIdContinue, t.isIdStart = a.isIdStart;
-var r = n(197);
+var r = n(198);
 function o(e) {
 return e >= t.LatinCapitalLetterA && e <= t.LatinCapitalLetterZ || e >= t.LatinSmallLetterA && e <= t.LatinSmallLetterZ;
 }
@@ -28111,7 +28141,7 @@ return /\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62(?:\uDB40\uDC65\uDB40\uDC6E\uDB40\uD
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(126), r = n(127), o = n(204), i = n(205), s = n(143);
+const a = n(127), r = n(128), o = n(205), i = n(206), s = n(144);
 var u;
 function c(e, n, a = t.PatternTest) {
 return !t.PatternTest.hasOwnProperty(e) && t.UNICODE_NAME_ALIAS_ALL[e] && t.PatternTest.hasOwnProperty(t.UNICODE_NAME_ALIAS_ALL[e]) && (e = t.UNICODE_NAME_ALIAS_ALL[e]), 
@@ -28242,7 +28272,7 @@ throw t.code = "MODULE_NOT_FOUND", t;
 }
 n.keys = function() {
 return [];
-}, n.resolve = n, e.exports = n, n.id = 203;
+}, n.resolve = n, e.exports = n, n.id = 204;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
@@ -28421,7 +28451,7 @@ White_Space: !1
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(126), r = n(127), o = n(207);
+const a = n(127), r = n(128), o = n(208);
 function i(e = RegExp, n = t.PatternTest) {
 return Object.keys(t.UNICODE_BLOCKS_ALL).reduce(function(a, r) {
 return a[r] = t.testUnicodeBlocks(r, e, n), a;
@@ -28731,7 +28761,7 @@ InZanabazar_Square: !1
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(143), r = n(126), o = n(127), i = n(209);
+const a = n(144), r = n(127), o = n(128), i = n(210);
 var s;
 function u(e, n, a = t.PatternTest) {
 return !t.PatternTest.hasOwnProperty(e) && s[e] && t.PatternTest.hasOwnProperty(s[e]) && (e = s[e]), 
@@ -29055,14 +29085,14 @@ split: !1
 }, t.testSymbol = r, t.default = t;
 }, function(e, t, n) {
 "use strict";
-const a = n(214);
+const a = n(215);
 e.exports = a.matchRange;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(215), r = n(217);
+const a = n(216), r = n(218);
 t.TABLE_RANGE = r.default;
 const o = n(19);
 function i(e, t, n = {}) {
@@ -29102,7 +29132,7 @@ i.getOptions = c, i.toRegExpString = s, i.TABLE_RANGE = r.default, i.fillRange =
 i.default = i, t.default = t;
 }, function(e, t, n) {
 "use strict";
-const a = n(142), r = n(144), o = n(216);
+const a = n(143), r = n(145), o = n(217);
 function i(e, t, n, o) {
 if (void 0 === e) return [];
 if (void 0 === t || e === t) {
@@ -29182,7 +29212,7 @@ return r(e) && !/\./.test(e);
 e.exports = i;
 }, function(e, t, n) {
 "use strict";
-const a = n(144);
+const a = n(145);
 function r(e, t, n) {
 if (!1 === a(e)) throw new TypeError("toRegexRange: expected the first argument to be a number");
 if (void 0 === t || e === t) return String(e);
@@ -29308,7 +29338,7 @@ r.cache = {}, r.clearCache = (() => r.cache = {}), e.exports = r;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(218), r = n(228);
+const a = n(219), r = n(229);
 t.table_range = {
 chinese: a.default,
 chinese2: a.list_range2,
@@ -29319,7 +29349,7 @@ circle: r.default
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(219);
+const a = n(220);
 t.list_range = [ "〇一二三四五六七八九十".split(""), "零一二三四五六七八九十".split("") ], [ [ "common", "十" ], [ "formal", "十" ], [ "traditional", "拾" ], [ "traditionalOld", "拾" ], [ "simplified", "拾" ], [ "traditional", "什" ], [ "traditionalOld", "什" ], [ "simplified", "什" ] ].forEach(function(e) {
 let n = a.predefineedTranscriptionConfigs.digits[e[0]];
 n && (n = Object.values(n), e[1] && n.push(e[1]), t.list_range.push(n));
@@ -29330,7 +29360,7 @@ n && (n = Object.values(n), e[1] && n.push(e[1]), t.list_range2.push(n));
 }, function(e, t, n) {
 "use strict";
 var a = {};
-n(220)(a), n(221)(a), n(222)(a), e.exports = a;
+n(221)(a), n(222)(a), n(223)(a), e.exports = a;
 }, function(e, t, n) {
 "use strict";
 e.exports = function(e) {
@@ -29384,7 +29414,7 @@ var a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
 return typeof e;
 } : function(e) {
 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e;
-}, r = n(145);
+}, r = n(146);
 e.exports = function(e) {
 e.romanizationTable = {
 "あ": "a",
@@ -29838,7 +29868,7 @@ var a = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
 return typeof e;
 } : function(e) {
 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e;
-}, r = n(145), o = n(227);
+}, r = n(146), o = n(228);
 function i(e, t) {
 var n, a;
 return !!((e[Math.floor(t / 8)] || 0) & 1 << 7 - t % 8);
@@ -30204,11 +30234,11 @@ return "0" === e;
 }), _ && (b = b.replace(new RegExp("^" + u.digits[9]), u.digits[0])), b = m + b;
 }, e;
 };
-}).call(this, n(223).Buffer);
+}).call(this, n(224).Buffer);
 }, function(e, t, n) {
 "use strict";
 (function(e) {
-var a = n(224), r = n(225), o = n(226);
+var a = n(225), r = n(226), o = n(227);
 function i() {
 try {
 var e = new Uint8Array(1);
@@ -31138,7 +31168,7 @@ return h;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(229);
+const a = n(230);
 t.list_range_raw = [ [ 9450, [ 9312, 9332 ], [ 12881, 12896 ], [ 12977, 12992 ] ], [ 9471, [ 10102, 10112 ], [ 9451, 9461 ] ], [ [ 10102, 10112 ], [ 9451, 9461 ] ], [ [ 10122, 10132 ], [ 9451, 9461 ] ], [ [ 9461, 9471 ] ], [ [ 10112, 10122 ] ] ], 
 t.list_range = a.listRawToRange(t.list_range_raw), t.default = t.list_range;
 }, function(e, t, n) {
@@ -31169,11 +31199,11 @@ for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), a(n(231));
-const r = n(116), o = n(232);
+}), a(n(232));
+const r = n(117), o = n(233);
 t.getNativeFlags = o.getNativeFlags, t.stripNonNativeFlags = o.stripNonNativeFlags, 
 t.isNativeFlags = o.isNativeFlags, t.prototypeToFlags = o.prototypeToFlags, t.prototypeToFlagsArray = o.prototypeToFlagsArray;
-const i = n(233);
+const i = n(234);
 t.parseRegularExpressionString = i.parseRegularExpressionString, t.nativeFlags = r.default.nativeFlags, 
 t.default = t;
 }, function(e, t, n) {
@@ -31234,7 +31264,7 @@ t.unicodeEscape = l, t.escapeRegExp = d, t.default = t, Object.freeze(t);
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(116);
+const a = n(117);
 function r(e) {
 let t;
 if (e instanceof RegExp && (e = s(e)), "string" != typeof e) throw new TypeError("target must is RegExp or String");
@@ -31266,7 +31296,7 @@ t.default = t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(116);
+const a = n(117);
 function r(e, t = {}) {
 let n = o(t).exec(e);
 if (n) {
@@ -31837,7 +31867,7 @@ _default: "#ffffff"
 };
 }, function(e, t, n) {
 "use strict";
-var a = n(238), r = n(241), o = n(243), i = n(244), s = /^(:?\/\/|https?:\/\/)?([^\/]*@)?(.+?)(:\d{2,5})?([\/?].*)?$/, u = /\./g, c = [];
+var a = n(239), r = n(242), o = n(244), i = n(245), s = /^(:?\/\/|https?:\/\/)?([^\/]*@)?(.+?)(:\d{2,5})?([\/?].*)?$/, u = /\./g, c = [];
 function l(e, t) {
 if (t.customTlds) {
 var n = e.match(t.customTlds);
@@ -31874,8 +31904,8 @@ subdomain: r.join(".")
 e.exports = d;
 }, function(e, t, n) {
 "use strict";
-const a = n(146);
-e.exports = a(n(240).trie);
+const a = n(147);
+e.exports = a(n(241).trie);
 }, function(e, t, n) {
 "use strict";
 e.exports = {
@@ -31891,8 +31921,8 @@ trie: "八卦|大众汽车|大拿|工行|广东|飞利浦|中文网|中国|中�
 };
 }, function(e, t, n) {
 "use strict";
-const a = n(146);
-e.exports = a(n(242).trie);
+const a = n(147);
+e.exports = a(n(243).trie);
 }, function(e) {
 e.exports = {
 updatedAt: "2020-01-06T04:20:18.041Z",
@@ -31937,7 +31967,7 @@ return 0 === o.length ? null : o.reverse().join(".");
 e.exports = o;
 }, function(e, t, n) {
 "use strict";
-var a = n(147), r = n(148), o = n(246);
+var a = n(148), r = n(149), o = n(247);
 function i() {
 return a.extractLanguages()[0];
 }
@@ -31964,7 +31994,7 @@ updateDomTranslation: o.updateDomTranslation
 };
 }, function(e, t, n) {
 "use strict";
-var a = n(148).gettext, r = !1;
+var a = n(149).gettext, r = !1;
 function o() {
 if (r) {
 var e = document.getElementsByTagName("*"), t = null, n = null, o = 0, i = 0;
@@ -31987,7 +32017,7 @@ updateDomTranslation: o
 Object.defineProperty(t, "__esModule", {
 value: !0
 }), t.signin = void 0;
-const a = n(248), r = n(8);
+const a = n(249), r = n(8);
 async function o(e) {
 let t = {
 method: "POST",
@@ -32011,14 +32041,14 @@ return !e || !0 !== e && !e.response ? Promise.reject(a.AjaxError(e)) : e;
 t.signin = o, t.default = o;
 }, function(e, t, n) {
 "use strict";
-const a = n(249);
+const a = n(250);
 e.exports = a;
 }, function(e, t, n) {
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-const a = n(123), r = n(25);
+const a = n(124), r = n(25);
 function o(e) {
 let t = Object.assign({
 method: "GET"
@@ -32057,7 +32087,7 @@ t.default = t;
 var a, r;
 !function(o, i) {
 "use strict";
-a = [ n(251) ], void 0 === (r = function(e) {
+a = [ n(252) ], void 0 === (r = function(e) {
 return i(o, e);
 }.apply(t, a)) || (e.exports = r);
 }("undefined" != typeof window ? window : this, function e(t, n) {
@@ -32257,8 +32287,8 @@ return Array.prototype.push.apply(this, e.makeArray(e(t, n).not(this))), this;
 var a = {
 "./ux-tweak-sc": 14,
 "./ux-tweak-sc/": 14,
-"./ux-tweak-sc/_fake": 109,
-"./ux-tweak-sc/_fake.js": 109,
+"./ux-tweak-sc/_fake": 110,
+"./ux-tweak-sc/_fake.js": 110,
 "./ux-tweak-sc/acg/2dfan": 21,
 "./ux-tweak-sc/acg/2dfan.js": 21,
 "./ux-tweak-sc/acg/3dmgame": 22,
@@ -32271,18 +32301,18 @@ var a = {
 "./ux-tweak-sc/acg/blog.reimu.net.js": 26,
 "./ux-tweak-sc/acg/dlsite": 27,
 "./ux-tweak-sc/acg/dlsite.js": 27,
-"./ux-tweak-sc/acg/dmm": 117,
-"./ux-tweak-sc/acg/dmm.js": 117,
+"./ux-tweak-sc/acg/dmm": 118,
+"./ux-tweak-sc/acg/dmm.js": 118,
 "./ux-tweak-sc/acg/gamer.com.tw": 28,
 "./ux-tweak-sc/acg/gamer.com.tw.js": 28,
 "./ux-tweak-sc/acg/gamme": 29,
 "./ux-tweak-sc/acg/gamme.js": 29,
 "./ux-tweak-sc/acg/getchu": 30,
 "./ux-tweak-sc/acg/getchu.js": 30,
-"./ux-tweak-sc/acg/guildwars2/forum": 118,
+"./ux-tweak-sc/acg/guildwars2/forum": 119,
 "./ux-tweak-sc/acg/guildwars2/forum.2017": 31,
 "./ux-tweak-sc/acg/guildwars2/forum.2017.js": 31,
-"./ux-tweak-sc/acg/guildwars2/forum.js": 118,
+"./ux-tweak-sc/acg/guildwars2/forum.js": 119,
 "./ux-tweak-sc/acg/guildwars2/wiki": 32,
 "./ux-tweak-sc/acg/guildwars2/wiki.js": 32,
 "./ux-tweak-sc/acg/gw2bltc": 33,
@@ -32297,158 +32327,160 @@ var a = {
 "./ux-tweak-sc/acg/qtfy.eu.js": 37,
 "./ux-tweak-sc/acg/reddit": 38,
 "./ux-tweak-sc/acg/reddit.js": 38,
-"./ux-tweak-sc/acg/vsgames": 39,
-"./ux-tweak-sc/acg/vsgames.js": 39,
-"./ux-tweak-sc/adult/up01": 40,
-"./ux-tweak-sc/adult/up01.js": 40,
-"./ux-tweak-sc/anti-adblock/epinv": 41,
-"./ux-tweak-sc/anti-adblock/epinv.js": 41,
-"./ux-tweak-sc/art/danbooru.donmai.us": 42,
-"./ux-tweak-sc/art/danbooru.donmai.us.js": 42,
-"./ux-tweak-sc/art/deviantart": 43,
-"./ux-tweak-sc/art/deviantart.js": 43,
-"./ux-tweak-sc/art/pixiv": 44,
-"./ux-tweak-sc/art/pixiv.js": 44,
-"./ux-tweak-sc/art/pixivision": 46,
-"./ux-tweak-sc/art/pixivision.js": 46,
-"./ux-tweak-sc/bbs/ptt": 47,
-"./ux-tweak-sc/bbs/ptt.js": 47,
-"./ux-tweak-sc/blog/blog.xuite": 48,
-"./ux-tweak-sc/blog/blog.xuite.js": 48,
-"./ux-tweak-sc/blog/dulfy": 49,
-"./ux-tweak-sc/blog/dulfy.js": 49,
-"./ux-tweak-sc/blog/jianshu": 50,
-"./ux-tweak-sc/blog/jianshu.js": 50,
-"./ux-tweak-sc/blog/juejin.im": 51,
-"./ux-tweak-sc/blog/juejin.im.js": 51,
-"./ux-tweak-sc/blog/oneapm": 52,
-"./ux-tweak-sc/blog/oneapm.js": 52,
-"./ux-tweak-sc/blog/steachs": 53,
-"./ux-tweak-sc/blog/steachs.js": 53,
-"./ux-tweak-sc/code/gitee": 54,
-"./ux-tweak-sc/code/gitee.js": 54,
-"./ux-tweak-sc/code/github": 55,
-"./ux-tweak-sc/code/github.js": 55,
-"./ux-tweak-sc/code/greasyfork": 56,
-"./ux-tweak-sc/code/greasyfork.js": 56,
-"./ux-tweak-sc/code/npmjs": 57,
-"./ux-tweak-sc/code/npmjs.js": 57,
-"./ux-tweak-sc/code/segmentfault": 58,
-"./ux-tweak-sc/code/segmentfault.js": 58,
-"./ux-tweak-sc/code/sourceforge": 59,
-"./ux-tweak-sc/code/sourceforge.js": 59,
-"./ux-tweak-sc/code/stackoverflow": 60,
-"./ux-tweak-sc/code/stackoverflow.js": 60,
-"./ux-tweak-sc/comic/999comic": 61,
-"./ux-tweak-sc/comic/999comic.js": 61,
-"./ux-tweak-sc/comic/alphapolis.co.jp": 62,
-"./ux-tweak-sc/comic/alphapolis.co.jp.js": 62,
-"./ux-tweak-sc/comic/backup/lhscan": 63,
-"./ux-tweak-sc/comic/backup/lhscan.js": 63,
-"./ux-tweak-sc/comic/book.dmm.co.jp": 64,
-"./ux-tweak-sc/comic/book.dmm.co.jp.js": 64,
-"./ux-tweak-sc/comic/comic-walker": 65,
-"./ux-tweak-sc/comic/comic-walker.js": 65,
-"./ux-tweak-sc/comic/comico": 66,
-"./ux-tweak-sc/comic/comico.js": 66,
-"./ux-tweak-sc/comic/dm5": 67,
-"./ux-tweak-sc/comic/dm5.js": 67,
-"./ux-tweak-sc/comic/dmzj": 68,
-"./ux-tweak-sc/comic/dmzj.js": 68,
-"./ux-tweak-sc/comic/exhentai": 69,
-"./ux-tweak-sc/comic/exhentai.js": 69,
-"./ux-tweak-sc/comic/ikanman": 70,
-"./ux-tweak-sc/comic/ikanman.js": 70,
-"./ux-tweak-sc/comic/lhscans": 71,
-"./ux-tweak-sc/comic/lhscans.js": 71,
-"./ux-tweak-sc/comic/manben": 72,
-"./ux-tweak-sc/comic/manben.js": 72,
-"./ux-tweak-sc/comic/manhuadui": 73,
-"./ux-tweak-sc/comic/manhuadui.js": 73,
-"./ux-tweak-sc/comic/manhuaren": 74,
-"./ux-tweak-sc/comic/manhuaren.js": 74,
-"./ux-tweak-sc/comic/nhentai": 75,
-"./ux-tweak-sc/comic/nhentai.js": 75,
-"./ux-tweak-sc/comic/rawdevart": 76,
-"./ux-tweak-sc/comic/rawdevart.js": 76,
-"./ux-tweak-sc/comic/wnacg": 77,
-"./ux-tweak-sc/comic/wnacg.js": 77,
-"./ux-tweak-sc/comic/yoedge": 78,
-"./ux-tweak-sc/comic/yoedge.js": 78,
-"./ux-tweak-sc/content/farm/fun01.cc": 79,
-"./ux-tweak-sc/content/farm/fun01.cc.js": 79,
-"./ux-tweak-sc/dict/edu/cwn.ling.sinica": 80,
-"./ux-tweak-sc/dict/edu/cwn.ling.sinica.js": 80,
-"./ux-tweak-sc/dict/edu/dict.revised.moe": 81,
-"./ux-tweak-sc/dict/edu/dict.revised.moe.js": 81,
+"./ux-tweak-sc/acg/taptap": 39,
+"./ux-tweak-sc/acg/taptap.js": 39,
+"./ux-tweak-sc/acg/vsgames": 40,
+"./ux-tweak-sc/acg/vsgames.js": 40,
+"./ux-tweak-sc/adult/up01": 41,
+"./ux-tweak-sc/adult/up01.js": 41,
+"./ux-tweak-sc/anti-adblock/epinv": 42,
+"./ux-tweak-sc/anti-adblock/epinv.js": 42,
+"./ux-tweak-sc/art/danbooru.donmai.us": 43,
+"./ux-tweak-sc/art/danbooru.donmai.us.js": 43,
+"./ux-tweak-sc/art/deviantart": 44,
+"./ux-tweak-sc/art/deviantart.js": 44,
+"./ux-tweak-sc/art/pixiv": 45,
+"./ux-tweak-sc/art/pixiv.js": 45,
+"./ux-tweak-sc/art/pixivision": 47,
+"./ux-tweak-sc/art/pixivision.js": 47,
+"./ux-tweak-sc/bbs/ptt": 48,
+"./ux-tweak-sc/bbs/ptt.js": 48,
+"./ux-tweak-sc/blog/blog.xuite": 49,
+"./ux-tweak-sc/blog/blog.xuite.js": 49,
+"./ux-tweak-sc/blog/dulfy": 50,
+"./ux-tweak-sc/blog/dulfy.js": 50,
+"./ux-tweak-sc/blog/jianshu": 51,
+"./ux-tweak-sc/blog/jianshu.js": 51,
+"./ux-tweak-sc/blog/juejin.im": 52,
+"./ux-tweak-sc/blog/juejin.im.js": 52,
+"./ux-tweak-sc/blog/oneapm": 53,
+"./ux-tweak-sc/blog/oneapm.js": 53,
+"./ux-tweak-sc/blog/steachs": 54,
+"./ux-tweak-sc/blog/steachs.js": 54,
+"./ux-tweak-sc/code/gitee": 55,
+"./ux-tweak-sc/code/gitee.js": 55,
+"./ux-tweak-sc/code/github": 56,
+"./ux-tweak-sc/code/github.js": 56,
+"./ux-tweak-sc/code/greasyfork": 57,
+"./ux-tweak-sc/code/greasyfork.js": 57,
+"./ux-tweak-sc/code/npmjs": 58,
+"./ux-tweak-sc/code/npmjs.js": 58,
+"./ux-tweak-sc/code/segmentfault": 59,
+"./ux-tweak-sc/code/segmentfault.js": 59,
+"./ux-tweak-sc/code/sourceforge": 60,
+"./ux-tweak-sc/code/sourceforge.js": 60,
+"./ux-tweak-sc/code/stackoverflow": 61,
+"./ux-tweak-sc/code/stackoverflow.js": 61,
+"./ux-tweak-sc/comic/999comic": 62,
+"./ux-tweak-sc/comic/999comic.js": 62,
+"./ux-tweak-sc/comic/alphapolis.co.jp": 63,
+"./ux-tweak-sc/comic/alphapolis.co.jp.js": 63,
+"./ux-tweak-sc/comic/backup/lhscan": 64,
+"./ux-tweak-sc/comic/backup/lhscan.js": 64,
+"./ux-tweak-sc/comic/book.dmm.co.jp": 65,
+"./ux-tweak-sc/comic/book.dmm.co.jp.js": 65,
+"./ux-tweak-sc/comic/comic-walker": 66,
+"./ux-tweak-sc/comic/comic-walker.js": 66,
+"./ux-tweak-sc/comic/comico": 67,
+"./ux-tweak-sc/comic/comico.js": 67,
+"./ux-tweak-sc/comic/dm5": 68,
+"./ux-tweak-sc/comic/dm5.js": 68,
+"./ux-tweak-sc/comic/dmzj": 69,
+"./ux-tweak-sc/comic/dmzj.js": 69,
+"./ux-tweak-sc/comic/exhentai": 70,
+"./ux-tweak-sc/comic/exhentai.js": 70,
+"./ux-tweak-sc/comic/ikanman": 71,
+"./ux-tweak-sc/comic/ikanman.js": 71,
+"./ux-tweak-sc/comic/lhscans": 72,
+"./ux-tweak-sc/comic/lhscans.js": 72,
+"./ux-tweak-sc/comic/manben": 73,
+"./ux-tweak-sc/comic/manben.js": 73,
+"./ux-tweak-sc/comic/manhuadui": 74,
+"./ux-tweak-sc/comic/manhuadui.js": 74,
+"./ux-tweak-sc/comic/manhuaren": 75,
+"./ux-tweak-sc/comic/manhuaren.js": 75,
+"./ux-tweak-sc/comic/nhentai": 76,
+"./ux-tweak-sc/comic/nhentai.js": 76,
+"./ux-tweak-sc/comic/rawdevart": 77,
+"./ux-tweak-sc/comic/rawdevart.js": 77,
+"./ux-tweak-sc/comic/wnacg": 78,
+"./ux-tweak-sc/comic/wnacg.js": 78,
+"./ux-tweak-sc/comic/yoedge": 79,
+"./ux-tweak-sc/comic/yoedge.js": 79,
+"./ux-tweak-sc/content/farm/fun01.cc": 80,
+"./ux-tweak-sc/content/farm/fun01.cc.js": 80,
+"./ux-tweak-sc/dict/edu/cwn.ling.sinica": 81,
+"./ux-tweak-sc/dict/edu/cwn.ling.sinica.js": 81,
+"./ux-tweak-sc/dict/edu/dict.revised.moe": 82,
+"./ux-tweak-sc/dict/edu/dict.revised.moe.js": 82,
 "./ux-tweak-sc/global/discuz": 16,
 "./ux-tweak-sc/global/discuz.js": 16,
-"./ux-tweak-sc/global/mediawiki": 102,
-"./ux-tweak-sc/global/mediawiki.js": 102,
-"./ux-tweak-sc/global/pagination": 104,
-"./ux-tweak-sc/global/pagination.js": 104,
-"./ux-tweak-sc/global/pagination/page": 105,
-"./ux-tweak-sc/global/pagination/page.js": 105,
-"./ux-tweak-sc/global/pagination/pagination.active": 106,
-"./ux-tweak-sc/global/pagination/pagination.active.js": 106,
-"./ux-tweak-sc/global/pagination/srp_pagination": 107,
-"./ux-tweak-sc/global/pagination/srp_pagination.js": 107,
-"./ux-tweak-sc/global/social": 108,
-"./ux-tweak-sc/global/social.js": 108,
-"./ux-tweak-sc/global/video": 103,
-"./ux-tweak-sc/global/video.js": 103,
-"./ux-tweak-sc/google/drive": 119,
-"./ux-tweak-sc/google/drive.js": 119,
-"./ux-tweak-sc/google/search": 101,
-"./ux-tweak-sc/google/search.js": 101,
+"./ux-tweak-sc/global/mediawiki": 103,
+"./ux-tweak-sc/global/mediawiki.js": 103,
+"./ux-tweak-sc/global/pagination": 105,
+"./ux-tweak-sc/global/pagination.js": 105,
+"./ux-tweak-sc/global/pagination/page": 106,
+"./ux-tweak-sc/global/pagination/page.js": 106,
+"./ux-tweak-sc/global/pagination/pagination.active": 107,
+"./ux-tweak-sc/global/pagination/pagination.active.js": 107,
+"./ux-tweak-sc/global/pagination/srp_pagination": 108,
+"./ux-tweak-sc/global/pagination/srp_pagination.js": 108,
+"./ux-tweak-sc/global/social": 109,
+"./ux-tweak-sc/global/social.js": 109,
+"./ux-tweak-sc/global/video": 104,
+"./ux-tweak-sc/global/video.js": 104,
+"./ux-tweak-sc/google/drive": 120,
+"./ux-tweak-sc/google/drive.js": 120,
+"./ux-tweak-sc/google/search": 102,
+"./ux-tweak-sc/google/search.js": 102,
 "./ux-tweak-sc/index": 14,
 "./ux-tweak-sc/index.js": 14,
 "./ux-tweak-sc/index.user": 20,
 "./ux-tweak-sc/index.user.js": 20,
-"./ux-tweak-sc/lib/demo": 120,
-"./ux-tweak-sc/lib/demo.js": 120,
-"./ux-tweak-sc/lib/metadata": 121,
-"./ux-tweak-sc/lib/metadata.js": 121,
-"./ux-tweak-sc/novel/esjzone": 82,
-"./ux-tweak-sc/novel/esjzone.js": 82,
-"./ux-tweak-sc/novel/iqing": 122,
-"./ux-tweak-sc/novel/iqing.js": 122,
-"./ux-tweak-sc/novel/lightnovel.cn": 83,
-"./ux-tweak-sc/novel/lightnovel.cn.js": 83,
-"./ux-tweak-sc/novel/masiro.moe": 84,
-"./ux-tweak-sc/novel/masiro.moe.js": 84,
-"./ux-tweak-sc/novel/syosetu": 85,
-"./ux-tweak-sc/novel/syosetu.js": 85,
-"./ux-tweak-sc/novel/wenku8": 86,
-"./ux-tweak-sc/novel/wenku8.js": 86,
-"./ux-tweak-sc/other/jetbrains/jetbrains": 87,
-"./ux-tweak-sc/other/jetbrains/jetbrains.js": 87,
-"./ux-tweak-sc/p2p/wetransfer": 88,
-"./ux-tweak-sc/p2p/wetransfer.js": 88,
-"./ux-tweak-sc/shop/pchome": 89,
-"./ux-tweak-sc/shop/pchome.js": 89,
-"./ux-tweak-sc/shop/post/kerrytj": 90,
-"./ux-tweak-sc/shop/post/kerrytj.js": 90,
-"./ux-tweak-sc/shop/post/post/gov/tw/pstmail": 91,
-"./ux-tweak-sc/shop/post/post/gov/tw/pstmail.js": 91,
-"./ux-tweak-sc/shop/yahoo/buy": 92,
-"./ux-tweak-sc/shop/yahoo/buy.js": 92,
-"./ux-tweak-sc/shop/yahoo/mall": 93,
-"./ux-tweak-sc/shop/yahoo/mall.js": 93,
-"./ux-tweak-sc/social/facebook": 94,
-"./ux-tweak-sc/social/facebook.js": 94,
-"./ux-tweak-sc/social/weibo": 95,
-"./ux-tweak-sc/social/weibo.js": 95,
-"./ux-tweak-sc/torrent/dmhy": 96,
-"./ux-tweak-sc/torrent/dmhy.js": 96,
-"./ux-tweak-sc/torrent/jandown": 97,
-"./ux-tweak-sc/torrent/jandown.js": 97,
-"./ux-tweak-sc/torrent/nyaa": 98,
-"./ux-tweak-sc/torrent/nyaa.js": 98,
-"./ux-tweak-sc/wiki/moegirl": 99,
-"./ux-tweak-sc/wiki/moegirl.js": 99,
-"./ux-tweak-sc/wiki/wikipedia": 100,
-"./ux-tweak-sc/wiki/wikipedia.js": 100
+"./ux-tweak-sc/lib/demo": 121,
+"./ux-tweak-sc/lib/demo.js": 121,
+"./ux-tweak-sc/lib/metadata": 122,
+"./ux-tweak-sc/lib/metadata.js": 122,
+"./ux-tweak-sc/novel/esjzone": 83,
+"./ux-tweak-sc/novel/esjzone.js": 83,
+"./ux-tweak-sc/novel/iqing": 123,
+"./ux-tweak-sc/novel/iqing.js": 123,
+"./ux-tweak-sc/novel/lightnovel.cn": 84,
+"./ux-tweak-sc/novel/lightnovel.cn.js": 84,
+"./ux-tweak-sc/novel/masiro.moe": 85,
+"./ux-tweak-sc/novel/masiro.moe.js": 85,
+"./ux-tweak-sc/novel/syosetu": 86,
+"./ux-tweak-sc/novel/syosetu.js": 86,
+"./ux-tweak-sc/novel/wenku8": 87,
+"./ux-tweak-sc/novel/wenku8.js": 87,
+"./ux-tweak-sc/other/jetbrains/jetbrains": 88,
+"./ux-tweak-sc/other/jetbrains/jetbrains.js": 88,
+"./ux-tweak-sc/p2p/wetransfer": 89,
+"./ux-tweak-sc/p2p/wetransfer.js": 89,
+"./ux-tweak-sc/shop/pchome": 90,
+"./ux-tweak-sc/shop/pchome.js": 90,
+"./ux-tweak-sc/shop/post/kerrytj": 91,
+"./ux-tweak-sc/shop/post/kerrytj.js": 91,
+"./ux-tweak-sc/shop/post/post/gov/tw/pstmail": 92,
+"./ux-tweak-sc/shop/post/post/gov/tw/pstmail.js": 92,
+"./ux-tweak-sc/shop/yahoo/buy": 93,
+"./ux-tweak-sc/shop/yahoo/buy.js": 93,
+"./ux-tweak-sc/shop/yahoo/mall": 94,
+"./ux-tweak-sc/shop/yahoo/mall.js": 94,
+"./ux-tweak-sc/social/facebook": 95,
+"./ux-tweak-sc/social/facebook.js": 95,
+"./ux-tweak-sc/social/weibo": 96,
+"./ux-tweak-sc/social/weibo.js": 96,
+"./ux-tweak-sc/torrent/dmhy": 97,
+"./ux-tweak-sc/torrent/dmhy.js": 97,
+"./ux-tweak-sc/torrent/jandown": 98,
+"./ux-tweak-sc/torrent/jandown.js": 98,
+"./ux-tweak-sc/torrent/nyaa": 99,
+"./ux-tweak-sc/torrent/nyaa.js": 99,
+"./ux-tweak-sc/wiki/moegirl": 100,
+"./ux-tweak-sc/wiki/moegirl.js": 100,
+"./ux-tweak-sc/wiki/wikipedia": 101,
+"./ux-tweak-sc/wiki/wikipedia.js": 101
 };
 function r(e) {
 var t = o(e);
@@ -32463,5 +32495,5 @@ return a[e];
 }
 r.keys = function e() {
 return Object.keys(a);
-}, r.resolve = o, e.exports = r, r.id = 254;
+}, r.resolve = o, e.exports = r, r.id = 255;
 } ]);

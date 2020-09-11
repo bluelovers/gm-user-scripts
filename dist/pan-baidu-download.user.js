@@ -86,7 +86,7 @@ return Object.prototype.hasOwnProperty.call(e, t);
 (function(e) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), console["groupCollapsed" in console ? "groupCollapsed" : "group"]("before");
+}), t.jQuery = t.$ = void 0, console["groupCollapsed" in console ? "groupCollapsed" : "group"]("before");
 let r = {};
 const i = !1;
 try {
@@ -187,7 +187,7 @@ e.exports = i;
 (function(e, r, i) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.main_list = t.main = t.get_list_script = t.requireScript = t.init = t.url = t.run = t.greasemonkey = void 0;
 const o = n(10), a = n(11);
 t.greasemonkey = a.default;
 const s = n(12);
@@ -316,7 +316,7 @@ return t.appendChild(n), n;
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.GM_addStyle = r, t.default = t;
+}), t.GM_addStyle = void 0, t.GM_addStyle = r, t.default = t;
 }, function(module, exports, __webpack_require__) {
 "use strict";
 var _GMApi;
@@ -366,8 +366,8 @@ _GMApi_1.call = call, _GMApi_1.callSafe = callSafe;
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.desc = "直接下载百度网盘和百度网盘分享的文件,避免下载文件时调用百度网盘客户端,获取网盘文件的直接下载地址", t.grant = [], 
-t.metadata = "// ==UserScript==\n// @name\t\t<%= index.name %>\n// @name:en\t\t<%= index.name_en %>\n// @name:zh\t\t<%= index.name %>\n// @namespace\tbluelovers\n// @author\t\tbluelovers\n//\n// @description\t\t<%= index.desc %>\n// @description:en\t<%= index.desc_en %>\n// @description:zh\t<%= index.desc %>\n//\n// @version\t\t<%= pkg.version %>\n//\n// @grant\t\t<%= index.grant %>\n// g_r_a_n_tnone\n//\n// @icon\t\t<%= index.icon %>\n//\n// @noframes\n// @encoding\tutf-8\n//\n// @homepageURL\thttps://github.com/bluelovers/gm-user-scripts\n// @supportURL\thttps://github.com/bluelovers/gm-user-scripts/issues\n// @downloadURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n// @updateURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n//\n// @include\t\t<%= index.include %>\n//\n// @match\t\t<%= index.match %>\n//\n// @exclude\t\t<%= index.exclude %>\n//\n// ==/UserScript==\n", 
+}), t.metadata = t.grant = t.desc = void 0, t.desc = "直接下载百度网盘和百度网盘分享的文件,避免下载文件时调用百度网盘客户端,获取网盘文件的直接下载地址", 
+t.grant = [], t.metadata = "// ==UserScript==\n// @name\t\t<%= index.name %>\n// @name:en\t\t<%= index.name_en %>\n// @name:zh\t\t<%= index.name %>\n// @namespace\tbluelovers\n// @author\t\tbluelovers\n//\n// @description\t\t<%= index.desc %>\n// @description:en\t<%= index.desc_en %>\n// @description:zh\t<%= index.desc %>\n//\n// @version\t\t<%= pkg.version %>\n//\n// @grant\t\t<%= index.grant %>\n// g_r_a_n_tnone\n//\n// @icon\t\t<%= index.icon %>\n//\n// @noframes\n// @encoding\tutf-8\n//\n// @homepageURL\thttps://github.com/bluelovers/gm-user-scripts\n// @supportURL\thttps://github.com/bluelovers/gm-user-scripts/issues\n// @downloadURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n// @updateURL\thttps://github.com/bluelovers/gm-user-scripts/raw/master/dist/<%= index.id %>.user.js\n//\n// @include\t\t<%= index.include %>\n//\n// @match\t\t<%= index.match %>\n//\n// @exclude\t\t<%= index.exclude %>\n//\n// ==/UserScript==\n", 
 t.default = t.metadata;
 }, function(e, t, n) {
 var r, i;
@@ -514,11 +514,11 @@ return e === t && (d = !0), 0;
 }, M = {}.hasOwnProperty, S = [], D = S.pop, O = S.push, N = S.push, L = S.slice, q = function(e, t) {
 for (var n = 0, r = e.length; n < r; n++) if (e[n] === t) return n;
 return -1;
-}, $ = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", G = "[\\x20\\t\\r\\n\\f]", R = "(?:\\\\.|[\\w-]|[^\0-\\xa0])+", P = "\\[" + G + "*(" + R + ")(?:" + G + "*([*^$|!~]?=)" + G + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + R + "))|)" + G + "*\\]", H = ":(" + R + ")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|" + P + ")*)|.*)\\)|)", I = new RegExp(G + "+", "g"), F = new RegExp("^" + G + "+|((?:^|[^\\\\])(?:\\\\.)*)" + G + "+$", "g"), W = new RegExp("^" + G + "*," + G + "*"), B = new RegExp("^" + G + "*([>+~]|" + G + ")" + G + "*"), U = new RegExp(G + "|>"), z = new RegExp(H), Q = new RegExp("^" + R + "$"), X = {
-ID: new RegExp("^#(" + R + ")"),
-CLASS: new RegExp("^\\.(" + R + ")"),
-TAG: new RegExp("^(" + R + "|[*])"),
-ATTR: new RegExp("^" + P),
+}, $ = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped", G = "[\\x20\\t\\r\\n\\f]", P = "(?:\\\\.|[\\w-]|[^\0-\\xa0])+", R = "\\[" + G + "*(" + P + ")(?:" + G + "*([*^$|!~]?=)" + G + "*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + P + "))|)" + G + "*\\]", H = ":(" + P + ")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|" + R + ")*)|.*)\\)|)", I = new RegExp(G + "+", "g"), F = new RegExp("^" + G + "+|((?:^|[^\\\\])(?:\\\\.)*)" + G + "+$", "g"), W = new RegExp("^" + G + "*," + G + "*"), B = new RegExp("^" + G + "*([>+~]|" + G + ")" + G + "*"), z = new RegExp(G + "|>"), U = new RegExp(H), Q = new RegExp("^" + P + "$"), X = {
+ID: new RegExp("^#(" + P + ")"),
+CLASS: new RegExp("^\\.(" + P + ")"),
+TAG: new RegExp("^(" + P + "|[*])"),
+ATTR: new RegExp("^" + R),
 PSEUDO: new RegExp("^" + H),
 CHILD: new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + G + "*(even|odd|(([+-]|)(\\d*)n|)" + G + "*(?:([+-]|)" + G + "*(\\d+)|))" + G + "*\\)|)", "i"),
 bool: new RegExp("^(?:" + $ + ")$", "i"),
@@ -564,7 +564,7 @@ if ((o = d[3]) && n.getElementsByClassName && t.getElementsByClassName) return N
 r;
 }
 if (n.qsa && !A[e + " "] && (!v || !v.test(e)) && (1 !== k || "object" !== t.nodeName.toLowerCase())) {
-if (m = e, y = t, 1 === k && U.test(e)) {
+if (m = e, y = t, 1 === k && z.test(e)) {
 for ((c = t.getAttribute("id")) ? c = c.replace(re, ie) : t.setAttribute("id", c = x), 
 s = (h = a(e)).length; s--; ) h[s] = "#" + c + " " + be(h[s]);
 m = h.join(","), y = ee.test(e) && me(t.parentNode) || t;
@@ -789,7 +789,7 @@ e;
 },
 PSEUDO: function(e) {
 var t, n = !e[6] && e[2];
-return X.CHILD.test(e[0]) ? null : (e[3] ? e[2] = e[4] || e[5] || "" : n && z.test(n) && (t = a(n, !0)) && (t = n.indexOf(")", n.length - t) - n.length) && (e[0] = e[0].slice(0, t), 
+return X.CHILD.test(e[0]) ? null : (e[3] ? e[2] = e[4] || e[5] || "" : n && U.test(n) && (t = a(n, !0)) && (t = n.indexOf(")", n.length - t) - n.length) && (e[0] = e[0].slice(0, t), 
 e[2] = n.slice(0, t)), e.slice(0, 3));
 }
 },
@@ -1166,13 +1166,13 @@ return (i = s.getElementById(r[2])) && (this[0] = i, this.length = 1), this;
 }
 return e.nodeType ? (this[0] = e, this.length = 1, this) : b(e) ? void 0 !== n.ready ? n.ready(e) : e(T) : T.makeArray(e, this);
 }).prototype = T.fn, q = T(s);
-var G = /^(?:parents|prev(?:Until|All))/, R = {
+var G = /^(?:parents|prev(?:Until|All))/, P = {
 children: !0,
 contents: !0,
 next: !0,
 prev: !0
 };
-function P(e, t) {
+function R(e, t) {
 for (;(e = e[t]) && 1 !== e.nodeType; ) ;
 return e;
 }
@@ -1212,10 +1212,10 @@ parentsUntil: function(e, t, n) {
 return M(e, "parentNode", n);
 },
 next: function(e) {
-return P(e, "nextSibling");
+return R(e, "nextSibling");
 },
 prev: function(e) {
-return P(e, "previousSibling");
+return R(e, "previousSibling");
 },
 nextAll: function(e) {
 return M(e, "nextSibling");
@@ -1243,7 +1243,7 @@ T.merge([], e.childNodes));
 T.fn[e] = function(n, r) {
 var i = T.map(this, t, n);
 return "Until" !== e.slice(-5) && (r = n), r && "string" == typeof r && (i = T.filter(r, i)), 
-1 < this.length && (R[e] || T.uniqueSort(i), G.test(e) && i.reverse()), this.pushStack(i);
+1 < this.length && (P[e] || T.uniqueSort(i), G.test(e) && i.reverse()), this.pushStack(i);
 };
 });
 var H = /[^\x20\t\r\n\f]+/g;
@@ -1399,23 +1399,23 @@ n.setTimeout(function() {
 throw e;
 });
 };
-var U = T.Deferred();
-function z() {
-s.removeEventListener("DOMContentLoaded", z), n.removeEventListener("load", z), 
+var z = T.Deferred();
+function U() {
+s.removeEventListener("DOMContentLoaded", U), n.removeEventListener("load", U), 
 T.ready();
 }
 T.fn.ready = function(e) {
-return U.then(e).catch(function(e) {
+return z.then(e).catch(function(e) {
 T.readyException(e);
 }), this;
 }, T.extend({
 isReady: !1,
 readyWait: 1,
 ready: function(e) {
-(!0 === e ? --T.readyWait : T.isReady) || (T.isReady = !0) !== e && 0 < --T.readyWait || U.resolveWith(s, [ T ]);
+(!0 === e ? --T.readyWait : T.isReady) || (T.isReady = !0) !== e && 0 < --T.readyWait || z.resolveWith(s, [ T ]);
 }
-}), T.ready.then = U.then, "complete" === s.readyState || "loading" !== s.readyState && !s.documentElement.doScroll ? n.setTimeout(T.ready) : (s.addEventListener("DOMContentLoaded", z), 
-n.addEventListener("load", z));
+}), T.ready.then = z.then, "complete" === s.readyState || "loading" !== s.readyState && !s.documentElement.doScroll ? n.setTimeout(T.ready) : (s.addEventListener("DOMContentLoaded", U), 
+n.addEventListener("load", U));
 var Q = function(e, t, n, r, i, o, a) {
 var s = 0, l = e.length, u = null == n;
 if ("object" === _(n)) for (s in i = !0, n) Q(e, t, s, n[s], !0, o, a); else if (void 0 !== r && (i = !0, 
@@ -1923,10 +1923,10 @@ T.event.remove(this, e, n, t);
 }
 });
 var Le = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([a-z][^\/\0>\x20\t\r\n\f]*)[^>]*)\/>/gi, qe = /<script|<style|<link/i, $e = /checked\s*(?:[^=]|=\s*.checked.)/i, Ge = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
-function Re(e, t) {
+function Pe(e, t) {
 return O(e, "table") && O(11 !== t.nodeType ? t : t.firstChild, "tr") && T(e).children("tbody")[0] || e;
 }
-function Pe(e) {
+function Re(e) {
 return e.type = (null !== e.getAttribute("type")) + "/" + e.type, e;
 }
 function He(e) {
@@ -1950,7 +1950,7 @@ g && (t[0] = h.call(this, i, o.html())), Fe(o, t, n, r);
 });
 if (p && (o = (i = Te(t, e[0].ownerDocument, !1, e, r)).firstChild, 1 === i.childNodes.length && (i = o), 
 o || r)) {
-for (s = (a = T.map(xe(i, "script"), Pe)).length; d < p; d++) l = i, d !== f && (l = T.clone(l, !0, !0), 
+for (s = (a = T.map(xe(i, "script"), Re)).length; d < p; d++) l = i, d !== f && (l = T.clone(l, !0, !0), 
 s && T.merge(a, xe(l, "script"))), n.call(e[d], l, d);
 if (s) for (u = a[a.length - 1].ownerDocument, T.map(a, He), d = 0; d < s; d++) l = a[d], 
 ye.test(l.type || "") && !ee.access(l, "globalEval") && T.contains(u, l) && (l.src && "module" !== (l.type || "").toLowerCase() ? T._evalUrl && !l.noModule && T._evalUrl(l.src, {
@@ -2000,13 +2000,13 @@ return void 0 === e ? T.text(this) : this.empty().each(function() {
 },
 append: function() {
 return Fe(this, arguments, function(e) {
-1 !== this.nodeType && 11 !== this.nodeType && 9 !== this.nodeType || Re(this, e).appendChild(e);
+1 !== this.nodeType && 11 !== this.nodeType && 9 !== this.nodeType || Pe(this, e).appendChild(e);
 });
 },
 prepend: function() {
 return Fe(this, arguments, function(e) {
 if (1 === this.nodeType || 11 === this.nodeType || 9 === this.nodeType) {
-var t = Re(this, e);
+var t = Pe(this, e);
 t.insertBefore(e, t.firstChild);
 }
 });
@@ -2066,14 +2066,14 @@ T(i[a])[t](n), d.apply(r, n.get());
 return this.pushStack(r);
 };
 });
-var Be = new RegExp("^(" + oe + ")(?!px)[a-z%]+$", "i"), Ue = function(e) {
+var Be = new RegExp("^(" + oe + ")(?!px)[a-z%]+$", "i"), ze = function(e) {
 var t = e.ownerDocument.defaultView;
 return t && t.opener || (t = n), t.getComputedStyle(e);
-}, ze = new RegExp(se.join("|"), "i");
+}, Ue = new RegExp(se.join("|"), "i");
 function Qe(e, t, n) {
 var r, i, o, a, s = e.style;
-return (n = n || Ue(e)) && ("" !== (a = n.getPropertyValue(t) || n[t]) || ue(e) || (a = T.style(e, t)), 
-!y.pixelBoxStyles() && Be.test(a) && ze.test(t) && (r = s.width, i = s.minWidth, 
+return (n = n || ze(e)) && ("" !== (a = n.getPropertyValue(t) || n[t]) || ue(e) || (a = T.style(e, t)), 
+!y.pixelBoxStyles() && Be.test(a) && Ue.test(t) && (r = s.width, i = s.minWidth, 
 o = s.maxWidth, s.minWidth = s.maxWidth = s.width = a, a = n.width, s.width = r, 
 s.minWidth = i, s.maxWidth = o)), void 0 !== a ? a + "" : a;
 }
@@ -2149,7 +2149,7 @@ return !r && 0 <= o && (l += Math.max(0, Math.ceil(e["offset" + t[0].toUpperCase
 l;
 }
 function ot(e, t, n) {
-var r = Ue(e), i = (!y.boxSizingReliable() || n) && "border-box" === T.css(e, "boxSizing", !1, r), o = i, a = Qe(e, t, r), s = "offset" + t[0].toUpperCase() + t.slice(1);
+var r = ze(e), i = (!y.boxSizingReliable() || n) && "border-box" === T.css(e, "boxSizing", !1, r), o = i, a = Qe(e, t, r), s = "offset" + t[0].toUpperCase() + t.slice(1);
 if (Be.test(a)) {
 if (!n) return a;
 a = "auto";
@@ -2218,7 +2218,7 @@ return ot(e, t, r);
 });
 },
 set: function(e, n, r) {
-var i, o = Ue(e), a = !y.scrollboxSize() && "absolute" === o.position, s = (a || r) && "border-box" === T.css(e, "boxSizing", !1, o), l = r ? it(e, t, r, s, o) : 0;
+var i, o = ze(e), a = !y.scrollboxSize() && "absolute" === o.position, s = (a || r) && "border-box" === T.css(e, "boxSizing", !1, o), l = r ? it(e, t, r, s, o) : 0;
 return s && a && (l -= Math.ceil(e["offset" + t[0].toUpperCase() + t.slice(1)] - parseFloat(o[t]) - it(e, t, "border", !1, o) - .5)), 
 l && (i = ae.exec(n)) && "px" !== (i[3] || "px") && (e.style[t] = n, n = T.css(e, t)), 
 rt(0, n, l);
@@ -2246,7 +2246,7 @@ css: function(e, t) {
 return Q(this, function(e, t, n) {
 var r, i, o = {}, a = 0;
 if (Array.isArray(t)) {
-for (r = Ue(e), i = t.length; a < i; a++) o[t[a]] = T.css(e, t[a], !1, r);
+for (r = ze(e), i = t.length; a < i; a++) o[t[a]] = T.css(e, t[a], !1, r);
 return o;
 }
 return void 0 !== n ? T.style(e, t, n) : T.css(e, t);
@@ -2783,8 +2783,8 @@ value: n.replace(Ot, "\r\n")
 }).get();
 }
 });
-var $t = /%20/g, Gt = /#.*$/, Rt = /([?&])_=[^&]*/, Pt = /^(.*?):[ \t]*([^\r\n]*)$/gm, Ht = /^(?:GET|HEAD)$/, It = /^\/\//, Ft = {}, Wt = {}, Bt = "*/".concat("*"), Ut = s.createElement("a");
-function zt(e) {
+var $t = /%20/g, Gt = /#.*$/, Pt = /([?&])_=[^&]*/, Rt = /^(.*?):[ \t]*([^\r\n]*)$/gm, Ht = /^(?:GET|HEAD)$/, It = /^\/\//, Ft = {}, Wt = {}, Bt = "*/".concat("*"), zt = s.createElement("a");
+function Ut(e) {
 return function(t, n) {
 "string" != typeof t && (n = t, t = "*");
 var r, i = 0, o = t.toLowerCase().match(H) || [];
@@ -2808,7 +2808,7 @@ var n, r, i = T.ajaxSettings.flatOptions || {};
 for (n in t) void 0 !== t[n] && ((i[n] ? e : r || (r = {}))[n] = t[n]);
 return r && T.extend(!0, e, r), e;
 }
-Ut.href = Et.href, T.extend({
+zt.href = Et.href, T.extend({
 active: 0,
 lastModified: {},
 etag: {},
@@ -2851,8 +2851,8 @@ context: !0
 ajaxSetup: function(e, t) {
 return t ? Xt(Xt(e, T.ajaxSettings), t) : Xt(T.ajaxSettings, e);
 },
-ajaxPrefilter: zt(Ft),
-ajaxTransport: zt(Wt),
+ajaxPrefilter: Ut(Ft),
+ajaxTransport: Ut(Wt),
 ajax: function(e, t) {
 "object" == typeof e && (t = e, e = void 0), t = t || {};
 var r, i, o, a, l, u, c, d, p, f, h = T.ajaxSetup({}, t), g = h.context || h, v = h.context && (g.nodeType || g.jquery) ? T(g) : T.event, m = T.Deferred(), y = T.Callbacks("once memory"), b = h.statusCode || {}, x = {}, w = {}, k = "canceled", _ = {
@@ -2860,7 +2860,7 @@ readyState: 0,
 getResponseHeader: function(e) {
 var t;
 if (c) {
-if (!a) for (a = {}; t = Pt.exec(o); ) a[t[1].toLowerCase() + " "] = (a[t[1].toLowerCase() + " "] || []).concat(t[2]);
+if (!a) for (a = {}; t = Rt.exec(o); ) a[t[1].toLowerCase() + " "] = (a[t[1].toLowerCase() + " "] || []).concat(t[2]);
 t = a[e.toLowerCase() + " "];
 }
 return null == t ? null : t.join(", ");
@@ -2890,7 +2890,7 @@ h.type = t.method || t.type || h.method || h.type, h.dataTypes = (h.dataType || 
 null == h.crossDomain) {
 u = s.createElement("a");
 try {
-u.href = h.url, u.href = u.href, h.crossDomain = Ut.protocol + "//" + Ut.host != u.protocol + "//" + u.host;
+u.href = h.url, u.href = u.href, h.crossDomain = zt.protocol + "//" + zt.host != u.protocol + "//" + u.host;
 } catch (e) {
 h.crossDomain = !0;
 }
@@ -2901,7 +2901,7 @@ for (p in (d = T.event && h.global) && 0 == T.active++ && T.event.trigger("ajaxS
 h.type = h.type.toUpperCase(), h.hasContent = !Ht.test(h.type), i = h.url.replace(Gt, ""), 
 h.hasContent ? h.data && h.processData && 0 === (h.contentType || "").indexOf("application/x-www-form-urlencoded") && (h.data = h.data.replace($t, "+")) : (f = h.url.slice(i.length), 
 h.data && (h.processData || "string" == typeof h.data) && (i += (St.test(i) ? "&" : "?") + h.data, 
-delete h.data), !1 === h.cache && (i = i.replace(Rt, "$1"), f = (St.test(i) ? "&" : "?") + "_=" + Mt++ + f), 
+delete h.data), !1 === h.cache && (i = i.replace(Pt, "$1"), f = (St.test(i) ? "&" : "?") + "_=" + Mt++ + f), 
 h.url = i + f), h.ifModified && (T.lastModified[i] && _.setRequestHeader("If-Modified-Since", T.lastModified[i]), 
 T.etag[i] && _.setRequestHeader("If-None-Match", T.etag[i])), (h.data && h.hasContent && !1 !== h.contentType || t.contentType) && _.setRequestHeader("Content-Type", h.contentType), 
 _.setRequestHeader("Accept", h.dataTypes[0] && h.accepts[h.dataTypes[0]] ? h.accepts[h.dataTypes[0]] + ("*" !== h.dataTypes[0] ? ", " + Bt + "; q=0.01" : "") : h.accepts["*"]), 
@@ -3303,51 +3303,60 @@ return delete s.source, s;
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.parse_url2 = r, t.parse_url = i, t.default = i;
+}), t.parse_url = t.parse_url2 = void 0, t.parse_url2 = r, t.parse_url = i, t.default = i;
 }, function(e, t, n) {
 "use strict";
 (function(e, r) {
-function i(e) {
-for (var n in e) t.hasOwnProperty(n) || (t[n] = e[n]);
+var i = this && this.__createBinding || (Object.create ? function(e, t, n, r) {
+void 0 === r && (r = n), Object.defineProperty(e, r, {
+enumerable: !0,
+get: function() {
+return t[n];
 }
+});
+} : function(e, t, n, r) {
+void 0 === r && (r = n), e[r] = t[n];
+}), o = this && this.__exportStar || function(e, t) {
+for (var n in e) "default" === n || Object.prototype.hasOwnProperty.call(t, n) || i(t, e, n);
+};
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), i(n(6));
-const o = n(6);
-function a(t, n) {
-return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
-"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), o.GM_addStyle(t.toString(), n);
-}
+}), t.openInTabBackground = t.log = t.info = t.error = t.debug = t.addStylesheet = t.GM_addStyle = void 0;
+const a = n(6);
 function s(t, n) {
+return Array.isArray(t) && (t = t.join("")), "string" == typeof n && (n = e(n)), 
+"object" == typeof n && n.length && "object" == typeof n[0] && (n = n[0]), a.GM_addStyle(t.toString(), n);
+}
+function l(t, n) {
 return "object" == typeof t && t.webfont && (t = t.webfont), e(`<link rel="stylesheet" href="${t.toString()}"/>`).appendTo(n || e("header, body").eq(0));
 }
-function l(e, ...t) {
+function u(e, ...t) {
 return console.info(`%c[${r.userScript.id}][debug]`, "color: #4B90C2;", e, ...t);
 }
-function u(e, ...t) {
+function c(e, ...t) {
 return console.error(`%c[${r.userScript.id}][error]`, "color: red;", e, ...t);
 }
-function c(e, ...t) {
+function d(e, ...t) {
 return console.info(`%c[${r.userScript.id}][info]`, "color: #ccc;", e, ...t);
 }
-function d(e, ...t) {
+function p(e, ...t) {
 return console.log(e, ...t);
 }
-function p(e) {
+function f(e) {
 let t = window.open(e, "_blank");
 return setTimeout(function() {
 window.focus();
 }, 300), t;
 }
-t.GM_addStyle = a, t.addStylesheet = s, t.debug = l, t.error = u, t.info = c, t.log = d, 
-t.openInTabBackground = p, t.default = t;
+t.GM_addStyle = s, t.addStylesheet = l, t.debug = u, t.error = c, t.info = d, t.log = p, 
+t.openInTabBackground = f, t.default = t, o(n(6), t);
 }).call(this, n(0).default, n(1));
 }, function(e, t, n) {
 "use strict";
 (function(e, r, i) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.registerGlobalMenu = void 0;
 const o = n(5), a = n(13), s = n(15);
 function l(t, r, i) {
 let l = o.requireScript(t, "index");
@@ -3437,7 +3446,7 @@ t.registerMenuCommand = o, t.getLabel = a, t.callMenuCommand = s, t.listMenuComm
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.meta_filter = t.makeMetaRow = t.meta_match = t.lazyMetaFix = t.hasGrant = t.parseMetadata = void 0;
 const r = n(16);
 function i(e) {
 let t;
@@ -3514,7 +3523,7 @@ return t == n.indexOf(e);
 }
 Object.defineProperty(t, "__esModule", {
 value: !0
-}), t.array_unique = r, t.default = r;
+}), t.array_unique = void 0, t.array_unique = r, t.default = r;
 }, function(e, t, n) {
 var r = {
 "./pan-baidu-download/": 2,
@@ -3545,7 +3554,7 @@ return Object.keys(r);
 "use strict";
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.matchChrome = t.auto = t.option = t.match = void 0;
 const r = n(19), i = r.Minimatch;
 function o(e, t, n = {}) {
 n = a(n);
@@ -3824,10 +3833,10 @@ S = !0;
 for (var D = p.length - 1; D > -1; D--) {
 var O = p[D], N = r.slice(0, O.reStart), L = r.slice(O.reStart, O.reEnd - 8), q = r.slice(O.reEnd - 8, O.reEnd), $ = r.slice(O.reEnd);
 q += $;
-var G = N.split("(").length - 1, R = $;
-for (x = 0; x < G; x++) R = R.replace(/\)[+*?]?/, "");
-var P = "", H;
-"" === ($ = R) && t !== w && (P = "$"), r = N + L + $ + P + q;
+var G = N.split("(").length - 1, P = $;
+for (x = 0; x < G; x++) P = P.replace(/\)[+*?]?/, "");
+var R = "", H;
+"" === ($ = P) && t !== w && (R = "$"), r = N + L + $ + R + q;
 }
 if ("" !== r && o && (r = "(?=.)" + r), S && (r = m + r), t === w) return [ r, o ];
 if (!o) return T(e);
@@ -4196,7 +4205,7 @@ e.exports = r, r.range = o;
 (function(e) {
 Object.defineProperty(t, "__esModule", {
 value: !0
-});
+}), t.VCodeDialog = t.Dialog = t.base64Encode = t.getCookie = t.getLogID = t.PanShareHelper = t.PanHelper = t.detectPage = t.slog = t.makeJQueryPlugin = t.init = t.wordMapHttps = t.wordMapHttp = t.log_count = void 0;
 const r = n(26);
 function i(e, t) {
 switch (o(e), s()) {
@@ -4253,7 +4262,7 @@ function N() {
 return e("div." + E["list-grid-switch"]).hasClass(E["list-switched-on"]) ? "list" : e("div." + E["list-grid-switch"]).hasClass(E["grid-switched-on"]) ? "grid" : "list";
 }
 function L() {
-q(), $(), G(), P(), I();
+q(), $(), G(), R(), I();
 }
 function q() {
 window.addEventListener("hashchange", function(e) {
@@ -4300,13 +4309,13 @@ h.push(e);
 });
 });
 }
-function R() {
+function P() {
 var t;
 e("span." + E.checkbox).each(function(t, n) {
 e(n).unbind("click");
 });
 }
-function P() {
+function R() {
 var t;
 e("div." + E["col-item"] + "." + E.check).each(function(t, n) {
 e(n).bind("click", function(t) {
@@ -4381,7 +4390,7 @@ let e = window.MutationObserver, t = {
 childList: !0
 };
 b = new e(function(e) {
-R(), H(), F(), G(), P(), I();
+P(), H(), F(), G(), R(), I();
 });
 var n = document.querySelector("." + E["list-view"]), r = document.querySelector("." + E["grid-view"]);
 b.observe(n, t), b.observe(r, t);
@@ -4391,20 +4400,20 @@ e("div." + E["bar-search"]).css("width", "18%");
 var t = e('<span class="g-dropdown-button"></span>'), n = e('<a class="g-button" href="javascript:void(0);"><span class="g-button-right"><em class="icon icon-download" title="百度网盘下载助手"></em><span class="text" style="width: auto;">下载助手</span></span></a>'), r = e('<span class="menu" style="width:96px"></span>'), i = e('<span class="g-button-menu" style="display:block"></span>'), o = e('<span class="g-dropdown-button g-dropdown-button-second" menulevel="2"></span>'), a = e('<a class="g-button" href="javascript:void(0);"><span class="g-button-right"><span class="text" style="width:auto">直接下载</span></span></a>'), s = e('<span class="menu" style="width:120px;left:79px"></span>'), l = e('<a id="download-direct" class="g-button-menu" href="javascript:void(0);">下载</a>'), u = e('<a id="link-direct" class="g-button-menu" href="javascript:void(0);">显示链接</a>'), c = e('<a id="batchhttplink-direct" class="g-button-menu" href="javascript:void(0);">批量链接(HTTP)</a>'), d = e('<a id="batchhttpslink-direct" class="g-button-menu" href="javascript:void(0);">批量链接(HTTPS)</a>');
 s.append(l).append(u).append(c).append(d), i.append(o.append(a).append(s)), i.hover(function() {
 o.toggleClass("button-open");
-}), l.click(U), u.click(z), c.click(Q), d.click(Q);
+}), l.click(z), u.click(U), c.click(Q), d.click(Q);
 var p = e('<span class="g-button-menu" style="display:block"></span>'), f = e('<span class="g-dropdown-button g-dropdown-button-second" menulevel="2"></span>'), h = e('<a class="g-button" href="javascript:void(0);"><span class="g-button-right"><span class="text" style="width:auto">API下载</span></span></a>'), g = e('<span class="menu" style="width:120px;left:77px"></span>'), v = e('<a id="download-api" class="g-button-menu" href="javascript:void(0);">下载</a>'), m = e('<a id="httplink-api" class="g-button-menu" href="javascript:void(0);">显示链接</a>'), y = e('<a id="batchhttplink-api" class="g-button-menu" href="javascript:void(0);">批量链接(HTTP)</a>'), b = e('<a id="batchhttpslink-api" class="g-button-menu" href="javascript:void(0);">批量链接(HTTPS)</a>');
 g.append(v).append(m).append(y).append(b), p.append(f.append(h).append(g)), p.hover(function() {
 f.toggleClass("button-open");
-}), v.click(U), m.click(z), y.click(Q), b.click(Q);
+}), v.click(z), m.click(U), y.click(Q), b.click(Q);
 var x = e('<span class="g-button-menu" style="display:block"></span>'), w = e('<span class="g-dropdown-button g-dropdown-button-second" menulevel="2"></span>'), k = e('<a class="g-button" href="javascript:void(0);"><span class="g-button-right"><span class="text" style="width:auto">外链下载</span></span></a>'), _ = e('<span class="menu" style="width:120px;left:79px"></span>'), C = e('<a id="download-outerlink" class="g-button-menu" href="javascript:void(0);">下载</a>'), T = e('<a id="link-outerlink" class="g-button-menu" href="javascript:void(0);">显示链接</a>'), j = e('<a id="batchlink-outerlink" class="g-button-menu" href="javascript:void(0);">批量链接</a>');
 _.append(C).append(T).append(j), x.append(w.append(k).append(_)), x.hover(function() {
 w.toggleClass("button-open");
-}), C.click(U), T.click(z), j.click(Q), r.append(i).append(p).append(x), t.append(n).append(r), 
+}), C.click(z), T.click(U), j.click(Q), r.append(i).append(p).append(x), t.append(n).append(r), 
 t.hover(function() {
 t.toggleClass("button-open");
 }), e("div." + E["list-tools"]).append(t);
 }
-function U(e) {
+function z(e) {
 a("选中文件列表：", h);
 var t = e.target.id, n;
 if ("download-direct" == t) {
@@ -4428,7 +4437,7 @@ n = i.urls[0].url;
 }
 fe(n);
 }
-function z(t) {
+function U(t) {
 a("选中文件列表：", h);
 var n = t.target.id, r, i;
 if (-1 != n.indexOf("direct")) {
@@ -4774,19 +4783,19 @@ addCopy: !0
 function u(n) {
 var r, i, o, s, l, u, p, g, v, m, y, b, x, w, k, _, C, T, j, A, E, M, S, D, O = [], N = [], L = location.protocol + "//" + location.host + "/api/", q = location.protocol + "//" + location.host + "/share/list", $ = "http:" == location.protocol ? t.wordMapHttp : t.wordMapHttps;
 function G() {
-if (T = R(), i = r.SIGN, o = r.TIMESTAMP, s = r.MYBDSTOKEN, l = "chunlei", u = 0, 
+if (T = P(), i = r.SIGN, o = r.TIMESTAMP, s = r.MYBDSTOKEN, l = "chunlei", u = 0, 
 p = 1, g = 250528, v = c(), m = 0, y = "share", x = r.SHARE_ID, b = r.SHARE_UK, 
-"secret" == T && (k = I()), P()) {
+"secret" == T && (k = I()), R()) {
 let e = {};
 2 == r.CATEGORY ? (e.filename = r.FILENAME, e.path = r.PATH, e.fs_id = r.FS_ID, 
 e.isdir = 0) : (e.filename = r.FILEINFO[0].server_filename, e.path = r.FILEINFO[0].path, 
 e.fs_id = r.FILEINFO[0].fs_id, e.isdir = r.FILEINFO[0].isdir), N.push(e);
 } else _ = r.SHARE_ID, A = F(), E = W(), O = ie();
 }
-function R() {
+function P() {
 return 1 === r.SHARE_PUBLIC ? "public" : "secret";
 }
-function P() {
+function R() {
 return void 0 === r.getContext;
 }
 function H() {
@@ -4806,18 +4815,18 @@ return n.hasClass("list-switched-on") ? t = "list" : n.hasClass("grid-switched-o
 t;
 }
 function B() {
-P() ? (e("div.slide-show-right").css("width", "500px"), e("div.frame-main").css("width", "96%"), 
+R() ? (e("div.slide-show-right").css("width", "500px"), e("div.frame-main").css("width", "96%"), 
 e("div.share-file-viewer").css("width", "740px").css("margin-left", "auto").css("margin-right", "auto")) : e("div.slide-show-right").css("width", "500px");
 var t = e('<span class="g-dropdown-button"></span>'), n = e('<a class="g-button" data-button-id="b200" data-button-index="200" href="javascript:void(0);"></a>'), r = e('<span class="g-button-right"><em class="icon icon-download" title="百度网盘下载助手"></em><span class="text" style="width: auto;">下载助手</span></span>'), i = e('<span class="menu" style="width:auto;z-index:41"></span>'), o = e('<a data-menu-id="b-menu207" class="g-button-menu" href="javascript:void(0);">直接下载</a>'), a = e('<a data-menu-id="b-menu208" class="g-button-menu" href="javascript:void(0);">显示链接</a>');
 i.append(o).append(a), n.append(r), t.append(n).append(i), t.hover(function() {
 t.toggleClass("button-open");
 }), o.click(oe), a.click(ce), e("div.module-share-top-bar div.bar div.x-button-box").append(t);
 }
-function U() {
+function z() {
 var t = e('<div class="helper-hide" style="padding:0;margin:0;display:block"></div>'), n = e('<iframe src="javascript:void(0)" id="helperdownloadiframe" style="display:none"></iframe>');
 t.append(n), e("body").append(t);
 }
-function z() {
+function U() {
 Q(), J(), K(), Z(), te();
 }
 function Q() {
@@ -5076,7 +5085,7 @@ tip: o
 }
 function de() {
 var t;
-if (P) {
+if (R) {
 w = ue(), v = c();
 var n = L + "sharedownload?sign=" + i + "&timestamp=" + o + "&bdstoken=" + s + "&channel=" + l + "&clienttype=" + u + "&web=" + p + "&app_id=" + g + "&logid=" + v, r = {
 encrypt: m,
@@ -5100,7 +5109,7 @@ return t;
 }
 function pe(t) {
 var n;
-if (P) {
+if (R) {
 w = ue();
 var r = L + "sharedownload?sign=" + i + "&timestamp=" + o + "&bdstoken=" + s + "&channel=" + l + "&clienttype=" + u + "&web=" + p + "&app_id=" + g + "&logid=" + v, a = {
 encrypt: m,
@@ -5131,7 +5140,7 @@ this.init = function() {
 a("yunData:", r = unsafeWindow.yunData), void 0 !== r && null != r.FILEINFO ? (G(), 
 B(), S = new f({
 addCopy: !1
-}), D = new h(se, le), U(), P() || (z(), re()), a("分享直接下载加载成功!")) : a("页面未正常加载，或者百度已经更新！");
+}), D = new h(se, le), z(), R() || (U(), re()), a("分享直接下载加载成功!")) : a("页面未正常加载，或者百度已经更新！");
 };
 }
 function c() {
