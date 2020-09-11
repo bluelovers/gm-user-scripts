@@ -44,14 +44,15 @@ let o: IDemo = {
 	{
 		const _uf_dom_filter_link = require('root/lib/dom/filter/link');
 		_uf_dom_filter_link([
-			//
+			'.moment-content-box a',
+			'.bbcode-body a',
 		])
 			.prop('target', '_blank')
 		;
 
 		greasemonkey.GM_addStyle([
 			`body, html, :root { font-size: 9pt; font-family: initial; }`,
-			`.bbcode-body, .topic-comments-list-v2 .item-text-body, .posts-item-v2 .item-text-header .taptap-user-name, topic-info, .comment-item__toggle-reply-list, .topic-v2-container .author-wrap .topic-info { font-size: 1rem; }`,
+			`.bbcode-body, .topic-comments-list-v2 .item-text-body, .posts-item-v2 .item-text-header .taptap-user-name, topic-info, .comment-item__toggle-reply-list, .topic-v2-container .author-wrap .topic-info, .common-v2-list .content-text { font-size: 1rem; }`,
 		]);
 	},
 
