@@ -6583,43 +6583,50 @@ e.exports = r;
 }, function(e, t, n) {
 "use strict";
 (function(t) {
+function a() {
+let e;
+t(".pic_box, .uwthumb").find("img[data-original]").attr("src", function(e, n) {
+let a, r = t(this).attr("data-original");
+return -1 !== n.indexOf("loading.jpg") && r && r.length ? r : n;
+});
+}
 e.exports = {
 metadata: {
 include: [ "http*://*.wnacg.com/*", "http*://*.wnacg.org/*", "http*://wnacg.com/*", "http*://wnacg.org/*" ],
 exclude: []
 },
 test: e => !!e.host.match(/wnacg\.(com|org)/),
-main(a) {
-const r = n(2);
-r(".gallary_item a").prop("target", "_blank"), e.exports.adblock(a, !0);
-const o = n(7), i = n(4), s = n(10), u = n(8), c = n(11)._uf_fixsize2, {debounce: l} = n(3), {throttle: d} = n(3);
+main(r) {
+const o = n(2);
+o(".gallary_item a").prop("target", "_blank"), e.exports.adblock(r, !0);
+const i = n(7), s = n(4), u = n(10), c = n(8), l = n(11)._uf_fixsize2, {debounce: d} = n(3), {throttle: p} = n(3);
 if (t("#photo_body").length) {
 let e = t("#photo_body, .photo_body, #imgarea");
-t("body").css(s.bg_dark).css(s.bg_dark_text).add(e).css(s.body), u.GM_addStyle(`a { color: ${s.bg_dark_text.color}; }`);
+t("body").css(u.bg_dark).css(u.bg_dark_text).add(e).css(u.body), c.GM_addStyle(`a { color: ${u.bg_dark_text.color}; }`);
 const a = "#photo_body .photo";
 let r = t(a);
-r.css(s.photo).imagesLoaded().done(() => {
+r.css(u.photo).imagesLoaded().done(() => {
 t(window).triggerHandler("resize");
 });
-let l = t("<div/>").css(s.page).css(s.bg_dark).css(s.bg_dark_border).css(s.bg_dark_text).css(s.page_position).appendTo("body");
+let o = t("<div/>").css(u.page).css(u.bg_dark).css(u.bg_dark_border).css(u.bg_dark_text).css(u.page_position).appendTo("body");
 t.scrollTo(r), t("#tuzaoblock").hide(), t(window).on("resize", function() {
-r.css(s.photo), c(r, window, 1), l.text(t(".newpagelabel").text()), l.offset({
+r.css(u.photo), l(r, window, 1), o.text(t(".newpagelabel").text()), o.offset({
 top: r.offset().top + 50,
-left: r.offset().left - l.outerWidth()
+left: r.offset().left - o.outerWidth()
 }), t.scrollTo(r);
 }).on("keydown.page", n(5).packEvent(function(e) {
 let [n, a] = t(".newpagelabel").text().replace(/[\n\s]/gi, "").split("/").map(e => parseInt(e));
 switch (e.which) {
-case o("pageup"):
-case o("left"):
+case i("pageup"):
+case i("left"):
 var r = t(".newpage a.btntuzao:eq(0)");
-i(e), n > 1 && r.length && r[0].click();
+s(e), n > 1 && r.length && r[0].click();
 break;
 
-case o("pagedown"):
-case o("right"):
+case i("pagedown"):
+case i("right"):
 var r = t(".newpage a.btntuzao:eq(-1)");
-i(e), n < a && r.length && r[0].click();
+s(e), n < a && r.length && r[0].click();
 break;
 }
 })), setTimeout(function() {
@@ -6628,42 +6635,42 @@ t(window).triggerHandler("resize");
 } else if (t("#img_list").length) {
 const e = t("#img_list");
 n(13), n(134)(t);
-const r = "#img_list img";
-let d = t(r);
-if (a.query && a.query.match(/page=(\d+)/)) {
+const a = "#img_list img";
+let o = t(a);
+if (r.query && r.query.match(/page=(\d+)/)) {
 let n = RegExp.$1;
-t(window).one("resize.once", l(1e3, function() {
-d = t(r);
-let a = e.add(t(r).eq(n - 1)).eq(-1);
-t(window).scrollTo(a.add(a.parent("div:not([id])")));
+t(window).one("resize.once", d(1e3, function() {
+o = t(a);
+let r = e.add(t(a).eq(n - 1)).eq(-1);
+t(window).scrollTo(r.add(r.parent("div:not([id])")));
 }));
 }
-u.GM_addStyle([ "#img_list img { vertical-align: middle; display: inline-block; }", "#img_list > div { padding: 0 !important; overflow: hidden; }", "#img_list > div:before { content: ''; display: inline-block; vertical-align: middle; height: 100%; }" ]), 
-t("body").css(s.body).css(s.bg_dark);
-let p = t("<div data-div-page/>").css(s.page).css(s.bg_dark).css(s.bg_dark_border).css(s.bg_dark_text).css({
+c.GM_addStyle([ "#img_list img { vertical-align: middle; display: inline-block; }", "#img_list > div { padding: 0 !important; overflow: hidden; }", "#img_list > div:before { content: ''; display: inline-block; vertical-align: middle; height: 100%; }" ]), 
+t("body").css(u.body).css(u.bg_dark);
+let p = t("<div data-div-page/>").css(u.page).css(u.bg_dark).css(u.bg_dark_border).css(u.bg_dark_text).css({
 top: 50,
 position: "fixed"
 }).appendTo("body"), h = function(e) {
-return c(t(e), window, 1, {
+return l(t(e), window, 1, {
 width: "auto"
-}).css(s.photo);
+}).css(u.photo);
 }, f;
 p.on("click", function(e) {
 window.open(window.location.href.replace(/photos-slide-aid/, "photos-index-aid"), "_blank"), 
-i._uf_done2(e);
+s._uf_done2(e);
 }), e.on("DOMNodeInserted", function(n) {
-(d = t(r)).prop("data-index", function(e) {
+(o = t(a)).prop("data-index", function(e) {
 return e;
 }).attr("name", function(e) {
 return "img" + e;
 }).imagesLoaded().always(function(e) {}).done(function(e) {
 t(e.elements).parent("div").height(t(window).innerHeight()), h(e.elements);
 });
-let a = e.add(d.eq(0));
-a = a.add(d.filter(":onScreen")).eq(-1), p.text(parseInt(a.prop("data-index")) + 1 + "/" + d.length);
+let r = e.add(o.eq(0));
+r = r.add(o.filter(":onScreen")).eq(-1), p.text(parseInt(r.prop("data-index")) + 1 + "/" + o.length);
 });
 let g = function(e, n) {
-p.text(parseInt(e.prop("data-index")) + 1 + "/" + d.length), p.offset({
+p.text(parseInt(e.prop("data-index")) + 1 + "/" + o.length), p.offset({
 left: e.offset().left - p.outerWidth()
 }), n && (t(window).scrollTo(n), f = setTimeout(function() {
 f && clearTimeout(f), f = null;
@@ -6672,68 +6679,68 @@ f && clearTimeout(f), f = null;
 t(window).on("load", function() {
 e.triggerHandler("DOMNodeInserted"), t(window).triggerHandler("resize");
 }).on("resize", function() {
-(d = t(r)).each(function() {
+(o = t(a)).each(function() {
 t(this).parent("div").height(t(window).innerHeight()), h(this);
 });
-}).on("resize.once", l(100, function() {
-d = t(r);
-let n = e.add(d.eq(0));
-n = n.add(d.filter(":onScreen")).eq(-1), g(n), t(window).scrollTo(n.parent());
-})).on("scroll", l(1e3, function(e) {
+}).on("resize.once", d(100, function() {
+o = t(a);
+let n = e.add(o.eq(0));
+n = n.add(o.filter(":onScreen")).eq(-1), g(n), t(window).scrollTo(n.parent());
+})).on("scroll", d(1e3, function(e) {
 t(window).triggerHandler("resize.once");
 })).on("keydown.page", n(5).packEvent(function(e) {
 if (f) switch (e.which) {
-case o("pageup"):
-case o("left"):
-case o("pagedown"):
-case o("right"):
-return i(e), !1;
+case i("pageup"):
+case i("left"):
+case i("pagedown"):
+case i("right"):
+return s(e), !1;
 break;
 }
-d = t(r);
+o = t(a);
 let n = 0;
-switch (d.each(function(e, a) {
+switch (o.each(function(e, a) {
 if (t(a).is(":onScreen")) return n = e, !1;
 }), e.which) {
-case o("pageup"):
-case o("left"):
+case i("pageup"):
+case i("left"):
 n > 0 && n--;
-var a = d.eq(n);
-i(e), a.length && g(a, a.parent());
+var r = o.eq(n);
+s(e), r.length && g(r, r.parent());
 break;
 
-case o("pagedown"):
-case o("right"):
-n < d.length && n++;
-var a = d.eq(n);
-i(e), a.length && g(a, a.parent());
+case i("pagedown"):
+case i("right"):
+n < o.length && n++;
+var r = o.eq(n);
+s(e), r.length && g(r, r.parent());
 break;
 }
 })).triggerHandler("resize.once");
 } else {
 if (t(window).add("body, a, img").on("click", function(e) {
 e.stopImmediatePropagation();
-}), a.path && a.path.match(/photos-index(?:-page-\d+)?-aid-(\d+)/)) {
+}), r.path && r.path.match(/photos-index(?:-page-\d+)?-aid-(\d+)/)) {
 let e = RegExp.$1;
 t(".gallary_wrap .gallary_item:eq(0) a").prop("href", function(e, n) {
-let r = parseInt(t(this).parents(".gallary_item").find(".info .title .name").text());
-return a.path.replace(/photos-index(?:-page-\d+)?-aid-/, "photos-slide-aid-").concat(r ? "?page=" + r : "");
+let a = parseInt(t(this).parents(".gallary_item").find(".info .title .name").text());
+return r.path.replace(/photos-index(?:-page-\d+)?-aid-/, "photos-slide-aid-").concat(a ? "?page=" + a : "");
 });
 }
-t(window).scrollTo(".gallary_wrap"), t(window).on("load", l(500, function() {
-e.exports.adblock();
+r.path && r.path.match(/albums|/) && a(), t(window).scrollTo(".gallary_wrap"), t(window).on("load", d(500, function() {
+e.exports.adblock(), a();
 })).on("keydown.page", n(5).packEvent(function(e) {
 switch (e.which) {
-case o("pageup"):
-case o("left"):
+case i("pageup"):
+case i("left"):
 var n;
-(n = t(".paginator .prev a")).length && (i(e), n[0].click());
+(n = t(".paginator .prev a")).length && (s(e), n[0].click());
 break;
 
-case o("pagedown"):
-case o("right"):
+case i("pagedown"):
+case i("right"):
 var n;
-(n = t(".paginator .next a")).length && (i(e), n[0].click());
+(n = t(".paginator .next a")).length && (s(e), n[0].click());
 break;
 }
 })).triggerHandler("load");

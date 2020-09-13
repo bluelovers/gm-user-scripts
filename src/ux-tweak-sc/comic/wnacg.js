@@ -435,12 +435,18 @@ module.exports = {
 				}
 			}
 
+			if (_url_obj.path && _url_obj.path.match(/albums|/))
+			{
+				lzyLoad();
+			}
+
 			$(window).scrollTo('.gallary_wrap');
 
 			$(window)
 				.on('load', debounce(500, function ()
 				{
 					module.exports.adblock();
+					lzyLoad();
 				}))
 				.on('keydown.page', require('root/lib/jquery/event/hotkey').packEvent(function (event)
 				{
@@ -518,3 +524,28 @@ module.exports = {
 		}
 	},
 };
+
+function lzyLoad()
+{
+	let imgs = $('.pic_box, .uwthumb')
+		.find('img[data-original]')
+	;
+
+	imgs
+		.attr('src', function (i, old)
+		{
+			let _this = $(this);
+
+			let src = _this.attr('data-original');
+
+			//console.log(i, [this, _this], [old, src])
+
+			if (old.indexOf('loading.jpg') !== -1 && src && src.length)
+			{
+				return src
+			}
+
+			return old;
+		})
+	;
+}
