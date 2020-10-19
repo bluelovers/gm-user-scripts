@@ -14,6 +14,7 @@ module.exports = {
 			'https://tw.search.buy.yahoo.com/search/shopping/*',
 			'https://twpay.buy.yahoo.com/checkout/preview*',
 			'https://tw.buy.yahoo.com/coupons*',
+			'https://tw.buy.yahoo.com/gdsale/*.html',
 		],
 		exclude: [],
 	},
@@ -149,6 +150,30 @@ module.exports = {
 						_dom.prependTo($('.spec', _tr));
 					})
 				;
+
+				let _share_btn = $('#isoredux-root span[class^="ShareButtons__copyText___"][data-clipboard-text]:eq(0)')
+					.not('[data-done]')
+				;
+
+				if (_share_btn.length)
+				{
+					_share_btn.attr('data-done', true);
+
+					// https://tw.buy.yahoo.com/gdsale/gdsale.asp?gdid=8957315
+					let _href = _share_btn.attr('data-clipboard-text') || '';
+
+					let _m = _href.match(/gdid=(\d+)/);
+					if (_m && _m[1])
+					{
+						let _gdid = _m[1];
+
+						let _dom = problem(_gdid);
+
+						let _target = $('#isoredux-root div[class^=CheckoutBar__wrapper___]')
+
+						_dom.appendTo(_target);
+					}
+				}
 
 				$('.spec-table td:has(> .buy_input)')
 					.not('[data-done]')

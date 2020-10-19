@@ -151,6 +151,7 @@
 // @include		https://tw.search.buy.yahoo.com/search/shopping/*
 // @include		https://twpay.buy.yahoo.com/checkout/preview*
 // @include		https://tw.buy.yahoo.com/coupons*
+// @include		https://tw.buy.yahoo.com/gdsale/*.html
 // @include		http*://tw.mall.yahoo.com/*
 // @include		http*://tw.user.mall.yahoo.com/my/*
 // @include		https://tw.search.mall.yahoo.com/*
@@ -745,7 +746,7 @@ n(71), n(72), n(73), n(74), n(75), n(76), n(77), n(78), n(79), n(80), n(81), n(8
 n(83), n(84), n(85), n(86), n(87), n(88), n(89), n(90), n(91), n(92), n(93), n(94), 
 n(95), n(96), n(97), n(98), n(99), n(100), n(101), n(102), n(16), n(103), n(104), 
 n(105), n(106), n(107), n(108), n(109), n(110);
-}), e.exports.metadata = {}, e.exports.metadata.include = [ "http*://www.2dfan.com/*", "http*://www.3dmgame.com/*", "http*://bbs.3dmgame.com/*", "http*://tieba.baidu.com/*", "http*://blog.reimu.net/*", "http*://www.dlsite.com/*", "http*://www.gamer.com.tw/*", "http*://www.gamer.com.tw/index*.php*", "http*://acg.gamer.com.tw/acgDetail.php?s=*", "http*://gnn.gamer.com.tw/*.html", "http*://gnn.gamer.com.tw/*k=*", "http*://forum.gamer.com.tw/*bsn=*", "http*://home.gamer.com.tw/*", "http*://acg.gamer.com.tw/*", "http*://m.gamer.com.tw/*", "http*://ani.gamer.com.tw/*", "http*://news.gamme.com.tw/*", "http*://*.getchu.com/*", "http*://*-forum.guildwars2.com/*", "http*://wiki.guildwars2.com/*", "http*://www.gw2bltc.com/*", "http*://www.u2mtv.com/movie/*", "http*://tw.movies.yahoo.com/*", "http*://movies.yahoo.com.tw/*", "http*://movies.yahoo.com.tw/movie_*.html", "http*://*.qoo-app.com/*", "http*://qtfy.eu/*", "http*://www.reddit.com/r/*", "http*://www.taptap.com/*", "http*://gw2.vsgames.cn/*", "http*://*.vsgames.cn/*", "http*://www.up01.cc/*", "http*://www.epinv.com/*", "http*://danbooru.donmai.us/*", "http*://*.deviantart.com/*", "http*://*.pixiv.net/*", "http*://www.pixiv.net/search*", "http*://www.pixivision.net/*", "http*://www.ptt.cc/*", "http*://blog.xuite.net/*", "http*://dulfy.net/*", "http*://www.jianshu.com/*", "http*://juejin.im/*", "http*://blog.oneapm.com/*", "http*://steachs.com/*", "http*://gitee.com/*", "http*://gitee.com/api/*", "http*://gitee.com/oauth/applications/*", "http*://github.com/*", "http*://greasyfork.org/*", "https://www.npmjs.com/search?q=*", "https://www.npmjs.com/~*", "https://www.npmjs.com/browse/*", "https://www.npmjs.com/package/*", "https://www.npmjs.com/settings/*", "http*://segmentfault.com/*", "http*://sourceforge.net/projects/*/files/*", "http*://stackoverflow.com/*", "http*://superuser.com/*", "http*://www.999comic.com/*", "http://t.168girl.com/*", "http*://www.alphapolis.co.jp/*", "http*://lhscan.net/*", "http*://book.dmm.co.jp/*", "https://comic-walker.com/*", "http*://www.comico.com.tw/*", "http*://www.dm5.com/*", "http*://*.dmzj.com/*", "https://i.dmzj.com/*", "http*://manhua.dmzj.com/*", "http*://exhentai.org/*", "http*://g.e-hentai.org/*", "http*://e-hentai.org/*", "http*://*.ikanman.com/*", "http*://*.manhuagui.com/*", "http*://lhscans.com/*", "http*://loveheaven.net/*", "http*://www.manben.com/*", "https://www.manhuadui.com/manhua/*", "http*://www.manhuaren.com/*", "http*://nhentai.net/*", "http*://www.rawdevart.com/*", "http*://*.wnacg.com/*", "http*://*.wnacg.org/*", "http*://wnacg.com/*", "http*://wnacg.org/*", "http*://smp*.yoedge.com/*", "http*://www.fun01.cc/*", "http*://cwn.ling.sinica.edu.tw/*", "http*://cwn.ling.sinica.edu.tw/query1.htm*", "http*://cwn.ling.sinica.edu.tw/_process.asp*", "http*://cwn.ling.sinica.edu.tw/input.asp*", "http*://dict.revised.moe.edu.tw/*", "http*://dict.revised.moe.edu.tw/cbdic/search.htm*", "http*://www.esjzone.cc/*", "http*://*.lightnovel.cn/*", "http*://*.lightnovel.cn/*mod=viewthread*", "http*://masiro.moe/*", "http*://masiro.moe/*mod=viewthread*", "http*://syosetu.com/*", "http*://www.wenku8.com/*", "http*://www.jetbrains.com/*", "http*://www.jetbrains.org/*", "http*://intellij-support.jetbrains.com/*", "http*://plugins.jetbrains.com/*", "http*://mall.pchome.com.tw/*", "http://www.kerrytj.com/zh/search/search_track.aspx*", "http://postserv.post.gov.tw/pstmail/main_mail.html*", "http*://tw.buy.yahoo.com/*", "http*://tw.buy.yahoo.com/bestbuy/*", "http*://tw.buy.yahoo.com/activity/*", "https://tw.search.buy.yahoo.com/search/shopping/*", "https://twpay.buy.yahoo.com/checkout/preview*", "https://tw.buy.yahoo.com/coupons*", "http*://tw.mall.yahoo.com/*", "http*://tw.user.mall.yahoo.com/my/*", "https://tw.search.mall.yahoo.com/*", "http*://www.facebook.com/*", "http*://www.facebook.com/saved/*", "http*://www.weibo.com/*", "http*://m.weibo.cn/*", "http*://www.jandown.com/*", "http*://sukebei.nyaa.si/*", "http*://*.wikipedia.org/*", "http*://encrypted.google.com/*", "http*://www.google.co.jp/*", "http*://*.google.*/blank.html", "http*://*.google.*/search*", "http*://*.google.*/imgres*" ], 
+}), e.exports.metadata = {}, e.exports.metadata.include = [ "http*://www.2dfan.com/*", "http*://www.3dmgame.com/*", "http*://bbs.3dmgame.com/*", "http*://tieba.baidu.com/*", "http*://blog.reimu.net/*", "http*://www.dlsite.com/*", "http*://www.gamer.com.tw/*", "http*://www.gamer.com.tw/index*.php*", "http*://acg.gamer.com.tw/acgDetail.php?s=*", "http*://gnn.gamer.com.tw/*.html", "http*://gnn.gamer.com.tw/*k=*", "http*://forum.gamer.com.tw/*bsn=*", "http*://home.gamer.com.tw/*", "http*://acg.gamer.com.tw/*", "http*://m.gamer.com.tw/*", "http*://ani.gamer.com.tw/*", "http*://news.gamme.com.tw/*", "http*://*.getchu.com/*", "http*://*-forum.guildwars2.com/*", "http*://wiki.guildwars2.com/*", "http*://www.gw2bltc.com/*", "http*://www.u2mtv.com/movie/*", "http*://tw.movies.yahoo.com/*", "http*://movies.yahoo.com.tw/*", "http*://movies.yahoo.com.tw/movie_*.html", "http*://*.qoo-app.com/*", "http*://qtfy.eu/*", "http*://www.reddit.com/r/*", "http*://www.taptap.com/*", "http*://gw2.vsgames.cn/*", "http*://*.vsgames.cn/*", "http*://www.up01.cc/*", "http*://www.epinv.com/*", "http*://danbooru.donmai.us/*", "http*://*.deviantart.com/*", "http*://*.pixiv.net/*", "http*://www.pixiv.net/search*", "http*://www.pixivision.net/*", "http*://www.ptt.cc/*", "http*://blog.xuite.net/*", "http*://dulfy.net/*", "http*://www.jianshu.com/*", "http*://juejin.im/*", "http*://blog.oneapm.com/*", "http*://steachs.com/*", "http*://gitee.com/*", "http*://gitee.com/api/*", "http*://gitee.com/oauth/applications/*", "http*://github.com/*", "http*://greasyfork.org/*", "https://www.npmjs.com/search?q=*", "https://www.npmjs.com/~*", "https://www.npmjs.com/browse/*", "https://www.npmjs.com/package/*", "https://www.npmjs.com/settings/*", "http*://segmentfault.com/*", "http*://sourceforge.net/projects/*/files/*", "http*://stackoverflow.com/*", "http*://superuser.com/*", "http*://www.999comic.com/*", "http://t.168girl.com/*", "http*://www.alphapolis.co.jp/*", "http*://lhscan.net/*", "http*://book.dmm.co.jp/*", "https://comic-walker.com/*", "http*://www.comico.com.tw/*", "http*://www.dm5.com/*", "http*://*.dmzj.com/*", "https://i.dmzj.com/*", "http*://manhua.dmzj.com/*", "http*://exhentai.org/*", "http*://g.e-hentai.org/*", "http*://e-hentai.org/*", "http*://*.ikanman.com/*", "http*://*.manhuagui.com/*", "http*://lhscans.com/*", "http*://loveheaven.net/*", "http*://www.manben.com/*", "https://www.manhuadui.com/manhua/*", "http*://www.manhuaren.com/*", "http*://nhentai.net/*", "http*://www.rawdevart.com/*", "http*://*.wnacg.com/*", "http*://*.wnacg.org/*", "http*://wnacg.com/*", "http*://wnacg.org/*", "http*://smp*.yoedge.com/*", "http*://www.fun01.cc/*", "http*://cwn.ling.sinica.edu.tw/*", "http*://cwn.ling.sinica.edu.tw/query1.htm*", "http*://cwn.ling.sinica.edu.tw/_process.asp*", "http*://cwn.ling.sinica.edu.tw/input.asp*", "http*://dict.revised.moe.edu.tw/*", "http*://dict.revised.moe.edu.tw/cbdic/search.htm*", "http*://www.esjzone.cc/*", "http*://*.lightnovel.cn/*", "http*://*.lightnovel.cn/*mod=viewthread*", "http*://masiro.moe/*", "http*://masiro.moe/*mod=viewthread*", "http*://syosetu.com/*", "http*://www.wenku8.com/*", "http*://www.jetbrains.com/*", "http*://www.jetbrains.org/*", "http*://intellij-support.jetbrains.com/*", "http*://plugins.jetbrains.com/*", "http*://mall.pchome.com.tw/*", "http://www.kerrytj.com/zh/search/search_track.aspx*", "http://postserv.post.gov.tw/pstmail/main_mail.html*", "http*://tw.buy.yahoo.com/*", "http*://tw.buy.yahoo.com/bestbuy/*", "http*://tw.buy.yahoo.com/activity/*", "https://tw.search.buy.yahoo.com/search/shopping/*", "https://twpay.buy.yahoo.com/checkout/preview*", "https://tw.buy.yahoo.com/coupons*", "https://tw.buy.yahoo.com/gdsale/*.html", "http*://tw.mall.yahoo.com/*", "http*://tw.user.mall.yahoo.com/my/*", "https://tw.search.mall.yahoo.com/*", "http*://www.facebook.com/*", "http*://www.facebook.com/saved/*", "http*://www.weibo.com/*", "http*://m.weibo.cn/*", "http*://www.jandown.com/*", "http*://sukebei.nyaa.si/*", "http*://*.wikipedia.org/*", "http*://encrypted.google.com/*", "http*://www.google.co.jp/*", "http*://*.google.*/blank.html", "http*://*.google.*/search*", "http*://*.google.*/imgres*" ], 
 e.exports.metadata.match = [ "*://*.bdimg.com/safecheck/*", "*://tieba.baidu.com/i/i/my_tie*", "*://tieba.baidu.com/i/i/my_reply*", "*://tieba.baidu.com/i/i/atme*", "*://tieba.baidu.com/i/i/storethread*", "*://tieba.baidu.com/pmc/*", "*://tieba.baidu.com/photo/*", "*://www.u2mtv.com/*", "*://nl.syosetu.com/*", "*://ncode.syosetu.com/*", "*://novel18.syosetu.com/*", "*://nkx.syosetu.com/*", "*://wetransfer.com/*", "*://share.dmhy.org/*", "*://*.moegirl.org/*" ], 
 e.exports.metadata.exclude = [ "http*://gc.bahamut.com.tw/*", "http*://*.bahamut.com.tw/*", "http*://*.bahamut.com.tw/js/*", "http*://*.pixiv.net/novel/*", "http*://www.facebook.com/ajax/*", "http*://www.facebook.com/*plugins/*", "http*://staticxx.facebook.com/*", "http*://notifications.google.com/*", "http*://platform.twitter.com/widgets*", "http*://apis.google.com/*" ], 
 e.exports.metadata.grant = [ "GM.deleteValue", "GM.getValue", "GM.listValues", "GM.openInTab", "GM.registerMenuCommand", "GM.setClipboard", "GM.setValue", "GM.unregisterMenuCommand", "GM.xmlhttpRequest", "GM_deleteValue", "GM_getValue", "GM_listValues", "GM_openInTab", "GM_registerMenuCommand", "GM_setClipboard", "GM_setValue", "GM_unregisterMenuCommand", "GM_xmlhttpRequest", "unsafeWindow" ], 
@@ -7503,7 +7504,7 @@ return e.map(e => `[class*="${e}"]`);
 }
 e.exports = {
 metadata: {
-include: [ "http*://tw.buy.yahoo.com/*", "http*://tw.buy.yahoo.com/bestbuy/*", "http*://tw.buy.yahoo.com/activity/*", "https://tw.search.buy.yahoo.com/search/shopping/*", "https://twpay.buy.yahoo.com/checkout/preview*", "https://tw.buy.yahoo.com/coupons*" ],
+include: [ "http*://tw.buy.yahoo.com/*", "http*://tw.buy.yahoo.com/bestbuy/*", "http*://tw.buy.yahoo.com/activity/*", "https://tw.search.buy.yahoo.com/search/shopping/*", "https://twpay.buy.yahoo.com/checkout/preview*", "https://tw.buy.yahoo.com/coupons*", "https://tw.buy.yahoo.com/gdsale/*.html" ],
 exclude: []
 },
 test: (e = t._url_obj) => !!e.host.match(/buy\.yahoo\.com/),
@@ -7525,7 +7526,17 @@ return a(this).attr("href", "javascript:void(0)"), e;
 }), a(".orderbox .rm").not("[data-done]").attr("data-done", !0).each(function() {
 let e = a(this), t, n;
 o(e.attr("gdid")).prependTo(a(".spec", e));
-}), a(".spec-table td:has(> .buy_input)").not("[data-done]").attr("data-done", !0).each(function() {
+});
+let e = a('#isoredux-root span[class^="ShareButtons__copyText___"][data-clipboard-text]:eq(0)').not("[data-done]");
+if (e.length) {
+e.attr("data-done", !0);
+let t, n = (e.attr("data-clipboard-text") || "").match(/gdid=(\d+)/);
+if (n && n[1]) {
+let e, t = o(n[1]), r = a("#isoredux-root div[class^=CheckoutBar__wrapper___]");
+t.appendTo(r);
+}
+}
+a(".spec-table td:has(> .buy_input)").not("[data-done]").attr("data-done", !0).each(function() {
 let e = a(this), t = e.parents("#cl-gdbooth").eq(0), n = a(':input#gdid:eq(0), :input[name="gdid"]:eq(0)', t).eq(0).val();
 if (n) {
 let t = o(n);
@@ -7543,25 +7554,25 @@ color: "#7b00aa",
 }).prependTo(e);
 }
 }), a("#myaccount > a:has(> .username)").prop("href", "https://tw.buy.yahoo.com/myaccount/orderlist?hpp=S2");
-let e = a('#TextBoxName, #TextBoxEmail, #TextBoxCustomValue, form[action*="actregister"]');
-e.length && (e.attr("autocomplete", "on"), a("#ButtonConfirm").removeAttr("disabled"), 
+let t = a('#TextBoxName, #TextBoxEmail, #TextBoxCustomValue, form[action*="actregister"]');
+t.length && (t.attr("autocomplete", "on"), a("#ButtonConfirm").removeAttr("disabled"), 
 a(".blockUI.blockOverlay").click(function(e) {
 a(".blockUI").hide().css("z-index", 0).remove(), l(e);
-}), (e = e.filter(":text, textarea").filter("[id]").filter(":visible").not(":hidden, :submit, :file")).each(function() {
+}), (t = t.filter(":text, textarea").filter("[id]").filter(":visible").not(":hidden, :submit, :file")).each(function() {
 let e = a(this), t = e.prop("id"), n;
 if (!e.val()) {
 let n = m.getValue(t);
 n && e.val(n);
 }
-}), e.on("change keyup", function() {
+}), t.on("change keyup", function() {
 let e = a(this), t = e.prop("id"), n = e.val();
 n && m.setValue(t, n);
 })), r.path.match(/coupons/) && a('div[class*="CouponsItem__receive"]').each(function() {
 let e;
 a(this).text().match(/已領取/) || this.click();
 });
-let t = u([ "InfoCell__cellContent", "InfoCell__cellTitle", "DeliveryInfo__expandableContent", "ProductMainInfo__ccardWrap", "InfoCell__cellContent", "ShoppingPromiseInfo__cellContent", "ThemeDiscoveryAd", "ProductMainInfo__ccard" ]);
-a(`[class*="ProductHtmlDetail__detail___34PZN"] td > p[style*="font-size"], ${t.join(", ")}, [class*="RadioButtons__radioBtn___qhOjt"] span`).css("font-size", "unset");
+let n = u([ "InfoCell__cellContent", "InfoCell__cellTitle", "DeliveryInfo__expandableContent", "ProductMainInfo__ccardWrap", "InfoCell__cellContent", "ShoppingPromiseInfo__cellContent", "ThemeDiscoveryAd", "ProductMainInfo__ccard" ]);
+a(`[class*="ProductHtmlDetail__detail___34PZN"] td > p[style*="font-size"], ${n.join(", ")}, [class*="RadioButtons__radioBtn___qhOjt"] span`).css("font-size", "unset");
 })).on("load.search", function() {}).on("keydown.page", n(5).packEvent(function(e) {
 switch (e.which) {
 case c("pageup"):
