@@ -76,14 +76,24 @@ let o: IDemo = {
 				.GM_addStyle([
 					`.winpop_print td._uf_fcm_done, .winpop_print ._uf_fcm_done td { color: #ccc !important; }`,
 					`.winpop_print td._uf_fcm, .winpop_print ._uf_fcm .lt, .winpop_print ._uf_fcm .rt { color: blue !important; }`,
-					`.winpop_print td._uf_fcm_red { color: red !important; }`,
+					`.winpop_print td._uf_fcm_red, .winpop_print tr._uf_fcm_red td, .winpop_print ._uf_fcm_red .lt, .winpop_print ._uf_fcm_red .rt { color: red !important; }`,
+
+					`.winpop_print tr._uf_fcm td { background-color: #97d5ed !important; }`,
+					`.winpop_print tr._uf_fcm_red td { background-color: #310f4a !important; }`,
+
 					`.mb5 td { text-align: center; }`,
 				])
 			;
 
 			let _cache_ = {
 				next_pay: 0,
+				count_next_pay: 0,
+
 				total_will_pay: 0,
+				count_will_pay: 0,
+
+				total_pay_returned: 0,
+				count_pay_returned: 0,
 			};
 
 			$('.table_ver[id] tr:has(> .rt)')
@@ -93,12 +103,12 @@ let o: IDemo = {
 					let _row = $(this);
 
 					let _lt = $('.lt', _row);
-
-					let _m;
-
-					_m = _lt
+					let _title = _lt
 						.text()
 						.toString()
+					;
+
+					let _m = _title
 						.match(/分(\d+)期之第(\d+)期/)
 					;
 
@@ -125,15 +135,33 @@ let o: IDemo = {
 						//_do = true;
 
 						//_cache_.total_will_pay += parseInt(_text);
+
+						let pay = parseInt2(_text);
+
+						if (pay < 0)
+						{
+							console.warn(_title, _text, pay);
+
+							_cache_.total_pay_returned += pay;
+							_cache_.count_pay_returned++;
+
+							_row.addClass('_uf_fcm_red');
+						}
+						else
+						{
+							console.log(_title, _text, pay);
+						}
 					}
 					else if (_m = _lt.text().match(/未到期金額(\d+)元/))
 					{
-						_cache_.total_will_pay += parseInt(_m[1]);
+						_cache_.total_will_pay += parseInt2(_m[1]);
+						_cache_.count_will_pay++;
 					}
 
 					if (_do)
 					{
-						_cache_.next_pay += parseInt(_text);
+						_cache_.next_pay += parseInt2(_text);
+						_cache_.count_next_pay++;
 					}
 				})
 			;
@@ -144,9 +172,10 @@ let o: IDemo = {
 					return $('<table/>')
 						.addClass('mb5')
 						.css('width', $(this).css('width'))
-						.append(`<td class="_uf_fcm" width="25%">下期起始應付帳款<br/>${_cache_.next_pay}</td>`)
-						.append(`<td class="_uf_fcm_red" width="25%">總估算（含分期）<br/>${_cache_.total_will_pay}</td>`)
-						.append(`<td width="75%"></td>`)
+						.append(`<td class="_uf_fcm" width="25%">下期起始應付帳款<br/>${_cache_.next_pay} （${_cache_.count_next_pay}）</td>`)
+						.append(`<td class="_uf_fcm_red" width="25%">總估算（含分期）<br/>${_cache_.total_will_pay} （${_cache_.count_will_pay}）</td>`)
+						.append(`<td class="_uf_fcm_red" width="25%">本月退款<br/>${_cache_.total_pay_returned} （${_cache_.count_pay_returned}）</td>`)
+						.append(`<td width="50%"></td>`)
 						;
 					;
 				})
@@ -177,6 +206,11 @@ let o: IDemo = {
 	},
 
 };
+
+function parseInt2(text: string)
+{
+	return parseInt(text.replace(/(\d),(?=\d{3})\b/g, '$1'))
+}
 
 export = o;
 
