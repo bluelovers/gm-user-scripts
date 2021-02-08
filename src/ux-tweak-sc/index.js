@@ -84,6 +84,7 @@ module.exports.list = [
 	"other/jetbrains/jetbrains",
 	"p2p/wetransfer",
 	"shop/pchome",
+	"shop/pchome/ecvip",
 	"shop/post/kerrytj",
 	"shop/post/post/gov/tw/pstmail",
 	"shop/yahoo/buy",
@@ -185,6 +186,7 @@ module.exports._lib = () =>
 	require('root/src/ux-tweak-sc/other/jetbrains/jetbrains');
 	require('root/src/ux-tweak-sc/p2p/wetransfer');
 	require('root/src/ux-tweak-sc/shop/pchome');
+	require('root/src/ux-tweak-sc/shop/pchome/ecvip');
 	require('root/src/ux-tweak-sc/shop/post/kerrytj');
 	require('root/src/ux-tweak-sc/shop/post/post/gov/tw/pstmail');
 	require('root/src/ux-tweak-sc/shop/yahoo/buy');
@@ -316,6 +318,7 @@ module.exports.metadata.include = [
 	"http*://intellij-support.jetbrains.com/*",
 	"http*://plugins.jetbrains.com/*",
 	"http*://mall.pchome.com.tw/*",
+	"http*://ecvip.pchome.com.tw/*",
 	"http://www.kerrytj.com/zh/search/search_track.aspx*",
 	"http://postserv.post.gov.tw/pstmail/main_mail.html*",
 	"http*://tw.buy.yahoo.com/*",
